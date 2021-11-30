@@ -1,0 +1,113 @@
+syntax = 'proto3';
+package anlatan;
+option go_package = ".;completion";
+
+// Protobuf doesn't have any native uint16s.
+message Uint16 {
+  uint32 uint16 = 1;
+}
+
+message Uint16s {
+  repeated Uint16 array = 1;
+}
+
+// We need to support nulls with numeric values. If undefined, is null.
+message NullFloat {
+  optional float null_float = 1;
+}
+
+message Token {
+  string text = 1;
+  Uint16 id = 2;
+}
+
+// Tokens may be represented as either an array of uint16s, or bytes. Bytes are
+// more efficient, but wrappers will serialize or deserialize appropriately.
+message Tokens {
+  repeated Token tokens = 1;
+}
+
+// The input can be provided in either string or sequence of tokens. Extensible
+// to other input types in the future, thanks to Protobuf.
+message Prompt {
+  oneof prompt {
+    string string = 1;
+    Tokens tokens = 2;
+  }
+}
+
+// Pairing of token sequences with bias values.
+message LogitBias {
+  Tokens tokens = 1;
+  float bias = 2;
+}
+
+message LogitBiases {
+  repeated LogitBias biases = 1;
+}
+
+// Reasons why the request finished
+enum FinishReason {
+  NULL = 0;
+  LENGTH = 1;
+}
+
+// Model parameters
+message Model {
+  optional float temperature = 1;       // What sampling temperature to use.
+  optional float top_p = 2;             // nucleus sampling value
+  optional float presence_penalty = 3;  // -2.0 to 2.0, penalize new tokens if seen in text
+  optional float frequency_penalty = 4; // -2.0 to 2.0, penalize new tokens based on frequency
+  optional LogitBiases logit_bias = 5;  // Modify likelihood of specific tokens appearing.
+}
+
+message Engine {
+  optional uint32 max_tokens = 1;   // The maximum number of tokens to generate
+  optional uint32 completions = 2;  // How many completions to generate per prompt
+  optional uint32 logprobs = 3;     // Return N logprobs on most likely and picked tokens
+  optional bool echo = 4;           // Echo back the prompt in addition to completion
+  optional uint32 best_of = 5;      // Generate # of `best_of` w. lowest logprob
+  repeated Prompt stop = 6;         // Up to 4 sequences where API will stop generating
+}
+
+// A 'generation' request.
+message Request {
+  string engine_id = 1;                  // The ID of the engine to use for this request
+  repeated Prompt prompt = 2;            // The prompt(s) to generate completions for
+  optional Model model_parameters = 3;
+  optional Engine engine_parameters = 4;
+}
+
+message LogProb {
+  Token token = 1;                 // pairing of token ...
+  NullFloat logprob = 2;           // ... with logprobs
+}
+
+message TokenLogProbs {
+  repeated LogProb logprobs = 1;            // zero or more logprobs
+}
+
+message LogProbs {
+  TokenLogProbs tokens = 1;        // logprobs of chosen tokens
+  repeated TokenLogProbs top = 2;           // top N logprobs
+  repeated uint32 text_offset = 3;          // indexed offsets of tokens
+  FinishReason finish_reason = 4;
+}
+
+message Completion {
+  string text = 1;                  // The completion in string format.
+  uint32 index = 2;                 // The index the completion starts at.
+  LogProbs logprobs = 3;            // Our answer with logprobs
+  FinishReason finish_reason = 4;   // Why the completions finished.
+}
+
+message Answer {
+  string answer_id = 1;             // Unique answer ID.
+  uint64 created = 2;               // When the answer was created at.
+  string model = 3;                 // What model and version answered.
+  repeated Completion choices = 4;
+}
+
+service CompletionService {
+  rpc Completion (Request) returns (stream Answer) {};
+}
