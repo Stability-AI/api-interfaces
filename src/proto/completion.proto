@@ -2,23 +2,9 @@ syntax = 'proto3';
 package anlatan;
 option go_package = "./;completion";
 
-// Protobuf doesn't have any native uint16s.
-message Uint16 {
-  uint32 uint16 = 1;
-}
-
-message Uint16s {
-  repeated Uint16 array = 1;
-}
-
-// We need to support nulls with numeric values. If undefined, is null.
-message NullFloat {
-  optional float null_float = 1;
-}
-
 message Token {
   string text = 1;
-  Uint16 id = 2;
+  uint32 id = 2;
 }
 
 // Tokens may be represented as either an array of uint16s, or bytes. Bytes are
@@ -39,7 +25,7 @@ message Prompt {
 // Pairing of token sequences with bias values.
 message LogitBias {
   Tokens tokens = 1;
-  float bias = 2;
+  double bias = 2;
 }
 
 message LogitBiases {
@@ -54,10 +40,10 @@ enum FinishReason {
 
 // Model parameters
 message Model {
-  optional float temperature = 1;       // What sampling temperature to use.
-  optional float top_p = 2;             // nucleus sampling value
-  optional float presence_penalty = 3;  // -2.0 to 2.0, penalize new tokens if seen in text
-  optional float frequency_penalty = 4; // -2.0 to 2.0, penalize new tokens based on frequency
+  optional double temperature = 1;       // What sampling temperature to use.
+  optional double top_p = 2;             // nucleus sampling value
+  optional double presence_penalty = 3;  // -2.0 to 2.0, penalize new tokens if seen in text
+  optional double frequency_penalty = 4; // -2.0 to 2.0, penalize new tokens based on frequency
   optional LogitBiases logit_bias = 5;  // Modify likelihood of specific tokens appearing.
 }
 
@@ -80,7 +66,7 @@ message Request {
 
 message LogProb {
   Token token = 1;                 // pairing of token ...
-  NullFloat logprob = 2;           // ... with logprobs
+  optional double logprob = 2;           // ... with logprobs
 }
 
 message TokenLogProbs {

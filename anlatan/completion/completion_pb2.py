@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\r./;completion',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x10\x63ompletion.proto\x12\x07\x61nlatan\"\x18\n\x06Uint16\x12\x0e\n\x06uint16\x18\x01 \x01(\r\")\n\x07Uint16s\x12\x1e\n\x05\x61rray\x18\x01 \x03(\x0b\x32\x0f.anlatan.Uint16\"3\n\tNullFloat\x12\x17\n\nnull_float\x18\x01 \x01(\x02H\x00\x88\x01\x01\x42\r\n\x0b_null_float\"2\n\x05Token\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x1b\n\x02id\x18\x02 \x01(\x0b\x32\x0f.anlatan.Uint16\"(\n\x06Tokens\x12\x1e\n\x06tokens\x18\x01 \x03(\x0b\x32\x0e.anlatan.Token\"G\n\x06Prompt\x12\x10\n\x06string\x18\x01 \x01(\tH\x00\x12!\n\x06tokens\x18\x02 \x01(\x0b\x32\x0f.anlatan.TokensH\x00\x42\x08\n\x06prompt\":\n\tLogitBias\x12\x1f\n\x06tokens\x18\x01 \x01(\x0b\x32\x0f.anlatan.Tokens\x12\x0c\n\x04\x62ias\x18\x02 \x01(\x02\"1\n\x0bLogitBiases\x12\"\n\x06\x62iases\x18\x01 \x03(\x0b\x32\x12.anlatan.LogitBias\"\xf7\x01\n\x05Model\x12\x18\n\x0btemperature\x18\x01 \x01(\x02H\x00\x88\x01\x01\x12\x12\n\x05top_p\x18\x02 \x01(\x02H\x01\x88\x01\x01\x12\x1d\n\x10presence_penalty\x18\x03 \x01(\x02H\x02\x88\x01\x01\x12\x1e\n\x11\x66requency_penalty\x18\x04 \x01(\x02H\x03\x88\x01\x01\x12-\n\nlogit_bias\x18\x05 \x01(\x0b\x32\x14.anlatan.LogitBiasesH\x04\x88\x01\x01\x42\x0e\n\x0c_temperatureB\x08\n\x06_top_pB\x13\n\x11_presence_penaltyB\x14\n\x12_frequency_penaltyB\r\n\x0b_logit_bias\"\xdb\x01\n\x06\x45ngine\x12\x17\n\nmax_tokens\x18\x01 \x01(\rH\x00\x88\x01\x01\x12\x18\n\x0b\x63ompletions\x18\x02 \x01(\rH\x01\x88\x01\x01\x12\x15\n\x08logprobs\x18\x03 \x01(\rH\x02\x88\x01\x01\x12\x11\n\x04\x65\x63ho\x18\x04 \x01(\x08H\x03\x88\x01\x01\x12\x14\n\x07\x62\x65st_of\x18\x05 \x01(\rH\x04\x88\x01\x01\x12\x1d\n\x04stop\x18\x06 \x03(\x0b\x32\x0f.anlatan.PromptB\r\n\x0b_max_tokensB\x0e\n\x0c_completionsB\x0b\n\t_logprobsB\x07\n\x05_echoB\n\n\x08_best_of\"\xc8\x01\n\x07Request\x12\x11\n\tengine_id\x18\x01 \x01(\t\x12\x1f\n\x06prompt\x18\x02 \x03(\x0b\x32\x0f.anlatan.Prompt\x12-\n\x10model_parameters\x18\x03 \x01(\x0b\x32\x0e.anlatan.ModelH\x00\x88\x01\x01\x12/\n\x11\x65ngine_parameters\x18\x04 \x01(\x0b\x32\x0f.anlatan.EngineH\x01\x88\x01\x01\x42\x13\n\x11_model_parametersB\x14\n\x12_engine_parameters\"M\n\x07LogProb\x12\x1d\n\x05token\x18\x01 \x01(\x0b\x32\x0e.anlatan.Token\x12#\n\x07logprob\x18\x02 \x01(\x0b\x32\x12.anlatan.NullFloat\"3\n\rTokenLogProbs\x12\"\n\x08logprobs\x18\x01 \x03(\x0b\x32\x10.anlatan.LogProb\"\x9a\x01\n\x08LogProbs\x12&\n\x06tokens\x18\x01 \x01(\x0b\x32\x16.anlatan.TokenLogProbs\x12#\n\x03top\x18\x02 \x03(\x0b\x32\x16.anlatan.TokenLogProbs\x12\x13\n\x0btext_offset\x18\x03 \x03(\r\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.anlatan.FinishReason\"|\n\nCompletion\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\r\n\x05index\x18\x02 \x01(\r\x12#\n\x08logprobs\x18\x03 \x01(\x0b\x32\x11.anlatan.LogProbs\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.anlatan.FinishReason\"a\n\x06\x41nswer\x12\x11\n\tanswer_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\x04\x12\r\n\x05model\x18\x03 \x01(\t\x12$\n\x07\x63hoices\x18\x04 \x03(\x0b\x32\x13.anlatan.Completion*$\n\x0c\x46inishReason\x12\x08\n\x04NULL\x10\x00\x12\n\n\x06LENGTH\x10\x01\x32H\n\x11\x43ompletionService\x12\x33\n\nCompletion\x12\x10.anlatan.Request\x1a\x0f.anlatan.Answer\"\x00\x30\x01\x42\x0fZ\r./;completionb\x06proto3'
+  serialized_pb=b'\n\x10\x63ompletion.proto\x12\x07\x61nlatan\"!\n\x05Token\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\r\"(\n\x06Tokens\x12\x1e\n\x06tokens\x18\x01 \x03(\x0b\x32\x0e.anlatan.Token\"G\n\x06Prompt\x12\x10\n\x06string\x18\x01 \x01(\tH\x00\x12!\n\x06tokens\x18\x02 \x01(\x0b\x32\x0f.anlatan.TokensH\x00\x42\x08\n\x06prompt\":\n\tLogitBias\x12\x1f\n\x06tokens\x18\x01 \x01(\x0b\x32\x0f.anlatan.Tokens\x12\x0c\n\x04\x62ias\x18\x02 \x01(\x01\"1\n\x0bLogitBiases\x12\"\n\x06\x62iases\x18\x01 \x03(\x0b\x32\x12.anlatan.LogitBias\"\xf7\x01\n\x05Model\x12\x18\n\x0btemperature\x18\x01 \x01(\x01H\x00\x88\x01\x01\x12\x12\n\x05top_p\x18\x02 \x01(\x01H\x01\x88\x01\x01\x12\x1d\n\x10presence_penalty\x18\x03 \x01(\x01H\x02\x88\x01\x01\x12\x1e\n\x11\x66requency_penalty\x18\x04 \x01(\x01H\x03\x88\x01\x01\x12-\n\nlogit_bias\x18\x05 \x01(\x0b\x32\x14.anlatan.LogitBiasesH\x04\x88\x01\x01\x42\x0e\n\x0c_temperatureB\x08\n\x06_top_pB\x13\n\x11_presence_penaltyB\x14\n\x12_frequency_penaltyB\r\n\x0b_logit_bias\"\xdb\x01\n\x06\x45ngine\x12\x17\n\nmax_tokens\x18\x01 \x01(\rH\x00\x88\x01\x01\x12\x18\n\x0b\x63ompletions\x18\x02 \x01(\rH\x01\x88\x01\x01\x12\x15\n\x08logprobs\x18\x03 \x01(\rH\x02\x88\x01\x01\x12\x11\n\x04\x65\x63ho\x18\x04 \x01(\x08H\x03\x88\x01\x01\x12\x14\n\x07\x62\x65st_of\x18\x05 \x01(\rH\x04\x88\x01\x01\x12\x1d\n\x04stop\x18\x06 \x03(\x0b\x32\x0f.anlatan.PromptB\r\n\x0b_max_tokensB\x0e\n\x0c_completionsB\x0b\n\t_logprobsB\x07\n\x05_echoB\n\n\x08_best_of\"\xc8\x01\n\x07Request\x12\x11\n\tengine_id\x18\x01 \x01(\t\x12\x1f\n\x06prompt\x18\x02 \x03(\x0b\x32\x0f.anlatan.Prompt\x12-\n\x10model_parameters\x18\x03 \x01(\x0b\x32\x0e.anlatan.ModelH\x00\x88\x01\x01\x12/\n\x11\x65ngine_parameters\x18\x04 \x01(\x0b\x32\x0f.anlatan.EngineH\x01\x88\x01\x01\x42\x13\n\x11_model_parametersB\x14\n\x12_engine_parameters\"J\n\x07LogProb\x12\x1d\n\x05token\x18\x01 \x01(\x0b\x32\x0e.anlatan.Token\x12\x14\n\x07logprob\x18\x02 \x01(\x01H\x00\x88\x01\x01\x42\n\n\x08_logprob\"3\n\rTokenLogProbs\x12\"\n\x08logprobs\x18\x01 \x03(\x0b\x32\x10.anlatan.LogProb\"\x9a\x01\n\x08LogProbs\x12&\n\x06tokens\x18\x01 \x01(\x0b\x32\x16.anlatan.TokenLogProbs\x12#\n\x03top\x18\x02 \x03(\x0b\x32\x16.anlatan.TokenLogProbs\x12\x13\n\x0btext_offset\x18\x03 \x03(\r\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.anlatan.FinishReason\"|\n\nCompletion\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\r\n\x05index\x18\x02 \x01(\r\x12#\n\x08logprobs\x18\x03 \x01(\x0b\x32\x11.anlatan.LogProbs\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.anlatan.FinishReason\"a\n\x06\x41nswer\x12\x11\n\tanswer_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\x04\x12\r\n\x05model\x18\x03 \x01(\t\x12$\n\x07\x63hoices\x18\x04 \x03(\x0b\x32\x13.anlatan.Completion*$\n\x0c\x46inishReason\x12\x08\n\x04NULL\x10\x00\x12\n\n\x06LENGTH\x10\x01\x32H\n\x11\x43ompletionService\x12\x33\n\nCompletion\x12\x10.anlatan.Request\x1a\x0f.anlatan.Answer\"\x00\x30\x01\x42\x0fZ\r./;completionb\x06proto3'
 )
 
 _FINISHREASON = _descriptor.EnumDescriptor(
@@ -43,8 +43,8 @@ _FINISHREASON = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1618,
-  serialized_end=1654,
+  serialized_start=1476,
+  serialized_end=1512,
 )
 _sym_db.RegisterEnumDescriptor(_FINISHREASON)
 
@@ -52,107 +52,6 @@ FinishReason = enum_type_wrapper.EnumTypeWrapper(_FINISHREASON)
 NULL = 0
 LENGTH = 1
 
-
-
-_UINT16 = _descriptor.Descriptor(
-  name='Uint16',
-  full_name='anlatan.Uint16',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='uint16', full_name='anlatan.Uint16.uint16', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=29,
-  serialized_end=53,
-)
-
-
-_UINT16S = _descriptor.Descriptor(
-  name='Uint16s',
-  full_name='anlatan.Uint16s',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='array', full_name='anlatan.Uint16s.array', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=55,
-  serialized_end=96,
-)
-
-
-_NULLFLOAT = _descriptor.Descriptor(
-  name='NullFloat',
-  full_name='anlatan.NullFloat',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='null_float', full_name='anlatan.NullFloat.null_float', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-    _descriptor.OneofDescriptor(
-      name='_null_float', full_name='anlatan.NullFloat._null_float',
-      index=0, containing_type=None,
-      create_key=_descriptor._internal_create_key,
-    fields=[]),
-  ],
-  serialized_start=98,
-  serialized_end=149,
-)
 
 
 _TOKEN = _descriptor.Descriptor(
@@ -172,8 +71,8 @@ _TOKEN = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='id', full_name='anlatan.Token.id', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -189,8 +88,8 @@ _TOKEN = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=151,
-  serialized_end=201,
+  serialized_start=29,
+  serialized_end=62,
 )
 
 
@@ -221,8 +120,8 @@ _TOKENS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=203,
-  serialized_end=243,
+  serialized_start=64,
+  serialized_end=104,
 )
 
 
@@ -265,8 +164,8 @@ _PROMPT = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=245,
-  serialized_end=316,
+  serialized_start=106,
+  serialized_end=177,
 )
 
 
@@ -287,7 +186,7 @@ _LOGITBIAS = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='bias', full_name='anlatan.LogitBias.bias', index=1,
-      number=2, type=2, cpp_type=6, label=1,
+      number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -304,8 +203,8 @@ _LOGITBIAS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=318,
-  serialized_end=376,
+  serialized_start=179,
+  serialized_end=237,
 )
 
 
@@ -336,8 +235,8 @@ _LOGITBIASES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=378,
-  serialized_end=427,
+  serialized_start=239,
+  serialized_end=288,
 )
 
 
@@ -351,28 +250,28 @@ _MODEL = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='temperature', full_name='anlatan.Model.temperature', index=0,
-      number=1, type=2, cpp_type=6, label=1,
+      number=1, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='top_p', full_name='anlatan.Model.top_p', index=1,
-      number=2, type=2, cpp_type=6, label=1,
+      number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='presence_penalty', full_name='anlatan.Model.presence_penalty', index=2,
-      number=3, type=2, cpp_type=6, label=1,
+      number=3, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='frequency_penalty', full_name='anlatan.Model.frequency_penalty', index=3,
-      number=4, type=2, cpp_type=6, label=1,
+      number=4, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -421,8 +320,8 @@ _MODEL = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=430,
-  serialized_end=677,
+  serialized_start=291,
+  serialized_end=538,
 )
 
 
@@ -513,8 +412,8 @@ _ENGINE = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=680,
-  serialized_end=899,
+  serialized_start=541,
+  serialized_end=760,
 )
 
 
@@ -576,8 +475,8 @@ _REQUEST = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=902,
-  serialized_end=1102,
+  serialized_start=763,
+  serialized_end=963,
 )
 
 
@@ -598,8 +497,8 @@ _LOGPROB = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='logprob', full_name='anlatan.LogProb.logprob', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      number=2, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -614,9 +513,14 @@ _LOGPROB = _descriptor.Descriptor(
   syntax='proto3',
   extension_ranges=[],
   oneofs=[
+    _descriptor.OneofDescriptor(
+      name='_logprob', full_name='anlatan.LogProb._logprob',
+      index=0, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
   ],
-  serialized_start=1104,
-  serialized_end=1181,
+  serialized_start=965,
+  serialized_end=1039,
 )
 
 
@@ -647,8 +551,8 @@ _TOKENLOGPROBS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1183,
-  serialized_end=1234,
+  serialized_start=1041,
+  serialized_end=1092,
 )
 
 
@@ -700,8 +604,8 @@ _LOGPROBS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1237,
-  serialized_end=1391,
+  serialized_start=1095,
+  serialized_end=1249,
 )
 
 
@@ -753,8 +657,8 @@ _COMPLETION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1393,
-  serialized_end=1517,
+  serialized_start=1251,
+  serialized_end=1375,
 )
 
 
@@ -806,15 +710,10 @@ _ANSWER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1519,
-  serialized_end=1616,
+  serialized_start=1377,
+  serialized_end=1474,
 )
 
-_UINT16S.fields_by_name['array'].message_type = _UINT16
-_NULLFLOAT.oneofs_by_name['_null_float'].fields.append(
-  _NULLFLOAT.fields_by_name['null_float'])
-_NULLFLOAT.fields_by_name['null_float'].containing_oneof = _NULLFLOAT.oneofs_by_name['_null_float']
-_TOKEN.fields_by_name['id'].message_type = _UINT16
 _TOKENS.fields_by_name['tokens'].message_type = _TOKEN
 _PROMPT.fields_by_name['tokens'].message_type = _TOKENS
 _PROMPT.oneofs_by_name['prompt'].fields.append(
@@ -867,7 +766,9 @@ _REQUEST.oneofs_by_name['_engine_parameters'].fields.append(
   _REQUEST.fields_by_name['engine_parameters'])
 _REQUEST.fields_by_name['engine_parameters'].containing_oneof = _REQUEST.oneofs_by_name['_engine_parameters']
 _LOGPROB.fields_by_name['token'].message_type = _TOKEN
-_LOGPROB.fields_by_name['logprob'].message_type = _NULLFLOAT
+_LOGPROB.oneofs_by_name['_logprob'].fields.append(
+  _LOGPROB.fields_by_name['logprob'])
+_LOGPROB.fields_by_name['logprob'].containing_oneof = _LOGPROB.oneofs_by_name['_logprob']
 _TOKENLOGPROBS.fields_by_name['logprobs'].message_type = _LOGPROB
 _LOGPROBS.fields_by_name['tokens'].message_type = _TOKENLOGPROBS
 _LOGPROBS.fields_by_name['top'].message_type = _TOKENLOGPROBS
@@ -875,9 +776,6 @@ _LOGPROBS.fields_by_name['finish_reason'].enum_type = _FINISHREASON
 _COMPLETION.fields_by_name['logprobs'].message_type = _LOGPROBS
 _COMPLETION.fields_by_name['finish_reason'].enum_type = _FINISHREASON
 _ANSWER.fields_by_name['choices'].message_type = _COMPLETION
-DESCRIPTOR.message_types_by_name['Uint16'] = _UINT16
-DESCRIPTOR.message_types_by_name['Uint16s'] = _UINT16S
-DESCRIPTOR.message_types_by_name['NullFloat'] = _NULLFLOAT
 DESCRIPTOR.message_types_by_name['Token'] = _TOKEN
 DESCRIPTOR.message_types_by_name['Tokens'] = _TOKENS
 DESCRIPTOR.message_types_by_name['Prompt'] = _PROMPT
@@ -893,27 +791,6 @@ DESCRIPTOR.message_types_by_name['Completion'] = _COMPLETION
 DESCRIPTOR.message_types_by_name['Answer'] = _ANSWER
 DESCRIPTOR.enum_types_by_name['FinishReason'] = _FINISHREASON
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
-
-Uint16 = _reflection.GeneratedProtocolMessageType('Uint16', (_message.Message,), {
-  'DESCRIPTOR' : _UINT16,
-  '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.Uint16)
-  })
-_sym_db.RegisterMessage(Uint16)
-
-Uint16s = _reflection.GeneratedProtocolMessageType('Uint16s', (_message.Message,), {
-  'DESCRIPTOR' : _UINT16S,
-  '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.Uint16s)
-  })
-_sym_db.RegisterMessage(Uint16s)
-
-NullFloat = _reflection.GeneratedProtocolMessageType('NullFloat', (_message.Message,), {
-  'DESCRIPTOR' : _NULLFLOAT,
-  '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.NullFloat)
-  })
-_sym_db.RegisterMessage(NullFloat)
 
 Token = _reflection.GeneratedProtocolMessageType('Token', (_message.Message,), {
   'DESCRIPTOR' : _TOKEN,
@@ -1016,8 +893,8 @@ _COMPLETIONSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=1656,
-  serialized_end=1728,
+  serialized_start=1514,
+  serialized_end=1586,
   methods=[
   _descriptor.MethodDescriptor(
     name='Completion',
