@@ -1,6 +1,6 @@
 syntax = 'proto3';
 package anlatan;
-option go_package = ".;completion";
+option go_package = "./;completion";
 
 // Protobuf doesn't have any native uint16s.
 message Uint16 {

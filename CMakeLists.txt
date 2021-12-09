@@ -49,13 +49,13 @@ if (NOT ${EXIT_CODE} EQUAL 0)
             "You need to have a `golang` environment installed with an appropriately set GOROOT.")
 endif()
 
-execute_process(COMMAND go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+execute_process(COMMAND go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.26
         RESULT_VARIABLE EXIT_CODE)
 if (NOT ${EXIT_CODE} EQUAL 0)
     message(FATAL_ERROR
             "Error ensuring that `protoc-gen-go` is installed.")
 endif()
-execute_process(COMMAND go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+execute_process(COMMAND go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1.0
         RESULT_VARIABLE EXIT_CODE)
 if (NOT ${EXIT_CODE} EQUAL 0)
     message(FATAL_ERROR
@@ -153,8 +153,8 @@ endmacro()
 add_target_languages(
         python
         python_grpc
-        golang
-        golang_grpc)
+        golang)
+        #golang_grpc)
 
 # Generate base protobufs
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/completion.proto)
@@ -163,6 +163,7 @@ generate_interfaces()
 add_custom_command(
         OUTPUT "${golang_grpc_output_dir}/go.mod"
         WORKING_DIRECTORY "${GENERATED_PROTOBUF_PATH}"
+        COMMAND rm -f go.mod
         COMMAND go mod init github.com/${PROJECT_REF}/anlatan/completion
         COMMAND go mod tidy
         DEPENDS ${GENERATED_PROTOBUF_FILES_golang_grpc})
@@ -173,6 +174,6 @@ add_custom_target(
         ${GENERATED_PROTOBUF_FILES_python}
         ${GENERATED_PROTOBUF_FILES_python_grpc}
         ${GENERATED_PROTOBUF_FILES_golang}
-        ${GENERATED_PROTOBUF_FILES_golang_grpc}
+        #${GENERATED_PROTOBUF_FILES_golang_grpc}
         ${PROJECT_SOURCE_DIR}/anlatan/completion/go.mod
 )
