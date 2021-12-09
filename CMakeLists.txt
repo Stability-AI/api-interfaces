@@ -162,7 +162,7 @@ generate_interfaces()
 
 add_custom_command(
         OUTPUT "${golang_grpc_output_dir}/go.mod"
-        WORKING_DIRECTORY "${GENERATED_PROTOBUF_PATH}"
+        WORKING_DIRECTORY "${GENERATED_PROTOBUF_PATH}/completion"
         COMMAND rm -f go.mod
         COMMAND go mod init github.com/${PROJECT_REF}/anlatan/completion
         COMMAND go mod tidy
