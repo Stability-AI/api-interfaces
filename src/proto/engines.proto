@@ -1,0 +1,32 @@
+syntax = 'proto3';
+package anlatan;
+option go_package = "./;engines";
+
+// Possible engine type
+enum EngineType {
+  TEXT = 0;
+  PICTURE = 1;
+  AUDIO = 2;
+  VIDEO = 3;
+}
+
+// Engine info struct
+message EngineInfo {
+  string id = 1;
+  string owner = 2;
+  bool ready = 3;
+  EngineType type = 4;
+}
+
+message ListEnginesRequest {
+  // Empty
+}
+
+// Engine info list
+message Engines {
+  repeated EngineInfo engine = 1;
+}
+
+service EnginesService {
+  rpc ListEngines (ListEnginesRequest) returns (Engines) {};
+}
