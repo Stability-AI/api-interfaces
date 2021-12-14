@@ -49,7 +49,7 @@ func buildRequest(prompt string, echo *int, numTokens int) *completion.Request {
 				Text: prompt,
 			}}},
 		ModelParams: &completion.ModelParams{
-			Sampling: &completion.SamplingParams{
+			SamplingParams: &completion.SamplingParams{
 				Order:            nil,
 				Temperature:      &temperature,
 				TopP:             &topP,

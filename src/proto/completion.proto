@@ -64,7 +64,7 @@ message SamplingParams {
 
 // Model parameters
 message ModelParams {
-  optional SamplingParams sampling = 1;
+  optional SamplingParams sampling_params = 1;
   optional FrequencyParams frequency_params = 2; // Rep frequency parameters
   optional LogitBiases logit_bias = 3;           // OAI: Modify likelihood of
                                                  //  specific tokens appearing.
