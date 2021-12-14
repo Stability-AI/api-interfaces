@@ -7,18 +7,22 @@ message Token {
   uint32 id = 2;
 }
 
+message Tokens {
+  repeated Token tokens = 1;
+}
+
 // The input can be provided in either string or sequence of tokens. Extensible
 // to other input types in the future, thanks to Protobuf.
 message Prompt {
   oneof prompt {
-    string string = 1;
+    string text = 1;
     Tokens tokens = 2;
   }
 }
 
 // Pairing of token sequences with bias values.
 message LogitBias {
-  repeated Token tokens = 1;
+  Tokens tokens = 1;
   double bias = 2;
 }
 
