@@ -13,6 +13,7 @@ import (
 	"math"
 	"strconv"
 	"strings"
+	"unicode"
 )
 
 var grad colorgrad.Gradient
@@ -27,23 +28,31 @@ type Fragment struct {
 	choices []*completion.LogProb
 }
 
-func buildRequest(prompt string, echo *int, numTokens int) *completion.Request {
-	var temperature = 0.8
-	var topP = 0.7
-	var topK = uint32(140)
-	var frequencyPenalty = 1.2
-	var maxTokens = uint32(numTokens)
-	var completions uint32 = 1
-	var logprobs uint32 = 30
-	var echoStruct = &completion.Echo{}
+type GenerationParams struct {
+	Temperature      float64
+	OutputLength     uint32
+	PresencePenalty  float64
+	FrequencyPenalty float64
+	LogProbs         uint32
+	TopP             float64
+	TopK             uint32
+	TFS              float64
+}
+
+func (genParams *GenerationParams) buildRequest(prompt string, echo *int,
+	numTokens int) *completion.Request {
+	maxTokens := genParams.OutputLength + uint32(numTokens)
+	completions := uint32(1)
+
+	var echoParam *completion.Echo
 	if echo != nil {
-		echoIdx := int32(*echo)
-		echoStruct.Index = &echoIdx
-	} else {
-		echoStruct = nil
+		echoVal := int32(*echo)
+		echoParam = &completion.Echo{
+			Index: &echoVal,
+		}
 	}
 
-	rq := completion.Request{
+	return &completion.Request{
 		Prompt: []*completion.Prompt{
 			{Prompt: &completion.Prompt_Text{
 				Text: prompt,
@@ -51,25 +60,24 @@ func buildRequest(prompt string, echo *int, numTokens int) *completion.Request {
 		ModelParams: &completion.ModelParams{
 			SamplingParams: &completion.SamplingParams{
 				Order:            nil,
-				Temperature:      &temperature,
-				TopP:             &topP,
-				TopK:             &topK,
-				TailFreeSampling: nil,
+				Temperature:      &genParams.Temperature,
+				TopP:             &genParams.TopP,
+				TopK:             &genParams.TopK,
+				TailFreeSampling: &genParams.TFS,
 			},
 			FrequencyParams: &completion.FrequencyParams{
-				FrequencyPenalty: &frequencyPenalty,
+				PresencePenalty:  &genParams.PresencePenalty,
+				FrequencyPenalty: &genParams.FrequencyPenalty,
 			},
 			LogitBias: nil,
 		},
 		EngineParams: &completion.EngineParams{
 			MaxTokens:   &maxTokens,
 			Completions: &completions,
-			Logprobs:    &logprobs,
-			Echo:        echoStruct,
+			Logprobs:    &genParams.LogProbs,
+			Echo:        echoParam,
 		},
 	}
-
-	return &rq
 }
 
 func colorizeToken(logprob *completion.LogProb, gradient colorgrad.Gradient) string {
@@ -154,6 +162,60 @@ func (fragments IndexedFragments) getBufferUntil(until int) string {
 	return buf.String()
 }
 
+func newGenerationParametersView(params *GenerationParams) *cview.Form {
+	paramsView := cview.NewForm()
+	paramsView.SetTitle("Parameters")
+	paramsView.SetBorder(true)
+
+	addIntField := func(label string, valuePtr *uint32) {
+		paramsView.AddInputField(
+			label,
+			strconv.Itoa(int(*valuePtr)),
+			20,
+			func(input string, lastChar rune) bool {
+				if unicode.IsNumber(lastChar) {
+					return true
+				}
+				return false
+			},
+			func(input string) {
+				atoi, _ := strconv.ParseInt(input, 0, 8)
+				*valuePtr = uint32(atoi)
+			})
+	}
+
+	addFloatField := func(label string, valuePtr *float64) {
+		paramsView.AddInputField(
+			label,
+			fmt.Sprintf("%0.2f", *valuePtr),
+			20,
+			func(input string, lastChar rune) bool {
+				if unicode.IsNumber(lastChar) {
+					return true
+				} else if lastChar == '.' &&
+					strings.Count(input, ".") < 2 {
+					return true
+				}
+				return false
+			},
+			func(input string) {
+				ftoi, _ := strconv.ParseFloat(input, 0)
+				*valuePtr = ftoi
+			})
+	}
+
+	addFloatField("Temperature", &params.Temperature)
+	addIntField("Output Length", &params.OutputLength)
+	addFloatField("Presence Penalty", &params.PresencePenalty)
+	addFloatField("Frequency Penalty", &params.FrequencyPenalty)
+	addIntField("Top N LogProbs", &params.LogProbs)
+	addFloatField("Nucleus (Top-P)", &params.TopP)
+	addIntField("Top-K", &params.TopK)
+	addFloatField("TFS", &params.TFS)
+
+	return paramsView
+}
+
 func main() {
 	// GRPC stuff
 	serverAddr := "localhost:50051"
@@ -163,6 +225,16 @@ func main() {
 	}
 	defer conn.Close()
 	client := completion.NewCompletionServiceClient(conn)
+
+	genSettings := GenerationParams{
+		Temperature:      0.8,
+		OutputLength:     140,
+		PresencePenalty:  0.0,
+		FrequencyPenalty: 1.2,
+		LogProbs:         30,
+		TopP:             0.7,
+		TopK:             140,
+	}
 
 	// view stuff
 	app := cview.NewApplication()
@@ -174,6 +246,7 @@ func main() {
 	textView.SetDynamicColors(true)
 	textView.SetRegions(true)
 	textView.SetWordWrap(true)
+	textView.SetTitle("Story")
 	textView.SetChangedFunc(func() {
 		//app.Draw()
 	})
@@ -182,13 +255,37 @@ func main() {
 	tokenView.SetDynamicColors(true)
 	tokenView.SetRegions(true)
 	tokenView.SetWordWrap(true)
+	tokenView.SetTitle("Tokens")
 	tokenView.SetChangedFunc(func() {
 		//app.Draw()
 	})
 
+	biasTable := cview.NewTable()
+	biasHeader := cview.NewTableCell("Bias    ")
+	biasHeader.SetMaxWidth(10)
+	biasHeader.SetAlign(cview.AlignCenter)
+	logitHeader := cview.NewTableCell("Logits           ")
+	logitHeader.SetMaxWidth(20)
+	logitHeader.SetAlign(cview.AlignCenter)
+	biasTable.SetTitle("Logit Biases")
+	biasTable.SetBorders(true)
+	biasTable.SetCell(0, 0, biasHeader)
+	biasTable.SetCell(0, 1, logitHeader)
+	biasTable.SetCellSimple(1, 0, "-0.3")
+	biasTable.SetCellSimple(1, 1, " witch")
+	biasTable.SetFixed(1, 2)
+
+	paramsView := newGenerationParametersView(&genSettings)
+
+	toolsPane := cview.NewFlex()
+	toolsPane.SetDirection(cview.FlexRow)
+	toolsPane.AddItem(paramsView, 0, 1, false)
+	toolsPane.AddItem(biasTable, 0, 1, false)
+
 	flex := cview.NewFlex()
 	flex.AddItem(tokenView, 25, 1, false)
 	flex.AddItem(textView, 0, 1, true)
+	flex.AddItem(toolsPane, 28, 1, false)
 
 	focusManager := cview.NewFocusManager(func(p cview.Primitive) {})
 	focusManager.Add(tokenView, textView)
@@ -291,8 +388,8 @@ func main() {
 		app.Draw()
 		receiving = false
 	}
-	go backendRequest(buildRequest("The witch laughed", EchoTrue,
-		requestSize))
+	go backendRequest(genSettings.buildRequest(
+		"The witch laughed", EchoTrue, requestSize))
 
 	var priorSelection string
 
@@ -320,7 +417,7 @@ func main() {
 			textView.SetText(bufferState)
 			app.Draw()
 			tokenCt = viewedTokenIdx + 1
-			go backendRequest(buildRequest(storyText, EchoFalse,
+			go backendRequest(genSettings.buildRequest(storyText, EchoFalse,
 				requestSize))
 		}
 		return action, event
@@ -359,7 +456,7 @@ func main() {
 			} else {
 				tokenCt = echoIdx
 			}
-			go backendRequest(buildRequest(
+			go backendRequest(genSettings.buildRequest(
 				promptText, echoParam,
 				requestSize+viewedTokenIdx))
 		}
