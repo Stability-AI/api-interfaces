@@ -27,26 +27,28 @@ type Fragment struct {
 func buildRequest(prompt string, echo bool, numTokens int) *completion.Request {
 	var temperature = 0.8
 	var topP = 0.7
+	var frequencyPenalty = 1.2
 	var maxTokens = uint32(numTokens)
 	var completions uint32 = 1
 	var logprobs uint32 = 30
 
 	rq := completion.Request{
 		Prompt: []*completion.Prompt{
-			{Prompt: &completion.Prompt_String_{
-				String_: prompt,
+			{Prompt: &completion.Prompt_Text{
+				Text: prompt,
 			}}},
-		//{Prompt: &completion.Prompt_String_{
-		//	String_: " goose goose goose goose goose goose goose goose goose goose goose goose goose goose goose goose goose goose goose goose"}}},
 		ModelParameters: &completion.Model{
-			Temperature: &temperature,
-			TopP:        &topP},
+			Temperature:      &temperature,
+			TopP:             &topP,
+			FrequencyPenalty: &frequencyPenalty,
+		},
 		EngineParameters: &completion.Engine{
 			MaxTokens:   &maxTokens,
 			Completions: &completions,
 			Logprobs:    &logprobs,
 			Echo:        &echo},
 	}
+
 	return &rq
 }
 
@@ -313,15 +315,42 @@ func main() {
 	// bufferDirty := false
 
 	textEditorAction := func(event *tcell.EventKey) *tcell.EventKey {
+		inputRune := event.Rune()
+		currFragment := indexedFragments[viewedTokenIdx]
+		// ModAlt
+		if event.Key() == tcell.KeyEnter && event.Modifiers() == tcell.ModAlt {
+			promptText := indexedFragments.getTextUntil(viewedTokenIdx)
+			echoInput := true
+			if viewedTokenIdx == len(indexedFragments)-1 {
+				echoInput = false
+			} else {
+				tokenCt = 0
+			}
+
+			go backendRequest(buildRequest(
+				promptText, echoInput,
+				200+viewedTokenIdx))
+		}
 		if event.Key() == tcell.KeyRune {
-			inputRune := event.Rune()
-			currFragment := indexedFragments[viewedTokenIdx]
 			if currFragment.chosen != nil {
 				currFragment.chosen = nil
 				currFragment.text = string(inputRune)
 				currFragment.buffer = currFragment.text
 			} else {
 				currFragment.text += string(inputRune)
+				currFragment.buffer = currFragment.text
+			}
+			textView.SetText(indexedFragments.getBufferUntil(
+				len(indexedFragments)))
+			updateTokenView(viewedTokenIdx)
+		}
+		if event.Key() == tcell.KeyDEL {
+			if currFragment.chosen != nil {
+				currFragment.text = currFragment.text[:len(currFragment.text)-1]
+				currFragment.chosen = nil
+				currFragment.buffer = currFragment.text
+			} else {
+				currFragment.text = currFragment.text[:len(currFragment.text)-1]
 				currFragment.buffer = currFragment.text
 			}
 			textView.SetText(indexedFragments.getBufferUntil(
@@ -339,12 +368,7 @@ func main() {
 			textView.Highlight(strconv.Itoa(viewedTokenIdx))
 			updateTokenView(viewedTokenIdx)
 		}
-		if event.Key() == tcell.KeyEnter {
-			tokenCt = 0
-			go backendRequest(buildRequest(
-				indexedFragments.getTextUntil(viewedTokenIdx),
-				true, 200))
-		}
+
 		return event
 	}
 
