@@ -55,7 +55,7 @@ message EngineParams {
   optional uint32 completions = 2;  // How many completions to generate per prompt
   optional uint32 logprobs = 3;     // Return N logprobs on most likely and picked tokens
   optional Echo echo = 4;           // Echo back the prompt in addition to completion
-  optional uint32 best_of = 6;      // Generate # of `best_of` w. lowest logprob
+  optional uint32 best_of = 5;      // Generate # of `best_of` w. lowest logprob
   repeated Prompt stop = 6;         // Up to 4 sequences where API will stop generating
 }
 
@@ -63,23 +63,23 @@ message EngineParams {
 message Request {
   string engine_id = 1;                  // The ID of the engine to use for this request
   repeated Prompt prompt = 2;            // The prompt(s) to generate completions for
-  optional ModelParams model_parameters = 3;
-  optional EngineParams engine_parameters = 4;
+  optional ModelParams model_params = 3;
+  optional EngineParams engine_params = 4;
 }
 
 message LogProb {
-  Token token = 1;                 // pairing of token ...
+  Token token = 1;                       // pairing of token ...
   optional double logprob = 2;           // ... with logprobs
 }
 
 message TokenLogProbs {
-  repeated LogProb logprobs = 1;            // zero or more logprobs
+  repeated LogProb logprobs = 1;        // zero or more logprobs
 }
 
 message LogProbs {
-  TokenLogProbs tokens = 1;        // logprobs of chosen tokens
-  repeated TokenLogProbs top = 2;           // top N logprobs
-  repeated uint32 text_offset = 3;          // indexed offsets of tokens
+  TokenLogProbs tokens = 1;             // logprobs of chosen tokens
+  repeated TokenLogProbs top = 2;       // top N logprobs
+  repeated uint32 text_offset = 3;      // indexed offsets of tokens
   FinishReason finish_reason = 4;
 }
 

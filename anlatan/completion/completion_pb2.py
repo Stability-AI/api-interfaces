@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\r./;completion',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x10\x63ompletion.proto\x12\x07\x61nlatan\"!\n\x05Token\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\r\"(\n\x06Tokens\x12\x1e\n\x06tokens\x18\x01 \x03(\x0b\x32\x0e.anlatan.Token\"E\n\x06Prompt\x12\x0e\n\x04text\x18\x01 \x01(\tH\x00\x12!\n\x06tokens\x18\x02 \x01(\x0b\x32\x0f.anlatan.TokensH\x00\x42\x08\n\x06prompt\":\n\tLogitBias\x12\x1f\n\x06tokens\x18\x01 \x01(\x0b\x32\x0f.anlatan.Tokens\x12\x0c\n\x04\x62ias\x18\x02 \x01(\x01\"1\n\x0bLogitBiases\x12\"\n\x06\x62iases\x18\x01 \x03(\x0b\x32\x12.anlatan.LogitBias\"\xf7\x01\n\x05Model\x12\x18\n\x0btemperature\x18\x01 \x01(\x01H\x00\x88\x01\x01\x12\x12\n\x05top_p\x18\x02 \x01(\x01H\x01\x88\x01\x01\x12\x1d\n\x10presence_penalty\x18\x03 \x01(\x01H\x02\x88\x01\x01\x12\x1e\n\x11\x66requency_penalty\x18\x04 \x01(\x01H\x03\x88\x01\x01\x12-\n\nlogit_bias\x18\x05 \x01(\x0b\x32\x14.anlatan.LogitBiasesH\x04\x88\x01\x01\x42\x0e\n\x0c_temperatureB\x08\n\x06_top_pB\x13\n\x11_presence_penaltyB\x14\n\x12_frequency_penaltyB\r\n\x0b_logit_bias\"\xdb\x01\n\x06\x45ngine\x12\x17\n\nmax_tokens\x18\x01 \x01(\rH\x00\x88\x01\x01\x12\x18\n\x0b\x63ompletions\x18\x02 \x01(\rH\x01\x88\x01\x01\x12\x15\n\x08logprobs\x18\x03 \x01(\rH\x02\x88\x01\x01\x12\x11\n\x04\x65\x63ho\x18\x04 \x01(\x08H\x03\x88\x01\x01\x12\x14\n\x07\x62\x65st_of\x18\x05 \x01(\rH\x04\x88\x01\x01\x12\x1d\n\x04stop\x18\x06 \x03(\x0b\x32\x0f.anlatan.PromptB\r\n\x0b_max_tokensB\x0e\n\x0c_completionsB\x0b\n\t_logprobsB\x07\n\x05_echoB\n\n\x08_best_of\"\xc8\x01\n\x07Request\x12\x11\n\tengine_id\x18\x01 \x01(\t\x12\x1f\n\x06prompt\x18\x02 \x03(\x0b\x32\x0f.anlatan.Prompt\x12-\n\x10model_parameters\x18\x03 \x01(\x0b\x32\x0e.anlatan.ModelH\x00\x88\x01\x01\x12/\n\x11\x65ngine_parameters\x18\x04 \x01(\x0b\x32\x0f.anlatan.EngineH\x01\x88\x01\x01\x42\x13\n\x11_model_parametersB\x14\n\x12_engine_parameters\"J\n\x07LogProb\x12\x1d\n\x05token\x18\x01 \x01(\x0b\x32\x0e.anlatan.Token\x12\x14\n\x07logprob\x18\x02 \x01(\x01H\x00\x88\x01\x01\x42\n\n\x08_logprob\"3\n\rTokenLogProbs\x12\"\n\x08logprobs\x18\x01 \x03(\x0b\x32\x10.anlatan.LogProb\"\x9a\x01\n\x08LogProbs\x12&\n\x06tokens\x18\x01 \x01(\x0b\x32\x16.anlatan.TokenLogProbs\x12#\n\x03top\x18\x02 \x03(\x0b\x32\x16.anlatan.TokenLogProbs\x12\x13\n\x0btext_offset\x18\x03 \x03(\r\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.anlatan.FinishReason\"|\n\nCompletion\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\r\n\x05index\x18\x02 \x01(\r\x12#\n\x08logprobs\x18\x03 \x01(\x0b\x32\x11.anlatan.LogProbs\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.anlatan.FinishReason\"a\n\x06\x41nswer\x12\x11\n\tanswer_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\x04\x12\r\n\x05model\x18\x03 \x01(\t\x12$\n\x07\x63hoices\x18\x04 \x03(\x0b\x32\x13.anlatan.Completion*$\n\x0c\x46inishReason\x12\x08\n\x04NULL\x10\x00\x12\n\n\x06LENGTH\x10\x01\x32H\n\x11\x43ompletionService\x12\x33\n\nCompletion\x12\x10.anlatan.Request\x1a\x0f.anlatan.Answer\"\x00\x30\x01\x42\x0fZ\r./;completionb\x06proto3'
+  serialized_pb=b'\n\x10\x63ompletion.proto\x12\x07\x61nlatan\"!\n\x05Token\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\r\"(\n\x06Tokens\x12\x1e\n\x06tokens\x18\x01 \x03(\x0b\x32\x0e.anlatan.Token\"E\n\x06Prompt\x12\x0e\n\x04text\x18\x01 \x01(\tH\x00\x12!\n\x06tokens\x18\x02 \x01(\x0b\x32\x0f.anlatan.TokensH\x00\x42\x08\n\x06prompt\":\n\tLogitBias\x12\x1f\n\x06tokens\x18\x01 \x01(\x0b\x32\x0f.anlatan.Tokens\x12\x0c\n\x04\x62ias\x18\x02 \x01(\x01\"1\n\x0bLogitBiases\x12\"\n\x06\x62iases\x18\x01 \x03(\x0b\x32\x12.anlatan.LogitBias\"\xfd\x01\n\x0bModelParams\x12\x18\n\x0btemperature\x18\x01 \x01(\x01H\x00\x88\x01\x01\x12\x12\n\x05top_p\x18\x02 \x01(\x01H\x01\x88\x01\x01\x12\x1d\n\x10presence_penalty\x18\x03 \x01(\x01H\x02\x88\x01\x01\x12\x1e\n\x11\x66requency_penalty\x18\x04 \x01(\x01H\x03\x88\x01\x01\x12-\n\nlogit_bias\x18\x05 \x01(\x0b\x32\x14.anlatan.LogitBiasesH\x04\x88\x01\x01\x42\x0e\n\x0c_temperatureB\x08\n\x06_top_pB\x13\n\x11_presence_penaltyB\x14\n\x12_frequency_penaltyB\r\n\x0b_logit_bias\"$\n\x04\x45\x63ho\x12\x12\n\x05index\x18\x01 \x01(\x05H\x00\x88\x01\x01\x42\x08\n\x06_index\"\xf0\x01\n\x0c\x45ngineParams\x12\x17\n\nmax_tokens\x18\x01 \x01(\rH\x00\x88\x01\x01\x12\x18\n\x0b\x63ompletions\x18\x02 \x01(\rH\x01\x88\x01\x01\x12\x15\n\x08logprobs\x18\x03 \x01(\rH\x02\x88\x01\x01\x12 \n\x04\x65\x63ho\x18\x04 \x01(\x0b\x32\r.anlatan.EchoH\x03\x88\x01\x01\x12\x14\n\x07\x62\x65st_of\x18\x05 \x01(\rH\x04\x88\x01\x01\x12\x1d\n\x04stop\x18\x06 \x03(\x0b\x32\x0f.anlatan.PromptB\r\n\x0b_max_tokensB\x0e\n\x0c_completionsB\x0b\n\t_logprobsB\x07\n\x05_echoB\n\n\x08_best_of\"\xc4\x01\n\x07Request\x12\x11\n\tengine_id\x18\x01 \x01(\t\x12\x1f\n\x06prompt\x18\x02 \x03(\x0b\x32\x0f.anlatan.Prompt\x12/\n\x0cmodel_params\x18\x03 \x01(\x0b\x32\x14.anlatan.ModelParamsH\x00\x88\x01\x01\x12\x31\n\rengine_params\x18\x04 \x01(\x0b\x32\x15.anlatan.EngineParamsH\x01\x88\x01\x01\x42\x0f\n\r_model_paramsB\x10\n\x0e_engine_params\"J\n\x07LogProb\x12\x1d\n\x05token\x18\x01 \x01(\x0b\x32\x0e.anlatan.Token\x12\x14\n\x07logprob\x18\x02 \x01(\x01H\x00\x88\x01\x01\x42\n\n\x08_logprob\"3\n\rTokenLogProbs\x12\"\n\x08logprobs\x18\x01 \x03(\x0b\x32\x10.anlatan.LogProb\"\x9a\x01\n\x08LogProbs\x12&\n\x06tokens\x18\x01 \x01(\x0b\x32\x16.anlatan.TokenLogProbs\x12#\n\x03top\x18\x02 \x03(\x0b\x32\x16.anlatan.TokenLogProbs\x12\x13\n\x0btext_offset\x18\x03 \x03(\r\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.anlatan.FinishReason\"|\n\nCompletion\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\r\n\x05index\x18\x02 \x01(\r\x12#\n\x08logprobs\x18\x03 \x01(\x0b\x32\x11.anlatan.LogProbs\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.anlatan.FinishReason\"a\n\x06\x41nswer\x12\x11\n\tanswer_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\x04\x12\r\n\x05model\x18\x03 \x01(\t\x12$\n\x07\x63hoices\x18\x04 \x03(\x0b\x32\x13.anlatan.Completion*$\n\x0c\x46inishReason\x12\x08\n\x04NULL\x10\x00\x12\n\n\x06LENGTH\x10\x01\x32H\n\x11\x43ompletionService\x12\x33\n\nCompletion\x12\x10.anlatan.Request\x1a\x0f.anlatan.Answer\"\x00\x30\x01\x42\x0fZ\r./;completionb\x06proto3'
 )
 
 _FINISHREASON = _descriptor.EnumDescriptor(
@@ -43,8 +43,8 @@ _FINISHREASON = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1474,
-  serialized_end=1510,
+  serialized_start=1535,
+  serialized_end=1571,
 )
 _sym_db.RegisterEnumDescriptor(_FINISHREASON)
 
@@ -240,44 +240,44 @@ _LOGITBIASES = _descriptor.Descriptor(
 )
 
 
-_MODEL = _descriptor.Descriptor(
-  name='Model',
-  full_name='anlatan.Model',
+_MODELPARAMS = _descriptor.Descriptor(
+  name='ModelParams',
+  full_name='anlatan.ModelParams',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='temperature', full_name='anlatan.Model.temperature', index=0,
+      name='temperature', full_name='anlatan.ModelParams.temperature', index=0,
       number=1, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='top_p', full_name='anlatan.Model.top_p', index=1,
+      name='top_p', full_name='anlatan.ModelParams.top_p', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='presence_penalty', full_name='anlatan.Model.presence_penalty', index=2,
+      name='presence_penalty', full_name='anlatan.ModelParams.presence_penalty', index=2,
       number=3, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='frequency_penalty', full_name='anlatan.Model.frequency_penalty', index=3,
+      name='frequency_penalty', full_name='anlatan.ModelParams.frequency_penalty', index=3,
       number=4, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='logit_bias', full_name='anlatan.Model.logit_bias', index=4,
+      name='logit_bias', full_name='anlatan.ModelParams.logit_bias', index=4,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -295,81 +295,118 @@ _MODEL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='_temperature', full_name='anlatan.Model._temperature',
+      name='_temperature', full_name='anlatan.ModelParams._temperature',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_top_p', full_name='anlatan.Model._top_p',
+      name='_top_p', full_name='anlatan.ModelParams._top_p',
       index=1, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_presence_penalty', full_name='anlatan.Model._presence_penalty',
+      name='_presence_penalty', full_name='anlatan.ModelParams._presence_penalty',
       index=2, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_frequency_penalty', full_name='anlatan.Model._frequency_penalty',
+      name='_frequency_penalty', full_name='anlatan.ModelParams._frequency_penalty',
       index=3, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_logit_bias', full_name='anlatan.Model._logit_bias',
+      name='_logit_bias', full_name='anlatan.ModelParams._logit_bias',
       index=4, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
   serialized_start=289,
-  serialized_end=536,
+  serialized_end=542,
 )
 
 
-_ENGINE = _descriptor.Descriptor(
-  name='Engine',
-  full_name='anlatan.Engine',
+_ECHO = _descriptor.Descriptor(
+  name='Echo',
+  full_name='anlatan.Echo',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='max_tokens', full_name='anlatan.Engine.max_tokens', index=0,
+      name='index', full_name='anlatan.Echo.index', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+    _descriptor.OneofDescriptor(
+      name='_index', full_name='anlatan.Echo._index',
+      index=0, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+  ],
+  serialized_start=544,
+  serialized_end=580,
+)
+
+
+_ENGINEPARAMS = _descriptor.Descriptor(
+  name='EngineParams',
+  full_name='anlatan.EngineParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='max_tokens', full_name='anlatan.EngineParams.max_tokens', index=0,
       number=1, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='completions', full_name='anlatan.Engine.completions', index=1,
+      name='completions', full_name='anlatan.EngineParams.completions', index=1,
       number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='logprobs', full_name='anlatan.Engine.logprobs', index=2,
+      name='logprobs', full_name='anlatan.EngineParams.logprobs', index=2,
       number=3, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='echo', full_name='anlatan.Engine.echo', index=3,
-      number=4, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
+      name='echo', full_name='anlatan.EngineParams.echo', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='best_of', full_name='anlatan.Engine.best_of', index=4,
+      name='best_of', full_name='anlatan.EngineParams.best_of', index=4,
       number=5, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='stop', full_name='anlatan.Engine.stop', index=5,
+      name='stop', full_name='anlatan.EngineParams.stop', index=5,
       number=6, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -387,33 +424,33 @@ _ENGINE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='_max_tokens', full_name='anlatan.Engine._max_tokens',
+      name='_max_tokens', full_name='anlatan.EngineParams._max_tokens',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_completions', full_name='anlatan.Engine._completions',
+      name='_completions', full_name='anlatan.EngineParams._completions',
       index=1, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_logprobs', full_name='anlatan.Engine._logprobs',
+      name='_logprobs', full_name='anlatan.EngineParams._logprobs',
       index=2, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_echo', full_name='anlatan.Engine._echo',
+      name='_echo', full_name='anlatan.EngineParams._echo',
       index=3, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_best_of', full_name='anlatan.Engine._best_of',
+      name='_best_of', full_name='anlatan.EngineParams._best_of',
       index=4, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=539,
-  serialized_end=758,
+  serialized_start=583,
+  serialized_end=823,
 )
 
 
@@ -440,14 +477,14 @@ _REQUEST = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='model_parameters', full_name='anlatan.Request.model_parameters', index=2,
+      name='model_params', full_name='anlatan.Request.model_params', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='engine_parameters', full_name='anlatan.Request.engine_parameters', index=3,
+      name='engine_params', full_name='anlatan.Request.engine_params', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -465,18 +502,18 @@ _REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='_model_parameters', full_name='anlatan.Request._model_parameters',
+      name='_model_params', full_name='anlatan.Request._model_params',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_engine_parameters', full_name='anlatan.Request._engine_parameters',
+      name='_engine_params', full_name='anlatan.Request._engine_params',
       index=1, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=761,
-  serialized_end=961,
+  serialized_start=826,
+  serialized_end=1022,
 )
 
 
@@ -519,8 +556,8 @@ _LOGPROB = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=963,
-  serialized_end=1037,
+  serialized_start=1024,
+  serialized_end=1098,
 )
 
 
@@ -551,8 +588,8 @@ _TOKENLOGPROBS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1039,
-  serialized_end=1090,
+  serialized_start=1100,
+  serialized_end=1151,
 )
 
 
@@ -604,8 +641,8 @@ _LOGPROBS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1093,
-  serialized_end=1247,
+  serialized_start=1154,
+  serialized_end=1308,
 )
 
 
@@ -657,8 +694,8 @@ _COMPLETION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1249,
-  serialized_end=1373,
+  serialized_start=1310,
+  serialized_end=1434,
 )
 
 
@@ -710,8 +747,8 @@ _ANSWER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1375,
-  serialized_end=1472,
+  serialized_start=1436,
+  serialized_end=1533,
 )
 
 _TOKENS.fields_by_name['tokens'].message_type = _TOKEN
@@ -724,47 +761,51 @@ _PROMPT.oneofs_by_name['prompt'].fields.append(
 _PROMPT.fields_by_name['tokens'].containing_oneof = _PROMPT.oneofs_by_name['prompt']
 _LOGITBIAS.fields_by_name['tokens'].message_type = _TOKENS
 _LOGITBIASES.fields_by_name['biases'].message_type = _LOGITBIAS
-_MODEL.fields_by_name['logit_bias'].message_type = _LOGITBIASES
-_MODEL.oneofs_by_name['_temperature'].fields.append(
-  _MODEL.fields_by_name['temperature'])
-_MODEL.fields_by_name['temperature'].containing_oneof = _MODEL.oneofs_by_name['_temperature']
-_MODEL.oneofs_by_name['_top_p'].fields.append(
-  _MODEL.fields_by_name['top_p'])
-_MODEL.fields_by_name['top_p'].containing_oneof = _MODEL.oneofs_by_name['_top_p']
-_MODEL.oneofs_by_name['_presence_penalty'].fields.append(
-  _MODEL.fields_by_name['presence_penalty'])
-_MODEL.fields_by_name['presence_penalty'].containing_oneof = _MODEL.oneofs_by_name['_presence_penalty']
-_MODEL.oneofs_by_name['_frequency_penalty'].fields.append(
-  _MODEL.fields_by_name['frequency_penalty'])
-_MODEL.fields_by_name['frequency_penalty'].containing_oneof = _MODEL.oneofs_by_name['_frequency_penalty']
-_MODEL.oneofs_by_name['_logit_bias'].fields.append(
-  _MODEL.fields_by_name['logit_bias'])
-_MODEL.fields_by_name['logit_bias'].containing_oneof = _MODEL.oneofs_by_name['_logit_bias']
-_ENGINE.fields_by_name['stop'].message_type = _PROMPT
-_ENGINE.oneofs_by_name['_max_tokens'].fields.append(
-  _ENGINE.fields_by_name['max_tokens'])
-_ENGINE.fields_by_name['max_tokens'].containing_oneof = _ENGINE.oneofs_by_name['_max_tokens']
-_ENGINE.oneofs_by_name['_completions'].fields.append(
-  _ENGINE.fields_by_name['completions'])
-_ENGINE.fields_by_name['completions'].containing_oneof = _ENGINE.oneofs_by_name['_completions']
-_ENGINE.oneofs_by_name['_logprobs'].fields.append(
-  _ENGINE.fields_by_name['logprobs'])
-_ENGINE.fields_by_name['logprobs'].containing_oneof = _ENGINE.oneofs_by_name['_logprobs']
-_ENGINE.oneofs_by_name['_echo'].fields.append(
-  _ENGINE.fields_by_name['echo'])
-_ENGINE.fields_by_name['echo'].containing_oneof = _ENGINE.oneofs_by_name['_echo']
-_ENGINE.oneofs_by_name['_best_of'].fields.append(
-  _ENGINE.fields_by_name['best_of'])
-_ENGINE.fields_by_name['best_of'].containing_oneof = _ENGINE.oneofs_by_name['_best_of']
+_MODELPARAMS.fields_by_name['logit_bias'].message_type = _LOGITBIASES
+_MODELPARAMS.oneofs_by_name['_temperature'].fields.append(
+  _MODELPARAMS.fields_by_name['temperature'])
+_MODELPARAMS.fields_by_name['temperature'].containing_oneof = _MODELPARAMS.oneofs_by_name['_temperature']
+_MODELPARAMS.oneofs_by_name['_top_p'].fields.append(
+  _MODELPARAMS.fields_by_name['top_p'])
+_MODELPARAMS.fields_by_name['top_p'].containing_oneof = _MODELPARAMS.oneofs_by_name['_top_p']
+_MODELPARAMS.oneofs_by_name['_presence_penalty'].fields.append(
+  _MODELPARAMS.fields_by_name['presence_penalty'])
+_MODELPARAMS.fields_by_name['presence_penalty'].containing_oneof = _MODELPARAMS.oneofs_by_name['_presence_penalty']
+_MODELPARAMS.oneofs_by_name['_frequency_penalty'].fields.append(
+  _MODELPARAMS.fields_by_name['frequency_penalty'])
+_MODELPARAMS.fields_by_name['frequency_penalty'].containing_oneof = _MODELPARAMS.oneofs_by_name['_frequency_penalty']
+_MODELPARAMS.oneofs_by_name['_logit_bias'].fields.append(
+  _MODELPARAMS.fields_by_name['logit_bias'])
+_MODELPARAMS.fields_by_name['logit_bias'].containing_oneof = _MODELPARAMS.oneofs_by_name['_logit_bias']
+_ECHO.oneofs_by_name['_index'].fields.append(
+  _ECHO.fields_by_name['index'])
+_ECHO.fields_by_name['index'].containing_oneof = _ECHO.oneofs_by_name['_index']
+_ENGINEPARAMS.fields_by_name['echo'].message_type = _ECHO
+_ENGINEPARAMS.fields_by_name['stop'].message_type = _PROMPT
+_ENGINEPARAMS.oneofs_by_name['_max_tokens'].fields.append(
+  _ENGINEPARAMS.fields_by_name['max_tokens'])
+_ENGINEPARAMS.fields_by_name['max_tokens'].containing_oneof = _ENGINEPARAMS.oneofs_by_name['_max_tokens']
+_ENGINEPARAMS.oneofs_by_name['_completions'].fields.append(
+  _ENGINEPARAMS.fields_by_name['completions'])
+_ENGINEPARAMS.fields_by_name['completions'].containing_oneof = _ENGINEPARAMS.oneofs_by_name['_completions']
+_ENGINEPARAMS.oneofs_by_name['_logprobs'].fields.append(
+  _ENGINEPARAMS.fields_by_name['logprobs'])
+_ENGINEPARAMS.fields_by_name['logprobs'].containing_oneof = _ENGINEPARAMS.oneofs_by_name['_logprobs']
+_ENGINEPARAMS.oneofs_by_name['_echo'].fields.append(
+  _ENGINEPARAMS.fields_by_name['echo'])
+_ENGINEPARAMS.fields_by_name['echo'].containing_oneof = _ENGINEPARAMS.oneofs_by_name['_echo']
+_ENGINEPARAMS.oneofs_by_name['_best_of'].fields.append(
+  _ENGINEPARAMS.fields_by_name['best_of'])
+_ENGINEPARAMS.fields_by_name['best_of'].containing_oneof = _ENGINEPARAMS.oneofs_by_name['_best_of']
 _REQUEST.fields_by_name['prompt'].message_type = _PROMPT
-_REQUEST.fields_by_name['model_parameters'].message_type = _MODEL
-_REQUEST.fields_by_name['engine_parameters'].message_type = _ENGINE
-_REQUEST.oneofs_by_name['_model_parameters'].fields.append(
-  _REQUEST.fields_by_name['model_parameters'])
-_REQUEST.fields_by_name['model_parameters'].containing_oneof = _REQUEST.oneofs_by_name['_model_parameters']
-_REQUEST.oneofs_by_name['_engine_parameters'].fields.append(
-  _REQUEST.fields_by_name['engine_parameters'])
-_REQUEST.fields_by_name['engine_parameters'].containing_oneof = _REQUEST.oneofs_by_name['_engine_parameters']
+_REQUEST.fields_by_name['model_params'].message_type = _MODELPARAMS
+_REQUEST.fields_by_name['engine_params'].message_type = _ENGINEPARAMS
+_REQUEST.oneofs_by_name['_model_params'].fields.append(
+  _REQUEST.fields_by_name['model_params'])
+_REQUEST.fields_by_name['model_params'].containing_oneof = _REQUEST.oneofs_by_name['_model_params']
+_REQUEST.oneofs_by_name['_engine_params'].fields.append(
+  _REQUEST.fields_by_name['engine_params'])
+_REQUEST.fields_by_name['engine_params'].containing_oneof = _REQUEST.oneofs_by_name['_engine_params']
 _LOGPROB.fields_by_name['token'].message_type = _TOKEN
 _LOGPROB.oneofs_by_name['_logprob'].fields.append(
   _LOGPROB.fields_by_name['logprob'])
@@ -781,8 +822,9 @@ DESCRIPTOR.message_types_by_name['Tokens'] = _TOKENS
 DESCRIPTOR.message_types_by_name['Prompt'] = _PROMPT
 DESCRIPTOR.message_types_by_name['LogitBias'] = _LOGITBIAS
 DESCRIPTOR.message_types_by_name['LogitBiases'] = _LOGITBIASES
-DESCRIPTOR.message_types_by_name['Model'] = _MODEL
-DESCRIPTOR.message_types_by_name['Engine'] = _ENGINE
+DESCRIPTOR.message_types_by_name['ModelParams'] = _MODELPARAMS
+DESCRIPTOR.message_types_by_name['Echo'] = _ECHO
+DESCRIPTOR.message_types_by_name['EngineParams'] = _ENGINEPARAMS
 DESCRIPTOR.message_types_by_name['Request'] = _REQUEST
 DESCRIPTOR.message_types_by_name['LogProb'] = _LOGPROB
 DESCRIPTOR.message_types_by_name['TokenLogProbs'] = _TOKENLOGPROBS
@@ -827,19 +869,26 @@ LogitBiases = _reflection.GeneratedProtocolMessageType('LogitBiases', (_message.
   })
 _sym_db.RegisterMessage(LogitBiases)
 
-Model = _reflection.GeneratedProtocolMessageType('Model', (_message.Message,), {
-  'DESCRIPTOR' : _MODEL,
+ModelParams = _reflection.GeneratedProtocolMessageType('ModelParams', (_message.Message,), {
+  'DESCRIPTOR' : _MODELPARAMS,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.Model)
+  # @@protoc_insertion_point(class_scope:anlatan.ModelParams)
   })
-_sym_db.RegisterMessage(Model)
+_sym_db.RegisterMessage(ModelParams)
 
-Engine = _reflection.GeneratedProtocolMessageType('Engine', (_message.Message,), {
-  'DESCRIPTOR' : _ENGINE,
+Echo = _reflection.GeneratedProtocolMessageType('Echo', (_message.Message,), {
+  'DESCRIPTOR' : _ECHO,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.Engine)
+  # @@protoc_insertion_point(class_scope:anlatan.Echo)
   })
-_sym_db.RegisterMessage(Engine)
+_sym_db.RegisterMessage(Echo)
+
+EngineParams = _reflection.GeneratedProtocolMessageType('EngineParams', (_message.Message,), {
+  'DESCRIPTOR' : _ENGINEPARAMS,
+  '__module__' : 'completion_pb2'
+  # @@protoc_insertion_point(class_scope:anlatan.EngineParams)
+  })
+_sym_db.RegisterMessage(EngineParams)
 
 Request = _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), {
   'DESCRIPTOR' : _REQUEST,
@@ -893,8 +942,8 @@ _COMPLETIONSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=1512,
-  serialized_end=1584,
+  serialized_start=1573,
+  serialized_end=1645,
   methods=[
   _descriptor.MethodDescriptor(
     name='Completion',
