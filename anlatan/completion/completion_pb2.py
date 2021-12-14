@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\r./;completion',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x10\x63ompletion.proto\x12\x07\x61nlatan\"!\n\x05Token\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\r\"(\n\x06Tokens\x12\x1e\n\x06tokens\x18\x01 \x03(\x0b\x32\x0e.anlatan.Token\"E\n\x06Prompt\x12\x0e\n\x04text\x18\x01 \x01(\tH\x00\x12!\n\x06tokens\x18\x02 \x01(\x0b\x32\x0f.anlatan.TokensH\x00\x42\x08\n\x06prompt\":\n\tLogitBias\x12\x1f\n\x06tokens\x18\x01 \x01(\x0b\x32\x0f.anlatan.Tokens\x12\x0c\n\x04\x62ias\x18\x02 \x01(\x01\"1\n\x0bLogitBiases\x12\"\n\x06\x62iases\x18\x01 \x03(\x0b\x32\x12.anlatan.LogitBias\"\xfd\x01\n\x0bModelParams\x12\x18\n\x0btemperature\x18\x01 \x01(\x01H\x00\x88\x01\x01\x12\x12\n\x05top_p\x18\x02 \x01(\x01H\x01\x88\x01\x01\x12\x1d\n\x10presence_penalty\x18\x03 \x01(\x01H\x02\x88\x01\x01\x12\x1e\n\x11\x66requency_penalty\x18\x04 \x01(\x01H\x03\x88\x01\x01\x12-\n\nlogit_bias\x18\x05 \x01(\x0b\x32\x14.anlatan.LogitBiasesH\x04\x88\x01\x01\x42\x0e\n\x0c_temperatureB\x08\n\x06_top_pB\x13\n\x11_presence_penaltyB\x14\n\x12_frequency_penaltyB\r\n\x0b_logit_bias\"$\n\x04\x45\x63ho\x12\x12\n\x05index\x18\x01 \x01(\x05H\x00\x88\x01\x01\x42\x08\n\x06_index\"\xf0\x01\n\x0c\x45ngineParams\x12\x17\n\nmax_tokens\x18\x01 \x01(\rH\x00\x88\x01\x01\x12\x18\n\x0b\x63ompletions\x18\x02 \x01(\rH\x01\x88\x01\x01\x12\x15\n\x08logprobs\x18\x03 \x01(\rH\x02\x88\x01\x01\x12 \n\x04\x65\x63ho\x18\x04 \x01(\x0b\x32\r.anlatan.EchoH\x03\x88\x01\x01\x12\x14\n\x07\x62\x65st_of\x18\x05 \x01(\rH\x04\x88\x01\x01\x12\x1d\n\x04stop\x18\x06 \x03(\x0b\x32\x0f.anlatan.PromptB\r\n\x0b_max_tokensB\x0e\n\x0c_completionsB\x0b\n\t_logprobsB\x07\n\x05_echoB\n\n\x08_best_of\"\xc4\x01\n\x07Request\x12\x11\n\tengine_id\x18\x01 \x01(\t\x12\x1f\n\x06prompt\x18\x02 \x03(\x0b\x32\x0f.anlatan.Prompt\x12/\n\x0cmodel_params\x18\x03 \x01(\x0b\x32\x14.anlatan.ModelParamsH\x00\x88\x01\x01\x12\x31\n\rengine_params\x18\x04 \x01(\x0b\x32\x15.anlatan.EngineParamsH\x01\x88\x01\x01\x42\x0f\n\r_model_paramsB\x10\n\x0e_engine_params\"J\n\x07LogProb\x12\x1d\n\x05token\x18\x01 \x01(\x0b\x32\x0e.anlatan.Token\x12\x14\n\x07logprob\x18\x02 \x01(\x01H\x00\x88\x01\x01\x42\n\n\x08_logprob\"3\n\rTokenLogProbs\x12\"\n\x08logprobs\x18\x01 \x03(\x0b\x32\x10.anlatan.LogProb\"\x9a\x01\n\x08LogProbs\x12&\n\x06tokens\x18\x01 \x01(\x0b\x32\x16.anlatan.TokenLogProbs\x12#\n\x03top\x18\x02 \x03(\x0b\x32\x16.anlatan.TokenLogProbs\x12\x13\n\x0btext_offset\x18\x03 \x03(\r\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.anlatan.FinishReason\"|\n\nCompletion\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\r\n\x05index\x18\x02 \x01(\r\x12#\n\x08logprobs\x18\x03 \x01(\x0b\x32\x11.anlatan.LogProbs\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.anlatan.FinishReason\"a\n\x06\x41nswer\x12\x11\n\tanswer_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\x04\x12\r\n\x05model\x18\x03 \x01(\t\x12$\n\x07\x63hoices\x18\x04 \x03(\x0b\x32\x13.anlatan.Completion*$\n\x0c\x46inishReason\x12\x08\n\x04NULL\x10\x00\x12\n\n\x06LENGTH\x10\x01\x32H\n\x11\x43ompletionService\x12\x33\n\nCompletion\x12\x10.anlatan.Request\x1a\x0f.anlatan.Answer\"\x00\x30\x01\x42\x0fZ\r./;completionb\x06proto3'
+  serialized_pb=b'\n\x10\x63ompletion.proto\x12\x07\x61nlatan\"!\n\x05Token\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\r\"(\n\x06Tokens\x12\x1e\n\x06tokens\x18\x01 \x03(\x0b\x32\x0e.anlatan.Token\"E\n\x06Prompt\x12\x0e\n\x04text\x18\x01 \x01(\tH\x00\x12!\n\x06tokens\x18\x02 \x01(\x0b\x32\x0f.anlatan.TokensH\x00\x42\x08\n\x06prompt\":\n\tLogitBias\x12\x1f\n\x06tokens\x18\x01 \x01(\x0b\x32\x0f.anlatan.Tokens\x12\x0c\n\x04\x62ias\x18\x02 \x01(\x01\"1\n\x0bLogitBiases\x12\"\n\x06\x62iases\x18\x01 \x03(\x0b\x32\x12.anlatan.LogitBias\"\xbb\x02\n\x0f\x46requencyParams\x12\x1d\n\x10presence_penalty\x18\x01 \x01(\x01H\x00\x88\x01\x01\x12\x1e\n\x11\x66requency_penalty\x18\x02 \x01(\x01H\x01\x88\x01\x01\x12\x1f\n\x12repetition_penalty\x18\x03 \x01(\x01H\x02\x88\x01\x01\x12%\n\x18repetition_penalty_slope\x18\x04 \x01(\x01H\x03\x88\x01\x01\x12%\n\x18repetition_penalty_range\x18\x05 \x01(\x01H\x04\x88\x01\x01\x42\x13\n\x11_presence_penaltyB\x14\n\x12_frequency_penaltyB\x15\n\x13_repetition_penaltyB\x1b\n\x19_repetition_penalty_slopeB\x1b\n\x19_repetition_penalty_range\"t\n\x0eModelTransform\x12\x15\n\x0btemperature\x18\x01 \x01(\x01H\x00\x12\x0f\n\x05top_p\x18\x02 \x01(\x01H\x00\x12\x0f\n\x05top_k\x18\x03 \x01(\x01H\x00\x12\x1c\n\x12tail_free_sampling\x18\x04 \x01(\x01H\x00\x42\x0b\n\ttransform\"\xd6\x01\n\x0eSamplingParams\x12&\n\x05order\x18\x01 \x03(\x0e\x32\x17.anlatan.SamplingMethod\x12\x18\n\x0btemperature\x18\x02 \x01(\x01H\x00\x88\x01\x01\x12\x12\n\x05top_p\x18\x03 \x01(\x01H\x01\x88\x01\x01\x12\x12\n\x05top_k\x18\x04 \x01(\x01H\x02\x88\x01\x01\x12\x1f\n\x12tail_free_sampling\x18\x05 \x01(\x01H\x03\x88\x01\x01\x42\x0e\n\x0c_temperatureB\x08\n\x06_top_pB\x08\n\x06_top_kB\x15\n\x13_tail_free_sampling\"\xd6\x01\n\x0bModelParams\x12.\n\x08sampling\x18\x01 \x01(\x0b\x32\x17.anlatan.SamplingParamsH\x00\x88\x01\x01\x12\x37\n\x10\x66requency_params\x18\x02 \x01(\x0b\x32\x18.anlatan.FrequencyParamsH\x01\x88\x01\x01\x12-\n\nlogit_bias\x18\x03 \x01(\x0b\x32\x14.anlatan.LogitBiasesH\x02\x88\x01\x01\x42\x0b\n\t_samplingB\x13\n\x11_frequency_paramsB\r\n\x0b_logit_bias\"$\n\x04\x45\x63ho\x12\x12\n\x05index\x18\x01 \x01(\x05H\x00\x88\x01\x01\x42\x08\n\x06_index\"\xf0\x01\n\x0c\x45ngineParams\x12\x17\n\nmax_tokens\x18\x01 \x01(\rH\x00\x88\x01\x01\x12\x18\n\x0b\x63ompletions\x18\x02 \x01(\rH\x01\x88\x01\x01\x12\x15\n\x08logprobs\x18\x03 \x01(\rH\x02\x88\x01\x01\x12 \n\x04\x65\x63ho\x18\x04 \x01(\x0b\x32\r.anlatan.EchoH\x03\x88\x01\x01\x12\x14\n\x07\x62\x65st_of\x18\x05 \x01(\rH\x04\x88\x01\x01\x12\x1d\n\x04stop\x18\x06 \x03(\x0b\x32\x0f.anlatan.PromptB\r\n\x0b_max_tokensB\x0e\n\x0c_completionsB\x0b\n\t_logprobsB\x07\n\x05_echoB\n\n\x08_best_of\"\xc4\x01\n\x07Request\x12\x11\n\tengine_id\x18\x01 \x01(\t\x12\x1f\n\x06prompt\x18\x02 \x03(\x0b\x32\x0f.anlatan.Prompt\x12/\n\x0cmodel_params\x18\x03 \x01(\x0b\x32\x14.anlatan.ModelParamsH\x00\x88\x01\x01\x12\x31\n\rengine_params\x18\x04 \x01(\x0b\x32\x15.anlatan.EngineParamsH\x01\x88\x01\x01\x42\x0f\n\r_model_paramsB\x10\n\x0e_engine_params\"J\n\x07LogProb\x12\x1d\n\x05token\x18\x01 \x01(\x0b\x32\x0e.anlatan.Token\x12\x14\n\x07logprob\x18\x02 \x01(\x01H\x00\x88\x01\x01\x42\n\n\x08_logprob\"3\n\rTokenLogProbs\x12\"\n\x08logprobs\x18\x01 \x03(\x0b\x32\x10.anlatan.LogProb\"\x9a\x01\n\x08LogProbs\x12&\n\x06tokens\x18\x01 \x01(\x0b\x32\x16.anlatan.TokenLogProbs\x12#\n\x03top\x18\x02 \x03(\x0b\x32\x16.anlatan.TokenLogProbs\x12\x13\n\x0btext_offset\x18\x03 \x03(\r\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.anlatan.FinishReason\"|\n\nCompletion\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\r\n\x05index\x18\x02 \x01(\r\x12#\n\x08logprobs\x18\x03 \x01(\x0b\x32\x11.anlatan.LogProbs\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.anlatan.FinishReason\"a\n\x06\x41nswer\x12\x11\n\tanswer_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\x04\x12\r\n\x05model\x18\x03 \x01(\t\x12$\n\x07\x63hoices\x18\x04 \x03(\x0b\x32\x13.anlatan.Completion*$\n\x0c\x46inishReason\x12\x08\n\x04NULL\x10\x00\x12\n\n\x06LENGTH\x10\x01*J\n\x0eSamplingMethod\x12\x08\n\x04NONE\x10\x00\x12\x0f\n\x0bTEMPERATURE\x10\x01\x12\t\n\x05TOP_P\x10\x02\x12\t\n\x05TOP_K\x10\x03\x12\x07\n\x03TFS\x10\x04\x32H\n\x11\x43ompletionService\x12\x33\n\nCompletion\x12\x10.anlatan.Request\x1a\x0f.anlatan.Answer\"\x00\x30\x01\x42\x0fZ\r./;completionb\x06proto3'
 )
 
 _FINISHREASON = _descriptor.EnumDescriptor(
@@ -43,14 +43,60 @@ _FINISHREASON = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1535,
-  serialized_end=1571,
+  serialized_start=2149,
+  serialized_end=2185,
 )
 _sym_db.RegisterEnumDescriptor(_FINISHREASON)
 
 FinishReason = enum_type_wrapper.EnumTypeWrapper(_FINISHREASON)
+_SAMPLINGMETHOD = _descriptor.EnumDescriptor(
+  name='SamplingMethod',
+  full_name='anlatan.SamplingMethod',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='NONE', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='TEMPERATURE', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='TOP_P', index=2, number=2,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='TOP_K', index=3, number=3,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='TFS', index=4, number=4,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=2187,
+  serialized_end=2261,
+)
+_sym_db.RegisterEnumDescriptor(_SAMPLINGMETHOD)
+
+SamplingMethod = enum_type_wrapper.EnumTypeWrapper(_SAMPLINGMETHOD)
 NULL = 0
 LENGTH = 1
+NONE = 0
+TEMPERATURE = 1
+TOP_P = 2
+TOP_K = 3
+TFS = 4
 
 
 
@@ -240,6 +286,229 @@ _LOGITBIASES = _descriptor.Descriptor(
 )
 
 
+_FREQUENCYPARAMS = _descriptor.Descriptor(
+  name='FrequencyParams',
+  full_name='anlatan.FrequencyParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='presence_penalty', full_name='anlatan.FrequencyParams.presence_penalty', index=0,
+      number=1, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='frequency_penalty', full_name='anlatan.FrequencyParams.frequency_penalty', index=1,
+      number=2, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='repetition_penalty', full_name='anlatan.FrequencyParams.repetition_penalty', index=2,
+      number=3, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='repetition_penalty_slope', full_name='anlatan.FrequencyParams.repetition_penalty_slope', index=3,
+      number=4, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='repetition_penalty_range', full_name='anlatan.FrequencyParams.repetition_penalty_range', index=4,
+      number=5, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+    _descriptor.OneofDescriptor(
+      name='_presence_penalty', full_name='anlatan.FrequencyParams._presence_penalty',
+      index=0, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+    _descriptor.OneofDescriptor(
+      name='_frequency_penalty', full_name='anlatan.FrequencyParams._frequency_penalty',
+      index=1, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+    _descriptor.OneofDescriptor(
+      name='_repetition_penalty', full_name='anlatan.FrequencyParams._repetition_penalty',
+      index=2, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+    _descriptor.OneofDescriptor(
+      name='_repetition_penalty_slope', full_name='anlatan.FrequencyParams._repetition_penalty_slope',
+      index=3, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+    _descriptor.OneofDescriptor(
+      name='_repetition_penalty_range', full_name='anlatan.FrequencyParams._repetition_penalty_range',
+      index=4, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+  ],
+  serialized_start=289,
+  serialized_end=604,
+)
+
+
+_MODELTRANSFORM = _descriptor.Descriptor(
+  name='ModelTransform',
+  full_name='anlatan.ModelTransform',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='temperature', full_name='anlatan.ModelTransform.temperature', index=0,
+      number=1, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='top_p', full_name='anlatan.ModelTransform.top_p', index=1,
+      number=2, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='top_k', full_name='anlatan.ModelTransform.top_k', index=2,
+      number=3, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tail_free_sampling', full_name='anlatan.ModelTransform.tail_free_sampling', index=3,
+      number=4, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+    _descriptor.OneofDescriptor(
+      name='transform', full_name='anlatan.ModelTransform.transform',
+      index=0, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+  ],
+  serialized_start=606,
+  serialized_end=722,
+)
+
+
+_SAMPLINGPARAMS = _descriptor.Descriptor(
+  name='SamplingParams',
+  full_name='anlatan.SamplingParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='order', full_name='anlatan.SamplingParams.order', index=0,
+      number=1, type=14, cpp_type=8, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='temperature', full_name='anlatan.SamplingParams.temperature', index=1,
+      number=2, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='top_p', full_name='anlatan.SamplingParams.top_p', index=2,
+      number=3, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='top_k', full_name='anlatan.SamplingParams.top_k', index=3,
+      number=4, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tail_free_sampling', full_name='anlatan.SamplingParams.tail_free_sampling', index=4,
+      number=5, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+    _descriptor.OneofDescriptor(
+      name='_temperature', full_name='anlatan.SamplingParams._temperature',
+      index=0, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+    _descriptor.OneofDescriptor(
+      name='_top_p', full_name='anlatan.SamplingParams._top_p',
+      index=1, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+    _descriptor.OneofDescriptor(
+      name='_top_k', full_name='anlatan.SamplingParams._top_k',
+      index=2, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+    _descriptor.OneofDescriptor(
+      name='_tail_free_sampling', full_name='anlatan.SamplingParams._tail_free_sampling',
+      index=3, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+  ],
+  serialized_start=725,
+  serialized_end=939,
+)
+
+
 _MODELPARAMS = _descriptor.Descriptor(
   name='ModelParams',
   full_name='anlatan.ModelParams',
@@ -249,36 +518,22 @@ _MODELPARAMS = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='temperature', full_name='anlatan.ModelParams.temperature', index=0,
-      number=1, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
+      name='sampling', full_name='anlatan.ModelParams.sampling', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='top_p', full_name='anlatan.ModelParams.top_p', index=1,
-      number=2, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
+      name='frequency_params', full_name='anlatan.ModelParams.frequency_params', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='presence_penalty', full_name='anlatan.ModelParams.presence_penalty', index=2,
-      number=3, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='frequency_penalty', full_name='anlatan.ModelParams.frequency_penalty', index=3,
-      number=4, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='logit_bias', full_name='anlatan.ModelParams.logit_bias', index=4,
-      number=5, type=11, cpp_type=10, label=1,
+      name='logit_bias', full_name='anlatan.ModelParams.logit_bias', index=2,
+      number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -295,33 +550,23 @@ _MODELPARAMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='_temperature', full_name='anlatan.ModelParams._temperature',
+      name='_sampling', full_name='anlatan.ModelParams._sampling',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_top_p', full_name='anlatan.ModelParams._top_p',
+      name='_frequency_params', full_name='anlatan.ModelParams._frequency_params',
       index=1, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_presence_penalty', full_name='anlatan.ModelParams._presence_penalty',
+      name='_logit_bias', full_name='anlatan.ModelParams._logit_bias',
       index=2, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
-    _descriptor.OneofDescriptor(
-      name='_frequency_penalty', full_name='anlatan.ModelParams._frequency_penalty',
-      index=3, containing_type=None,
-      create_key=_descriptor._internal_create_key,
-    fields=[]),
-    _descriptor.OneofDescriptor(
-      name='_logit_bias', full_name='anlatan.ModelParams._logit_bias',
-      index=4, containing_type=None,
-      create_key=_descriptor._internal_create_key,
-    fields=[]),
   ],
-  serialized_start=289,
-  serialized_end=542,
+  serialized_start=942,
+  serialized_end=1156,
 )
 
 
@@ -357,8 +602,8 @@ _ECHO = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=544,
-  serialized_end=580,
+  serialized_start=1158,
+  serialized_end=1194,
 )
 
 
@@ -449,8 +694,8 @@ _ENGINEPARAMS = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=583,
-  serialized_end=823,
+  serialized_start=1197,
+  serialized_end=1437,
 )
 
 
@@ -512,8 +757,8 @@ _REQUEST = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=826,
-  serialized_end=1022,
+  serialized_start=1440,
+  serialized_end=1636,
 )
 
 
@@ -556,8 +801,8 @@ _LOGPROB = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=1024,
-  serialized_end=1098,
+  serialized_start=1638,
+  serialized_end=1712,
 )
 
 
@@ -588,8 +833,8 @@ _TOKENLOGPROBS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1100,
-  serialized_end=1151,
+  serialized_start=1714,
+  serialized_end=1765,
 )
 
 
@@ -641,8 +886,8 @@ _LOGPROBS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1154,
-  serialized_end=1308,
+  serialized_start=1768,
+  serialized_end=1922,
 )
 
 
@@ -694,8 +939,8 @@ _COMPLETION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1310,
-  serialized_end=1434,
+  serialized_start=1924,
+  serialized_end=2048,
 )
 
 
@@ -747,8 +992,8 @@ _ANSWER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1436,
-  serialized_end=1533,
+  serialized_start=2050,
+  serialized_end=2147,
 )
 
 _TOKENS.fields_by_name['tokens'].message_type = _TOKEN
@@ -761,19 +1006,55 @@ _PROMPT.oneofs_by_name['prompt'].fields.append(
 _PROMPT.fields_by_name['tokens'].containing_oneof = _PROMPT.oneofs_by_name['prompt']
 _LOGITBIAS.fields_by_name['tokens'].message_type = _TOKENS
 _LOGITBIASES.fields_by_name['biases'].message_type = _LOGITBIAS
+_FREQUENCYPARAMS.oneofs_by_name['_presence_penalty'].fields.append(
+  _FREQUENCYPARAMS.fields_by_name['presence_penalty'])
+_FREQUENCYPARAMS.fields_by_name['presence_penalty'].containing_oneof = _FREQUENCYPARAMS.oneofs_by_name['_presence_penalty']
+_FREQUENCYPARAMS.oneofs_by_name['_frequency_penalty'].fields.append(
+  _FREQUENCYPARAMS.fields_by_name['frequency_penalty'])
+_FREQUENCYPARAMS.fields_by_name['frequency_penalty'].containing_oneof = _FREQUENCYPARAMS.oneofs_by_name['_frequency_penalty']
+_FREQUENCYPARAMS.oneofs_by_name['_repetition_penalty'].fields.append(
+  _FREQUENCYPARAMS.fields_by_name['repetition_penalty'])
+_FREQUENCYPARAMS.fields_by_name['repetition_penalty'].containing_oneof = _FREQUENCYPARAMS.oneofs_by_name['_repetition_penalty']
+_FREQUENCYPARAMS.oneofs_by_name['_repetition_penalty_slope'].fields.append(
+  _FREQUENCYPARAMS.fields_by_name['repetition_penalty_slope'])
+_FREQUENCYPARAMS.fields_by_name['repetition_penalty_slope'].containing_oneof = _FREQUENCYPARAMS.oneofs_by_name['_repetition_penalty_slope']
+_FREQUENCYPARAMS.oneofs_by_name['_repetition_penalty_range'].fields.append(
+  _FREQUENCYPARAMS.fields_by_name['repetition_penalty_range'])
+_FREQUENCYPARAMS.fields_by_name['repetition_penalty_range'].containing_oneof = _FREQUENCYPARAMS.oneofs_by_name['_repetition_penalty_range']
+_MODELTRANSFORM.oneofs_by_name['transform'].fields.append(
+  _MODELTRANSFORM.fields_by_name['temperature'])
+_MODELTRANSFORM.fields_by_name['temperature'].containing_oneof = _MODELTRANSFORM.oneofs_by_name['transform']
+_MODELTRANSFORM.oneofs_by_name['transform'].fields.append(
+  _MODELTRANSFORM.fields_by_name['top_p'])
+_MODELTRANSFORM.fields_by_name['top_p'].containing_oneof = _MODELTRANSFORM.oneofs_by_name['transform']
+_MODELTRANSFORM.oneofs_by_name['transform'].fields.append(
+  _MODELTRANSFORM.fields_by_name['top_k'])
+_MODELTRANSFORM.fields_by_name['top_k'].containing_oneof = _MODELTRANSFORM.oneofs_by_name['transform']
+_MODELTRANSFORM.oneofs_by_name['transform'].fields.append(
+  _MODELTRANSFORM.fields_by_name['tail_free_sampling'])
+_MODELTRANSFORM.fields_by_name['tail_free_sampling'].containing_oneof = _MODELTRANSFORM.oneofs_by_name['transform']
+_SAMPLINGPARAMS.fields_by_name['order'].enum_type = _SAMPLINGMETHOD
+_SAMPLINGPARAMS.oneofs_by_name['_temperature'].fields.append(
+  _SAMPLINGPARAMS.fields_by_name['temperature'])
+_SAMPLINGPARAMS.fields_by_name['temperature'].containing_oneof = _SAMPLINGPARAMS.oneofs_by_name['_temperature']
+_SAMPLINGPARAMS.oneofs_by_name['_top_p'].fields.append(
+  _SAMPLINGPARAMS.fields_by_name['top_p'])
+_SAMPLINGPARAMS.fields_by_name['top_p'].containing_oneof = _SAMPLINGPARAMS.oneofs_by_name['_top_p']
+_SAMPLINGPARAMS.oneofs_by_name['_top_k'].fields.append(
+  _SAMPLINGPARAMS.fields_by_name['top_k'])
+_SAMPLINGPARAMS.fields_by_name['top_k'].containing_oneof = _SAMPLINGPARAMS.oneofs_by_name['_top_k']
+_SAMPLINGPARAMS.oneofs_by_name['_tail_free_sampling'].fields.append(
+  _SAMPLINGPARAMS.fields_by_name['tail_free_sampling'])
+_SAMPLINGPARAMS.fields_by_name['tail_free_sampling'].containing_oneof = _SAMPLINGPARAMS.oneofs_by_name['_tail_free_sampling']
+_MODELPARAMS.fields_by_name['sampling'].message_type = _SAMPLINGPARAMS
+_MODELPARAMS.fields_by_name['frequency_params'].message_type = _FREQUENCYPARAMS
 _MODELPARAMS.fields_by_name['logit_bias'].message_type = _LOGITBIASES
-_MODELPARAMS.oneofs_by_name['_temperature'].fields.append(
-  _MODELPARAMS.fields_by_name['temperature'])
-_MODELPARAMS.fields_by_name['temperature'].containing_oneof = _MODELPARAMS.oneofs_by_name['_temperature']
-_MODELPARAMS.oneofs_by_name['_top_p'].fields.append(
-  _MODELPARAMS.fields_by_name['top_p'])
-_MODELPARAMS.fields_by_name['top_p'].containing_oneof = _MODELPARAMS.oneofs_by_name['_top_p']
-_MODELPARAMS.oneofs_by_name['_presence_penalty'].fields.append(
-  _MODELPARAMS.fields_by_name['presence_penalty'])
-_MODELPARAMS.fields_by_name['presence_penalty'].containing_oneof = _MODELPARAMS.oneofs_by_name['_presence_penalty']
-_MODELPARAMS.oneofs_by_name['_frequency_penalty'].fields.append(
-  _MODELPARAMS.fields_by_name['frequency_penalty'])
-_MODELPARAMS.fields_by_name['frequency_penalty'].containing_oneof = _MODELPARAMS.oneofs_by_name['_frequency_penalty']
+_MODELPARAMS.oneofs_by_name['_sampling'].fields.append(
+  _MODELPARAMS.fields_by_name['sampling'])
+_MODELPARAMS.fields_by_name['sampling'].containing_oneof = _MODELPARAMS.oneofs_by_name['_sampling']
+_MODELPARAMS.oneofs_by_name['_frequency_params'].fields.append(
+  _MODELPARAMS.fields_by_name['frequency_params'])
+_MODELPARAMS.fields_by_name['frequency_params'].containing_oneof = _MODELPARAMS.oneofs_by_name['_frequency_params']
 _MODELPARAMS.oneofs_by_name['_logit_bias'].fields.append(
   _MODELPARAMS.fields_by_name['logit_bias'])
 _MODELPARAMS.fields_by_name['logit_bias'].containing_oneof = _MODELPARAMS.oneofs_by_name['_logit_bias']
@@ -822,6 +1103,9 @@ DESCRIPTOR.message_types_by_name['Tokens'] = _TOKENS
 DESCRIPTOR.message_types_by_name['Prompt'] = _PROMPT
 DESCRIPTOR.message_types_by_name['LogitBias'] = _LOGITBIAS
 DESCRIPTOR.message_types_by_name['LogitBiases'] = _LOGITBIASES
+DESCRIPTOR.message_types_by_name['FrequencyParams'] = _FREQUENCYPARAMS
+DESCRIPTOR.message_types_by_name['ModelTransform'] = _MODELTRANSFORM
+DESCRIPTOR.message_types_by_name['SamplingParams'] = _SAMPLINGPARAMS
 DESCRIPTOR.message_types_by_name['ModelParams'] = _MODELPARAMS
 DESCRIPTOR.message_types_by_name['Echo'] = _ECHO
 DESCRIPTOR.message_types_by_name['EngineParams'] = _ENGINEPARAMS
@@ -832,6 +1116,7 @@ DESCRIPTOR.message_types_by_name['LogProbs'] = _LOGPROBS
 DESCRIPTOR.message_types_by_name['Completion'] = _COMPLETION
 DESCRIPTOR.message_types_by_name['Answer'] = _ANSWER
 DESCRIPTOR.enum_types_by_name['FinishReason'] = _FINISHREASON
+DESCRIPTOR.enum_types_by_name['SamplingMethod'] = _SAMPLINGMETHOD
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Token = _reflection.GeneratedProtocolMessageType('Token', (_message.Message,), {
@@ -868,6 +1153,27 @@ LogitBiases = _reflection.GeneratedProtocolMessageType('LogitBiases', (_message.
   # @@protoc_insertion_point(class_scope:anlatan.LogitBiases)
   })
 _sym_db.RegisterMessage(LogitBiases)
+
+FrequencyParams = _reflection.GeneratedProtocolMessageType('FrequencyParams', (_message.Message,), {
+  'DESCRIPTOR' : _FREQUENCYPARAMS,
+  '__module__' : 'completion_pb2'
+  # @@protoc_insertion_point(class_scope:anlatan.FrequencyParams)
+  })
+_sym_db.RegisterMessage(FrequencyParams)
+
+ModelTransform = _reflection.GeneratedProtocolMessageType('ModelTransform', (_message.Message,), {
+  'DESCRIPTOR' : _MODELTRANSFORM,
+  '__module__' : 'completion_pb2'
+  # @@protoc_insertion_point(class_scope:anlatan.ModelTransform)
+  })
+_sym_db.RegisterMessage(ModelTransform)
+
+SamplingParams = _reflection.GeneratedProtocolMessageType('SamplingParams', (_message.Message,), {
+  'DESCRIPTOR' : _SAMPLINGPARAMS,
+  '__module__' : 'completion_pb2'
+  # @@protoc_insertion_point(class_scope:anlatan.SamplingParams)
+  })
+_sym_db.RegisterMessage(SamplingParams)
 
 ModelParams = _reflection.GeneratedProtocolMessageType('ModelParams', (_message.Message,), {
   'DESCRIPTOR' : _MODELPARAMS,
@@ -942,8 +1248,8 @@ _COMPLETIONSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=1573,
-  serialized_end=1645,
+  serialized_start=2263,
+  serialized_end=2335,
   methods=[
   _descriptor.MethodDescriptor(
     name='Completion',

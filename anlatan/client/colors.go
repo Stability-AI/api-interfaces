@@ -16,6 +16,9 @@ import (
 )
 
 var grad colorgrad.Gradient
+var zero = 0
+var EchoTrue = &zero
+var EchoFalse *int
 
 type Fragment struct {
 	text    string
@@ -24,29 +27,37 @@ type Fragment struct {
 	choices []*completion.LogProb
 }
 
-func buildRequest(prompt string, echo bool, numTokens int) *completion.Request {
+func buildRequest(prompt string, echo *int, numTokens int) *completion.Request {
 	var temperature = 0.8
 	var topP = 0.7
 	var frequencyPenalty = 1.2
 	var maxTokens = uint32(numTokens)
 	var completions uint32 = 1
 	var logprobs uint32 = 30
+	var echoStruct = &completion.Echo{}
+	if echo != nil {
+		echoIdx := int32(*echo)
+		echoStruct.Index = &echoIdx
+	} else {
+		echoStruct = nil
+	}
 
 	rq := completion.Request{
 		Prompt: []*completion.Prompt{
 			{Prompt: &completion.Prompt_Text{
 				Text: prompt,
 			}}},
-		ModelParameters: &completion.Model{
+		ModelParams: &completion.ModelParams{
 			Temperature:      &temperature,
 			TopP:             &topP,
 			FrequencyPenalty: &frequencyPenalty,
 		},
-		EngineParameters: &completion.Engine{
+		EngineParams: &completion.EngineParams{
 			MaxTokens:   &maxTokens,
 			Completions: &completions,
 			Logprobs:    &logprobs,
-			Echo:        &echo},
+			Echo:        echoStruct,
+		},
 	}
 
 	return &rq
@@ -111,6 +122,16 @@ func (fragments IndexedFragments) getTextUntil(until int) string {
 	return buf.String()
 }
 
+func (fragments IndexedFragments) getModifiedIdx() int {
+	for idx := range fragments {
+		fragment := fragments[idx]
+		if fragment.chosen == nil {
+			return idx
+		}
+	}
+	return -1
+}
+
 func (fragments IndexedFragments) getBufferUntil(until int) string {
 	var buf strings.Builder
 	for idx := range fragments {
@@ -165,6 +186,7 @@ func main() {
 
 	grad = colorgrad.RdBu()
 
+	requestSize := 40
 	indexedFragments := make(IndexedFragments, 0)
 	viewedTokenIdx := 0
 	//numSelections := 0
@@ -260,8 +282,8 @@ func main() {
 		app.Draw()
 		receiving = false
 	}
-	go backendRequest(buildRequest("The witch laughed", true,
-		200))
+	go backendRequest(buildRequest("The witch laughed", EchoTrue,
+		requestSize))
 
 	var priorSelection string
 
@@ -287,12 +309,10 @@ func main() {
 			bufferState = indexedFragments.getBufferUntil(len(indexedFragments))
 			storyText = indexedFragments.getTextUntil(viewedTokenIdx)
 			textView.SetText(bufferState)
-			//textView.Clear()
-			//fmt.Fprint(textView, bufferState)
 			app.Draw()
 			tokenCt = viewedTokenIdx + 1
-			go backendRequest(buildRequest(storyText, false,
-				200))
+			go backendRequest(buildRequest(storyText, EchoFalse,
+				requestSize))
 		}
 		return action, event
 	}
@@ -320,16 +340,19 @@ func main() {
 		// ModAlt
 		if event.Key() == tcell.KeyEnter && event.Modifiers() == tcell.ModAlt {
 			promptText := indexedFragments.getTextUntil(viewedTokenIdx)
-			echoInput := true
-			if viewedTokenIdx == len(indexedFragments)-1 {
-				echoInput = false
-			} else {
-				tokenCt = 0
+			echoIdx := indexedFragments.getModifiedIdx()
+			echoParam := &echoIdx
+			if echoIdx > viewedTokenIdx {
+				echoIdx = viewedTokenIdx - 1
 			}
-
+			if echoIdx == len(indexedFragments) || echoIdx < 0 {
+				echoParam = nil
+			} else {
+				tokenCt = echoIdx
+			}
 			go backendRequest(buildRequest(
-				promptText, echoInput,
-				200+viewedTokenIdx))
+				promptText, echoParam,
+				requestSize+viewedTokenIdx))
 		}
 		if event.Key() == tcell.KeyRune {
 			if currFragment.chosen != nil {
