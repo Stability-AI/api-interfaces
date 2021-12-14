@@ -46,15 +46,6 @@ message FrequencyParams {
   optional double repetition_penalty_range = 5; // ANL: number of tokens for rp
 }
 
-message ModelTransform {
-  oneof transform {
-    double temperature = 1;        // OAI: What sampling temperature to use.
-    double top_p = 2;              // OAI: nucleus sampling value
-    double top_k = 3;              // ANL: truncates logits to highest N value
-    double tail_free_sampling = 4; // ANL: tail free sampling algorithm
-  }
-}
-
 enum SamplingMethod {
   NONE = 0;
   TEMPERATURE = 1;
@@ -67,7 +58,7 @@ message SamplingParams {
   repeated SamplingMethod order = 1;      // ANL: Order to apply transforms to
   optional double temperature = 2;        // OAI: What sampling temperature to
   optional double top_p = 3;              // OAI: nucleus sampling value
-  optional double top_k = 4;              // ANL: truncates logits to highest N
+  optional uint32 top_k = 4;              // ANL: truncates logits to highest N
   optional double tail_free_sampling = 5; // ANL: tail free sampling
 }
 
