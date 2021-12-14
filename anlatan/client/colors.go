@@ -30,6 +30,7 @@ type Fragment struct {
 func buildRequest(prompt string, echo *int, numTokens int) *completion.Request {
 	var temperature = 0.8
 	var topP = 0.7
+	var topK = uint32(140)
 	var frequencyPenalty = 1.2
 	var maxTokens = uint32(numTokens)
 	var completions uint32 = 1
@@ -48,9 +49,17 @@ func buildRequest(prompt string, echo *int, numTokens int) *completion.Request {
 				Text: prompt,
 			}}},
 		ModelParams: &completion.ModelParams{
-			Temperature:      &temperature,
-			TopP:             &topP,
-			FrequencyPenalty: &frequencyPenalty,
+			Sampling: &completion.SamplingParams{
+				Order:            nil,
+				Temperature:      &temperature,
+				TopP:             &topP,
+				TopK:             &topK,
+				TailFreeSampling: nil,
+			},
+			FrequencyParams: &completion.FrequencyParams{
+				FrequencyPenalty: &frequencyPenalty,
+			},
+			LogitBias: nil,
 		},
 		EngineParams: &completion.EngineParams{
 			MaxTokens:   &maxTokens,
