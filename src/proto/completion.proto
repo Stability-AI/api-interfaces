@@ -7,12 +7,6 @@ message Token {
   uint32 id = 2;
 }
 
-// Tokens may be represented as either an array of uint16s, or bytes. Bytes are
-// more efficient, but wrappers will serialize or deserialize appropriately.
-message Tokens {
-  repeated Token tokens = 1;
-}
-
 // The input can be provided in either string or sequence of tokens. Extensible
 // to other input types in the future, thanks to Protobuf.
 message Prompt {
@@ -24,7 +18,7 @@ message Prompt {
 
 // Pairing of token sequences with bias values.
 message LogitBias {
-  Tokens tokens = 1;
+  repeated Token tokens = 1;
   double bias = 2;
 }
 
