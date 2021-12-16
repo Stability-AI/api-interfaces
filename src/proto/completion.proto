@@ -102,10 +102,11 @@ message TokenLogProbs {
 }
 
 message LogProbs {
-  TokenLogProbs tokens = 1;             // OAI: logprobs of chosen tokens
-  repeated TokenLogProbs top = 2;       // OAI: top N logprobs
-  repeated uint32 text_offset = 3;      // OAI: indexed offsets of tokens
-  FinishReason finish_reason = 4;       // OAI: the reason why this finished if finished
+  TokenLogProbs tokens = 1;              // OAI: logprobs of chosen tokens
+  repeated uint32 text_offset = 2;       // OAI: indexed offsets of tokens
+  repeated TokenLogProbs top = 3;        // OAI: top N logprobs after processing
+  repeated TokenLogProbs top_before = 4; // ANL: top N logprobs before processing
+  FinishReason finish_reason = 5;        // OAI: the reason why this finished if finished
 }
 
 message Completion {

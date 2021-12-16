@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\r./;completion',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x10\x63ompletion.proto\x12\x07\x61nlatan\"!\n\x05Token\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\r\"(\n\x06Tokens\x12\x1e\n\x06tokens\x18\x01 \x03(\x0b\x32\x0e.anlatan.Token\"E\n\x06Prompt\x12\x0e\n\x04text\x18\x01 \x01(\tH\x00\x12!\n\x06tokens\x18\x02 \x01(\x0b\x32\x0f.anlatan.TokensH\x00\x42\x08\n\x06prompt\":\n\tLogitBias\x12\x1f\n\x06tokens\x18\x01 \x01(\x0b\x32\x0f.anlatan.Tokens\x12\x0c\n\x04\x62ias\x18\x02 \x01(\x01\"1\n\x0bLogitBiases\x12\"\n\x06\x62iases\x18\x01 \x03(\x0b\x32\x12.anlatan.LogitBias\"\xbb\x02\n\x0f\x46requencyParams\x12\x1d\n\x10presence_penalty\x18\x01 \x01(\x01H\x00\x88\x01\x01\x12\x1e\n\x11\x66requency_penalty\x18\x02 \x01(\x01H\x01\x88\x01\x01\x12\x1f\n\x12repetition_penalty\x18\x03 \x01(\x01H\x02\x88\x01\x01\x12%\n\x18repetition_penalty_slope\x18\x04 \x01(\x01H\x03\x88\x01\x01\x12%\n\x18repetition_penalty_range\x18\x05 \x01(\x01H\x04\x88\x01\x01\x42\x13\n\x11_presence_penaltyB\x14\n\x12_frequency_penaltyB\x15\n\x13_repetition_penaltyB\x1b\n\x19_repetition_penalty_slopeB\x1b\n\x19_repetition_penalty_range\"\xd6\x01\n\x0eSamplingParams\x12&\n\x05order\x18\x01 \x03(\x0e\x32\x17.anlatan.SamplingMethod\x12\x18\n\x0btemperature\x18\x02 \x01(\x01H\x00\x88\x01\x01\x12\x12\n\x05top_p\x18\x03 \x01(\x01H\x01\x88\x01\x01\x12\x12\n\x05top_k\x18\x04 \x01(\rH\x02\x88\x01\x01\x12\x1f\n\x12tail_free_sampling\x18\x05 \x01(\x01H\x03\x88\x01\x01\x42\x0e\n\x0c_temperatureB\x08\n\x06_top_pB\x08\n\x06_top_kB\x15\n\x13_tail_free_sampling\"\xe4\x01\n\x0bModelParams\x12\x35\n\x0fsampling_params\x18\x01 \x01(\x0b\x32\x17.anlatan.SamplingParamsH\x00\x88\x01\x01\x12\x37\n\x10\x66requency_params\x18\x02 \x01(\x0b\x32\x18.anlatan.FrequencyParamsH\x01\x88\x01\x01\x12-\n\nlogit_bias\x18\x03 \x01(\x0b\x32\x14.anlatan.LogitBiasesH\x02\x88\x01\x01\x42\x12\n\x10_sampling_paramsB\x13\n\x11_frequency_paramsB\r\n\x0b_logit_bias\"$\n\x04\x45\x63ho\x12\x12\n\x05index\x18\x01 \x01(\x05H\x00\x88\x01\x01\x42\x08\n\x06_index\"\xf0\x01\n\x0c\x45ngineParams\x12\x17\n\nmax_tokens\x18\x01 \x01(\rH\x00\x88\x01\x01\x12\x18\n\x0b\x63ompletions\x18\x02 \x01(\rH\x01\x88\x01\x01\x12\x15\n\x08logprobs\x18\x03 \x01(\rH\x02\x88\x01\x01\x12 \n\x04\x65\x63ho\x18\x04 \x01(\x0b\x32\r.anlatan.EchoH\x03\x88\x01\x01\x12\x14\n\x07\x62\x65st_of\x18\x05 \x01(\rH\x04\x88\x01\x01\x12\x1d\n\x04stop\x18\x06 \x03(\x0b\x32\x0f.anlatan.PromptB\r\n\x0b_max_tokensB\x0e\n\x0c_completionsB\x0b\n\t_logprobsB\x07\n\x05_echoB\n\n\x08_best_of\"\xc4\x01\n\x07Request\x12\x11\n\tengine_id\x18\x01 \x01(\t\x12\x1f\n\x06prompt\x18\x02 \x03(\x0b\x32\x0f.anlatan.Prompt\x12/\n\x0cmodel_params\x18\x03 \x01(\x0b\x32\x14.anlatan.ModelParamsH\x00\x88\x01\x01\x12\x31\n\rengine_params\x18\x04 \x01(\x0b\x32\x15.anlatan.EngineParamsH\x01\x88\x01\x01\x42\x0f\n\r_model_paramsB\x10\n\x0e_engine_params\"J\n\x07LogProb\x12\x1d\n\x05token\x18\x01 \x01(\x0b\x32\x0e.anlatan.Token\x12\x14\n\x07logprob\x18\x02 \x01(\x01H\x00\x88\x01\x01\x42\n\n\x08_logprob\"3\n\rTokenLogProbs\x12\"\n\x08logprobs\x18\x01 \x03(\x0b\x32\x10.anlatan.LogProb\"\x9a\x01\n\x08LogProbs\x12&\n\x06tokens\x18\x01 \x01(\x0b\x32\x16.anlatan.TokenLogProbs\x12#\n\x03top\x18\x02 \x03(\x0b\x32\x16.anlatan.TokenLogProbs\x12\x13\n\x0btext_offset\x18\x03 \x03(\r\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.anlatan.FinishReason\"|\n\nCompletion\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\r\n\x05index\x18\x02 \x01(\r\x12#\n\x08logprobs\x18\x03 \x01(\x0b\x32\x11.anlatan.LogProbs\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.anlatan.FinishReason\"a\n\x06\x41nswer\x12\x11\n\tanswer_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\x04\x12\r\n\x05model\x18\x03 \x01(\t\x12$\n\x07\x63hoices\x18\x04 \x03(\x0b\x32\x13.anlatan.Completion*$\n\x0c\x46inishReason\x12\x08\n\x04NULL\x10\x00\x12\n\n\x06LENGTH\x10\x01*J\n\x0eSamplingMethod\x12\x08\n\x04NONE\x10\x00\x12\x0f\n\x0bTEMPERATURE\x10\x01\x12\t\n\x05TOP_P\x10\x02\x12\t\n\x05TOP_K\x10\x03\x12\x07\n\x03TFS\x10\x04\x32H\n\x11\x43ompletionService\x12\x33\n\nCompletion\x12\x10.anlatan.Request\x1a\x0f.anlatan.Answer\"\x00\x30\x01\x42\x0fZ\r./;completionb\x06proto3'
+  serialized_pb=b'\n\x10\x63ompletion.proto\x12\x07\x61nlatan\"!\n\x05Token\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\r\"(\n\x06Tokens\x12\x1e\n\x06tokens\x18\x01 \x03(\x0b\x32\x0e.anlatan.Token\"E\n\x06Prompt\x12\x0e\n\x04text\x18\x01 \x01(\tH\x00\x12!\n\x06tokens\x18\x02 \x01(\x0b\x32\x0f.anlatan.TokensH\x00\x42\x08\n\x06prompt\":\n\tLogitBias\x12\x1f\n\x06tokens\x18\x01 \x01(\x0b\x32\x0f.anlatan.Tokens\x12\x0c\n\x04\x62ias\x18\x02 \x01(\x01\"1\n\x0bLogitBiases\x12\"\n\x06\x62iases\x18\x01 \x03(\x0b\x32\x12.anlatan.LogitBias\"\xbb\x02\n\x0f\x46requencyParams\x12\x1d\n\x10presence_penalty\x18\x01 \x01(\x01H\x00\x88\x01\x01\x12\x1e\n\x11\x66requency_penalty\x18\x02 \x01(\x01H\x01\x88\x01\x01\x12\x1f\n\x12repetition_penalty\x18\x03 \x01(\x01H\x02\x88\x01\x01\x12%\n\x18repetition_penalty_slope\x18\x04 \x01(\x01H\x03\x88\x01\x01\x12%\n\x18repetition_penalty_range\x18\x05 \x01(\x01H\x04\x88\x01\x01\x42\x13\n\x11_presence_penaltyB\x14\n\x12_frequency_penaltyB\x15\n\x13_repetition_penaltyB\x1b\n\x19_repetition_penalty_slopeB\x1b\n\x19_repetition_penalty_range\"\xd6\x01\n\x0eSamplingParams\x12&\n\x05order\x18\x01 \x03(\x0e\x32\x17.anlatan.SamplingMethod\x12\x18\n\x0btemperature\x18\x02 \x01(\x01H\x00\x88\x01\x01\x12\x12\n\x05top_p\x18\x03 \x01(\x01H\x01\x88\x01\x01\x12\x12\n\x05top_k\x18\x04 \x01(\rH\x02\x88\x01\x01\x12\x1f\n\x12tail_free_sampling\x18\x05 \x01(\x01H\x03\x88\x01\x01\x42\x0e\n\x0c_temperatureB\x08\n\x06_top_pB\x08\n\x06_top_kB\x15\n\x13_tail_free_sampling\"\xe4\x01\n\x0bModelParams\x12\x35\n\x0fsampling_params\x18\x01 \x01(\x0b\x32\x17.anlatan.SamplingParamsH\x00\x88\x01\x01\x12\x37\n\x10\x66requency_params\x18\x02 \x01(\x0b\x32\x18.anlatan.FrequencyParamsH\x01\x88\x01\x01\x12-\n\nlogit_bias\x18\x03 \x01(\x0b\x32\x14.anlatan.LogitBiasesH\x02\x88\x01\x01\x42\x12\n\x10_sampling_paramsB\x13\n\x11_frequency_paramsB\r\n\x0b_logit_bias\"$\n\x04\x45\x63ho\x12\x12\n\x05index\x18\x01 \x01(\x05H\x00\x88\x01\x01\x42\x08\n\x06_index\"\xf0\x01\n\x0c\x45ngineParams\x12\x17\n\nmax_tokens\x18\x01 \x01(\rH\x00\x88\x01\x01\x12\x18\n\x0b\x63ompletions\x18\x02 \x01(\rH\x01\x88\x01\x01\x12\x15\n\x08logprobs\x18\x03 \x01(\rH\x02\x88\x01\x01\x12 \n\x04\x65\x63ho\x18\x04 \x01(\x0b\x32\r.anlatan.EchoH\x03\x88\x01\x01\x12\x14\n\x07\x62\x65st_of\x18\x05 \x01(\rH\x04\x88\x01\x01\x12\x1d\n\x04stop\x18\x06 \x03(\x0b\x32\x0f.anlatan.PromptB\r\n\x0b_max_tokensB\x0e\n\x0c_completionsB\x0b\n\t_logprobsB\x07\n\x05_echoB\n\n\x08_best_of\"\xc4\x01\n\x07Request\x12\x11\n\tengine_id\x18\x01 \x01(\t\x12\x1f\n\x06prompt\x18\x02 \x03(\x0b\x32\x0f.anlatan.Prompt\x12/\n\x0cmodel_params\x18\x03 \x01(\x0b\x32\x14.anlatan.ModelParamsH\x00\x88\x01\x01\x12\x31\n\rengine_params\x18\x04 \x01(\x0b\x32\x15.anlatan.EngineParamsH\x01\x88\x01\x01\x42\x0f\n\r_model_paramsB\x10\n\x0e_engine_params\"J\n\x07LogProb\x12\x1d\n\x05token\x18\x01 \x01(\x0b\x32\x0e.anlatan.Token\x12\x14\n\x07logprob\x18\x02 \x01(\x01H\x00\x88\x01\x01\x42\n\n\x08_logprob\"3\n\rTokenLogProbs\x12\"\n\x08logprobs\x18\x01 \x03(\x0b\x32\x10.anlatan.LogProb\"\xc6\x01\n\x08LogProbs\x12&\n\x06tokens\x18\x01 \x01(\x0b\x32\x16.anlatan.TokenLogProbs\x12\x13\n\x0btext_offset\x18\x02 \x03(\r\x12#\n\x03top\x18\x03 \x03(\x0b\x32\x16.anlatan.TokenLogProbs\x12*\n\ntop_before\x18\x04 \x03(\x0b\x32\x16.anlatan.TokenLogProbs\x12,\n\rfinish_reason\x18\x05 \x01(\x0e\x32\x15.anlatan.FinishReason\"|\n\nCompletion\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\r\n\x05index\x18\x02 \x01(\r\x12#\n\x08logprobs\x18\x03 \x01(\x0b\x32\x11.anlatan.LogProbs\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.anlatan.FinishReason\"a\n\x06\x41nswer\x12\x11\n\tanswer_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\x04\x12\r\n\x05model\x18\x03 \x01(\t\x12$\n\x07\x63hoices\x18\x04 \x03(\x0b\x32\x13.anlatan.Completion*$\n\x0c\x46inishReason\x12\x08\n\x04NULL\x10\x00\x12\n\n\x06LENGTH\x10\x01*J\n\x0eSamplingMethod\x12\x08\n\x04NONE\x10\x00\x12\x0f\n\x0bTEMPERATURE\x10\x01\x12\t\n\x05TOP_P\x10\x02\x12\t\n\x05TOP_K\x10\x03\x12\x07\n\x03TFS\x10\x04\x32H\n\x11\x43ompletionService\x12\x33\n\nCompletion\x12\x10.anlatan.Request\x1a\x0f.anlatan.Answer\"\x00\x30\x01\x42\x0fZ\r./;completionb\x06proto3'
 )
 
 _FINISHREASON = _descriptor.EnumDescriptor(
@@ -43,8 +43,8 @@ _FINISHREASON = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2045,
-  serialized_end=2081,
+  serialized_start=2089,
+  serialized_end=2125,
 )
 _sym_db.RegisterEnumDescriptor(_FINISHREASON)
 
@@ -84,8 +84,8 @@ _SAMPLINGMETHOD = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2083,
-  serialized_end=2157,
+  serialized_start=2127,
+  serialized_end=2201,
 )
 _sym_db.RegisterEnumDescriptor(_SAMPLINGMETHOD)
 
@@ -796,22 +796,29 @@ _LOGPROBS = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='top', full_name='anlatan.LogProbs.top', index=1,
-      number=2, type=11, cpp_type=10, label=3,
+      name='text_offset', full_name='anlatan.LogProbs.text_offset', index=1,
+      number=2, type=13, cpp_type=3, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='text_offset', full_name='anlatan.LogProbs.text_offset', index=2,
-      number=3, type=13, cpp_type=3, label=3,
+      name='top', full_name='anlatan.LogProbs.top', index=2,
+      number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='finish_reason', full_name='anlatan.LogProbs.finish_reason', index=3,
-      number=4, type=14, cpp_type=8, label=1,
+      name='top_before', full_name='anlatan.LogProbs.top_before', index=3,
+      number=4, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='finish_reason', full_name='anlatan.LogProbs.finish_reason', index=4,
+      number=5, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -829,7 +836,7 @@ _LOGPROBS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=1664,
-  serialized_end=1818,
+  serialized_end=1862,
 )
 
 
@@ -881,8 +888,8 @@ _COMPLETION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1820,
-  serialized_end=1944,
+  serialized_start=1864,
+  serialized_end=1988,
 )
 
 
@@ -934,8 +941,8 @@ _ANSWER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1946,
-  serialized_end=2043,
+  serialized_start=1990,
+  serialized_end=2087,
 )
 
 _TOKENS.fields_by_name['tokens'].message_type = _TOKEN
@@ -1024,6 +1031,7 @@ _LOGPROB.fields_by_name['logprob'].containing_oneof = _LOGPROB.oneofs_by_name['_
 _TOKENLOGPROBS.fields_by_name['logprobs'].message_type = _LOGPROB
 _LOGPROBS.fields_by_name['tokens'].message_type = _TOKENLOGPROBS
 _LOGPROBS.fields_by_name['top'].message_type = _TOKENLOGPROBS
+_LOGPROBS.fields_by_name['top_before'].message_type = _TOKENLOGPROBS
 _LOGPROBS.fields_by_name['finish_reason'].enum_type = _FINISHREASON
 _COMPLETION.fields_by_name['logprobs'].message_type = _LOGPROBS
 _COMPLETION.fields_by_name['finish_reason'].enum_type = _FINISHREASON
@@ -1170,8 +1178,8 @@ _COMPLETIONSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=2159,
-  serialized_end=2231,
+  serialized_start=2203,
+  serialized_end=2275,
   methods=[
   _descriptor.MethodDescriptor(
     name='Completion',
