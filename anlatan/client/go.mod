@@ -23,6 +23,7 @@ require (
 	github.com/mazznoer/csscolorparser v0.1.0 // indirect
 	github.com/mingrammer/commonregex v1.0.1 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
+	github.com/siongui/goef v0.0.0-20210610184109-d3b60554c5f3 // indirect
 	golang.org/x/net v0.0.0-20210226172049-e18ecbb05110 // indirect
 	golang.org/x/sys v0.0.0-20210831042530-f4d43177bf5e // indirect
 	golang.org/x/term v0.0.0-20210615171337-6886f2dfbf5b // indirect
