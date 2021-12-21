@@ -93,8 +93,9 @@ message Request {
 }
 
 message LogProb {
-  Token token = 1;                       // pairing of token ...
+  Token token = 1;                       // tuple of token ...
   optional double logprob = 2;           // ... with logprobs
+  optional double logprob_before = 3;    // ... and optionally, logprobs before processing
 }
 
 message TokenLogProbs {
@@ -103,11 +104,10 @@ message TokenLogProbs {
 
 message LogProbs {
   TokenLogProbs tokens = 1;              // OAI: logprobs of chosen tokens
-  TokenLogProbs tokens_before = 2;       // ANL: logprobs of chosen tokens before processing
-  repeated uint32 text_offset = 3;       // OAI: indexed offsets of tokens
-  repeated TokenLogProbs top = 4;        // OAI: top N logprobs after processing
-  repeated TokenLogProbs top_before = 5; // ANL: top N logprobs before processing
-  FinishReason finish_reason = 6;        // OAI: the reason why this finished if finished
+  repeated uint32 text_offset = 2;       // OAI: indexed offsets of tokens
+  repeated TokenLogProbs top = 3;        // OAI: top N logprobs after processing
+  repeated TokenLogProbs top_before = 4; // ANL: top N logprobs before processing
+  FinishReason finish_reason = 5;        // OAI: the reason why this finished if finished
 }
 
 message Completion {
