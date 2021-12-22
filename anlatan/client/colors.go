@@ -123,21 +123,31 @@ func getLogProbStr(logprob *completion.LogProb) string {
 	}
 }
 
-func getPercentViewStr(logProb *completion.LogProb) string {
-	if logProb.Logprob != nil {
-		return fmt.Sprintf("%-5.2f %-10s",
-			math.Exp(*logProb.Logprob)*100.0,
-			colorizeToken(logProb, grad))
-	} else {
-		return fmt.Sprintf("%-5s %-10s",
-			"", logProb.Token.Text)
+func getPercentViewStr(logprob *completion.LogProb) string {
+	left := ""
+	right := ""
+	if logprob.LogprobBefore != nil {
+		prob := 1.0 - math.Exp(*logprob.LogprobBefore)
+		left = fmt.Sprintf("[%s]%-6.2f[white]", grad.At(prob).Hex(),
+			math.Exp(*logprob.LogprobBefore)*100)
 	}
+	if logprob.Logprob != nil {
+		prob := 1.0 - math.Exp(*logprob.Logprob)
+		right = fmt.Sprintf("[%s]%-6.2f[white]", grad.At(prob).Hex(),
+			math.Exp(*logprob.Logprob)*100)
+	}
+	colorized := strings.Replace(colorizeToken(logprob, grad), "\n",
+		"\\n", -1)
+	return fmt.Sprintf("%-6s %-6s %-10s",
+		left,
+		right,
+		colorized)
 }
 
-func getTokenViewStr(tokenIdx int, logProb *completion.LogProb) string {
+func getTokenViewStr(tokenIdx int, logprob *completion.LogProb) string {
 	return fmt.Sprintf("[\"%d\"]%s[\"\"]\n",
 		tokenIdx,
-		getPercentViewStr(logProb))
+		getPercentViewStr(logprob))
 }
 
 type IndexedFragments []*Fragment
@@ -244,6 +254,16 @@ func (fragments IndexedFragments) getPlainUntil(until int) string {
 func (fragments IndexedFragments) getBufferUntil(until int) string {
 	colorized, _ := fragments.getStringsUntil(until)
 	return colorized
+}
+
+func hasToken(logprobs []*completion.LogProb,
+	testLogprob *completion.LogProb) bool {
+	for idx := range logprobs {
+		if logprobs[idx].Token.Id == testLogprob.Token.Id {
+			return true
+		}
+	}
+	return false
 }
 
 func newGenerationParametersView(params *GenerationParams) *cview.Form {
@@ -378,7 +398,7 @@ func main() {
 	toolsPane.AddItem(biasTable, 0, 1, false)
 
 	mainPanes := cview.NewFlex()
-	mainPanes.AddItem(tokenView, 25, 1, false)
+	mainPanes.AddItem(tokenView, 30, 1, false)
 	mainPanes.AddItem(textView, 0, 1, true)
 	mainPanes.AddItem(toolsPane, 28, 1, false)
 
@@ -402,11 +422,11 @@ func main() {
 
 		if indexedFragments[tokenIdx].chosen != nil {
 			fmt.Fprintf(tokenView,
-				"%s\n---------------------\n",
+				"%s\n---------------------------\n",
 				getPercentViewStr(indexedFragments[tokenIdx].chosen))
 		} else {
 			fmt.Fprintf(tokenView,
-				"%-5s %-10s\n---------------------\n",
+				"%-6s %-6s %-10s\n---------------------------\n",
 				"", indexedFragments[tokenIdx].text)
 		}
 
@@ -416,10 +436,9 @@ func main() {
 				logProb := choicesList[choicesIdx]
 				if logProb.Logprob != nil {
 					fmt.Fprint(tokenView,
-						fmt.Sprintf("[\"%d\"]%-5.2f %-10s[\"\"]\n",
+						fmt.Sprintf("[\"%d\"]%s[\"\"]\n",
 							choicesIdx,
-							math.Exp(*logProb.Logprob)*float64(100.0),
-							colorizeToken(logProb, grad)))
+							getPercentViewStr(logProb)))
 				}
 			}
 		}
@@ -475,13 +494,28 @@ func main() {
 
 			tokens := logprobs.GetTokens()
 			topN := logprobs.GetTop()
+			topNBefore := logprobs.GetTopBefore()
 			for tokenIdx := range tokens.Logprobs {
+				choices := topN[tokenIdx].Logprobs[:]
+				choicesSz := len(choices)
+				if uint32(choicesSz) < genSettings.LogProbs &&
+					topNBefore != nil {
+					if topNBefore[tokenIdx] != nil {
+						for beforeTknIdx := range topNBefore[tokenIdx].Logprobs {
+							beforeTkn := topNBefore[tokenIdx].Logprobs[beforeTknIdx]
+							if !hasToken(choices, beforeTkn) {
+								choices = append(choices, beforeTkn)
+							}
+						}
+					}
+				}
+
 				fragment := &Fragment{
 					text: tokens.Logprobs[tokenIdx].Token.Text,
 					buffer: colorizeToken(tokens.Logprobs[tokenIdx],
 						grad),
 					chosen:  tokens.Logprobs[tokenIdx],
-					choices: topN[tokenIdx].Logprobs,
+					choices: choices,
 				}
 				if len(indexedFragments) > tokenCt {
 					indexedFragments[tokenCt] = fragment
@@ -531,7 +565,7 @@ func main() {
 	prompt := "The witch laughed"
 
 	go backendRequest(genSettings.buildRequest(prompt, EchoTrue),
-		false)
+		true)
 
 	var priorSelection string
 
@@ -560,7 +594,7 @@ func main() {
 			app.Draw()
 			tokenCt = viewedTokenIdx + 1
 			go backendRequest(genSettings.buildRequest(storyText, EchoFalse),
-				false)
+				true)
 		}
 		return action, event
 	}
@@ -585,7 +619,7 @@ func main() {
 		currFragment := indexedFragments[viewedTokenIdx]
 		// ModAlt
 		if event.Key() == tcell.KeyEnter && (event.Modifiers() == tcell.ModAlt ||
-			event.Modifiers() == tcell.ModShift) {
+			event.Modifiers() == tcell.ModCtrl || event.Modifiers() == tcell.ModMeta) {
 			bufferText, promptText := indexedFragments.getStringsUntil(
 				viewedTokenIdx)
 			echoIdx := indexedFragments.getModifiedIdx()
@@ -602,7 +636,7 @@ func main() {
 			textView.Highlight(strconv.Itoa(viewedTokenIdx))
 			textView.ScrollToHighlight()
 			go backendRequest(genSettings.buildRequest(
-				promptText, echoParam), false)
+				promptText, echoParam), true)
 		}
 		if event.Key() == tcell.KeyRune {
 			if currFragment.chosen != nil {
