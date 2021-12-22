@@ -112,9 +112,10 @@ message LogProbs {
 
 message Completion {
   string text = 1;                  // OAI: The completion in string format.
-  uint32 index = 2;                 // OAI: The index the completion starts at.
+  uint32 index = 2;                 // OAI: The index of the completion.
   LogProbs logprobs = 3;            // OAI: Our answer with logprobs
   FinishReason finish_reason = 4;   // OAI: Why the completions finished.
+  uint32 token_index = 5;           // ANL: where the completion starts
 }
 
 message Answer {
