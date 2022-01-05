@@ -1,4 +1,4 @@
-module github.com/NovelAI/infrastructure/anlatan
+module github.com/NovelAI/interfaces/anlatan
 
 go 1.17
 

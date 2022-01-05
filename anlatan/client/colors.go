@@ -337,13 +337,14 @@ func main() {
 	client := completion.NewCompletionServiceClient(conn)
 
 	genSettings := GenerationParams{
-		Temperature:      0.8,
-		OutputLength:     140,
-		PresencePenalty:  0.0,
-		FrequencyPenalty: 0.0,
+		Temperature:      1.0,
+		OutputLength:     40,
+		PresencePenalty:  0,
+		FrequencyPenalty: 0,
 		LogProbs:         30,
-		TopP:             0.7,
-		TopK:             140,
+		TopP:             0,
+		TopK:             0,
+		TFS:              0.8,
 	}
 
 	// view stuff
@@ -562,7 +563,7 @@ func main() {
 		app.Draw()
 		receiving = false
 	}
-	prompt := "The witch laughed"
+	prompt := "It was a dark and stormy night."
 
 	go backendRequest(genSettings.buildRequest(prompt, EchoTrue),
 		true)
