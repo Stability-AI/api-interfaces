@@ -82,8 +82,7 @@ message NAIModule {
 
 message Embedding {
     oneof embedding {
-        NAIModule = 1;
-
+        NAIModule nai_module = 1;
     }
 }
 

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(infrastructure)
+project(interfaces)
 
 # Automatically determine our project namespace.
 find_package(Git)
