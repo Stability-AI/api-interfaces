@@ -75,6 +75,18 @@ message Echo {
                             //      or zero is 'entire prompt'
 }
 
+message NAIModule {
+    string id = 1;
+    string key = 2;
+}
+
+message Embedding {
+    oneof embedding {
+        NAIModule = 1;
+
+    }
+}
+
 message EngineParams {
   optional uint32 max_tokens = 1;   // OAI: The maximum number of tokens to generate
   optional uint32 completions = 2;  // OAI: How many completions to generate per prompt
