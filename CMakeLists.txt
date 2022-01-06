@@ -78,6 +78,33 @@ set(golang_grpc_output_dir "${PROJECT_SOURCE_DIR}/anlatan")
 file(MAKE_DIRECTORY "${golang_grpc_output_dir}")
 set(golang_grpc_exts "-grpc.go")
 
+set(typescript_grpc "")
+set(typescript_grpc_args "--plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts")
+set(typescript_grpc_output "--ts_out")
+set(typescript_grpc_output_dir "${PROJECT_SOURCE_DIR}/anlatan")
+file(MAKE_DIRECTORY "${typescript_grpc_output_dir}")
+set(typescript_grpc_exts "_grpc_pb.d.ts")
+
+execute_process(COMMAND pnpm version
+        RESULT_VARIABLE EXIT_CODE
+        OUTPUT_QUIET)
+if (NOT ${EXIT_CODE} EQUAL 0)
+    message(FATAL_ERROR
+            "pnpm is not installed. Please ensure that it is installed by using your favorite package manager.")
+endif()
+
+execute_process(COMMAND pnpm install
+        RESULT_VARIABLE EXIT_CODE)
+if (NOT ${EXIT_CODE} EQUAL 0)
+    message(FATAL_ERROR
+            "pnpm install failed!")
+endif()
+
+add_custom_target (
+      pnpm-target
+      COMMAND cd ${PROJECT_SOURCE_DIR} && cd html && npm install && npm run build
+)
+
 ## Protobuf and GRPC stub building macros
 macro (_add_pb_file _src TYP VAR)
     message("Will generate stub ${VAR} for ${_src}")
@@ -167,11 +194,13 @@ add_target_languages(
         python
         python_grpc
         golang
-        golang_grpc)
+        golang_grpc
+        typescript_grpc)
 
 # Generate base protobufs
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/completion.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/engines.proto)
+add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/auth.proto)
 generate_interfaces()
 
 add_custom_command(
@@ -189,5 +218,6 @@ add_custom_target(
         ${GENERATED_PROTOBUF_FILES_python_grpc}
         ${GENERATED_PROTOBUF_FILES_golang}
         ${GENERATED_PROTOBUF_FILES_golang_grpc}
+        ${GENERATED_PROTOBUF_FILES_typescript_grpc}
         ${PROJECT_SOURCE_DIR}/anlatan/go.mod
 )
