@@ -16,8 +16,8 @@ class AuthServiceStub(object):
         """
         self.Authenticate = channel.unary_unary(
                 '/anlatan.AuthService/Authenticate',
-                request_serializer=auth__pb2.Request.SerializeToString,
-                response_deserializer=auth__pb2.Response.FromString,
+                request_serializer=auth__pb2.AuthRequest.SerializeToString,
+                response_deserializer=auth__pb2.AuthResponse.FromString,
                 )
 
 
@@ -35,8 +35,8 @@ def add_AuthServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Authenticate': grpc.unary_unary_rpc_method_handler(
                     servicer.Authenticate,
-                    request_deserializer=auth__pb2.Request.FromString,
-                    response_serializer=auth__pb2.Response.SerializeToString,
+                    request_deserializer=auth__pb2.AuthRequest.FromString,
+                    response_serializer=auth__pb2.AuthResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -60,7 +60,7 @@ class AuthService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/anlatan.AuthService/Authenticate',
-            auth__pb2.Request.SerializeToString,
-            auth__pb2.Response.FromString,
+            auth__pb2.AuthRequest.SerializeToString,
+            auth__pb2.AuthResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

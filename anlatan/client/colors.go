@@ -344,7 +344,7 @@ func main() {
 		LogProbs:         30,
 		TopP:             0,
 		TopK:             0,
-		TFS:              0.8,
+		TFS:              0.5,
 	}
 
 	// view stuff
