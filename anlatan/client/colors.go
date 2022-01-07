@@ -350,7 +350,9 @@ func main() {
 		&auth.AuthRequest{
 			StaticBearer: &authString,
 		}); authErr != nil {
-		log.Fatal(authErr)
+		if !strings.Contains(authErr.Error(), "Method not found!") {
+			log.Fatal(authErr)
+		}
 	}
 
 	client := completion.NewCompletionServiceClient(conn)
