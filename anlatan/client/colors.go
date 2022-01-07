@@ -4,8 +4,10 @@ import (
 	"code.rocketnine.space/tslocum/cview"
 	"context"
 	"encoding/json"
+	"flag"
 	"fmt"
-	"github.com/NovelAI/infrastructure/anlatan/completion"
+	"github.com/NovelAI/interfaces/anlatan/auth"
+	"github.com/NovelAI/interfaces/anlatan/completion"
 	"github.com/gdamore/tcell/v2"
 	"github.com/mazznoer/colorgrad"
 	gpt_bpe "github.com/wbrown/novelai-research-tool/gpt-bpe"
@@ -327,13 +329,30 @@ func main() {
 		log.Fatal("Error unmarshaling `unitrim.json`")
 	}
 
+	flag.Parse()
+	args := flag.Args()
+	serverAddr := "localhost:8443"
+	if len(args) == 1 {
+		serverAddr = args[0]
+	} else if len(args) > 2 {
+		log.Fatal("Only takes one argument, `server:port`")
+	}
+
 	// GRPC stuff
-	serverAddr := "localhost:50051"
 	conn, grpcErr := grpc.Dial(serverAddr, grpc.WithInsecure())
 	if grpcErr != nil {
 		log.Fatal(grpcErr)
 	}
 	defer conn.Close()
+	authClient := auth.NewAuthServiceClient(conn)
+	authString := "gooseHonkHonk"
+	if _, authErr := authClient.Authenticate(context.Background(),
+		&auth.AuthRequest{
+			StaticBearer: &authString,
+		}); authErr != nil {
+		log.Fatal(authErr)
+	}
+
 	client := completion.NewCompletionServiceClient(conn)
 
 	genSettings := GenerationParams{
@@ -420,7 +439,9 @@ func main() {
 	updateTokenView := func(tokenIdx int) {
 		tokenView.Clear()
 		tokenView.Highlight()
-
+		if tokenIdx > len(indexedFragments)-1 {
+			return
+		}
 		if indexedFragments[tokenIdx].chosen != nil {
 			fmt.Fprintf(tokenView,
 				"%s\n---------------------------\n",

@@ -4,12 +4,13 @@ go 1.17
 
 require (
 	code.rocketnine.space/tslocum/cview v1.5.7
-	github.com/NovelAI/infrastructure/anlatan/completion v0.0.0-00010101000000-000000000000
+	github.com/NovelAI/interfaces/anlatan/auth v0.0.0-00010101000000-000000000000
+	github.com/NovelAI/interfaces/anlatan/completion v0.0.0-00010101000000-000000000000
 	github.com/gdamore/tcell/v2 v2.4.1-0.20210828201608-73703f7ed490
 	github.com/mazznoer/colorgrad v0.8.1
 	github.com/siongui/goef v0.0.0-20210610184109-d3b60554c5f3
 	github.com/wbrown/novelai-research-tool v0.0.0-20211122022657-a2c85df08669
-	google.golang.org/grpc v1.42.0
+	google.golang.org/grpc v1.43.0
 )
 
 require (
@@ -34,4 +35,6 @@ require (
 	gopkg.in/neurosnap/sentences.v1 v1.0.6 // indirect
 )
 
-replace github.com/NovelAI/infrastructure/anlatan/completion => ../completion
+replace github.com/NovelAI/interfaces/anlatan/completion => ../completion
+
+replace github.com/NovelAI/interfaces/anlatan/auth => ../auth
