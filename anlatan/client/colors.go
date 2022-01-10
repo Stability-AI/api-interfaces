@@ -28,6 +28,21 @@ var zero = 0
 var EchoTrue = &zero
 var EchoFalse *int
 
+type tokenAuth struct {
+	token string
+}
+
+// Return value is mapped to request headers.
+func (t tokenAuth) GetRequestMetadata(ctx context.Context, in ...string) (map[string]string, error) {
+	return map[string]string{
+		"authorization": "Bearer " + t.token,
+	}, nil
+}
+
+func (tokenAuth) RequireTransportSecurity() bool {
+	return true
+}
+
 type Fragment struct {
 	text    string
 	buffer  string
@@ -36,6 +51,7 @@ type Fragment struct {
 }
 
 type GenerationParams struct {
+	Model            string
 	Temperature      float64
 	OutputLength     uint32
 	PresencePenalty  float64
@@ -67,6 +83,7 @@ func (genParams *GenerationParams) buildRequest(prompt string,
 	}
 
 	return &completion.Request{
+		EngineId: genParams.Model,
 		Prompt: []*completion.Prompt{
 			{Prompt: &completion.Prompt_Text{
 				Text: prompt,
@@ -268,7 +285,15 @@ func hasToken(logprobs []*completion.LogProb,
 	return false
 }
 
+type TUIApp struct {
+	App            *cview.Application
+	BackendRequest func(*completion.Request, bool)
+	TextView       *cview.TextView
+	StatusView     *cview.TextView
+}
+
 func newGenerationParametersView(params *GenerationParams) *cview.Form {
+
 	paramsView := cview.NewForm()
 	paramsView.SetTitle("Parameters")
 	paramsView.SetBorder(true)
@@ -310,6 +335,24 @@ func newGenerationParametersView(params *GenerationParams) *cview.Form {
 			})
 	}
 
+	addStringField := func(label string, valuePtr *string) {
+		paramsView.AddInputField(
+			label,
+			fmt.Sprintf("%s", *valuePtr),
+			20,
+			func(input string, lastChar rune) bool {
+				if len(input) > 8 || !unicode.IsLetter(
+					lastChar) && !unicode.IsDigit(lastChar) {
+					return false
+				}
+				return true
+			},
+			func(input string) {
+				*valuePtr = input
+			})
+	}
+
+	addStringField("Model", &params.Model)
 	addFloatField("Temperature", &params.Temperature)
 	addIntField("Output Length", &params.OutputLength)
 	addFloatField("Presence Penalty", &params.PresencePenalty)
@@ -322,52 +365,8 @@ func newGenerationParametersView(params *GenerationParams) *cview.Form {
 	return paramsView
 }
 
-func main() {
-	// Load our unitrim
-	unitrimJson, _ := ReadFile("unitrim.json")
-	if json.Unmarshal(unitrimJson, &unitrim) != nil {
-		log.Fatal("Error unmarshaling `unitrim.json`")
-	}
-
-	flag.Parse()
-	args := flag.Args()
-	serverAddr := "localhost:8443"
-	if len(args) == 1 {
-		serverAddr = args[0]
-	} else if len(args) > 2 {
-		log.Fatal("Only takes one argument, `server:port`")
-	}
-
-	// GRPC stuff
-	conn, grpcErr := grpc.Dial(serverAddr, grpc.WithInsecure())
-	if grpcErr != nil {
-		log.Fatal(grpcErr)
-	}
-	defer conn.Close()
-	authClient := auth.NewAuthServiceClient(conn)
-	authString := "gooseHonkHonk"
-	if _, authErr := authClient.Authenticate(context.Background(),
-		&auth.AuthRequest{
-			StaticBearer: &authString,
-		}); authErr != nil {
-		if !strings.Contains(authErr.Error(), "Method not found!") {
-			log.Fatal(authErr)
-		}
-	}
-
-	client := completion.NewCompletionServiceClient(conn)
-
-	genSettings := GenerationParams{
-		Temperature:      1.0,
-		OutputLength:     40,
-		PresencePenalty:  0,
-		FrequencyPenalty: 0,
-		LogProbs:         30,
-		TopP:             0,
-		TopK:             0,
-		TFS:              0.5,
-	}
-
+func TUI(indexedFragments *IndexedFragments, genSettings *GenerationParams,
+	client *completion.CompletionServiceClient) TUIApp {
 	// view stuff
 	app := cview.NewApplication()
 	defer app.HandlePanic()
@@ -412,7 +411,7 @@ func main() {
 	biasTable.SetCellSimple(1, 1, " witch")
 	biasTable.SetFixed(1, 2)
 
-	paramsView := newGenerationParametersView(&genSettings)
+	paramsView := newGenerationParametersView(genSettings)
 
 	toolsPane := cview.NewFlex()
 	toolsPane.SetDirection(cview.FlexRow)
@@ -434,27 +433,26 @@ func main() {
 
 	grad = colorgrad.RdBu()
 
-	indexedFragments := make(IndexedFragments, 0)
 	viewedTokenIdx := 0
 	//numSelections := 0
 
 	updateTokenView := func(tokenIdx int) {
 		tokenView.Clear()
 		tokenView.Highlight()
-		if tokenIdx > len(indexedFragments)-1 {
+		if tokenIdx > len(*indexedFragments)-1 {
 			return
 		}
-		if indexedFragments[tokenIdx].chosen != nil {
+		if (*indexedFragments)[tokenIdx].chosen != nil {
 			fmt.Fprintf(tokenView,
 				"%s\n---------------------------\n",
-				getPercentViewStr(indexedFragments[tokenIdx].chosen))
+				getPercentViewStr((*indexedFragments)[tokenIdx].chosen))
 		} else {
 			fmt.Fprintf(tokenView,
 				"%-6s %-6s %-10s\n---------------------------\n",
-				"", indexedFragments[tokenIdx].text)
+				"", (*indexedFragments)[tokenIdx].text)
 		}
 
-		choicesList := indexedFragments[tokenIdx].choices
+		choicesList := (*indexedFragments)[tokenIdx].choices
 		if choicesList != nil {
 			for choicesIdx := range choicesList {
 				logProb := choicesList[choicesIdx]
@@ -489,9 +487,10 @@ func main() {
 	backendRequest := func(rq *completion.Request, showProgress bool) {
 		receiving = true
 		rqBegin := time.Now()
-		stream, rqErr := client.Completion(context.Background(), rq)
+		stream, rqErr := (*client).Completion(context.Background(), rq)
 		if rqErr != nil {
-			log.Fatal(rqErr)
+			receiving = false
+			statusView.SetText(fmt.Sprintf("%v", rqErr))
 		}
 
 		totalTokens := 0
@@ -508,10 +507,9 @@ func main() {
 				break
 			}
 			if err != nil {
-				fmt.Fprintf(textView, "\n%v.Completion(_) = _, %v",
-					client, err)
+				statusView.SetText(fmt.Sprintf("%v", rqErr))
+				receiving = false
 				break
-				//log.Fatalf("%v.Completion(_) = _, %v", client, err)
 			}
 			logprobs := answer.Choices[0].GetLogprobs()
 			totalTokens += len(logprobs.Tokens.GetLogprobs())
@@ -541,10 +539,10 @@ func main() {
 					chosen:  tokens.Logprobs[tokenIdx],
 					choices: choices,
 				}
-				if len(indexedFragments) > tokenCt {
-					indexedFragments[tokenCt] = fragment
+				if len(*indexedFragments) > tokenCt {
+					(*indexedFragments)[tokenCt] = fragment
 				} else {
-					indexedFragments = append(indexedFragments, fragment)
+					*indexedFragments = append(*indexedFragments, fragment)
 				}
 
 				/* if appended {
@@ -566,7 +564,7 @@ func main() {
 				textView.Highlight()
 				textView.Highlight(strconv.Itoa(tokenCt - 1))
 				textView.SetText(indexedFragments.getBufferUntil(
-					len(indexedFragments)))
+					len(*indexedFragments)))
 				drawAppView(tokenCt - 1)
 			}
 		}
@@ -577,8 +575,9 @@ func main() {
 		statusView.SetText(fmt.Sprintf(
 			"%d ms for %d tokens (%0.2f tokens/s), %d ms to first token",
 			duration.Milliseconds(), totalTokens, tokensPerSecond, firstResp))
-		indexedFragments = indexedFragments[:tokenCt]
-		textView.SetText(indexedFragments.getBufferUntil(len(indexedFragments)))
+		*indexedFragments = (*indexedFragments)[:tokenCt]
+		textView.SetText(indexedFragments.getBufferUntil(len(
+			*indexedFragments)))
 		textView.Highlight()
 		textView.Highlight(strconv.Itoa(tokenCt - 1))
 		textView.ScrollToHighlight()
@@ -586,10 +585,6 @@ func main() {
 		app.Draw()
 		receiving = false
 	}
-	prompt := "It was a dark and stormy night."
-
-	go backendRequest(genSettings.buildRequest(prompt, EchoTrue),
-		true)
 
 	var priorSelection string
 
@@ -605,11 +600,11 @@ func main() {
 				return action, event
 			}
 			index, _ := strconv.Atoi(currentSelection[0])
-			tokenList := indexedFragments[viewedTokenIdx].choices
+			tokenList := (*indexedFragments)[viewedTokenIdx].choices
 			selectedToken := tokenList[index]
-			indexedFragments[viewedTokenIdx].chosen = selectedToken
-			indexedFragments[viewedTokenIdx].text = selectedToken.Token.Text
-			indexedFragments[viewedTokenIdx].buffer =
+			(*indexedFragments)[viewedTokenIdx].chosen = selectedToken
+			(*indexedFragments)[viewedTokenIdx].text = selectedToken.Token.Text
+			(*indexedFragments)[viewedTokenIdx].buffer =
 				colorizeIndexedLogprob(uint32(viewedTokenIdx), selectedToken)
 
 			bufferState = indexedFragments.getBufferUntil(viewedTokenIdx)
@@ -640,7 +635,7 @@ func main() {
 
 	textEditorAction := func(event *tcell.EventKey) *tcell.EventKey {
 		inputRune := event.Rune()
-		currFragment := indexedFragments[viewedTokenIdx]
+		currFragment := (*indexedFragments)[viewedTokenIdx]
 		// ModAlt
 		if event.Key() == tcell.KeyEnter && (event.Modifiers() == tcell.ModAlt ||
 			event.Modifiers() == tcell.ModCtrl || event.Modifiers() == tcell.ModMeta) {
@@ -651,7 +646,7 @@ func main() {
 			if echoIdx > viewedTokenIdx {
 				echoIdx = viewedTokenIdx - 1
 			}
-			if echoIdx == len(indexedFragments) || echoIdx < 0 {
+			if echoIdx == len(*indexedFragments) || echoIdx < 0 {
 				echoParam = nil
 			} else {
 				tokenCt = echoIdx
@@ -672,7 +667,7 @@ func main() {
 				currFragment.buffer = currFragment.text
 			}
 			textView.SetText(indexedFragments.getBufferUntil(
-				len(indexedFragments)))
+				len(*indexedFragments)))
 			updateTokenView(viewedTokenIdx)
 		}
 		if event.Key() == tcell.KeyDEL {
@@ -685,15 +680,15 @@ func main() {
 				currFragment.buffer = currFragment.text
 			}
 			textView.SetText(indexedFragments.getBufferUntil(
-				len(indexedFragments)))
+				len(*indexedFragments)))
 			updateTokenView(viewedTokenIdx)
 		}
 		if event.Key() == tcell.KeyDelete {
-			indexedFragments = append(indexedFragments[:viewedTokenIdx],
-				indexedFragments[viewedTokenIdx+1:]...)
+			*indexedFragments = append((*indexedFragments)[:viewedTokenIdx],
+				(*indexedFragments)[viewedTokenIdx+1:]...)
 			textView.SetText(indexedFragments.getBufferUntil(
-				len(indexedFragments)))
-			if viewedTokenIdx > len(indexedFragments)-1 {
+				len(*indexedFragments)))
+			if viewedTokenIdx > len(*indexedFragments)-1 {
 				viewedTokenIdx--
 			}
 			textView.Highlight(strconv.Itoa(viewedTokenIdx))
@@ -714,7 +709,7 @@ func main() {
 		} else if len(currentSelection) > 0 {
 			index, _ := strconv.Atoi(currentSelection[0])
 			if key == tcell.KeyTab {
-				if index >= len(indexedFragments)-1 {
+				if index >= len(*indexedFragments)-1 {
 					index = 0
 				} else {
 					index = index + 1
@@ -736,7 +731,98 @@ func main() {
 	textView.SetBorder(true)
 	app.SetRoot(screenPane, true)
 
-	if err := app.Run(); err != nil {
+	return TUIApp{
+		App:            app,
+		BackendRequest: backendRequest,
+		TextView:       textView,
+		StatusView:     statusView,
+	}
+}
+
+func main() {
+	// Load our unitrim
+	unitrimJson, _ := ReadFile("unitrim.json")
+	if json.Unmarshal(unitrimJson, &unitrim) != nil {
+		log.Fatal("Error unmarshaling `unitrim.json`")
+	}
+
+	flag.Parse()
+	args := flag.Args()
+	serverAddr := "localhost:8443"
+	if len(args) == 1 {
+		serverAddr = args[0]
+	} else if len(args) > 2 {
+		log.Fatal("Only takes one argument, `server:port`")
+	}
+
+	genSettings := GenerationParams{
+		Model:            "2b",
+		Temperature:      1.0,
+		OutputLength:     40,
+		PresencePenalty:  0,
+		FrequencyPenalty: 0,
+		LogProbs:         30,
+		TopP:             0,
+		TopK:             0,
+		TFS:              0.5,
+	}
+
+	// GRPC stuff
+	authString := "gooseHonkHonk"
+	/* var opts = []grpc.DialOption{
+		grpc.WithTransportCredentials(),
+		//grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithPerRPCCredentials(tokenAuth{
+			token: authString,
+		}),
+	} */
+
+	var client completion.CompletionServiceClient
+	indexedFragments := make(IndexedFragments, 0)
+
+	app := TUI(&indexedFragments, &genSettings, &client)
+
+	conn, grpcErr := grpc.Dial(serverAddr, grpc.WithInsecure())
+	if grpcErr != nil {
+		app.StatusView.SetText(fmt.Sprintf("%v", grpcErr))
+	}
+	defer conn.Close()
+	authClient := auth.NewAuthServiceClient(conn)
+	_, authErr := authClient.Authenticate(context.Background(),
+		&auth.AuthRequest{
+			StaticBearer: &authString,
+		})
+	if authErr != nil {
+		if !strings.Contains(authErr.Error(), "Method not found!") {
+			app.StatusView.SetText(fmt.Sprintf("%v", authErr))
+		} else {
+			authErr = nil
+		}
+	}
+
+	client = completion.NewCompletionServiceClient(conn)
+
+	prompt := "It was a dark and stormy night."
+
+	if authErr == nil && grpcErr == nil {
+		go app.BackendRequest(genSettings.buildRequest(prompt, EchoTrue),
+			true)
+	} else {
+		fragment := &Fragment{
+			text:    prompt,
+			buffer:  prompt,
+			chosen:  nil,
+			choices: nil,
+		}
+		indexedFragments = append(indexedFragments, fragment)
+		app.TextView.Highlight()
+		app.TextView.Highlight("0")
+		app.TextView.SetText(indexedFragments.getBufferUntil(
+			len(indexedFragments)))
+		app.App.Draw()
+	}
+
+	if err := app.App.Run(); err != nil {
 		panic(err)
 	}
 }
