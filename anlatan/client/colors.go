@@ -15,8 +15,10 @@ import (
 	"io"
 	"log"
 	"math"
+	"os"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 	"unicode"
 )
@@ -290,6 +292,7 @@ type TUIApp struct {
 	BackendRequest func(*completion.Request, bool)
 	TextView       *cview.TextView
 	StatusView     *cview.TextView
+	Run            func()
 }
 
 func newGenerationParametersView(params *GenerationParams) *cview.Form {
@@ -736,6 +739,131 @@ func TUI(indexedFragments *IndexedFragments, genSettings *GenerationParams,
 		BackendRequest: backendRequest,
 		TextView:       textView,
 		StatusView:     statusView,
+		Run: func() {
+			if err := app.Run(); err != nil {
+				panic(err)
+			}
+		},
+	}
+}
+
+func countTokens(ans *completion.Answer) int {
+	choices := ans.GetChoices()
+	total := 0
+	for choiceIdx := range choices {
+		choice := choices[choiceIdx]
+		total += len(choice.Logprobs.Tokens.GetLogprobs())
+	}
+	return total
+}
+
+type IterationResult struct {
+	msToFirst int64
+	duration  int64
+	numTokens int
+}
+
+func LoadTest(numThreads int64, genParams *GenerationParams,
+	client *completion.CompletionServiceClient, prompt string) TUIApp {
+	app := cview.NewApplication()
+	defer app.HandlePanic()
+
+	screenPane := cview.NewFlex()
+	screenPane.SetDirection(cview.FlexRow)
+	screenPane.SetBorder(true)
+	app.SetRoot(screenPane, true)
+
+	request := genParams.buildRequest(prompt, nil)
+
+	statusView := cview.NewTextView()
+	statusView.SetDynamicColors(true)
+	statusView.SetWordWrap(false)
+	statusView.SetBorder(false)
+	screenPane.AddItem(statusView, 1, 1,
+		false)
+
+	debounce := time.NewTimer(100 * time.Millisecond)
+	updateAppView := func() {
+		select {
+		case <-debounce.C:
+			app.Draw()
+			debounce = time.NewTimer(250 * time.Millisecond)
+		default:
+		}
+	}
+
+	backendRequest := func(rq *completion.Request) (*IterationResult, error) {
+		ctx := context.Background()
+		rqBegin := time.Now()
+		stream, rqErr := (*client).Completion(ctx, request)
+		if rqErr != nil {
+			return nil, rqErr
+		}
+		ctr := 0
+		var streamBegin time.Time
+		for {
+			if answer, ansErr := stream.Recv(); ansErr != nil {
+				streamEnd := time.Now()
+				firstResp := streamBegin.Sub(rqBegin).Milliseconds()
+				duration := streamEnd.Sub(rqBegin).Milliseconds()
+				iterationResult := IterationResult{
+					firstResp,
+					duration,
+					ctr,
+				}
+				return &iterationResult, ansErr
+			} else {
+				if ctr == 0 {
+					streamBegin = time.Now()
+				}
+				ctr += countTokens(answer)
+			}
+		}
+	}
+
+	threadWorker := func(wg *sync.WaitGroup) {
+		workerView := cview.NewTextView()
+		workerView.SetDynamicColors(true)
+		workerView.SetWordWrap(false)
+		workerView.SetBorder(false)
+		screenPane.AddItem(workerView, 1, 1,
+			false)
+		iteration := 0
+		for {
+			result, err := backendRequest(request)
+			if !strings.HasSuffix(err.Error(), "EOF") {
+				workerView.SetText(fmt.Sprintf("%v", err))
+				app.Draw()
+				break
+			}
+			tokensPerSecond := float64(result.numTokens) / float64(
+				result.duration) * 1000
+			workerView.SetText(fmt.Sprintf("%d: %d ms for %d tokens ("+
+				"%0.2f tokens/s), %d ms to first token",
+				iteration, result.duration, result.numTokens,
+				tokensPerSecond, result.msToFirst))
+
+			updateAppView()
+			iteration += 1
+		}
+		wg.Done()
+	}
+
+	run := func() {
+		var wg sync.WaitGroup
+		for idx := int64(0); idx < numThreads; idx++ {
+			wg.Add(1)
+			go threadWorker(&wg)
+		}
+		if err := app.Run(); err != nil {
+			panic(err)
+		}
+	}
+
+	return TUIApp{
+		App:        app,
+		StatusView: statusView,
+		Run:        run,
 	}
 }
 
@@ -746,6 +874,7 @@ func main() {
 		log.Fatal("Error unmarshaling `unitrim.json`")
 	}
 
+	numThreads := flag.Int64("threads", 0, "number of test threads")
 	flag.Parse()
 	args := flag.Args()
 	serverAddr := "localhost:8443"
@@ -758,7 +887,7 @@ func main() {
 	genSettings := GenerationParams{
 		Model:            "2b",
 		Temperature:      1.0,
-		OutputLength:     40,
+		OutputLength:     150,
 		PresencePenalty:  0,
 		FrequencyPenalty: 0,
 		LogProbs:         30,
@@ -780,7 +909,14 @@ func main() {
 	var client completion.CompletionServiceClient
 	indexedFragments := make(IndexedFragments, 0)
 
-	app := TUI(&indexedFragments, &genSettings, &client)
+	prompt := "It was a dark and stormy night."
+
+	var app TUIApp
+	if *numThreads == 0 {
+		app = TUI(&indexedFragments, &genSettings, &client)
+	} else {
+		app = LoadTest(*numThreads, &genSettings, &client, prompt)
+	}
 
 	conn, grpcErr := grpc.Dial(serverAddr, grpc.WithInsecure())
 	if grpcErr != nil {
@@ -802,9 +938,16 @@ func main() {
 
 	client = completion.NewCompletionServiceClient(conn)
 
-	prompt := "It was a dark and stormy night."
-
-	if authErr == nil && grpcErr == nil {
+	if *numThreads > 0 {
+		if authErr != nil {
+			panic(authErr)
+		} else if grpcErr != nil {
+			panic(grpcErr)
+		} else {
+			app.Run()
+			os.Exit(0)
+		}
+	} else if authErr == nil && grpcErr == nil {
 		go app.BackendRequest(genSettings.buildRequest(prompt, EchoTrue),
 			true)
 	} else {
@@ -821,8 +964,5 @@ func main() {
 			len(indexedFragments)))
 		app.App.Draw()
 	}
-
-	if err := app.App.Run(); err != nil {
-		panic(err)
-	}
+	app.Run()
 }
