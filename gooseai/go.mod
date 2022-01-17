@@ -1,4 +1,4 @@
-module github.com/NovelAI/interfaces/anlatan
+module github.com/NovelAI/interfaces/gooseai
 
 go 1.17
 
