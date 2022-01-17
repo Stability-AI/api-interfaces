@@ -195,9 +195,11 @@ add_target_languages(
         python_grpc
         golang
         golang_grpc
-        typescript_grpc)
+        #typescript_grpc
+)
 
 # Generate base protobufs
+add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/dashboard.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/completion.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/engines.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/auth.proto)
