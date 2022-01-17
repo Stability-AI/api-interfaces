@@ -15,52 +15,52 @@ class DashboardServiceStub(object):
             channel: A grpc.Channel.
         """
         self.GetMe = channel.unary_unary(
-                '/anlatan.DashboardService/GetMe',
+                '/gooseai.DashboardService/GetMe',
                 request_serializer=dashboard__pb2.EmptyRequest.SerializeToString,
                 response_deserializer=dashboard__pb2.User.FromString,
                 )
         self.GetOrganization = channel.unary_unary(
-                '/anlatan.DashboardService/GetOrganization',
+                '/gooseai.DashboardService/GetOrganization',
                 request_serializer=dashboard__pb2.GetOrganizationRequest.SerializeToString,
                 response_deserializer=dashboard__pb2.Organization.FromString,
                 )
         self.GetMetrics = channel.unary_unary(
-                '/anlatan.DashboardService/GetMetrics',
+                '/gooseai.DashboardService/GetMetrics',
                 request_serializer=dashboard__pb2.GetMetricsRequest.SerializeToString,
                 response_deserializer=dashboard__pb2.Metrics.FromString,
                 )
         self.CreateAPIKey = channel.unary_unary(
-                '/anlatan.DashboardService/CreateAPIKey',
+                '/gooseai.DashboardService/CreateAPIKey',
                 request_serializer=dashboard__pb2.APIKeyRequest.SerializeToString,
                 response_deserializer=dashboard__pb2.APIKey.FromString,
                 )
         self.DeleteAPIKey = channel.unary_unary(
-                '/anlatan.DashboardService/DeleteAPIKey',
+                '/gooseai.DashboardService/DeleteAPIKey',
                 request_serializer=dashboard__pb2.APIKeyFindRequest.SerializeToString,
                 response_deserializer=dashboard__pb2.APIKey.FromString,
                 )
         self.UpdateDefaultOrganization = channel.unary_unary(
-                '/anlatan.DashboardService/UpdateDefaultOrganization',
+                '/gooseai.DashboardService/UpdateDefaultOrganization',
                 request_serializer=dashboard__pb2.UpdateDefaultOrganizationRequest.SerializeToString,
                 response_deserializer=dashboard__pb2.User.FromString,
                 )
         self.GetClientSettings = channel.unary_unary(
-                '/anlatan.DashboardService/GetClientSettings',
+                '/gooseai.DashboardService/GetClientSettings',
                 request_serializer=dashboard__pb2.EmptyRequest.SerializeToString,
                 response_deserializer=dashboard__pb2.ClientSettings.FromString,
                 )
         self.SetClientSettings = channel.unary_unary(
-                '/anlatan.DashboardService/SetClientSettings',
+                '/gooseai.DashboardService/SetClientSettings',
                 request_serializer=dashboard__pb2.ClientSettings.SerializeToString,
                 response_deserializer=dashboard__pb2.ClientSettings.FromString,
                 )
         self.CreateCharge = channel.unary_unary(
-                '/anlatan.DashboardService/CreateCharge',
+                '/gooseai.DashboardService/CreateCharge',
                 request_serializer=dashboard__pb2.CreateChargeRequest.SerializeToString,
                 response_deserializer=dashboard__pb2.Charge.FromString,
                 )
         self.GetCharges = channel.unary_unary(
-                '/anlatan.DashboardService/GetCharges',
+                '/gooseai.DashboardService/GetCharges',
                 request_serializer=dashboard__pb2.GetChargesRequest.SerializeToString,
                 response_deserializer=dashboard__pb2.Charges.FromString,
                 )
@@ -188,7 +188,7 @@ def add_DashboardServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'anlatan.DashboardService', rpc_method_handlers)
+            'gooseai.DashboardService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
@@ -207,7 +207,7 @@ class DashboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/anlatan.DashboardService/GetMe',
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/GetMe',
             dashboard__pb2.EmptyRequest.SerializeToString,
             dashboard__pb2.User.FromString,
             options, channel_credentials,
@@ -224,7 +224,7 @@ class DashboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/anlatan.DashboardService/GetOrganization',
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/GetOrganization',
             dashboard__pb2.GetOrganizationRequest.SerializeToString,
             dashboard__pb2.Organization.FromString,
             options, channel_credentials,
@@ -241,7 +241,7 @@ class DashboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/anlatan.DashboardService/GetMetrics',
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/GetMetrics',
             dashboard__pb2.GetMetricsRequest.SerializeToString,
             dashboard__pb2.Metrics.FromString,
             options, channel_credentials,
@@ -258,7 +258,7 @@ class DashboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/anlatan.DashboardService/CreateAPIKey',
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/CreateAPIKey',
             dashboard__pb2.APIKeyRequest.SerializeToString,
             dashboard__pb2.APIKey.FromString,
             options, channel_credentials,
@@ -275,7 +275,7 @@ class DashboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/anlatan.DashboardService/DeleteAPIKey',
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/DeleteAPIKey',
             dashboard__pb2.APIKeyFindRequest.SerializeToString,
             dashboard__pb2.APIKey.FromString,
             options, channel_credentials,
@@ -292,7 +292,7 @@ class DashboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/anlatan.DashboardService/UpdateDefaultOrganization',
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/UpdateDefaultOrganization',
             dashboard__pb2.UpdateDefaultOrganizationRequest.SerializeToString,
             dashboard__pb2.User.FromString,
             options, channel_credentials,
@@ -309,7 +309,7 @@ class DashboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/anlatan.DashboardService/GetClientSettings',
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/GetClientSettings',
             dashboard__pb2.EmptyRequest.SerializeToString,
             dashboard__pb2.ClientSettings.FromString,
             options, channel_credentials,
@@ -326,7 +326,7 @@ class DashboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/anlatan.DashboardService/SetClientSettings',
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/SetClientSettings',
             dashboard__pb2.ClientSettings.SerializeToString,
             dashboard__pb2.ClientSettings.FromString,
             options, channel_credentials,
@@ -343,7 +343,7 @@ class DashboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/anlatan.DashboardService/CreateCharge',
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/CreateCharge',
             dashboard__pb2.CreateChargeRequest.SerializeToString,
             dashboard__pb2.Charge.FromString,
             options, channel_credentials,
@@ -360,7 +360,7 @@ class DashboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/anlatan.DashboardService/GetCharges',
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/GetCharges',
             dashboard__pb2.GetChargesRequest.SerializeToString,
             dashboard__pb2.Charges.FromString,
             options, channel_credentials,

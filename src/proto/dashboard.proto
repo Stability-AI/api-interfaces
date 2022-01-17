@@ -1,5 +1,5 @@
 syntax = 'proto3';
-package anlatan;
+package gooseai;
 option go_package = "./;dashboard";
 
 enum OrganizationRole {

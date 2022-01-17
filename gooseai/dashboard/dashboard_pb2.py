@@ -16,16 +16,16 @@ _sym_db = _symbol_database.Default()
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='dashboard.proto',
-  package='anlatan',
+  package='gooseai',
   syntax='proto3',
   serialized_options=b'Z\014./;dashboard',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0f\x64\x61shboard.proto\x12\x07\x61nlatan\"\xa9\x01\n\x12OrganizationMember\x12+\n\x0corganization\x18\x01 \x01(\x0b\x32\x15.anlatan.Organization\x12 \n\x04user\x18\x02 \x01(\x0b\x32\r.anlatan.UserH\x00\x88\x01\x01\x12\'\n\x04role\x18\x03 \x01(\x0e\x32\x19.anlatan.OrganizationRole\x12\x12\n\nis_default\x18\x04 \x01(\x08\x42\x07\n\x05_user\"h\n\x11OrganizationGrant\x12\x16\n\x0e\x61mount_granted\x18\x01 \x01(\x01\x12\x13\n\x0b\x61mount_used\x18\x02 \x01(\x01\x12\x12\n\nexpires_at\x18\x03 \x01(\x04\x12\x12\n\ngranted_at\x18\x04 \x01(\x04\"V\n\x17OrganizationPaymentInfo\x12\x0f\n\x07\x62\x61lance\x18\x01 \x01(\x01\x12*\n\x06grants\x18\x02 \x03(\x0b\x32\x1a.anlatan.OrganizationGrant\"\xb9\x01\n\x0cOrganization\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12,\n\x07members\x18\x04 \x03(\x0b\x32\x1b.anlatan.OrganizationMember\x12;\n\x0cpayment_info\x18\x05 \x01(\x0b\x32 .anlatan.OrganizationPaymentInfoH\x00\x88\x01\x01\x42\x0f\n\r_payment_info\"<\n\x06\x41PIKey\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x11\n\tis_secret\x18\x02 \x01(\x08\x12\x12\n\ncreated_at\x18\x03 \x01(\x04\"\xc7\x01\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\x14\n\x07\x61uth_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x17\n\x0fprofile_picture\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x32\n\rorganizations\x18\x05 \x03(\x0b\x32\x1b.anlatan.OrganizationMember\x12!\n\x08\x61pi_keys\x18\x07 \x03(\x0b\x32\x0f.anlatan.APIKey\x12\x12\n\ncreated_at\x18\x08 \x01(\x04\x42\n\n\x08_auth_id\"9\n\x08\x43ostData\x12\x15\n\ramount_tokens\x18\x01 \x01(\r\x12\x16\n\x0e\x61mount_credits\x18\x02 \x01(\x01\"\xba\x01\n\x0bUsageMetric\x12\x11\n\toperation\x18\x01 \x01(\t\x12\x0e\n\x06\x65ngine\x18\x02 \x01(\t\x12%\n\ninput_cost\x18\x03 \x01(\x0b\x32\x11.anlatan.CostData\x12&\n\x0boutput_cost\x18\x04 \x01(\x0b\x32\x11.anlatan.CostData\x12\x11\n\x04user\x18\x05 \x01(\tH\x00\x88\x01\x01\x12\x1d\n\x15\x61ggregation_timestamp\x18\x06 \x01(\x04\x42\x07\n\x05_user\":\n\tCostTotal\x12\x15\n\ramount_tokens\x18\x01 \x01(\r\x12\x16\n\x0e\x61mount_credits\x18\x02 \x01(\x01\"e\n\x10TotalMetricsData\x12\'\n\x0binput_total\x18\x01 \x01(\x0b\x32\x12.anlatan.CostTotal\x12(\n\x0coutput_total\x18\x02 \x01(\x0b\x32\x12.anlatan.CostTotal\"Z\n\x07Metrics\x12%\n\x07metrics\x18\x01 \x03(\x0b\x32\x14.anlatan.UsageMetric\x12(\n\x05total\x18\x02 \x01(\x0b\x32\x19.anlatan.TotalMetricsData\"\x0e\n\x0c\x45mptyRequest\"$\n\x16GetOrganizationRequest\x12\n\n\x02id\x18\x01 \x01(\t\"\x99\x01\n\x11GetMetricsRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x12\x14\n\x07user_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x12\n\nrange_from\x18\x03 \x01(\x04\x12\x10\n\x08range_to\x18\x04 \x01(\x04\x12#\n\x1binclude_per_request_metrics\x18\x05 \x01(\x08\x42\n\n\x08_user_id\"\"\n\rAPIKeyRequest\x12\x11\n\tis_secret\x18\x01 \x01(\x08\"\x1f\n\x11\x41PIKeyFindRequest\x12\n\n\x02id\x18\x01 \x01(\t\";\n UpdateDefaultOrganizationRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\"\"\n\x0e\x43lientSettings\x12\x10\n\x08settings\x18\x01 \x01(\x0c\">\n\x13\x43reateChargeRequest\x12\x0e\n\x06\x61mount\x18\x01 \x01(\x04\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\"R\n\x11GetChargesRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x12\x12\n\nrange_from\x18\x02 \x01(\x04\x12\x10\n\x08range_to\x18\x03 \x01(\x04\"z\n\x06\x43harge\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04paid\x18\x02 \x01(\x08\x12\x14\n\x0creceipt_link\x18\x03 \x01(\t\x12\x14\n\x0cpayment_link\x18\x04 \x01(\t\x12\x12\n\ncreated_at\x18\x05 \x01(\x04\x12\x16\n\x0e\x61mount_credits\x18\x06 \x01(\x04\"+\n\x07\x43harges\x12 \n\x07\x63harges\x18\x01 \x03(\x0b\x32\x0f.anlatan.Charge*9\n\x10OrganizationRole\x12\n\n\x06MEMBER\x10\x00\x12\x0e\n\nACCOUNTANT\x10\x01\x12\t\n\x05OWNER\x10\x02\x32\x9c\x05\n\x10\x44\x61shboardService\x12-\n\x05GetMe\x12\x15.anlatan.EmptyRequest\x1a\r.anlatan.User\x12I\n\x0fGetOrganization\x12\x1f.anlatan.GetOrganizationRequest\x1a\x15.anlatan.Organization\x12:\n\nGetMetrics\x12\x1a.anlatan.GetMetricsRequest\x1a\x10.anlatan.Metrics\x12\x37\n\x0c\x43reateAPIKey\x12\x16.anlatan.APIKeyRequest\x1a\x0f.anlatan.APIKey\x12;\n\x0c\x44\x65leteAPIKey\x12\x1a.anlatan.APIKeyFindRequest\x1a\x0f.anlatan.APIKey\x12U\n\x19UpdateDefaultOrganization\x12).anlatan.UpdateDefaultOrganizationRequest\x1a\r.anlatan.User\x12\x43\n\x11GetClientSettings\x12\x15.anlatan.EmptyRequest\x1a\x17.anlatan.ClientSettings\x12\x45\n\x11SetClientSettings\x12\x17.anlatan.ClientSettings\x1a\x17.anlatan.ClientSettings\x12=\n\x0c\x43reateCharge\x12\x1c.anlatan.CreateChargeRequest\x1a\x0f.anlatan.Charge\x12:\n\nGetCharges\x12\x1a.anlatan.GetChargesRequest\x1a\x10.anlatan.ChargesB\x0eZ\x0c./;dashboardb\x06proto3'
+  serialized_pb=b'\n\x0f\x64\x61shboard.proto\x12\x07gooseai\"\xa9\x01\n\x12OrganizationMember\x12+\n\x0corganization\x18\x01 \x01(\x0b\x32\x15.gooseai.Organization\x12 \n\x04user\x18\x02 \x01(\x0b\x32\r.gooseai.UserH\x00\x88\x01\x01\x12\'\n\x04role\x18\x03 \x01(\x0e\x32\x19.gooseai.OrganizationRole\x12\x12\n\nis_default\x18\x04 \x01(\x08\x42\x07\n\x05_user\"h\n\x11OrganizationGrant\x12\x16\n\x0e\x61mount_granted\x18\x01 \x01(\x01\x12\x13\n\x0b\x61mount_used\x18\x02 \x01(\x01\x12\x12\n\nexpires_at\x18\x03 \x01(\x04\x12\x12\n\ngranted_at\x18\x04 \x01(\x04\"V\n\x17OrganizationPaymentInfo\x12\x0f\n\x07\x62\x61lance\x18\x01 \x01(\x01\x12*\n\x06grants\x18\x02 \x03(\x0b\x32\x1a.gooseai.OrganizationGrant\"\xb9\x01\n\x0cOrganization\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12,\n\x07members\x18\x04 \x03(\x0b\x32\x1b.gooseai.OrganizationMember\x12;\n\x0cpayment_info\x18\x05 \x01(\x0b\x32 .gooseai.OrganizationPaymentInfoH\x00\x88\x01\x01\x42\x0f\n\r_payment_info\"<\n\x06\x41PIKey\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x11\n\tis_secret\x18\x02 \x01(\x08\x12\x12\n\ncreated_at\x18\x03 \x01(\x04\"\xc7\x01\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\x14\n\x07\x61uth_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x17\n\x0fprofile_picture\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x32\n\rorganizations\x18\x05 \x03(\x0b\x32\x1b.gooseai.OrganizationMember\x12!\n\x08\x61pi_keys\x18\x07 \x03(\x0b\x32\x0f.gooseai.APIKey\x12\x12\n\ncreated_at\x18\x08 \x01(\x04\x42\n\n\x08_auth_id\"9\n\x08\x43ostData\x12\x15\n\ramount_tokens\x18\x01 \x01(\r\x12\x16\n\x0e\x61mount_credits\x18\x02 \x01(\x01\"\xba\x01\n\x0bUsageMetric\x12\x11\n\toperation\x18\x01 \x01(\t\x12\x0e\n\x06\x65ngine\x18\x02 \x01(\t\x12%\n\ninput_cost\x18\x03 \x01(\x0b\x32\x11.gooseai.CostData\x12&\n\x0boutput_cost\x18\x04 \x01(\x0b\x32\x11.gooseai.CostData\x12\x11\n\x04user\x18\x05 \x01(\tH\x00\x88\x01\x01\x12\x1d\n\x15\x61ggregation_timestamp\x18\x06 \x01(\x04\x42\x07\n\x05_user\":\n\tCostTotal\x12\x15\n\ramount_tokens\x18\x01 \x01(\r\x12\x16\n\x0e\x61mount_credits\x18\x02 \x01(\x01\"e\n\x10TotalMetricsData\x12\'\n\x0binput_total\x18\x01 \x01(\x0b\x32\x12.gooseai.CostTotal\x12(\n\x0coutput_total\x18\x02 \x01(\x0b\x32\x12.gooseai.CostTotal\"Z\n\x07Metrics\x12%\n\x07metrics\x18\x01 \x03(\x0b\x32\x14.gooseai.UsageMetric\x12(\n\x05total\x18\x02 \x01(\x0b\x32\x19.gooseai.TotalMetricsData\"\x0e\n\x0c\x45mptyRequest\"$\n\x16GetOrganizationRequest\x12\n\n\x02id\x18\x01 \x01(\t\"\x99\x01\n\x11GetMetricsRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x12\x14\n\x07user_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x12\n\nrange_from\x18\x03 \x01(\x04\x12\x10\n\x08range_to\x18\x04 \x01(\x04\x12#\n\x1binclude_per_request_metrics\x18\x05 \x01(\x08\x42\n\n\x08_user_id\"\"\n\rAPIKeyRequest\x12\x11\n\tis_secret\x18\x01 \x01(\x08\"\x1f\n\x11\x41PIKeyFindRequest\x12\n\n\x02id\x18\x01 \x01(\t\";\n UpdateDefaultOrganizationRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\"\"\n\x0e\x43lientSettings\x12\x10\n\x08settings\x18\x01 \x01(\x0c\">\n\x13\x43reateChargeRequest\x12\x0e\n\x06\x61mount\x18\x01 \x01(\x04\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\"R\n\x11GetChargesRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x12\x12\n\nrange_from\x18\x02 \x01(\x04\x12\x10\n\x08range_to\x18\x03 \x01(\x04\"z\n\x06\x43harge\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04paid\x18\x02 \x01(\x08\x12\x14\n\x0creceipt_link\x18\x03 \x01(\t\x12\x14\n\x0cpayment_link\x18\x04 \x01(\t\x12\x12\n\ncreated_at\x18\x05 \x01(\x04\x12\x16\n\x0e\x61mount_credits\x18\x06 \x01(\x04\"+\n\x07\x43harges\x12 \n\x07\x63harges\x18\x01 \x03(\x0b\x32\x0f.gooseai.Charge*9\n\x10OrganizationRole\x12\n\n\x06MEMBER\x10\x00\x12\x0e\n\nACCOUNTANT\x10\x01\x12\t\n\x05OWNER\x10\x02\x32\x9c\x05\n\x10\x44\x61shboardService\x12-\n\x05GetMe\x12\x15.gooseai.EmptyRequest\x1a\r.gooseai.User\x12I\n\x0fGetOrganization\x12\x1f.gooseai.GetOrganizationRequest\x1a\x15.gooseai.Organization\x12:\n\nGetMetrics\x12\x1a.gooseai.GetMetricsRequest\x1a\x10.gooseai.Metrics\x12\x37\n\x0c\x43reateAPIKey\x12\x16.gooseai.APIKeyRequest\x1a\x0f.gooseai.APIKey\x12;\n\x0c\x44\x65leteAPIKey\x12\x1a.gooseai.APIKeyFindRequest\x1a\x0f.gooseai.APIKey\x12U\n\x19UpdateDefaultOrganization\x12).gooseai.UpdateDefaultOrganizationRequest\x1a\r.gooseai.User\x12\x43\n\x11GetClientSettings\x12\x15.gooseai.EmptyRequest\x1a\x17.gooseai.ClientSettings\x12\x45\n\x11SetClientSettings\x12\x17.gooseai.ClientSettings\x1a\x17.gooseai.ClientSettings\x12=\n\x0c\x43reateCharge\x12\x1c.gooseai.CreateChargeRequest\x1a\x0f.gooseai.Charge\x12:\n\nGetCharges\x12\x1a.gooseai.GetChargesRequest\x1a\x10.gooseai.ChargesB\x0eZ\x0c./;dashboardb\x06proto3'
 )
 
 _ORGANIZATIONROLE = _descriptor.EnumDescriptor(
   name='OrganizationRole',
-  full_name='anlatan.OrganizationRole',
+  full_name='gooseai.OrganizationRole',
   filename=None,
   file=DESCRIPTOR,
   create_key=_descriptor._internal_create_key,
@@ -62,35 +62,35 @@ OWNER = 2
 
 _ORGANIZATIONMEMBER = _descriptor.Descriptor(
   name='OrganizationMember',
-  full_name='anlatan.OrganizationMember',
+  full_name='gooseai.OrganizationMember',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='organization', full_name='anlatan.OrganizationMember.organization', index=0,
+      name='organization', full_name='gooseai.OrganizationMember.organization', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='user', full_name='anlatan.OrganizationMember.user', index=1,
+      name='user', full_name='gooseai.OrganizationMember.user', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='role', full_name='anlatan.OrganizationMember.role', index=2,
+      name='role', full_name='gooseai.OrganizationMember.role', index=2,
       number=3, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='is_default', full_name='anlatan.OrganizationMember.is_default', index=3,
+      name='is_default', full_name='gooseai.OrganizationMember.is_default', index=3,
       number=4, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -108,7 +108,7 @@ _ORGANIZATIONMEMBER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='_user', full_name='anlatan.OrganizationMember._user',
+      name='_user', full_name='gooseai.OrganizationMember._user',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
@@ -120,35 +120,35 @@ _ORGANIZATIONMEMBER = _descriptor.Descriptor(
 
 _ORGANIZATIONGRANT = _descriptor.Descriptor(
   name='OrganizationGrant',
-  full_name='anlatan.OrganizationGrant',
+  full_name='gooseai.OrganizationGrant',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='amount_granted', full_name='anlatan.OrganizationGrant.amount_granted', index=0,
+      name='amount_granted', full_name='gooseai.OrganizationGrant.amount_granted', index=0,
       number=1, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='amount_used', full_name='anlatan.OrganizationGrant.amount_used', index=1,
+      name='amount_used', full_name='gooseai.OrganizationGrant.amount_used', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='expires_at', full_name='anlatan.OrganizationGrant.expires_at', index=2,
+      name='expires_at', full_name='gooseai.OrganizationGrant.expires_at', index=2,
       number=3, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='granted_at', full_name='anlatan.OrganizationGrant.granted_at', index=3,
+      name='granted_at', full_name='gooseai.OrganizationGrant.granted_at', index=3,
       number=4, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -173,21 +173,21 @@ _ORGANIZATIONGRANT = _descriptor.Descriptor(
 
 _ORGANIZATIONPAYMENTINFO = _descriptor.Descriptor(
   name='OrganizationPaymentInfo',
-  full_name='anlatan.OrganizationPaymentInfo',
+  full_name='gooseai.OrganizationPaymentInfo',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='balance', full_name='anlatan.OrganizationPaymentInfo.balance', index=0,
+      name='balance', full_name='gooseai.OrganizationPaymentInfo.balance', index=0,
       number=1, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='grants', full_name='anlatan.OrganizationPaymentInfo.grants', index=1,
+      name='grants', full_name='gooseai.OrganizationPaymentInfo.grants', index=1,
       number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -212,42 +212,42 @@ _ORGANIZATIONPAYMENTINFO = _descriptor.Descriptor(
 
 _ORGANIZATION = _descriptor.Descriptor(
   name='Organization',
-  full_name='anlatan.Organization',
+  full_name='gooseai.Organization',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='anlatan.Organization.id', index=0,
+      name='id', full_name='gooseai.Organization.id', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='name', full_name='anlatan.Organization.name', index=1,
+      name='name', full_name='gooseai.Organization.name', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='description', full_name='anlatan.Organization.description', index=2,
+      name='description', full_name='gooseai.Organization.description', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='members', full_name='anlatan.Organization.members', index=3,
+      name='members', full_name='gooseai.Organization.members', index=3,
       number=4, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='payment_info', full_name='anlatan.Organization.payment_info', index=4,
+      name='payment_info', full_name='gooseai.Organization.payment_info', index=4,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -265,7 +265,7 @@ _ORGANIZATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='_payment_info', full_name='anlatan.Organization._payment_info',
+      name='_payment_info', full_name='gooseai.Organization._payment_info',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
@@ -277,28 +277,28 @@ _ORGANIZATION = _descriptor.Descriptor(
 
 _APIKEY = _descriptor.Descriptor(
   name='APIKey',
-  full_name='anlatan.APIKey',
+  full_name='gooseai.APIKey',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='key', full_name='anlatan.APIKey.key', index=0,
+      name='key', full_name='gooseai.APIKey.key', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='is_secret', full_name='anlatan.APIKey.is_secret', index=1,
+      name='is_secret', full_name='gooseai.APIKey.is_secret', index=1,
       number=2, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='created_at', full_name='anlatan.APIKey.created_at', index=2,
+      name='created_at', full_name='gooseai.APIKey.created_at', index=2,
       number=3, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -323,56 +323,56 @@ _APIKEY = _descriptor.Descriptor(
 
 _USER = _descriptor.Descriptor(
   name='User',
-  full_name='anlatan.User',
+  full_name='gooseai.User',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='anlatan.User.id', index=0,
+      name='id', full_name='gooseai.User.id', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='auth_id', full_name='anlatan.User.auth_id', index=1,
+      name='auth_id', full_name='gooseai.User.auth_id', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='profile_picture', full_name='anlatan.User.profile_picture', index=2,
+      name='profile_picture', full_name='gooseai.User.profile_picture', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='email', full_name='anlatan.User.email', index=3,
+      name='email', full_name='gooseai.User.email', index=3,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='organizations', full_name='anlatan.User.organizations', index=4,
+      name='organizations', full_name='gooseai.User.organizations', index=4,
       number=5, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='api_keys', full_name='anlatan.User.api_keys', index=5,
+      name='api_keys', full_name='gooseai.User.api_keys', index=5,
       number=7, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='created_at', full_name='anlatan.User.created_at', index=6,
+      name='created_at', full_name='gooseai.User.created_at', index=6,
       number=8, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -390,7 +390,7 @@ _USER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='_auth_id', full_name='anlatan.User._auth_id',
+      name='_auth_id', full_name='gooseai.User._auth_id',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
@@ -402,21 +402,21 @@ _USER = _descriptor.Descriptor(
 
 _COSTDATA = _descriptor.Descriptor(
   name='CostData',
-  full_name='anlatan.CostData',
+  full_name='gooseai.CostData',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='amount_tokens', full_name='anlatan.CostData.amount_tokens', index=0,
+      name='amount_tokens', full_name='gooseai.CostData.amount_tokens', index=0,
       number=1, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='amount_credits', full_name='anlatan.CostData.amount_credits', index=1,
+      name='amount_credits', full_name='gooseai.CostData.amount_credits', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
@@ -441,49 +441,49 @@ _COSTDATA = _descriptor.Descriptor(
 
 _USAGEMETRIC = _descriptor.Descriptor(
   name='UsageMetric',
-  full_name='anlatan.UsageMetric',
+  full_name='gooseai.UsageMetric',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='operation', full_name='anlatan.UsageMetric.operation', index=0,
+      name='operation', full_name='gooseai.UsageMetric.operation', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='engine', full_name='anlatan.UsageMetric.engine', index=1,
+      name='engine', full_name='gooseai.UsageMetric.engine', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='input_cost', full_name='anlatan.UsageMetric.input_cost', index=2,
+      name='input_cost', full_name='gooseai.UsageMetric.input_cost', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='output_cost', full_name='anlatan.UsageMetric.output_cost', index=3,
+      name='output_cost', full_name='gooseai.UsageMetric.output_cost', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='user', full_name='anlatan.UsageMetric.user', index=4,
+      name='user', full_name='gooseai.UsageMetric.user', index=4,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='aggregation_timestamp', full_name='anlatan.UsageMetric.aggregation_timestamp', index=5,
+      name='aggregation_timestamp', full_name='gooseai.UsageMetric.aggregation_timestamp', index=5,
       number=6, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -501,7 +501,7 @@ _USAGEMETRIC = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='_user', full_name='anlatan.UsageMetric._user',
+      name='_user', full_name='gooseai.UsageMetric._user',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
@@ -513,21 +513,21 @@ _USAGEMETRIC = _descriptor.Descriptor(
 
 _COSTTOTAL = _descriptor.Descriptor(
   name='CostTotal',
-  full_name='anlatan.CostTotal',
+  full_name='gooseai.CostTotal',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='amount_tokens', full_name='anlatan.CostTotal.amount_tokens', index=0,
+      name='amount_tokens', full_name='gooseai.CostTotal.amount_tokens', index=0,
       number=1, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='amount_credits', full_name='anlatan.CostTotal.amount_credits', index=1,
+      name='amount_credits', full_name='gooseai.CostTotal.amount_credits', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
@@ -552,21 +552,21 @@ _COSTTOTAL = _descriptor.Descriptor(
 
 _TOTALMETRICSDATA = _descriptor.Descriptor(
   name='TotalMetricsData',
-  full_name='anlatan.TotalMetricsData',
+  full_name='gooseai.TotalMetricsData',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='input_total', full_name='anlatan.TotalMetricsData.input_total', index=0,
+      name='input_total', full_name='gooseai.TotalMetricsData.input_total', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='output_total', full_name='anlatan.TotalMetricsData.output_total', index=1,
+      name='output_total', full_name='gooseai.TotalMetricsData.output_total', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -591,21 +591,21 @@ _TOTALMETRICSDATA = _descriptor.Descriptor(
 
 _METRICS = _descriptor.Descriptor(
   name='Metrics',
-  full_name='anlatan.Metrics',
+  full_name='gooseai.Metrics',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='metrics', full_name='anlatan.Metrics.metrics', index=0,
+      name='metrics', full_name='gooseai.Metrics.metrics', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='total', full_name='anlatan.Metrics.total', index=1,
+      name='total', full_name='gooseai.Metrics.total', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -630,7 +630,7 @@ _METRICS = _descriptor.Descriptor(
 
 _EMPTYREQUEST = _descriptor.Descriptor(
   name='EmptyRequest',
-  full_name='anlatan.EmptyRequest',
+  full_name='gooseai.EmptyRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
@@ -655,14 +655,14 @@ _EMPTYREQUEST = _descriptor.Descriptor(
 
 _GETORGANIZATIONREQUEST = _descriptor.Descriptor(
   name='GetOrganizationRequest',
-  full_name='anlatan.GetOrganizationRequest',
+  full_name='gooseai.GetOrganizationRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='anlatan.GetOrganizationRequest.id', index=0,
+      name='id', full_name='gooseai.GetOrganizationRequest.id', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -687,42 +687,42 @@ _GETORGANIZATIONREQUEST = _descriptor.Descriptor(
 
 _GETMETRICSREQUEST = _descriptor.Descriptor(
   name='GetMetricsRequest',
-  full_name='anlatan.GetMetricsRequest',
+  full_name='gooseai.GetMetricsRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='organization_id', full_name='anlatan.GetMetricsRequest.organization_id', index=0,
+      name='organization_id', full_name='gooseai.GetMetricsRequest.organization_id', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='user_id', full_name='anlatan.GetMetricsRequest.user_id', index=1,
+      name='user_id', full_name='gooseai.GetMetricsRequest.user_id', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='range_from', full_name='anlatan.GetMetricsRequest.range_from', index=2,
+      name='range_from', full_name='gooseai.GetMetricsRequest.range_from', index=2,
       number=3, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='range_to', full_name='anlatan.GetMetricsRequest.range_to', index=3,
+      name='range_to', full_name='gooseai.GetMetricsRequest.range_to', index=3,
       number=4, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='include_per_request_metrics', full_name='anlatan.GetMetricsRequest.include_per_request_metrics', index=4,
+      name='include_per_request_metrics', full_name='gooseai.GetMetricsRequest.include_per_request_metrics', index=4,
       number=5, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -740,7 +740,7 @@ _GETMETRICSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='_user_id', full_name='anlatan.GetMetricsRequest._user_id',
+      name='_user_id', full_name='gooseai.GetMetricsRequest._user_id',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
@@ -752,14 +752,14 @@ _GETMETRICSREQUEST = _descriptor.Descriptor(
 
 _APIKEYREQUEST = _descriptor.Descriptor(
   name='APIKeyRequest',
-  full_name='anlatan.APIKeyRequest',
+  full_name='gooseai.APIKeyRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='is_secret', full_name='anlatan.APIKeyRequest.is_secret', index=0,
+      name='is_secret', full_name='gooseai.APIKeyRequest.is_secret', index=0,
       number=1, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -784,14 +784,14 @@ _APIKEYREQUEST = _descriptor.Descriptor(
 
 _APIKEYFINDREQUEST = _descriptor.Descriptor(
   name='APIKeyFindRequest',
-  full_name='anlatan.APIKeyFindRequest',
+  full_name='gooseai.APIKeyFindRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='anlatan.APIKeyFindRequest.id', index=0,
+      name='id', full_name='gooseai.APIKeyFindRequest.id', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -816,14 +816,14 @@ _APIKEYFINDREQUEST = _descriptor.Descriptor(
 
 _UPDATEDEFAULTORGANIZATIONREQUEST = _descriptor.Descriptor(
   name='UpdateDefaultOrganizationRequest',
-  full_name='anlatan.UpdateDefaultOrganizationRequest',
+  full_name='gooseai.UpdateDefaultOrganizationRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='organization_id', full_name='anlatan.UpdateDefaultOrganizationRequest.organization_id', index=0,
+      name='organization_id', full_name='gooseai.UpdateDefaultOrganizationRequest.organization_id', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -848,14 +848,14 @@ _UPDATEDEFAULTORGANIZATIONREQUEST = _descriptor.Descriptor(
 
 _CLIENTSETTINGS = _descriptor.Descriptor(
   name='ClientSettings',
-  full_name='anlatan.ClientSettings',
+  full_name='gooseai.ClientSettings',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='settings', full_name='anlatan.ClientSettings.settings', index=0,
+      name='settings', full_name='gooseai.ClientSettings.settings', index=0,
       number=1, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
@@ -880,21 +880,21 @@ _CLIENTSETTINGS = _descriptor.Descriptor(
 
 _CREATECHARGEREQUEST = _descriptor.Descriptor(
   name='CreateChargeRequest',
-  full_name='anlatan.CreateChargeRequest',
+  full_name='gooseai.CreateChargeRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='amount', full_name='anlatan.CreateChargeRequest.amount', index=0,
+      name='amount', full_name='gooseai.CreateChargeRequest.amount', index=0,
       number=1, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='organization_id', full_name='anlatan.CreateChargeRequest.organization_id', index=1,
+      name='organization_id', full_name='gooseai.CreateChargeRequest.organization_id', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -919,28 +919,28 @@ _CREATECHARGEREQUEST = _descriptor.Descriptor(
 
 _GETCHARGESREQUEST = _descriptor.Descriptor(
   name='GetChargesRequest',
-  full_name='anlatan.GetChargesRequest',
+  full_name='gooseai.GetChargesRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='organization_id', full_name='anlatan.GetChargesRequest.organization_id', index=0,
+      name='organization_id', full_name='gooseai.GetChargesRequest.organization_id', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='range_from', full_name='anlatan.GetChargesRequest.range_from', index=1,
+      name='range_from', full_name='gooseai.GetChargesRequest.range_from', index=1,
       number=2, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='range_to', full_name='anlatan.GetChargesRequest.range_to', index=2,
+      name='range_to', full_name='gooseai.GetChargesRequest.range_to', index=2,
       number=3, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -965,49 +965,49 @@ _GETCHARGESREQUEST = _descriptor.Descriptor(
 
 _CHARGE = _descriptor.Descriptor(
   name='Charge',
-  full_name='anlatan.Charge',
+  full_name='gooseai.Charge',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='anlatan.Charge.id', index=0,
+      name='id', full_name='gooseai.Charge.id', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='paid', full_name='anlatan.Charge.paid', index=1,
+      name='paid', full_name='gooseai.Charge.paid', index=1,
       number=2, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='receipt_link', full_name='anlatan.Charge.receipt_link', index=2,
+      name='receipt_link', full_name='gooseai.Charge.receipt_link', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='payment_link', full_name='anlatan.Charge.payment_link', index=3,
+      name='payment_link', full_name='gooseai.Charge.payment_link', index=3,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='created_at', full_name='anlatan.Charge.created_at', index=4,
+      name='created_at', full_name='gooseai.Charge.created_at', index=4,
       number=5, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='amount_credits', full_name='anlatan.Charge.amount_credits', index=5,
+      name='amount_credits', full_name='gooseai.Charge.amount_credits', index=5,
       number=6, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -1032,14 +1032,14 @@ _CHARGE = _descriptor.Descriptor(
 
 _CHARGES = _descriptor.Descriptor(
   name='Charges',
-  full_name='anlatan.Charges',
+  full_name='gooseai.Charges',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='charges', full_name='anlatan.Charges.charges', index=0,
+      name='charges', full_name='gooseai.Charges.charges', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -1119,154 +1119,154 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 OrganizationMember = _reflection.GeneratedProtocolMessageType('OrganizationMember', (_message.Message,), {
   'DESCRIPTOR' : _ORGANIZATIONMEMBER,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.OrganizationMember)
+  # @@protoc_insertion_point(class_scope:gooseai.OrganizationMember)
   })
 _sym_db.RegisterMessage(OrganizationMember)
 
 OrganizationGrant = _reflection.GeneratedProtocolMessageType('OrganizationGrant', (_message.Message,), {
   'DESCRIPTOR' : _ORGANIZATIONGRANT,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.OrganizationGrant)
+  # @@protoc_insertion_point(class_scope:gooseai.OrganizationGrant)
   })
 _sym_db.RegisterMessage(OrganizationGrant)
 
 OrganizationPaymentInfo = _reflection.GeneratedProtocolMessageType('OrganizationPaymentInfo', (_message.Message,), {
   'DESCRIPTOR' : _ORGANIZATIONPAYMENTINFO,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.OrganizationPaymentInfo)
+  # @@protoc_insertion_point(class_scope:gooseai.OrganizationPaymentInfo)
   })
 _sym_db.RegisterMessage(OrganizationPaymentInfo)
 
 Organization = _reflection.GeneratedProtocolMessageType('Organization', (_message.Message,), {
   'DESCRIPTOR' : _ORGANIZATION,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.Organization)
+  # @@protoc_insertion_point(class_scope:gooseai.Organization)
   })
 _sym_db.RegisterMessage(Organization)
 
 APIKey = _reflection.GeneratedProtocolMessageType('APIKey', (_message.Message,), {
   'DESCRIPTOR' : _APIKEY,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.APIKey)
+  # @@protoc_insertion_point(class_scope:gooseai.APIKey)
   })
 _sym_db.RegisterMessage(APIKey)
 
 User = _reflection.GeneratedProtocolMessageType('User', (_message.Message,), {
   'DESCRIPTOR' : _USER,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.User)
+  # @@protoc_insertion_point(class_scope:gooseai.User)
   })
 _sym_db.RegisterMessage(User)
 
 CostData = _reflection.GeneratedProtocolMessageType('CostData', (_message.Message,), {
   'DESCRIPTOR' : _COSTDATA,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.CostData)
+  # @@protoc_insertion_point(class_scope:gooseai.CostData)
   })
 _sym_db.RegisterMessage(CostData)
 
 UsageMetric = _reflection.GeneratedProtocolMessageType('UsageMetric', (_message.Message,), {
   'DESCRIPTOR' : _USAGEMETRIC,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.UsageMetric)
+  # @@protoc_insertion_point(class_scope:gooseai.UsageMetric)
   })
 _sym_db.RegisterMessage(UsageMetric)
 
 CostTotal = _reflection.GeneratedProtocolMessageType('CostTotal', (_message.Message,), {
   'DESCRIPTOR' : _COSTTOTAL,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.CostTotal)
+  # @@protoc_insertion_point(class_scope:gooseai.CostTotal)
   })
 _sym_db.RegisterMessage(CostTotal)
 
 TotalMetricsData = _reflection.GeneratedProtocolMessageType('TotalMetricsData', (_message.Message,), {
   'DESCRIPTOR' : _TOTALMETRICSDATA,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.TotalMetricsData)
+  # @@protoc_insertion_point(class_scope:gooseai.TotalMetricsData)
   })
 _sym_db.RegisterMessage(TotalMetricsData)
 
 Metrics = _reflection.GeneratedProtocolMessageType('Metrics', (_message.Message,), {
   'DESCRIPTOR' : _METRICS,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.Metrics)
+  # @@protoc_insertion_point(class_scope:gooseai.Metrics)
   })
 _sym_db.RegisterMessage(Metrics)
 
 EmptyRequest = _reflection.GeneratedProtocolMessageType('EmptyRequest', (_message.Message,), {
   'DESCRIPTOR' : _EMPTYREQUEST,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.EmptyRequest)
+  # @@protoc_insertion_point(class_scope:gooseai.EmptyRequest)
   })
 _sym_db.RegisterMessage(EmptyRequest)
 
 GetOrganizationRequest = _reflection.GeneratedProtocolMessageType('GetOrganizationRequest', (_message.Message,), {
   'DESCRIPTOR' : _GETORGANIZATIONREQUEST,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.GetOrganizationRequest)
+  # @@protoc_insertion_point(class_scope:gooseai.GetOrganizationRequest)
   })
 _sym_db.RegisterMessage(GetOrganizationRequest)
 
 GetMetricsRequest = _reflection.GeneratedProtocolMessageType('GetMetricsRequest', (_message.Message,), {
   'DESCRIPTOR' : _GETMETRICSREQUEST,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.GetMetricsRequest)
+  # @@protoc_insertion_point(class_scope:gooseai.GetMetricsRequest)
   })
 _sym_db.RegisterMessage(GetMetricsRequest)
 
 APIKeyRequest = _reflection.GeneratedProtocolMessageType('APIKeyRequest', (_message.Message,), {
   'DESCRIPTOR' : _APIKEYREQUEST,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.APIKeyRequest)
+  # @@protoc_insertion_point(class_scope:gooseai.APIKeyRequest)
   })
 _sym_db.RegisterMessage(APIKeyRequest)
 
 APIKeyFindRequest = _reflection.GeneratedProtocolMessageType('APIKeyFindRequest', (_message.Message,), {
   'DESCRIPTOR' : _APIKEYFINDREQUEST,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.APIKeyFindRequest)
+  # @@protoc_insertion_point(class_scope:gooseai.APIKeyFindRequest)
   })
 _sym_db.RegisterMessage(APIKeyFindRequest)
 
 UpdateDefaultOrganizationRequest = _reflection.GeneratedProtocolMessageType('UpdateDefaultOrganizationRequest', (_message.Message,), {
   'DESCRIPTOR' : _UPDATEDEFAULTORGANIZATIONREQUEST,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.UpdateDefaultOrganizationRequest)
+  # @@protoc_insertion_point(class_scope:gooseai.UpdateDefaultOrganizationRequest)
   })
 _sym_db.RegisterMessage(UpdateDefaultOrganizationRequest)
 
 ClientSettings = _reflection.GeneratedProtocolMessageType('ClientSettings', (_message.Message,), {
   'DESCRIPTOR' : _CLIENTSETTINGS,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.ClientSettings)
+  # @@protoc_insertion_point(class_scope:gooseai.ClientSettings)
   })
 _sym_db.RegisterMessage(ClientSettings)
 
 CreateChargeRequest = _reflection.GeneratedProtocolMessageType('CreateChargeRequest', (_message.Message,), {
   'DESCRIPTOR' : _CREATECHARGEREQUEST,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.CreateChargeRequest)
+  # @@protoc_insertion_point(class_scope:gooseai.CreateChargeRequest)
   })
 _sym_db.RegisterMessage(CreateChargeRequest)
 
 GetChargesRequest = _reflection.GeneratedProtocolMessageType('GetChargesRequest', (_message.Message,), {
   'DESCRIPTOR' : _GETCHARGESREQUEST,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.GetChargesRequest)
+  # @@protoc_insertion_point(class_scope:gooseai.GetChargesRequest)
   })
 _sym_db.RegisterMessage(GetChargesRequest)
 
 Charge = _reflection.GeneratedProtocolMessageType('Charge', (_message.Message,), {
   'DESCRIPTOR' : _CHARGE,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.Charge)
+  # @@protoc_insertion_point(class_scope:gooseai.Charge)
   })
 _sym_db.RegisterMessage(Charge)
 
 Charges = _reflection.GeneratedProtocolMessageType('Charges', (_message.Message,), {
   'DESCRIPTOR' : _CHARGES,
   '__module__' : 'dashboard_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.Charges)
+  # @@protoc_insertion_point(class_scope:gooseai.Charges)
   })
 _sym_db.RegisterMessage(Charges)
 
@@ -1275,7 +1275,7 @@ DESCRIPTOR._options = None
 
 _DASHBOARDSERVICE = _descriptor.ServiceDescriptor(
   name='DashboardService',
-  full_name='anlatan.DashboardService',
+  full_name='gooseai.DashboardService',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
@@ -1285,7 +1285,7 @@ _DASHBOARDSERVICE = _descriptor.ServiceDescriptor(
   methods=[
   _descriptor.MethodDescriptor(
     name='GetMe',
-    full_name='anlatan.DashboardService.GetMe',
+    full_name='gooseai.DashboardService.GetMe',
     index=0,
     containing_service=None,
     input_type=_EMPTYREQUEST,
@@ -1295,7 +1295,7 @@ _DASHBOARDSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='GetOrganization',
-    full_name='anlatan.DashboardService.GetOrganization',
+    full_name='gooseai.DashboardService.GetOrganization',
     index=1,
     containing_service=None,
     input_type=_GETORGANIZATIONREQUEST,
@@ -1305,7 +1305,7 @@ _DASHBOARDSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='GetMetrics',
-    full_name='anlatan.DashboardService.GetMetrics',
+    full_name='gooseai.DashboardService.GetMetrics',
     index=2,
     containing_service=None,
     input_type=_GETMETRICSREQUEST,
@@ -1315,7 +1315,7 @@ _DASHBOARDSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='CreateAPIKey',
-    full_name='anlatan.DashboardService.CreateAPIKey',
+    full_name='gooseai.DashboardService.CreateAPIKey',
     index=3,
     containing_service=None,
     input_type=_APIKEYREQUEST,
@@ -1325,7 +1325,7 @@ _DASHBOARDSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='DeleteAPIKey',
-    full_name='anlatan.DashboardService.DeleteAPIKey',
+    full_name='gooseai.DashboardService.DeleteAPIKey',
     index=4,
     containing_service=None,
     input_type=_APIKEYFINDREQUEST,
@@ -1335,7 +1335,7 @@ _DASHBOARDSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='UpdateDefaultOrganization',
-    full_name='anlatan.DashboardService.UpdateDefaultOrganization',
+    full_name='gooseai.DashboardService.UpdateDefaultOrganization',
     index=5,
     containing_service=None,
     input_type=_UPDATEDEFAULTORGANIZATIONREQUEST,
@@ -1345,7 +1345,7 @@ _DASHBOARDSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='GetClientSettings',
-    full_name='anlatan.DashboardService.GetClientSettings',
+    full_name='gooseai.DashboardService.GetClientSettings',
     index=6,
     containing_service=None,
     input_type=_EMPTYREQUEST,
@@ -1355,7 +1355,7 @@ _DASHBOARDSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='SetClientSettings',
-    full_name='anlatan.DashboardService.SetClientSettings',
+    full_name='gooseai.DashboardService.SetClientSettings',
     index=7,
     containing_service=None,
     input_type=_CLIENTSETTINGS,
@@ -1365,7 +1365,7 @@ _DASHBOARDSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='CreateCharge',
-    full_name='anlatan.DashboardService.CreateCharge',
+    full_name='gooseai.DashboardService.CreateCharge',
     index=8,
     containing_service=None,
     input_type=_CREATECHARGEREQUEST,
@@ -1375,7 +1375,7 @@ _DASHBOARDSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='GetCharges',
-    full_name='anlatan.DashboardService.GetCharges',
+    full_name='gooseai.DashboardService.GetCharges',
     index=9,
     containing_service=None,
     input_type=_GETCHARGESREQUEST,

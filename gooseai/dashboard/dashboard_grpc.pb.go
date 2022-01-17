@@ -44,7 +44,7 @@ func NewDashboardServiceClient(cc grpc.ClientConnInterface) DashboardServiceClie
 
 func (c *dashboardServiceClient) GetMe(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*User, error) {
 	out := new(User)
-	err := c.cc.Invoke(ctx, "/anlatan.DashboardService/GetMe", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/GetMe", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -53,7 +53,7 @@ func (c *dashboardServiceClient) GetMe(ctx context.Context, in *EmptyRequest, op
 
 func (c *dashboardServiceClient) GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*Organization, error) {
 	out := new(Organization)
-	err := c.cc.Invoke(ctx, "/anlatan.DashboardService/GetOrganization", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/GetOrganization", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -62,7 +62,7 @@ func (c *dashboardServiceClient) GetOrganization(ctx context.Context, in *GetOrg
 
 func (c *dashboardServiceClient) GetMetrics(ctx context.Context, in *GetMetricsRequest, opts ...grpc.CallOption) (*Metrics, error) {
 	out := new(Metrics)
-	err := c.cc.Invoke(ctx, "/anlatan.DashboardService/GetMetrics", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/GetMetrics", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -71,7 +71,7 @@ func (c *dashboardServiceClient) GetMetrics(ctx context.Context, in *GetMetricsR
 
 func (c *dashboardServiceClient) CreateAPIKey(ctx context.Context, in *APIKeyRequest, opts ...grpc.CallOption) (*APIKey, error) {
 	out := new(APIKey)
-	err := c.cc.Invoke(ctx, "/anlatan.DashboardService/CreateAPIKey", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/CreateAPIKey", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +80,7 @@ func (c *dashboardServiceClient) CreateAPIKey(ctx context.Context, in *APIKeyReq
 
 func (c *dashboardServiceClient) DeleteAPIKey(ctx context.Context, in *APIKeyFindRequest, opts ...grpc.CallOption) (*APIKey, error) {
 	out := new(APIKey)
-	err := c.cc.Invoke(ctx, "/anlatan.DashboardService/DeleteAPIKey", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/DeleteAPIKey", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -89,7 +89,7 @@ func (c *dashboardServiceClient) DeleteAPIKey(ctx context.Context, in *APIKeyFin
 
 func (c *dashboardServiceClient) UpdateDefaultOrganization(ctx context.Context, in *UpdateDefaultOrganizationRequest, opts ...grpc.CallOption) (*User, error) {
 	out := new(User)
-	err := c.cc.Invoke(ctx, "/anlatan.DashboardService/UpdateDefaultOrganization", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/UpdateDefaultOrganization", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -98,7 +98,7 @@ func (c *dashboardServiceClient) UpdateDefaultOrganization(ctx context.Context, 
 
 func (c *dashboardServiceClient) GetClientSettings(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ClientSettings, error) {
 	out := new(ClientSettings)
-	err := c.cc.Invoke(ctx, "/anlatan.DashboardService/GetClientSettings", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/GetClientSettings", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -107,7 +107,7 @@ func (c *dashboardServiceClient) GetClientSettings(ctx context.Context, in *Empt
 
 func (c *dashboardServiceClient) SetClientSettings(ctx context.Context, in *ClientSettings, opts ...grpc.CallOption) (*ClientSettings, error) {
 	out := new(ClientSettings)
-	err := c.cc.Invoke(ctx, "/anlatan.DashboardService/SetClientSettings", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/SetClientSettings", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -116,7 +116,7 @@ func (c *dashboardServiceClient) SetClientSettings(ctx context.Context, in *Clie
 
 func (c *dashboardServiceClient) CreateCharge(ctx context.Context, in *CreateChargeRequest, opts ...grpc.CallOption) (*Charge, error) {
 	out := new(Charge)
-	err := c.cc.Invoke(ctx, "/anlatan.DashboardService/CreateCharge", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/CreateCharge", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -125,7 +125,7 @@ func (c *dashboardServiceClient) CreateCharge(ctx context.Context, in *CreateCha
 
 func (c *dashboardServiceClient) GetCharges(ctx context.Context, in *GetChargesRequest, opts ...grpc.CallOption) (*Charges, error) {
 	out := new(Charges)
-	err := c.cc.Invoke(ctx, "/anlatan.DashboardService/GetCharges", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/GetCharges", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -210,7 +210,7 @@ func _DashboardService_GetMe_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/anlatan.DashboardService/GetMe",
+		FullMethod: "/gooseai.DashboardService/GetMe",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DashboardServiceServer).GetMe(ctx, req.(*EmptyRequest))
@@ -228,7 +228,7 @@ func _DashboardService_GetOrganization_Handler(srv interface{}, ctx context.Cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/anlatan.DashboardService/GetOrganization",
+		FullMethod: "/gooseai.DashboardService/GetOrganization",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DashboardServiceServer).GetOrganization(ctx, req.(*GetOrganizationRequest))
@@ -246,7 +246,7 @@ func _DashboardService_GetMetrics_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/anlatan.DashboardService/GetMetrics",
+		FullMethod: "/gooseai.DashboardService/GetMetrics",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DashboardServiceServer).GetMetrics(ctx, req.(*GetMetricsRequest))
@@ -264,7 +264,7 @@ func _DashboardService_CreateAPIKey_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/anlatan.DashboardService/CreateAPIKey",
+		FullMethod: "/gooseai.DashboardService/CreateAPIKey",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DashboardServiceServer).CreateAPIKey(ctx, req.(*APIKeyRequest))
@@ -282,7 +282,7 @@ func _DashboardService_DeleteAPIKey_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/anlatan.DashboardService/DeleteAPIKey",
+		FullMethod: "/gooseai.DashboardService/DeleteAPIKey",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DashboardServiceServer).DeleteAPIKey(ctx, req.(*APIKeyFindRequest))
@@ -300,7 +300,7 @@ func _DashboardService_UpdateDefaultOrganization_Handler(srv interface{}, ctx co
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/anlatan.DashboardService/UpdateDefaultOrganization",
+		FullMethod: "/gooseai.DashboardService/UpdateDefaultOrganization",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DashboardServiceServer).UpdateDefaultOrganization(ctx, req.(*UpdateDefaultOrganizationRequest))
@@ -318,7 +318,7 @@ func _DashboardService_GetClientSettings_Handler(srv interface{}, ctx context.Co
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/anlatan.DashboardService/GetClientSettings",
+		FullMethod: "/gooseai.DashboardService/GetClientSettings",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DashboardServiceServer).GetClientSettings(ctx, req.(*EmptyRequest))
@@ -336,7 +336,7 @@ func _DashboardService_SetClientSettings_Handler(srv interface{}, ctx context.Co
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/anlatan.DashboardService/SetClientSettings",
+		FullMethod: "/gooseai.DashboardService/SetClientSettings",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DashboardServiceServer).SetClientSettings(ctx, req.(*ClientSettings))
@@ -354,7 +354,7 @@ func _DashboardService_CreateCharge_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/anlatan.DashboardService/CreateCharge",
+		FullMethod: "/gooseai.DashboardService/CreateCharge",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DashboardServiceServer).CreateCharge(ctx, req.(*CreateChargeRequest))
@@ -372,7 +372,7 @@ func _DashboardService_GetCharges_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/anlatan.DashboardService/GetCharges",
+		FullMethod: "/gooseai.DashboardService/GetCharges",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DashboardServiceServer).GetCharges(ctx, req.(*GetChargesRequest))
@@ -384,7 +384,7 @@ func _DashboardService_GetCharges_Handler(srv interface{}, ctx context.Context, 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var DashboardService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "anlatan.DashboardService",
+	ServiceName: "gooseai.DashboardService",
 	HandlerType: (*DashboardServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
