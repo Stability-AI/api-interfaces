@@ -15,7 +15,7 @@ class AuthServiceStub(object):
             channel: A grpc.Channel.
         """
         self.Authenticate = channel.unary_unary(
-                '/anlatan.AuthService/Authenticate',
+                '/gooseai.AuthService/Authenticate',
                 request_serializer=auth__pb2.AuthRequest.SerializeToString,
                 response_deserializer=auth__pb2.AuthResponse.FromString,
                 )
@@ -40,7 +40,7 @@ def add_AuthServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'anlatan.AuthService', rpc_method_handlers)
+            'gooseai.AuthService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
@@ -59,7 +59,7 @@ class AuthService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/anlatan.AuthService/Authenticate',
+        return grpc.experimental.unary_unary(request, target, '/gooseai.AuthService/Authenticate',
             auth__pb2.AuthRequest.SerializeToString,
             auth__pb2.AuthResponse.FromString,
             options, channel_credentials,

@@ -1,4 +1,4 @@
-module github.com/NovelAI/interfaces/anlatan/completion
+module github.com/gooseai/interfaces/gooseai/completion
 
 go 1.17
 

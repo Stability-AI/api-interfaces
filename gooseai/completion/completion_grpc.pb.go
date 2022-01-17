@@ -30,7 +30,7 @@ func NewCompletionServiceClient(cc grpc.ClientConnInterface) CompletionServiceCl
 }
 
 func (c *completionServiceClient) Completion(ctx context.Context, in *Request, opts ...grpc.CallOption) (CompletionService_CompletionClient, error) {
-	stream, err := c.cc.NewStream(ctx, &CompletionService_ServiceDesc.Streams[0], "/anlatan.CompletionService/Completion", opts...)
+	stream, err := c.cc.NewStream(ctx, &CompletionService_ServiceDesc.Streams[0], "/gooseai.CompletionService/Completion", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -114,7 +114,7 @@ func (x *completionServiceCompletionServer) Send(m *Answer) error {
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var CompletionService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "anlatan.CompletionService",
+	ServiceName: "gooseai.CompletionService",
 	HandlerType: (*CompletionServiceServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{

@@ -31,7 +31,7 @@ func NewEnginesServiceClient(cc grpc.ClientConnInterface) EnginesServiceClient {
 
 func (c *enginesServiceClient) ListEngines(ctx context.Context, in *ListEnginesRequest, opts ...grpc.CallOption) (*Engines, error) {
 	out := new(Engines)
-	err := c.cc.Invoke(ctx, "/anlatan.EnginesService/ListEngines", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gooseai.EnginesService/ListEngines", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,7 +76,7 @@ func _EnginesService_ListEngines_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/anlatan.EnginesService/ListEngines",
+		FullMethod: "/gooseai.EnginesService/ListEngines",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EnginesServiceServer).ListEngines(ctx, req.(*ListEnginesRequest))
@@ -88,7 +88,7 @@ func _EnginesService_ListEngines_Handler(srv interface{}, ctx context.Context, d
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var EnginesService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "anlatan.EnginesService",
+	ServiceName: "gooseai.EnginesService",
 	HandlerType: (*EnginesServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

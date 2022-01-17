@@ -15,11 +15,11 @@ _sym_db = _symbol_database.Default()
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='auth.proto',
-  package='anlatan',
+  package='gooseai',
   syntax='proto3',
   serialized_options=b'Z\007./;auth',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\nauth.proto\x12\x07\x61nlatan\"(\n\x0b\x41uthMessage\x12\x0e\n\x04text\x18\x01 \x01(\tH\x00\x42\t\n\x07message\"I\n\x0c\x41uthResponse\x12\x12\n\nauthorized\x18\x01 \x01(\x08\x12%\n\x07message\x18\x02 \x01(\x0b\x32\x14.anlatan.AuthMessage\"Y\n\x0b\x41uthRequest\x12\x1a\n\rstatic_bearer\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\x12\n\x05\x61uth0\x18\x02 \x01(\tH\x01\x88\x01\x01\x42\x10\n\x0e_static_bearerB\x08\n\x06_auth02J\n\x0b\x41uthService\x12;\n\x0c\x41uthenticate\x12\x14.anlatan.AuthRequest\x1a\x15.anlatan.AuthResponseB\tZ\x07./;authb\x06proto3'
+  serialized_pb=b'\n\nauth.proto\x12\x07gooseai\"(\n\x0b\x41uthMessage\x12\x0e\n\x04text\x18\x01 \x01(\tH\x00\x42\t\n\x07message\"I\n\x0c\x41uthResponse\x12\x12\n\nauthorized\x18\x01 \x01(\x08\x12%\n\x07message\x18\x02 \x01(\x0b\x32\x14.gooseai.AuthMessage\"Y\n\x0b\x41uthRequest\x12\x1a\n\rstatic_bearer\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\x12\n\x05\x61uth0\x18\x02 \x01(\tH\x01\x88\x01\x01\x42\x10\n\x0e_static_bearerB\x08\n\x06_auth02J\n\x0b\x41uthService\x12;\n\x0c\x41uthenticate\x12\x14.gooseai.AuthRequest\x1a\x15.gooseai.AuthResponseB\tZ\x07./;authb\x06proto3'
 )
 
 
@@ -27,14 +27,14 @@ DESCRIPTOR = _descriptor.FileDescriptor(
 
 _AUTHMESSAGE = _descriptor.Descriptor(
   name='AuthMessage',
-  full_name='anlatan.AuthMessage',
+  full_name='gooseai.AuthMessage',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='text', full_name='anlatan.AuthMessage.text', index=0,
+      name='text', full_name='gooseai.AuthMessage.text', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -52,7 +52,7 @@ _AUTHMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='message', full_name='anlatan.AuthMessage.message',
+      name='message', full_name='gooseai.AuthMessage.message',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
@@ -64,21 +64,21 @@ _AUTHMESSAGE = _descriptor.Descriptor(
 
 _AUTHRESPONSE = _descriptor.Descriptor(
   name='AuthResponse',
-  full_name='anlatan.AuthResponse',
+  full_name='gooseai.AuthResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='authorized', full_name='anlatan.AuthResponse.authorized', index=0,
+      name='authorized', full_name='gooseai.AuthResponse.authorized', index=0,
       number=1, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='message', full_name='anlatan.AuthResponse.message', index=1,
+      name='message', full_name='gooseai.AuthResponse.message', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -103,21 +103,21 @@ _AUTHRESPONSE = _descriptor.Descriptor(
 
 _AUTHREQUEST = _descriptor.Descriptor(
   name='AuthRequest',
-  full_name='anlatan.AuthRequest',
+  full_name='gooseai.AuthRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='static_bearer', full_name='anlatan.AuthRequest.static_bearer', index=0,
+      name='static_bearer', full_name='gooseai.AuthRequest.static_bearer', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='auth0', full_name='anlatan.AuthRequest.auth0', index=1,
+      name='auth0', full_name='gooseai.AuthRequest.auth0', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -135,12 +135,12 @@ _AUTHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='_static_bearer', full_name='anlatan.AuthRequest._static_bearer',
+      name='_static_bearer', full_name='gooseai.AuthRequest._static_bearer',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_auth0', full_name='anlatan.AuthRequest._auth0',
+      name='_auth0', full_name='gooseai.AuthRequest._auth0',
       index=1, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
@@ -167,21 +167,21 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 AuthMessage = _reflection.GeneratedProtocolMessageType('AuthMessage', (_message.Message,), {
   'DESCRIPTOR' : _AUTHMESSAGE,
   '__module__' : 'auth_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.AuthMessage)
+  # @@protoc_insertion_point(class_scope:gooseai.AuthMessage)
   })
 _sym_db.RegisterMessage(AuthMessage)
 
 AuthResponse = _reflection.GeneratedProtocolMessageType('AuthResponse', (_message.Message,), {
   'DESCRIPTOR' : _AUTHRESPONSE,
   '__module__' : 'auth_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.AuthResponse)
+  # @@protoc_insertion_point(class_scope:gooseai.AuthResponse)
   })
 _sym_db.RegisterMessage(AuthResponse)
 
 AuthRequest = _reflection.GeneratedProtocolMessageType('AuthRequest', (_message.Message,), {
   'DESCRIPTOR' : _AUTHREQUEST,
   '__module__' : 'auth_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.AuthRequest)
+  # @@protoc_insertion_point(class_scope:gooseai.AuthRequest)
   })
 _sym_db.RegisterMessage(AuthRequest)
 
@@ -190,7 +190,7 @@ DESCRIPTOR._options = None
 
 _AUTHSERVICE = _descriptor.ServiceDescriptor(
   name='AuthService',
-  full_name='anlatan.AuthService',
+  full_name='gooseai.AuthService',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
@@ -200,7 +200,7 @@ _AUTHSERVICE = _descriptor.ServiceDescriptor(
   methods=[
   _descriptor.MethodDescriptor(
     name='Authenticate',
-    full_name='anlatan.AuthService.Authenticate',
+    full_name='gooseai.AuthService.Authenticate',
     index=0,
     containing_service=None,
     input_type=_AUTHREQUEST,

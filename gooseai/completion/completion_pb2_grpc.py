@@ -15,7 +15,7 @@ class CompletionServiceStub(object):
             channel: A grpc.Channel.
         """
         self.Completion = channel.unary_stream(
-                '/anlatan.CompletionService/Completion',
+                '/gooseai.CompletionService/Completion',
                 request_serializer=completion__pb2.Request.SerializeToString,
                 response_deserializer=completion__pb2.Answer.FromString,
                 )
@@ -40,7 +40,7 @@ def add_CompletionServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'anlatan.CompletionService', rpc_method_handlers)
+            'gooseai.CompletionService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
@@ -59,7 +59,7 @@ class CompletionService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/anlatan.CompletionService/Completion',
+        return grpc.experimental.unary_stream(request, target, '/gooseai.CompletionService/Completion',
             completion__pb2.Request.SerializeToString,
             completion__pb2.Answer.FromString,
             options, channel_credentials,

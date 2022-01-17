@@ -16,16 +16,16 @@ _sym_db = _symbol_database.Default()
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='completion.proto',
-  package='anlatan',
+  package='gooseai',
   syntax='proto3',
   serialized_options=b'Z\r./;completion',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x10\x63ompletion.proto\x12\x07\x61nlatan\"!\n\x05Token\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\r\"(\n\x06Tokens\x12\x1e\n\x06tokens\x18\x01 \x03(\x0b\x32\x0e.anlatan.Token\"E\n\x06Prompt\x12\x0e\n\x04text\x18\x01 \x01(\tH\x00\x12!\n\x06tokens\x18\x02 \x01(\x0b\x32\x0f.anlatan.TokensH\x00\x42\x08\n\x06prompt\":\n\tLogitBias\x12\x1f\n\x06tokens\x18\x01 \x01(\x0b\x32\x0f.anlatan.Tokens\x12\x0c\n\x04\x62ias\x18\x02 \x01(\x01\"1\n\x0bLogitBiases\x12\"\n\x06\x62iases\x18\x01 \x03(\x0b\x32\x12.anlatan.LogitBias\"\xbb\x02\n\x0f\x46requencyParams\x12\x1d\n\x10presence_penalty\x18\x01 \x01(\x01H\x00\x88\x01\x01\x12\x1e\n\x11\x66requency_penalty\x18\x02 \x01(\x01H\x01\x88\x01\x01\x12\x1f\n\x12repetition_penalty\x18\x03 \x01(\x01H\x02\x88\x01\x01\x12%\n\x18repetition_penalty_slope\x18\x04 \x01(\x01H\x03\x88\x01\x01\x12%\n\x18repetition_penalty_range\x18\x05 \x01(\x01H\x04\x88\x01\x01\x42\x13\n\x11_presence_penaltyB\x14\n\x12_frequency_penaltyB\x15\n\x13_repetition_penaltyB\x1b\n\x19_repetition_penalty_slopeB\x1b\n\x19_repetition_penalty_range\"\xd6\x01\n\x0eSamplingParams\x12&\n\x05order\x18\x01 \x03(\x0e\x32\x17.anlatan.SamplingMethod\x12\x18\n\x0btemperature\x18\x02 \x01(\x01H\x00\x88\x01\x01\x12\x12\n\x05top_p\x18\x03 \x01(\x01H\x01\x88\x01\x01\x12\x12\n\x05top_k\x18\x04 \x01(\rH\x02\x88\x01\x01\x12\x1f\n\x12tail_free_sampling\x18\x05 \x01(\x01H\x03\x88\x01\x01\x42\x0e\n\x0c_temperatureB\x08\n\x06_top_pB\x08\n\x06_top_kB\x15\n\x13_tail_free_sampling\"\xe4\x01\n\x0bModelParams\x12\x35\n\x0fsampling_params\x18\x01 \x01(\x0b\x32\x17.anlatan.SamplingParamsH\x00\x88\x01\x01\x12\x37\n\x10\x66requency_params\x18\x02 \x01(\x0b\x32\x18.anlatan.FrequencyParamsH\x01\x88\x01\x01\x12-\n\nlogit_bias\x18\x03 \x01(\x0b\x32\x14.anlatan.LogitBiasesH\x02\x88\x01\x01\x42\x12\n\x10_sampling_paramsB\x13\n\x11_frequency_paramsB\r\n\x0b_logit_bias\"$\n\x04\x45\x63ho\x12\x12\n\x05index\x18\x01 \x01(\x05H\x00\x88\x01\x01\x42\x08\n\x06_index\"$\n\tNAIModule\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0b\n\x03key\x18\x02 \x01(\t\"B\n\tEmbedding\x12(\n\nnai_module\x18\x01 \x01(\x0b\x32\x12.anlatan.NAIModuleH\x00\x42\x0b\n\tembedding\"\xf0\x01\n\x0c\x45ngineParams\x12\x17\n\nmax_tokens\x18\x01 \x01(\rH\x00\x88\x01\x01\x12\x18\n\x0b\x63ompletions\x18\x02 \x01(\rH\x01\x88\x01\x01\x12\x15\n\x08logprobs\x18\x03 \x01(\rH\x02\x88\x01\x01\x12 \n\x04\x65\x63ho\x18\x04 \x01(\x0b\x32\r.anlatan.EchoH\x03\x88\x01\x01\x12\x14\n\x07\x62\x65st_of\x18\x05 \x01(\rH\x04\x88\x01\x01\x12\x1d\n\x04stop\x18\x06 \x03(\x0b\x32\x0f.anlatan.PromptB\r\n\x0b_max_tokensB\x0e\n\x0c_completionsB\x0b\n\t_logprobsB\x07\n\x05_echoB\n\n\x08_best_of\"\xc4\x01\n\x07Request\x12\x11\n\tengine_id\x18\x01 \x01(\t\x12\x1f\n\x06prompt\x18\x02 \x03(\x0b\x32\x0f.anlatan.Prompt\x12/\n\x0cmodel_params\x18\x03 \x01(\x0b\x32\x14.anlatan.ModelParamsH\x00\x88\x01\x01\x12\x31\n\rengine_params\x18\x04 \x01(\x0b\x32\x15.anlatan.EngineParamsH\x01\x88\x01\x01\x42\x0f\n\r_model_paramsB\x10\n\x0e_engine_params\"z\n\x07LogProb\x12\x1d\n\x05token\x18\x01 \x01(\x0b\x32\x0e.anlatan.Token\x12\x14\n\x07logprob\x18\x02 \x01(\x01H\x00\x88\x01\x01\x12\x1b\n\x0elogprob_before\x18\x03 \x01(\x01H\x01\x88\x01\x01\x42\n\n\x08_logprobB\x11\n\x0f_logprob_before\"3\n\rTokenLogProbs\x12\"\n\x08logprobs\x18\x01 \x03(\x0b\x32\x10.anlatan.LogProb\"\xc6\x01\n\x08LogProbs\x12&\n\x06tokens\x18\x01 \x01(\x0b\x32\x16.anlatan.TokenLogProbs\x12\x13\n\x0btext_offset\x18\x02 \x03(\r\x12#\n\x03top\x18\x03 \x03(\x0b\x32\x16.anlatan.TokenLogProbs\x12*\n\ntop_before\x18\x04 \x03(\x0b\x32\x16.anlatan.TokenLogProbs\x12,\n\rfinish_reason\x18\x05 \x01(\x0e\x32\x15.anlatan.FinishReason\"\x91\x01\n\nCompletion\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\r\n\x05index\x18\x02 \x01(\r\x12#\n\x08logprobs\x18\x03 \x01(\x0b\x32\x11.anlatan.LogProbs\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.anlatan.FinishReason\x12\x13\n\x0btoken_index\x18\x05 \x01(\r\"a\n\x06\x41nswer\x12\x11\n\tanswer_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\x04\x12\r\n\x05model\x18\x03 \x01(\t\x12$\n\x07\x63hoices\x18\x04 \x03(\x0b\x32\x13.anlatan.Completion*$\n\x0c\x46inishReason\x12\x08\n\x04NULL\x10\x00\x12\n\n\x06LENGTH\x10\x01*J\n\x0eSamplingMethod\x12\x08\n\x04NONE\x10\x00\x12\x0f\n\x0bTEMPERATURE\x10\x01\x12\t\n\x05TOP_P\x10\x02\x12\t\n\x05TOP_K\x10\x03\x12\x07\n\x03TFS\x10\x04\x32H\n\x11\x43ompletionService\x12\x33\n\nCompletion\x12\x10.anlatan.Request\x1a\x0f.anlatan.Answer\"\x00\x30\x01\x42\x0fZ\r./;completionb\x06proto3'
+  serialized_pb=b'\n\x10\x63ompletion.proto\x12\x07gooseai\"!\n\x05Token\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\r\"(\n\x06Tokens\x12\x1e\n\x06tokens\x18\x01 \x03(\x0b\x32\x0e.gooseai.Token\"E\n\x06Prompt\x12\x0e\n\x04text\x18\x01 \x01(\tH\x00\x12!\n\x06tokens\x18\x02 \x01(\x0b\x32\x0f.gooseai.TokensH\x00\x42\x08\n\x06prompt\":\n\tLogitBias\x12\x1f\n\x06tokens\x18\x01 \x01(\x0b\x32\x0f.gooseai.Tokens\x12\x0c\n\x04\x62ias\x18\x02 \x01(\x01\"1\n\x0bLogitBiases\x12\"\n\x06\x62iases\x18\x01 \x03(\x0b\x32\x12.gooseai.LogitBias\"\xbb\x02\n\x0f\x46requencyParams\x12\x1d\n\x10presence_penalty\x18\x01 \x01(\x01H\x00\x88\x01\x01\x12\x1e\n\x11\x66requency_penalty\x18\x02 \x01(\x01H\x01\x88\x01\x01\x12\x1f\n\x12repetition_penalty\x18\x03 \x01(\x01H\x02\x88\x01\x01\x12%\n\x18repetition_penalty_slope\x18\x04 \x01(\x01H\x03\x88\x01\x01\x12%\n\x18repetition_penalty_range\x18\x05 \x01(\x01H\x04\x88\x01\x01\x42\x13\n\x11_presence_penaltyB\x14\n\x12_frequency_penaltyB\x15\n\x13_repetition_penaltyB\x1b\n\x19_repetition_penalty_slopeB\x1b\n\x19_repetition_penalty_range\"\xd6\x01\n\x0eSamplingParams\x12&\n\x05order\x18\x01 \x03(\x0e\x32\x17.gooseai.SamplingMethod\x12\x18\n\x0btemperature\x18\x02 \x01(\x01H\x00\x88\x01\x01\x12\x12\n\x05top_p\x18\x03 \x01(\x01H\x01\x88\x01\x01\x12\x12\n\x05top_k\x18\x04 \x01(\rH\x02\x88\x01\x01\x12\x1f\n\x12tail_free_sampling\x18\x05 \x01(\x01H\x03\x88\x01\x01\x42\x0e\n\x0c_temperatureB\x08\n\x06_top_pB\x08\n\x06_top_kB\x15\n\x13_tail_free_sampling\"\xe4\x01\n\x0bModelParams\x12\x35\n\x0fsampling_params\x18\x01 \x01(\x0b\x32\x17.gooseai.SamplingParamsH\x00\x88\x01\x01\x12\x37\n\x10\x66requency_params\x18\x02 \x01(\x0b\x32\x18.gooseai.FrequencyParamsH\x01\x88\x01\x01\x12-\n\nlogit_bias\x18\x03 \x01(\x0b\x32\x14.gooseai.LogitBiasesH\x02\x88\x01\x01\x42\x12\n\x10_sampling_paramsB\x13\n\x11_frequency_paramsB\r\n\x0b_logit_bias\"$\n\x04\x45\x63ho\x12\x12\n\x05index\x18\x01 \x01(\x05H\x00\x88\x01\x01\x42\x08\n\x06_index\"$\n\tNAIModule\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0b\n\x03key\x18\x02 \x01(\t\"B\n\tEmbedding\x12(\n\nnai_module\x18\x01 \x01(\x0b\x32\x12.gooseai.NAIModuleH\x00\x42\x0b\n\tembedding\"\xf0\x01\n\x0c\x45ngineParams\x12\x17\n\nmax_tokens\x18\x01 \x01(\rH\x00\x88\x01\x01\x12\x18\n\x0b\x63ompletions\x18\x02 \x01(\rH\x01\x88\x01\x01\x12\x15\n\x08logprobs\x18\x03 \x01(\rH\x02\x88\x01\x01\x12 \n\x04\x65\x63ho\x18\x04 \x01(\x0b\x32\r.gooseai.EchoH\x03\x88\x01\x01\x12\x14\n\x07\x62\x65st_of\x18\x05 \x01(\rH\x04\x88\x01\x01\x12\x1d\n\x04stop\x18\x06 \x03(\x0b\x32\x0f.gooseai.PromptB\r\n\x0b_max_tokensB\x0e\n\x0c_completionsB\x0b\n\t_logprobsB\x07\n\x05_echoB\n\n\x08_best_of\"\xc4\x01\n\x07Request\x12\x11\n\tengine_id\x18\x01 \x01(\t\x12\x1f\n\x06prompt\x18\x02 \x03(\x0b\x32\x0f.gooseai.Prompt\x12/\n\x0cmodel_params\x18\x03 \x01(\x0b\x32\x14.gooseai.ModelParamsH\x00\x88\x01\x01\x12\x31\n\rengine_params\x18\x04 \x01(\x0b\x32\x15.gooseai.EngineParamsH\x01\x88\x01\x01\x42\x0f\n\r_model_paramsB\x10\n\x0e_engine_params\"z\n\x07LogProb\x12\x1d\n\x05token\x18\x01 \x01(\x0b\x32\x0e.gooseai.Token\x12\x14\n\x07logprob\x18\x02 \x01(\x01H\x00\x88\x01\x01\x12\x1b\n\x0elogprob_before\x18\x03 \x01(\x01H\x01\x88\x01\x01\x42\n\n\x08_logprobB\x11\n\x0f_logprob_before\"3\n\rTokenLogProbs\x12\"\n\x08logprobs\x18\x01 \x03(\x0b\x32\x10.gooseai.LogProb\"\xc6\x01\n\x08LogProbs\x12&\n\x06tokens\x18\x01 \x01(\x0b\x32\x16.gooseai.TokenLogProbs\x12\x13\n\x0btext_offset\x18\x02 \x03(\r\x12#\n\x03top\x18\x03 \x03(\x0b\x32\x16.gooseai.TokenLogProbs\x12*\n\ntop_before\x18\x04 \x03(\x0b\x32\x16.gooseai.TokenLogProbs\x12,\n\rfinish_reason\x18\x05 \x01(\x0e\x32\x15.gooseai.FinishReason\"\x91\x01\n\nCompletion\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\r\n\x05index\x18\x02 \x01(\r\x12#\n\x08logprobs\x18\x03 \x01(\x0b\x32\x11.gooseai.LogProbs\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.gooseai.FinishReason\x12\x13\n\x0btoken_index\x18\x05 \x01(\r\"a\n\x06\x41nswer\x12\x11\n\tanswer_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\x04\x12\r\n\x05model\x18\x03 \x01(\t\x12$\n\x07\x63hoices\x18\x04 \x03(\x0b\x32\x13.gooseai.Completion*$\n\x0c\x46inishReason\x12\x08\n\x04NULL\x10\x00\x12\n\n\x06LENGTH\x10\x01*J\n\x0eSamplingMethod\x12\x08\n\x04NONE\x10\x00\x12\x0f\n\x0bTEMPERATURE\x10\x01\x12\t\n\x05TOP_P\x10\x02\x12\t\n\x05TOP_K\x10\x03\x12\x07\n\x03TFS\x10\x04\x32H\n\x11\x43ompletionService\x12\x33\n\nCompletion\x12\x10.gooseai.Request\x1a\x0f.gooseai.Answer\"\x00\x30\x01\x42\x0fZ\r./;completionb\x06proto3'
 )
 
 _FINISHREASON = _descriptor.EnumDescriptor(
   name='FinishReason',
-  full_name='anlatan.FinishReason',
+  full_name='gooseai.FinishReason',
   filename=None,
   file=DESCRIPTOR,
   create_key=_descriptor._internal_create_key,
@@ -51,7 +51,7 @@ _sym_db.RegisterEnumDescriptor(_FINISHREASON)
 FinishReason = enum_type_wrapper.EnumTypeWrapper(_FINISHREASON)
 _SAMPLINGMETHOD = _descriptor.EnumDescriptor(
   name='SamplingMethod',
-  full_name='anlatan.SamplingMethod',
+  full_name='gooseai.SamplingMethod',
   filename=None,
   file=DESCRIPTOR,
   create_key=_descriptor._internal_create_key,
@@ -102,21 +102,21 @@ TFS = 4
 
 _TOKEN = _descriptor.Descriptor(
   name='Token',
-  full_name='anlatan.Token',
+  full_name='gooseai.Token',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='text', full_name='anlatan.Token.text', index=0,
+      name='text', full_name='gooseai.Token.text', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='id', full_name='anlatan.Token.id', index=1,
+      name='id', full_name='gooseai.Token.id', index=1,
       number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -141,14 +141,14 @@ _TOKEN = _descriptor.Descriptor(
 
 _TOKENS = _descriptor.Descriptor(
   name='Tokens',
-  full_name='anlatan.Tokens',
+  full_name='gooseai.Tokens',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='tokens', full_name='anlatan.Tokens.tokens', index=0,
+      name='tokens', full_name='gooseai.Tokens.tokens', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -173,21 +173,21 @@ _TOKENS = _descriptor.Descriptor(
 
 _PROMPT = _descriptor.Descriptor(
   name='Prompt',
-  full_name='anlatan.Prompt',
+  full_name='gooseai.Prompt',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='text', full_name='anlatan.Prompt.text', index=0,
+      name='text', full_name='gooseai.Prompt.text', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='tokens', full_name='anlatan.Prompt.tokens', index=1,
+      name='tokens', full_name='gooseai.Prompt.tokens', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -205,7 +205,7 @@ _PROMPT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='prompt', full_name='anlatan.Prompt.prompt',
+      name='prompt', full_name='gooseai.Prompt.prompt',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
@@ -217,21 +217,21 @@ _PROMPT = _descriptor.Descriptor(
 
 _LOGITBIAS = _descriptor.Descriptor(
   name='LogitBias',
-  full_name='anlatan.LogitBias',
+  full_name='gooseai.LogitBias',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='tokens', full_name='anlatan.LogitBias.tokens', index=0,
+      name='tokens', full_name='gooseai.LogitBias.tokens', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='bias', full_name='anlatan.LogitBias.bias', index=1,
+      name='bias', full_name='gooseai.LogitBias.bias', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
@@ -256,14 +256,14 @@ _LOGITBIAS = _descriptor.Descriptor(
 
 _LOGITBIASES = _descriptor.Descriptor(
   name='LogitBiases',
-  full_name='anlatan.LogitBiases',
+  full_name='gooseai.LogitBiases',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='biases', full_name='anlatan.LogitBiases.biases', index=0,
+      name='biases', full_name='gooseai.LogitBiases.biases', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -288,42 +288,42 @@ _LOGITBIASES = _descriptor.Descriptor(
 
 _FREQUENCYPARAMS = _descriptor.Descriptor(
   name='FrequencyParams',
-  full_name='anlatan.FrequencyParams',
+  full_name='gooseai.FrequencyParams',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='presence_penalty', full_name='anlatan.FrequencyParams.presence_penalty', index=0,
+      name='presence_penalty', full_name='gooseai.FrequencyParams.presence_penalty', index=0,
       number=1, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='frequency_penalty', full_name='anlatan.FrequencyParams.frequency_penalty', index=1,
+      name='frequency_penalty', full_name='gooseai.FrequencyParams.frequency_penalty', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='repetition_penalty', full_name='anlatan.FrequencyParams.repetition_penalty', index=2,
+      name='repetition_penalty', full_name='gooseai.FrequencyParams.repetition_penalty', index=2,
       number=3, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='repetition_penalty_slope', full_name='anlatan.FrequencyParams.repetition_penalty_slope', index=3,
+      name='repetition_penalty_slope', full_name='gooseai.FrequencyParams.repetition_penalty_slope', index=3,
       number=4, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='repetition_penalty_range', full_name='anlatan.FrequencyParams.repetition_penalty_range', index=4,
+      name='repetition_penalty_range', full_name='gooseai.FrequencyParams.repetition_penalty_range', index=4,
       number=5, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
@@ -341,27 +341,27 @@ _FREQUENCYPARAMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='_presence_penalty', full_name='anlatan.FrequencyParams._presence_penalty',
+      name='_presence_penalty', full_name='gooseai.FrequencyParams._presence_penalty',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_frequency_penalty', full_name='anlatan.FrequencyParams._frequency_penalty',
+      name='_frequency_penalty', full_name='gooseai.FrequencyParams._frequency_penalty',
       index=1, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_repetition_penalty', full_name='anlatan.FrequencyParams._repetition_penalty',
+      name='_repetition_penalty', full_name='gooseai.FrequencyParams._repetition_penalty',
       index=2, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_repetition_penalty_slope', full_name='anlatan.FrequencyParams._repetition_penalty_slope',
+      name='_repetition_penalty_slope', full_name='gooseai.FrequencyParams._repetition_penalty_slope',
       index=3, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_repetition_penalty_range', full_name='anlatan.FrequencyParams._repetition_penalty_range',
+      name='_repetition_penalty_range', full_name='gooseai.FrequencyParams._repetition_penalty_range',
       index=4, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
@@ -373,42 +373,42 @@ _FREQUENCYPARAMS = _descriptor.Descriptor(
 
 _SAMPLINGPARAMS = _descriptor.Descriptor(
   name='SamplingParams',
-  full_name='anlatan.SamplingParams',
+  full_name='gooseai.SamplingParams',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='order', full_name='anlatan.SamplingParams.order', index=0,
+      name='order', full_name='gooseai.SamplingParams.order', index=0,
       number=1, type=14, cpp_type=8, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='temperature', full_name='anlatan.SamplingParams.temperature', index=1,
+      name='temperature', full_name='gooseai.SamplingParams.temperature', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='top_p', full_name='anlatan.SamplingParams.top_p', index=2,
+      name='top_p', full_name='gooseai.SamplingParams.top_p', index=2,
       number=3, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='top_k', full_name='anlatan.SamplingParams.top_k', index=3,
+      name='top_k', full_name='gooseai.SamplingParams.top_k', index=3,
       number=4, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='tail_free_sampling', full_name='anlatan.SamplingParams.tail_free_sampling', index=4,
+      name='tail_free_sampling', full_name='gooseai.SamplingParams.tail_free_sampling', index=4,
       number=5, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
@@ -426,22 +426,22 @@ _SAMPLINGPARAMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='_temperature', full_name='anlatan.SamplingParams._temperature',
+      name='_temperature', full_name='gooseai.SamplingParams._temperature',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_top_p', full_name='anlatan.SamplingParams._top_p',
+      name='_top_p', full_name='gooseai.SamplingParams._top_p',
       index=1, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_top_k', full_name='anlatan.SamplingParams._top_k',
+      name='_top_k', full_name='gooseai.SamplingParams._top_k',
       index=2, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_tail_free_sampling', full_name='anlatan.SamplingParams._tail_free_sampling',
+      name='_tail_free_sampling', full_name='gooseai.SamplingParams._tail_free_sampling',
       index=3, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
@@ -453,28 +453,28 @@ _SAMPLINGPARAMS = _descriptor.Descriptor(
 
 _MODELPARAMS = _descriptor.Descriptor(
   name='ModelParams',
-  full_name='anlatan.ModelParams',
+  full_name='gooseai.ModelParams',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='sampling_params', full_name='anlatan.ModelParams.sampling_params', index=0,
+      name='sampling_params', full_name='gooseai.ModelParams.sampling_params', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='frequency_params', full_name='anlatan.ModelParams.frequency_params', index=1,
+      name='frequency_params', full_name='gooseai.ModelParams.frequency_params', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='logit_bias', full_name='anlatan.ModelParams.logit_bias', index=2,
+      name='logit_bias', full_name='gooseai.ModelParams.logit_bias', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -492,17 +492,17 @@ _MODELPARAMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='_sampling_params', full_name='anlatan.ModelParams._sampling_params',
+      name='_sampling_params', full_name='gooseai.ModelParams._sampling_params',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_frequency_params', full_name='anlatan.ModelParams._frequency_params',
+      name='_frequency_params', full_name='gooseai.ModelParams._frequency_params',
       index=1, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_logit_bias', full_name='anlatan.ModelParams._logit_bias',
+      name='_logit_bias', full_name='gooseai.ModelParams._logit_bias',
       index=2, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
@@ -514,14 +514,14 @@ _MODELPARAMS = _descriptor.Descriptor(
 
 _ECHO = _descriptor.Descriptor(
   name='Echo',
-  full_name='anlatan.Echo',
+  full_name='gooseai.Echo',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='index', full_name='anlatan.Echo.index', index=0,
+      name='index', full_name='gooseai.Echo.index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -539,7 +539,7 @@ _ECHO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='_index', full_name='anlatan.Echo._index',
+      name='_index', full_name='gooseai.Echo._index',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
@@ -551,21 +551,21 @@ _ECHO = _descriptor.Descriptor(
 
 _NAIMODULE = _descriptor.Descriptor(
   name='NAIModule',
-  full_name='anlatan.NAIModule',
+  full_name='gooseai.NAIModule',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='anlatan.NAIModule.id', index=0,
+      name='id', full_name='gooseai.NAIModule.id', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='key', full_name='anlatan.NAIModule.key', index=1,
+      name='key', full_name='gooseai.NAIModule.key', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -590,14 +590,14 @@ _NAIMODULE = _descriptor.Descriptor(
 
 _EMBEDDING = _descriptor.Descriptor(
   name='Embedding',
-  full_name='anlatan.Embedding',
+  full_name='gooseai.Embedding',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='nai_module', full_name='anlatan.Embedding.nai_module', index=0,
+      name='nai_module', full_name='gooseai.Embedding.nai_module', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -615,7 +615,7 @@ _EMBEDDING = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='embedding', full_name='anlatan.Embedding.embedding',
+      name='embedding', full_name='gooseai.Embedding.embedding',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
@@ -627,49 +627,49 @@ _EMBEDDING = _descriptor.Descriptor(
 
 _ENGINEPARAMS = _descriptor.Descriptor(
   name='EngineParams',
-  full_name='anlatan.EngineParams',
+  full_name='gooseai.EngineParams',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='max_tokens', full_name='anlatan.EngineParams.max_tokens', index=0,
+      name='max_tokens', full_name='gooseai.EngineParams.max_tokens', index=0,
       number=1, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='completions', full_name='anlatan.EngineParams.completions', index=1,
+      name='completions', full_name='gooseai.EngineParams.completions', index=1,
       number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='logprobs', full_name='anlatan.EngineParams.logprobs', index=2,
+      name='logprobs', full_name='gooseai.EngineParams.logprobs', index=2,
       number=3, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='echo', full_name='anlatan.EngineParams.echo', index=3,
+      name='echo', full_name='gooseai.EngineParams.echo', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='best_of', full_name='anlatan.EngineParams.best_of', index=4,
+      name='best_of', full_name='gooseai.EngineParams.best_of', index=4,
       number=5, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='stop', full_name='anlatan.EngineParams.stop', index=5,
+      name='stop', full_name='gooseai.EngineParams.stop', index=5,
       number=6, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -687,27 +687,27 @@ _ENGINEPARAMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='_max_tokens', full_name='anlatan.EngineParams._max_tokens',
+      name='_max_tokens', full_name='gooseai.EngineParams._max_tokens',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_completions', full_name='anlatan.EngineParams._completions',
+      name='_completions', full_name='gooseai.EngineParams._completions',
       index=1, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_logprobs', full_name='anlatan.EngineParams._logprobs',
+      name='_logprobs', full_name='gooseai.EngineParams._logprobs',
       index=2, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_echo', full_name='anlatan.EngineParams._echo',
+      name='_echo', full_name='gooseai.EngineParams._echo',
       index=3, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_best_of', full_name='anlatan.EngineParams._best_of',
+      name='_best_of', full_name='gooseai.EngineParams._best_of',
       index=4, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
@@ -719,35 +719,35 @@ _ENGINEPARAMS = _descriptor.Descriptor(
 
 _REQUEST = _descriptor.Descriptor(
   name='Request',
-  full_name='anlatan.Request',
+  full_name='gooseai.Request',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='engine_id', full_name='anlatan.Request.engine_id', index=0,
+      name='engine_id', full_name='gooseai.Request.engine_id', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='prompt', full_name='anlatan.Request.prompt', index=1,
+      name='prompt', full_name='gooseai.Request.prompt', index=1,
       number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='model_params', full_name='anlatan.Request.model_params', index=2,
+      name='model_params', full_name='gooseai.Request.model_params', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='engine_params', full_name='anlatan.Request.engine_params', index=3,
+      name='engine_params', full_name='gooseai.Request.engine_params', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -765,12 +765,12 @@ _REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='_model_params', full_name='anlatan.Request._model_params',
+      name='_model_params', full_name='gooseai.Request._model_params',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_engine_params', full_name='anlatan.Request._engine_params',
+      name='_engine_params', full_name='gooseai.Request._engine_params',
       index=1, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
@@ -782,28 +782,28 @@ _REQUEST = _descriptor.Descriptor(
 
 _LOGPROB = _descriptor.Descriptor(
   name='LogProb',
-  full_name='anlatan.LogProb',
+  full_name='gooseai.LogProb',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='token', full_name='anlatan.LogProb.token', index=0,
+      name='token', full_name='gooseai.LogProb.token', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='logprob', full_name='anlatan.LogProb.logprob', index=1,
+      name='logprob', full_name='gooseai.LogProb.logprob', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='logprob_before', full_name='anlatan.LogProb.logprob_before', index=2,
+      name='logprob_before', full_name='gooseai.LogProb.logprob_before', index=2,
       number=3, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
@@ -821,12 +821,12 @@ _LOGPROB = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='_logprob', full_name='anlatan.LogProb._logprob',
+      name='_logprob', full_name='gooseai.LogProb._logprob',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
     _descriptor.OneofDescriptor(
-      name='_logprob_before', full_name='anlatan.LogProb._logprob_before',
+      name='_logprob_before', full_name='gooseai.LogProb._logprob_before',
       index=1, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
@@ -838,14 +838,14 @@ _LOGPROB = _descriptor.Descriptor(
 
 _TOKENLOGPROBS = _descriptor.Descriptor(
   name='TokenLogProbs',
-  full_name='anlatan.TokenLogProbs',
+  full_name='gooseai.TokenLogProbs',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='logprobs', full_name='anlatan.TokenLogProbs.logprobs', index=0,
+      name='logprobs', full_name='gooseai.TokenLogProbs.logprobs', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -870,42 +870,42 @@ _TOKENLOGPROBS = _descriptor.Descriptor(
 
 _LOGPROBS = _descriptor.Descriptor(
   name='LogProbs',
-  full_name='anlatan.LogProbs',
+  full_name='gooseai.LogProbs',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='tokens', full_name='anlatan.LogProbs.tokens', index=0,
+      name='tokens', full_name='gooseai.LogProbs.tokens', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='text_offset', full_name='anlatan.LogProbs.text_offset', index=1,
+      name='text_offset', full_name='gooseai.LogProbs.text_offset', index=1,
       number=2, type=13, cpp_type=3, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='top', full_name='anlatan.LogProbs.top', index=2,
+      name='top', full_name='gooseai.LogProbs.top', index=2,
       number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='top_before', full_name='anlatan.LogProbs.top_before', index=3,
+      name='top_before', full_name='gooseai.LogProbs.top_before', index=3,
       number=4, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='finish_reason', full_name='anlatan.LogProbs.finish_reason', index=4,
+      name='finish_reason', full_name='gooseai.LogProbs.finish_reason', index=4,
       number=5, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -930,42 +930,42 @@ _LOGPROBS = _descriptor.Descriptor(
 
 _COMPLETION = _descriptor.Descriptor(
   name='Completion',
-  full_name='anlatan.Completion',
+  full_name='gooseai.Completion',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='text', full_name='anlatan.Completion.text', index=0,
+      name='text', full_name='gooseai.Completion.text', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='index', full_name='anlatan.Completion.index', index=1,
+      name='index', full_name='gooseai.Completion.index', index=1,
       number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='logprobs', full_name='anlatan.Completion.logprobs', index=2,
+      name='logprobs', full_name='gooseai.Completion.logprobs', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='finish_reason', full_name='anlatan.Completion.finish_reason', index=3,
+      name='finish_reason', full_name='gooseai.Completion.finish_reason', index=3,
       number=4, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='token_index', full_name='anlatan.Completion.token_index', index=4,
+      name='token_index', full_name='gooseai.Completion.token_index', index=4,
       number=5, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -990,35 +990,35 @@ _COMPLETION = _descriptor.Descriptor(
 
 _ANSWER = _descriptor.Descriptor(
   name='Answer',
-  full_name='anlatan.Answer',
+  full_name='gooseai.Answer',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='answer_id', full_name='anlatan.Answer.answer_id', index=0,
+      name='answer_id', full_name='gooseai.Answer.answer_id', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='created', full_name='anlatan.Answer.created', index=1,
+      name='created', full_name='gooseai.Answer.created', index=1,
       number=2, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='model', full_name='anlatan.Answer.model', index=2,
+      name='model', full_name='gooseai.Answer.model', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='choices', full_name='anlatan.Answer.choices', index=3,
+      name='choices', full_name='gooseai.Answer.choices', index=3,
       number=4, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -1163,126 +1163,126 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 Token = _reflection.GeneratedProtocolMessageType('Token', (_message.Message,), {
   'DESCRIPTOR' : _TOKEN,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.Token)
+  # @@protoc_insertion_point(class_scope:gooseai.Token)
   })
 _sym_db.RegisterMessage(Token)
 
 Tokens = _reflection.GeneratedProtocolMessageType('Tokens', (_message.Message,), {
   'DESCRIPTOR' : _TOKENS,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.Tokens)
+  # @@protoc_insertion_point(class_scope:gooseai.Tokens)
   })
 _sym_db.RegisterMessage(Tokens)
 
 Prompt = _reflection.GeneratedProtocolMessageType('Prompt', (_message.Message,), {
   'DESCRIPTOR' : _PROMPT,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.Prompt)
+  # @@protoc_insertion_point(class_scope:gooseai.Prompt)
   })
 _sym_db.RegisterMessage(Prompt)
 
 LogitBias = _reflection.GeneratedProtocolMessageType('LogitBias', (_message.Message,), {
   'DESCRIPTOR' : _LOGITBIAS,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.LogitBias)
+  # @@protoc_insertion_point(class_scope:gooseai.LogitBias)
   })
 _sym_db.RegisterMessage(LogitBias)
 
 LogitBiases = _reflection.GeneratedProtocolMessageType('LogitBiases', (_message.Message,), {
   'DESCRIPTOR' : _LOGITBIASES,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.LogitBiases)
+  # @@protoc_insertion_point(class_scope:gooseai.LogitBiases)
   })
 _sym_db.RegisterMessage(LogitBiases)
 
 FrequencyParams = _reflection.GeneratedProtocolMessageType('FrequencyParams', (_message.Message,), {
   'DESCRIPTOR' : _FREQUENCYPARAMS,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.FrequencyParams)
+  # @@protoc_insertion_point(class_scope:gooseai.FrequencyParams)
   })
 _sym_db.RegisterMessage(FrequencyParams)
 
 SamplingParams = _reflection.GeneratedProtocolMessageType('SamplingParams', (_message.Message,), {
   'DESCRIPTOR' : _SAMPLINGPARAMS,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.SamplingParams)
+  # @@protoc_insertion_point(class_scope:gooseai.SamplingParams)
   })
 _sym_db.RegisterMessage(SamplingParams)
 
 ModelParams = _reflection.GeneratedProtocolMessageType('ModelParams', (_message.Message,), {
   'DESCRIPTOR' : _MODELPARAMS,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.ModelParams)
+  # @@protoc_insertion_point(class_scope:gooseai.ModelParams)
   })
 _sym_db.RegisterMessage(ModelParams)
 
 Echo = _reflection.GeneratedProtocolMessageType('Echo', (_message.Message,), {
   'DESCRIPTOR' : _ECHO,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.Echo)
+  # @@protoc_insertion_point(class_scope:gooseai.Echo)
   })
 _sym_db.RegisterMessage(Echo)
 
 NAIModule = _reflection.GeneratedProtocolMessageType('NAIModule', (_message.Message,), {
   'DESCRIPTOR' : _NAIMODULE,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.NAIModule)
+  # @@protoc_insertion_point(class_scope:gooseai.NAIModule)
   })
 _sym_db.RegisterMessage(NAIModule)
 
 Embedding = _reflection.GeneratedProtocolMessageType('Embedding', (_message.Message,), {
   'DESCRIPTOR' : _EMBEDDING,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.Embedding)
+  # @@protoc_insertion_point(class_scope:gooseai.Embedding)
   })
 _sym_db.RegisterMessage(Embedding)
 
 EngineParams = _reflection.GeneratedProtocolMessageType('EngineParams', (_message.Message,), {
   'DESCRIPTOR' : _ENGINEPARAMS,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.EngineParams)
+  # @@protoc_insertion_point(class_scope:gooseai.EngineParams)
   })
 _sym_db.RegisterMessage(EngineParams)
 
 Request = _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), {
   'DESCRIPTOR' : _REQUEST,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.Request)
+  # @@protoc_insertion_point(class_scope:gooseai.Request)
   })
 _sym_db.RegisterMessage(Request)
 
 LogProb = _reflection.GeneratedProtocolMessageType('LogProb', (_message.Message,), {
   'DESCRIPTOR' : _LOGPROB,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.LogProb)
+  # @@protoc_insertion_point(class_scope:gooseai.LogProb)
   })
 _sym_db.RegisterMessage(LogProb)
 
 TokenLogProbs = _reflection.GeneratedProtocolMessageType('TokenLogProbs', (_message.Message,), {
   'DESCRIPTOR' : _TOKENLOGPROBS,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.TokenLogProbs)
+  # @@protoc_insertion_point(class_scope:gooseai.TokenLogProbs)
   })
 _sym_db.RegisterMessage(TokenLogProbs)
 
 LogProbs = _reflection.GeneratedProtocolMessageType('LogProbs', (_message.Message,), {
   'DESCRIPTOR' : _LOGPROBS,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.LogProbs)
+  # @@protoc_insertion_point(class_scope:gooseai.LogProbs)
   })
 _sym_db.RegisterMessage(LogProbs)
 
 Completion = _reflection.GeneratedProtocolMessageType('Completion', (_message.Message,), {
   'DESCRIPTOR' : _COMPLETION,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.Completion)
+  # @@protoc_insertion_point(class_scope:gooseai.Completion)
   })
 _sym_db.RegisterMessage(Completion)
 
 Answer = _reflection.GeneratedProtocolMessageType('Answer', (_message.Message,), {
   'DESCRIPTOR' : _ANSWER,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:anlatan.Answer)
+  # @@protoc_insertion_point(class_scope:gooseai.Answer)
   })
 _sym_db.RegisterMessage(Answer)
 
@@ -1291,7 +1291,7 @@ DESCRIPTOR._options = None
 
 _COMPLETIONSERVICE = _descriptor.ServiceDescriptor(
   name='CompletionService',
-  full_name='anlatan.CompletionService',
+  full_name='gooseai.CompletionService',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
@@ -1301,7 +1301,7 @@ _COMPLETIONSERVICE = _descriptor.ServiceDescriptor(
   methods=[
   _descriptor.MethodDescriptor(
     name='Completion',
-    full_name='anlatan.CompletionService.Completion',
+    full_name='gooseai.CompletionService.Completion',
     index=0,
     containing_service=None,
     input_type=_REQUEST,

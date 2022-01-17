@@ -1,4 +1,4 @@
-module github.com/NovelAI/interfaces/anlatan/auth
+module github.com/gooseai/interfaces/gooseai/auth
 
 go 1.17
 

@@ -1,4 +1,4 @@
-module github.com/NovelAI/interfaces/gooseai
+module github.com/gooseai/interfaces/gooseai
 
 go 1.17
 

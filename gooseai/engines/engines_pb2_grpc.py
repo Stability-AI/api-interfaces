@@ -15,7 +15,7 @@ class EnginesServiceStub(object):
             channel: A grpc.Channel.
         """
         self.ListEngines = channel.unary_unary(
-                '/anlatan.EnginesService/ListEngines',
+                '/gooseai.EnginesService/ListEngines',
                 request_serializer=engines__pb2.ListEnginesRequest.SerializeToString,
                 response_deserializer=engines__pb2.Engines.FromString,
                 )
@@ -40,7 +40,7 @@ def add_EnginesServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'anlatan.EnginesService', rpc_method_handlers)
+            'gooseai.EnginesService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
@@ -59,7 +59,7 @@ class EnginesService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/anlatan.EnginesService/ListEngines',
+        return grpc.experimental.unary_unary(request, target, '/gooseai.EnginesService/ListEngines',
             engines__pb2.ListEnginesRequest.SerializeToString,
             engines__pb2.Engines.FromString,
             options, channel_credentials,

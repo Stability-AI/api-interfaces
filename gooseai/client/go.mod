@@ -1,11 +1,11 @@
-module github.com/NovelAI/interfaces/anlatan/client
+module github.com/gooseai/interfaces/gooseai/client
 
 go 1.17
 
 require (
 	code.rocketnine.space/tslocum/cview v1.5.7
-	github.com/NovelAI/interfaces/anlatan/auth v0.0.0-00010101000000-000000000000
-	github.com/NovelAI/interfaces/anlatan/completion v0.0.0-00010101000000-000000000000
+	github.com/gooseai/interfaces/gooseai/auth v0.0.0-00010101000000-000000000000
+	github.com/gooseai/interfaces/gooseai/completion v0.0.0-00010101000000-000000000000
 	github.com/gdamore/tcell/v2 v2.4.1-0.20210828201608-73703f7ed490
 	github.com/mazznoer/colorgrad v0.8.1
 	github.com/siongui/goef v0.0.0-20210610184109-d3b60554c5f3
@@ -35,6 +35,6 @@ require (
 	gopkg.in/neurosnap/sentences.v1 v1.0.6 // indirect
 )
 
-replace github.com/NovelAI/interfaces/anlatan/completion => ../completion
+replace github.com/gooseai/interfaces/gooseai/completion => ../completion
 
-replace github.com/NovelAI/interfaces/anlatan/auth => ../auth
+replace github.com/gooseai/interfaces/gooseai/auth => ../auth
