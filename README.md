@@ -1,2 +1,2 @@
-# infrastructure
-infrastructure design and notes
+# interfaces
+GRPC and protobuf interfaces between GooseAI components
