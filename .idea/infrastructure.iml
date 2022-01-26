@@ -6,5 +6,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="goose-middleware" />
+    <orderEntry type="module" module-name="client" />
   </component>
 </module>

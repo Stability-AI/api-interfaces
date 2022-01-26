@@ -202,7 +202,6 @@ add_target_languages(
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/dashboard.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/completion.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/engines.proto)
-add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/auth.proto)
 generate_interfaces()
 
 add_custom_command(
