@@ -3,15 +3,18 @@ package main
 import (
 	"code.rocketnine.space/tslocum/cview"
 	"context"
+	"crypto/tls"
 	"encoding/json"
 	"flag"
 	"fmt"
 	"github.com/gdamore/tcell/v2"
-	"github.com/gooseai/interfaces/gooseai/auth"
 	"github.com/gooseai/interfaces/gooseai/completion"
 	"github.com/mazznoer/colorgrad"
 	gpt_bpe "github.com/wbrown/novelai-research-tool/gpt-bpe"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
+	"google.golang.org/grpc/credentials/insecure"
+	"google.golang.org/grpc/metadata"
 	"io"
 	"log"
 	"math"
@@ -35,7 +38,8 @@ type tokenAuth struct {
 }
 
 // Return value is mapped to request headers.
-func (t tokenAuth) GetRequestMetadata(ctx context.Context, in ...string) (map[string]string, error) {
+func (t tokenAuth) GetRequestMetadata(ctx context.Context,
+	in ...string) (map[string]string, error) {
 	return map[string]string{
 		"authorization": "Bearer " + t.token,
 	}, nil
@@ -62,7 +66,10 @@ type GenerationParams struct {
 	TopP             float64
 	TopK             uint32
 	TFS              float64
+	Auth             string
 }
+
+// TOKEN: pk-2vTKbgcZYjCk8LhghuIpSVDN39dXgsSBzValgbOD7fkfn3WB
 
 func (genParams *GenerationParams) buildRequest(prompt string,
 	echo *int) *completion.Request {
@@ -368,7 +375,8 @@ func newGenerationParametersView(params *GenerationParams) *cview.Form {
 	return paramsView
 }
 
-func TUI(indexedFragments *IndexedFragments, genSettings *GenerationParams,
+func TUI(ctx *context.Context, indexedFragments *IndexedFragments,
+	genSettings *GenerationParams,
 	client *completion.CompletionServiceClient) TUIApp {
 	// view stuff
 	app := cview.NewApplication()
@@ -490,7 +498,7 @@ func TUI(indexedFragments *IndexedFragments, genSettings *GenerationParams,
 	backendRequest := func(rq *completion.Request, showProgress bool) {
 		receiving = true
 		rqBegin := time.Now()
-		stream, rqErr := (*client).Completion(context.Background(), rq)
+		stream, rqErr := (*client).Completion(*ctx, rq)
 		if rqErr != nil {
 			receiving = false
 			statusView.SetText(fmt.Sprintf("%v", rqErr))
@@ -792,10 +800,11 @@ func LoadTest(numThreads int64, genParams *GenerationParams,
 		}
 	}
 
-	backendRequest := func(rq *completion.Request) (*IterationResult, error) {
-		ctx := context.Background()
+	backendRequest := func(ctx *context.Context, rq *completion.Request) (
+		*IterationResult, error) {
+
 		rqBegin := time.Now()
-		stream, rqErr := (*client).Completion(ctx, request)
+		stream, rqErr := (*client).Completion(*ctx, request)
 		if rqErr != nil {
 			return nil, rqErr
 		}
@@ -821,7 +830,7 @@ func LoadTest(numThreads int64, genParams *GenerationParams,
 		}
 	}
 
-	threadWorker := func(wg *sync.WaitGroup) {
+	threadWorker := func(wg *sync.WaitGroup, ctx *context.Context) {
 		workerView := cview.NewTextView()
 		workerView.SetDynamicColors(true)
 		workerView.SetWordWrap(false)
@@ -830,7 +839,7 @@ func LoadTest(numThreads int64, genParams *GenerationParams,
 			false)
 		iteration := 0
 		for {
-			result, err := backendRequest(request)
+			result, err := backendRequest(ctx, request)
 			if !strings.HasSuffix(err.Error(), "EOF") {
 				workerView.SetText(fmt.Sprintf("%v", err))
 				app.Draw()
@@ -849,11 +858,16 @@ func LoadTest(numThreads int64, genParams *GenerationParams,
 		wg.Done()
 	}
 
+	ctx := metadata.NewOutgoingContext(
+		context.Background(),
+		metadata.Pairs("authorization", "bearer "+genParams.Auth),
+	)
+
 	run := func() {
 		var wg sync.WaitGroup
 		for idx := int64(0); idx < numThreads; idx++ {
 			wg.Add(1)
-			go threadWorker(&wg)
+			go threadWorker(&wg, &ctx)
 		}
 		if err := app.Run(); err != nil {
 			panic(err)
@@ -885,69 +899,62 @@ func main() {
 	}
 
 	genSettings := GenerationParams{
-		Model:            "2b",
-		Temperature:      1.0,
-		OutputLength:     150,
-		PresencePenalty:  0,
-		FrequencyPenalty: 0,
+		Model:            "gpt-neo-2-7b",
+		Temperature:      2.5,
+		OutputLength:     100,
+		PresencePenalty:  0.5,
+		FrequencyPenalty: 0.01,
 		LogProbs:         30,
 		TopP:             0,
-		TopK:             0,
+		TopK:             300,
 		TFS:              0.5,
+		Auth:             os.Getenv("GOOSEAI_AUTH"),
 	}
-
-	// GRPC stuff
-	authString := "gooseHonkHonk"
-	/* var opts = []grpc.DialOption{
-		grpc.WithTransportCredentials(),
-		//grpc.WithTransportCredentials(insecure.NewCredentials()),
-		grpc.WithPerRPCCredentials(tokenAuth{
-			token: authString,
-		}),
-	} */
 
 	var client completion.CompletionServiceClient
 	indexedFragments := make(IndexedFragments, 0)
 
-	prompt := "It was a dark and stormy night."
+	prompt := "The beautiful and mercurial witch laughed"
+
+	md := metadata.New(map[string]string{"bearer": genSettings.Auth})
+	ctx := metadata.NewOutgoingContext(
+		context.Background(),
+		md)
 
 	var app TUIApp
 	if *numThreads == 0 {
-		app = TUI(&indexedFragments, &genSettings, &client)
+		app = TUI(&ctx, &indexedFragments, &genSettings, &client)
 	} else {
 		app = LoadTest(*numThreads, &genSettings, &client, prompt)
 	}
+	var grpcOptions grpc.DialOption
 
-	conn, grpcErr := grpc.Dial(serverAddr, grpc.WithInsecure())
+	if strings.HasSuffix(serverAddr, ":443") {
+		grpcOptions = grpc.WithTransportCredentials(
+			credentials.NewTLS(&tls.Config{InsecureSkipVerify: true}))
+	} else {
+		grpcOptions = grpc.WithTransportCredentials(insecure.NewCredentials())
+	}
+
+	conn, grpcErr := grpc.Dial(serverAddr, grpcOptions)
+	/* grpc.WithPerRPCCredentials(tokenAuth{
+		token: genSettings.Auth,
+	}), */
+
 	if grpcErr != nil {
 		app.StatusView.SetText(fmt.Sprintf("%v", grpcErr))
 	}
 	defer conn.Close()
-	authClient := auth.NewAuthServiceClient(conn)
-	_, authErr := authClient.Authenticate(context.Background(),
-		&auth.AuthRequest{
-			StaticBearer: &authString,
-		})
-	if authErr != nil {
-		if !strings.Contains(authErr.Error(), "Method not found!") {
-			app.StatusView.SetText(fmt.Sprintf("%v", authErr))
-		} else {
-			authErr = nil
-		}
-	}
-
 	client = completion.NewCompletionServiceClient(conn)
 
 	if *numThreads > 0 {
-		if authErr != nil {
-			panic(authErr)
-		} else if grpcErr != nil {
+		if grpcErr != nil {
 			panic(grpcErr)
 		} else {
 			app.Run()
 			os.Exit(0)
 		}
-	} else if authErr == nil && grpcErr == nil {
+	} else if grpcErr == nil {
 		rq := genSettings.buildRequest(prompt, EchoTrue)
 		go app.BackendRequest(rq,
 			true)
