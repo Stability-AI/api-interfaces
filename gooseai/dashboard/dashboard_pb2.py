@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\014./;dashboard',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0f\x64\x61shboard.proto\x12\x07gooseai\"\xa9\x01\n\x12OrganizationMember\x12+\n\x0corganization\x18\x01 \x01(\x0b\x32\x15.gooseai.Organization\x12 \n\x04user\x18\x02 \x01(\x0b\x32\r.gooseai.UserH\x00\x88\x01\x01\x12\'\n\x04role\x18\x03 \x01(\x0e\x32\x19.gooseai.OrganizationRole\x12\x12\n\nis_default\x18\x04 \x01(\x08\x42\x07\n\x05_user\"h\n\x11OrganizationGrant\x12\x16\n\x0e\x61mount_granted\x18\x01 \x01(\x01\x12\x13\n\x0b\x61mount_used\x18\x02 \x01(\x01\x12\x12\n\nexpires_at\x18\x03 \x01(\x04\x12\x12\n\ngranted_at\x18\x04 \x01(\x04\"V\n\x17OrganizationPaymentInfo\x12\x0f\n\x07\x62\x61lance\x18\x01 \x01(\x01\x12*\n\x06grants\x18\x02 \x03(\x0b\x32\x1a.gooseai.OrganizationGrant\"\xb9\x01\n\x0cOrganization\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12,\n\x07members\x18\x04 \x03(\x0b\x32\x1b.gooseai.OrganizationMember\x12;\n\x0cpayment_info\x18\x05 \x01(\x0b\x32 .gooseai.OrganizationPaymentInfoH\x00\x88\x01\x01\x42\x0f\n\r_payment_info\"<\n\x06\x41PIKey\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x11\n\tis_secret\x18\x02 \x01(\x08\x12\x12\n\ncreated_at\x18\x03 \x01(\x04\"\xc7\x01\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\x14\n\x07\x61uth_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x17\n\x0fprofile_picture\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x32\n\rorganizations\x18\x05 \x03(\x0b\x32\x1b.gooseai.OrganizationMember\x12!\n\x08\x61pi_keys\x18\x07 \x03(\x0b\x32\x0f.gooseai.APIKey\x12\x12\n\ncreated_at\x18\x08 \x01(\x04\x42\n\n\x08_auth_id\"9\n\x08\x43ostData\x12\x15\n\ramount_tokens\x18\x01 \x01(\r\x12\x16\n\x0e\x61mount_credits\x18\x02 \x01(\x01\"\xba\x01\n\x0bUsageMetric\x12\x11\n\toperation\x18\x01 \x01(\t\x12\x0e\n\x06\x65ngine\x18\x02 \x01(\t\x12%\n\ninput_cost\x18\x03 \x01(\x0b\x32\x11.gooseai.CostData\x12&\n\x0boutput_cost\x18\x04 \x01(\x0b\x32\x11.gooseai.CostData\x12\x11\n\x04user\x18\x05 \x01(\tH\x00\x88\x01\x01\x12\x1d\n\x15\x61ggregation_timestamp\x18\x06 \x01(\x04\x42\x07\n\x05_user\":\n\tCostTotal\x12\x15\n\ramount_tokens\x18\x01 \x01(\r\x12\x16\n\x0e\x61mount_credits\x18\x02 \x01(\x01\"e\n\x10TotalMetricsData\x12\'\n\x0binput_total\x18\x01 \x01(\x0b\x32\x12.gooseai.CostTotal\x12(\n\x0coutput_total\x18\x02 \x01(\x0b\x32\x12.gooseai.CostTotal\"Z\n\x07Metrics\x12%\n\x07metrics\x18\x01 \x03(\x0b\x32\x14.gooseai.UsageMetric\x12(\n\x05total\x18\x02 \x01(\x0b\x32\x19.gooseai.TotalMetricsData\"\x0e\n\x0c\x45mptyRequest\"$\n\x16GetOrganizationRequest\x12\n\n\x02id\x18\x01 \x01(\t\"\x99\x01\n\x11GetMetricsRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x12\x14\n\x07user_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x12\n\nrange_from\x18\x03 \x01(\x04\x12\x10\n\x08range_to\x18\x04 \x01(\x04\x12#\n\x1binclude_per_request_metrics\x18\x05 \x01(\x08\x42\n\n\x08_user_id\"\"\n\rAPIKeyRequest\x12\x11\n\tis_secret\x18\x01 \x01(\x08\"\x1f\n\x11\x41PIKeyFindRequest\x12\n\n\x02id\x18\x01 \x01(\t\";\n UpdateDefaultOrganizationRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\"\"\n\x0e\x43lientSettings\x12\x10\n\x08settings\x18\x01 \x01(\x0c\">\n\x13\x43reateChargeRequest\x12\x0e\n\x06\x61mount\x18\x01 \x01(\x04\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\"R\n\x11GetChargesRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x12\x12\n\nrange_from\x18\x02 \x01(\x04\x12\x10\n\x08range_to\x18\x03 \x01(\x04\"z\n\x06\x43harge\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04paid\x18\x02 \x01(\x08\x12\x14\n\x0creceipt_link\x18\x03 \x01(\t\x12\x14\n\x0cpayment_link\x18\x04 \x01(\t\x12\x12\n\ncreated_at\x18\x05 \x01(\x04\x12\x16\n\x0e\x61mount_credits\x18\x06 \x01(\x04\"+\n\x07\x43harges\x12 \n\x07\x63harges\x18\x01 \x03(\x0b\x32\x0f.gooseai.Charge\"5\n\x15UpdateUserInfoRequest\x12\x12\n\x05\x65mail\x18\x01 \x01(\tH\x00\x88\x01\x01\x42\x08\n\x06_email\"*\n\x18UserPasswordChangeTicket\x12\x0e\n\x06ticket\x18\x01 \x01(\t*9\n\x10OrganizationRole\x12\n\n\x06MEMBER\x10\x00\x12\x0e\n\nACCOUNTANT\x10\x01\x12\t\n\x05OWNER\x10\x02\x32\xb5\x06\n\x10\x44\x61shboardService\x12-\n\x05GetMe\x12\x15.gooseai.EmptyRequest\x1a\r.gooseai.User\x12I\n\x0fGetOrganization\x12\x1f.gooseai.GetOrganizationRequest\x1a\x15.gooseai.Organization\x12:\n\nGetMetrics\x12\x1a.gooseai.GetMetricsRequest\x1a\x10.gooseai.Metrics\x12\x37\n\x0c\x43reateAPIKey\x12\x16.gooseai.APIKeyRequest\x1a\x0f.gooseai.APIKey\x12;\n\x0c\x44\x65leteAPIKey\x12\x1a.gooseai.APIKeyFindRequest\x1a\x0f.gooseai.APIKey\x12U\n\x19UpdateDefaultOrganization\x12).gooseai.UpdateDefaultOrganizationRequest\x1a\r.gooseai.User\x12\x43\n\x11GetClientSettings\x12\x15.gooseai.EmptyRequest\x1a\x17.gooseai.ClientSettings\x12\x45\n\x11SetClientSettings\x12\x17.gooseai.ClientSettings\x1a\x17.gooseai.ClientSettings\x12?\n\x0eUpdateUserInfo\x12\x1e.gooseai.UpdateUserInfoRequest\x1a\r.gooseai.User\x12V\n\x1a\x43reatePasswordChangeTicket\x12\x15.gooseai.EmptyRequest\x1a!.gooseai.UserPasswordChangeTicket\x12=\n\x0c\x43reateCharge\x12\x1c.gooseai.CreateChargeRequest\x1a\x0f.gooseai.Charge\x12:\n\nGetCharges\x12\x1a.gooseai.GetChargesRequest\x1a\x10.gooseai.ChargesB\x0eZ\x0c./;dashboardb\x06proto3'
+  serialized_pb=b'\n\x0f\x64\x61shboard.proto\x12\x07gooseai\"\xa9\x01\n\x12OrganizationMember\x12+\n\x0corganization\x18\x01 \x01(\x0b\x32\x15.gooseai.Organization\x12 \n\x04user\x18\x02 \x01(\x0b\x32\r.gooseai.UserH\x00\x88\x01\x01\x12\'\n\x04role\x18\x03 \x01(\x0e\x32\x19.gooseai.OrganizationRole\x12\x12\n\nis_default\x18\x04 \x01(\x08\x42\x07\n\x05_user\"h\n\x11OrganizationGrant\x12\x16\n\x0e\x61mount_granted\x18\x01 \x01(\x01\x12\x13\n\x0b\x61mount_used\x18\x02 \x01(\x01\x12\x12\n\nexpires_at\x18\x03 \x01(\x04\x12\x12\n\ngranted_at\x18\x04 \x01(\x04\"V\n\x17OrganizationPaymentInfo\x12\x0f\n\x07\x62\x61lance\x18\x01 \x01(\x01\x12*\n\x06grants\x18\x02 \x03(\x0b\x32\x1a.gooseai.OrganizationGrant\"\xb9\x01\n\x0cOrganization\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12,\n\x07members\x18\x04 \x03(\x0b\x32\x1b.gooseai.OrganizationMember\x12;\n\x0cpayment_info\x18\x05 \x01(\x0b\x32 .gooseai.OrganizationPaymentInfoH\x00\x88\x01\x01\x42\x0f\n\r_payment_info\"<\n\x06\x41PIKey\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x11\n\tis_secret\x18\x02 \x01(\x08\x12\x12\n\ncreated_at\x18\x03 \x01(\x04\"\xf7\x01\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\x14\n\x07\x61uth_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x17\n\x0fprofile_picture\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x32\n\rorganizations\x18\x05 \x03(\x0b\x32\x1b.gooseai.OrganizationMember\x12!\n\x08\x61pi_keys\x18\x07 \x03(\x0b\x32\x0f.gooseai.APIKey\x12\x12\n\ncreated_at\x18\x08 \x01(\x04\x12\x1b\n\x0e\x65mail_verified\x18\t \x01(\x08H\x01\x88\x01\x01\x42\n\n\x08_auth_idB\x11\n\x0f_email_verified\"9\n\x08\x43ostData\x12\x15\n\ramount_tokens\x18\x01 \x01(\r\x12\x16\n\x0e\x61mount_credits\x18\x02 \x01(\x01\"\xba\x01\n\x0bUsageMetric\x12\x11\n\toperation\x18\x01 \x01(\t\x12\x0e\n\x06\x65ngine\x18\x02 \x01(\t\x12%\n\ninput_cost\x18\x03 \x01(\x0b\x32\x11.gooseai.CostData\x12&\n\x0boutput_cost\x18\x04 \x01(\x0b\x32\x11.gooseai.CostData\x12\x11\n\x04user\x18\x05 \x01(\tH\x00\x88\x01\x01\x12\x1d\n\x15\x61ggregation_timestamp\x18\x06 \x01(\x04\x42\x07\n\x05_user\":\n\tCostTotal\x12\x15\n\ramount_tokens\x18\x01 \x01(\r\x12\x16\n\x0e\x61mount_credits\x18\x02 \x01(\x01\"e\n\x10TotalMetricsData\x12\'\n\x0binput_total\x18\x01 \x01(\x0b\x32\x12.gooseai.CostTotal\x12(\n\x0coutput_total\x18\x02 \x01(\x0b\x32\x12.gooseai.CostTotal\"Z\n\x07Metrics\x12%\n\x07metrics\x18\x01 \x03(\x0b\x32\x14.gooseai.UsageMetric\x12(\n\x05total\x18\x02 \x01(\x0b\x32\x19.gooseai.TotalMetricsData\"\x0e\n\x0c\x45mptyRequest\"$\n\x16GetOrganizationRequest\x12\n\n\x02id\x18\x01 \x01(\t\"\x99\x01\n\x11GetMetricsRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x12\x14\n\x07user_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x12\n\nrange_from\x18\x03 \x01(\x04\x12\x10\n\x08range_to\x18\x04 \x01(\x04\x12#\n\x1binclude_per_request_metrics\x18\x05 \x01(\x08\x42\n\n\x08_user_id\"\"\n\rAPIKeyRequest\x12\x11\n\tis_secret\x18\x01 \x01(\x08\"\x1f\n\x11\x41PIKeyFindRequest\x12\n\n\x02id\x18\x01 \x01(\t\";\n UpdateDefaultOrganizationRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\"\"\n\x0e\x43lientSettings\x12\x10\n\x08settings\x18\x01 \x01(\x0c\">\n\x13\x43reateChargeRequest\x12\x0e\n\x06\x61mount\x18\x01 \x01(\x04\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\"R\n\x11GetChargesRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x12\x12\n\nrange_from\x18\x02 \x01(\x04\x12\x10\n\x08range_to\x18\x03 \x01(\x04\"z\n\x06\x43harge\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04paid\x18\x02 \x01(\x08\x12\x14\n\x0creceipt_link\x18\x03 \x01(\t\x12\x14\n\x0cpayment_link\x18\x04 \x01(\t\x12\x12\n\ncreated_at\x18\x05 \x01(\x04\x12\x16\n\x0e\x61mount_credits\x18\x06 \x01(\x04\"+\n\x07\x43harges\x12 \n\x07\x63harges\x18\x01 \x03(\x0b\x32\x0f.gooseai.Charge\"5\n\x15UpdateUserInfoRequest\x12\x12\n\x05\x65mail\x18\x01 \x01(\tH\x00\x88\x01\x01\x42\x08\n\x06_email\"*\n\x18UserPasswordChangeTicket\x12\x0e\n\x06ticket\x18\x01 \x01(\t*9\n\x10OrganizationRole\x12\n\n\x06MEMBER\x10\x00\x12\x0e\n\nACCOUNTANT\x10\x01\x12\t\n\x05OWNER\x10\x02\x32\xb5\x06\n\x10\x44\x61shboardService\x12-\n\x05GetMe\x12\x15.gooseai.EmptyRequest\x1a\r.gooseai.User\x12I\n\x0fGetOrganization\x12\x1f.gooseai.GetOrganizationRequest\x1a\x15.gooseai.Organization\x12:\n\nGetMetrics\x12\x1a.gooseai.GetMetricsRequest\x1a\x10.gooseai.Metrics\x12\x37\n\x0c\x43reateAPIKey\x12\x16.gooseai.APIKeyRequest\x1a\x0f.gooseai.APIKey\x12;\n\x0c\x44\x65leteAPIKey\x12\x1a.gooseai.APIKeyFindRequest\x1a\x0f.gooseai.APIKey\x12U\n\x19UpdateDefaultOrganization\x12).gooseai.UpdateDefaultOrganizationRequest\x1a\r.gooseai.User\x12\x43\n\x11GetClientSettings\x12\x15.gooseai.EmptyRequest\x1a\x17.gooseai.ClientSettings\x12\x45\n\x11SetClientSettings\x12\x17.gooseai.ClientSettings\x1a\x17.gooseai.ClientSettings\x12?\n\x0eUpdateUserInfo\x12\x1e.gooseai.UpdateUserInfoRequest\x1a\r.gooseai.User\x12V\n\x1a\x43reatePasswordChangeTicket\x12\x15.gooseai.EmptyRequest\x1a!.gooseai.UserPasswordChangeTicket\x12=\n\x0c\x43reateCharge\x12\x1c.gooseai.CreateChargeRequest\x1a\x0f.gooseai.Charge\x12:\n\nGetCharges\x12\x1a.gooseai.GetChargesRequest\x1a\x10.gooseai.ChargesB\x0eZ\x0c./;dashboardb\x06proto3'
 )
 
 _ORGANIZATIONROLE = _descriptor.EnumDescriptor(
@@ -48,8 +48,8 @@ _ORGANIZATIONROLE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2141,
-  serialized_end=2198,
+  serialized_start=2189,
+  serialized_end=2246,
 )
 _sym_db.RegisterEnumDescriptor(_ORGANIZATIONROLE)
 
@@ -378,6 +378,13 @@ _USER = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='email_verified', full_name='gooseai.User.email_verified', index=7,
+      number=9, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -394,9 +401,14 @@ _USER = _descriptor.Descriptor(
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
+    _descriptor.OneofDescriptor(
+      name='_email_verified', full_name='gooseai.User._email_verified',
+      index=1, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
   ],
   serialized_start=645,
-  serialized_end=844,
+  serialized_end=892,
 )
 
 
@@ -434,8 +446,8 @@ _COSTDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=846,
-  serialized_end=903,
+  serialized_start=894,
+  serialized_end=951,
 )
 
 
@@ -506,8 +518,8 @@ _USAGEMETRIC = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=906,
-  serialized_end=1092,
+  serialized_start=954,
+  serialized_end=1140,
 )
 
 
@@ -545,8 +557,8 @@ _COSTTOTAL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1094,
-  serialized_end=1152,
+  serialized_start=1142,
+  serialized_end=1200,
 )
 
 
@@ -584,8 +596,8 @@ _TOTALMETRICSDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1154,
-  serialized_end=1255,
+  serialized_start=1202,
+  serialized_end=1303,
 )
 
 
@@ -623,8 +635,8 @@ _METRICS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1257,
-  serialized_end=1347,
+  serialized_start=1305,
+  serialized_end=1395,
 )
 
 
@@ -648,8 +660,8 @@ _EMPTYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1349,
-  serialized_end=1363,
+  serialized_start=1397,
+  serialized_end=1411,
 )
 
 
@@ -680,8 +692,8 @@ _GETORGANIZATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1365,
-  serialized_end=1401,
+  serialized_start=1413,
+  serialized_end=1449,
 )
 
 
@@ -745,8 +757,8 @@ _GETMETRICSREQUEST = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=1404,
-  serialized_end=1557,
+  serialized_start=1452,
+  serialized_end=1605,
 )
 
 
@@ -777,8 +789,8 @@ _APIKEYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1559,
-  serialized_end=1593,
+  serialized_start=1607,
+  serialized_end=1641,
 )
 
 
@@ -809,8 +821,8 @@ _APIKEYFINDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1595,
-  serialized_end=1626,
+  serialized_start=1643,
+  serialized_end=1674,
 )
 
 
@@ -841,8 +853,8 @@ _UPDATEDEFAULTORGANIZATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1628,
-  serialized_end=1687,
+  serialized_start=1676,
+  serialized_end=1735,
 )
 
 
@@ -873,8 +885,8 @@ _CLIENTSETTINGS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1689,
-  serialized_end=1723,
+  serialized_start=1737,
+  serialized_end=1771,
 )
 
 
@@ -912,8 +924,8 @@ _CREATECHARGEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1725,
-  serialized_end=1787,
+  serialized_start=1773,
+  serialized_end=1835,
 )
 
 
@@ -958,8 +970,8 @@ _GETCHARGESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1789,
-  serialized_end=1871,
+  serialized_start=1837,
+  serialized_end=1919,
 )
 
 
@@ -1025,8 +1037,8 @@ _CHARGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1873,
-  serialized_end=1995,
+  serialized_start=1921,
+  serialized_end=2043,
 )
 
 
@@ -1057,8 +1069,8 @@ _CHARGES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1997,
-  serialized_end=2040,
+  serialized_start=2045,
+  serialized_end=2088,
 )
 
 
@@ -1094,8 +1106,8 @@ _UPDATEUSERINFOREQUEST = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=2042,
-  serialized_end=2095,
+  serialized_start=2090,
+  serialized_end=2143,
 )
 
 
@@ -1126,8 +1138,8 @@ _USERPASSWORDCHANGETICKET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2097,
-  serialized_end=2139,
+  serialized_start=2145,
+  serialized_end=2187,
 )
 
 _ORGANIZATIONMEMBER.fields_by_name['organization'].message_type = _ORGANIZATION
@@ -1147,6 +1159,9 @@ _USER.fields_by_name['api_keys'].message_type = _APIKEY
 _USER.oneofs_by_name['_auth_id'].fields.append(
   _USER.fields_by_name['auth_id'])
 _USER.fields_by_name['auth_id'].containing_oneof = _USER.oneofs_by_name['_auth_id']
+_USER.oneofs_by_name['_email_verified'].fields.append(
+  _USER.fields_by_name['email_verified'])
+_USER.fields_by_name['email_verified'].containing_oneof = _USER.oneofs_by_name['_email_verified']
 _USAGEMETRIC.fields_by_name['input_cost'].message_type = _COSTDATA
 _USAGEMETRIC.fields_by_name['output_cost'].message_type = _COSTDATA
 _USAGEMETRIC.oneofs_by_name['_user'].fields.append(
@@ -1368,8 +1383,8 @@ _DASHBOARDSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=2201,
-  serialized_end=3022,
+  serialized_start=2249,
+  serialized_end=3070,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetMe',
