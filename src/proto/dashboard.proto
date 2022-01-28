@@ -49,6 +49,7 @@ message User {
   repeated OrganizationMember organizations = 5;
   repeated APIKey api_keys = 7;
   uint64 created_at = 8;
+  optional bool email_verified = 9;
 }
 
 message CostData {
