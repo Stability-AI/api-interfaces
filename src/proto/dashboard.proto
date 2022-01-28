@@ -134,6 +134,14 @@ message Charges {
   repeated Charge charges = 1;
 }
 
+message UpdateUserInfoRequest {
+  optional string email = 1;
+}
+
+message UserPasswordChangeTicket {
+  string ticket = 1;
+}
+
 service DashboardService {
   // Get info
   rpc GetMe (EmptyRequest) returns (User);
@@ -148,6 +156,8 @@ service DashboardService {
   rpc UpdateDefaultOrganization (UpdateDefaultOrganizationRequest) returns (User);
   rpc GetClientSettings (EmptyRequest) returns (ClientSettings);
   rpc SetClientSettings (ClientSettings) returns (ClientSettings);
+  rpc UpdateUserInfo (UpdateUserInfoRequest) returns (User);
+  rpc CreatePasswordChangeTicket (EmptyRequest) returns (UserPasswordChangeTicket);
 
   // Payment functions
   rpc CreateCharge (CreateChargeRequest) returns (Charge);
