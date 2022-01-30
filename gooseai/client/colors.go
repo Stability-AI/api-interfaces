@@ -67,6 +67,7 @@ type GenerationParams struct {
 	TopK             uint32
 	TFS              float64
 	Auth             string
+	ServerAddr       string
 }
 
 // TOKEN: pk-2vTKbgcZYjCk8LhghuIpSVDN39dXgsSBzValgbOD7fkfn3WB
@@ -497,11 +498,15 @@ func TUI(ctx *context.Context, indexedFragments *IndexedFragments,
 
 	backendRequest := func(rq *completion.Request, showProgress bool) {
 		receiving = true
+		statusView.SetText(fmt.Sprintf("Request sent to %s/%s",
+			genSettings.ServerAddr, genSettings.Model))
 		rqBegin := time.Now()
 		stream, rqErr := (*client).Completion(*ctx, rq)
 		if rqErr != nil {
 			receiving = false
 			statusView.SetText(fmt.Sprintf("%v", rqErr))
+			app.Draw()
+			return
 		}
 
 		totalTokens := 0
@@ -512,15 +517,19 @@ func TUI(ctx *context.Context, indexedFragments *IndexedFragments,
 			answer, err := stream.Recv()
 			if start == first {
 				first = time.Now()
+				statusView.SetText(fmt.Sprintf(
+					"Streaming response from %s/%s",
+					genSettings.ServerAddr, genSettings.Model))
 			}
 
 			if err == io.EOF {
 				break
 			}
 			if err != nil {
-				statusView.SetText(fmt.Sprintf("%v", rqErr))
+				statusView.SetText(fmt.Sprintf("%v", err))
 				receiving = false
-				break
+				app.Draw()
+				return
 			}
 			logprobs := answer.Choices[0].GetLogprobs()
 			totalTokens += len(logprobs.Tokens.GetLogprobs())
@@ -584,8 +593,10 @@ func TUI(ctx *context.Context, indexedFragments *IndexedFragments,
 			float64(duration.Milliseconds()) * 1000
 		firstResp := first.Sub(rqBegin).Milliseconds()
 		statusView.SetText(fmt.Sprintf(
-			"%d ms for %d tokens (%0.2f tokens/s), %d ms to first token",
-			duration.Milliseconds(), totalTokens, tokensPerSecond, firstResp))
+			"%d ms for %d tokens (%0.2f tokens/s), "+
+				"%d ms to first token from %s/%s",
+			duration.Milliseconds(), totalTokens, tokensPerSecond, firstResp,
+			genSettings.ServerAddr, genSettings.Model))
 		*indexedFragments = (*indexedFragments)[:tokenCt]
 		textView.SetText(indexedFragments.getBufferUntil(len(
 			*indexedFragments)))
@@ -634,7 +645,8 @@ func TUI(ctx *context.Context, indexedFragments *IndexedFragments,
 		if !receiving {
 			app.QueueUpdateDraw(func() {
 				currentSelection := textView.GetHighlights()
-				if priorSelection != currentSelection[0] {
+				if len(currentSelection) > 0 &&
+					priorSelection != currentSelection[0] {
 					currTokenIdx, _ := strconv.Atoi(currentSelection[0])
 					updateTokenView(currTokenIdx)
 					priorSelection = currentSelection[0]
@@ -899,7 +911,7 @@ func main() {
 	}
 
 	genSettings := GenerationParams{
-		Model:            "gpt-neo-2-7b",
+		Model:            "gpt-neo-1-3b",
 		Temperature:      2.5,
 		OutputLength:     100,
 		PresencePenalty:  0.5,
@@ -909,6 +921,7 @@ func main() {
 		TopK:             300,
 		TFS:              0.5,
 		Auth:             os.Getenv("GOOSEAI_AUTH"),
+		ServerAddr:       serverAddr,
 	}
 
 	var client completion.CompletionServiceClient
@@ -916,7 +929,8 @@ func main() {
 
 	prompt := "The beautiful and mercurial witch laughed"
 
-	md := metadata.New(map[string]string{"bearer": genSettings.Auth})
+	md := metadata.New(map[string]string{"authorization" +
+		"": "Bearer " + genSettings.Auth})
 	ctx := metadata.NewOutgoingContext(
 		context.Background(),
 		md)

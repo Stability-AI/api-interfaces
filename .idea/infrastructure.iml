@@ -7,5 +7,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="goose-middleware" />
     <orderEntry type="module" module-name="client" />
+    <orderEntry type="module" module-name="convey-bridge" />
   </component>
 </module>
