@@ -538,7 +538,12 @@ func TUI(ctx *context.Context, indexedFragments *IndexedFragments,
 			topN := logprobs.GetTop()
 			topNBefore := logprobs.GetTopBefore()
 			for tokenIdx := range tokens.Logprobs {
-				choices := topN[tokenIdx].Logprobs[:]
+				var choices []*completion.LogProb
+				if len(topN) == 0 {
+					choices = topNBefore[tokenIdx].Logprobs[:]
+				} else {
+					choices = topN[tokenIdx].Logprobs[:]
+				}
 				choicesSz := len(choices)
 				if uint32(choicesSz) < genSettings.LogProbs &&
 					topNBefore != nil {
@@ -911,7 +916,7 @@ func main() {
 	}
 
 	genSettings := GenerationParams{
-		Model:            "gpt-neo-1-3b",
+		Model:            "gpt-j-6b",
 		Temperature:      2.5,
 		OutputLength:     100,
 		PresencePenalty:  0.5,
@@ -943,7 +948,7 @@ func main() {
 	}
 	var grpcOptions grpc.DialOption
 
-	if strings.HasSuffix(serverAddr, ":443") {
+	if strings.HasSuffix(serverAddr, "443") {
 		grpcOptions = grpc.WithTransportCredentials(
 			credentials.NewTLS(&tls.Config{InsecureSkipVerify: true}))
 	} else {

@@ -6,7 +6,7 @@ import pathlib
 
 thisPath = str(pathlib.Path(__file__).parent.resolve())
 sys.path.append(thisPath + "/../completion")
-sys.path.append(thisPath + "/../auth")
+sys.path.append(thisPath + "/../engines")
 
 print(sys.path)
 
@@ -15,8 +15,6 @@ from typing import List, Union
 from transformers import AutoTokenizer, PreTrainedTokenizerBase
 import completion.completion_pb2_grpc as completion_grpc
 import completion.completion_pb2 as completion
-import auth.auth_pb2_grpc as auth_grpc
-import auth.auth_pb2 as auth
 
 endpoints = [
     'dev-grpc.gooseai.com:80'
@@ -102,7 +100,7 @@ class CompletionEngine:
 
 def client():
     completion = CompletionEngine(
-        endpoint='grpc.tenant-goosedev-1.knative.chi.coreweave.com:80'
+        endpoint='grpc.tenant-goosedev-1.knative.chi.coreweave.com:443'
     )
     request = CompletionRequest(
         prompt=["The witch laughed",

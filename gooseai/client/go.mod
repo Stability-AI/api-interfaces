@@ -4,9 +4,8 @@ go 1.17
 
 require (
 	code.rocketnine.space/tslocum/cview v1.5.7
-	github.com/gooseai/interfaces/gooseai/auth v0.0.0-00010101000000-000000000000
-	github.com/gooseai/interfaces/gooseai/completion v0.0.0-00010101000000-000000000000
 	github.com/gdamore/tcell/v2 v2.4.1-0.20210828201608-73703f7ed490
+	github.com/gooseai/interfaces/gooseai/completion v0.0.0-00010101000000-000000000000
 	github.com/mazznoer/colorgrad v0.8.1
 	github.com/siongui/goef v0.0.0-20210610184109-d3b60554c5f3
 	github.com/wbrown/novelai-research-tool v0.0.0-20211122022657-a2c85df08669
