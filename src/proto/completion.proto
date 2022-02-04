@@ -60,6 +60,8 @@ message SamplingParams {
   optional double top_p = 3;              // OAI: nucleus sampling value
   optional uint32 top_k = 4;              // ANL: truncates logits to highest N
   optional double tail_free_sampling = 5; // ANL: tail free sampling
+  optional double typical_p = 6;          // ANL: typical sampling
+  optional double top_a = 7;              // ANL: Kurumuz's wild invention
 }
 
 // Model parameters
