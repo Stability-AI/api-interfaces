@@ -52,6 +52,8 @@ enum SamplingMethod {
   TOP_P = 2;
   TOP_K = 3;
   TFS = 4;
+  TOP_A = 5;
+  TYPICAL_P = 6;
 }
 
 message SamplingParams {
