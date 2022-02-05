@@ -49,8 +49,8 @@ message FrequencyParams {
 enum SamplingMethod {
   NONE = 0;
   TEMPERATURE = 1;
-  TOP_P = 2;
-  TOP_K = 3;
+  TOP_K = 2;
+  TOP_P = 3;
   TFS = 4;
   TOP_A = 5;
   TYPICAL_P = 6;
