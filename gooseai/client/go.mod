@@ -35,5 +35,3 @@ require (
 )
 
 replace github.com/gooseai/interfaces/gooseai/completion => ../completion
-
-replace github.com/gooseai/interfaces/gooseai/auth => ../auth

@@ -43,7 +43,7 @@ message FrequencyParams {
                                                 //  new tokens based on fqcy
   optional double repetition_penalty = 3;       // ANL: Factor to divide logits
   optional double repetition_penalty_slope = 4; // ANL: slope applied against rp
-  optional double repetition_penalty_range = 5; // ANL: number of tokens for rp
+  optional uint32 repetition_penalty_range = 5; // ANL: number of tokens for rp
 }
 
 enum SamplingMethod {
