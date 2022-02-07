@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/gdamore/tcell/v2"
+	tcell "github.com/gdamore/tcell/v2"
 	"github.com/gooseai/interfaces/gooseai/completion"
 	"github.com/mazznoer/colorgrad"
 	gpt_bpe "github.com/wbrown/novelai-research-tool/gpt-bpe"
@@ -766,6 +766,7 @@ func TUI(ctx *context.Context, indexedFragments *IndexedFragments,
 		StatusView:     statusView,
 		Run: func() {
 			if err := app.Run(); err != nil {
+				log.Printf("%v", err)
 				panic(err)
 			}
 		},
