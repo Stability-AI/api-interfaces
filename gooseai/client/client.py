@@ -5,6 +5,7 @@ import sys
 import pathlib
 
 thisPath = str(pathlib.Path(__file__).parent.resolve())
+sys.path.append(thisPath + "/../")
 sys.path.append(thisPath + "/../completion")
 sys.path.append(thisPath + "/../engines")
 
@@ -84,12 +85,8 @@ class CompletionEngine:
         self.endpoint = endpoint
         self.model = model
         self.channel = grpc.insecure_channel(self.endpoint)
-        self.auth_grpc = auth_grpc.AuthServiceStub(self.channel)
         self.completion_grpc = completion_grpc.CompletionServiceStub(
             self.channel)
-        auth_resp = self.auth_grpc.Authenticate(auth.AuthRequest(
-            static_bearer=token
-        ))
 
     def complete(self, request: CompletionRequest,
                    model: Union[str, None] = None):
@@ -104,7 +101,9 @@ def client():
     )
     request = CompletionRequest(
         prompt=["The witch laughed",
-                "The warlock laughed"]
+                "The warlock laughed"],
+        logprobs=10,
+        echo=True
     )
     for model in models:
         print(model + ":", end="")
