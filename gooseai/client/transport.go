@@ -69,6 +69,7 @@ func (rqc *RequestState) RequestToFragments(ctx *context.Context,
 			if rqc.ReceiveErrorHandler != nil {
 				(*rqc.ReceiveErrorHandler)(err)
 			}
+			return
 		}
 		logprobs := answer.Choices[0].GetLogprobs()
 		rqc.TotalTokens += len(logprobs.Tokens.GetLogprobs())

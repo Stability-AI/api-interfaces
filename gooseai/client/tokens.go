@@ -122,20 +122,22 @@ func (fragments IndexedFragments) getStringsUntil(until int) (
 			if len(accTokens) == 1 {
 				accTokens = make(gpt_bpe.Tokens, 0)
 				return logprob, &fragment.buffer, &fragment.text
+			} else {
+				decoded := gpt_bpe.Encoder.Decode(&accTokens)
+				accTokens = make(gpt_bpe.Tokens, 0)
+				return &completion.LogProb{
+					Token: &completion.Token{
+						Text: decoded,
+					},
+					Logprob:       firstLogprob,
+					LogprobBefore: firstLogprobBefore,
+				}, nil, nil
 			}
-			decoded := gpt_bpe.Encoder.Decode(&accTokens)
-			logprob.Token = &completion.Token{
-				Text: decoded,
-			}
-			logprob.Logprob = firstLogprob
-			logprob.LogprobBefore = firstLogprobBefore
-
 		} else {
-			logprob.Token = &completion.Token{
-				Text: "",
-			}
+			emptyBuf := ""
+			emptyText := ""
+			return fragment.chosen, &emptyBuf, &emptyText
 		}
-		return logprob, nil, nil
 	}
 	// Iterate over the sequence of fragments.
 	for idx := range fragments {
