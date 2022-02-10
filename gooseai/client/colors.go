@@ -26,10 +26,6 @@ var zero = 0
 var EchoTrue = &zero
 var EchoFalse *int
 
-type tokenAuth struct {
-	token string
-}
-
 type Fragment struct {
 	text    string
 	buffer  string
@@ -49,6 +45,7 @@ type GenerationParams struct {
 	TFS              float64
 	Auth             string
 	ServerAddr       string
+	Completions      uint32
 }
 
 func (genParams *GenerationParams) buildRequest(prompts *[]string,
@@ -60,8 +57,6 @@ func (genParams *GenerationParams) buildRequest(prompts *[]string,
 	/* if maxTokens > 2048 {
 		maxTokens = 2048
 	} */
-
-	completions := uint32(1)
 
 	var echoParam *completion.Echo
 	if echo != nil {
@@ -99,7 +94,7 @@ func (genParams *GenerationParams) buildRequest(prompts *[]string,
 		},
 		EngineParams: &completion.EngineParams{
 			MaxTokens:   &maxTokens,
-			Completions: &completions,
+			Completions: &genParams.Completions,
 			Logprobs:    &genParams.LogProbs,
 			Echo:        echoParam,
 		},
@@ -165,6 +160,18 @@ func main() {
 		&argparse.Options{Default: 300})
 	tfs := parser.Float("", "tfs",
 		&argparse.Options{Default: 0.5})
+	num_completions := parser.Int("c", "completions",
+		&argparse.Options{Default: 1,
+			Help: "The number of completions to perform",
+			Validate: func(args []string) error {
+				for idx := range args {
+					if len(args[idx]) < 1 {
+						return errors.New(
+							"completions must be >= 1")
+					}
+				}
+				return nil
+			}})
 
 	// Model
 	model := parser.String("", "model",
@@ -219,7 +226,7 @@ func main() {
 		*prompts = append(*prompts, "The mercurial and beautiful witch")
 	}
 
-	if *numThreads != 0 && len(*prompts) > 0 {
+	if *numThreads == 0 && len(*prompts) > 1 {
 		log.Fatal("GooseAI TUI-mode cannot accept more than one prompt at" +
 			" present!")
 	}
@@ -245,6 +252,13 @@ func main() {
 		}
 	}
 
+	// Set up metadata and context for GRPC with auth
+	// Auth handling, fall back to env if not provided
+	if authToken == nil || (authToken != nil && *authToken == "") {
+		auth := os.Getenv("GOOSEAI_AUTH")
+		authToken = &auth
+	}
+
 	genSettings := GenerationParams{
 		Model:            *model,
 		Temperature:      *temperature,
@@ -256,14 +270,10 @@ func main() {
 		TopK:             uint32(*topK),
 		TFS:              *tfs,
 		Auth:             *authToken,
+		Completions:      uint32(*num_completions),
 		ServerAddr:       uri.Host,
 	}
 
-	// Set up metadata and context for GRPC with auth
-	// Auth handling, fall back to env if not provided
-	if authToken == nil {
-		os.Getenv("GOOSEAI_AUTH")
-	}
 	md := metadata.New(map[string]string{"authorization" +
 		"": "Bearer " + genSettings.Auth})
 	ctx := metadata.NewOutgoingContext(
