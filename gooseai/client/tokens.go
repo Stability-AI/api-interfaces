@@ -105,12 +105,13 @@ func (fragments IndexedFragments) getStringsUntil(until int) (
 	var firstLogprob *float64
 	var firstLogprobBefore *float64
 	// Handle multi-token runes.
-	handleFragment := func(fragment *Fragment) (logprob completion.LogProb) {
+	handleFragment := func(fragment *Fragment) (logprob *completion.LogProb,
+		buff *string, text *string) {
 		if fragment.chosen == nil {
 			logprob.Token = &completion.Token{
 				Text: fragment.text,
 			}
-			return logprob
+			return logprob, nil, nil
 		}
 		accTokens = append(accTokens, gpt_bpe.Token(fragment.chosen.Token.Id))
 		if len(accTokens) == 1 {
@@ -118,29 +119,42 @@ func (fragments IndexedFragments) getStringsUntil(until int) (
 			firstLogprobBefore = fragment.chosen.LogprobBefore
 		}
 		if gpt_bpe.Encoder.TokensReady(accTokens) {
+			if len(accTokens) == 1 {
+				accTokens = make(gpt_bpe.Tokens, 0)
+				return logprob, &fragment.buffer, &fragment.text
+			}
 			decoded := gpt_bpe.Encoder.Decode(&accTokens)
 			logprob.Token = &completion.Token{
 				Text: decoded,
 			}
 			logprob.Logprob = firstLogprob
 			logprob.LogprobBefore = firstLogprobBefore
-			accTokens = make(gpt_bpe.Tokens, 0)
+
 		} else {
 			logprob.Token = &completion.Token{
 				Text: "",
 			}
 		}
-		return logprob
+		return logprob, nil, nil
 	}
 	// Iterate over the sequence of fragments.
 	for idx := range fragments {
 		fragment := fragments[idx]
-		logProb := handleFragment(fragment)
+		var text *string
+		var colorizedToken *string
+		logProb, buff, text := handleFragment(fragment)
+		if buff != nil {
+			colorizedToken = buff
+		} else {
+			colorized = colorizeToken(logProb, grad)
+			colorizedToken = &colorized
+			text = &logProb.Token.Text
+		}
 		colorizedBuf.WriteString(
 			fmt.Sprintf("[\"%d\"]%s[\"\"]",
 				idx,
-				colorizeToken(&logProb, grad)))
-		plainBuf.WriteString(fmt.Sprintf("%s", logProb.Token.Text))
+				*colorizedToken))
+		plainBuf.WriteString(*text)
 		if idx == until {
 			break
 		}
