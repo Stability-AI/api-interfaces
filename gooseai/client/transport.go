@@ -107,7 +107,7 @@ func (rqc *RequestState) RequestToFragments(ctx *context.Context,
 		}
 		rqc.RequestDuration = time.Now().Sub(start)
 		rqc.TokensPerSecond = float64(rqc.TotalTokens) /
-			float64(rqc.RequestDuration.Milliseconds()) * 1000
+			float64(rqc.RequestDuration.Seconds())
 		rqc.FirstResp = first.Sub(rqBegin)
 	}
 	if rqc.RequestCompleteHandler != nil {

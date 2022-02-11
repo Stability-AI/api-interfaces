@@ -13,7 +13,7 @@ import (
 
 type IterationResult struct {
 	msToFirst int64
-	duration  int64
+	duration  time.Duration
 	numTokens int
 }
 
@@ -60,7 +60,7 @@ func LoadTest(numThreads int64, genParams *GenerationParams,
 			if answer, ansErr := stream.Recv(); ansErr != nil {
 				streamEnd := time.Now()
 				firstResp := streamBegin.Sub(rqBegin).Milliseconds()
-				duration := streamEnd.Sub(rqBegin).Milliseconds()
+				duration := streamEnd.Sub(rqBegin)
 				iterationResult := IterationResult{
 					firstResp,
 					duration,
@@ -92,7 +92,7 @@ func LoadTest(numThreads int64, genParams *GenerationParams,
 				break
 			}
 			tokensPerSecond := float64(result.numTokens) / float64(
-				result.duration) * 1000
+				result.duration.Seconds())
 			workerView.SetText(fmt.Sprintf("%d: %d ms for %d tokens ("+
 				"%0.2f tokens/s), %d ms to first token",
 				iteration, result.duration, result.numTokens,

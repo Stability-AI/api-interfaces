@@ -243,7 +243,7 @@ func TUI(ctx *context.Context, indexedFragments *IndexedFragments,
 			requestState.RequestDuration.Milliseconds(),
 			requestState.TotalTokens,
 			requestState.TokensPerSecond,
-			requestState.FirstResp,
+			requestState.FirstResp.Milliseconds(),
 			genSettings.ServerAddr,
 			genSettings.Model))
 		*indexedFragments = (*indexedFragments)[:tokenCt]
