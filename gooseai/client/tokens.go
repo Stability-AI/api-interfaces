@@ -159,6 +159,9 @@ func (fragments IndexedFragments) getStringsUntil(until int) (
 	handleFragment := func(fragment *Fragment) (logprob *completion.LogProb,
 		buff *string, text *string) {
 		if fragment.chosen == nil {
+			if logprob == nil {
+				logprob = &completion.LogProb{}
+			}
 			logprob.Token = &completion.Token{
 				Text: fragment.text,
 			}
