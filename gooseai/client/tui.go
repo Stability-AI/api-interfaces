@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"github.com/gdamore/tcell/v2"
 	"github.com/gooseai/interfaces/gooseai/completion"
-	"github.com/mazznoer/colorgrad"
 	"log"
 	"strconv"
 	"strings"
@@ -161,8 +160,6 @@ func TUI(ctx *context.Context, indexedFragments *IndexedFragments,
 
 	focusManager := cview.NewFocusManager(func(p cview.Primitive) {})
 	focusManager.Add(tokenView, textView)
-
-	grad = colorgrad.RdBu()
 
 	viewedTokenIdx := 0
 	//numSelections := 0

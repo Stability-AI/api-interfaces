@@ -7,6 +7,7 @@ require (
 	github.com/akamensky/argparse v1.3.1
 	github.com/gdamore/tcell/v2 v2.4.1-0.20210828201608-73703f7ed490
 	github.com/gooseai/interfaces/gooseai/completion v0.0.0-20220208000230-47de0cfdae88
+	github.com/jwalton/go-supportscolor v1.1.0
 	github.com/mazznoer/colorgrad v0.8.1
 	github.com/wbrown/gpt_bpe v0.0.0-20220209183333-91bb5abc3fed
 	google.golang.org/grpc v1.44.0

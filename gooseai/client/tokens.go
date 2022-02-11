@@ -3,11 +3,62 @@ package main
 import (
 	"fmt"
 	"github.com/gooseai/interfaces/gooseai/completion"
+	"github.com/jwalton/go-supportscolor"
 	"github.com/mazznoer/colorgrad"
 	"github.com/wbrown/gpt_bpe"
 	"math"
 	"strings"
 )
+
+type ColorSupport uint8
+
+var grad colorgrad.Gradient
+
+const (
+	NO_COLOR ColorSupport = iota
+	LO_COLOR
+	HI_COLOR
+	TRU_COLOR
+)
+
+var SupportedColors ColorSupport = NO_COLOR
+
+func init() {
+	grad = colorgrad.RdBu()
+	if supportscolor.Stdout().SupportsColor {
+		SupportedColors = LO_COLOR
+	}
+
+	if supportscolor.Stdout().Has256 {
+		SupportedColors = HI_COLOR
+	}
+
+	if supportscolor.Stderr().Has16m {
+		SupportedColors = TRU_COLOR
+	}
+}
+
+func getProbColor(prob float64) string {
+	switch SupportedColors {
+	case NO_COLOR:
+		return "white"
+	case LO_COLOR:
+		if prob < 0.25 {
+			return "red"
+		} else if prob < 0.40 {
+			return "orange"
+		} else if prob < 0.60 {
+			return "white"
+		} else if prob < 0.75 {
+			return "aqua"
+		} else if prob < 1.0 {
+			return "blue"
+		}
+	default:
+		return grad.At(prob).Hex()
+	}
+	return "white"
+}
 
 func colorizeToken(logprob *completion.LogProb, gradient colorgrad.Gradient) string {
 	tokenStr := ""
@@ -23,7 +74,7 @@ func colorizeToken(logprob *completion.LogProb, gradient colorgrad.Gradient) str
 		lgpb = *logprob.Logprob
 	}
 	prob := 1.0 - math.Exp(lgpb)
-	return fmt.Sprintf("[%s]%s[white]", gradient.At(prob).Hex(),
+	return fmt.Sprintf("[%s]%s[white]", getProbColor(prob),
 		tokenStr)
 }
 
@@ -59,12 +110,12 @@ func getPercentViewStr(logprob *completion.LogProb) string {
 	right := ""
 	if logprob.LogprobBefore != nil {
 		prob := 1.0 - math.Exp(*logprob.LogprobBefore)
-		left = fmt.Sprintf("[%s]%-6.2f[white]", grad.At(prob).Hex(),
+		left = fmt.Sprintf("[%s]%-6.2f[white]", getProbColor(prob),
 			math.Exp(*logprob.LogprobBefore)*100)
 	}
 	if logprob.Logprob != nil {
 		prob := 1.0 - math.Exp(*logprob.Logprob)
-		right = fmt.Sprintf("[%s]%-6.2f[white]", grad.At(prob).Hex(),
+		right = fmt.Sprintf("[%s]%-6.2f[white]", getProbColor(prob),
 			math.Exp(*logprob.Logprob)*100)
 	}
 	colorized := strings.Replace(colorizeToken(logprob, grad), "\n",

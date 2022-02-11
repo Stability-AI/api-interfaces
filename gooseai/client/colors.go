@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"github.com/akamensky/argparse"
 	"github.com/gooseai/interfaces/gooseai/completion"
-	"github.com/mazznoer/colorgrad"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/credentials/insecure"
@@ -19,9 +18,6 @@ import (
 	"strings"
 )
 
-var unitrim []int
-
-var grad colorgrad.Gradient
 var zero = 0
 var EchoTrue = &zero
 var EchoFalse *int
@@ -119,7 +115,7 @@ func main() {
 	// auth handling
 	authToken := parser.String("a", "auth",
 		&argparse.Options{
-			Help: "Authentication token for Goose.AI",
+			Help: "Authentication token for Goose.AI, `GOOSEAI_AUTH` env",
 			Validate: func(args []string) error {
 				if len(args[0]) == 0 {
 					return errors.New("must provide authentication token")
@@ -187,6 +183,7 @@ func main() {
 	// Finally, host in question.
 	host := parser.String("", "host",
 		&argparse.Options{
+			Help:    "URI or host:port pair to gRPC API endpoint",
 			Default: "https://grpc.goose.ai",
 			Validate: func(args []string) error {
 				if len(args[0]) == 0 {
