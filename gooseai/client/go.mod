@@ -9,6 +9,7 @@ require (
 	github.com/gooseai/interfaces/gooseai/completion v0.0.0-20220215154450-b740580f9b52
 	github.com/jwalton/go-supportscolor v1.1.0
 	github.com/mazznoer/colorgrad v0.8.1
+	github.com/nu7hatch/gouuid v0.0.0-20131221200532-179d4d0c4d8d
 	github.com/wbrown/gpt_bpe v0.0.0-20220209183333-91bb5abc3fed
 	google.golang.org/grpc v1.44.0
 )
@@ -25,8 +26,6 @@ require (
 	github.com/mazznoer/csscolorparser v0.1.2 // indirect
 	github.com/mingrammer/commonregex v1.0.1 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
-	github.com/siongui/goef v0.0.0-20210610184109-d3b60554c5f3 // indirect
-	github.com/wbrown/novelai-research-tool v0.0.0-20211122022657-a2c85df08669 // indirect
 	golang.org/x/net v0.0.0-20220127200216-cd36cc0744dd // indirect
 	golang.org/x/sys v0.0.0-20220209214540-3681064d5158 // indirect
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211 // indirect
