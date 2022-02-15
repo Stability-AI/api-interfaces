@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"github.com/akamensky/argparse"
 	"github.com/gooseai/interfaces/gooseai/completion"
+	uuid "github.com/nu7hatch/gouuid"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/credentials/insecure"
@@ -71,9 +72,13 @@ func (genParams *GenerationParams) buildRequest(prompts *[]string,
 				}})
 	}
 
+	rqUuid, _ := uuid.NewV4()
+	rqUuidStr := rqUuid.String()
+
 	return &completion.Request{
-		EngineId: genParams.Model,
-		Prompt:   rqPrompts,
+		RequestId: &rqUuidStr,
+		EngineId:  genParams.Model,
+		Prompt:    rqPrompts,
 		ModelParams: &completion.ModelParams{
 			SamplingParams: &completion.SamplingParams{
 				Order:            nil,
