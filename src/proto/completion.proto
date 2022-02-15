@@ -34,6 +34,8 @@ message LogitBiases {
 enum FinishReason {
   NULL = 0;
   LENGTH = 1;
+  STOP = 2;
+  ERROR = 3;
 }
 
 message FrequencyParams {
@@ -105,6 +107,7 @@ message Request {
   repeated Prompt prompt = 2;              // OAI: The prompt(s) to generate completions for
   optional ModelParams model_params = 3;   //
   optional EngineParams engine_params = 4; //
+  optional string request_id = 5;          // ANL: Request UUID, will be assigned if blank
 }
 
 message LogProb {
@@ -138,9 +141,9 @@ message Answer {
   uint64 created = 2;               // OAI: When the answer was created at.
   string model = 3;                 // OAI: What model and version answered.
   repeated Completion choices = 4;
+  optional string request_id = 5;   // ANL: Request UUID this answer is to.
 }
 
 service CompletionService {
   rpc Completion (Request) returns (stream Answer) {};
 }
-
