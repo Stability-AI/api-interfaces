@@ -27,12 +27,20 @@ message OrganizationPaymentInfo {
   repeated OrganizationGrant grants = 2;
 }
 
+message OrganizationAutoCharge {
+  bool enabled = 1;
+  string id = 2;
+  uint64 created_at = 3;
+}
+
 message Organization {
   string id = 1;
   string name = 2;
   string description = 3;
   repeated OrganizationMember members = 4;
   optional OrganizationPaymentInfo payment_info = 5;
+  optional string stripe_customer_id = 6;
+  optional OrganizationAutoCharge auto_charge = 7;
 }
 
 message APIKey {
@@ -111,6 +119,13 @@ message ClientSettings {
   bytes settings = 1;
 }
 
+message CreateAutoChargeIntentRequest {
+  string organization_id = 1;
+  uint64 monthly_maximum = 2;
+  uint64 minimum_value = 3;
+  uint64 amount_credits = 4;
+}
+
 message CreateChargeRequest {
   uint64 amount = 1;
   string organization_id = 2;
@@ -133,6 +148,19 @@ message Charge {
 
 message Charges {
   repeated Charge charges = 1;
+}
+
+message GetAutoChargeRequest {
+  string organization_id = 1;
+}
+
+message AutoChargeIntent {
+  string id = 1;
+  string payment_link = 2;
+  uint64 created_at = 3;
+  uint64 monthly_maximum = 4;
+  uint64 minimum_value = 5;
+  uint64 amount_credits = 6;
 }
 
 message UpdateUserInfoRequest {
@@ -163,4 +191,7 @@ service DashboardService {
   // Payment functions
   rpc CreateCharge (CreateChargeRequest) returns (Charge);
   rpc GetCharges (GetChargesRequest) returns (Charges);
+  rpc CreateAutoChargeIntent (CreateAutoChargeIntentRequest) returns (AutoChargeIntent);
+  rpc UpdateAutoChargeIntent (CreateAutoChargeIntentRequest) returns (AutoChargeIntent);
+  rpc GetAutoChargeIntent (GetAutoChargeRequest) returns (AutoChargeIntent);
 }
