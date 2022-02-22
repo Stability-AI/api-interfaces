@@ -39,10 +39,8 @@ enum FinishReason {
 }
 
 message FrequencyParams {
-  optional double presence_penalty = 1;         // OAI: -2.0 to 2.0, penalize
-                                                //  new tokens if seen in text
-  optional double frequency_penalty = 2;        // OAI: -2.0 to 2.0,  penalize
-                                                //  new tokens based on fqcy
+  optional double presence_penalty = 1;         // OAI: -2.0 to 2.0, penalize new tokens if seen in text
+  optional double frequency_penalty = 2;        // OAI: -2.0 to 2.0, penalize new tokens based on fqcy
   optional double repetition_penalty = 3;       // ANL: Factor to divide logits
   optional double repetition_penalty_slope = 4; // ANL: slope applied against rp
   optional uint32 repetition_penalty_range = 5; // ANL: number of tokens for rp
@@ -72,24 +70,22 @@ message SamplingParams {
 message ModelParams {
   optional SamplingParams sampling_params = 1;
   optional FrequencyParams frequency_params = 2; // Rep frequency parameters
-  optional LogitBiases logit_bias = 3;           // OAI: Modify likelihood of
-                                                 //  specific tokens appearing.
+  optional LogitBiases logit_bias = 3;           // OAI: Modify likelihood of specific tokens appearing.
 }
 
 message Echo {
-  optional int32 index = 1; // ANL: Prompt token index to begin echo at, absence
-                            //      or zero is 'entire prompt'
+  optional int32 index = 1; // ANL: Prompt token index to begin echo at, absence or zero is 'entire prompt'
 }
 
 message NAIModule {
-    string id = 1;
-    string key = 2;
+  string id = 1;
+  string key = 2;
 }
 
 message Embedding {
-    oneof embedding {
-        NAIModule nai_module = 1;
-    }
+  oneof embedding {
+    NAIModule nai_module = 1;
+  }
 }
 
 message EngineParams {
@@ -125,7 +121,6 @@ message LogProbs {
   repeated uint32 text_offset = 2;       // OAI: indexed offsets of tokens
   repeated TokenLogProbs top = 3;        // OAI: top N logprobs after processing
   repeated TokenLogProbs top_before = 4; // ANL: top N logprobs before processing
-  FinishReason finish_reason = 5;        // OAI: the reason why this finished if finished
 }
 
 message Completion {
