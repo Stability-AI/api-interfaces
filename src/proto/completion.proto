@@ -77,15 +77,29 @@ message Echo {
   optional int32 index = 1; // ANL: Prompt token index to begin echo at, absence or zero is 'entire prompt'
 }
 
-message NAIModule {
-  string id = 1;
-  string key = 2;
+enum NumType {
+  FP16 = 0;
+  FP32 = 1;
+  BF16 = 2;
+}
+
+message ModuleEmbedding {
+  string id = 1;                    // GAI: id of embedding, straight key or filename get
+  string key = 2;                   // GAI: key to decrypt embedding
+}
+
+message Tensor {
+  NumType typ;                      // GAI: Numeric type of tensor.
+  repeated uint32 dims;             // GAI: Tensor dimensions.
+  bytes data;                       // GAI: Linear bytes serialization of tensor.
 }
 
 message Embedding {
   oneof embedding {
-    NAIModule nai_module = 1;
+    Tensor raw = 1;                 // GAI: Serialization of an embedding tensor.
+    ModuleEmbedding module = 2;     // GAI: ID + key of embedding to retrieve from object store
   }
+  optional uint32 pos;              // GAI: Where in the context to insert the embedding.
 }
 
 message EngineParams {
@@ -104,6 +118,7 @@ message Request {
   optional ModelParams model_params = 3;   //
   optional EngineParams engine_params = 4; //
   optional string request_id = 5;          // ANL: Request UUID, will be assigned if blank
+  repeated Embeddings embeddings = 6;      // GAI: Embeddings for model. 
 }
 
 message LogProb {
