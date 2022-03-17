@@ -89,9 +89,9 @@ message ModuleEmbedding {
 }
 
 message Tensor {
-  NumType typ;                      // GAI: Numeric type of tensor.
-  repeated uint32 dims;             // GAI: Tensor dimensions.
-  bytes data;                       // GAI: Linear bytes serialization of tensor.
+  NumType typ = 1;                  // GAI: Numeric type of tensor.
+  repeated uint32 dims = 2;         // GAI: Tensor dimensions.
+  bytes data = 3;                   // GAI: Linear bytes serialization of tensor.
 }
 
 message Embedding {
@@ -99,7 +99,7 @@ message Embedding {
     Tensor raw = 1;                 // GAI: Serialization of an embedding tensor.
     ModuleEmbedding module = 2;     // GAI: ID + key of embedding to retrieve from object store
   }
-  optional uint32 pos;              // GAI: Where in the context to insert the embedding.
+  optional uint32 pos = 3;          // GAI: Where in the context to insert the embedding.
 }
 
 message EngineParams {
@@ -118,7 +118,7 @@ message Request {
   optional ModelParams model_params = 3;   //
   optional EngineParams engine_params = 4; //
   optional string request_id = 5;          // ANL: Request UUID, will be assigned if blank
-  repeated Embeddings embeddings = 6;      // GAI: Embeddings for model. 
+  repeated Embedding embeddings = 6;       // GAI: Embeddings for model. 
 }
 
 message LogProb {

@@ -74,6 +74,21 @@ class DashboardServiceStub(object):
                 request_serializer=dashboard__pb2.GetChargesRequest.SerializeToString,
                 response_deserializer=dashboard__pb2.Charges.FromString,
                 )
+        self.CreateAutoChargeIntent = channel.unary_unary(
+                '/gooseai.DashboardService/CreateAutoChargeIntent',
+                request_serializer=dashboard__pb2.CreateAutoChargeIntentRequest.SerializeToString,
+                response_deserializer=dashboard__pb2.AutoChargeIntent.FromString,
+                )
+        self.UpdateAutoChargeIntent = channel.unary_unary(
+                '/gooseai.DashboardService/UpdateAutoChargeIntent',
+                request_serializer=dashboard__pb2.CreateAutoChargeIntentRequest.SerializeToString,
+                response_deserializer=dashboard__pb2.AutoChargeIntent.FromString,
+                )
+        self.GetAutoChargeIntent = channel.unary_unary(
+                '/gooseai.DashboardService/GetAutoChargeIntent',
+                request_serializer=dashboard__pb2.GetAutoChargeRequest.SerializeToString,
+                response_deserializer=dashboard__pb2.AutoChargeIntent.FromString,
+                )
 
 
 class DashboardServiceServicer(object):
@@ -155,6 +170,24 @@ class DashboardServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CreateAutoChargeIntent(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateAutoChargeIntent(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetAutoChargeIntent(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DashboardServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -217,6 +250,21 @@ def add_DashboardServiceServicer_to_server(servicer, server):
                     servicer.GetCharges,
                     request_deserializer=dashboard__pb2.GetChargesRequest.FromString,
                     response_serializer=dashboard__pb2.Charges.SerializeToString,
+            ),
+            'CreateAutoChargeIntent': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateAutoChargeIntent,
+                    request_deserializer=dashboard__pb2.CreateAutoChargeIntentRequest.FromString,
+                    response_serializer=dashboard__pb2.AutoChargeIntent.SerializeToString,
+            ),
+            'UpdateAutoChargeIntent': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateAutoChargeIntent,
+                    request_deserializer=dashboard__pb2.CreateAutoChargeIntentRequest.FromString,
+                    response_serializer=dashboard__pb2.AutoChargeIntent.SerializeToString,
+            ),
+            'GetAutoChargeIntent': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAutoChargeIntent,
+                    request_deserializer=dashboard__pb2.GetAutoChargeRequest.FromString,
+                    response_serializer=dashboard__pb2.AutoChargeIntent.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -429,5 +477,56 @@ class DashboardService(object):
         return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/GetCharges',
             dashboard__pb2.GetChargesRequest.SerializeToString,
             dashboard__pb2.Charges.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CreateAutoChargeIntent(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/CreateAutoChargeIntent',
+            dashboard__pb2.CreateAutoChargeIntentRequest.SerializeToString,
+            dashboard__pb2.AutoChargeIntent.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UpdateAutoChargeIntent(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/UpdateAutoChargeIntent',
+            dashboard__pb2.CreateAutoChargeIntentRequest.SerializeToString,
+            dashboard__pb2.AutoChargeIntent.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetAutoChargeIntent(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/GetAutoChargeIntent',
+            dashboard__pb2.GetAutoChargeRequest.SerializeToString,
+            dashboard__pb2.AutoChargeIntent.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

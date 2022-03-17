@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\014./;dashboard',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0f\x64\x61shboard.proto\x12\x07gooseai\"\xa9\x01\n\x12OrganizationMember\x12+\n\x0corganization\x18\x01 \x01(\x0b\x32\x15.gooseai.Organization\x12 \n\x04user\x18\x02 \x01(\x0b\x32\r.gooseai.UserH\x00\x88\x01\x01\x12\'\n\x04role\x18\x03 \x01(\x0e\x32\x19.gooseai.OrganizationRole\x12\x12\n\nis_default\x18\x04 \x01(\x08\x42\x07\n\x05_user\"h\n\x11OrganizationGrant\x12\x16\n\x0e\x61mount_granted\x18\x01 \x01(\x01\x12\x13\n\x0b\x61mount_used\x18\x02 \x01(\x01\x12\x12\n\nexpires_at\x18\x03 \x01(\x04\x12\x12\n\ngranted_at\x18\x04 \x01(\x04\"V\n\x17OrganizationPaymentInfo\x12\x0f\n\x07\x62\x61lance\x18\x01 \x01(\x01\x12*\n\x06grants\x18\x02 \x03(\x0b\x32\x1a.gooseai.OrganizationGrant\"\xb9\x01\n\x0cOrganization\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12,\n\x07members\x18\x04 \x03(\x0b\x32\x1b.gooseai.OrganizationMember\x12;\n\x0cpayment_info\x18\x05 \x01(\x0b\x32 .gooseai.OrganizationPaymentInfoH\x00\x88\x01\x01\x42\x0f\n\r_payment_info\"<\n\x06\x41PIKey\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x11\n\tis_secret\x18\x02 \x01(\x08\x12\x12\n\ncreated_at\x18\x03 \x01(\x04\"\xf7\x01\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\x14\n\x07\x61uth_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x17\n\x0fprofile_picture\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x32\n\rorganizations\x18\x05 \x03(\x0b\x32\x1b.gooseai.OrganizationMember\x12!\n\x08\x61pi_keys\x18\x07 \x03(\x0b\x32\x0f.gooseai.APIKey\x12\x12\n\ncreated_at\x18\x08 \x01(\x04\x12\x1b\n\x0e\x65mail_verified\x18\t \x01(\x08H\x01\x88\x01\x01\x42\n\n\x08_auth_idB\x11\n\x0f_email_verified\"9\n\x08\x43ostData\x12\x15\n\ramount_tokens\x18\x01 \x01(\r\x12\x16\n\x0e\x61mount_credits\x18\x02 \x01(\x01\"\xba\x01\n\x0bUsageMetric\x12\x11\n\toperation\x18\x01 \x01(\t\x12\x0e\n\x06\x65ngine\x18\x02 \x01(\t\x12%\n\ninput_cost\x18\x03 \x01(\x0b\x32\x11.gooseai.CostData\x12&\n\x0boutput_cost\x18\x04 \x01(\x0b\x32\x11.gooseai.CostData\x12\x11\n\x04user\x18\x05 \x01(\tH\x00\x88\x01\x01\x12\x1d\n\x15\x61ggregation_timestamp\x18\x06 \x01(\x04\x42\x07\n\x05_user\":\n\tCostTotal\x12\x15\n\ramount_tokens\x18\x01 \x01(\r\x12\x16\n\x0e\x61mount_credits\x18\x02 \x01(\x01\"e\n\x10TotalMetricsData\x12\'\n\x0binput_total\x18\x01 \x01(\x0b\x32\x12.gooseai.CostTotal\x12(\n\x0coutput_total\x18\x02 \x01(\x0b\x32\x12.gooseai.CostTotal\"Z\n\x07Metrics\x12%\n\x07metrics\x18\x01 \x03(\x0b\x32\x14.gooseai.UsageMetric\x12(\n\x05total\x18\x02 \x01(\x0b\x32\x19.gooseai.TotalMetricsData\"\x0e\n\x0c\x45mptyRequest\"$\n\x16GetOrganizationRequest\x12\n\n\x02id\x18\x01 \x01(\t\"\x99\x01\n\x11GetMetricsRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x12\x14\n\x07user_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x12\n\nrange_from\x18\x03 \x01(\x04\x12\x10\n\x08range_to\x18\x04 \x01(\x04\x12#\n\x1binclude_per_request_metrics\x18\x05 \x01(\x08\x42\n\n\x08_user_id\"\"\n\rAPIKeyRequest\x12\x11\n\tis_secret\x18\x01 \x01(\x08\"\x1f\n\x11\x41PIKeyFindRequest\x12\n\n\x02id\x18\x01 \x01(\t\";\n UpdateDefaultOrganizationRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\"\"\n\x0e\x43lientSettings\x12\x10\n\x08settings\x18\x01 \x01(\x0c\">\n\x13\x43reateChargeRequest\x12\x0e\n\x06\x61mount\x18\x01 \x01(\x04\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\"R\n\x11GetChargesRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x12\x12\n\nrange_from\x18\x02 \x01(\x04\x12\x10\n\x08range_to\x18\x03 \x01(\x04\"z\n\x06\x43harge\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04paid\x18\x02 \x01(\x08\x12\x14\n\x0creceipt_link\x18\x03 \x01(\t\x12\x14\n\x0cpayment_link\x18\x04 \x01(\t\x12\x12\n\ncreated_at\x18\x05 \x01(\x04\x12\x16\n\x0e\x61mount_credits\x18\x06 \x01(\x04\"+\n\x07\x43harges\x12 \n\x07\x63harges\x18\x01 \x03(\x0b\x32\x0f.gooseai.Charge\"5\n\x15UpdateUserInfoRequest\x12\x12\n\x05\x65mail\x18\x01 \x01(\tH\x00\x88\x01\x01\x42\x08\n\x06_email\"*\n\x18UserPasswordChangeTicket\x12\x0e\n\x06ticket\x18\x01 \x01(\t*9\n\x10OrganizationRole\x12\n\n\x06MEMBER\x10\x00\x12\x0e\n\nACCOUNTANT\x10\x01\x12\t\n\x05OWNER\x10\x02\x32\xb5\x06\n\x10\x44\x61shboardService\x12-\n\x05GetMe\x12\x15.gooseai.EmptyRequest\x1a\r.gooseai.User\x12I\n\x0fGetOrganization\x12\x1f.gooseai.GetOrganizationRequest\x1a\x15.gooseai.Organization\x12:\n\nGetMetrics\x12\x1a.gooseai.GetMetricsRequest\x1a\x10.gooseai.Metrics\x12\x37\n\x0c\x43reateAPIKey\x12\x16.gooseai.APIKeyRequest\x1a\x0f.gooseai.APIKey\x12;\n\x0c\x44\x65leteAPIKey\x12\x1a.gooseai.APIKeyFindRequest\x1a\x0f.gooseai.APIKey\x12U\n\x19UpdateDefaultOrganization\x12).gooseai.UpdateDefaultOrganizationRequest\x1a\r.gooseai.User\x12\x43\n\x11GetClientSettings\x12\x15.gooseai.EmptyRequest\x1a\x17.gooseai.ClientSettings\x12\x45\n\x11SetClientSettings\x12\x17.gooseai.ClientSettings\x1a\x17.gooseai.ClientSettings\x12?\n\x0eUpdateUserInfo\x12\x1e.gooseai.UpdateUserInfoRequest\x1a\r.gooseai.User\x12V\n\x1a\x43reatePasswordChangeTicket\x12\x15.gooseai.EmptyRequest\x1a!.gooseai.UserPasswordChangeTicket\x12=\n\x0c\x43reateCharge\x12\x1c.gooseai.CreateChargeRequest\x1a\x0f.gooseai.Charge\x12:\n\nGetCharges\x12\x1a.gooseai.GetChargesRequest\x1a\x10.gooseai.ChargesB\x0eZ\x0c./;dashboardb\x06proto3'
+  serialized_pb=b'\n\x0f\x64\x61shboard.proto\x12\x07gooseai\"\xa9\x01\n\x12OrganizationMember\x12+\n\x0corganization\x18\x01 \x01(\x0b\x32\x15.gooseai.Organization\x12 \n\x04user\x18\x02 \x01(\x0b\x32\r.gooseai.UserH\x00\x88\x01\x01\x12\'\n\x04role\x18\x03 \x01(\x0e\x32\x19.gooseai.OrganizationRole\x12\x12\n\nis_default\x18\x04 \x01(\x08\x42\x07\n\x05_user\"h\n\x11OrganizationGrant\x12\x16\n\x0e\x61mount_granted\x18\x01 \x01(\x01\x12\x13\n\x0b\x61mount_used\x18\x02 \x01(\x01\x12\x12\n\nexpires_at\x18\x03 \x01(\x04\x12\x12\n\ngranted_at\x18\x04 \x01(\x04\"V\n\x17OrganizationPaymentInfo\x12\x0f\n\x07\x62\x61lance\x18\x01 \x01(\x01\x12*\n\x06grants\x18\x02 \x03(\x0b\x32\x1a.gooseai.OrganizationGrant\"I\n\x16OrganizationAutoCharge\x12\x0f\n\x07\x65nabled\x18\x01 \x01(\x08\x12\n\n\x02id\x18\x02 \x01(\t\x12\x12\n\ncreated_at\x18\x03 \x01(\x04\"\xbc\x02\n\x0cOrganization\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12,\n\x07members\x18\x04 \x03(\x0b\x32\x1b.gooseai.OrganizationMember\x12;\n\x0cpayment_info\x18\x05 \x01(\x0b\x32 .gooseai.OrganizationPaymentInfoH\x00\x88\x01\x01\x12\x1f\n\x12stripe_customer_id\x18\x06 \x01(\tH\x01\x88\x01\x01\x12\x39\n\x0b\x61uto_charge\x18\x07 \x01(\x0b\x32\x1f.gooseai.OrganizationAutoChargeH\x02\x88\x01\x01\x42\x0f\n\r_payment_infoB\x15\n\x13_stripe_customer_idB\x0e\n\x0c_auto_charge\"<\n\x06\x41PIKey\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x11\n\tis_secret\x18\x02 \x01(\x08\x12\x12\n\ncreated_at\x18\x03 \x01(\x04\"\xf7\x01\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\x14\n\x07\x61uth_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x17\n\x0fprofile_picture\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x32\n\rorganizations\x18\x05 \x03(\x0b\x32\x1b.gooseai.OrganizationMember\x12!\n\x08\x61pi_keys\x18\x07 \x03(\x0b\x32\x0f.gooseai.APIKey\x12\x12\n\ncreated_at\x18\x08 \x01(\x04\x12\x1b\n\x0e\x65mail_verified\x18\t \x01(\x08H\x01\x88\x01\x01\x42\n\n\x08_auth_idB\x11\n\x0f_email_verified\"9\n\x08\x43ostData\x12\x15\n\ramount_tokens\x18\x01 \x01(\r\x12\x16\n\x0e\x61mount_credits\x18\x02 \x01(\x01\"\xba\x01\n\x0bUsageMetric\x12\x11\n\toperation\x18\x01 \x01(\t\x12\x0e\n\x06\x65ngine\x18\x02 \x01(\t\x12%\n\ninput_cost\x18\x03 \x01(\x0b\x32\x11.gooseai.CostData\x12&\n\x0boutput_cost\x18\x04 \x01(\x0b\x32\x11.gooseai.CostData\x12\x11\n\x04user\x18\x05 \x01(\tH\x00\x88\x01\x01\x12\x1d\n\x15\x61ggregation_timestamp\x18\x06 \x01(\x04\x42\x07\n\x05_user\":\n\tCostTotal\x12\x15\n\ramount_tokens\x18\x01 \x01(\r\x12\x16\n\x0e\x61mount_credits\x18\x02 \x01(\x01\"e\n\x10TotalMetricsData\x12\'\n\x0binput_total\x18\x01 \x01(\x0b\x32\x12.gooseai.CostTotal\x12(\n\x0coutput_total\x18\x02 \x01(\x0b\x32\x12.gooseai.CostTotal\"Z\n\x07Metrics\x12%\n\x07metrics\x18\x01 \x03(\x0b\x32\x14.gooseai.UsageMetric\x12(\n\x05total\x18\x02 \x01(\x0b\x32\x19.gooseai.TotalMetricsData\"\x0e\n\x0c\x45mptyRequest\"$\n\x16GetOrganizationRequest\x12\n\n\x02id\x18\x01 \x01(\t\"\x99\x01\n\x11GetMetricsRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x12\x14\n\x07user_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x12\n\nrange_from\x18\x03 \x01(\x04\x12\x10\n\x08range_to\x18\x04 \x01(\x04\x12#\n\x1binclude_per_request_metrics\x18\x05 \x01(\x08\x42\n\n\x08_user_id\"\"\n\rAPIKeyRequest\x12\x11\n\tis_secret\x18\x01 \x01(\x08\"\x1f\n\x11\x41PIKeyFindRequest\x12\n\n\x02id\x18\x01 \x01(\t\";\n UpdateDefaultOrganizationRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\"\"\n\x0e\x43lientSettings\x12\x10\n\x08settings\x18\x01 \x01(\x0c\"\x80\x01\n\x1d\x43reateAutoChargeIntentRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x12\x17\n\x0fmonthly_maximum\x18\x02 \x01(\x04\x12\x15\n\rminimum_value\x18\x03 \x01(\x04\x12\x16\n\x0e\x61mount_credits\x18\x04 \x01(\x04\">\n\x13\x43reateChargeRequest\x12\x0e\n\x06\x61mount\x18\x01 \x01(\x04\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\"R\n\x11GetChargesRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x12\x12\n\nrange_from\x18\x02 \x01(\x04\x12\x10\n\x08range_to\x18\x03 \x01(\x04\"z\n\x06\x43harge\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04paid\x18\x02 \x01(\x08\x12\x14\n\x0creceipt_link\x18\x03 \x01(\t\x12\x14\n\x0cpayment_link\x18\x04 \x01(\t\x12\x12\n\ncreated_at\x18\x05 \x01(\x04\x12\x16\n\x0e\x61mount_credits\x18\x06 \x01(\x04\"+\n\x07\x43harges\x12 \n\x07\x63harges\x18\x01 \x03(\x0b\x32\x0f.gooseai.Charge\"/\n\x14GetAutoChargeRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\"\x90\x01\n\x10\x41utoChargeIntent\x12\n\n\x02id\x18\x01 \x01(\t\x12\x14\n\x0cpayment_link\x18\x02 \x01(\t\x12\x12\n\ncreated_at\x18\x03 \x01(\x04\x12\x17\n\x0fmonthly_maximum\x18\x04 \x01(\x04\x12\x15\n\rminimum_value\x18\x05 \x01(\x04\x12\x16\n\x0e\x61mount_credits\x18\x06 \x01(\x04\"5\n\x15UpdateUserInfoRequest\x12\x12\n\x05\x65mail\x18\x01 \x01(\tH\x00\x88\x01\x01\x42\x08\n\x06_email\"*\n\x18UserPasswordChangeTicket\x12\x0e\n\x06ticket\x18\x01 \x01(\t*9\n\x10OrganizationRole\x12\n\n\x06MEMBER\x10\x00\x12\x0e\n\nACCOUNTANT\x10\x01\x12\t\n\x05OWNER\x10\x02\x32\xc0\x08\n\x10\x44\x61shboardService\x12-\n\x05GetMe\x12\x15.gooseai.EmptyRequest\x1a\r.gooseai.User\x12I\n\x0fGetOrganization\x12\x1f.gooseai.GetOrganizationRequest\x1a\x15.gooseai.Organization\x12:\n\nGetMetrics\x12\x1a.gooseai.GetMetricsRequest\x1a\x10.gooseai.Metrics\x12\x37\n\x0c\x43reateAPIKey\x12\x16.gooseai.APIKeyRequest\x1a\x0f.gooseai.APIKey\x12;\n\x0c\x44\x65leteAPIKey\x12\x1a.gooseai.APIKeyFindRequest\x1a\x0f.gooseai.APIKey\x12U\n\x19UpdateDefaultOrganization\x12).gooseai.UpdateDefaultOrganizationRequest\x1a\r.gooseai.User\x12\x43\n\x11GetClientSettings\x12\x15.gooseai.EmptyRequest\x1a\x17.gooseai.ClientSettings\x12\x45\n\x11SetClientSettings\x12\x17.gooseai.ClientSettings\x1a\x17.gooseai.ClientSettings\x12?\n\x0eUpdateUserInfo\x12\x1e.gooseai.UpdateUserInfoRequest\x1a\r.gooseai.User\x12V\n\x1a\x43reatePasswordChangeTicket\x12\x15.gooseai.EmptyRequest\x1a!.gooseai.UserPasswordChangeTicket\x12=\n\x0c\x43reateCharge\x12\x1c.gooseai.CreateChargeRequest\x1a\x0f.gooseai.Charge\x12:\n\nGetCharges\x12\x1a.gooseai.GetChargesRequest\x1a\x10.gooseai.Charges\x12[\n\x16\x43reateAutoChargeIntent\x12&.gooseai.CreateAutoChargeIntentRequest\x1a\x19.gooseai.AutoChargeIntent\x12[\n\x16UpdateAutoChargeIntent\x12&.gooseai.CreateAutoChargeIntentRequest\x1a\x19.gooseai.AutoChargeIntent\x12O\n\x13GetAutoChargeIntent\x12\x1d.gooseai.GetAutoChargeRequest\x1a\x19.gooseai.AutoChargeIntentB\x0eZ\x0c./;dashboardb\x06proto3'
 )
 
 _ORGANIZATIONROLE = _descriptor.EnumDescriptor(
@@ -48,8 +48,8 @@ _ORGANIZATIONROLE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2189,
-  serialized_end=2246,
+  serialized_start=2722,
+  serialized_end=2779,
 )
 _sym_db.RegisterEnumDescriptor(_ORGANIZATIONROLE)
 
@@ -210,6 +210,52 @@ _ORGANIZATIONPAYMENTINFO = _descriptor.Descriptor(
 )
 
 
+_ORGANIZATIONAUTOCHARGE = _descriptor.Descriptor(
+  name='OrganizationAutoCharge',
+  full_name='gooseai.OrganizationAutoCharge',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='enabled', full_name='gooseai.OrganizationAutoCharge.enabled', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='id', full_name='gooseai.OrganizationAutoCharge.id', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='created_at', full_name='gooseai.OrganizationAutoCharge.created_at', index=2,
+      number=3, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=394,
+  serialized_end=467,
+)
+
+
 _ORGANIZATION = _descriptor.Descriptor(
   name='Organization',
   full_name='gooseai.Organization',
@@ -253,6 +299,20 @@ _ORGANIZATION = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='stripe_customer_id', full_name='gooseai.Organization.stripe_customer_id', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='auto_charge', full_name='gooseai.Organization.auto_charge', index=6,
+      number=7, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -269,9 +329,19 @@ _ORGANIZATION = _descriptor.Descriptor(
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
+    _descriptor.OneofDescriptor(
+      name='_stripe_customer_id', full_name='gooseai.Organization._stripe_customer_id',
+      index=1, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+    _descriptor.OneofDescriptor(
+      name='_auto_charge', full_name='gooseai.Organization._auto_charge',
+      index=2, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
   ],
-  serialized_start=395,
-  serialized_end=580,
+  serialized_start=470,
+  serialized_end=786,
 )
 
 
@@ -316,8 +386,8 @@ _APIKEY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=582,
-  serialized_end=642,
+  serialized_start=788,
+  serialized_end=848,
 )
 
 
@@ -407,8 +477,8 @@ _USER = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=645,
-  serialized_end=892,
+  serialized_start=851,
+  serialized_end=1098,
 )
 
 
@@ -446,8 +516,8 @@ _COSTDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=894,
-  serialized_end=951,
+  serialized_start=1100,
+  serialized_end=1157,
 )
 
 
@@ -518,8 +588,8 @@ _USAGEMETRIC = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=954,
-  serialized_end=1140,
+  serialized_start=1160,
+  serialized_end=1346,
 )
 
 
@@ -557,8 +627,8 @@ _COSTTOTAL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1142,
-  serialized_end=1200,
+  serialized_start=1348,
+  serialized_end=1406,
 )
 
 
@@ -596,8 +666,8 @@ _TOTALMETRICSDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1202,
-  serialized_end=1303,
+  serialized_start=1408,
+  serialized_end=1509,
 )
 
 
@@ -635,8 +705,8 @@ _METRICS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1305,
-  serialized_end=1395,
+  serialized_start=1511,
+  serialized_end=1601,
 )
 
 
@@ -660,8 +730,8 @@ _EMPTYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1397,
-  serialized_end=1411,
+  serialized_start=1603,
+  serialized_end=1617,
 )
 
 
@@ -692,8 +762,8 @@ _GETORGANIZATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1413,
-  serialized_end=1449,
+  serialized_start=1619,
+  serialized_end=1655,
 )
 
 
@@ -757,8 +827,8 @@ _GETMETRICSREQUEST = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=1452,
-  serialized_end=1605,
+  serialized_start=1658,
+  serialized_end=1811,
 )
 
 
@@ -789,8 +859,8 @@ _APIKEYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1607,
-  serialized_end=1641,
+  serialized_start=1813,
+  serialized_end=1847,
 )
 
 
@@ -821,8 +891,8 @@ _APIKEYFINDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1643,
-  serialized_end=1674,
+  serialized_start=1849,
+  serialized_end=1880,
 )
 
 
@@ -853,8 +923,8 @@ _UPDATEDEFAULTORGANIZATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1676,
-  serialized_end=1735,
+  serialized_start=1882,
+  serialized_end=1941,
 )
 
 
@@ -885,8 +955,61 @@ _CLIENTSETTINGS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1737,
-  serialized_end=1771,
+  serialized_start=1943,
+  serialized_end=1977,
+)
+
+
+_CREATEAUTOCHARGEINTENTREQUEST = _descriptor.Descriptor(
+  name='CreateAutoChargeIntentRequest',
+  full_name='gooseai.CreateAutoChargeIntentRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization_id', full_name='gooseai.CreateAutoChargeIntentRequest.organization_id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='monthly_maximum', full_name='gooseai.CreateAutoChargeIntentRequest.monthly_maximum', index=1,
+      number=2, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='minimum_value', full_name='gooseai.CreateAutoChargeIntentRequest.minimum_value', index=2,
+      number=3, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='amount_credits', full_name='gooseai.CreateAutoChargeIntentRequest.amount_credits', index=3,
+      number=4, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1980,
+  serialized_end=2108,
 )
 
 
@@ -924,8 +1047,8 @@ _CREATECHARGEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1773,
-  serialized_end=1835,
+  serialized_start=2110,
+  serialized_end=2172,
 )
 
 
@@ -970,8 +1093,8 @@ _GETCHARGESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1837,
-  serialized_end=1919,
+  serialized_start=2174,
+  serialized_end=2256,
 )
 
 
@@ -1037,8 +1160,8 @@ _CHARGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1921,
-  serialized_end=2043,
+  serialized_start=2258,
+  serialized_end=2380,
 )
 
 
@@ -1069,8 +1192,107 @@ _CHARGES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2045,
-  serialized_end=2088,
+  serialized_start=2382,
+  serialized_end=2425,
+)
+
+
+_GETAUTOCHARGEREQUEST = _descriptor.Descriptor(
+  name='GetAutoChargeRequest',
+  full_name='gooseai.GetAutoChargeRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization_id', full_name='gooseai.GetAutoChargeRequest.organization_id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2427,
+  serialized_end=2474,
+)
+
+
+_AUTOCHARGEINTENT = _descriptor.Descriptor(
+  name='AutoChargeIntent',
+  full_name='gooseai.AutoChargeIntent',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='gooseai.AutoChargeIntent.id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='payment_link', full_name='gooseai.AutoChargeIntent.payment_link', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='created_at', full_name='gooseai.AutoChargeIntent.created_at', index=2,
+      number=3, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='monthly_maximum', full_name='gooseai.AutoChargeIntent.monthly_maximum', index=3,
+      number=4, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='minimum_value', full_name='gooseai.AutoChargeIntent.minimum_value', index=4,
+      number=5, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='amount_credits', full_name='gooseai.AutoChargeIntent.amount_credits', index=5,
+      number=6, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2477,
+  serialized_end=2621,
 )
 
 
@@ -1106,8 +1328,8 @@ _UPDATEUSERINFOREQUEST = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=2090,
-  serialized_end=2143,
+  serialized_start=2623,
+  serialized_end=2676,
 )
 
 
@@ -1138,8 +1360,8 @@ _USERPASSWORDCHANGETICKET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2145,
-  serialized_end=2187,
+  serialized_start=2678,
+  serialized_end=2720,
 )
 
 _ORGANIZATIONMEMBER.fields_by_name['organization'].message_type = _ORGANIZATION
@@ -1151,9 +1373,16 @@ _ORGANIZATIONMEMBER.fields_by_name['user'].containing_oneof = _ORGANIZATIONMEMBE
 _ORGANIZATIONPAYMENTINFO.fields_by_name['grants'].message_type = _ORGANIZATIONGRANT
 _ORGANIZATION.fields_by_name['members'].message_type = _ORGANIZATIONMEMBER
 _ORGANIZATION.fields_by_name['payment_info'].message_type = _ORGANIZATIONPAYMENTINFO
+_ORGANIZATION.fields_by_name['auto_charge'].message_type = _ORGANIZATIONAUTOCHARGE
 _ORGANIZATION.oneofs_by_name['_payment_info'].fields.append(
   _ORGANIZATION.fields_by_name['payment_info'])
 _ORGANIZATION.fields_by_name['payment_info'].containing_oneof = _ORGANIZATION.oneofs_by_name['_payment_info']
+_ORGANIZATION.oneofs_by_name['_stripe_customer_id'].fields.append(
+  _ORGANIZATION.fields_by_name['stripe_customer_id'])
+_ORGANIZATION.fields_by_name['stripe_customer_id'].containing_oneof = _ORGANIZATION.oneofs_by_name['_stripe_customer_id']
+_ORGANIZATION.oneofs_by_name['_auto_charge'].fields.append(
+  _ORGANIZATION.fields_by_name['auto_charge'])
+_ORGANIZATION.fields_by_name['auto_charge'].containing_oneof = _ORGANIZATION.oneofs_by_name['_auto_charge']
 _USER.fields_by_name['organizations'].message_type = _ORGANIZATIONMEMBER
 _USER.fields_by_name['api_keys'].message_type = _APIKEY
 _USER.oneofs_by_name['_auth_id'].fields.append(
@@ -1181,6 +1410,7 @@ _UPDATEUSERINFOREQUEST.fields_by_name['email'].containing_oneof = _UPDATEUSERINF
 DESCRIPTOR.message_types_by_name['OrganizationMember'] = _ORGANIZATIONMEMBER
 DESCRIPTOR.message_types_by_name['OrganizationGrant'] = _ORGANIZATIONGRANT
 DESCRIPTOR.message_types_by_name['OrganizationPaymentInfo'] = _ORGANIZATIONPAYMENTINFO
+DESCRIPTOR.message_types_by_name['OrganizationAutoCharge'] = _ORGANIZATIONAUTOCHARGE
 DESCRIPTOR.message_types_by_name['Organization'] = _ORGANIZATION
 DESCRIPTOR.message_types_by_name['APIKey'] = _APIKEY
 DESCRIPTOR.message_types_by_name['User'] = _USER
@@ -1196,10 +1426,13 @@ DESCRIPTOR.message_types_by_name['APIKeyRequest'] = _APIKEYREQUEST
 DESCRIPTOR.message_types_by_name['APIKeyFindRequest'] = _APIKEYFINDREQUEST
 DESCRIPTOR.message_types_by_name['UpdateDefaultOrganizationRequest'] = _UPDATEDEFAULTORGANIZATIONREQUEST
 DESCRIPTOR.message_types_by_name['ClientSettings'] = _CLIENTSETTINGS
+DESCRIPTOR.message_types_by_name['CreateAutoChargeIntentRequest'] = _CREATEAUTOCHARGEINTENTREQUEST
 DESCRIPTOR.message_types_by_name['CreateChargeRequest'] = _CREATECHARGEREQUEST
 DESCRIPTOR.message_types_by_name['GetChargesRequest'] = _GETCHARGESREQUEST
 DESCRIPTOR.message_types_by_name['Charge'] = _CHARGE
 DESCRIPTOR.message_types_by_name['Charges'] = _CHARGES
+DESCRIPTOR.message_types_by_name['GetAutoChargeRequest'] = _GETAUTOCHARGEREQUEST
+DESCRIPTOR.message_types_by_name['AutoChargeIntent'] = _AUTOCHARGEINTENT
 DESCRIPTOR.message_types_by_name['UpdateUserInfoRequest'] = _UPDATEUSERINFOREQUEST
 DESCRIPTOR.message_types_by_name['UserPasswordChangeTicket'] = _USERPASSWORDCHANGETICKET
 DESCRIPTOR.enum_types_by_name['OrganizationRole'] = _ORGANIZATIONROLE
@@ -1225,6 +1458,13 @@ OrganizationPaymentInfo = _reflection.GeneratedProtocolMessageType('Organization
   # @@protoc_insertion_point(class_scope:gooseai.OrganizationPaymentInfo)
   })
 _sym_db.RegisterMessage(OrganizationPaymentInfo)
+
+OrganizationAutoCharge = _reflection.GeneratedProtocolMessageType('OrganizationAutoCharge', (_message.Message,), {
+  'DESCRIPTOR' : _ORGANIZATIONAUTOCHARGE,
+  '__module__' : 'dashboard_pb2'
+  # @@protoc_insertion_point(class_scope:gooseai.OrganizationAutoCharge)
+  })
+_sym_db.RegisterMessage(OrganizationAutoCharge)
 
 Organization = _reflection.GeneratedProtocolMessageType('Organization', (_message.Message,), {
   'DESCRIPTOR' : _ORGANIZATION,
@@ -1331,6 +1571,13 @@ ClientSettings = _reflection.GeneratedProtocolMessageType('ClientSettings', (_me
   })
 _sym_db.RegisterMessage(ClientSettings)
 
+CreateAutoChargeIntentRequest = _reflection.GeneratedProtocolMessageType('CreateAutoChargeIntentRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CREATEAUTOCHARGEINTENTREQUEST,
+  '__module__' : 'dashboard_pb2'
+  # @@protoc_insertion_point(class_scope:gooseai.CreateAutoChargeIntentRequest)
+  })
+_sym_db.RegisterMessage(CreateAutoChargeIntentRequest)
+
 CreateChargeRequest = _reflection.GeneratedProtocolMessageType('CreateChargeRequest', (_message.Message,), {
   'DESCRIPTOR' : _CREATECHARGEREQUEST,
   '__module__' : 'dashboard_pb2'
@@ -1359,6 +1606,20 @@ Charges = _reflection.GeneratedProtocolMessageType('Charges', (_message.Message,
   })
 _sym_db.RegisterMessage(Charges)
 
+GetAutoChargeRequest = _reflection.GeneratedProtocolMessageType('GetAutoChargeRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETAUTOCHARGEREQUEST,
+  '__module__' : 'dashboard_pb2'
+  # @@protoc_insertion_point(class_scope:gooseai.GetAutoChargeRequest)
+  })
+_sym_db.RegisterMessage(GetAutoChargeRequest)
+
+AutoChargeIntent = _reflection.GeneratedProtocolMessageType('AutoChargeIntent', (_message.Message,), {
+  'DESCRIPTOR' : _AUTOCHARGEINTENT,
+  '__module__' : 'dashboard_pb2'
+  # @@protoc_insertion_point(class_scope:gooseai.AutoChargeIntent)
+  })
+_sym_db.RegisterMessage(AutoChargeIntent)
+
 UpdateUserInfoRequest = _reflection.GeneratedProtocolMessageType('UpdateUserInfoRequest', (_message.Message,), {
   'DESCRIPTOR' : _UPDATEUSERINFOREQUEST,
   '__module__' : 'dashboard_pb2'
@@ -1383,8 +1644,8 @@ _DASHBOARDSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=2249,
-  serialized_end=3070,
+  serialized_start=2782,
+  serialized_end=3870,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetMe',
@@ -1503,6 +1764,36 @@ _DASHBOARDSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_GETCHARGESREQUEST,
     output_type=_CHARGES,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='CreateAutoChargeIntent',
+    full_name='gooseai.DashboardService.CreateAutoChargeIntent',
+    index=12,
+    containing_service=None,
+    input_type=_CREATEAUTOCHARGEINTENTREQUEST,
+    output_type=_AUTOCHARGEINTENT,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='UpdateAutoChargeIntent',
+    full_name='gooseai.DashboardService.UpdateAutoChargeIntent',
+    index=13,
+    containing_service=None,
+    input_type=_CREATEAUTOCHARGEINTENTREQUEST,
+    output_type=_AUTOCHARGEINTENT,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetAutoChargeIntent',
+    full_name='gooseai.DashboardService.GetAutoChargeIntent',
+    index=14,
+    containing_service=None,
+    input_type=_GETAUTOCHARGEREQUEST,
+    output_type=_AUTOCHARGEINTENT,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

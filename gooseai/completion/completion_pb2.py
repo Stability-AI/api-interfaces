@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\r./;completion',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x10\x63ompletion.proto\x12\x07gooseai\"!\n\x05Token\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\r\"(\n\x06Tokens\x12\x1e\n\x06tokens\x18\x01 \x03(\x0b\x32\x0e.gooseai.Token\"E\n\x06Prompt\x12\x0e\n\x04text\x18\x01 \x01(\tH\x00\x12!\n\x06tokens\x18\x02 \x01(\x0b\x32\x0f.gooseai.TokensH\x00\x42\x08\n\x06prompt\":\n\tLogitBias\x12\x1f\n\x06tokens\x18\x01 \x01(\x0b\x32\x0f.gooseai.Tokens\x12\x0c\n\x04\x62ias\x18\x02 \x01(\x01\"1\n\x0bLogitBiases\x12\"\n\x06\x62iases\x18\x01 \x03(\x0b\x32\x12.gooseai.LogitBias\"\xbb\x02\n\x0f\x46requencyParams\x12\x1d\n\x10presence_penalty\x18\x01 \x01(\x01H\x00\x88\x01\x01\x12\x1e\n\x11\x66requency_penalty\x18\x02 \x01(\x01H\x01\x88\x01\x01\x12\x1f\n\x12repetition_penalty\x18\x03 \x01(\x01H\x02\x88\x01\x01\x12%\n\x18repetition_penalty_slope\x18\x04 \x01(\x01H\x03\x88\x01\x01\x12%\n\x18repetition_penalty_range\x18\x05 \x01(\rH\x04\x88\x01\x01\x42\x13\n\x11_presence_penaltyB\x14\n\x12_frequency_penaltyB\x15\n\x13_repetition_penaltyB\x1b\n\x19_repetition_penalty_slopeB\x1b\n\x19_repetition_penalty_range\"\x9a\x02\n\x0eSamplingParams\x12&\n\x05order\x18\x01 \x03(\x0e\x32\x17.gooseai.SamplingMethod\x12\x18\n\x0btemperature\x18\x02 \x01(\x01H\x00\x88\x01\x01\x12\x12\n\x05top_p\x18\x03 \x01(\x01H\x01\x88\x01\x01\x12\x12\n\x05top_k\x18\x04 \x01(\rH\x02\x88\x01\x01\x12\x1f\n\x12tail_free_sampling\x18\x05 \x01(\x01H\x03\x88\x01\x01\x12\x16\n\ttypical_p\x18\x06 \x01(\x01H\x04\x88\x01\x01\x12\x12\n\x05top_a\x18\x07 \x01(\x01H\x05\x88\x01\x01\x42\x0e\n\x0c_temperatureB\x08\n\x06_top_pB\x08\n\x06_top_kB\x15\n\x13_tail_free_samplingB\x0c\n\n_typical_pB\x08\n\x06_top_a\"\xe4\x01\n\x0bModelParams\x12\x35\n\x0fsampling_params\x18\x01 \x01(\x0b\x32\x17.gooseai.SamplingParamsH\x00\x88\x01\x01\x12\x37\n\x10\x66requency_params\x18\x02 \x01(\x0b\x32\x18.gooseai.FrequencyParamsH\x01\x88\x01\x01\x12-\n\nlogit_bias\x18\x03 \x01(\x0b\x32\x14.gooseai.LogitBiasesH\x02\x88\x01\x01\x42\x12\n\x10_sampling_paramsB\x13\n\x11_frequency_paramsB\r\n\x0b_logit_bias\"$\n\x04\x45\x63ho\x12\x12\n\x05index\x18\x01 \x01(\x05H\x00\x88\x01\x01\x42\x08\n\x06_index\"$\n\tNAIModule\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0b\n\x03key\x18\x02 \x01(\t\"B\n\tEmbedding\x12(\n\nnai_module\x18\x01 \x01(\x0b\x32\x12.gooseai.NAIModuleH\x00\x42\x0b\n\tembedding\"\xf0\x01\n\x0c\x45ngineParams\x12\x17\n\nmax_tokens\x18\x01 \x01(\rH\x00\x88\x01\x01\x12\x18\n\x0b\x63ompletions\x18\x02 \x01(\rH\x01\x88\x01\x01\x12\x15\n\x08logprobs\x18\x03 \x01(\rH\x02\x88\x01\x01\x12 \n\x04\x65\x63ho\x18\x04 \x01(\x0b\x32\r.gooseai.EchoH\x03\x88\x01\x01\x12\x14\n\x07\x62\x65st_of\x18\x05 \x01(\rH\x04\x88\x01\x01\x12\x1d\n\x04stop\x18\x06 \x03(\x0b\x32\x0f.gooseai.PromptB\r\n\x0b_max_tokensB\x0e\n\x0c_completionsB\x0b\n\t_logprobsB\x07\n\x05_echoB\n\n\x08_best_of\"\xec\x01\n\x07Request\x12\x11\n\tengine_id\x18\x01 \x01(\t\x12\x1f\n\x06prompt\x18\x02 \x03(\x0b\x32\x0f.gooseai.Prompt\x12/\n\x0cmodel_params\x18\x03 \x01(\x0b\x32\x14.gooseai.ModelParamsH\x00\x88\x01\x01\x12\x31\n\rengine_params\x18\x04 \x01(\x0b\x32\x15.gooseai.EngineParamsH\x01\x88\x01\x01\x12\x17\n\nrequest_id\x18\x05 \x01(\tH\x02\x88\x01\x01\x42\x0f\n\r_model_paramsB\x10\n\x0e_engine_paramsB\r\n\x0b_request_id\"z\n\x07LogProb\x12\x1d\n\x05token\x18\x01 \x01(\x0b\x32\x0e.gooseai.Token\x12\x14\n\x07logprob\x18\x02 \x01(\x01H\x00\x88\x01\x01\x12\x1b\n\x0elogprob_before\x18\x03 \x01(\x01H\x01\x88\x01\x01\x42\n\n\x08_logprobB\x11\n\x0f_logprob_before\"3\n\rTokenLogProbs\x12\"\n\x08logprobs\x18\x01 \x03(\x0b\x32\x10.gooseai.LogProb\"\x98\x01\n\x08LogProbs\x12&\n\x06tokens\x18\x01 \x01(\x0b\x32\x16.gooseai.TokenLogProbs\x12\x13\n\x0btext_offset\x18\x02 \x03(\r\x12#\n\x03top\x18\x03 \x03(\x0b\x32\x16.gooseai.TokenLogProbs\x12*\n\ntop_before\x18\x04 \x03(\x0b\x32\x16.gooseai.TokenLogProbs\"\x91\x01\n\nCompletion\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\r\n\x05index\x18\x02 \x01(\r\x12#\n\x08logprobs\x18\x03 \x01(\x0b\x32\x11.gooseai.LogProbs\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.gooseai.FinishReason\x12\x13\n\x0btoken_index\x18\x05 \x01(\r\"\x89\x01\n\x06\x41nswer\x12\x11\n\tanswer_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\x04\x12\r\n\x05model\x18\x03 \x01(\t\x12$\n\x07\x63hoices\x18\x04 \x03(\x0b\x32\x13.gooseai.Completion\x12\x17\n\nrequest_id\x18\x05 \x01(\tH\x00\x88\x01\x01\x42\r\n\x0b_request_id*9\n\x0c\x46inishReason\x12\x08\n\x04NULL\x10\x00\x12\n\n\x06LENGTH\x10\x01\x12\x08\n\x04STOP\x10\x02\x12\t\n\x05\x45RROR\x10\x03*d\n\x0eSamplingMethod\x12\x08\n\x04NONE\x10\x00\x12\x0f\n\x0bTEMPERATURE\x10\x01\x12\t\n\x05TOP_K\x10\x02\x12\t\n\x05TOP_P\x10\x03\x12\x07\n\x03TFS\x10\x04\x12\t\n\x05TOP_A\x10\x05\x12\r\n\tTYPICAL_P\x10\x06\x32H\n\x11\x43ompletionService\x12\x33\n\nCompletion\x12\x10.gooseai.Request\x1a\x0f.gooseai.Answer\"\x00\x30\x01\x42\x0fZ\r./;completionb\x06proto3'
+  serialized_pb=b'\n\x10\x63ompletion.proto\x12\x07gooseai\"!\n\x05Token\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\r\"(\n\x06Tokens\x12\x1e\n\x06tokens\x18\x01 \x03(\x0b\x32\x0e.gooseai.Token\"E\n\x06Prompt\x12\x0e\n\x04text\x18\x01 \x01(\tH\x00\x12!\n\x06tokens\x18\x02 \x01(\x0b\x32\x0f.gooseai.TokensH\x00\x42\x08\n\x06prompt\":\n\tLogitBias\x12\x1f\n\x06tokens\x18\x01 \x01(\x0b\x32\x0f.gooseai.Tokens\x12\x0c\n\x04\x62ias\x18\x02 \x01(\x01\"1\n\x0bLogitBiases\x12\"\n\x06\x62iases\x18\x01 \x03(\x0b\x32\x12.gooseai.LogitBias\"\xbb\x02\n\x0f\x46requencyParams\x12\x1d\n\x10presence_penalty\x18\x01 \x01(\x01H\x00\x88\x01\x01\x12\x1e\n\x11\x66requency_penalty\x18\x02 \x01(\x01H\x01\x88\x01\x01\x12\x1f\n\x12repetition_penalty\x18\x03 \x01(\x01H\x02\x88\x01\x01\x12%\n\x18repetition_penalty_slope\x18\x04 \x01(\x01H\x03\x88\x01\x01\x12%\n\x18repetition_penalty_range\x18\x05 \x01(\rH\x04\x88\x01\x01\x42\x13\n\x11_presence_penaltyB\x14\n\x12_frequency_penaltyB\x15\n\x13_repetition_penaltyB\x1b\n\x19_repetition_penalty_slopeB\x1b\n\x19_repetition_penalty_range\"\x9a\x02\n\x0eSamplingParams\x12&\n\x05order\x18\x01 \x03(\x0e\x32\x17.gooseai.SamplingMethod\x12\x18\n\x0btemperature\x18\x02 \x01(\x01H\x00\x88\x01\x01\x12\x12\n\x05top_p\x18\x03 \x01(\x01H\x01\x88\x01\x01\x12\x12\n\x05top_k\x18\x04 \x01(\rH\x02\x88\x01\x01\x12\x1f\n\x12tail_free_sampling\x18\x05 \x01(\x01H\x03\x88\x01\x01\x12\x16\n\ttypical_p\x18\x06 \x01(\x01H\x04\x88\x01\x01\x12\x12\n\x05top_a\x18\x07 \x01(\x01H\x05\x88\x01\x01\x42\x0e\n\x0c_temperatureB\x08\n\x06_top_pB\x08\n\x06_top_kB\x15\n\x13_tail_free_samplingB\x0c\n\n_typical_pB\x08\n\x06_top_a\"\xe4\x01\n\x0bModelParams\x12\x35\n\x0fsampling_params\x18\x01 \x01(\x0b\x32\x17.gooseai.SamplingParamsH\x00\x88\x01\x01\x12\x37\n\x10\x66requency_params\x18\x02 \x01(\x0b\x32\x18.gooseai.FrequencyParamsH\x01\x88\x01\x01\x12-\n\nlogit_bias\x18\x03 \x01(\x0b\x32\x14.gooseai.LogitBiasesH\x02\x88\x01\x01\x42\x12\n\x10_sampling_paramsB\x13\n\x11_frequency_paramsB\r\n\x0b_logit_bias\"$\n\x04\x45\x63ho\x12\x12\n\x05index\x18\x01 \x01(\x05H\x00\x88\x01\x01\x42\x08\n\x06_index\"*\n\x0fModuleEmbedding\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0b\n\x03key\x18\x02 \x01(\t\"C\n\x06Tensor\x12\x1d\n\x03typ\x18\x01 \x01(\x0e\x32\x10.gooseai.NumType\x12\x0c\n\x04\x64ims\x18\x02 \x03(\r\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\x0c\"~\n\tEmbedding\x12\x1e\n\x03raw\x18\x01 \x01(\x0b\x32\x0f.gooseai.TensorH\x00\x12*\n\x06module\x18\x02 \x01(\x0b\x32\x18.gooseai.ModuleEmbeddingH\x00\x12\x10\n\x03pos\x18\x03 \x01(\rH\x01\x88\x01\x01\x42\x0b\n\tembeddingB\x06\n\x04_pos\"\xf0\x01\n\x0c\x45ngineParams\x12\x17\n\nmax_tokens\x18\x01 \x01(\rH\x00\x88\x01\x01\x12\x18\n\x0b\x63ompletions\x18\x02 \x01(\rH\x01\x88\x01\x01\x12\x15\n\x08logprobs\x18\x03 \x01(\rH\x02\x88\x01\x01\x12 \n\x04\x65\x63ho\x18\x04 \x01(\x0b\x32\r.gooseai.EchoH\x03\x88\x01\x01\x12\x14\n\x07\x62\x65st_of\x18\x05 \x01(\rH\x04\x88\x01\x01\x12\x1d\n\x04stop\x18\x06 \x03(\x0b\x32\x0f.gooseai.PromptB\r\n\x0b_max_tokensB\x0e\n\x0c_completionsB\x0b\n\t_logprobsB\x07\n\x05_echoB\n\n\x08_best_of\"\x94\x02\n\x07Request\x12\x11\n\tengine_id\x18\x01 \x01(\t\x12\x1f\n\x06prompt\x18\x02 \x03(\x0b\x32\x0f.gooseai.Prompt\x12/\n\x0cmodel_params\x18\x03 \x01(\x0b\x32\x14.gooseai.ModelParamsH\x00\x88\x01\x01\x12\x31\n\rengine_params\x18\x04 \x01(\x0b\x32\x15.gooseai.EngineParamsH\x01\x88\x01\x01\x12\x17\n\nrequest_id\x18\x05 \x01(\tH\x02\x88\x01\x01\x12&\n\nembeddings\x18\x06 \x03(\x0b\x32\x12.gooseai.EmbeddingB\x0f\n\r_model_paramsB\x10\n\x0e_engine_paramsB\r\n\x0b_request_id\"z\n\x07LogProb\x12\x1d\n\x05token\x18\x01 \x01(\x0b\x32\x0e.gooseai.Token\x12\x14\n\x07logprob\x18\x02 \x01(\x01H\x00\x88\x01\x01\x12\x1b\n\x0elogprob_before\x18\x03 \x01(\x01H\x01\x88\x01\x01\x42\n\n\x08_logprobB\x11\n\x0f_logprob_before\"3\n\rTokenLogProbs\x12\"\n\x08logprobs\x18\x01 \x03(\x0b\x32\x10.gooseai.LogProb\"\x98\x01\n\x08LogProbs\x12&\n\x06tokens\x18\x01 \x01(\x0b\x32\x16.gooseai.TokenLogProbs\x12\x13\n\x0btext_offset\x18\x02 \x03(\r\x12#\n\x03top\x18\x03 \x03(\x0b\x32\x16.gooseai.TokenLogProbs\x12*\n\ntop_before\x18\x04 \x03(\x0b\x32\x16.gooseai.TokenLogProbs\"\x91\x01\n\nCompletion\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\r\n\x05index\x18\x02 \x01(\r\x12#\n\x08logprobs\x18\x03 \x01(\x0b\x32\x11.gooseai.LogProbs\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.gooseai.FinishReason\x12\x13\n\x0btoken_index\x18\x05 \x01(\r\"\x89\x01\n\x06\x41nswer\x12\x11\n\tanswer_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\x04\x12\r\n\x05model\x18\x03 \x01(\t\x12$\n\x07\x63hoices\x18\x04 \x03(\x0b\x32\x13.gooseai.Completion\x12\x17\n\nrequest_id\x18\x05 \x01(\tH\x00\x88\x01\x01\x42\r\n\x0b_request_id*9\n\x0c\x46inishReason\x12\x08\n\x04NULL\x10\x00\x12\n\n\x06LENGTH\x10\x01\x12\x08\n\x04STOP\x10\x02\x12\t\n\x05\x45RROR\x10\x03*d\n\x0eSamplingMethod\x12\x08\n\x04NONE\x10\x00\x12\x0f\n\x0bTEMPERATURE\x10\x01\x12\t\n\x05TOP_K\x10\x02\x12\t\n\x05TOP_P\x10\x03\x12\x07\n\x03TFS\x10\x04\x12\t\n\x05TOP_A\x10\x05\x12\r\n\tTYPICAL_P\x10\x06*\'\n\x07NumType\x12\x08\n\x04\x46P16\x10\x00\x12\x08\n\x04\x46P32\x10\x01\x12\x08\n\x04\x42\x46\x31\x36\x10\x02\x32H\n\x11\x43ompletionService\x12\x33\n\nCompletion\x12\x10.gooseai.Request\x1a\x0f.gooseai.Answer\"\x00\x30\x01\x42\x0fZ\r./;completionb\x06proto3'
 )
 
 _FINISHREASON = _descriptor.EnumDescriptor(
@@ -53,8 +53,8 @@ _FINISHREASON = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2368,
-  serialized_end=2425,
+  serialized_start=2543,
+  serialized_end=2600,
 )
 _sym_db.RegisterEnumDescriptor(_FINISHREASON)
 
@@ -104,12 +104,43 @@ _SAMPLINGMETHOD = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2427,
-  serialized_end=2527,
+  serialized_start=2602,
+  serialized_end=2702,
 )
 _sym_db.RegisterEnumDescriptor(_SAMPLINGMETHOD)
 
 SamplingMethod = enum_type_wrapper.EnumTypeWrapper(_SAMPLINGMETHOD)
+_NUMTYPE = _descriptor.EnumDescriptor(
+  name='NumType',
+  full_name='gooseai.NumType',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='FP16', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='FP32', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='BF16', index=2, number=2,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=2704,
+  serialized_end=2743,
+)
+_sym_db.RegisterEnumDescriptor(_NUMTYPE)
+
+NumType = enum_type_wrapper.EnumTypeWrapper(_NUMTYPE)
 NULL = 0
 LENGTH = 1
 STOP = 2
@@ -121,6 +152,9 @@ TOP_P = 3
 TFS = 4
 TOP_A = 5
 TYPICAL_P = 6
+FP16 = 0
+FP32 = 1
+BF16 = 2
 
 
 
@@ -597,23 +631,23 @@ _ECHO = _descriptor.Descriptor(
 )
 
 
-_NAIMODULE = _descriptor.Descriptor(
-  name='NAIModule',
-  full_name='gooseai.NAIModule',
+_MODULEEMBEDDING = _descriptor.Descriptor(
+  name='ModuleEmbedding',
+  full_name='gooseai.ModuleEmbedding',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='gooseai.NAIModule.id', index=0,
+      name='id', full_name='gooseai.ModuleEmbedding.id', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='key', full_name='gooseai.NAIModule.key', index=1,
+      name='key', full_name='gooseai.ModuleEmbedding.key', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -632,7 +666,53 @@ _NAIMODULE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=1160,
-  serialized_end=1196,
+  serialized_end=1202,
+)
+
+
+_TENSOR = _descriptor.Descriptor(
+  name='Tensor',
+  full_name='gooseai.Tensor',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='typ', full_name='gooseai.Tensor.typ', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='dims', full_name='gooseai.Tensor.dims', index=1,
+      number=2, type=13, cpp_type=3, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='data', full_name='gooseai.Tensor.data', index=2,
+      number=3, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1204,
+  serialized_end=1271,
 )
 
 
@@ -645,9 +725,23 @@ _EMBEDDING = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='nai_module', full_name='gooseai.Embedding.nai_module', index=0,
+      name='raw', full_name='gooseai.Embedding.raw', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='module', full_name='gooseai.Embedding.module', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='pos', full_name='gooseai.Embedding.pos', index=2,
+      number=3, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -667,9 +761,14 @@ _EMBEDDING = _descriptor.Descriptor(
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
+    _descriptor.OneofDescriptor(
+      name='_pos', full_name='gooseai.Embedding._pos',
+      index=1, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
   ],
-  serialized_start=1198,
-  serialized_end=1264,
+  serialized_start=1273,
+  serialized_end=1399,
 )
 
 
@@ -760,8 +859,8 @@ _ENGINEPARAMS = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=1267,
-  serialized_end=1507,
+  serialized_start=1402,
+  serialized_end=1642,
 )
 
 
@@ -808,6 +907,13 @@ _REQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='embeddings', full_name='gooseai.Request.embeddings', index=5,
+      number=6, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -835,8 +941,8 @@ _REQUEST = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=1510,
-  serialized_end=1746,
+  serialized_start=1645,
+  serialized_end=1921,
 )
 
 
@@ -891,8 +997,8 @@ _LOGPROB = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=1748,
-  serialized_end=1870,
+  serialized_start=1923,
+  serialized_end=2045,
 )
 
 
@@ -923,8 +1029,8 @@ _TOKENLOGPROBS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1872,
-  serialized_end=1923,
+  serialized_start=2047,
+  serialized_end=2098,
 )
 
 
@@ -976,8 +1082,8 @@ _LOGPROBS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1926,
-  serialized_end=2078,
+  serialized_start=2101,
+  serialized_end=2253,
 )
 
 
@@ -1036,8 +1142,8 @@ _COMPLETION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2081,
-  serialized_end=2226,
+  serialized_start=2256,
+  serialized_end=2401,
 )
 
 
@@ -1101,8 +1207,8 @@ _ANSWER = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=2229,
-  serialized_end=2366,
+  serialized_start=2404,
+  serialized_end=2541,
 )
 
 _TOKENS.fields_by_name['tokens'].message_type = _TOKEN
@@ -1164,10 +1270,18 @@ _MODELPARAMS.fields_by_name['logit_bias'].containing_oneof = _MODELPARAMS.oneofs
 _ECHO.oneofs_by_name['_index'].fields.append(
   _ECHO.fields_by_name['index'])
 _ECHO.fields_by_name['index'].containing_oneof = _ECHO.oneofs_by_name['_index']
-_EMBEDDING.fields_by_name['nai_module'].message_type = _NAIMODULE
+_TENSOR.fields_by_name['typ'].enum_type = _NUMTYPE
+_EMBEDDING.fields_by_name['raw'].message_type = _TENSOR
+_EMBEDDING.fields_by_name['module'].message_type = _MODULEEMBEDDING
 _EMBEDDING.oneofs_by_name['embedding'].fields.append(
-  _EMBEDDING.fields_by_name['nai_module'])
-_EMBEDDING.fields_by_name['nai_module'].containing_oneof = _EMBEDDING.oneofs_by_name['embedding']
+  _EMBEDDING.fields_by_name['raw'])
+_EMBEDDING.fields_by_name['raw'].containing_oneof = _EMBEDDING.oneofs_by_name['embedding']
+_EMBEDDING.oneofs_by_name['embedding'].fields.append(
+  _EMBEDDING.fields_by_name['module'])
+_EMBEDDING.fields_by_name['module'].containing_oneof = _EMBEDDING.oneofs_by_name['embedding']
+_EMBEDDING.oneofs_by_name['_pos'].fields.append(
+  _EMBEDDING.fields_by_name['pos'])
+_EMBEDDING.fields_by_name['pos'].containing_oneof = _EMBEDDING.oneofs_by_name['_pos']
 _ENGINEPARAMS.fields_by_name['echo'].message_type = _ECHO
 _ENGINEPARAMS.fields_by_name['stop'].message_type = _PROMPT
 _ENGINEPARAMS.oneofs_by_name['_max_tokens'].fields.append(
@@ -1188,6 +1302,7 @@ _ENGINEPARAMS.fields_by_name['best_of'].containing_oneof = _ENGINEPARAMS.oneofs_
 _REQUEST.fields_by_name['prompt'].message_type = _PROMPT
 _REQUEST.fields_by_name['model_params'].message_type = _MODELPARAMS
 _REQUEST.fields_by_name['engine_params'].message_type = _ENGINEPARAMS
+_REQUEST.fields_by_name['embeddings'].message_type = _EMBEDDING
 _REQUEST.oneofs_by_name['_model_params'].fields.append(
   _REQUEST.fields_by_name['model_params'])
 _REQUEST.fields_by_name['model_params'].containing_oneof = _REQUEST.oneofs_by_name['_model_params']
@@ -1223,7 +1338,8 @@ DESCRIPTOR.message_types_by_name['FrequencyParams'] = _FREQUENCYPARAMS
 DESCRIPTOR.message_types_by_name['SamplingParams'] = _SAMPLINGPARAMS
 DESCRIPTOR.message_types_by_name['ModelParams'] = _MODELPARAMS
 DESCRIPTOR.message_types_by_name['Echo'] = _ECHO
-DESCRIPTOR.message_types_by_name['NAIModule'] = _NAIMODULE
+DESCRIPTOR.message_types_by_name['ModuleEmbedding'] = _MODULEEMBEDDING
+DESCRIPTOR.message_types_by_name['Tensor'] = _TENSOR
 DESCRIPTOR.message_types_by_name['Embedding'] = _EMBEDDING
 DESCRIPTOR.message_types_by_name['EngineParams'] = _ENGINEPARAMS
 DESCRIPTOR.message_types_by_name['Request'] = _REQUEST
@@ -1234,6 +1350,7 @@ DESCRIPTOR.message_types_by_name['Completion'] = _COMPLETION
 DESCRIPTOR.message_types_by_name['Answer'] = _ANSWER
 DESCRIPTOR.enum_types_by_name['FinishReason'] = _FINISHREASON
 DESCRIPTOR.enum_types_by_name['SamplingMethod'] = _SAMPLINGMETHOD
+DESCRIPTOR.enum_types_by_name['NumType'] = _NUMTYPE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Token = _reflection.GeneratedProtocolMessageType('Token', (_message.Message,), {
@@ -1299,12 +1416,19 @@ Echo = _reflection.GeneratedProtocolMessageType('Echo', (_message.Message,), {
   })
 _sym_db.RegisterMessage(Echo)
 
-NAIModule = _reflection.GeneratedProtocolMessageType('NAIModule', (_message.Message,), {
-  'DESCRIPTOR' : _NAIMODULE,
+ModuleEmbedding = _reflection.GeneratedProtocolMessageType('ModuleEmbedding', (_message.Message,), {
+  'DESCRIPTOR' : _MODULEEMBEDDING,
   '__module__' : 'completion_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.NAIModule)
+  # @@protoc_insertion_point(class_scope:gooseai.ModuleEmbedding)
   })
-_sym_db.RegisterMessage(NAIModule)
+_sym_db.RegisterMessage(ModuleEmbedding)
+
+Tensor = _reflection.GeneratedProtocolMessageType('Tensor', (_message.Message,), {
+  'DESCRIPTOR' : _TENSOR,
+  '__module__' : 'completion_pb2'
+  # @@protoc_insertion_point(class_scope:gooseai.Tensor)
+  })
+_sym_db.RegisterMessage(Tensor)
 
 Embedding = _reflection.GeneratedProtocolMessageType('Embedding', (_message.Message,), {
   'DESCRIPTOR' : _EMBEDDING,
@@ -1372,8 +1496,8 @@ _COMPLETIONSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=2529,
-  serialized_end=2601,
+  serialized_start=2745,
+  serialized_end=2817,
   methods=[
   _descriptor.MethodDescriptor(
     name='Completion',
