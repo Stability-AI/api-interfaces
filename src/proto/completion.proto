@@ -109,6 +109,7 @@ message EngineParams {
   optional Echo echo = 4;           // OAI: Echo back the prompt in addition to completion
   optional uint32 best_of = 5;      // OAI: Generate # of `best_of` w. lowest logprob
   repeated Prompt stop = 6;         // OAI: Up to 4 sequences where API will stop generating
+  optional uint32 min_tokens = 7;   // GAI: Minimum tokens before stop sequences activate.
 }
 
 // A 'generation' request.
