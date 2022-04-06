@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\n./;engines',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\rengines.proto\x12\x07gooseai\"Y\n\nEngineInfo\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05owner\x18\x02 \x01(\t\x12\r\n\x05ready\x18\x03 \x01(\x08\x12!\n\x04type\x18\x04 \x01(\x0e\x32\x13.gooseai.EngineType\"\x14\n\x12ListEnginesRequest\".\n\x07\x45ngines\x12#\n\x06\x65ngine\x18\x01 \x03(\x0b\x32\x13.gooseai.EngineInfo*9\n\nEngineType\x12\x08\n\x04TEXT\x10\x00\x12\x0b\n\x07PICTURE\x10\x01\x12\t\n\x05\x41UDIO\x10\x02\x12\t\n\x05VIDEO\x10\x03\x32P\n\x0e\x45nginesService\x12>\n\x0bListEngines\x12\x1b.gooseai.ListEnginesRequest\x1a\x10.gooseai.Engines\"\x00\x42\x0cZ\n./;enginesb\x06proto3'
+  serialized_pb=b'\n\rengines.proto\x12\x07gooseai\"\xa9\x01\n\nEngineInfo\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05owner\x18\x02 \x01(\t\x12\r\n\x05ready\x18\x03 \x01(\x08\x12!\n\x04type\x18\x04 \x01(\x0e\x32\x13.gooseai.EngineType\x12+\n\ttokenizer\x18\x05 \x01(\x0e\x32\x18.gooseai.EngineTokenizer\x12\x0c\n\x04name\x18\x06 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x07 \x01(\t\"\x14\n\x12ListEnginesRequest\".\n\x07\x45ngines\x12#\n\x06\x65ngine\x18\x01 \x03(\x0b\x32\x13.gooseai.EngineInfo*9\n\nEngineType\x12\x08\n\x04TEXT\x10\x00\x12\x0b\n\x07PICTURE\x10\x01\x12\t\n\x05\x41UDIO\x10\x02\x12\t\n\x05VIDEO\x10\x03*%\n\x0f\x45ngineTokenizer\x12\x08\n\x04GPT2\x10\x00\x12\x08\n\x04PILE\x10\x01\x32P\n\x0e\x45nginesService\x12>\n\x0bListEngines\x12\x1b.gooseai.ListEnginesRequest\x1a\x10.gooseai.Engines\"\x00\x42\x0cZ\n./;enginesb\x06proto3'
 )
 
 _ENGINETYPE = _descriptor.EnumDescriptor(
@@ -53,16 +53,44 @@ _ENGINETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=187,
-  serialized_end=244,
+  serialized_start=268,
+  serialized_end=325,
 )
 _sym_db.RegisterEnumDescriptor(_ENGINETYPE)
 
 EngineType = enum_type_wrapper.EnumTypeWrapper(_ENGINETYPE)
+_ENGINETOKENIZER = _descriptor.EnumDescriptor(
+  name='EngineTokenizer',
+  full_name='gooseai.EngineTokenizer',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='GPT2', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='PILE', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=327,
+  serialized_end=364,
+)
+_sym_db.RegisterEnumDescriptor(_ENGINETOKENIZER)
+
+EngineTokenizer = enum_type_wrapper.EnumTypeWrapper(_ENGINETOKENIZER)
 TEXT = 0
 PICTURE = 1
 AUDIO = 2
 VIDEO = 3
+GPT2 = 0
+PILE = 1
 
 
 
@@ -102,6 +130,27 @@ _ENGINEINFO = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tokenizer', full_name='gooseai.EngineInfo.tokenizer', index=4,
+      number=5, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='gooseai.EngineInfo.name', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='description', full_name='gooseai.EngineInfo.description', index=6,
+      number=7, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -114,8 +163,8 @@ _ENGINEINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=26,
-  serialized_end=115,
+  serialized_start=27,
+  serialized_end=196,
 )
 
 
@@ -139,8 +188,8 @@ _LISTENGINESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=117,
-  serialized_end=137,
+  serialized_start=198,
+  serialized_end=218,
 )
 
 
@@ -171,16 +220,18 @@ _ENGINES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=139,
-  serialized_end=185,
+  serialized_start=220,
+  serialized_end=266,
 )
 
 _ENGINEINFO.fields_by_name['type'].enum_type = _ENGINETYPE
+_ENGINEINFO.fields_by_name['tokenizer'].enum_type = _ENGINETOKENIZER
 _ENGINES.fields_by_name['engine'].message_type = _ENGINEINFO
 DESCRIPTOR.message_types_by_name['EngineInfo'] = _ENGINEINFO
 DESCRIPTOR.message_types_by_name['ListEnginesRequest'] = _LISTENGINESREQUEST
 DESCRIPTOR.message_types_by_name['Engines'] = _ENGINES
 DESCRIPTOR.enum_types_by_name['EngineType'] = _ENGINETYPE
+DESCRIPTOR.enum_types_by_name['EngineTokenizer'] = _ENGINETOKENIZER
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 EngineInfo = _reflection.GeneratedProtocolMessageType('EngineInfo', (_message.Message,), {
@@ -214,8 +265,8 @@ _ENGINESSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=246,
-  serialized_end=326,
+  serialized_start=366,
+  serialized_end=446,
   methods=[
   _descriptor.MethodDescriptor(
     name='ListEngines',
