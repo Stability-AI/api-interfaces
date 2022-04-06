@@ -10,12 +10,20 @@ enum EngineType {
   VIDEO = 3;
 }
 
+enum EngineTokenizer {
+  GPT2 = 0;
+  PILE = 1;
+}
+
 // Engine info struct
 message EngineInfo {
   string id = 1;
   string owner = 2;
   bool ready = 3;
   EngineType type = 4;
+  EngineTokenizer tokenizer = 5;
+  string name = 6;
+  string description = 7;
 }
 
 message ListEnginesRequest {
