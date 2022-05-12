@@ -41,9 +41,9 @@ enum FinishReason {
 message FrequencyParams {
   optional double presence_penalty = 1;         // OAI: -2.0 to 2.0, penalize new tokens if seen in text
   optional double frequency_penalty = 2;        // OAI: -2.0 to 2.0, penalize new tokens based on fqcy
-  optional double repetition_penalty = 3;       // ANL: Factor to divide logits
-  optional double repetition_penalty_slope = 4; // ANL: slope applied against rp
-  optional uint32 repetition_penalty_range = 5; // ANL: number of tokens for rp
+  optional double repetition_penalty = 3;       // GAI: Factor to divide logits
+  optional double repetition_penalty_slope = 4; // GAI: slope applied against rp
+  optional uint32 repetition_penalty_range = 5; // GAI: number of tokens for rp
 }
 
 enum SamplingMethod {
@@ -57,13 +57,13 @@ enum SamplingMethod {
 }
 
 message SamplingParams {
-  repeated SamplingMethod order = 1;      // ANL: Order to apply transforms to
+  repeated SamplingMethod order = 1;      // GAI: Order to apply transforms to
   optional double temperature = 2;        // OAI: What sampling temperature to
   optional double top_p = 3;              // OAI: nucleus sampling value
-  optional uint32 top_k = 4;              // ANL: truncates logits to highest N
-  optional double tail_free_sampling = 5; // ANL: tail free sampling
-  optional double typical_p = 6;          // ANL: typical sampling
-  optional double top_a = 7;              // ANL: Kurumuz's wild invention
+  optional uint32 top_k = 4;              // GAI: truncates logits to highest N
+  optional double tail_free_sampling = 5; // GAI: tail free sampling
+  optional double typical_p = 6;          // GAI: typical sampling
+  optional double top_a = 7;              // GAI: Kurumuz's wild invention
 }
 
 // Model parameters
@@ -74,7 +74,7 @@ message ModelParams {
 }
 
 message Echo {
-  optional int32 index = 1; // ANL: Prompt token index to begin echo at, absence or zero is 'entire prompt'
+  optional int32 index = 1; // GAI: Prompt token index to begin echo at, absence or zero is 'entire prompt'
 }
 
 enum NumType {
@@ -112,14 +112,20 @@ message EngineParams {
   optional uint32 min_tokens = 7;   // GAI: Minimum tokens before stop sequences activate.
 }
 
+message RequestMeta {
+  optional uint64 received = 1;
+  optional bool streaming = 2;
+}
+
 // A 'generation' request.
 message Request {
   string engine_id = 1;                    // OAI: The ID of the engine to use for this request
   repeated Prompt prompt = 2;              // OAI: The prompt(s) to generate completions for
   optional ModelParams model_params = 3;   //
   optional EngineParams engine_params = 4; //
-  optional string request_id = 5;          // ANL: Request UUID, will be assigned if blank
+  optional string request_id = 5;          // GAI: Request UUID, will be assigned if blank
   repeated Embedding embeddings = 6;       // GAI: Embeddings for model. 
+  optional RequestMeta meta = 7;           // GAI: Metadata about our request.
 }
 
 message LogProb {
@@ -136,7 +142,7 @@ message LogProbs {
   TokenLogProbs tokens = 1;              // OAI: logprobs of chosen tokens
   repeated uint32 text_offset = 2;       // OAI: indexed offsets of tokens
   repeated TokenLogProbs top = 3;        // OAI: top N logprobs after processing
-  repeated TokenLogProbs top_before = 4; // ANL: top N logprobs before processing
+  repeated TokenLogProbs top_before = 4; // GAI: top N logprobs before processing
 }
 
 message Completion {
@@ -144,7 +150,14 @@ message Completion {
   uint32 index = 2;                 // OAI: The index of the completion.
   LogProbs logprobs = 3;            // OAI: Our answer with logprobs
   FinishReason finish_reason = 4;   // OAI: Why the completions finished.
-  uint32 token_index = 5;           // ANL: where the completion starts
+  uint32 token_index = 5;           // GAI: where the completion starts
+  uint64 started = 6;               // GAI: when the completion was started
+}
+
+mesage AnswerMeta {
+  optional string gpu_id = 1;
+  optional string cpu_id = 2;
+  optional string node_id = 3;
 }
 
 message Answer {
@@ -152,7 +165,9 @@ message Answer {
   uint64 created = 2;               // OAI: When the answer was created at.
   string model = 3;                 // OAI: What model and version answered.
   repeated Completion choices = 4;
-  optional string request_id = 5;   // ANL: Request UUID this answer is to.
+  optional string request_id = 5;   // GAI: Request UUID this answer is to.
+  uint64 received = 6;              // GAI: When the request was received
+  optional AnswerMeta meta = 7;     // GAI: Return request servicing metadata
 }
 
 service CompletionService {
