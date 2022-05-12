@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\r./;completion',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x10\x63ompletion.proto\x12\x07gooseai\"!\n\x05Token\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\r\"(\n\x06Tokens\x12\x1e\n\x06tokens\x18\x01 \x03(\x0b\x32\x0e.gooseai.Token\"E\n\x06Prompt\x12\x0e\n\x04text\x18\x01 \x01(\tH\x00\x12!\n\x06tokens\x18\x02 \x01(\x0b\x32\x0f.gooseai.TokensH\x00\x42\x08\n\x06prompt\":\n\tLogitBias\x12\x1f\n\x06tokens\x18\x01 \x01(\x0b\x32\x0f.gooseai.Tokens\x12\x0c\n\x04\x62ias\x18\x02 \x01(\x01\"1\n\x0bLogitBiases\x12\"\n\x06\x62iases\x18\x01 \x03(\x0b\x32\x12.gooseai.LogitBias\"\xbb\x02\n\x0f\x46requencyParams\x12\x1d\n\x10presence_penalty\x18\x01 \x01(\x01H\x00\x88\x01\x01\x12\x1e\n\x11\x66requency_penalty\x18\x02 \x01(\x01H\x01\x88\x01\x01\x12\x1f\n\x12repetition_penalty\x18\x03 \x01(\x01H\x02\x88\x01\x01\x12%\n\x18repetition_penalty_slope\x18\x04 \x01(\x01H\x03\x88\x01\x01\x12%\n\x18repetition_penalty_range\x18\x05 \x01(\rH\x04\x88\x01\x01\x42\x13\n\x11_presence_penaltyB\x14\n\x12_frequency_penaltyB\x15\n\x13_repetition_penaltyB\x1b\n\x19_repetition_penalty_slopeB\x1b\n\x19_repetition_penalty_range\"\x9a\x02\n\x0eSamplingParams\x12&\n\x05order\x18\x01 \x03(\x0e\x32\x17.gooseai.SamplingMethod\x12\x18\n\x0btemperature\x18\x02 \x01(\x01H\x00\x88\x01\x01\x12\x12\n\x05top_p\x18\x03 \x01(\x01H\x01\x88\x01\x01\x12\x12\n\x05top_k\x18\x04 \x01(\rH\x02\x88\x01\x01\x12\x1f\n\x12tail_free_sampling\x18\x05 \x01(\x01H\x03\x88\x01\x01\x12\x16\n\ttypical_p\x18\x06 \x01(\x01H\x04\x88\x01\x01\x12\x12\n\x05top_a\x18\x07 \x01(\x01H\x05\x88\x01\x01\x42\x0e\n\x0c_temperatureB\x08\n\x06_top_pB\x08\n\x06_top_kB\x15\n\x13_tail_free_samplingB\x0c\n\n_typical_pB\x08\n\x06_top_a\"\xe4\x01\n\x0bModelParams\x12\x35\n\x0fsampling_params\x18\x01 \x01(\x0b\x32\x17.gooseai.SamplingParamsH\x00\x88\x01\x01\x12\x37\n\x10\x66requency_params\x18\x02 \x01(\x0b\x32\x18.gooseai.FrequencyParamsH\x01\x88\x01\x01\x12-\n\nlogit_bias\x18\x03 \x01(\x0b\x32\x14.gooseai.LogitBiasesH\x02\x88\x01\x01\x42\x12\n\x10_sampling_paramsB\x13\n\x11_frequency_paramsB\r\n\x0b_logit_bias\"$\n\x04\x45\x63ho\x12\x12\n\x05index\x18\x01 \x01(\x05H\x00\x88\x01\x01\x42\x08\n\x06_index\"*\n\x0fModuleEmbedding\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0b\n\x03key\x18\x02 \x01(\t\"C\n\x06Tensor\x12\x1d\n\x03typ\x18\x01 \x01(\x0e\x32\x10.gooseai.NumType\x12\x0c\n\x04\x64ims\x18\x02 \x03(\r\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\x0c\"~\n\tEmbedding\x12\x1e\n\x03raw\x18\x01 \x01(\x0b\x32\x0f.gooseai.TensorH\x00\x12*\n\x06module\x18\x02 \x01(\x0b\x32\x18.gooseai.ModuleEmbeddingH\x00\x12\x10\n\x03pos\x18\x03 \x01(\rH\x01\x88\x01\x01\x42\x0b\n\tembeddingB\x06\n\x04_pos\"\x98\x02\n\x0c\x45ngineParams\x12\x17\n\nmax_tokens\x18\x01 \x01(\rH\x00\x88\x01\x01\x12\x18\n\x0b\x63ompletions\x18\x02 \x01(\rH\x01\x88\x01\x01\x12\x15\n\x08logprobs\x18\x03 \x01(\rH\x02\x88\x01\x01\x12 \n\x04\x65\x63ho\x18\x04 \x01(\x0b\x32\r.gooseai.EchoH\x03\x88\x01\x01\x12\x14\n\x07\x62\x65st_of\x18\x05 \x01(\rH\x04\x88\x01\x01\x12\x1d\n\x04stop\x18\x06 \x03(\x0b\x32\x0f.gooseai.Prompt\x12\x17\n\nmin_tokens\x18\x07 \x01(\rH\x05\x88\x01\x01\x42\r\n\x0b_max_tokensB\x0e\n\x0c_completionsB\x0b\n\t_logprobsB\x07\n\x05_echoB\n\n\x08_best_ofB\r\n\x0b_min_tokens\"\x94\x02\n\x07Request\x12\x11\n\tengine_id\x18\x01 \x01(\t\x12\x1f\n\x06prompt\x18\x02 \x03(\x0b\x32\x0f.gooseai.Prompt\x12/\n\x0cmodel_params\x18\x03 \x01(\x0b\x32\x14.gooseai.ModelParamsH\x00\x88\x01\x01\x12\x31\n\rengine_params\x18\x04 \x01(\x0b\x32\x15.gooseai.EngineParamsH\x01\x88\x01\x01\x12\x17\n\nrequest_id\x18\x05 \x01(\tH\x02\x88\x01\x01\x12&\n\nembeddings\x18\x06 \x03(\x0b\x32\x12.gooseai.EmbeddingB\x0f\n\r_model_paramsB\x10\n\x0e_engine_paramsB\r\n\x0b_request_id\"z\n\x07LogProb\x12\x1d\n\x05token\x18\x01 \x01(\x0b\x32\x0e.gooseai.Token\x12\x14\n\x07logprob\x18\x02 \x01(\x01H\x00\x88\x01\x01\x12\x1b\n\x0elogprob_before\x18\x03 \x01(\x01H\x01\x88\x01\x01\x42\n\n\x08_logprobB\x11\n\x0f_logprob_before\"3\n\rTokenLogProbs\x12\"\n\x08logprobs\x18\x01 \x03(\x0b\x32\x10.gooseai.LogProb\"\x98\x01\n\x08LogProbs\x12&\n\x06tokens\x18\x01 \x01(\x0b\x32\x16.gooseai.TokenLogProbs\x12\x13\n\x0btext_offset\x18\x02 \x03(\r\x12#\n\x03top\x18\x03 \x03(\x0b\x32\x16.gooseai.TokenLogProbs\x12*\n\ntop_before\x18\x04 \x03(\x0b\x32\x16.gooseai.TokenLogProbs\"\x91\x01\n\nCompletion\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\r\n\x05index\x18\x02 \x01(\r\x12#\n\x08logprobs\x18\x03 \x01(\x0b\x32\x11.gooseai.LogProbs\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.gooseai.FinishReason\x12\x13\n\x0btoken_index\x18\x05 \x01(\r\"\x89\x01\n\x06\x41nswer\x12\x11\n\tanswer_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\x04\x12\r\n\x05model\x18\x03 \x01(\t\x12$\n\x07\x63hoices\x18\x04 \x03(\x0b\x32\x13.gooseai.Completion\x12\x17\n\nrequest_id\x18\x05 \x01(\tH\x00\x88\x01\x01\x42\r\n\x0b_request_id*9\n\x0c\x46inishReason\x12\x08\n\x04NULL\x10\x00\x12\n\n\x06LENGTH\x10\x01\x12\x08\n\x04STOP\x10\x02\x12\t\n\x05\x45RROR\x10\x03*d\n\x0eSamplingMethod\x12\x08\n\x04NONE\x10\x00\x12\x0f\n\x0bTEMPERATURE\x10\x01\x12\t\n\x05TOP_K\x10\x02\x12\t\n\x05TOP_P\x10\x03\x12\x07\n\x03TFS\x10\x04\x12\t\n\x05TOP_A\x10\x05\x12\r\n\tTYPICAL_P\x10\x06*\'\n\x07NumType\x12\x08\n\x04\x46P16\x10\x00\x12\x08\n\x04\x46P32\x10\x01\x12\x08\n\x04\x42\x46\x31\x36\x10\x02\x32H\n\x11\x43ompletionService\x12\x33\n\nCompletion\x12\x10.gooseai.Request\x1a\x0f.gooseai.Answer\"\x00\x30\x01\x42\x0fZ\r./;completionb\x06proto3'
+  serialized_pb=b'\n\x10\x63ompletion.proto\x12\x07gooseai\"!\n\x05Token\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\r\"(\n\x06Tokens\x12\x1e\n\x06tokens\x18\x01 \x03(\x0b\x32\x0e.gooseai.Token\"E\n\x06Prompt\x12\x0e\n\x04text\x18\x01 \x01(\tH\x00\x12!\n\x06tokens\x18\x02 \x01(\x0b\x32\x0f.gooseai.TokensH\x00\x42\x08\n\x06prompt\":\n\tLogitBias\x12\x1f\n\x06tokens\x18\x01 \x01(\x0b\x32\x0f.gooseai.Tokens\x12\x0c\n\x04\x62ias\x18\x02 \x01(\x01\"1\n\x0bLogitBiases\x12\"\n\x06\x62iases\x18\x01 \x03(\x0b\x32\x12.gooseai.LogitBias\"\xbb\x02\n\x0f\x46requencyParams\x12\x1d\n\x10presence_penalty\x18\x01 \x01(\x01H\x00\x88\x01\x01\x12\x1e\n\x11\x66requency_penalty\x18\x02 \x01(\x01H\x01\x88\x01\x01\x12\x1f\n\x12repetition_penalty\x18\x03 \x01(\x01H\x02\x88\x01\x01\x12%\n\x18repetition_penalty_slope\x18\x04 \x01(\x01H\x03\x88\x01\x01\x12%\n\x18repetition_penalty_range\x18\x05 \x01(\rH\x04\x88\x01\x01\x42\x13\n\x11_presence_penaltyB\x14\n\x12_frequency_penaltyB\x15\n\x13_repetition_penaltyB\x1b\n\x19_repetition_penalty_slopeB\x1b\n\x19_repetition_penalty_range\"\x9a\x02\n\x0eSamplingParams\x12&\n\x05order\x18\x01 \x03(\x0e\x32\x17.gooseai.SamplingMethod\x12\x18\n\x0btemperature\x18\x02 \x01(\x01H\x00\x88\x01\x01\x12\x12\n\x05top_p\x18\x03 \x01(\x01H\x01\x88\x01\x01\x12\x12\n\x05top_k\x18\x04 \x01(\rH\x02\x88\x01\x01\x12\x1f\n\x12tail_free_sampling\x18\x05 \x01(\x01H\x03\x88\x01\x01\x12\x16\n\ttypical_p\x18\x06 \x01(\x01H\x04\x88\x01\x01\x12\x12\n\x05top_a\x18\x07 \x01(\x01H\x05\x88\x01\x01\x42\x0e\n\x0c_temperatureB\x08\n\x06_top_pB\x08\n\x06_top_kB\x15\n\x13_tail_free_samplingB\x0c\n\n_typical_pB\x08\n\x06_top_a\"\xe4\x01\n\x0bModelParams\x12\x35\n\x0fsampling_params\x18\x01 \x01(\x0b\x32\x17.gooseai.SamplingParamsH\x00\x88\x01\x01\x12\x37\n\x10\x66requency_params\x18\x02 \x01(\x0b\x32\x18.gooseai.FrequencyParamsH\x01\x88\x01\x01\x12-\n\nlogit_bias\x18\x03 \x01(\x0b\x32\x14.gooseai.LogitBiasesH\x02\x88\x01\x01\x42\x12\n\x10_sampling_paramsB\x13\n\x11_frequency_paramsB\r\n\x0b_logit_bias\"$\n\x04\x45\x63ho\x12\x12\n\x05index\x18\x01 \x01(\x05H\x00\x88\x01\x01\x42\x08\n\x06_index\"*\n\x0fModuleEmbedding\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0b\n\x03key\x18\x02 \x01(\t\"C\n\x06Tensor\x12\x1d\n\x03typ\x18\x01 \x01(\x0e\x32\x10.gooseai.NumType\x12\x0c\n\x04\x64ims\x18\x02 \x03(\r\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\x0c\"~\n\tEmbedding\x12\x1e\n\x03raw\x18\x01 \x01(\x0b\x32\x0f.gooseai.TensorH\x00\x12*\n\x06module\x18\x02 \x01(\x0b\x32\x18.gooseai.ModuleEmbeddingH\x00\x12\x10\n\x03pos\x18\x03 \x01(\rH\x01\x88\x01\x01\x42\x0b\n\tembeddingB\x06\n\x04_pos\"\x98\x02\n\x0c\x45ngineParams\x12\x17\n\nmax_tokens\x18\x01 \x01(\rH\x00\x88\x01\x01\x12\x18\n\x0b\x63ompletions\x18\x02 \x01(\rH\x01\x88\x01\x01\x12\x15\n\x08logprobs\x18\x03 \x01(\rH\x02\x88\x01\x01\x12 \n\x04\x65\x63ho\x18\x04 \x01(\x0b\x32\r.gooseai.EchoH\x03\x88\x01\x01\x12\x14\n\x07\x62\x65st_of\x18\x05 \x01(\rH\x04\x88\x01\x01\x12\x1d\n\x04stop\x18\x06 \x03(\x0b\x32\x0f.gooseai.Prompt\x12\x17\n\nmin_tokens\x18\x07 \x01(\rH\x05\x88\x01\x01\x42\r\n\x0b_max_tokensB\x0e\n\x0c_completionsB\x0b\n\t_logprobsB\x07\n\x05_echoB\n\n\x08_best_ofB\r\n\x0b_min_tokens\"3\n\x0bRequestMeta\x12\x16\n\tstreaming\x18\x01 \x01(\x08H\x00\x88\x01\x01\x42\x0c\n\n_streaming\"\xf8\x02\n\x07Request\x12\x11\n\tengine_id\x18\x01 \x01(\t\x12\x1f\n\x06prompt\x18\x02 \x03(\x0b\x32\x0f.gooseai.Prompt\x12/\n\x0cmodel_params\x18\x03 \x01(\x0b\x32\x14.gooseai.ModelParamsH\x00\x88\x01\x01\x12\x31\n\rengine_params\x18\x04 \x01(\x0b\x32\x15.gooseai.EngineParamsH\x01\x88\x01\x01\x12\x17\n\nrequest_id\x18\x05 \x01(\tH\x02\x88\x01\x01\x12&\n\nembeddings\x18\x06 \x03(\x0b\x32\x12.gooseai.Embedding\x12\x1c\n\x0forigin_received\x18\x07 \x01(\x04H\x03\x88\x01\x01\x12\'\n\x04meta\x18\x08 \x01(\x0b\x32\x14.gooseai.RequestMetaH\x04\x88\x01\x01\x42\x0f\n\r_model_paramsB\x10\n\x0e_engine_paramsB\r\n\x0b_request_idB\x12\n\x10_origin_receivedB\x07\n\x05_meta\"z\n\x07LogProb\x12\x1d\n\x05token\x18\x01 \x01(\x0b\x32\x0e.gooseai.Token\x12\x14\n\x07logprob\x18\x02 \x01(\x01H\x00\x88\x01\x01\x12\x1b\n\x0elogprob_before\x18\x03 \x01(\x01H\x01\x88\x01\x01\x42\n\n\x08_logprobB\x11\n\x0f_logprob_before\"3\n\rTokenLogProbs\x12\"\n\x08logprobs\x18\x01 \x03(\x0b\x32\x10.gooseai.LogProb\"\x98\x01\n\x08LogProbs\x12&\n\x06tokens\x18\x01 \x01(\x0b\x32\x16.gooseai.TokenLogProbs\x12\x13\n\x0btext_offset\x18\x02 \x03(\r\x12#\n\x03top\x18\x03 \x03(\x0b\x32\x16.gooseai.TokenLogProbs\x12*\n\ntop_before\x18\x04 \x03(\x0b\x32\x16.gooseai.TokenLogProbs\"\xa2\x01\n\nCompletion\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\r\n\x05index\x18\x02 \x01(\r\x12#\n\x08logprobs\x18\x03 \x01(\x0b\x32\x11.gooseai.LogProbs\x12,\n\rfinish_reason\x18\x04 \x01(\x0e\x32\x15.gooseai.FinishReason\x12\x13\n\x0btoken_index\x18\x05 \x01(\r\x12\x0f\n\x07started\x18\x06 \x01(\x04\"n\n\nAnswerMeta\x12\x13\n\x06gpu_id\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\x13\n\x06\x63pu_id\x18\x02 \x01(\tH\x01\x88\x01\x01\x12\x14\n\x07node_id\x18\x03 \x01(\tH\x02\x88\x01\x01\x42\t\n\x07_gpu_idB\t\n\x07_cpu_idB\n\n\x08_node_id\"\xd6\x01\n\x06\x41nswer\x12\x11\n\tanswer_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63reated\x18\x02 \x01(\x04\x12\r\n\x05model\x18\x03 \x01(\t\x12$\n\x07\x63hoices\x18\x04 \x03(\x0b\x32\x13.gooseai.Completion\x12\x17\n\nrequest_id\x18\x05 \x01(\tH\x00\x88\x01\x01\x12\x1a\n\x12inference_received\x18\x06 \x01(\x04\x12&\n\x04meta\x18\x07 \x01(\x0b\x32\x13.gooseai.AnswerMetaH\x01\x88\x01\x01\x42\r\n\x0b_request_idB\x07\n\x05_meta*9\n\x0c\x46inishReason\x12\x08\n\x04NULL\x10\x00\x12\n\n\x06LENGTH\x10\x01\x12\x08\n\x04STOP\x10\x02\x12\t\n\x05\x45RROR\x10\x03*d\n\x0eSamplingMethod\x12\x08\n\x04NONE\x10\x00\x12\x0f\n\x0bTEMPERATURE\x10\x01\x12\t\n\x05TOP_K\x10\x02\x12\t\n\x05TOP_P\x10\x03\x12\x07\n\x03TFS\x10\x04\x12\t\n\x05TOP_A\x10\x05\x12\r\n\tTYPICAL_P\x10\x06*\'\n\x07NumType\x12\x08\n\x04\x46P16\x10\x00\x12\x08\n\x04\x46P32\x10\x01\x12\x08\n\x04\x42\x46\x31\x36\x10\x02\x32H\n\x11\x43ompletionService\x12\x33\n\nCompletion\x12\x10.gooseai.Request\x1a\x0f.gooseai.Answer\"\x00\x30\x01\x42\x0fZ\r./;completionb\x06proto3'
 )
 
 _FINISHREASON = _descriptor.EnumDescriptor(
@@ -53,8 +53,8 @@ _FINISHREASON = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2583,
-  serialized_end=2640,
+  serialized_start=2942,
+  serialized_end=2999,
 )
 _sym_db.RegisterEnumDescriptor(_FINISHREASON)
 
@@ -104,8 +104,8 @@ _SAMPLINGMETHOD = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2642,
-  serialized_end=2742,
+  serialized_start=3001,
+  serialized_end=3101,
 )
 _sym_db.RegisterEnumDescriptor(_SAMPLINGMETHOD)
 
@@ -135,8 +135,8 @@ _NUMTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2744,
-  serialized_end=2783,
+  serialized_start=3103,
+  serialized_end=3142,
 )
 _sym_db.RegisterEnumDescriptor(_NUMTYPE)
 
@@ -876,6 +876,43 @@ _ENGINEPARAMS = _descriptor.Descriptor(
 )
 
 
+_REQUESTMETA = _descriptor.Descriptor(
+  name='RequestMeta',
+  full_name='gooseai.RequestMeta',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='streaming', full_name='gooseai.RequestMeta.streaming', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+    _descriptor.OneofDescriptor(
+      name='_streaming', full_name='gooseai.RequestMeta._streaming',
+      index=0, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+  ],
+  serialized_start=1684,
+  serialized_end=1735,
+)
+
+
 _REQUEST = _descriptor.Descriptor(
   name='Request',
   full_name='gooseai.Request',
@@ -926,6 +963,20 @@ _REQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='origin_received', full_name='gooseai.Request.origin_received', index=6,
+      number=7, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='meta', full_name='gooseai.Request.meta', index=7,
+      number=8, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -952,9 +1003,19 @@ _REQUEST = _descriptor.Descriptor(
       index=2, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
+    _descriptor.OneofDescriptor(
+      name='_origin_received', full_name='gooseai.Request._origin_received',
+      index=3, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+    _descriptor.OneofDescriptor(
+      name='_meta', full_name='gooseai.Request._meta',
+      index=4, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
   ],
-  serialized_start=1685,
-  serialized_end=1961,
+  serialized_start=1738,
+  serialized_end=2114,
 )
 
 
@@ -1009,8 +1070,8 @@ _LOGPROB = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=1963,
-  serialized_end=2085,
+  serialized_start=2116,
+  serialized_end=2238,
 )
 
 
@@ -1041,8 +1102,8 @@ _TOKENLOGPROBS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2087,
-  serialized_end=2138,
+  serialized_start=2240,
+  serialized_end=2291,
 )
 
 
@@ -1094,8 +1155,8 @@ _LOGPROBS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2141,
-  serialized_end=2293,
+  serialized_start=2294,
+  serialized_end=2446,
 )
 
 
@@ -1142,6 +1203,13 @@ _COMPLETION = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='started', full_name='gooseai.Completion.started', index=5,
+      number=6, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1154,8 +1222,69 @@ _COMPLETION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2296,
-  serialized_end=2441,
+  serialized_start=2449,
+  serialized_end=2611,
+)
+
+
+_ANSWERMETA = _descriptor.Descriptor(
+  name='AnswerMeta',
+  full_name='gooseai.AnswerMeta',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='gpu_id', full_name='gooseai.AnswerMeta.gpu_id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='cpu_id', full_name='gooseai.AnswerMeta.cpu_id', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='node_id', full_name='gooseai.AnswerMeta.node_id', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+    _descriptor.OneofDescriptor(
+      name='_gpu_id', full_name='gooseai.AnswerMeta._gpu_id',
+      index=0, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+    _descriptor.OneofDescriptor(
+      name='_cpu_id', full_name='gooseai.AnswerMeta._cpu_id',
+      index=1, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+    _descriptor.OneofDescriptor(
+      name='_node_id', full_name='gooseai.AnswerMeta._node_id',
+      index=2, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+  ],
+  serialized_start=2613,
+  serialized_end=2723,
 )
 
 
@@ -1202,6 +1331,20 @@ _ANSWER = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='inference_received', full_name='gooseai.Answer.inference_received', index=5,
+      number=6, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='meta', full_name='gooseai.Answer.meta', index=6,
+      number=7, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1218,9 +1361,14 @@ _ANSWER = _descriptor.Descriptor(
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
+    _descriptor.OneofDescriptor(
+      name='_meta', full_name='gooseai.Answer._meta',
+      index=1, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
   ],
-  serialized_start=2444,
-  serialized_end=2581,
+  serialized_start=2726,
+  serialized_end=2940,
 )
 
 _TOKENS.fields_by_name['tokens'].message_type = _TOKEN
@@ -1314,10 +1462,14 @@ _ENGINEPARAMS.fields_by_name['best_of'].containing_oneof = _ENGINEPARAMS.oneofs_
 _ENGINEPARAMS.oneofs_by_name['_min_tokens'].fields.append(
   _ENGINEPARAMS.fields_by_name['min_tokens'])
 _ENGINEPARAMS.fields_by_name['min_tokens'].containing_oneof = _ENGINEPARAMS.oneofs_by_name['_min_tokens']
+_REQUESTMETA.oneofs_by_name['_streaming'].fields.append(
+  _REQUESTMETA.fields_by_name['streaming'])
+_REQUESTMETA.fields_by_name['streaming'].containing_oneof = _REQUESTMETA.oneofs_by_name['_streaming']
 _REQUEST.fields_by_name['prompt'].message_type = _PROMPT
 _REQUEST.fields_by_name['model_params'].message_type = _MODELPARAMS
 _REQUEST.fields_by_name['engine_params'].message_type = _ENGINEPARAMS
 _REQUEST.fields_by_name['embeddings'].message_type = _EMBEDDING
+_REQUEST.fields_by_name['meta'].message_type = _REQUESTMETA
 _REQUEST.oneofs_by_name['_model_params'].fields.append(
   _REQUEST.fields_by_name['model_params'])
 _REQUEST.fields_by_name['model_params'].containing_oneof = _REQUEST.oneofs_by_name['_model_params']
@@ -1327,6 +1479,12 @@ _REQUEST.fields_by_name['engine_params'].containing_oneof = _REQUEST.oneofs_by_n
 _REQUEST.oneofs_by_name['_request_id'].fields.append(
   _REQUEST.fields_by_name['request_id'])
 _REQUEST.fields_by_name['request_id'].containing_oneof = _REQUEST.oneofs_by_name['_request_id']
+_REQUEST.oneofs_by_name['_origin_received'].fields.append(
+  _REQUEST.fields_by_name['origin_received'])
+_REQUEST.fields_by_name['origin_received'].containing_oneof = _REQUEST.oneofs_by_name['_origin_received']
+_REQUEST.oneofs_by_name['_meta'].fields.append(
+  _REQUEST.fields_by_name['meta'])
+_REQUEST.fields_by_name['meta'].containing_oneof = _REQUEST.oneofs_by_name['_meta']
 _LOGPROB.fields_by_name['token'].message_type = _TOKEN
 _LOGPROB.oneofs_by_name['_logprob'].fields.append(
   _LOGPROB.fields_by_name['logprob'])
@@ -1340,10 +1498,23 @@ _LOGPROBS.fields_by_name['top'].message_type = _TOKENLOGPROBS
 _LOGPROBS.fields_by_name['top_before'].message_type = _TOKENLOGPROBS
 _COMPLETION.fields_by_name['logprobs'].message_type = _LOGPROBS
 _COMPLETION.fields_by_name['finish_reason'].enum_type = _FINISHREASON
+_ANSWERMETA.oneofs_by_name['_gpu_id'].fields.append(
+  _ANSWERMETA.fields_by_name['gpu_id'])
+_ANSWERMETA.fields_by_name['gpu_id'].containing_oneof = _ANSWERMETA.oneofs_by_name['_gpu_id']
+_ANSWERMETA.oneofs_by_name['_cpu_id'].fields.append(
+  _ANSWERMETA.fields_by_name['cpu_id'])
+_ANSWERMETA.fields_by_name['cpu_id'].containing_oneof = _ANSWERMETA.oneofs_by_name['_cpu_id']
+_ANSWERMETA.oneofs_by_name['_node_id'].fields.append(
+  _ANSWERMETA.fields_by_name['node_id'])
+_ANSWERMETA.fields_by_name['node_id'].containing_oneof = _ANSWERMETA.oneofs_by_name['_node_id']
 _ANSWER.fields_by_name['choices'].message_type = _COMPLETION
+_ANSWER.fields_by_name['meta'].message_type = _ANSWERMETA
 _ANSWER.oneofs_by_name['_request_id'].fields.append(
   _ANSWER.fields_by_name['request_id'])
 _ANSWER.fields_by_name['request_id'].containing_oneof = _ANSWER.oneofs_by_name['_request_id']
+_ANSWER.oneofs_by_name['_meta'].fields.append(
+  _ANSWER.fields_by_name['meta'])
+_ANSWER.fields_by_name['meta'].containing_oneof = _ANSWER.oneofs_by_name['_meta']
 DESCRIPTOR.message_types_by_name['Token'] = _TOKEN
 DESCRIPTOR.message_types_by_name['Tokens'] = _TOKENS
 DESCRIPTOR.message_types_by_name['Prompt'] = _PROMPT
@@ -1357,11 +1528,13 @@ DESCRIPTOR.message_types_by_name['ModuleEmbedding'] = _MODULEEMBEDDING
 DESCRIPTOR.message_types_by_name['Tensor'] = _TENSOR
 DESCRIPTOR.message_types_by_name['Embedding'] = _EMBEDDING
 DESCRIPTOR.message_types_by_name['EngineParams'] = _ENGINEPARAMS
+DESCRIPTOR.message_types_by_name['RequestMeta'] = _REQUESTMETA
 DESCRIPTOR.message_types_by_name['Request'] = _REQUEST
 DESCRIPTOR.message_types_by_name['LogProb'] = _LOGPROB
 DESCRIPTOR.message_types_by_name['TokenLogProbs'] = _TOKENLOGPROBS
 DESCRIPTOR.message_types_by_name['LogProbs'] = _LOGPROBS
 DESCRIPTOR.message_types_by_name['Completion'] = _COMPLETION
+DESCRIPTOR.message_types_by_name['AnswerMeta'] = _ANSWERMETA
 DESCRIPTOR.message_types_by_name['Answer'] = _ANSWER
 DESCRIPTOR.enum_types_by_name['FinishReason'] = _FINISHREASON
 DESCRIPTOR.enum_types_by_name['SamplingMethod'] = _SAMPLINGMETHOD
@@ -1459,6 +1632,13 @@ EngineParams = _reflection.GeneratedProtocolMessageType('EngineParams', (_messag
   })
 _sym_db.RegisterMessage(EngineParams)
 
+RequestMeta = _reflection.GeneratedProtocolMessageType('RequestMeta', (_message.Message,), {
+  'DESCRIPTOR' : _REQUESTMETA,
+  '__module__' : 'completion_pb2'
+  # @@protoc_insertion_point(class_scope:gooseai.RequestMeta)
+  })
+_sym_db.RegisterMessage(RequestMeta)
+
 Request = _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), {
   'DESCRIPTOR' : _REQUEST,
   '__module__' : 'completion_pb2'
@@ -1494,6 +1674,13 @@ Completion = _reflection.GeneratedProtocolMessageType('Completion', (_message.Me
   })
 _sym_db.RegisterMessage(Completion)
 
+AnswerMeta = _reflection.GeneratedProtocolMessageType('AnswerMeta', (_message.Message,), {
+  'DESCRIPTOR' : _ANSWERMETA,
+  '__module__' : 'completion_pb2'
+  # @@protoc_insertion_point(class_scope:gooseai.AnswerMeta)
+  })
+_sym_db.RegisterMessage(AnswerMeta)
+
 Answer = _reflection.GeneratedProtocolMessageType('Answer', (_message.Message,), {
   'DESCRIPTOR' : _ANSWER,
   '__module__' : 'completion_pb2'
@@ -1511,8 +1698,8 @@ _COMPLETIONSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=2785,
-  serialized_end=2857,
+  serialized_start=3144,
+  serialized_end=3216,
   methods=[
   _descriptor.MethodDescriptor(
     name='Completion',
