@@ -154,7 +154,7 @@ message Completion {
   uint64 started = 6;               // GAI: when the completion was started
 }
 
-mesage AnswerMeta {
+message AnswerMeta {
   optional string gpu_id = 1;
   optional string cpu_id = 2;
   optional string node_id = 3;
