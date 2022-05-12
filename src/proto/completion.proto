@@ -113,8 +113,7 @@ message EngineParams {
 }
 
 message RequestMeta {
-  optional uint64 received = 1;
-  optional bool streaming = 2;
+  optional bool streaming = 1;
 }
 
 // A 'generation' request.
@@ -125,7 +124,8 @@ message Request {
   optional EngineParams engine_params = 4; //
   optional string request_id = 5;          // GAI: Request UUID, will be assigned if blank
   repeated Embedding embeddings = 6;       // GAI: Embeddings for model. 
-  optional RequestMeta meta = 7;           // GAI: Metadata about our request.
+  optional uint64 origin_received = 7;     // GAI: When we received the request from the origin.
+  optional RequestMeta meta = 8;           // GAI: Optional metadata about our request.
 }
 
 message LogProb {
@@ -166,7 +166,7 @@ message Answer {
   string model = 3;                 // OAI: What model and version answered.
   repeated Completion choices = 4;
   optional string request_id = 5;   // GAI: Request UUID this answer is to.
-  uint64 received = 6;              // GAI: When the request was received
+  uint64 inference_received = 6;    // GAI: When the request was received
   optional AnswerMeta meta = 7;     // GAI: Return request servicing metadata
 }
 
