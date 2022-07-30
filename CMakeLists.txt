@@ -78,32 +78,32 @@ set(golang_grpc_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
 file(MAKE_DIRECTORY "${golang_grpc_output_dir}")
 set(golang_grpc_exts "-grpc.go")
 
-set(typescript_grpc "")
-set(typescript_grpc_args "--plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts")
-set(typescript_grpc_output "--ts_out")
-set(typescript_grpc_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
-file(MAKE_DIRECTORY "${typescript_grpc_output_dir}")
-set(typescript_grpc_exts "_grpc_pb.d.ts")
+#set(typescript_grpc "")
+#set(typescript_grpc_args "--plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts")
+#set(typescript_grpc_output "--ts_out")
+#set(typescript_grpc_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
+#file(MAKE_DIRECTORY "${typescript_grpc_output_dir}")
+#set(typescript_grpc_exts "_grpc_pb.d.ts")
 
-execute_process(COMMAND pnpm version
-        RESULT_VARIABLE EXIT_CODE
-        OUTPUT_QUIET)
-if (NOT ${EXIT_CODE} EQUAL 0)
-    message(FATAL_ERROR
-            "pnpm is not installed. Please ensure that it is installed by using your favorite package manager.")
-endif()
+#execute_process(COMMAND pnpm version
+#        RESULT_VARIABLE EXIT_CODE
+#        OUTPUT_QUIET)
+#if (NOT ${EXIT_CODE} EQUAL 0)
+#    message(FATAL_ERROR
+#            "pnpm is not installed. Please ensure that it is installed by using your favorite package manager.")
+#endif()
 
-execute_process(COMMAND pnpm install
-        RESULT_VARIABLE EXIT_CODE)
-if (NOT ${EXIT_CODE} EQUAL 0)
-    message(FATAL_ERROR
-            "pnpm install failed!")
-endif()
+#execute_process(COMMAND pnpm install
+#        RESULT_VARIABLE EXIT_CODE)
+#if (NOT ${EXIT_CODE} EQUAL 0)
+#    message(FATAL_ERROR
+#            "pnpm install failed!")
+#endif()
 
-add_custom_target (
-      pnpm-target
-      COMMAND cd ${PROJECT_SOURCE_DIR} && cd html && npm install && npm run build
-)
+#add_custom_target (
+#      pnpm-target
+#      COMMAND cd ${PROJECT_SOURCE_DIR} && cd html && npm install && npm run build
+#)
 
 ## Protobuf and GRPC stub building macros
 macro (_add_pb_file _src TYP VAR)
@@ -200,6 +200,7 @@ add_target_languages(
 
 # Generate base protobufs
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/dashboard.proto)
+add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/generation.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/completion.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/engines.proto)
 generate_interfaces()
