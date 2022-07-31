@@ -66,6 +66,11 @@ enum DenoiseAlgorithm {
   DENOISE_NONE = 0;
   DENOISE_DDIM = 1;
   DENOISE_DDPM = 2;
+  DENOISE_K_EULER = 3;
+  DENOISE_K_EULER_ANCESTRAL = 4;
+  DENOISE_K_HEUN = 5;
+  DENOISE_K_DPM_2 = 6;
+  DENOISE_K_DPN_2_ANCESTRAL = 7;
 }
 
 message ImageParameters {
