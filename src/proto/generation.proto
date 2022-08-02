@@ -84,6 +84,7 @@ message ImageParameters {
   optional uint64 latent_channels = 8;
   optional uint64 downsampling_factor = 9;
   optional DenoiseAlgorithm denoise = 10;
+  optional uint64 scale = 11;
 }
 
 message Request {
