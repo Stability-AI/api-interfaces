@@ -62,29 +62,51 @@ message Answer {
   repeated Artifact artifacts = 7;
 }
 
-enum DenoiseAlgorithm {
-  DENOISE_NONE = 0;
-  DENOISE_DDIM = 1;
-  DENOISE_DDPM = 2;
-  DENOISE_K_EULER = 3;
-  DENOISE_K_EULER_ANCESTRAL = 4;
-  DENOISE_K_HEUN = 5;
-  DENOISE_K_DPM_2 = 6;
-  DENOISE_K_DPN_2_ANCESTRAL = 7;
+enum DiffusionSampler {
+  SAMPLER_DDIM = 0;
+  SAMPLER_DDPM = 1;
+  SAMPLER_K_EULER = 2;
+  SAMPLER_K_EULER_ANCESTRAL = 3;
+  SAMPLER_K_HEUN = 4;
+  SAMPLER_K_DPM_2 = 5;
+  SAMPLER_K_DPM_2_ANCESTRAL = 6;
+  SAMPLER_K_LMS = 7;
+}
+
+message SamplerParameters {
+  optional float eta = 1;
+  optional uint64 sampling_steps = 2;
+  optional uint64 latent_channels = 3;
+  optional uint64 downsampling_factor = 4;
+  optional float cfg_scale = 5;
+}
+
+enum Upscaler {
+  UPSCALER_RGB = 0;
+  UPSCALER_GFPGAN = 1;
+  UPSCALER_ESRGAN = 2;
+}
+
+message StepParameter {
+  float scaled_step = 1;
+  optional SamplerParameters sampler = 2;
+}
+
+message TransformType {
+  oneof type {
+      DiffusionSampler diffusion = 1;
+      Upscaler upscaler = 2;
+  }
 }
 
 message ImageParameters {
   optional uint64 height = 1;
   optional uint64 width = 2;
-  optional uint64 steps = 3;
-  optional uint64 seed = 4;
-  optional uint64 num_samples = 5;
-  optional float eta = 6;
-  optional uint64 sampling_steps = 7;
-  optional uint64 latent_channels = 8;
-  optional uint64 downsampling_factor = 9;
-  optional DenoiseAlgorithm denoise = 10;
-  optional uint64 scale = 11;
+  optional uint64 seed = 3;
+  optional uint64 samples = 4;
+  optional uint64 steps = 5;
+  optional TransformType transform = 6;
+  repeated StepParameter parameters = 7;
 }
 
 message Request {
