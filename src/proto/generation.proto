@@ -2,12 +2,21 @@ syntax = 'proto3';
 package gooseai;
 option go_package = "./;generation";
 
+enum FinishReason {
+  NULL = 0;
+  LENGTH = 1;
+  STOP = 2;
+  ERROR = 3;
+  FILTER = 4;
+}
+
 enum ArtifactType {
   ARTIFACT_NONE = 0;
   ARTIFACT_IMAGE = 1;
   ARTIFACT_VIDEO = 2;
   ARTIFACT_TEXT = 3;
   ARTIFACT_TOKENS = 4;
+  ARTIFACT_EMBEDDING = 5;
 }
 
 message Token {
@@ -30,6 +39,8 @@ message Artifact {
     string text = 6;
     Tokens tokens = 7;
   }
+  uint32 index = 8;
+  FinishReason finish_reason = 9;
 }
 
 message PromptParameters {
