@@ -12,6 +12,7 @@ string(REPLACE "git@github.com:" "" REPO_PATH "${REMOTE_ORIGIN}")
 string(REPLACE "https://github.com/" "" REPO_PATH "${REPO_PATH}")
 
 string(REPLACE ".git" "" PROJECT_REF "${REPO_PATH}")
+string(TOLOWER ${PROJECT_REF} PROJECT_REF)
 
 find_package(Protobuf REQUIRED)
 find_package(gRPC CONFIG REQUIRED)

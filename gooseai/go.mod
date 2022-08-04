@@ -1,4 +1,4 @@
-module github.com/Stability-AI/api-interfaces/gooseai
+module github.com/stability-ai/api-interfaces/gooseai
 
 go 1.18
 
