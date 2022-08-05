@@ -14,8 +14,11 @@ string(REPLACE "https://github.com/" "" REPO_PATH "${REPO_PATH}")
 string(REPLACE ".git" "" PROJECT_REF "${REPO_PATH}")
 string(TOLOWER ${PROJECT_REF} PROJECT_REF)
 
+include(src/cmake/FindgRPC.cmake)
+
+find_package(PkgConfig REQUIRED)
 find_package(Protobuf REQUIRED)
-find_package(gRPC CONFIG REQUIRED)
+#find_package(gRPC CONFIG REQUIRED)
 # find_package(Protobuf REQUIRED)
 set(PROTO_PATH "${PROJECT_SOURCE_DIR}/src/proto")
 set(GENERATED_PROTOBUF_PATH "${PROJECT_SOURCE_DIR}/gooseai")
@@ -151,6 +154,7 @@ macro(_generate_interface LANG INTERFACE_FILE)
             COMMAND ${CMD_EXEC}
             ARGS ${${LANG}_args}
             ARGS "--proto_path=${PROTO_PATH}"
+            ARGS "--experimental_allow_proto3_optional"
             ARGS "${CMD_PLUGIN}"
             ARGS "${${LANG}_output}=${${LANG}_output_dir}/${_PROTOBUF_SHORT}"
             ARGS "${INTERFACE_FILE}")
