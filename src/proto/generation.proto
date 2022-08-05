@@ -41,6 +41,7 @@ message Artifact {
   }
   uint32 index = 8;
   FinishReason finish_reason = 9;
+  uint32 seed = 10;
 }
 
 message PromptParameters {
@@ -113,7 +114,7 @@ message TransformType {
 message ImageParameters {
   optional uint64 height = 1;
   optional uint64 width = 2;
-  optional uint64 seed = 3;
+  optional uint32 seed = 3;
   optional uint64 samples = 4;
   optional uint64 steps = 5;
   optional TransformType transform = 6;
