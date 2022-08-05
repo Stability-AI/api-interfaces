@@ -19,7 +19,6 @@ include(src/cmake/FindgRPC.cmake)
 find_package(PkgConfig REQUIRED)
 find_package(Protobuf REQUIRED)
 #find_package(gRPC CONFIG REQUIRED)
-# find_package(Protobuf REQUIRED)
 set(PROTO_PATH "${PROJECT_SOURCE_DIR}/src/proto")
 set(GENERATED_PROTOBUF_PATH "${PROJECT_SOURCE_DIR}/gooseai")
 file(MAKE_DIRECTORY ${GENERATED_PROTOBUF_PATH})
@@ -34,19 +33,20 @@ if (NOT ${EXIT_CODE} EQUAL 0)
             "The \"grpcio-tools\" Python3 package is not installed. Please install it using the following command: \"pip3 install grpcio-tools\".")
 endif()
 
+set(python_exec "python3")
+set(python_args "-m" "grpc_tools.protoc")
 set(python_plugin "")
-set(python_output "--python_out")
+set(python_output "--python_out=")
 set(python_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
 file(MAKE_DIRECTORY "${python_output_dir}")
-file(WRITE "${PROJECT_SOURCE_DIR}/gooseai/__init__.py")
 file(WRITE "${PROJECT_SOURCE_DIR}/gooseai/__init__.py")
 set(python_exts "_pb2.py")
 
 set(python_grpc_exec "python3")
 set(python_grpc_args "-m" "grpc_tools.protoc")
-set(python_grpc_output "--python_out")
+set(python_grpc_output "--grpc_python_out=")
 set(python_grpc_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
-set(python_grpc_plugin "--grpc_python_out=${python_grpc_output_dir}")
+set(python_grpc_plugin "")
 set(python_grpc_exts "_grpc.py")
 
 ## Golang target support
@@ -71,43 +71,65 @@ if (NOT ${EXIT_CODE} EQUAL 0)
 endif()
 
 set(golang_plugin "")
-set(golang_output "--go_out")
+set(golang_output "--go_out=")
 set(golang_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
 file(MAKE_DIRECTORY "${golang_output_dir}")
 set(golang_exts ".go")
 
 set(golang_grpc "")
-set(golang_grpc_output "--go-grpc_out")
+set(golang_grpc_output "--go-grpc_out=")
 set(golang_grpc_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
 file(MAKE_DIRECTORY "${golang_grpc_output_dir}")
 set(golang_grpc_exts "-grpc.go")
 
-#set(typescript_grpc "")
-#set(typescript_grpc_args "--plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts")
-#set(typescript_grpc_output "--ts_out")
-#set(typescript_grpc_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
-#file(MAKE_DIRECTORY "${typescript_grpc_output_dir}")
-#set(typescript_grpc_exts "_grpc_pb.d.ts")
+# Javascript / Typescript target support
+execute_process(COMMAND pnpm version
+       RESULT_VARIABLE EXIT_CODE
+       OUTPUT_QUIET)
+if (NOT ${EXIT_CODE} EQUAL 0)
+   message(FATAL_ERROR
+           "pnpm is not installed. Please ensure that it is installed by using your favorite package manager.")
+endif()
 
-#execute_process(COMMAND pnpm version
-#        RESULT_VARIABLE EXIT_CODE
-#        OUTPUT_QUIET)
-#if (NOT ${EXIT_CODE} EQUAL 0)
-#    message(FATAL_ERROR
-#            "pnpm is not installed. Please ensure that it is installed by using your favorite package manager.")
-#endif()
+execute_process(COMMAND pnpm install
+       RESULT_VARIABLE EXIT_CODE)
+if (NOT ${EXIT_CODE} EQUAL 0)
+   message(FATAL_ERROR
+           "pnpm install failed!")
+endif()
+set(NODE_BIN_DIRECTORY "${PROJECT_SOURCE_DIR}/node_modules/.bin")
 
-#execute_process(COMMAND pnpm install
-#        RESULT_VARIABLE EXIT_CODE)
-#if (NOT ${EXIT_CODE} EQUAL 0)
-#    message(FATAL_ERROR
-#            "pnpm install failed!")
-#endif()
+set(javascript_exec "${PROJECT_SOURCE_DIR}/src/bin/protoc")
+set(javascript_plugin "--plugin=protoc-gen-ts=${NODE_BIN_DIRECTORY}/protoc-gen-ts")
+set(javascript_args "")
+set(javascript_output "--js_out=import_style=commonjs,binary:")
+set(javascript_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
+file(MAKE_DIRECTORY "${javascript_output_dir}")
+set(javascript_exts "_pb.js")
 
-#add_custom_target (
-#      pnpm-target
-#      COMMAND cd ${PROJECT_SOURCE_DIR} && cd html && npm install && npm run build
-#)
+set(javascript_grpc_exec "${PROJECT_SOURCE_DIR}/src/bin/protoc")
+set(javascript_grpc_plugin "--plugin=protoc-gen-ts=${NODE_BIN_DIRECTORY}/protoc-gen-ts" "--plugin=protoc-gen-grpc=${NODE_BIN_DIRECTORY}/grpc_tools_node_protoc_plugin")
+set(javascript_grpc_args "")
+set(javascript_grpc_output "--grpc_out=import_style=commonjs,binary:")
+set(javascript_grpc_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
+file(MAKE_DIRECTORY "${javascript_grpc_output_dir}")
+set(javascript_grpc_exts "_grpc_pb.js")
+
+set(typescript_web_exec "${PROJECT_SOURCE_DIR}/src/bin/protoc")
+set(typescript_web_plugin  "--plugin=protoc-gen-ts=${NODE_BIN_DIRECTORY}/protoc-gen-ts")
+set(typescript_web_args "")
+set(typescript_web_output "--ts_out=service=grpc-web:")
+set(typescript_web_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
+file(MAKE_DIRECTORY "${typescript_output_dir}")
+set(typescript_web_exts "_grpc_pb_service.d.ts;_grpc_pb_service.js")
+
+set(typescript_node_exec "${PROJECT_SOURCE_DIR}/src/bin/protoc")
+set(typescript_node_plugin "--plugin=protoc-gen-ts=${NODE_BIN_DIRECTORY}/protoc-gen-ts" "--plugin=protoc-gen-grpc=${NODE_BIN_DIRECTORY}/grpc_tools_node_protoc_plugin")
+set(typescript_node_args "")
+set(typescript_node_output "--ts_out=service=grpc-node:")
+set(typescript_node_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
+file(MAKE_DIRECTORY "${typescript_output_dir}")
+set(typescript_node_exts "_grpc_pb.d.ts")
 
 ## Protobuf and GRPC stub building macros
 macro (_add_pb_file _src TYP VAR)
@@ -140,10 +162,6 @@ macro(_generate_interface LANG INTERFACE_FILE)
     else()
         set(CMD_EXEC "${PROTOBUF_PROTOC_EXECUTABLE}")
     endif()
-    set(CMD_PLUGIN)
-    if(NOT "${${LANG}_plugin}" STREQUAL "")
-        set(CMD_PLUGIN "${${LANG}_plugin}/${_PROTOBUF_SHORT}")
-    endif()
     add_custom_command(
             OUTPUT ${OUTPUT_FILES}
 
@@ -155,8 +173,8 @@ macro(_generate_interface LANG INTERFACE_FILE)
             ARGS ${${LANG}_args}
             ARGS "--proto_path=${PROTO_PATH}"
             ARGS "--experimental_allow_proto3_optional"
-            ARGS "${CMD_PLUGIN}"
-            ARGS "${${LANG}_output}=${${LANG}_output_dir}/${_PROTOBUF_SHORT}"
+            ARGS ${${LANG}_plugin}
+            ARGS "${${LANG}_output}${${LANG}_output_dir}/${_PROTOBUF_SHORT}"
             ARGS "${INTERFACE_FILE}")
 endmacro()
 
@@ -200,7 +218,10 @@ add_target_languages(
         python_grpc
         golang
         golang_grpc
-        #typescript_grpc
+        javascript
+        javascript_grpc
+        typescript_web
+        typescript_node
 )
 
 # Generate base protobufs
@@ -225,6 +246,9 @@ add_custom_target(
         ${GENERATED_PROTOBUF_FILES_python_grpc}
         ${GENERATED_PROTOBUF_FILES_golang}
         ${GENERATED_PROTOBUF_FILES_golang_grpc}
-        ${GENERATED_PROTOBUF_FILES_typescript_grpc}
+        ${GENERATED_PROTOBUF_FILES_javascript}
+        ${GENERATED_PROTOBUF_FILES_javascript_grpc}
+        ${GENERATED_PROTOBUF_FILES_typescript_web}
+        ${GENERATED_PROTOBUF_FILES_typescript_node}
         ${PROJECT_SOURCE_DIR}/gooseai/go.mod
 )
