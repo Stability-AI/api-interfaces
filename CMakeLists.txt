@@ -83,19 +83,19 @@ file(MAKE_DIRECTORY "${golang_grpc_output_dir}")
 set(golang_grpc_exts "-grpc.go")
 
 # Javascript / Typescript target support
-execute_process(COMMAND pnpm version
+execute_process(COMMAND npm version
        RESULT_VARIABLE EXIT_CODE
        OUTPUT_QUIET)
 if (NOT ${EXIT_CODE} EQUAL 0)
    message(FATAL_ERROR
-           "pnpm is not installed. Please ensure that it is installed by using your favorite package manager.")
+           "npm is not installed. Please ensure that it is installed by using your favorite package manager.")
 endif()
 
-execute_process(COMMAND pnpm install
+execute_process(COMMAND npm install
        RESULT_VARIABLE EXIT_CODE)
 if (NOT ${EXIT_CODE} EQUAL 0)
    message(FATAL_ERROR
-           "pnpm install failed!")
+           "npm install failed!")
 endif()
 set(NODE_BIN_DIRECTORY "${PROJECT_SOURCE_DIR}/node_modules/.bin")
 
