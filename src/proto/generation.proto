@@ -93,6 +93,10 @@ message SamplerParameters {
   optional float cfg_scale = 5;
 }
 
+message ConditionerParameters {
+  optional string vector_adjust_prior = 1;
+}
+
 enum Upscaler {
   UPSCALER_RGB = 0;
   UPSCALER_GFPGAN = 1;
@@ -114,7 +118,7 @@ message TransformType {
 message ImageParameters {
   optional uint64 height = 1;
   optional uint64 width = 2;
-  optional uint32 seed = 3;
+  repeated uint32 seed = 3;
   optional uint64 samples = 4;
   optional uint64 steps = 5;
   optional TransformType transform = 6;
@@ -129,6 +133,7 @@ message Request {
   oneof params {
     ImageParameters image = 5;
   }
+  optional ConditionerParameters conditioner = 6;
 }
 
 service GenerationService {
