@@ -95,6 +95,9 @@ export class Artifact extends jspb.Message {
   getFinishReason(): FinishReasonMap[keyof FinishReasonMap];
   setFinishReason(value: FinishReasonMap[keyof FinishReasonMap]): void;
 
+  getSeed(): number;
+  setSeed(value: number): void;
+
   getDataCase(): Artifact.DataCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Artifact.AsObject;
@@ -117,6 +120,7 @@ export namespace Artifact {
     tokens?: Tokens.AsObject,
     index: number,
     finishReason: FinishReasonMap[keyof FinishReasonMap],
+    seed: number,
   }
 
   export enum DataCase {
@@ -333,6 +337,28 @@ export namespace SamplerParameters {
   }
 }
 
+export class ConditionerParameters extends jspb.Message {
+  hasVectorAdjustPrior(): boolean;
+  clearVectorAdjustPrior(): void;
+  getVectorAdjustPrior(): string;
+  setVectorAdjustPrior(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ConditionerParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: ConditionerParameters): ConditionerParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ConditionerParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ConditionerParameters;
+  static deserializeBinaryFromReader(message: ConditionerParameters, reader: jspb.BinaryReader): ConditionerParameters;
+}
+
+export namespace ConditionerParameters {
+  export type AsObject = {
+    vectorAdjustPrior: string,
+  }
+}
+
 export class StepParameter extends jspb.Message {
   getScaledStep(): number;
   setScaledStep(value: number): void;
@@ -405,10 +431,10 @@ export class ImageParameters extends jspb.Message {
   getWidth(): number;
   setWidth(value: number): void;
 
-  hasSeed(): boolean;
-  clearSeed(): void;
-  getSeed(): number;
-  setSeed(value: number): void;
+  clearSeedList(): void;
+  getSeedList(): Array<number>;
+  setSeedList(value: Array<number>): void;
+  addSeed(value: number, index?: number): number;
 
   hasSamples(): boolean;
   clearSamples(): void;
@@ -444,7 +470,7 @@ export namespace ImageParameters {
   export type AsObject = {
     height: number,
     width: number,
-    seed: number,
+    seedList: Array<number>,
     samples: number,
     steps: number,
     transform?: TransformType.AsObject,
@@ -472,6 +498,11 @@ export class Request extends jspb.Message {
   getImage(): ImageParameters | undefined;
   setImage(value?: ImageParameters): void;
 
+  hasConditioner(): boolean;
+  clearConditioner(): void;
+  getConditioner(): ConditionerParameters | undefined;
+  setConditioner(value?: ConditionerParameters): void;
+
   getParamsCase(): Request.ParamsCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Request.AsObject;
@@ -490,6 +521,7 @@ export namespace Request {
     requestedType: ArtifactTypeMap[keyof ArtifactTypeMap],
     promptList: Array<Prompt.AsObject>,
     image?: ImageParameters.AsObject,
+    conditioner?: ConditionerParameters.AsObject,
   }
 
   export enum ParamsCase {
