@@ -17,6 +17,7 @@ message Prompt {
   oneof prompt {
     string text = 1;
     Tokens tokens = 2;
+    uint32 test = 3;
   }
 }
 
