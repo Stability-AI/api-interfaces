@@ -1,0 +1,37 @@
+name: Main
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - src/**
+      - CMakeLists.txt
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Regenerate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install additional tooling
+        run: |
+          apt install -y grpc
+      - name: CMake & Build 
+        run: |
+          cmake .
+          cmake --build .
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@923ad837f191474af6b1721408744feb989a4c27
+        with:
+          add-paths: |
+            gooseai/**
+          base: main
+          delete-branch: true
+          branch: "actions/regenerated-interfaces"
+          commit-message: "chore: Regenerate interfaces from protos"
+          title: "chore: Regenerate interfaces from protos"
+          body: "Regenerate protos from changes in ${GITHUB_SHA}"
+
+
