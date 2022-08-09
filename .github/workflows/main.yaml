@@ -2,8 +2,8 @@ name: Main
 
 on:
   push:
-    branches:
-      - main
+    # branches:
+    #   - main
     paths:
       - src/**
       - CMakeLists.txt
