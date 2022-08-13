@@ -130,9 +130,9 @@ message ImageParameters {
 
 enum Action {
   ACTION_PASSTHROUGH = 0;
-  ACTION_DISCARD = 1;
+  ACTION_REGENERATE = 1;
   ACTION_OBFUSCATE = 2;
-  ACTION_REGENERATE = 3;
+  ACTION_DISCARD = 3;
 }
 
 message ClassifierConcept {
@@ -149,6 +149,8 @@ message ClassifierCategory {
 
 message ClassifierParameters {
   repeated ClassifierCategory categories = 1;
+  repeated ClassifierCategory exceeds = 2;
+  optional Action realized_action = 3;
 }
 
 message Request {
