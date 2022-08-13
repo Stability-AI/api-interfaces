@@ -40,6 +40,7 @@ message Artifact {
     bytes binary = 5;
     string text = 6;
     Tokens tokens = 7;
+    ClassifierParameters classifier = 11;
   }
   uint32 index = 8;
   FinishReason finish_reason = 9;
