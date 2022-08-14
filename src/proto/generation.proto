@@ -10,6 +10,7 @@ enum FinishReason {
   FILTER = 4;
 }
 
+
 enum ArtifactType {
   ARTIFACT_NONE = 0;
   ARTIFACT_IMAGE = 1;
@@ -17,6 +18,7 @@ enum ArtifactType {
   ARTIFACT_TEXT = 3;
   ARTIFACT_TOKENS = 4;
   ARTIFACT_EMBEDDING = 5;
+  ARTIFACT_CLASSIFICATIONS = 6;
 }
 
 message Token {
@@ -38,6 +40,7 @@ message Artifact {
     bytes binary = 5;
     string text = 6;
     Tokens tokens = 7;
+    ClassifierParameters classifier = 11;
   }
   uint32 index = 8;
   FinishReason finish_reason = 9;
@@ -125,6 +128,31 @@ message ImageParameters {
   repeated StepParameter parameters = 7;
 }
 
+enum Action {
+  ACTION_PASSTHROUGH = 0;
+  ACTION_REGENERATE = 1;
+  ACTION_OBFUSCATE = 2;
+  ACTION_DISCARD = 3;
+}
+
+message ClassifierConcept {
+  string concept = 1;
+  optional float threshold = 2;
+}
+
+message ClassifierCategory {
+  string name = 1;
+  repeated ClassifierConcept concepts = 2;
+  optional float adjustment = 3;
+  optional Action action = 4;
+}
+
+message ClassifierParameters {
+  repeated ClassifierCategory categories = 1;
+  repeated ClassifierCategory exceeds = 2;
+  optional Action realized_action = 3;
+}
+
 message Request {
   string engine_id = 1;
   string request_id = 2;
@@ -134,6 +162,7 @@ message Request {
     ImageParameters image = 5;
   }
   optional ConditionerParameters conditioner = 6;
+  optional ClassifierParameters classifier = 7;
 }
 
 service GenerationService {

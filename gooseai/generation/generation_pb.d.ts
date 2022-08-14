@@ -89,6 +89,11 @@ export class Artifact extends jspb.Message {
   getTokens(): Tokens | undefined;
   setTokens(value?: Tokens): void;
 
+  hasClassifier(): boolean;
+  clearClassifier(): void;
+  getClassifier(): ClassifierParameters | undefined;
+  setClassifier(value?: ClassifierParameters): void;
+
   getIndex(): number;
   setIndex(value: number): void;
 
@@ -118,6 +123,7 @@ export namespace Artifact {
     binary: Uint8Array | string,
     text: string,
     tokens?: Tokens.AsObject,
+    classifier?: ClassifierParameters.AsObject,
     index: number,
     finishReason: FinishReasonMap[keyof FinishReasonMap],
     seed: number,
@@ -128,6 +134,7 @@ export namespace Artifact {
     BINARY = 5,
     TEXT = 6,
     TOKENS = 7,
+    CLASSIFIER = 11,
   }
 }
 
@@ -478,6 +485,104 @@ export namespace ImageParameters {
   }
 }
 
+export class ClassifierConcept extends jspb.Message {
+  getConcept(): string;
+  setConcept(value: string): void;
+
+  hasThreshold(): boolean;
+  clearThreshold(): void;
+  getThreshold(): number;
+  setThreshold(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ClassifierConcept.AsObject;
+  static toObject(includeInstance: boolean, msg: ClassifierConcept): ClassifierConcept.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ClassifierConcept, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ClassifierConcept;
+  static deserializeBinaryFromReader(message: ClassifierConcept, reader: jspb.BinaryReader): ClassifierConcept;
+}
+
+export namespace ClassifierConcept {
+  export type AsObject = {
+    concept: string,
+    threshold: number,
+  }
+}
+
+export class ClassifierCategory extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  clearConceptsList(): void;
+  getConceptsList(): Array<ClassifierConcept>;
+  setConceptsList(value: Array<ClassifierConcept>): void;
+  addConcepts(value?: ClassifierConcept, index?: number): ClassifierConcept;
+
+  hasAdjustment(): boolean;
+  clearAdjustment(): void;
+  getAdjustment(): number;
+  setAdjustment(value: number): void;
+
+  hasAction(): boolean;
+  clearAction(): void;
+  getAction(): ActionMap[keyof ActionMap];
+  setAction(value: ActionMap[keyof ActionMap]): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ClassifierCategory.AsObject;
+  static toObject(includeInstance: boolean, msg: ClassifierCategory): ClassifierCategory.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ClassifierCategory, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ClassifierCategory;
+  static deserializeBinaryFromReader(message: ClassifierCategory, reader: jspb.BinaryReader): ClassifierCategory;
+}
+
+export namespace ClassifierCategory {
+  export type AsObject = {
+    name: string,
+    conceptsList: Array<ClassifierConcept.AsObject>,
+    adjustment: number,
+    action: ActionMap[keyof ActionMap],
+  }
+}
+
+export class ClassifierParameters extends jspb.Message {
+  clearCategoriesList(): void;
+  getCategoriesList(): Array<ClassifierCategory>;
+  setCategoriesList(value: Array<ClassifierCategory>): void;
+  addCategories(value?: ClassifierCategory, index?: number): ClassifierCategory;
+
+  clearExceedsList(): void;
+  getExceedsList(): Array<ClassifierCategory>;
+  setExceedsList(value: Array<ClassifierCategory>): void;
+  addExceeds(value?: ClassifierCategory, index?: number): ClassifierCategory;
+
+  hasRealizedAction(): boolean;
+  clearRealizedAction(): void;
+  getRealizedAction(): ActionMap[keyof ActionMap];
+  setRealizedAction(value: ActionMap[keyof ActionMap]): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ClassifierParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: ClassifierParameters): ClassifierParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ClassifierParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ClassifierParameters;
+  static deserializeBinaryFromReader(message: ClassifierParameters, reader: jspb.BinaryReader): ClassifierParameters;
+}
+
+export namespace ClassifierParameters {
+  export type AsObject = {
+    categoriesList: Array<ClassifierCategory.AsObject>,
+    exceedsList: Array<ClassifierCategory.AsObject>,
+    realizedAction: ActionMap[keyof ActionMap],
+  }
+}
+
 export class Request extends jspb.Message {
   getEngineId(): string;
   setEngineId(value: string): void;
@@ -503,6 +608,11 @@ export class Request extends jspb.Message {
   getConditioner(): ConditionerParameters | undefined;
   setConditioner(value?: ConditionerParameters): void;
 
+  hasClassifier(): boolean;
+  clearClassifier(): void;
+  getClassifier(): ClassifierParameters | undefined;
+  setClassifier(value?: ClassifierParameters): void;
+
   getParamsCase(): Request.ParamsCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Request.AsObject;
@@ -522,6 +632,7 @@ export namespace Request {
     promptList: Array<Prompt.AsObject>,
     image?: ImageParameters.AsObject,
     conditioner?: ConditionerParameters.AsObject,
+    classifier?: ClassifierParameters.AsObject,
   }
 
   export enum ParamsCase {
@@ -547,6 +658,7 @@ export interface ArtifactTypeMap {
   ARTIFACT_TEXT: 3;
   ARTIFACT_TOKENS: 4;
   ARTIFACT_EMBEDDING: 5;
+  ARTIFACT_CLASSIFICATIONS: 6;
 }
 
 export const ArtifactType: ArtifactTypeMap;
@@ -571,4 +683,13 @@ export interface UpscalerMap {
 }
 
 export const Upscaler: UpscalerMap;
+
+export interface ActionMap {
+  ACTION_PASSTHROUGH: 0;
+  ACTION_REGENERATE: 1;
+  ACTION_OBFUSCATE: 2;
+  ACTION_DISCARD: 3;
+}
+
+export const Action: ActionMap;
 
