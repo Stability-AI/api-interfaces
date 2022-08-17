@@ -530,6 +530,11 @@ export class ClassifierCategory extends jspb.Message {
   getAction(): ActionMap[keyof ActionMap];
   setAction(value: ActionMap[keyof ActionMap]): void;
 
+  hasClassifierMode(): boolean;
+  clearClassifierMode(): void;
+  getClassifierMode(): ClassifierModeMap[keyof ClassifierModeMap];
+  setClassifierMode(value: ClassifierModeMap[keyof ClassifierModeMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ClassifierCategory.AsObject;
   static toObject(includeInstance: boolean, msg: ClassifierCategory): ClassifierCategory.AsObject;
@@ -546,6 +551,7 @@ export namespace ClassifierCategory {
     conceptsList: Array<ClassifierConcept.AsObject>,
     adjustment: number,
     action: ActionMap[keyof ActionMap],
+    classifierMode: ClassifierModeMap[keyof ClassifierModeMap],
   }
 }
 
@@ -694,4 +700,11 @@ export interface ActionMap {
 }
 
 export const Action: ActionMap;
+
+export interface ClassifierModeMap {
+  CLSFR_MODE_ZEROSHOT: 0;
+  CLSFR_MODE_MULTICLASS: 1;
+}
+
+export const ClassifierMode: ClassifierModeMap;
 

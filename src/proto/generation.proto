@@ -137,6 +137,12 @@ enum Action {
   ACTION_DISCARD = 5;
 }
 
+enum ClassifierMode {
+  CLSFR_MODE_ZEROSHOT = 0;
+  CLSFR_MODE_MULTICLASS = 1;
+  /*CLSFR_MODE_ODDSRATIO = 2;*/
+}
+
 message ClassifierConcept {
   string concept = 1;
   optional float threshold = 2;
@@ -147,6 +153,7 @@ message ClassifierCategory {
   repeated ClassifierConcept concepts = 2;
   optional float adjustment = 3;
   optional Action action = 4;
+  optional ClassifierMode classifier_mode = 5;
 }
 
 message ClassifierParameters {
