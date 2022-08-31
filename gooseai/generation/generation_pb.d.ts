@@ -665,6 +665,7 @@ export interface ArtifactTypeMap {
   ARTIFACT_TOKENS: 4;
   ARTIFACT_EMBEDDING: 5;
   ARTIFACT_CLASSIFICATIONS: 6;
+  ARTIFACT_MASK: 7;
 }
 
 export const ArtifactType: ArtifactTypeMap;
