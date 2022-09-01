@@ -107,9 +107,15 @@ enum Upscaler {
   UPSCALER_ESRGAN = 2;
 }
 
+message ScheduleParameters {
+  optional float start = 1;     // 0.0 to 1.0
+  optional float end = 2;       // 0.0 to 1.0
+}
+
 message StepParameter {
   float scaled_step = 1;
   optional SamplerParameters sampler = 2;
+  optional ScheduleParameters schedule = 3;
 }
 
 message TransformType {
