@@ -176,11 +176,23 @@ message Request {
   repeated Prompt prompt = 4;
   oneof params {
     ImageParameters image = 5;
+    ClassifierParameters classifier = 7;
   }
   optional ConditionerParameters conditioner = 6;
-  optional ClassifierParameters classifier = 7;
+}
+
+message Stage {
+  Request request = 1;
+  bool return_result = 2;
+  repeated FinishReasons continue_on = 3; 
+}
+
+message ChainRequest {
+  string request_id = 1;
+  repeated Stage stage = 2;
 }
 
 service GenerationService {
   rpc Generate (Request) returns (stream Answer) {};
+  rpc ChainGenerate (ChainRequest) returns (stream Answer) {};
 }
