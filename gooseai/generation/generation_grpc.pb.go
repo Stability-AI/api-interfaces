@@ -19,6 +19,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GenerationServiceClient interface {
 	Generate(ctx context.Context, in *Request, opts ...grpc.CallOption) (GenerationService_GenerateClient, error)
+	ChainGenerate(ctx context.Context, in *ChainRequest, opts ...grpc.CallOption) (GenerationService_ChainGenerateClient, error)
 }
 
 type generationServiceClient struct {
@@ -61,11 +62,44 @@ func (x *generationServiceGenerateClient) Recv() (*Answer, error) {
 	return m, nil
 }
 
+func (c *generationServiceClient) ChainGenerate(ctx context.Context, in *ChainRequest, opts ...grpc.CallOption) (GenerationService_ChainGenerateClient, error) {
+	stream, err := c.cc.NewStream(ctx, &GenerationService_ServiceDesc.Streams[1], "/gooseai.GenerationService/ChainGenerate", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &generationServiceChainGenerateClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type GenerationService_ChainGenerateClient interface {
+	Recv() (*Answer, error)
+	grpc.ClientStream
+}
+
+type generationServiceChainGenerateClient struct {
+	grpc.ClientStream
+}
+
+func (x *generationServiceChainGenerateClient) Recv() (*Answer, error) {
+	m := new(Answer)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // GenerationServiceServer is the server API for GenerationService service.
 // All implementations must embed UnimplementedGenerationServiceServer
 // for forward compatibility
 type GenerationServiceServer interface {
 	Generate(*Request, GenerationService_GenerateServer) error
+	ChainGenerate(*ChainRequest, GenerationService_ChainGenerateServer) error
 	mustEmbedUnimplementedGenerationServiceServer()
 }
 
@@ -75,6 +109,9 @@ type UnimplementedGenerationServiceServer struct {
 
 func (UnimplementedGenerationServiceServer) Generate(*Request, GenerationService_GenerateServer) error {
 	return status.Errorf(codes.Unimplemented, "method Generate not implemented")
+}
+func (UnimplementedGenerationServiceServer) ChainGenerate(*ChainRequest, GenerationService_ChainGenerateServer) error {
+	return status.Errorf(codes.Unimplemented, "method ChainGenerate not implemented")
 }
 func (UnimplementedGenerationServiceServer) mustEmbedUnimplementedGenerationServiceServer() {}
 
@@ -110,6 +147,27 @@ func (x *generationServiceGenerateServer) Send(m *Answer) error {
 	return x.ServerStream.SendMsg(m)
 }
 
+func _GenerationService_ChainGenerate_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ChainRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(GenerationServiceServer).ChainGenerate(m, &generationServiceChainGenerateServer{stream})
+}
+
+type GenerationService_ChainGenerateServer interface {
+	Send(*Answer) error
+	grpc.ServerStream
+}
+
+type generationServiceChainGenerateServer struct {
+	grpc.ServerStream
+}
+
+func (x *generationServiceChainGenerateServer) Send(m *Answer) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 // GenerationService_ServiceDesc is the grpc.ServiceDesc for GenerationService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -121,6 +179,11 @@ var GenerationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "Generate",
 			Handler:       _GenerationService_Generate_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "ChainGenerate",
+			Handler:       _GenerationService_ChainGenerate_Handler,
 			ServerStreams: true,
 		},
 	},
