@@ -169,6 +169,16 @@ message ClassifierParameters {
   optional Action realized_action = 3;
 }
 
+enum AssetAction {
+  ASSET_PUT = 0;
+  ASSET_GET = 1;
+  ASSET_DELETE = 2;
+}
+
+message AssetParameters {
+  AssetAction action = 1;
+}
+
 message Request {
   string engine_id = 1;
   string request_id = 2;
@@ -177,6 +187,7 @@ message Request {
   oneof params {
     ImageParameters image = 5;
     ClassifierParameters classifier = 7;
+    AssetParameters asset = 8;
   }
   optional ConditionerParameters conditioner = 6;
 }
