@@ -176,11 +176,35 @@ message Request {
   repeated Prompt prompt = 4;
   oneof params {
     ImageParameters image = 5;
+    ClassifierParameters classifier = 7;
   }
   optional ConditionerParameters conditioner = 6;
-  optional ClassifierParameters classifier = 7;
+}
+
+enum StageAction {
+  STAGE_ACTION_PASS = 0;
+  STAGE_ACTION_DISCARD = 1;
+  STAGE_ACTION_RETURN = 2;
+}
+
+message OnStatus {
+  repeated FinishReason reason = 1;
+  optional string target = 2;
+  repeated StageAction action = 3;
+}
+
+message Stage {
+  string id = 1;
+  Request request = 2;
+  repeated OnStatus on_status = 3;
+}
+
+message ChainRequest {
+  string request_id = 1;
+  repeated Stage stage = 2;
 }
 
 service GenerationService {
   rpc Generate (Request) returns (stream Answer) {};
+  rpc ChainGenerate (ChainRequest) returns (stream Answer) {};
 }
