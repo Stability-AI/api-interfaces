@@ -623,6 +623,30 @@ export namespace ClassifierParameters {
   }
 }
 
+export class AssetParameters extends jspb.Message {
+  getAction(): AssetActionMap[keyof AssetActionMap];
+  setAction(value: AssetActionMap[keyof AssetActionMap]): void;
+
+  getProject(): string;
+  setProject(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AssetParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: AssetParameters): AssetParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AssetParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AssetParameters;
+  static deserializeBinaryFromReader(message: AssetParameters, reader: jspb.BinaryReader): AssetParameters;
+}
+
+export namespace AssetParameters {
+  export type AsObject = {
+    action: AssetActionMap[keyof AssetActionMap],
+    project: string,
+  }
+}
+
 export class Request extends jspb.Message {
   getEngineId(): string;
   setEngineId(value: string): void;
@@ -648,6 +672,11 @@ export class Request extends jspb.Message {
   getClassifier(): ClassifierParameters | undefined;
   setClassifier(value?: ClassifierParameters): void;
 
+  hasAsset(): boolean;
+  clearAsset(): void;
+  getAsset(): AssetParameters | undefined;
+  setAsset(value?: AssetParameters): void;
+
   hasConditioner(): boolean;
   clearConditioner(): void;
   getConditioner(): ConditionerParameters | undefined;
@@ -672,6 +701,7 @@ export namespace Request {
     promptList: Array<Prompt.AsObject>,
     image?: ImageParameters.AsObject,
     classifier?: ClassifierParameters.AsObject,
+    asset?: AssetParameters.AsObject,
     conditioner?: ConditionerParameters.AsObject,
   }
 
@@ -679,6 +709,7 @@ export namespace Request {
     PARAMS_NOT_SET = 0,
     IMAGE = 5,
     CLASSIFIER = 7,
+    ASSET = 8,
   }
 }
 
@@ -835,6 +866,14 @@ export interface ClassifierModeMap {
 }
 
 export const ClassifierMode: ClassifierModeMap;
+
+export interface AssetActionMap {
+  ASSET_PUT: 0;
+  ASSET_GET: 1;
+  ASSET_DELETE: 2;
+}
+
+export const AssetAction: AssetActionMap;
 
 export interface StageActionMap {
   STAGE_ACTION_PASS: 0;

@@ -90,6 +90,8 @@ export interface EngineTypeMap {
   PICTURE: 1;
   AUDIO: 2;
   VIDEO: 3;
+  CLASSIFICATION: 4;
+  STORAGE: 5;
 }
 
 export const EngineType: EngineTypeMap;
