@@ -8,6 +8,8 @@ enum EngineType {
   PICTURE = 1;
   AUDIO = 2;
   VIDEO = 3;
+  CLASSIFICATION = 4;
+  STORAGE = 5;
 }
 
 enum EngineTokenizer {

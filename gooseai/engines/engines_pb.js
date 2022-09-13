@@ -661,7 +661,9 @@ proto.gooseai.EngineType = {
   TEXT: 0,
   PICTURE: 1,
   AUDIO: 2,
-  VIDEO: 3
+  VIDEO: 3,
+  CLASSIFICATION: 4,
+  STORAGE: 5
 };
 
 /**
