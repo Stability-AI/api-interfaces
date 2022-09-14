@@ -1,0 +1,43 @@
+name:  Build protobuf stubs
+
+on:
+  push:
+    paths:
+      - src/**
+      - CMakeLists.txt
+      - .github/**
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: "16"
+    #- name: Install additional tooling
+    #  run: |
+    #    sudo apt install -y protobuf-compiler-grpc libgrpc6 libgrpc++1
+    - uses: eWaterCycle/setup-grpc@v5
+    - name: Install Protoc
+      uses: arduino/setup-protoc@v1
+      #with:
+      #  version: '3.6'
+    - name: install pip dependencies
+      run: pip3 install grpcio-tools
+    - name: CMake & Build 
+      run: |
+        cmake .
+        cmake --build .
+    - name: Commit files
+      run: |
+        git config --local user.name "dmarx"
+        git add ./gooseai/*
+        git commit -m "Updated protobuf files"
+    - name: Push change
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
+        #force: true
