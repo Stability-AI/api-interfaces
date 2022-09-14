@@ -19,6 +19,8 @@ jobs:
     - name: Install additional tooling
       run: |
         sudo apt install -y protobuf-compiler-grpc libgrpc6 libgrpc++1
+    - name: Install Protoc
+      uses: arduino/setup-protoc@v1
     - name: CMake & Build 
       run: |
         cmake .
