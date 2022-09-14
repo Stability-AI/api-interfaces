@@ -24,6 +24,8 @@ jobs:
       uses: arduino/setup-protoc@v1
       #with:
       #  version: '3.6'
+    - name: install pip dependencies
+      run: pip3 install grpcio-tools
     - name: CMake & Build 
       run: |
         cmake .
