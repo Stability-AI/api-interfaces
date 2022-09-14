@@ -32,8 +32,8 @@ jobs:
         cmake --build .
     - name: Commit files
       run: |
-        #git config --local user.name "dmarx"
-        git add *
+        git config --local user.name "dmarx"
+        git add ./gooseai/*
         git commit -m "Updated protobuf files"
     - name: Push change
       uses: ad-m/github-push-action@master
