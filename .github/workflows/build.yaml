@@ -19,6 +19,7 @@ jobs:
     #- name: Install additional tooling
     #  run: |
     #    sudo apt install -y protobuf-compiler-grpc libgrpc6 libgrpc++1
+    - uses: eWaterCycle/setup-grpc@v5
     - name: Install Protoc
       uses: arduino/setup-protoc@v1
       #with:
