@@ -891,7 +891,7 @@ export const Upscaler: UpscalerMap;
 
 export interface GuidanceTypeMap {
   GUIDANCE_CFG: 0;
-  GUIDANCE_CLIP: 1;
+  GUIDANCE_CFG_CLIP: 1;
 }
 
 export const GuidanceType: GuidanceTypeMap;

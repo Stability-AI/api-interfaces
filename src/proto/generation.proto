@@ -124,7 +124,7 @@ message StepParameter {
 // What type of guidance to use.
 enum GuidanceType {
   GUIDANCE_CFG = 0;               // default is CFG guidance
-  GUIDANCE_CLIP = 1;
+  GUIDANCE_CFG_CLIP = 1;          // CFG and CLIP guidance
 }
 
 // Presets for CLIP guidance.

@@ -6666,7 +6666,7 @@ proto.gooseai.Upscaler = {
  */
 proto.gooseai.GuidanceType = {
   GUIDANCE_CFG: 0,
-  GUIDANCE_CLIP: 1
+  GUIDANCE_CFG_CLIP: 1
 };
 
 /**
