@@ -140,7 +140,7 @@ enum GuidancePreset {
 message GuidanceParameters {
   optional GuidanceType type = 1;
   optional GuidancePreset guidance_preset = 2;
-  optional GuidanceStrength float = 3;          // 0.0 to 1.0
+  optional float guidance_strength = 3;          // 0.0 to 1.0
 }
 
 message TransformType {
