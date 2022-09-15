@@ -214,90 +214,6 @@ export namespace Prompt {
   }
 }
 
-export class AnswerMeta extends jspb.Message {
-  hasGpuId(): boolean;
-  clearGpuId(): void;
-  getGpuId(): string;
-  setGpuId(value: string): void;
-
-  hasCpuId(): boolean;
-  clearCpuId(): void;
-  getCpuId(): string;
-  setCpuId(value: string): void;
-
-  hasNodeId(): boolean;
-  clearNodeId(): void;
-  getNodeId(): string;
-  setNodeId(value: string): void;
-
-  hasEngineId(): boolean;
-  clearEngineId(): void;
-  getEngineId(): string;
-  setEngineId(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AnswerMeta.AsObject;
-  static toObject(includeInstance: boolean, msg: AnswerMeta): AnswerMeta.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AnswerMeta, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AnswerMeta;
-  static deserializeBinaryFromReader(message: AnswerMeta, reader: jspb.BinaryReader): AnswerMeta;
-}
-
-export namespace AnswerMeta {
-  export type AsObject = {
-    gpuId: string,
-    cpuId: string,
-    nodeId: string,
-    engineId: string,
-  }
-}
-
-export class Answer extends jspb.Message {
-  getAnswerId(): string;
-  setAnswerId(value: string): void;
-
-  getRequestId(): string;
-  setRequestId(value: string): void;
-
-  getReceived(): number;
-  setReceived(value: number): void;
-
-  getCreated(): number;
-  setCreated(value: number): void;
-
-  hasMeta(): boolean;
-  clearMeta(): void;
-  getMeta(): AnswerMeta | undefined;
-  setMeta(value?: AnswerMeta): void;
-
-  clearArtifactsList(): void;
-  getArtifactsList(): Array<Artifact>;
-  setArtifactsList(value: Array<Artifact>): void;
-  addArtifacts(value?: Artifact, index?: number): Artifact;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Answer.AsObject;
-  static toObject(includeInstance: boolean, msg: Answer): Answer.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Answer, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Answer;
-  static deserializeBinaryFromReader(message: Answer, reader: jspb.BinaryReader): Answer;
-}
-
-export namespace Answer {
-  export type AsObject = {
-    answerId: string,
-    requestId: string,
-    received: number,
-    created: number,
-    meta?: AnswerMeta.AsObject,
-    artifactsList: Array<Artifact.AsObject>,
-  }
-}
-
 export class SamplerParameters extends jspb.Message {
   hasEta(): boolean;
   clearEta(): void;
@@ -408,6 +324,11 @@ export class StepParameter extends jspb.Message {
   getSchedule(): ScheduleParameters | undefined;
   setSchedule(value?: ScheduleParameters): void;
 
+  hasGuidance(): boolean;
+  clearGuidance(): void;
+  getGuidance(): GuidanceParameters | undefined;
+  setGuidance(value?: GuidanceParameters): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StepParameter.AsObject;
   static toObject(includeInstance: boolean, msg: StepParameter): StepParameter.AsObject;
@@ -423,6 +344,41 @@ export namespace StepParameter {
     scaledStep: number,
     sampler?: SamplerParameters.AsObject,
     schedule?: ScheduleParameters.AsObject,
+    guidance?: GuidanceParameters.AsObject,
+  }
+}
+
+export class GuidanceParameters extends jspb.Message {
+  hasType(): boolean;
+  clearType(): void;
+  getType(): GuidanceTypeMap[keyof GuidanceTypeMap];
+  setType(value: GuidanceTypeMap[keyof GuidanceTypeMap]): void;
+
+  hasGuidancePreset(): boolean;
+  clearGuidancePreset(): void;
+  getGuidancePreset(): GuidancePresetMap[keyof GuidancePresetMap];
+  setGuidancePreset(value: GuidancePresetMap[keyof GuidancePresetMap]): void;
+
+  hasGuidanceStrength(): boolean;
+  clearGuidanceStrength(): void;
+  getGuidanceStrength(): number;
+  setGuidanceStrength(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GuidanceParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: GuidanceParameters): GuidanceParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GuidanceParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GuidanceParameters;
+  static deserializeBinaryFromReader(message: GuidanceParameters, reader: jspb.BinaryReader): GuidanceParameters;
+}
+
+export namespace GuidanceParameters {
+  export type AsObject = {
+    type: GuidanceTypeMap[keyof GuidanceTypeMap],
+    guidancePreset: GuidancePresetMap[keyof GuidancePresetMap],
+    guidanceStrength: number,
   }
 }
 
@@ -647,6 +603,90 @@ export namespace AssetParameters {
   }
 }
 
+export class AnswerMeta extends jspb.Message {
+  hasGpuId(): boolean;
+  clearGpuId(): void;
+  getGpuId(): string;
+  setGpuId(value: string): void;
+
+  hasCpuId(): boolean;
+  clearCpuId(): void;
+  getCpuId(): string;
+  setCpuId(value: string): void;
+
+  hasNodeId(): boolean;
+  clearNodeId(): void;
+  getNodeId(): string;
+  setNodeId(value: string): void;
+
+  hasEngineId(): boolean;
+  clearEngineId(): void;
+  getEngineId(): string;
+  setEngineId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AnswerMeta.AsObject;
+  static toObject(includeInstance: boolean, msg: AnswerMeta): AnswerMeta.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AnswerMeta, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AnswerMeta;
+  static deserializeBinaryFromReader(message: AnswerMeta, reader: jspb.BinaryReader): AnswerMeta;
+}
+
+export namespace AnswerMeta {
+  export type AsObject = {
+    gpuId: string,
+    cpuId: string,
+    nodeId: string,
+    engineId: string,
+  }
+}
+
+export class Answer extends jspb.Message {
+  getAnswerId(): string;
+  setAnswerId(value: string): void;
+
+  getRequestId(): string;
+  setRequestId(value: string): void;
+
+  getReceived(): number;
+  setReceived(value: number): void;
+
+  getCreated(): number;
+  setCreated(value: number): void;
+
+  hasMeta(): boolean;
+  clearMeta(): void;
+  getMeta(): AnswerMeta | undefined;
+  setMeta(value?: AnswerMeta): void;
+
+  clearArtifactsList(): void;
+  getArtifactsList(): Array<Artifact>;
+  setArtifactsList(value: Array<Artifact>): void;
+  addArtifacts(value?: Artifact, index?: number): Artifact;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Answer.AsObject;
+  static toObject(includeInstance: boolean, msg: Answer): Answer.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Answer, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Answer;
+  static deserializeBinaryFromReader(message: Answer, reader: jspb.BinaryReader): Answer;
+}
+
+export namespace Answer {
+  export type AsObject = {
+    answerId: string,
+    requestId: string,
+    received: number,
+    created: number,
+    meta?: AnswerMeta.AsObject,
+    artifactsList: Array<Artifact.AsObject>,
+  }
+}
+
 export class Request extends jspb.Message {
   getEngineId(): string;
   setEngineId(value: string): void;
@@ -848,6 +888,22 @@ export interface UpscalerMap {
 }
 
 export const Upscaler: UpscalerMap;
+
+export interface GuidanceTypeMap {
+  GUIDANCE_CFG: 0;
+  GUIDANCE_CLIP: 1;
+}
+
+export const GuidanceType: GuidanceTypeMap;
+
+export interface GuidancePresetMap {
+  GUIDANCE_PRESET_NONE: 0;
+  GUIDANCE_PRESET_EFFICIENT: 1;
+  GUIDANCE_PRESET_BALANCED: 2;
+  GUIDANCE_PRESET_QUALITY: 3;
+}
+
+export const GuidancePreset: GuidancePresetMap;
 
 export interface ActionMap {
   ACTION_PASSTHROUGH: 0;

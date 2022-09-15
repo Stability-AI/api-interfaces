@@ -38,6 +38,9 @@ function deserialize_gooseai_Request(buffer_arg) {
 }
 
 
+//
+// gRPC services
+//
 var GenerationServiceService = exports.GenerationServiceService = {
   generate: {
     path: '/gooseai.GenerationService/Generate',
