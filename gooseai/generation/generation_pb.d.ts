@@ -348,21 +348,115 @@ export namespace StepParameter {
   }
 }
 
-export class GuidanceParameters extends jspb.Message {
-  hasType(): boolean;
-  clearType(): void;
-  getType(): GuidanceTypeMap[keyof GuidanceTypeMap];
-  setType(value: GuidanceTypeMap[keyof GuidanceTypeMap]): void;
+export class Model extends jspb.Message {
+  getArchitecture(): ModelArchitectureMap[keyof ModelArchitectureMap];
+  setArchitecture(value: ModelArchitectureMap[keyof ModelArchitectureMap]): void;
 
-  hasGuidancePreset(): boolean;
-  clearGuidancePreset(): void;
+  getPublisher(): string;
+  setPublisher(value: string): void;
+
+  getDataset(): string;
+  setDataset(value: string): void;
+
+  getVersion(): number;
+  setVersion(value: number): void;
+
+  getSemanticVersion(): string;
+  setSemanticVersion(value: string): void;
+
+  getAlias(): string;
+  setAlias(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Model.AsObject;
+  static toObject(includeInstance: boolean, msg: Model): Model.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Model, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Model;
+  static deserializeBinaryFromReader(message: Model, reader: jspb.BinaryReader): Model;
+}
+
+export namespace Model {
+  export type AsObject = {
+    architecture: ModelArchitectureMap[keyof ModelArchitectureMap],
+    publisher: string,
+    dataset: string,
+    version: number,
+    semanticVersion: string,
+    alias: string,
+  }
+}
+
+export class CutoutParameters extends jspb.Message {
+  clearCutoutsList(): void;
+  getCutoutsList(): Array<CutoutParameters>;
+  setCutoutsList(value: Array<CutoutParameters>): void;
+  addCutouts(value?: CutoutParameters, index?: number): CutoutParameters;
+
+  hasCount(): boolean;
+  clearCount(): void;
+  getCount(): number;
+  setCount(value: number): void;
+
+  hasGray(): boolean;
+  clearGray(): void;
+  getGray(): number;
+  setGray(value: number): void;
+
+  hasBlur(): boolean;
+  clearBlur(): void;
+  getBlur(): number;
+  setBlur(value: number): void;
+
+  hasSizePower(): boolean;
+  clearSizePower(): void;
+  getSizePower(): number;
+  setSizePower(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CutoutParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: CutoutParameters): CutoutParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CutoutParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CutoutParameters;
+  static deserializeBinaryFromReader(message: CutoutParameters, reader: jspb.BinaryReader): CutoutParameters;
+}
+
+export namespace CutoutParameters {
+  export type AsObject = {
+    cutoutsList: Array<CutoutParameters.AsObject>,
+    count: number,
+    gray: number,
+    blur: number,
+    sizePower: number,
+  }
+}
+
+export class GuidanceParameters extends jspb.Message {
   getGuidancePreset(): GuidancePresetMap[keyof GuidancePresetMap];
   setGuidancePreset(value: GuidancePresetMap[keyof GuidancePresetMap]): void;
+
+  clearModelsList(): void;
+  getModelsList(): Array<Model>;
+  setModelsList(value: Array<Model>): void;
+  addModels(value?: Model, index?: number): Model;
 
   hasGuidanceStrength(): boolean;
   clearGuidanceStrength(): void;
   getGuidanceStrength(): number;
   setGuidanceStrength(value: number): void;
+
+  clearScheduleList(): void;
+  getScheduleList(): Array<ScheduleParameters>;
+  setScheduleList(value: Array<ScheduleParameters>): void;
+  addSchedule(value?: ScheduleParameters, index?: number): ScheduleParameters;
+
+  hasCutouts(): boolean;
+  clearCutouts(): void;
+  getCutouts(): CutoutParameters | undefined;
+  setCutouts(value?: CutoutParameters): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GuidanceParameters.AsObject;
@@ -376,9 +470,11 @@ export class GuidanceParameters extends jspb.Message {
 
 export namespace GuidanceParameters {
   export type AsObject = {
-    type: GuidanceTypeMap[keyof GuidanceTypeMap],
     guidancePreset: GuidancePresetMap[keyof GuidancePresetMap],
+    modelsList: Array<Model.AsObject>,
     guidanceStrength: number,
+    scheduleList: Array<ScheduleParameters.AsObject>,
+    cutouts?: CutoutParameters.AsObject,
   }
 }
 
@@ -889,21 +985,23 @@ export interface UpscalerMap {
 
 export const Upscaler: UpscalerMap;
 
-export interface GuidanceTypeMap {
-  GUIDANCE_CFG: 0;
-  GUIDANCE_CFG_CLIP: 1;
-}
-
-export const GuidanceType: GuidanceTypeMap;
-
 export interface GuidancePresetMap {
-  GUIDANCE_PRESET_NONE: 0;
+  GUIDANCE_PRESET_DEFAULT: 0;
   GUIDANCE_PRESET_EFFICIENT: 1;
   GUIDANCE_PRESET_BALANCED: 2;
   GUIDANCE_PRESET_QUALITY: 3;
 }
 
 export const GuidancePreset: GuidancePresetMap;
+
+export interface ModelArchitectureMap {
+  MODEL_ARCHITECTURE_NONE: 0;
+  MODEL_ARCHITECTURE_CLIP_VIT: 1;
+  MODEL_ARCHITECTURE_CLIP_RESNET: 2;
+  MODEL_ARCHITECTURE_LDM: 3;
+}
+
+export const ModelArchitecture: ModelArchitectureMap;
 
 export interface ActionMap {
   ACTION_PASSTHROUGH: 0;
