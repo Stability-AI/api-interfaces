@@ -121,26 +121,46 @@ message StepParameter {
   optional GuidanceParameters guidance = 4;
 }
 
-// What type of guidance to use.
-enum GuidanceType {
-  GUIDANCE_CFG = 0;               // default is CFG guidance
-  GUIDANCE_CFG_CLIP = 1;          // CFG and CLIP guidance
-}
-
 // Presets for CLIP guidance.
 enum GuidancePreset {
-  GUIDANCE_PRESET_NONE = 0;
+  GUIDANCE_PRESET_DEFAULT = 0;
   GUIDANCE_PRESET_EFFICIENT = 1;
   GUIDANCE_PRESET_BALANCED = 2;
   GUIDANCE_PRESET_QUALITY = 3;
 }
 
+enum ModelArchitecture {
+  MODEL_ARCHITECTURE_NONE = 0;
+  MODEL_ARCHITECTURE_CLIP_VIT = 1;
+  MODEL_ARCHITECTURE_CLIP_RESNET = 2;
+  MODEL_ARCHITECTURE_LDM = 3;
+}
+
+message Model {
+  ModelArchitecture architecture = 1;
+  string publisher = 2;
+  string dataset = 3;
+  float version = 4;
+  string semantic_version = 5;
+  string alias = 6;
+}
+
+message CutoutParameters {
+  repeated CutoutParameters cutouts = 1;         // Nested cutouts, unsupported
+  optional uint32 count = 2;                     // 0 to n, usually 8 to 32, 0 for inner
+  optional float gray = 3;                       // 0.0 to 1.0, defaults to 0.2
+  optional float blur = 4;                       // percentage of cutouts to blur
+  optional float size_power = 5;                 // defaults to inner: 0.5, outer: 0.0
+}
+
 // Parameters that affect the behavior of the guidance, typically used for CLIP.
 // The omission of this field implies the default guidance of CFG.
 message GuidanceParameters {
-  GuidanceType type = 1;
-  optional GuidancePreset guidance_preset = 2;
-  optional float guidance_strength = 3;          // 0.0 to 1.0
+  GuidancePreset guidance_preset = 1;            // base preset for guidance
+  repeated Model models = 2;                     // models to use for guidance
+  optional float guidance_strength = 3;          // 0.0 to 1.0, usually 0.05 to 0.225
+  repeated ScheduleParameters schedule = 4;      // when to apply guidance
+  optional CutoutParameters cutouts = 5;         // cutout parameters
 }
 
 message TransformType {
