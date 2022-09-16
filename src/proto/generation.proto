@@ -138,7 +138,7 @@ enum GuidancePreset {
 // Parameters that affect the behavior of the guidance, typically used for CLIP.
 // The omission of this field implies the default guidance of CFG.
 message GuidanceParameters {
-  optional GuidanceType type = 1;
+  GuidanceType type = 1;
   optional GuidancePreset guidance_preset = 2;
   optional float guidance_strength = 3;          // 0.0 to 1.0
 }
