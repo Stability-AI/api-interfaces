@@ -25,15 +25,30 @@ file(MAKE_DIRECTORY ${GENERATED_PROTOBUF_PATH})
 
 ## Python target support
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
-execute_process(COMMAND pip3 show grpcio-tools
+
+set(PYBUILD_PATH "${PROJECT_BINARY_DIR}/pybuild")
+execute_process(COMMAND python3 -m venv ${PYBUILD_PATH}
         RESULT_VARIABLE EXIT_CODE
         OUTPUT_QUIET)
 if (NOT ${EXIT_CODE} EQUAL 0)
     message(FATAL_ERROR
-            "The \"grpcio-tools\" Python3 package is not installed. Please install it using the following command: \"pip3 install grpcio-tools\".")
+            "Could not create python3 env at ${PYBUILD_PATH}")
 endif()
 
-set(python_exec "python3")
+execute_process(COMMAND ${PYBUILD_PATH}/bin/pip3 show grpcio-tools grpcio protobuf
+        RESULT_VARIABLE EXIT_CODE
+        OUTPUT_QUIET)
+if (NOT ${EXIT_CODE} EQUAL 0)
+    execute_process(COMMAND ${PYBUILD_PATH}/bin/pip3 install -r ${PROJECT_SOURCE_DIR}/requirements.txt
+                    RESULT_VARIABLE EXIT_CODE)
+    if (NOT ${EXIT_CODE} EQUAL 0)
+        message(FATAL_ERROR
+                "Could not install python3 requirements at ${PYBUILD_PATH}")
+    endif()
+endif()
+
+
+set(python_exec "${PYBUILD_PATH}/bin/python3")
 set(python_args "-m" "grpc_tools.protoc")
 set(python_plugin "")
 set(python_output "--python_out=")
@@ -42,7 +57,7 @@ file(MAKE_DIRECTORY "${python_output_dir}")
 file(WRITE "${PROJECT_SOURCE_DIR}/gooseai/__init__.py")
 set(python_exts "_pb2.py")
 
-set(python_grpc_exec "python3")
+set(python_grpc_exec "${PYBUILD_PATH}/bin/python3")
 set(python_grpc_args "-m" "grpc_tools.protoc")
 set(python_grpc_output "--grpc_python_out=")
 set(python_grpc_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
