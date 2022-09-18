@@ -98,6 +98,7 @@ message SamplerParameters {
 // initialization.
 message ConditionerParameters {
   optional string vector_adjust_prior = 1;
+  optional Model conditioner = 2;
 }
 
 // Future, unimplemented.
