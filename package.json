@@ -8,6 +8,7 @@
   "author": "",
   "license": "",
   "dependencies": {
+    "esbuild": "^0.15.8",
     "grpc-tools": "^1.11.2",
     "ts-protoc-gen": "^0.15.0"
   }

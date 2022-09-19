@@ -123,6 +123,9 @@ set(typescript_web_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
 file(MAKE_DIRECTORY "${typescript_output_dir}")
 set(typescript_web_exts "_grpc_pb_service.d.ts;_grpc_pb_service.js")
 
+set(typescript_web_esm_input_dir "${PROJECT_SOURCE_DIR}/gooseai")
+set(typescript_web_esm_output_dir "${PROJECT_SOURCE_DIR}/targets/grpc-web-esm/gooseai")
+
 set(typescript_node_exec "${PROJECT_SOURCE_DIR}/src/bin/protoc")
 set(typescript_node_plugin "--plugin=protoc-gen-ts=${NODE_BIN_DIRECTORY}/protoc-gen-ts" "--plugin=protoc-gen-grpc=${NODE_BIN_DIRECTORY}/grpc_tools_node_protoc_plugin")
 set(typescript_node_args "")
@@ -239,6 +242,13 @@ add_custom_command(
         COMMAND go mod tidy
         DEPENDS ${GENERATED_PROTOBUF_FILES_golang_grpc})
 
+add_custom_command(
+        OUTPUT "${typescript_web_esm_output_dir}"
+        WORKING_DIRECTORY "${typescript_web_esm_input_dir}"
+        COMMAND npx esbuild ./**/*.js --outdir=${typescript_web_esm_output_dir} --external:grpc --external:google-protobuf --external:@improbable-eng/grpc-web --bundle --platform=node --target=node12 --format=esm
+        COMMAND cp --parents -r ./**/*.d.ts ${typescript_web_esm_output_dir}
+        DEPENDS ${GENERATED_PROTOBUF_FILES_typescript_web})
+
 add_custom_target(
         generated ALL
         DEPENDS
@@ -251,4 +261,5 @@ add_custom_target(
         ${GENERATED_PROTOBUF_FILES_typescript_web}
         ${GENERATED_PROTOBUF_FILES_typescript_node}
         ${PROJECT_SOURCE_DIR}/gooseai/go.mod
+        ${typescript_web_esm_output_dir}
 )
