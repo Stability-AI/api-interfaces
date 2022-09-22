@@ -146,22 +146,44 @@ message Model {
   string alias = 6;
 }
 
+message GrayAugmentation {
+  optional float strength = 1;
+}
+
+message BlurAugmentation {
+  optional float strength = 1;
+}
+
+message ImageAugmentation {
+  oneof augmentation {
+       GrayAugmentation gray = 1;
+       BlurAugmentation blur = 2;
+  }
+}
+
 message CutoutParameters {
-  repeated CutoutParameters cutouts = 1;         // Nested cutouts, unsupported
-  optional uint32 count = 2;                     // 0 to n, usually 8 to 32, 0 for inner
-  optional float gray = 3;                       // 0.0 to 1.0, defaults to 0.2
-  optional float blur = 4;                       // percentage of cutouts to blur
-  optional float size_power = 5;                 // defaults to inner: 0.5, outer: 0.0
+  repeated CutoutParameters cutouts = 1;    // Nested cutouts, unsupported
+  optional uint32 count = 2;                // 0 to n, usually 8 to 32, 0 inner
+  repeated ImageAugmentation augmentations = 3; // Augmentations to apply
+  optional float size_power = 5;            // defaults to inner: 0.5, outer: 0.0
+}
+
+// Parameters that affect the behavior of the guidance, typically used for CLIP.
+// We can specify more than one model, and the guidance will be a weighted sum
+// of the models.
+message GuidanceInstanceParameters {
+  repeated Model models = 2;                // models to use for this set
+  optional float guidance_strength = 3;     // 0.0 to 1.0, usually 0.05 to 0.225
+  repeated ScheduleParameters schedule = 4; // when to apply guidance
+  optional CutoutParameters cutouts = 5;    // cutout parameters
+  optional Prompt prompt = 6;               // prompt to use for guidance
 }
 
 // Parameters that affect the behavior of the guidance, typically used for CLIP.
 // The omission of this field implies the default guidance of CFG.
 message GuidanceParameters {
-  GuidancePreset guidance_preset = 1;            // base preset for guidance
-  repeated Model models = 2;                     // models to use for guidance
-  optional float guidance_strength = 3;          // 0.0 to 1.0, usually 0.05 to 0.225
-  repeated ScheduleParameters schedule = 4;      // when to apply guidance
-  optional CutoutParameters cutouts = 5;         // cutout parameters
+  GuidancePreset guidance_preset = 1;                // base preset for guidance
+  repeated GuidanceInstanceParameters instances = 2; // guidance instances
 }
 
 message TransformType {
