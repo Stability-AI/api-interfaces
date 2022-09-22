@@ -240,7 +240,7 @@ enum AssetAction {
 
 message AssetParameters {
   AssetAction action = 1;
-  string project = 2;
+  uint64 project = 2;
 }
 
 // AnswerMeta is a set of metadata about an answer, usually the operating

@@ -5468,7 +5468,7 @@ proto.gooseai.AssetParameters.prototype.toObject = function(opt_includeInstance)
 proto.gooseai.AssetParameters.toObject = function(includeInstance, msg) {
   var f, obj = {
     action: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    project: jspb.Message.getFieldWithDefault(msg, 2, "")
+    project: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -5510,7 +5510,7 @@ proto.gooseai.AssetParameters.deserializeBinaryFromReader = function(msg, reader
       msg.setAction(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {number} */ (reader.readUint64());
       msg.setProject(value);
       break;
     default:
@@ -5550,8 +5550,8 @@ proto.gooseai.AssetParameters.serializeBinaryToWriter = function(message, writer
     );
   }
   f = message.getProject();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f !== 0) {
+    writer.writeUint64(
       2,
       f
     );
@@ -5578,20 +5578,20 @@ proto.gooseai.AssetParameters.prototype.setAction = function(value) {
 
 
 /**
- * optional string project = 2;
- * @return {string}
+ * optional uint64 project = 2;
+ * @return {number}
  */
 proto.gooseai.AssetParameters.prototype.getProject = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {number} value
  * @return {!proto.gooseai.AssetParameters} returns this
  */
 proto.gooseai.AssetParameters.prototype.setProject = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
