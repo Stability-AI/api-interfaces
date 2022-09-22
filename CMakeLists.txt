@@ -25,15 +25,30 @@ file(MAKE_DIRECTORY ${GENERATED_PROTOBUF_PATH})
 
 ## Python target support
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
-execute_process(COMMAND pip3 show grpcio-tools
+
+set(PYBUILD_PATH "${PROJECT_BINARY_DIR}/pybuild")
+execute_process(COMMAND python3 -m venv ${PYBUILD_PATH}
         RESULT_VARIABLE EXIT_CODE
         OUTPUT_QUIET)
 if (NOT ${EXIT_CODE} EQUAL 0)
     message(FATAL_ERROR
-            "The \"grpcio-tools\" Python3 package is not installed. Please install it using the following command: \"pip3 install grpcio-tools\".")
+            "Could not create python3 env at ${PYBUILD_PATH}")
 endif()
 
-set(python_exec "python3")
+execute_process(COMMAND ${PYBUILD_PATH}/bin/pip3 show grpcio-tools grpcio protobuf
+        RESULT_VARIABLE EXIT_CODE
+        OUTPUT_QUIET)
+if (NOT ${EXIT_CODE} EQUAL 0)
+    execute_process(COMMAND ${PYBUILD_PATH}/bin/pip3 install -r ${PROJECT_SOURCE_DIR}/requirements.txt
+                    RESULT_VARIABLE EXIT_CODE)
+    if (NOT ${EXIT_CODE} EQUAL 0)
+        message(FATAL_ERROR
+                "Could not install python3 requirements at ${PYBUILD_PATH}")
+    endif()
+endif()
+
+
+set(python_exec "${PYBUILD_PATH}/bin/python3")
 set(python_args "-m" "grpc_tools.protoc")
 set(python_plugin "")
 set(python_output "--python_out=")
@@ -42,7 +57,7 @@ file(MAKE_DIRECTORY "${python_output_dir}")
 file(WRITE "${PROJECT_SOURCE_DIR}/gooseai/__init__.py")
 set(python_exts "_pb2.py")
 
-set(python_grpc_exec "python3")
+set(python_grpc_exec "${PYBUILD_PATH}/bin/python3")
 set(python_grpc_args "-m" "grpc_tools.protoc")
 set(python_grpc_output "--grpc_python_out=")
 set(python_grpc_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
@@ -99,7 +114,7 @@ if (NOT ${EXIT_CODE} EQUAL 0)
 endif()
 set(NODE_BIN_DIRECTORY "${PROJECT_SOURCE_DIR}/node_modules/.bin")
 
-set(javascript_exec "${PROJECT_SOURCE_DIR}/src/bin/protoc")
+set(javascript_exec "protoc")
 set(javascript_plugin "--plugin=protoc-gen-ts=${NODE_BIN_DIRECTORY}/protoc-gen-ts")
 set(javascript_args "")
 set(javascript_output "--js_out=import_style=commonjs,binary:")
@@ -107,7 +122,7 @@ set(javascript_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
 file(MAKE_DIRECTORY "${javascript_output_dir}")
 set(javascript_exts "_pb.js")
 
-set(javascript_grpc_exec "${PROJECT_SOURCE_DIR}/src/bin/protoc")
+set(javascript_grpc_exec "protoc")
 set(javascript_grpc_plugin "--plugin=protoc-gen-ts=${NODE_BIN_DIRECTORY}/protoc-gen-ts" "--plugin=protoc-gen-grpc=${NODE_BIN_DIRECTORY}/grpc_tools_node_protoc_plugin")
 set(javascript_grpc_args "")
 set(javascript_grpc_output "--grpc_out=import_style=commonjs,binary:")
@@ -115,7 +130,7 @@ set(javascript_grpc_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
 file(MAKE_DIRECTORY "${javascript_grpc_output_dir}")
 set(javascript_grpc_exts "_grpc_pb.js")
 
-set(typescript_web_exec "${PROJECT_SOURCE_DIR}/src/bin/protoc")
+set(typescript_web_exec "protoc")
 set(typescript_web_plugin  "--plugin=protoc-gen-ts=${NODE_BIN_DIRECTORY}/protoc-gen-ts")
 set(typescript_web_args "")
 set(typescript_web_output "--ts_out=service=grpc-web:")
@@ -123,7 +138,7 @@ set(typescript_web_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
 file(MAKE_DIRECTORY "${typescript_output_dir}")
 set(typescript_web_exts "_grpc_pb_service.d.ts;_grpc_pb_service.js")
 
-set(typescript_node_exec "${PROJECT_SOURCE_DIR}/src/bin/protoc")
+set(typescript_node_exec "protoc")
 set(typescript_node_plugin "--plugin=protoc-gen-ts=${NODE_BIN_DIRECTORY}/protoc-gen-ts" "--plugin=protoc-gen-grpc=${NODE_BIN_DIRECTORY}/grpc_tools_node_protoc_plugin")
 set(typescript_node_args "")
 set(typescript_node_output "--ts_out=service=grpc-node:")
