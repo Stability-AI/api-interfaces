@@ -627,8 +627,8 @@ export class AssetParameters extends jspb.Message {
   getAction(): AssetActionMap[keyof AssetActionMap];
   setAction(value: AssetActionMap[keyof AssetActionMap]): void;
 
-  getProject(): string;
-  setProject(value: string): void;
+  getProject(): number;
+  setProject(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AssetParameters.AsObject;
@@ -643,7 +643,7 @@ export class AssetParameters extends jspb.Message {
 export namespace AssetParameters {
   export type AsObject = {
     action: AssetActionMap[keyof AssetActionMap],
-    project: string,
+    project: number,
   }
 }
 

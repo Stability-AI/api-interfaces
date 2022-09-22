@@ -177,7 +177,7 @@ enum AssetAction {
 
 message AssetParameters {
   AssetAction action = 1;
-  string project = 2;
+  uint64 project = 2;
 }
 
 message Request {
