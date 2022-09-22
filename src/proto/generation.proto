@@ -1,4 +1,4 @@
-src/proto/generation.protosyntax = 'proto3';
+syntax = 'proto3';
 package gooseai;
 option go_package = "./;generation";
 
@@ -124,10 +124,11 @@ message StepParameter {
 
 // Presets for CLIP guidance.
 enum GuidancePreset {
-  GUIDANCE_PRESET_DEFAULT = 0;
-  GUIDANCE_PRESET_EFFICIENT = 1;
-  GUIDANCE_PRESET_BALANCED = 2;
-  GUIDANCE_PRESET_QUALITY = 3;
+  GUIDANCE_PRESET_NONE = 0;
+  GUIDANCE_PRESET_FAST = 1;
+  GUIDANCE_PRESET_EFFICIENT = 2;
+  GUIDANCE_PRESET_BALANCED = 3;
+  GUIDANCE_PRESET_QUALITY = 4;
 }
 
 enum ModelArchitecture {
