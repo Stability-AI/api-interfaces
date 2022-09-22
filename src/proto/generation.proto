@@ -1,4 +1,4 @@
-syntax = 'proto3';
+src/proto/generation.protosyntax = 'proto3';
 package gooseai;
 option go_package = "./;generation";
 
@@ -146,25 +146,11 @@ message Model {
   string alias = 6;
 }
 
-message GrayAugmentation {
-  optional float strength = 1;
-}
-
-message BlurAugmentation {
-  optional float strength = 1;
-}
-
-message ImageAugmentation {
-  oneof augmentation {
-       GrayAugmentation gray = 1;
-       BlurAugmentation blur = 2;
-  }
-}
-
 message CutoutParameters {
   repeated CutoutParameters cutouts = 1;    // Nested cutouts, unsupported
   optional uint32 count = 2;                // 0 to n, usually 8 to 32, 0 inner
-  repeated ImageAugmentation augmentations = 3; // Augmentations to apply
+  optional float gray = 3;                       // 0.0 to 1.0, defaults to 0.2
+  optional float blur = 4;                       // percentage of cutouts to blur
   optional float size_power = 5;            // defaults to inner: 0.5, outer: 0.0
 }
 
