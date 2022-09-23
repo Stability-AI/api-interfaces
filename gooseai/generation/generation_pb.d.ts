@@ -266,6 +266,11 @@ export class ConditionerParameters extends jspb.Message {
   getVectorAdjustPrior(): string;
   setVectorAdjustPrior(value: string): void;
 
+  hasConditioner(): boolean;
+  clearConditioner(): void;
+  getConditioner(): Model | undefined;
+  setConditioner(value?: Model): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ConditionerParameters.AsObject;
   static toObject(includeInstance: boolean, msg: ConditionerParameters): ConditionerParameters.AsObject;
@@ -279,6 +284,7 @@ export class ConditionerParameters extends jspb.Message {
 export namespace ConditionerParameters {
   export type AsObject = {
     vectorAdjustPrior: string,
+    conditioner?: Model.AsObject,
   }
 }
 
@@ -434,10 +440,7 @@ export namespace CutoutParameters {
   }
 }
 
-export class GuidanceParameters extends jspb.Message {
-  getGuidancePreset(): GuidancePresetMap[keyof GuidancePresetMap];
-  setGuidancePreset(value: GuidancePresetMap[keyof GuidancePresetMap]): void;
-
+export class GuidanceInstanceParameters extends jspb.Message {
   clearModelsList(): void;
   getModelsList(): Array<Model>;
   setModelsList(value: Array<Model>): void;
@@ -458,6 +461,40 @@ export class GuidanceParameters extends jspb.Message {
   getCutouts(): CutoutParameters | undefined;
   setCutouts(value?: CutoutParameters): void;
 
+  hasPrompt(): boolean;
+  clearPrompt(): void;
+  getPrompt(): Prompt | undefined;
+  setPrompt(value?: Prompt): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GuidanceInstanceParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: GuidanceInstanceParameters): GuidanceInstanceParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GuidanceInstanceParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GuidanceInstanceParameters;
+  static deserializeBinaryFromReader(message: GuidanceInstanceParameters, reader: jspb.BinaryReader): GuidanceInstanceParameters;
+}
+
+export namespace GuidanceInstanceParameters {
+  export type AsObject = {
+    modelsList: Array<Model.AsObject>,
+    guidanceStrength: number,
+    scheduleList: Array<ScheduleParameters.AsObject>,
+    cutouts?: CutoutParameters.AsObject,
+    prompt?: Prompt.AsObject,
+  }
+}
+
+export class GuidanceParameters extends jspb.Message {
+  getGuidancePreset(): GuidancePresetMap[keyof GuidancePresetMap];
+  setGuidancePreset(value: GuidancePresetMap[keyof GuidancePresetMap]): void;
+
+  clearInstancesList(): void;
+  getInstancesList(): Array<GuidanceInstanceParameters>;
+  setInstancesList(value: Array<GuidanceInstanceParameters>): void;
+  addInstances(value?: GuidanceInstanceParameters, index?: number): GuidanceInstanceParameters;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GuidanceParameters.AsObject;
   static toObject(includeInstance: boolean, msg: GuidanceParameters): GuidanceParameters.AsObject;
@@ -471,10 +508,7 @@ export class GuidanceParameters extends jspb.Message {
 export namespace GuidanceParameters {
   export type AsObject = {
     guidancePreset: GuidancePresetMap[keyof GuidancePresetMap],
-    modelsList: Array<Model.AsObject>,
-    guidanceStrength: number,
-    scheduleList: Array<ScheduleParameters.AsObject>,
-    cutouts?: CutoutParameters.AsObject,
+    instancesList: Array<GuidanceInstanceParameters.AsObject>,
   }
 }
 
@@ -986,10 +1020,11 @@ export interface UpscalerMap {
 export const Upscaler: UpscalerMap;
 
 export interface GuidancePresetMap {
-  GUIDANCE_PRESET_DEFAULT: 0;
-  GUIDANCE_PRESET_EFFICIENT: 1;
-  GUIDANCE_PRESET_BALANCED: 2;
-  GUIDANCE_PRESET_QUALITY: 3;
+  GUIDANCE_PRESET_NONE: 0;
+  GUIDANCE_PRESET_FAST: 1;
+  GUIDANCE_PRESET_EFFICIENT: 2;
+  GUIDANCE_PRESET_BALANCED: 3;
+  GUIDANCE_PRESET_QUALITY: 4;
 }
 
 export const GuidancePreset: GuidancePresetMap;
