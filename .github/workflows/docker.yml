@@ -20,4 +20,4 @@ jobs:
             type=local,dest=${{ runner.temp }}/docker-build
       - name: Copy output files
         run: |
-          cp -r ${{ runner.temp }}/docker-build/gooseai ${{GITHUB_WORKSPACE}}
+          cp -r ${{ runner.temp }}/docker-build/gooseai $GITHUB_WORKSPACE
