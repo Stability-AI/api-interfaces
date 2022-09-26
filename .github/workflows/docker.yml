@@ -16,3 +16,8 @@ jobs:
           context: .
           cache-from: type=gha
           cache-to: type=gha,mode=max 
+          outputs: |
+            type=local,dest=${{ runner.temp }}/docker-build
+      - name: Copy output files
+        run: |
+          cp -r ${{ runner.temp }}/docker-build/gooseai ${{GITHUB_WORKSPACE}}
