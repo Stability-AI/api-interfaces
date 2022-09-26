@@ -1,5 +1,5 @@
 FROM node:16-bullseye as builder
-RUN apt-get update && apt-get install -y cmake git autoconf automake libtool pkg-config g++ python3-venv wget && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y cmake git build-essential python3-venv wget && rm -rf /var/lib/apt/lists/*
 
 # Install golang 
 RUN rm -rf /go && wget https://go.dev/dl/go1.19.1.linux-amd64.tar.gz -qO- | tar -C / -xz
@@ -22,9 +22,8 @@ RUN mkdir -p cmake/build; cd cmake/build; cmake -DgRPC_INSTALL=ON -DgRPC_BUILD_T
 
 # Build api-interfaces
 RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28.1
-COPY . /build/api-interfaces
-WORKDIR /build/api-interfaces
-RUN cmake . && cmake --build .
+COPY . /build/api-interfaces/
+RUN cd /build/api-interfaces && cmake . && cmake --build .
 
 # Copy output to a bare container
 FROM debian:bullseye-slim
