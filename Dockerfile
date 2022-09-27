@@ -13,10 +13,11 @@ WORKDIR /build
 RUN git clone --recurse-submodules -b v1.48.2 --depth 1 --shallow-submodules https://github.com/grpc/grpc
 WORKDIR /build/grpc
 RUN mkdir -p cmake/build; cd cmake/build; cmake -DgRPC_INSTALL=ON -DgRPC_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=/usr/local ../.. && make -j 8 && make install
-RUN wget https://github.com/grpc/grpc-web/releases/download/1.4.0/protoc-gen-grpc-web-1.4.0-linux-x86_64 -qO /usr/local/bin/protoc-gen-grpc-web && chmod +x /usr/local/bin/protoc-gen-grpc-web
 
 # Build api-interfaces
+RUN go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1.0
 RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28.1
+
 COPY . /build/api-interfaces/
 WORKDIR /build/api-interfaces
 RUN cmake . && cmake --build .
