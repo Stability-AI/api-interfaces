@@ -18,6 +18,4 @@ node_modules
 .idea
 
 # protoc output
-gooseai/*
-!gooseai/go.*
-!gooseai/__init__.py
+gooseai/*/*pb*
