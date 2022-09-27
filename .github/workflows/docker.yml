@@ -17,7 +17,8 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max 
           outputs: |
-            type=local,dest=${{ runner.temp }}/docker-build
-      - name: Copy output files
-        run: |
-          cp -r ${{ runner.temp }}/docker-build/gooseai $GITHUB_WORKSPACE
+            type=local,dest=${{ runner.temp }}/docker-build      
+      - uses: action/upload-artifact@v3
+        with:
+         name: gooseai
+         path: ${{ runner.temp }}/docker-build/gooseai
