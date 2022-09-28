@@ -523,6 +523,11 @@ export class TransformType extends jspb.Message {
   getUpscaler(): UpscalerMap[keyof UpscalerMap];
   setUpscaler(value: UpscalerMap[keyof UpscalerMap]): void;
 
+  hasSequence(): boolean;
+  clearSequence(): void;
+  getSequence(): TransformSequence | undefined;
+  setSequence(value?: TransformSequence): void;
+
   getTypeCase(): TransformType.TypeCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TransformType.AsObject;
@@ -538,12 +543,14 @@ export namespace TransformType {
   export type AsObject = {
     diffusion: DiffusionSamplerMap[keyof DiffusionSamplerMap],
     upscaler: UpscalerMap[keyof UpscalerMap],
+    sequence?: TransformSequence.AsObject,
   }
 
   export enum TypeCase {
     TYPE_NOT_SET = 0,
     DIFFUSION = 1,
     UPSCALER = 2,
+    SEQUENCE = 3,
   }
 }
 
@@ -706,6 +713,252 @@ export namespace ClassifierParameters {
     categoriesList: Array<ClassifierCategory.AsObject>,
     exceedsList: Array<ClassifierCategory.AsObject>,
     realizedAction: ActionMap[keyof ActionMap],
+  }
+}
+
+export class TransformAddNoise extends jspb.Message {
+  getAmount(): number;
+  setAmount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformAddNoise.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformAddNoise): TransformAddNoise.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformAddNoise, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformAddNoise;
+  static deserializeBinaryFromReader(message: TransformAddNoise, reader: jspb.BinaryReader): TransformAddNoise;
+}
+
+export namespace TransformAddNoise {
+  export type AsObject = {
+    amount: number,
+  }
+}
+
+export class TransformColorMatch extends jspb.Message {
+  getColorMode(): ColorMatchModeMap[keyof ColorMatchModeMap];
+  setColorMode(value: ColorMatchModeMap[keyof ColorMatchModeMap]): void;
+
+  hasImage(): boolean;
+  clearImage(): void;
+  getImage(): Artifact | undefined;
+  setImage(value?: Artifact): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformColorMatch.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformColorMatch): TransformColorMatch.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformColorMatch, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformColorMatch;
+  static deserializeBinaryFromReader(message: TransformColorMatch, reader: jspb.BinaryReader): TransformColorMatch;
+}
+
+export namespace TransformColorMatch {
+  export type AsObject = {
+    colorMode: ColorMatchModeMap[keyof ColorMatchModeMap],
+    image?: Artifact.AsObject,
+  }
+}
+
+export class TransformWarp2d extends jspb.Message {
+  getBorderMode(): BorderModeMap[keyof BorderModeMap];
+  setBorderMode(value: BorderModeMap[keyof BorderModeMap]): void;
+
+  getRotate(): number;
+  setRotate(value: number): void;
+
+  getScale(): number;
+  setScale(value: number): void;
+
+  getTranslateX(): number;
+  setTranslateX(value: number): void;
+
+  getTranslateY(): number;
+  setTranslateY(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformWarp2d.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformWarp2d): TransformWarp2d.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformWarp2d, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformWarp2d;
+  static deserializeBinaryFromReader(message: TransformWarp2d, reader: jspb.BinaryReader): TransformWarp2d;
+}
+
+export namespace TransformWarp2d {
+  export type AsObject = {
+    borderMode: BorderModeMap[keyof BorderModeMap],
+    rotate: number,
+    scale: number,
+    translateX: number,
+    translateY: number,
+  }
+}
+
+export class TransformWarp3d extends jspb.Message {
+  getBorderMode(): BorderModeMap[keyof BorderModeMap];
+  setBorderMode(value: BorderModeMap[keyof BorderModeMap]): void;
+
+  getSamplingMode(): SamplingModeMap[keyof SamplingModeMap];
+  setSamplingMode(value: SamplingModeMap[keyof SamplingModeMap]): void;
+
+  getTranslateX(): number;
+  setTranslateX(value: number): void;
+
+  getTranslateY(): number;
+  setTranslateY(value: number): void;
+
+  getTranslateZ(): number;
+  setTranslateZ(value: number): void;
+
+  getRotateX(): number;
+  setRotateX(value: number): void;
+
+  getRotateY(): number;
+  setRotateY(value: number): void;
+
+  getRotateZ(): number;
+  setRotateZ(value: number): void;
+
+  getNearPlane(): number;
+  setNearPlane(value: number): void;
+
+  getFarPlane(): number;
+  setFarPlane(value: number): void;
+
+  getFov(): number;
+  setFov(value: number): void;
+
+  getMidasWeight(): number;
+  setMidasWeight(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformWarp3d.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformWarp3d): TransformWarp3d.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformWarp3d, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformWarp3d;
+  static deserializeBinaryFromReader(message: TransformWarp3d, reader: jspb.BinaryReader): TransformWarp3d;
+}
+
+export namespace TransformWarp3d {
+  export type AsObject = {
+    borderMode: BorderModeMap[keyof BorderModeMap],
+    samplingMode: SamplingModeMap[keyof SamplingModeMap],
+    translateX: number,
+    translateY: number,
+    translateZ: number,
+    rotateX: number,
+    rotateY: number,
+    rotateZ: number,
+    nearPlane: number,
+    farPlane: number,
+    fov: number,
+    midasWeight: number,
+  }
+}
+
+export class TransformWarpFlow extends jspb.Message {
+  hasFlowMap(): boolean;
+  clearFlowMap(): void;
+  getFlowMap(): Artifact | undefined;
+  setFlowMap(value?: Artifact): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformWarpFlow.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformWarpFlow): TransformWarpFlow.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformWarpFlow, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformWarpFlow;
+  static deserializeBinaryFromReader(message: TransformWarpFlow, reader: jspb.BinaryReader): TransformWarpFlow;
+}
+
+export namespace TransformWarpFlow {
+  export type AsObject = {
+    flowMap?: Artifact.AsObject,
+  }
+}
+
+export class TransformOperation extends jspb.Message {
+  hasAddNoise(): boolean;
+  clearAddNoise(): void;
+  getAddNoise(): TransformAddNoise | undefined;
+  setAddNoise(value?: TransformAddNoise): void;
+
+  hasColorMatch(): boolean;
+  clearColorMatch(): void;
+  getColorMatch(): TransformColorMatch | undefined;
+  setColorMatch(value?: TransformColorMatch): void;
+
+  hasWarp2d(): boolean;
+  clearWarp2d(): void;
+  getWarp2d(): TransformWarp2d | undefined;
+  setWarp2d(value?: TransformWarp2d): void;
+
+  hasWarp3d(): boolean;
+  clearWarp3d(): void;
+  getWarp3d(): TransformWarp3d | undefined;
+  setWarp3d(value?: TransformWarp3d): void;
+
+  hasWarpFlow(): boolean;
+  clearWarpFlow(): void;
+  getWarpFlow(): TransformWarpFlow | undefined;
+  setWarpFlow(value?: TransformWarpFlow): void;
+
+  getXformCase(): TransformOperation.XformCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformOperation.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformOperation): TransformOperation.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformOperation, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformOperation;
+  static deserializeBinaryFromReader(message: TransformOperation, reader: jspb.BinaryReader): TransformOperation;
+}
+
+export namespace TransformOperation {
+  export type AsObject = {
+    addNoise?: TransformAddNoise.AsObject,
+    colorMatch?: TransformColorMatch.AsObject,
+    warp2d?: TransformWarp2d.AsObject,
+    warp3d?: TransformWarp3d.AsObject,
+    warpFlow?: TransformWarpFlow.AsObject,
+  }
+
+  export enum XformCase {
+    XFORM_NOT_SET = 0,
+    ADD_NOISE = 1,
+    COLOR_MATCH = 2,
+    WARP2D = 3,
+    WARP3D = 4,
+    WARP_FLOW = 5,
+  }
+}
+
+export class TransformSequence extends jspb.Message {
+  clearOperationsList(): void;
+  getOperationsList(): Array<TransformOperation>;
+  setOperationsList(value: Array<TransformOperation>): void;
+  addOperations(value?: TransformOperation, index?: number): TransformOperation;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformSequence.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformSequence): TransformSequence.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformSequence, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformSequence;
+  static deserializeBinaryFromReader(message: TransformSequence, reader: jspb.BinaryReader): TransformSequence;
+}
+
+export namespace TransformSequence {
+  export type AsObject = {
+    operationsList: Array<TransformOperation.AsObject>,
   }
 }
 
@@ -1055,6 +1308,32 @@ export interface ClassifierModeMap {
 }
 
 export const ClassifierMode: ClassifierModeMap;
+
+export interface BorderModeMap {
+  BORDER_REFLECT: 0;
+  BORDER_REPLICATE: 1;
+  BORDER_WRAP: 2;
+  BORDER_ZERO: 3;
+}
+
+export const BorderMode: BorderModeMap;
+
+export interface ColorMatchModeMap {
+  COLOR_MATCH_NONE: 0;
+  COLOR_MATCH_HSV: 1;
+  COLOR_MATCH_LAB: 2;
+  COLOR_MATCH_RGB: 3;
+}
+
+export const ColorMatchMode: ColorMatchModeMap;
+
+export interface SamplingModeMap {
+  SAMPLING_BICUBIC: 0;
+  SAMPLING_BILINEAR: 1;
+  SAMPLING_NEAREST: 2;
+}
+
+export const SamplingMode: SamplingModeMap;
 
 export interface AssetActionMap {
   ASSET_PUT: 0;
