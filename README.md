@@ -39,7 +39,7 @@ After all the prerequisites are installed and available, this project can be set
 
 ```shell
 git clone git@github.com:Stability-AI/api-interfaces.git
-cd api-interface
+cd api-interfaces
 cmake .
 cmake --build .
 ```
