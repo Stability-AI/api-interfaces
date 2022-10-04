@@ -17,6 +17,7 @@ interface IDashboardServiceService extends grpc.ServiceDefinition<grpc.UntypedSe
   setClientSettings: grpc.MethodDefinition<dashboard_pb.ClientSettings, dashboard_pb.ClientSettings>;
   updateUserInfo: grpc.MethodDefinition<dashboard_pb.UpdateUserInfoRequest, dashboard_pb.User>;
   createPasswordChangeTicket: grpc.MethodDefinition<dashboard_pb.EmptyRequest, dashboard_pb.UserPasswordChangeTicket>;
+  deleteAccount: grpc.MethodDefinition<dashboard_pb.EmptyRequest, dashboard_pb.User>;
   createCharge: grpc.MethodDefinition<dashboard_pb.CreateChargeRequest, dashboard_pb.Charge>;
   getCharges: grpc.MethodDefinition<dashboard_pb.GetChargesRequest, dashboard_pb.Charges>;
   createAutoChargeIntent: grpc.MethodDefinition<dashboard_pb.CreateAutoChargeIntentRequest, dashboard_pb.AutoChargeIntent>;
@@ -37,6 +38,7 @@ export interface IDashboardServiceServer extends grpc.UntypedServiceImplementati
   setClientSettings: grpc.handleUnaryCall<dashboard_pb.ClientSettings, dashboard_pb.ClientSettings>;
   updateUserInfo: grpc.handleUnaryCall<dashboard_pb.UpdateUserInfoRequest, dashboard_pb.User>;
   createPasswordChangeTicket: grpc.handleUnaryCall<dashboard_pb.EmptyRequest, dashboard_pb.UserPasswordChangeTicket>;
+  deleteAccount: grpc.handleUnaryCall<dashboard_pb.EmptyRequest, dashboard_pb.User>;
   createCharge: grpc.handleUnaryCall<dashboard_pb.CreateChargeRequest, dashboard_pb.Charge>;
   getCharges: grpc.handleUnaryCall<dashboard_pb.GetChargesRequest, dashboard_pb.Charges>;
   createAutoChargeIntent: grpc.handleUnaryCall<dashboard_pb.CreateAutoChargeIntentRequest, dashboard_pb.AutoChargeIntent>;
@@ -76,6 +78,9 @@ export class DashboardServiceClient extends grpc.Client {
   createPasswordChangeTicket(argument: dashboard_pb.EmptyRequest, callback: grpc.requestCallback<dashboard_pb.UserPasswordChangeTicket>): grpc.ClientUnaryCall;
   createPasswordChangeTicket(argument: dashboard_pb.EmptyRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.UserPasswordChangeTicket>): grpc.ClientUnaryCall;
   createPasswordChangeTicket(argument: dashboard_pb.EmptyRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.UserPasswordChangeTicket>): grpc.ClientUnaryCall;
+  deleteAccount(argument: dashboard_pb.EmptyRequest, callback: grpc.requestCallback<dashboard_pb.User>): grpc.ClientUnaryCall;
+  deleteAccount(argument: dashboard_pb.EmptyRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.User>): grpc.ClientUnaryCall;
+  deleteAccount(argument: dashboard_pb.EmptyRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.User>): grpc.ClientUnaryCall;
   createCharge(argument: dashboard_pb.CreateChargeRequest, callback: grpc.requestCallback<dashboard_pb.Charge>): grpc.ClientUnaryCall;
   createCharge(argument: dashboard_pb.CreateChargeRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.Charge>): grpc.ClientUnaryCall;
   createCharge(argument: dashboard_pb.CreateChargeRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.Charge>): grpc.ClientUnaryCall;
