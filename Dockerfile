@@ -26,9 +26,12 @@ RUN mkdir -p cmake/build; cd cmake/build; cmake -DgRPC_INSTALL=ON -DgRPC_BUILD_T
 RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@${PROTOC_GEN_GO_VERSION}
 RUN go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@${PROTOC_GEN_GO_GRPC_VERSION}
 
-COPY . /build/api-interfaces/
+COPY CMakeLists.txt package.json package-lock.json requirements.txt /build/api-interfaces/
+COPY .git /build/api-interfaces/.git/
+COPY src/ /build/api-interfaces/src/
+COPY gooseai/ /build/api-interfaces/gooseai/
 WORKDIR /build/api-interfaces
-RUN cmake . && cmake --build .
+RUN cmake . && make clean && cmake --build .
 
 # Copy output to a bare container
 FROM debian:bullseye-slim
