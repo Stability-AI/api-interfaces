@@ -187,6 +187,7 @@ service DashboardService {
   rpc SetClientSettings (ClientSettings) returns (ClientSettings);
   rpc UpdateUserInfo (UpdateUserInfoRequest) returns (User);
   rpc CreatePasswordChangeTicket (EmptyRequest) returns (UserPasswordChangeTicket);
+  rpc DeleteAccount (EmptyRequest) returns (User);
 
   // Payment functions
   rpc CreateCharge (CreateChargeRequest) returns (Charge);

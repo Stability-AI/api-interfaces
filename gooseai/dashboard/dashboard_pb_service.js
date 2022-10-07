@@ -100,6 +100,15 @@ DashboardService.CreatePasswordChangeTicket = {
   responseType: dashboard_pb.UserPasswordChangeTicket
 };
 
+DashboardService.DeleteAccount = {
+  methodName: "DeleteAccount",
+  service: DashboardService,
+  requestStream: false,
+  responseStream: false,
+  requestType: dashboard_pb.EmptyRequest,
+  responseType: dashboard_pb.User
+};
+
 DashboardService.CreateCharge = {
   methodName: "CreateCharge",
   service: DashboardService,
@@ -436,6 +445,37 @@ DashboardServiceClient.prototype.createPasswordChangeTicket = function createPas
     callback = arguments[1];
   }
   var client = grpc.unary(DashboardService.CreatePasswordChangeTicket, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DashboardServiceClient.prototype.deleteAccount = function deleteAccount(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DashboardService.DeleteAccount, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
