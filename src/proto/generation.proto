@@ -254,7 +254,13 @@ enum SamplingMode {
 }
 
 message TransformAddNoise {
-  float amount = 1;
+  float amount = 1; // Amount of noise to add
+  uint32 seed = 2;  // Random seed
+}
+
+message TransformBlend {
+  float amount = 1;     // Blend amount from 0 to 1
+  Artifact target = 2;  // Target image
 }
 
 message TransformColorMatch {
@@ -286,12 +292,15 @@ message TransformWarp3d {
 }
 
 message TransformWarpFlow {
-  Artifact flow_map = 1; // artifact should be extended to allow asset id
+  optional Artifact flow_map = 1;   // Precomputed flow asset
+  optional Artifact prev_frame = 2;
+  optional Artifact next_frame = 3;
 }
 
 message TransformOperation {
   oneof xform {
     TransformAddNoise add_noise = 1;
+    TransformBlend blend = 6;
     TransformColorMatch color_match = 2;
     TransformWarp2d warp2d = 3;
     TransformWarp3d warp3d = 4;

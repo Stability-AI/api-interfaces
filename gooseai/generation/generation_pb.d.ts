@@ -720,6 +720,9 @@ export class TransformAddNoise extends jspb.Message {
   getAmount(): number;
   setAmount(value: number): void;
 
+  getSeed(): number;
+  setSeed(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TransformAddNoise.AsObject;
   static toObject(includeInstance: boolean, msg: TransformAddNoise): TransformAddNoise.AsObject;
@@ -733,6 +736,33 @@ export class TransformAddNoise extends jspb.Message {
 export namespace TransformAddNoise {
   export type AsObject = {
     amount: number,
+    seed: number,
+  }
+}
+
+export class TransformBlend extends jspb.Message {
+  getAmount(): number;
+  setAmount(value: number): void;
+
+  hasTarget(): boolean;
+  clearTarget(): void;
+  getTarget(): Artifact | undefined;
+  setTarget(value?: Artifact): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformBlend.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformBlend): TransformBlend.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformBlend, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformBlend;
+  static deserializeBinaryFromReader(message: TransformBlend, reader: jspb.BinaryReader): TransformBlend;
+}
+
+export namespace TransformBlend {
+  export type AsObject = {
+    amount: number,
+    target?: Artifact.AsObject,
   }
 }
 
@@ -868,6 +898,16 @@ export class TransformWarpFlow extends jspb.Message {
   getFlowMap(): Artifact | undefined;
   setFlowMap(value?: Artifact): void;
 
+  hasPrevFrame(): boolean;
+  clearPrevFrame(): void;
+  getPrevFrame(): Artifact | undefined;
+  setPrevFrame(value?: Artifact): void;
+
+  hasNextFrame(): boolean;
+  clearNextFrame(): void;
+  getNextFrame(): Artifact | undefined;
+  setNextFrame(value?: Artifact): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TransformWarpFlow.AsObject;
   static toObject(includeInstance: boolean, msg: TransformWarpFlow): TransformWarpFlow.AsObject;
@@ -881,6 +921,8 @@ export class TransformWarpFlow extends jspb.Message {
 export namespace TransformWarpFlow {
   export type AsObject = {
     flowMap?: Artifact.AsObject,
+    prevFrame?: Artifact.AsObject,
+    nextFrame?: Artifact.AsObject,
   }
 }
 
@@ -889,6 +931,11 @@ export class TransformOperation extends jspb.Message {
   clearAddNoise(): void;
   getAddNoise(): TransformAddNoise | undefined;
   setAddNoise(value?: TransformAddNoise): void;
+
+  hasBlend(): boolean;
+  clearBlend(): void;
+  getBlend(): TransformBlend | undefined;
+  setBlend(value?: TransformBlend): void;
 
   hasColorMatch(): boolean;
   clearColorMatch(): void;
@@ -924,6 +971,7 @@ export class TransformOperation extends jspb.Message {
 export namespace TransformOperation {
   export type AsObject = {
     addNoise?: TransformAddNoise.AsObject,
+    blend?: TransformBlend.AsObject,
     colorMatch?: TransformColorMatch.AsObject,
     warp2d?: TransformWarp2d.AsObject,
     warp3d?: TransformWarp3d.AsObject,
@@ -933,6 +981,7 @@ export namespace TransformOperation {
   export enum XformCase {
     XFORM_NOT_SET = 0,
     ADD_NOISE = 1,
+    BLEND = 6,
     COLOR_MATCH = 2,
     WARP2D = 3,
     WARP3D = 4,
