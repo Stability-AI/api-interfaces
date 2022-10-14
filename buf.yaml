@@ -1,0 +1,41 @@
+version: v1
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - DEFAULT
+  ignore_only:
+    ENUM_VALUE_PREFIX:
+      - src/proto/dashboard.proto
+      - src/proto/engines.proto
+      - src/proto/generation.proto
+    ENUM_ZERO_VALUE_SUFFIX:
+      - src/proto/dashboard.proto
+      - src/proto/engines.proto
+      - src/proto/generation.proto
+    PACKAGE_DIRECTORY_MATCH:
+      - src/proto/dashboard.proto
+      - src/proto/engines.proto
+      - src/proto/generation.proto
+    PACKAGE_SAME_GO_PACKAGE:
+      - src/proto/dashboard.proto
+      - src/proto/engines.proto
+      - src/proto/generation.proto
+    PACKAGE_VERSION_SUFFIX:
+      - src/proto/dashboard.proto
+      - src/proto/engines.proto
+      - src/proto/generation.proto
+    RPC_REQUEST_RESPONSE_UNIQUE:
+      - src/proto/dashboard.proto
+      - src/proto/generation.proto
+    RPC_REQUEST_STANDARD_NAME:
+      - src/proto/dashboard.proto
+      - src/proto/generation.proto
+    RPC_RESPONSE_STANDARD_NAME:
+      - src/proto/dashboard.proto
+      - src/proto/engines.proto
+      - src/proto/generation.proto
+build:
+  excludes:
+    - node_modules
