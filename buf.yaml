@@ -14,18 +14,6 @@ lint:
       - src/proto/dashboard.proto
       - src/proto/engines.proto
       - src/proto/generation.proto
-    PACKAGE_DIRECTORY_MATCH:
-      - src/proto/dashboard.proto
-      - src/proto/engines.proto
-      - src/proto/generation.proto
-    PACKAGE_SAME_GO_PACKAGE:
-      - src/proto/dashboard.proto
-      - src/proto/engines.proto
-      - src/proto/generation.proto
-    PACKAGE_VERSION_SUFFIX:
-      - src/proto/dashboard.proto
-      - src/proto/engines.proto
-      - src/proto/generation.proto
     RPC_REQUEST_RESPONSE_UNIQUE:
       - src/proto/dashboard.proto
       - src/proto/generation.proto
@@ -36,6 +24,12 @@ lint:
       - src/proto/dashboard.proto
       - src/proto/engines.proto
       - src/proto/generation.proto
+    PACKAGE_DIRECTORY_MATCH:
+      - src/proto/
+    PACKAGE_SAME_GO_PACKAGE:
+      - src/proto/
+    PACKAGE_VERSION_SUFFIX:
+      - src/proto/
 build:
   excludes:
     - node_modules
