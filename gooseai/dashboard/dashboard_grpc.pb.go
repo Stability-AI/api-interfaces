@@ -25,6 +25,7 @@ type DashboardServiceClient interface {
 	// API key management
 	CreateAPIKey(ctx context.Context, in *APIKeyRequest, opts ...grpc.CallOption) (*APIKey, error)
 	DeleteAPIKey(ctx context.Context, in *APIKeyFindRequest, opts ...grpc.CallOption) (*APIKey, error)
+	ListAPIKeyScopes(ctx context.Context, in *ListAPIKeyScopesRequest, opts ...grpc.CallOption) (*ListAPIKeyScopesResponse, error)
 	// User settings
 	UpdateDefaultOrganization(ctx context.Context, in *UpdateDefaultOrganizationRequest, opts ...grpc.CallOption) (*User, error)
 	GetClientSettings(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ClientSettings, error)
@@ -87,6 +88,15 @@ func (c *dashboardServiceClient) CreateAPIKey(ctx context.Context, in *APIKeyReq
 func (c *dashboardServiceClient) DeleteAPIKey(ctx context.Context, in *APIKeyFindRequest, opts ...grpc.CallOption) (*APIKey, error) {
 	out := new(APIKey)
 	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/DeleteAPIKey", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dashboardServiceClient) ListAPIKeyScopes(ctx context.Context, in *ListAPIKeyScopesRequest, opts ...grpc.CallOption) (*ListAPIKeyScopesResponse, error) {
+	out := new(ListAPIKeyScopesResponse)
+	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/ListAPIKeyScopes", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -203,6 +213,7 @@ type DashboardServiceServer interface {
 	// API key management
 	CreateAPIKey(context.Context, *APIKeyRequest) (*APIKey, error)
 	DeleteAPIKey(context.Context, *APIKeyFindRequest) (*APIKey, error)
+	ListAPIKeyScopes(context.Context, *ListAPIKeyScopesRequest) (*ListAPIKeyScopesResponse, error)
 	// User settings
 	UpdateDefaultOrganization(context.Context, *UpdateDefaultOrganizationRequest) (*User, error)
 	GetClientSettings(context.Context, *EmptyRequest) (*ClientSettings, error)
@@ -237,6 +248,9 @@ func (UnimplementedDashboardServiceServer) CreateAPIKey(context.Context, *APIKey
 }
 func (UnimplementedDashboardServiceServer) DeleteAPIKey(context.Context, *APIKeyFindRequest) (*APIKey, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteAPIKey not implemented")
+}
+func (UnimplementedDashboardServiceServer) ListAPIKeyScopes(context.Context, *ListAPIKeyScopesRequest) (*ListAPIKeyScopesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAPIKeyScopes not implemented")
 }
 func (UnimplementedDashboardServiceServer) UpdateDefaultOrganization(context.Context, *UpdateDefaultOrganizationRequest) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateDefaultOrganization not implemented")
@@ -370,6 +384,24 @@ func _DashboardService_DeleteAPIKey_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DashboardServiceServer).DeleteAPIKey(ctx, req.(*APIKeyFindRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DashboardService_ListAPIKeyScopes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAPIKeyScopesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DashboardServiceServer).ListAPIKeyScopes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.DashboardService/ListAPIKeyScopes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DashboardServiceServer).ListAPIKeyScopes(ctx, req.(*ListAPIKeyScopesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -598,6 +630,10 @@ var DashboardService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteAPIKey",
 			Handler:    _DashboardService_DeleteAPIKey_Handler,
+		},
+		{
+			MethodName: "ListAPIKeyScopes",
+			Handler:    _DashboardService_ListAPIKeyScopes_Handler,
 		},
 		{
 			MethodName: "UpdateDefaultOrganization",

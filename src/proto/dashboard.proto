@@ -47,6 +47,17 @@ message APIKey {
   string key = 1;
   bool is_secret = 2;
   uint64 created_at = 3;
+  repeated APIKeyScope scopes = 4;
+}
+
+message APIKeyScope {
+  string scope = 1; // e.g. "organization:read", "organization:write"
+  string description = 2;
+}
+
+message ListAPIKeyScopesRequest {}
+message ListAPIKeyScopesResponse {
+  repeated APIKeyScope scopes = 1;
 }
 
 message User {
@@ -105,6 +116,11 @@ message GetMetricsRequest {
 
 message APIKeyRequest {
   bool is_secret = 1;
+  repeated APIKeyRequestScope scopes = 2;
+}
+
+message APIKeyRequestScope {
+  string scope = 1;  // e.g. "organization:read", "organization:write"
 }
 
 message APIKeyFindRequest {
@@ -180,6 +196,7 @@ service DashboardService {
   // API key management
   rpc CreateAPIKey (APIKeyRequest) returns (APIKey);
   rpc DeleteAPIKey (APIKeyFindRequest) returns (APIKey);
+  rpc ListAPIKeyScopes (ListAPIKeyScopesRequest) returns (ListAPIKeyScopesResponse);
 
   // User settings
   rpc UpdateDefaultOrganization (UpdateDefaultOrganizationRequest) returns (User);

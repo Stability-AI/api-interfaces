@@ -12,6 +12,7 @@ interface IDashboardServiceService extends grpc.ServiceDefinition<grpc.UntypedSe
   getMetrics: grpc.MethodDefinition<dashboard_pb.GetMetricsRequest, dashboard_pb.Metrics>;
   createAPIKey: grpc.MethodDefinition<dashboard_pb.APIKeyRequest, dashboard_pb.APIKey>;
   deleteAPIKey: grpc.MethodDefinition<dashboard_pb.APIKeyFindRequest, dashboard_pb.APIKey>;
+  listAPIKeyScopes: grpc.MethodDefinition<dashboard_pb.ListAPIKeyScopesRequest, dashboard_pb.ListAPIKeyScopesResponse>;
   updateDefaultOrganization: grpc.MethodDefinition<dashboard_pb.UpdateDefaultOrganizationRequest, dashboard_pb.User>;
   getClientSettings: grpc.MethodDefinition<dashboard_pb.EmptyRequest, dashboard_pb.ClientSettings>;
   setClientSettings: grpc.MethodDefinition<dashboard_pb.ClientSettings, dashboard_pb.ClientSettings>;
@@ -33,6 +34,7 @@ export interface IDashboardServiceServer extends grpc.UntypedServiceImplementati
   getMetrics: grpc.handleUnaryCall<dashboard_pb.GetMetricsRequest, dashboard_pb.Metrics>;
   createAPIKey: grpc.handleUnaryCall<dashboard_pb.APIKeyRequest, dashboard_pb.APIKey>;
   deleteAPIKey: grpc.handleUnaryCall<dashboard_pb.APIKeyFindRequest, dashboard_pb.APIKey>;
+  listAPIKeyScopes: grpc.handleUnaryCall<dashboard_pb.ListAPIKeyScopesRequest, dashboard_pb.ListAPIKeyScopesResponse>;
   updateDefaultOrganization: grpc.handleUnaryCall<dashboard_pb.UpdateDefaultOrganizationRequest, dashboard_pb.User>;
   getClientSettings: grpc.handleUnaryCall<dashboard_pb.EmptyRequest, dashboard_pb.ClientSettings>;
   setClientSettings: grpc.handleUnaryCall<dashboard_pb.ClientSettings, dashboard_pb.ClientSettings>;
@@ -63,6 +65,9 @@ export class DashboardServiceClient extends grpc.Client {
   deleteAPIKey(argument: dashboard_pb.APIKeyFindRequest, callback: grpc.requestCallback<dashboard_pb.APIKey>): grpc.ClientUnaryCall;
   deleteAPIKey(argument: dashboard_pb.APIKeyFindRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.APIKey>): grpc.ClientUnaryCall;
   deleteAPIKey(argument: dashboard_pb.APIKeyFindRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.APIKey>): grpc.ClientUnaryCall;
+  listAPIKeyScopes(argument: dashboard_pb.ListAPIKeyScopesRequest, callback: grpc.requestCallback<dashboard_pb.ListAPIKeyScopesResponse>): grpc.ClientUnaryCall;
+  listAPIKeyScopes(argument: dashboard_pb.ListAPIKeyScopesRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.ListAPIKeyScopesResponse>): grpc.ClientUnaryCall;
+  listAPIKeyScopes(argument: dashboard_pb.ListAPIKeyScopesRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.ListAPIKeyScopesResponse>): grpc.ClientUnaryCall;
   updateDefaultOrganization(argument: dashboard_pb.UpdateDefaultOrganizationRequest, callback: grpc.requestCallback<dashboard_pb.User>): grpc.ClientUnaryCall;
   updateDefaultOrganization(argument: dashboard_pb.UpdateDefaultOrganizationRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.User>): grpc.ClientUnaryCall;
   updateDefaultOrganization(argument: dashboard_pb.UpdateDefaultOrganizationRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.User>): grpc.ClientUnaryCall;

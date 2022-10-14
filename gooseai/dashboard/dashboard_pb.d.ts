@@ -187,6 +187,11 @@ export class APIKey extends jspb.Message {
   getCreatedAt(): number;
   setCreatedAt(value: number): void;
 
+  clearScopesList(): void;
+  getScopesList(): Array<APIKeyScope>;
+  setScopesList(value: Array<APIKeyScope>): void;
+  addScopes(value?: APIKeyScope, index?: number): APIKeyScope;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): APIKey.AsObject;
   static toObject(includeInstance: boolean, msg: APIKey): APIKey.AsObject;
@@ -202,6 +207,69 @@ export namespace APIKey {
     key: string,
     isSecret: boolean,
     createdAt: number,
+    scopesList: Array<APIKeyScope.AsObject>,
+  }
+}
+
+export class APIKeyScope extends jspb.Message {
+  getScope(): string;
+  setScope(value: string): void;
+
+  getDescription(): string;
+  setDescription(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): APIKeyScope.AsObject;
+  static toObject(includeInstance: boolean, msg: APIKeyScope): APIKeyScope.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: APIKeyScope, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): APIKeyScope;
+  static deserializeBinaryFromReader(message: APIKeyScope, reader: jspb.BinaryReader): APIKeyScope;
+}
+
+export namespace APIKeyScope {
+  export type AsObject = {
+    scope: string,
+    description: string,
+  }
+}
+
+export class ListAPIKeyScopesRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListAPIKeyScopesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListAPIKeyScopesRequest): ListAPIKeyScopesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListAPIKeyScopesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListAPIKeyScopesRequest;
+  static deserializeBinaryFromReader(message: ListAPIKeyScopesRequest, reader: jspb.BinaryReader): ListAPIKeyScopesRequest;
+}
+
+export namespace ListAPIKeyScopesRequest {
+  export type AsObject = {
+  }
+}
+
+export class ListAPIKeyScopesResponse extends jspb.Message {
+  clearScopesList(): void;
+  getScopesList(): Array<APIKeyScope>;
+  setScopesList(value: Array<APIKeyScope>): void;
+  addScopes(value?: APIKeyScope, index?: number): APIKeyScope;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListAPIKeyScopesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListAPIKeyScopesResponse): ListAPIKeyScopesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListAPIKeyScopesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListAPIKeyScopesResponse;
+  static deserializeBinaryFromReader(message: ListAPIKeyScopesResponse, reader: jspb.BinaryReader): ListAPIKeyScopesResponse;
+}
+
+export namespace ListAPIKeyScopesResponse {
+  export type AsObject = {
+    scopesList: Array<APIKeyScope.AsObject>,
   }
 }
 
@@ -489,6 +557,11 @@ export class APIKeyRequest extends jspb.Message {
   getIsSecret(): boolean;
   setIsSecret(value: boolean): void;
 
+  clearScopesList(): void;
+  getScopesList(): Array<APIKeyRequestScope>;
+  setScopesList(value: Array<APIKeyRequestScope>): void;
+  addScopes(value?: APIKeyRequestScope, index?: number): APIKeyRequestScope;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): APIKeyRequest.AsObject;
   static toObject(includeInstance: boolean, msg: APIKeyRequest): APIKeyRequest.AsObject;
@@ -502,6 +575,27 @@ export class APIKeyRequest extends jspb.Message {
 export namespace APIKeyRequest {
   export type AsObject = {
     isSecret: boolean,
+    scopesList: Array<APIKeyRequestScope.AsObject>,
+  }
+}
+
+export class APIKeyRequestScope extends jspb.Message {
+  getScope(): string;
+  setScope(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): APIKeyRequestScope.AsObject;
+  static toObject(includeInstance: boolean, msg: APIKeyRequestScope): APIKeyRequestScope.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: APIKeyRequestScope, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): APIKeyRequestScope;
+  static deserializeBinaryFromReader(message: APIKeyRequestScope, reader: jspb.BinaryReader): APIKeyRequestScope;
+}
+
+export namespace APIKeyRequestScope {
+  export type AsObject = {
+    scope: string,
   }
 }
 

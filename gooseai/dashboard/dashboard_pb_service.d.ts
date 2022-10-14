@@ -49,6 +49,15 @@ type DashboardServiceDeleteAPIKey = {
   readonly responseType: typeof dashboard_pb.APIKey;
 };
 
+type DashboardServiceListAPIKeyScopes = {
+  readonly methodName: string;
+  readonly service: typeof DashboardService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof dashboard_pb.ListAPIKeyScopesRequest;
+  readonly responseType: typeof dashboard_pb.ListAPIKeyScopesResponse;
+};
+
 type DashboardServiceUpdateDefaultOrganization = {
   readonly methodName: string;
   readonly service: typeof DashboardService;
@@ -155,6 +164,7 @@ export class DashboardService {
   static readonly GetMetrics: DashboardServiceGetMetrics;
   static readonly CreateAPIKey: DashboardServiceCreateAPIKey;
   static readonly DeleteAPIKey: DashboardServiceDeleteAPIKey;
+  static readonly ListAPIKeyScopes: DashboardServiceListAPIKeyScopes;
   static readonly UpdateDefaultOrganization: DashboardServiceUpdateDefaultOrganization;
   static readonly GetClientSettings: DashboardServiceGetClientSettings;
   static readonly SetClientSettings: DashboardServiceSetClientSettings;
@@ -244,6 +254,15 @@ export class DashboardServiceClient {
   deleteAPIKey(
     requestMessage: dashboard_pb.APIKeyFindRequest,
     callback: (error: ServiceError|null, responseMessage: dashboard_pb.APIKey|null) => void
+  ): UnaryResponse;
+  listAPIKeyScopes(
+    requestMessage: dashboard_pb.ListAPIKeyScopesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: dashboard_pb.ListAPIKeyScopesResponse|null) => void
+  ): UnaryResponse;
+  listAPIKeyScopes(
+    requestMessage: dashboard_pb.ListAPIKeyScopesRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_pb.ListAPIKeyScopesResponse|null) => void
   ): UnaryResponse;
   updateDefaultOrganization(
     requestMessage: dashboard_pb.UpdateDefaultOrganizationRequest,

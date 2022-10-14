@@ -158,6 +158,28 @@ function deserialize_gooseai_GetOrganizationRequest(buffer_arg) {
   return dashboard_pb.GetOrganizationRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_gooseai_ListAPIKeyScopesRequest(arg) {
+  if (!(arg instanceof dashboard_pb.ListAPIKeyScopesRequest)) {
+    throw new Error('Expected argument of type gooseai.ListAPIKeyScopesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_ListAPIKeyScopesRequest(buffer_arg) {
+  return dashboard_pb.ListAPIKeyScopesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_ListAPIKeyScopesResponse(arg) {
+  if (!(arg instanceof dashboard_pb.ListAPIKeyScopesResponse)) {
+    throw new Error('Expected argument of type gooseai.ListAPIKeyScopesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_ListAPIKeyScopesResponse(buffer_arg) {
+  return dashboard_pb.ListAPIKeyScopesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_gooseai_Metrics(arg) {
   if (!(arg instanceof dashboard_pb.Metrics)) {
     throw new Error('Expected argument of type gooseai.Metrics');
@@ -282,6 +304,17 @@ createAPIKey: {
     requestDeserialize: deserialize_gooseai_APIKeyFindRequest,
     responseSerialize: serialize_gooseai_APIKey,
     responseDeserialize: deserialize_gooseai_APIKey,
+  },
+  listAPIKeyScopes: {
+    path: '/gooseai.DashboardService/ListAPIKeyScopes',
+    requestStream: false,
+    responseStream: false,
+    requestType: dashboard_pb.ListAPIKeyScopesRequest,
+    responseType: dashboard_pb.ListAPIKeyScopesResponse,
+    requestSerialize: serialize_gooseai_ListAPIKeyScopesRequest,
+    requestDeserialize: deserialize_gooseai_ListAPIKeyScopesRequest,
+    responseSerialize: serialize_gooseai_ListAPIKeyScopesResponse,
+    responseDeserialize: deserialize_gooseai_ListAPIKeyScopesResponse,
   },
   // User settings
 updateDefaultOrganization: {

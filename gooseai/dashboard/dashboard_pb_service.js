@@ -55,6 +55,15 @@ DashboardService.DeleteAPIKey = {
   responseType: dashboard_pb.APIKey
 };
 
+DashboardService.ListAPIKeyScopes = {
+  methodName: "ListAPIKeyScopes",
+  service: DashboardService,
+  requestStream: false,
+  responseStream: false,
+  requestType: dashboard_pb.ListAPIKeyScopesRequest,
+  responseType: dashboard_pb.ListAPIKeyScopesResponse
+};
+
 DashboardService.UpdateDefaultOrganization = {
   methodName: "UpdateDefaultOrganization",
   service: DashboardService,
@@ -290,6 +299,37 @@ DashboardServiceClient.prototype.deleteAPIKey = function deleteAPIKey(requestMes
     callback = arguments[1];
   }
   var client = grpc.unary(DashboardService.DeleteAPIKey, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DashboardServiceClient.prototype.listAPIKeyScopes = function listAPIKeyScopes(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DashboardService.ListAPIKeyScopes, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

@@ -39,6 +39,11 @@ class DashboardServiceStub(object):
                 request_serializer=dashboard__pb2.APIKeyFindRequest.SerializeToString,
                 response_deserializer=dashboard__pb2.APIKey.FromString,
                 )
+        self.ListAPIKeyScopes = channel.unary_unary(
+                '/gooseai.DashboardService/ListAPIKeyScopes',
+                request_serializer=dashboard__pb2.ListAPIKeyScopesRequest.SerializeToString,
+                response_deserializer=dashboard__pb2.ListAPIKeyScopesResponse.FromString,
+                )
         self.UpdateDefaultOrganization = channel.unary_unary(
                 '/gooseai.DashboardService/UpdateDefaultOrganization',
                 request_serializer=dashboard__pb2.UpdateDefaultOrganizationRequest.SerializeToString,
@@ -126,6 +131,12 @@ class DashboardServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def DeleteAPIKey(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListAPIKeyScopes(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -226,6 +237,11 @@ def add_DashboardServiceServicer_to_server(servicer, server):
                     servicer.DeleteAPIKey,
                     request_deserializer=dashboard__pb2.APIKeyFindRequest.FromString,
                     response_serializer=dashboard__pb2.APIKey.SerializeToString,
+            ),
+            'ListAPIKeyScopes': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListAPIKeyScopes,
+                    request_deserializer=dashboard__pb2.ListAPIKeyScopesRequest.FromString,
+                    response_serializer=dashboard__pb2.ListAPIKeyScopesResponse.SerializeToString,
             ),
             'UpdateDefaultOrganization': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateDefaultOrganization,
@@ -374,6 +390,23 @@ class DashboardService(object):
         return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/DeleteAPIKey',
             dashboard__pb2.APIKeyFindRequest.SerializeToString,
             dashboard__pb2.APIKey.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListAPIKeyScopes(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/ListAPIKeyScopes',
+            dashboard__pb2.ListAPIKeyScopesRequest.SerializeToString,
+            dashboard__pb2.ListAPIKeyScopesResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
