@@ -33,3 +33,4 @@ lint:
 build:
   excludes:
     - node_modules
+    - build
