@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() {
-  if (this) { return this; }
-  if (typeof window !== 'undefined') { return window; }
-  if (typeof global !== 'undefined') { return global; }
-  if (typeof self !== 'undefined') { return self; }
-  return Function('return this')();
-}.call(null));
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 goog.exportSymbol('proto.gooseai.Action', null, global);
 goog.exportSymbol('proto.gooseai.Answer', null, global);
@@ -29,6 +23,7 @@ goog.exportSymbol('proto.gooseai.Artifact.DataCase', null, global);
 goog.exportSymbol('proto.gooseai.ArtifactType', null, global);
 goog.exportSymbol('proto.gooseai.AssetAction', null, global);
 goog.exportSymbol('proto.gooseai.AssetParameters', null, global);
+goog.exportSymbol('proto.gooseai.AssetUse', null, global);
 goog.exportSymbol('proto.gooseai.ChainRequest', null, global);
 goog.exportSymbol('proto.gooseai.ClassifierCategory', null, global);
 goog.exportSymbol('proto.gooseai.ClassifierConcept', null, global);
@@ -1063,7 +1058,9 @@ proto.gooseai.Artifact.toObject = function(includeInstance, msg) {
     classifier: (f = msg.getClassifier()) && proto.gooseai.ClassifierParameters.toObject(includeInstance, f),
     index: jspb.Message.getFieldWithDefault(msg, 8, 0),
     finishReason: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    seed: jspb.Message.getFieldWithDefault(msg, 10, 0)
+    seed: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    uuid: msg.getUuid_asB64(),
+    size: jspb.Message.getFieldWithDefault(msg, 13, 0)
   };
 
   if (includeInstance) {
@@ -1145,6 +1142,14 @@ proto.gooseai.Artifact.deserializeBinaryFromReader = function(msg, reader) {
     case 10:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setSeed(value);
+      break;
+    case 12:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setUuid(value);
+      break;
+    case 13:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setSize(value);
       break;
     default:
       reader.skipField();
@@ -1251,6 +1256,20 @@ proto.gooseai.Artifact.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeUint32(
       10,
+      f
+    );
+  }
+  f = message.getUuid_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      12,
+      f
+    );
+  }
+  f = message.getSize();
+  if (f !== 0) {
+    writer.writeUint64(
+      13,
       f
     );
   }
@@ -1568,6 +1587,66 @@ proto.gooseai.Artifact.prototype.getSeed = function() {
  */
 proto.gooseai.Artifact.prototype.setSeed = function(value) {
   return jspb.Message.setProto3IntField(this, 10, value);
+};
+
+
+/**
+ * optional bytes uuid = 12;
+ * @return {!(string|Uint8Array)}
+ */
+proto.gooseai.Artifact.prototype.getUuid = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * optional bytes uuid = 12;
+ * This is a type-conversion wrapper around `getUuid()`
+ * @return {string}
+ */
+proto.gooseai.Artifact.prototype.getUuid_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getUuid()));
+};
+
+
+/**
+ * optional bytes uuid = 12;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getUuid()`
+ * @return {!Uint8Array}
+ */
+proto.gooseai.Artifact.prototype.getUuid_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getUuid()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.gooseai.Artifact} returns this
+ */
+proto.gooseai.Artifact.prototype.setUuid = function(value) {
+  return jspb.Message.setProto3BytesField(this, 12, value);
+};
+
+
+/**
+ * optional uint64 size = 13;
+ * @return {number}
+ */
+proto.gooseai.Artifact.prototype.getSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.gooseai.Artifact} returns this
+ */
+proto.gooseai.Artifact.prototype.setSize = function(value) {
+  return jspb.Message.setProto3IntField(this, 13, value);
 };
 
 
@@ -5988,7 +6067,8 @@ proto.gooseai.AssetParameters.prototype.toObject = function(opt_includeInstance)
 proto.gooseai.AssetParameters.toObject = function(includeInstance, msg) {
   var f, obj = {
     action: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    project: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    projectId: msg.getProjectId_asB64(),
+    use: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -6030,8 +6110,12 @@ proto.gooseai.AssetParameters.deserializeBinaryFromReader = function(msg, reader
       msg.setAction(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setProject(value);
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setProjectId(value);
+      break;
+    case 3:
+      var value = /** @type {!proto.gooseai.AssetUse} */ (reader.readEnum());
+      msg.setUse(value);
       break;
     default:
       reader.skipField();
@@ -6069,10 +6153,17 @@ proto.gooseai.AssetParameters.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getProject();
-  if (f !== 0) {
-    writer.writeUint64(
+  f = message.getProjectId_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
       2,
+      f
+    );
+  }
+  f = message.getUse();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
       f
     );
   }
@@ -6098,20 +6189,62 @@ proto.gooseai.AssetParameters.prototype.setAction = function(value) {
 
 
 /**
- * optional uint64 project = 2;
- * @return {number}
+ * optional bytes project_id = 2;
+ * @return {!(string|Uint8Array)}
  */
-proto.gooseai.AssetParameters.prototype.getProject = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+proto.gooseai.AssetParameters.prototype.getProjectId = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
- * @param {number} value
+ * optional bytes project_id = 2;
+ * This is a type-conversion wrapper around `getProjectId()`
+ * @return {string}
+ */
+proto.gooseai.AssetParameters.prototype.getProjectId_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getProjectId()));
+};
+
+
+/**
+ * optional bytes project_id = 2;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getProjectId()`
+ * @return {!Uint8Array}
+ */
+proto.gooseai.AssetParameters.prototype.getProjectId_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getProjectId()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
  * @return {!proto.gooseai.AssetParameters} returns this
  */
-proto.gooseai.AssetParameters.prototype.setProject = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+proto.gooseai.AssetParameters.prototype.setProjectId = function(value) {
+  return jspb.Message.setProto3BytesField(this, 2, value);
+};
+
+
+/**
+ * optional AssetUse use = 3;
+ * @return {!proto.gooseai.AssetUse}
+ */
+proto.gooseai.AssetParameters.prototype.getUse = function() {
+  return /** @type {!proto.gooseai.AssetUse} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.gooseai.AssetUse} value
+ * @return {!proto.gooseai.AssetParameters} returns this
+ */
+proto.gooseai.AssetParameters.prototype.setUse = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -8005,6 +8138,17 @@ proto.gooseai.AssetAction = {
   ASSET_PUT: 0,
   ASSET_GET: 1,
   ASSET_DELETE: 2
+};
+
+/**
+ * @enum {number}
+ */
+proto.gooseai.AssetUse = {
+  ASSET_USE_UNDEFINED: 0,
+  ASSET_USE_INPUT: 1,
+  ASSET_USE_OUTPUT: 2,
+  ASSET_USE_INTERMEDIATE: 3,
+  ASSET_USE_PROJECT: 4
 };
 
 /**

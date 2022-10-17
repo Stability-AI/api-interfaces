@@ -34,13 +34,13 @@ class ProjectServiceStub(object):
                 )
         self.Get = channel.unary_unary(
                 '/gooseai.ProjectService/Get',
-                request_serializer=project__pb2.GetDeleteProjectRequest.SerializeToString,
+                request_serializer=project__pb2.GetProjectRequest.SerializeToString,
                 response_deserializer=project__pb2.Project.FromString,
                 )
         self.Delete = channel.unary_unary(
                 '/gooseai.ProjectService/Delete',
-                request_serializer=project__pb2.GetDeleteProjectRequest.SerializeToString,
-                response_deserializer=project__pb2.ProjectEmpty.FromString,
+                request_serializer=project__pb2.DeleteProjectRequest.SerializeToString,
+                response_deserializer=project__pb2.Project.FromString,
                 )
 
 
@@ -105,13 +105,13 @@ def add_ProjectServiceServicer_to_server(servicer, server):
             ),
             'Get': grpc.unary_unary_rpc_method_handler(
                     servicer.Get,
-                    request_deserializer=project__pb2.GetDeleteProjectRequest.FromString,
+                    request_deserializer=project__pb2.GetProjectRequest.FromString,
                     response_serializer=project__pb2.Project.SerializeToString,
             ),
             'Delete': grpc.unary_unary_rpc_method_handler(
                     servicer.Delete,
-                    request_deserializer=project__pb2.GetDeleteProjectRequest.FromString,
-                    response_serializer=project__pb2.ProjectEmpty.SerializeToString,
+                    request_deserializer=project__pb2.DeleteProjectRequest.FromString,
+                    response_serializer=project__pb2.Project.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -189,7 +189,7 @@ class ProjectService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.ProjectService/Get',
-            project__pb2.GetDeleteProjectRequest.SerializeToString,
+            project__pb2.GetProjectRequest.SerializeToString,
             project__pb2.Project.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -206,7 +206,7 @@ class ProjectService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.ProjectService/Delete',
-            project__pb2.GetDeleteProjectRequest.SerializeToString,
-            project__pb2.ProjectEmpty.FromString,
+            project__pb2.DeleteProjectRequest.SerializeToString,
+            project__pb2.Project.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -36,7 +36,7 @@ type ProjectServiceGet = {
   readonly service: typeof ProjectService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof project_pb.GetDeleteProjectRequest;
+  readonly requestType: typeof project_pb.GetProjectRequest;
   readonly responseType: typeof project_pb.Project;
 };
 
@@ -45,8 +45,8 @@ type ProjectServiceDelete = {
   readonly service: typeof ProjectService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof project_pb.GetDeleteProjectRequest;
-  readonly responseType: typeof project_pb.ProjectEmpty;
+  readonly requestType: typeof project_pb.DeleteProjectRequest;
+  readonly responseType: typeof project_pb.Project;
 };
 
 export class ProjectService {
@@ -110,22 +110,22 @@ export class ProjectServiceClient {
   ): UnaryResponse;
   list(requestMessage: project_pb.ListProjectRequest, metadata?: grpc.Metadata): ResponseStream<project_pb.Project>;
   get(
-    requestMessage: project_pb.GetDeleteProjectRequest,
+    requestMessage: project_pb.GetProjectRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: project_pb.Project|null) => void
   ): UnaryResponse;
   get(
-    requestMessage: project_pb.GetDeleteProjectRequest,
+    requestMessage: project_pb.GetProjectRequest,
     callback: (error: ServiceError|null, responseMessage: project_pb.Project|null) => void
   ): UnaryResponse;
   delete(
-    requestMessage: project_pb.GetDeleteProjectRequest,
+    requestMessage: project_pb.DeleteProjectRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: project_pb.ProjectEmpty|null) => void
+    callback: (error: ServiceError|null, responseMessage: project_pb.Project|null) => void
   ): UnaryResponse;
   delete(
-    requestMessage: project_pb.GetDeleteProjectRequest,
-    callback: (error: ServiceError|null, responseMessage: project_pb.ProjectEmpty|null) => void
+    requestMessage: project_pb.DeleteProjectRequest,
+    callback: (error: ServiceError|null, responseMessage: project_pb.Project|null) => void
   ): UnaryResponse;
 }
 

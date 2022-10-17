@@ -25,9 +25,9 @@ type ProjectServiceClient interface {
 	// List all the projects for an organization
 	List(ctx context.Context, in *ListProjectRequest, opts ...grpc.CallOption) (ProjectService_ListClient, error)
 	// Get a project
-	Get(ctx context.Context, in *GetDeleteProjectRequest, opts ...grpc.CallOption) (*Project, error)
+	Get(ctx context.Context, in *GetProjectRequest, opts ...grpc.CallOption) (*Project, error)
 	// Delete a project
-	Delete(ctx context.Context, in *GetDeleteProjectRequest, opts ...grpc.CallOption) (*ProjectEmpty, error)
+	Delete(ctx context.Context, in *DeleteProjectRequest, opts ...grpc.CallOption) (*Project, error)
 }
 
 type projectServiceClient struct {
@@ -88,7 +88,7 @@ func (x *projectServiceListClient) Recv() (*Project, error) {
 	return m, nil
 }
 
-func (c *projectServiceClient) Get(ctx context.Context, in *GetDeleteProjectRequest, opts ...grpc.CallOption) (*Project, error) {
+func (c *projectServiceClient) Get(ctx context.Context, in *GetProjectRequest, opts ...grpc.CallOption) (*Project, error) {
 	out := new(Project)
 	err := c.cc.Invoke(ctx, "/gooseai.ProjectService/Get", in, out, opts...)
 	if err != nil {
@@ -97,8 +97,8 @@ func (c *projectServiceClient) Get(ctx context.Context, in *GetDeleteProjectRequ
 	return out, nil
 }
 
-func (c *projectServiceClient) Delete(ctx context.Context, in *GetDeleteProjectRequest, opts ...grpc.CallOption) (*ProjectEmpty, error) {
-	out := new(ProjectEmpty)
+func (c *projectServiceClient) Delete(ctx context.Context, in *DeleteProjectRequest, opts ...grpc.CallOption) (*Project, error) {
+	out := new(Project)
 	err := c.cc.Invoke(ctx, "/gooseai.ProjectService/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -117,9 +117,9 @@ type ProjectServiceServer interface {
 	// List all the projects for an organization
 	List(*ListProjectRequest, ProjectService_ListServer) error
 	// Get a project
-	Get(context.Context, *GetDeleteProjectRequest) (*Project, error)
+	Get(context.Context, *GetProjectRequest) (*Project, error)
 	// Delete a project
-	Delete(context.Context, *GetDeleteProjectRequest) (*ProjectEmpty, error)
+	Delete(context.Context, *DeleteProjectRequest) (*Project, error)
 	mustEmbedUnimplementedProjectServiceServer()
 }
 
@@ -136,10 +136,10 @@ func (UnimplementedProjectServiceServer) Update(context.Context, *UpdateProjectR
 func (UnimplementedProjectServiceServer) List(*ListProjectRequest, ProjectService_ListServer) error {
 	return status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedProjectServiceServer) Get(context.Context, *GetDeleteProjectRequest) (*Project, error) {
+func (UnimplementedProjectServiceServer) Get(context.Context, *GetProjectRequest) (*Project, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedProjectServiceServer) Delete(context.Context, *GetDeleteProjectRequest) (*ProjectEmpty, error) {
+func (UnimplementedProjectServiceServer) Delete(context.Context, *DeleteProjectRequest) (*Project, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedProjectServiceServer) mustEmbedUnimplementedProjectServiceServer() {}
@@ -213,7 +213,7 @@ func (x *projectServiceListServer) Send(m *Project) error {
 }
 
 func _ProjectService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetDeleteProjectRequest)
+	in := new(GetProjectRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -225,13 +225,13 @@ func _ProjectService_Get_Handler(srv interface{}, ctx context.Context, dec func(
 		FullMethod: "/gooseai.ProjectService/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProjectServiceServer).Get(ctx, req.(*GetDeleteProjectRequest))
+		return srv.(ProjectServiceServer).Get(ctx, req.(*GetProjectRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ProjectService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetDeleteProjectRequest)
+	in := new(DeleteProjectRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -243,7 +243,7 @@ func _ProjectService_Delete_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: "/gooseai.ProjectService/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProjectServiceServer).Delete(ctx, req.(*GetDeleteProjectRequest))
+		return srv.(ProjectServiceServer).Delete(ctx, req.(*DeleteProjectRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

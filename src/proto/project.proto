@@ -10,25 +10,27 @@ enum ProjectAccess {
 enum ProjectStatus {
   PROJECT_STATUS_INACTIVE = 0; // Inactive project
   PROJECT_STATUS_ACTIVE = 1;   // Active project
+  PROJECT_STATUS_DELETED = 2;  // Deleted project, only set by delete endpoint
 }
 
 enum ProjectAssetUse {
-  PROJECT_ASSET_USE_INPUT = 0;        // Asset is used as an input for the project
-  PROJECT_ASSET_USE_OUTPUT = 1;       // Asset is an output from the project
-  PROJECT_ASSET_USE_INTERMEDIATE = 2; // Asset is an output from an intermediate step of the project
-  PROJECT_ASSET_USE_PROJECT = 3;      // Asset is used as the project file for the project
+  PROJECT_ASSET_USE_UNDEFINED = 0;    // Asset does not have use defined
+  PROJECT_ASSET_USE_INPUT = 1;        // Asset is used as an input for the project
+  PROJECT_ASSET_USE_OUTPUT = 2;       // Asset is an output from the project
+  PROJECT_ASSET_USE_INTERMEDIATE = 3; // Asset is an output from an intermediate step of the project
+  PROJECT_ASSET_USE_PROJECT = 4;      // Asset is used as the project file for the project
 }
 
 message ProjectAsset {
-  uint64 id = 1;           // ID of the asset
+  bytes id = 1;            // ID of the asset, UUIDv4
   string URI = 2;          // The URI to the asset
   ProjectAssetUse use = 3; // The use of the asset with respect to the project
 }
 
 message Project {
-  uint64 id = 1;                     // ID of the project
+  bytes id = 1;                      // ID of the project, UUIDv4
   string title = 2;                  // Title of the project
-  string owner = 3;                  // The ID of the organization owning the project
+  string owner_id = 3;               // The ID of the organization owning the project
   ProjectAccess access = 4;          // The access of the project (such as public vs private)
   ProjectStatus status = 5;          // The status of the project (such as active vs inactive)
   uint64 size = 6;                   // The size of the project in bytes
@@ -40,15 +42,15 @@ message Project {
 
 message CreateProjectRequest {
   string title = 1;               // title of the project
-  optional string owner = 2;      // The ID of the organization owning the project, empty for default org for user
+  optional string owner_id = 2;   // The ID of the organization owning the project, empty for default org for user
   ProjectAccess access = 3;       // The access of the project (such as public vs private)
   ProjectStatus status = 4;       // The status of the project (such as active vs inactive)
   optional ProjectAsset file = 5; // Project file for the project (if existing, else will create)
 }
 
 message UpdateProjectRequest {
-  uint64 id = 1;                     // ID of the project
-  optional string owner = 2;         // The ID of the organization owning the project, empty for default org for user
+  bytes id = 1;                      // ID of the project, UUIDv4
+  optional string owner_id = 2;      // The ID of the organization owning the project, empty for default org for user
   optional string title = 3;         // Title of the project
   optional ProjectAccess access = 4; // The access of the project (such as public vs private)
   optional ProjectStatus status = 5; // The status of the project (such as active vs inactive)
@@ -56,16 +58,17 @@ message UpdateProjectRequest {
 }
 
 message ListProjectRequest {
-  optional string owner = 1; // The ID of the organization owning the project, empty for default org for user
+  optional string owner_id = 1; // The ID of the organization owning the project, empty for default org for user
 }
 
-message GetDeleteProjectRequest {
-  uint64 id = 1;             // ID of the project to request
-  optional string owner = 2; // The ID of the organization owning the project, empty for default org for user
+message GetProjectRequest {
+  bytes id = 1;                 // ID of the project to request, UUIDv4
+  optional string owner_id = 2; // The ID of the organization owning the project, empty for default org for user
 }
 
-// Message for empty requests / response where no additional data is needed
-message ProjectEmpty {
+message DeleteProjectRequest {
+  bytes id = 1;                 // ID of the project to request, UUIDv4
+  optional string owner_id = 2; // The ID of the organization owning the project, empty for default org for user
 }
 
 //
@@ -79,7 +82,7 @@ service ProjectService {
   // List all the projects for an organization
   rpc List (ListProjectRequest) returns (stream Project) {};
   // Get a project
-  rpc Get (GetDeleteProjectRequest) returns (Project) {};
+  rpc Get (GetProjectRequest) returns (Project) {};
   // Delete a project
-  rpc Delete (GetDeleteProjectRequest) returns (ProjectEmpty) {};
+  rpc Delete (DeleteProjectRequest) returns (Project) {};
 }

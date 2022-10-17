@@ -10,8 +10,8 @@ interface IProjectServiceService extends grpc.ServiceDefinition<grpc.UntypedServ
   create: grpc.MethodDefinition<project_pb.CreateProjectRequest, project_pb.Project>;
   update: grpc.MethodDefinition<project_pb.UpdateProjectRequest, project_pb.Project>;
   list: grpc.MethodDefinition<project_pb.ListProjectRequest, project_pb.Project>;
-  get: grpc.MethodDefinition<project_pb.GetDeleteProjectRequest, project_pb.Project>;
-  delete: grpc.MethodDefinition<project_pb.GetDeleteProjectRequest, project_pb.ProjectEmpty>;
+  get: grpc.MethodDefinition<project_pb.GetProjectRequest, project_pb.Project>;
+  delete: grpc.MethodDefinition<project_pb.DeleteProjectRequest, project_pb.Project>;
 }
 
 export const ProjectServiceService: IProjectServiceService;
@@ -20,8 +20,8 @@ export interface IProjectServiceServer extends grpc.UntypedServiceImplementation
   create: grpc.handleUnaryCall<project_pb.CreateProjectRequest, project_pb.Project>;
   update: grpc.handleUnaryCall<project_pb.UpdateProjectRequest, project_pb.Project>;
   list: grpc.handleServerStreamingCall<project_pb.ListProjectRequest, project_pb.Project>;
-  get: grpc.handleUnaryCall<project_pb.GetDeleteProjectRequest, project_pb.Project>;
-  delete: grpc.handleUnaryCall<project_pb.GetDeleteProjectRequest, project_pb.ProjectEmpty>;
+  get: grpc.handleUnaryCall<project_pb.GetProjectRequest, project_pb.Project>;
+  delete: grpc.handleUnaryCall<project_pb.DeleteProjectRequest, project_pb.Project>;
 }
 
 export class ProjectServiceClient extends grpc.Client {
@@ -34,10 +34,10 @@ export class ProjectServiceClient extends grpc.Client {
   update(argument: project_pb.UpdateProjectRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.Project>): grpc.ClientUnaryCall;
   list(argument: project_pb.ListProjectRequest, metadataOrOptions?: grpc.Metadata | grpc.CallOptions | null): grpc.ClientReadableStream<project_pb.Project>;
   list(argument: project_pb.ListProjectRequest, metadata?: grpc.Metadata | null, options?: grpc.CallOptions | null): grpc.ClientReadableStream<project_pb.Project>;
-  get(argument: project_pb.GetDeleteProjectRequest, callback: grpc.requestCallback<project_pb.Project>): grpc.ClientUnaryCall;
-  get(argument: project_pb.GetDeleteProjectRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.Project>): grpc.ClientUnaryCall;
-  get(argument: project_pb.GetDeleteProjectRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.Project>): grpc.ClientUnaryCall;
-  delete(argument: project_pb.GetDeleteProjectRequest, callback: grpc.requestCallback<project_pb.ProjectEmpty>): grpc.ClientUnaryCall;
-  delete(argument: project_pb.GetDeleteProjectRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.ProjectEmpty>): grpc.ClientUnaryCall;
-  delete(argument: project_pb.GetDeleteProjectRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.ProjectEmpty>): grpc.ClientUnaryCall;
+  get(argument: project_pb.GetProjectRequest, callback: grpc.requestCallback<project_pb.Project>): grpc.ClientUnaryCall;
+  get(argument: project_pb.GetProjectRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.Project>): grpc.ClientUnaryCall;
+  get(argument: project_pb.GetProjectRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.Project>): grpc.ClientUnaryCall;
+  delete(argument: project_pb.DeleteProjectRequest, callback: grpc.requestCallback<project_pb.Project>): grpc.ClientUnaryCall;
+  delete(argument: project_pb.DeleteProjectRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.Project>): grpc.ClientUnaryCall;
+  delete(argument: project_pb.DeleteProjectRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.Project>): grpc.ClientUnaryCall;
 }

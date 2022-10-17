@@ -15,15 +15,26 @@ function deserialize_gooseai_CreateProjectRequest(buffer_arg) {
   return project_pb.CreateProjectRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_gooseai_GetDeleteProjectRequest(arg) {
-  if (!(arg instanceof project_pb.GetDeleteProjectRequest)) {
-    throw new Error('Expected argument of type gooseai.GetDeleteProjectRequest');
+function serialize_gooseai_DeleteProjectRequest(arg) {
+  if (!(arg instanceof project_pb.DeleteProjectRequest)) {
+    throw new Error('Expected argument of type gooseai.DeleteProjectRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_gooseai_GetDeleteProjectRequest(buffer_arg) {
-  return project_pb.GetDeleteProjectRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_gooseai_DeleteProjectRequest(buffer_arg) {
+  return project_pb.DeleteProjectRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_GetProjectRequest(arg) {
+  if (!(arg instanceof project_pb.GetProjectRequest)) {
+    throw new Error('Expected argument of type gooseai.GetProjectRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_GetProjectRequest(buffer_arg) {
+  return project_pb.GetProjectRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_gooseai_ListProjectRequest(arg) {
@@ -46,17 +57,6 @@ function serialize_gooseai_Project(arg) {
 
 function deserialize_gooseai_Project(buffer_arg) {
   return project_pb.Project.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_gooseai_ProjectEmpty(arg) {
-  if (!(arg instanceof project_pb.ProjectEmpty)) {
-    throw new Error('Expected argument of type gooseai.ProjectEmpty');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_gooseai_ProjectEmpty(buffer_arg) {
-  return project_pb.ProjectEmpty.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_gooseai_UpdateProjectRequest(arg) {
@@ -116,10 +116,10 @@ get: {
     path: '/gooseai.ProjectService/Get',
     requestStream: false,
     responseStream: false,
-    requestType: project_pb.GetDeleteProjectRequest,
+    requestType: project_pb.GetProjectRequest,
     responseType: project_pb.Project,
-    requestSerialize: serialize_gooseai_GetDeleteProjectRequest,
-    requestDeserialize: deserialize_gooseai_GetDeleteProjectRequest,
+    requestSerialize: serialize_gooseai_GetProjectRequest,
+    requestDeserialize: deserialize_gooseai_GetProjectRequest,
     responseSerialize: serialize_gooseai_Project,
     responseDeserialize: deserialize_gooseai_Project,
   },
@@ -128,12 +128,12 @@ delete: {
     path: '/gooseai.ProjectService/Delete',
     requestStream: false,
     responseStream: false,
-    requestType: project_pb.GetDeleteProjectRequest,
-    responseType: project_pb.ProjectEmpty,
-    requestSerialize: serialize_gooseai_GetDeleteProjectRequest,
-    requestDeserialize: deserialize_gooseai_GetDeleteProjectRequest,
-    responseSerialize: serialize_gooseai_ProjectEmpty,
-    responseDeserialize: deserialize_gooseai_ProjectEmpty,
+    requestType: project_pb.DeleteProjectRequest,
+    responseType: project_pb.Project,
+    requestSerialize: serialize_gooseai_DeleteProjectRequest,
+    requestDeserialize: deserialize_gooseai_DeleteProjectRequest,
+    responseSerialize: serialize_gooseai_Project,
+    responseDeserialize: deserialize_gooseai_Project,
   },
 };
 

@@ -42,7 +42,7 @@ ProjectService.Get = {
   service: ProjectService,
   requestStream: false,
   responseStream: false,
-  requestType: project_pb.GetDeleteProjectRequest,
+  requestType: project_pb.GetProjectRequest,
   responseType: project_pb.Project
 };
 
@@ -51,8 +51,8 @@ ProjectService.Delete = {
   service: ProjectService,
   requestStream: false,
   responseStream: false,
-  requestType: project_pb.GetDeleteProjectRequest,
-  responseType: project_pb.ProjectEmpty
+  requestType: project_pb.DeleteProjectRequest,
+  responseType: project_pb.Project
 };
 
 exports.ProjectService = ProjectService;

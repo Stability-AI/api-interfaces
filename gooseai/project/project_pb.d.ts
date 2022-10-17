@@ -4,8 +4,10 @@
 import * as jspb from "google-protobuf";
 
 export class ProjectAsset extends jspb.Message {
-  getId(): number;
-  setId(value: number): void;
+  getId(): Uint8Array | string;
+  getId_asU8(): Uint8Array;
+  getId_asB64(): string;
+  setId(value: Uint8Array | string): void;
 
   getUri(): string;
   setUri(value: string): void;
@@ -25,21 +27,23 @@ export class ProjectAsset extends jspb.Message {
 
 export namespace ProjectAsset {
   export type AsObject = {
-    id: number,
+    id: Uint8Array | string,
     uri: string,
     use: ProjectAssetUseMap[keyof ProjectAssetUseMap],
   }
 }
 
 export class Project extends jspb.Message {
-  getId(): number;
-  setId(value: number): void;
+  getId(): Uint8Array | string;
+  getId_asU8(): Uint8Array;
+  getId_asB64(): string;
+  setId(value: Uint8Array | string): void;
 
   getTitle(): string;
   setTitle(value: string): void;
 
-  getOwner(): string;
-  setOwner(value: string): void;
+  getOwnerId(): string;
+  setOwnerId(value: string): void;
 
   getAccess(): ProjectAccessMap[keyof ProjectAccessMap];
   setAccess(value: ProjectAccessMap[keyof ProjectAccessMap]): void;
@@ -78,9 +82,9 @@ export class Project extends jspb.Message {
 
 export namespace Project {
   export type AsObject = {
-    id: number,
+    id: Uint8Array | string,
     title: string,
-    owner: string,
+    ownerId: string,
     access: ProjectAccessMap[keyof ProjectAccessMap],
     status: ProjectStatusMap[keyof ProjectStatusMap],
     size: number,
@@ -95,10 +99,10 @@ export class CreateProjectRequest extends jspb.Message {
   getTitle(): string;
   setTitle(value: string): void;
 
-  hasOwner(): boolean;
-  clearOwner(): void;
-  getOwner(): string;
-  setOwner(value: string): void;
+  hasOwnerId(): boolean;
+  clearOwnerId(): void;
+  getOwnerId(): string;
+  setOwnerId(value: string): void;
 
   getAccess(): ProjectAccessMap[keyof ProjectAccessMap];
   setAccess(value: ProjectAccessMap[keyof ProjectAccessMap]): void;
@@ -124,7 +128,7 @@ export class CreateProjectRequest extends jspb.Message {
 export namespace CreateProjectRequest {
   export type AsObject = {
     title: string,
-    owner: string,
+    ownerId: string,
     access: ProjectAccessMap[keyof ProjectAccessMap],
     status: ProjectStatusMap[keyof ProjectStatusMap],
     file?: ProjectAsset.AsObject,
@@ -132,13 +136,15 @@ export namespace CreateProjectRequest {
 }
 
 export class UpdateProjectRequest extends jspb.Message {
-  getId(): number;
-  setId(value: number): void;
+  getId(): Uint8Array | string;
+  getId_asU8(): Uint8Array;
+  getId_asB64(): string;
+  setId(value: Uint8Array | string): void;
 
-  hasOwner(): boolean;
-  clearOwner(): void;
-  getOwner(): string;
-  setOwner(value: string): void;
+  hasOwnerId(): boolean;
+  clearOwnerId(): void;
+  getOwnerId(): string;
+  setOwnerId(value: string): void;
 
   hasTitle(): boolean;
   clearTitle(): void;
@@ -172,8 +178,8 @@ export class UpdateProjectRequest extends jspb.Message {
 
 export namespace UpdateProjectRequest {
   export type AsObject = {
-    id: number,
-    owner: string,
+    id: Uint8Array | string,
+    ownerId: string,
     title: string,
     access: ProjectAccessMap[keyof ProjectAccessMap],
     status: ProjectStatusMap[keyof ProjectStatusMap],
@@ -182,10 +188,10 @@ export namespace UpdateProjectRequest {
 }
 
 export class ListProjectRequest extends jspb.Message {
-  hasOwner(): boolean;
-  clearOwner(): void;
-  getOwner(): string;
-  setOwner(value: string): void;
+  hasOwnerId(): boolean;
+  clearOwnerId(): void;
+  getOwnerId(): string;
+  setOwnerId(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListProjectRequest.AsObject;
@@ -199,49 +205,63 @@ export class ListProjectRequest extends jspb.Message {
 
 export namespace ListProjectRequest {
   export type AsObject = {
-    owner: string,
+    ownerId: string,
   }
 }
 
-export class GetDeleteProjectRequest extends jspb.Message {
-  getId(): number;
-  setId(value: number): void;
+export class GetProjectRequest extends jspb.Message {
+  getId(): Uint8Array | string;
+  getId_asU8(): Uint8Array;
+  getId_asB64(): string;
+  setId(value: Uint8Array | string): void;
 
-  hasOwner(): boolean;
-  clearOwner(): void;
-  getOwner(): string;
-  setOwner(value: string): void;
+  hasOwnerId(): boolean;
+  clearOwnerId(): void;
+  getOwnerId(): string;
+  setOwnerId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetDeleteProjectRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetDeleteProjectRequest): GetDeleteProjectRequest.AsObject;
+  toObject(includeInstance?: boolean): GetProjectRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetProjectRequest): GetProjectRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetDeleteProjectRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetDeleteProjectRequest;
-  static deserializeBinaryFromReader(message: GetDeleteProjectRequest, reader: jspb.BinaryReader): GetDeleteProjectRequest;
+  static serializeBinaryToWriter(message: GetProjectRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetProjectRequest;
+  static deserializeBinaryFromReader(message: GetProjectRequest, reader: jspb.BinaryReader): GetProjectRequest;
 }
 
-export namespace GetDeleteProjectRequest {
+export namespace GetProjectRequest {
   export type AsObject = {
-    id: number,
-    owner: string,
+    id: Uint8Array | string,
+    ownerId: string,
   }
 }
 
-export class ProjectEmpty extends jspb.Message {
+export class DeleteProjectRequest extends jspb.Message {
+  getId(): Uint8Array | string;
+  getId_asU8(): Uint8Array;
+  getId_asB64(): string;
+  setId(value: Uint8Array | string): void;
+
+  hasOwnerId(): boolean;
+  clearOwnerId(): void;
+  getOwnerId(): string;
+  setOwnerId(value: string): void;
+
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ProjectEmpty.AsObject;
-  static toObject(includeInstance: boolean, msg: ProjectEmpty): ProjectEmpty.AsObject;
+  toObject(includeInstance?: boolean): DeleteProjectRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteProjectRequest): DeleteProjectRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ProjectEmpty, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ProjectEmpty;
-  static deserializeBinaryFromReader(message: ProjectEmpty, reader: jspb.BinaryReader): ProjectEmpty;
+  static serializeBinaryToWriter(message: DeleteProjectRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteProjectRequest;
+  static deserializeBinaryFromReader(message: DeleteProjectRequest, reader: jspb.BinaryReader): DeleteProjectRequest;
 }
 
-export namespace ProjectEmpty {
+export namespace DeleteProjectRequest {
   export type AsObject = {
+    id: Uint8Array | string,
+    ownerId: string,
   }
 }
 
@@ -255,15 +275,17 @@ export const ProjectAccess: ProjectAccessMap;
 export interface ProjectStatusMap {
   PROJECT_STATUS_INACTIVE: 0;
   PROJECT_STATUS_ACTIVE: 1;
+  PROJECT_STATUS_DELETED: 2;
 }
 
 export const ProjectStatus: ProjectStatusMap;
 
 export interface ProjectAssetUseMap {
-  PROJECT_ASSET_USE_INPUT: 0;
-  PROJECT_ASSET_USE_OUTPUT: 1;
-  PROJECT_ASSET_USE_INTERMEDIATE: 2;
-  PROJECT_ASSET_USE_PROJECT: 3;
+  PROJECT_ASSET_USE_UNDEFINED: 0;
+  PROJECT_ASSET_USE_INPUT: 1;
+  PROJECT_ASSET_USE_OUTPUT: 2;
+  PROJECT_ASSET_USE_INTERMEDIATE: 3;
+  PROJECT_ASSET_USE_PROJECT: 4;
 }
 
 export const ProjectAssetUse: ProjectAssetUseMap;
