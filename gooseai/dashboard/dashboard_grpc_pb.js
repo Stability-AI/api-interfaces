@@ -339,6 +339,17 @@ updateDefaultOrganization: {
     responseSerialize: serialize_gooseai_UserPasswordChangeTicket,
     responseDeserialize: deserialize_gooseai_UserPasswordChangeTicket,
   },
+  deleteAccount: {
+    path: '/gooseai.DashboardService/DeleteAccount',
+    requestStream: false,
+    responseStream: false,
+    requestType: dashboard_pb.EmptyRequest,
+    responseType: dashboard_pb.User,
+    requestSerialize: serialize_gooseai_EmptyRequest,
+    requestDeserialize: deserialize_gooseai_EmptyRequest,
+    responseSerialize: serialize_gooseai_User,
+    responseDeserialize: deserialize_gooseai_User,
+  },
   // Payment functions
 createCharge: {
     path: '/gooseai.DashboardService/CreateCharge',

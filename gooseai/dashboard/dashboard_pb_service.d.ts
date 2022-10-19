@@ -94,6 +94,15 @@ type DashboardServiceCreatePasswordChangeTicket = {
   readonly responseType: typeof dashboard_pb.UserPasswordChangeTicket;
 };
 
+type DashboardServiceDeleteAccount = {
+  readonly methodName: string;
+  readonly service: typeof DashboardService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof dashboard_pb.EmptyRequest;
+  readonly responseType: typeof dashboard_pb.User;
+};
+
 type DashboardServiceCreateCharge = {
   readonly methodName: string;
   readonly service: typeof DashboardService;
@@ -151,6 +160,7 @@ export class DashboardService {
   static readonly SetClientSettings: DashboardServiceSetClientSettings;
   static readonly UpdateUserInfo: DashboardServiceUpdateUserInfo;
   static readonly CreatePasswordChangeTicket: DashboardServiceCreatePasswordChangeTicket;
+  static readonly DeleteAccount: DashboardServiceDeleteAccount;
   static readonly CreateCharge: DashboardServiceCreateCharge;
   static readonly GetCharges: DashboardServiceGetCharges;
   static readonly CreateAutoChargeIntent: DashboardServiceCreateAutoChargeIntent;
@@ -279,6 +289,15 @@ export class DashboardServiceClient {
   createPasswordChangeTicket(
     requestMessage: dashboard_pb.EmptyRequest,
     callback: (error: ServiceError|null, responseMessage: dashboard_pb.UserPasswordChangeTicket|null) => void
+  ): UnaryResponse;
+  deleteAccount(
+    requestMessage: dashboard_pb.EmptyRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: dashboard_pb.User|null) => void
+  ): UnaryResponse;
+  deleteAccount(
+    requestMessage: dashboard_pb.EmptyRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_pb.User|null) => void
   ): UnaryResponse;
   createCharge(
     requestMessage: dashboard_pb.CreateChargeRequest,

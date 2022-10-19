@@ -112,6 +112,7 @@ enum Upscaler {
 message ScheduleParameters {
   optional float start = 1;     // 0.0 to 1.0
   optional float end = 2;       // 0.0 to 1.0
+  optional float value = 3;     // float value to apply on this schedule
 }
 
 // Parameters that apply to this block of the schedule.
@@ -125,10 +126,12 @@ message StepParameter {
 // Presets for CLIP guidance.
 enum GuidancePreset {
   GUIDANCE_PRESET_NONE = 0;
-  GUIDANCE_PRESET_FAST = 1;
-  GUIDANCE_PRESET_EFFICIENT = 2;
-  GUIDANCE_PRESET_BALANCED = 3;
-  GUIDANCE_PRESET_QUALITY = 4;
+  GUIDANCE_PRESET_SIMPLE = 1;
+  GUIDANCE_PRESET_FAST_BLUE = 2;
+  GUIDANCE_PRESET_FAST_GREEN = 3;
+  GUIDANCE_PRESET_SLOW = 4;
+  GUIDANCE_PRESET_SLOWER = 5;
+  GUIDANCE_PRESET_SLOWEST = 6;
 }
 
 enum ModelArchitecture {
@@ -155,13 +158,22 @@ message CutoutParameters {
   optional float size_power = 5;            // defaults to inner: 0.5, outer: 0.0
 }
 
+// GuidanceScheduleParameters are used to define a schedule for CLIP guidance, and
+// are used to define the behavior of the guidance over time. They are relative
+// to the total number of steps, and are scaled to the number of steps in the
+// current run.
+message GuidanceScheduleParameters {
+  float duration = 1;
+  float value = 2;
+}
+
 // Parameters that affect the behavior of the guidance, typically used for CLIP.
 // We can specify more than one model, and the guidance will be a weighted sum
 // of the models.
 message GuidanceInstanceParameters {
   repeated Model models = 2;                // models to use for this set
   optional float guidance_strength = 3;     // 0.0 to 1.0, usually 0.05 to 0.225
-  repeated ScheduleParameters schedule = 4; // when to apply guidance
+  repeated GuidanceScheduleParameters schedule = 4; // when to apply guidance
   optional CutoutParameters cutouts = 5;    // cutout parameters
   optional Prompt prompt = 6;               // prompt to use for guidance
 }

@@ -31,6 +31,7 @@ type DashboardServiceClient interface {
 	SetClientSettings(ctx context.Context, in *ClientSettings, opts ...grpc.CallOption) (*ClientSettings, error)
 	UpdateUserInfo(ctx context.Context, in *UpdateUserInfoRequest, opts ...grpc.CallOption) (*User, error)
 	CreatePasswordChangeTicket(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*UserPasswordChangeTicket, error)
+	DeleteAccount(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*User, error)
 	// Payment functions
 	CreateCharge(ctx context.Context, in *CreateChargeRequest, opts ...grpc.CallOption) (*Charge, error)
 	GetCharges(ctx context.Context, in *GetChargesRequest, opts ...grpc.CallOption) (*Charges, error)
@@ -137,6 +138,15 @@ func (c *dashboardServiceClient) CreatePasswordChangeTicket(ctx context.Context,
 	return out, nil
 }
 
+func (c *dashboardServiceClient) DeleteAccount(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*User, error) {
+	out := new(User)
+	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/DeleteAccount", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dashboardServiceClient) CreateCharge(ctx context.Context, in *CreateChargeRequest, opts ...grpc.CallOption) (*Charge, error) {
 	out := new(Charge)
 	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/CreateCharge", in, out, opts...)
@@ -199,6 +209,7 @@ type DashboardServiceServer interface {
 	SetClientSettings(context.Context, *ClientSettings) (*ClientSettings, error)
 	UpdateUserInfo(context.Context, *UpdateUserInfoRequest) (*User, error)
 	CreatePasswordChangeTicket(context.Context, *EmptyRequest) (*UserPasswordChangeTicket, error)
+	DeleteAccount(context.Context, *EmptyRequest) (*User, error)
 	// Payment functions
 	CreateCharge(context.Context, *CreateChargeRequest) (*Charge, error)
 	GetCharges(context.Context, *GetChargesRequest) (*Charges, error)
@@ -241,6 +252,9 @@ func (UnimplementedDashboardServiceServer) UpdateUserInfo(context.Context, *Upda
 }
 func (UnimplementedDashboardServiceServer) CreatePasswordChangeTicket(context.Context, *EmptyRequest) (*UserPasswordChangeTicket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePasswordChangeTicket not implemented")
+}
+func (UnimplementedDashboardServiceServer) DeleteAccount(context.Context, *EmptyRequest) (*User, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteAccount not implemented")
 }
 func (UnimplementedDashboardServiceServer) CreateCharge(context.Context, *CreateChargeRequest) (*Charge, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCharge not implemented")
@@ -450,6 +464,24 @@ func _DashboardService_CreatePasswordChangeTicket_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DashboardService_DeleteAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmptyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DashboardServiceServer).DeleteAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.DashboardService/DeleteAccount",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DashboardServiceServer).DeleteAccount(ctx, req.(*EmptyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DashboardService_CreateCharge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateChargeRequest)
 	if err := dec(in); err != nil {
@@ -586,6 +618,10 @@ var DashboardService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreatePasswordChangeTicket",
 			Handler:    _DashboardService_CreatePasswordChangeTicket_Handler,
+		},
+		{
+			MethodName: "DeleteAccount",
+			Handler:    _DashboardService_DeleteAccount_Handler,
 		},
 		{
 			MethodName: "CreateCharge",

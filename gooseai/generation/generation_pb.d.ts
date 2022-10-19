@@ -299,6 +299,11 @@ export class ScheduleParameters extends jspb.Message {
   getEnd(): number;
   setEnd(value: number): void;
 
+  hasValue(): boolean;
+  clearValue(): void;
+  getValue(): number;
+  setValue(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ScheduleParameters.AsObject;
   static toObject(includeInstance: boolean, msg: ScheduleParameters): ScheduleParameters.AsObject;
@@ -313,6 +318,7 @@ export namespace ScheduleParameters {
   export type AsObject = {
     start: number,
     end: number,
+    value: number,
   }
 }
 
@@ -440,6 +446,30 @@ export namespace CutoutParameters {
   }
 }
 
+export class GuidanceScheduleParameters extends jspb.Message {
+  getDuration(): number;
+  setDuration(value: number): void;
+
+  getValue(): number;
+  setValue(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GuidanceScheduleParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: GuidanceScheduleParameters): GuidanceScheduleParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GuidanceScheduleParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GuidanceScheduleParameters;
+  static deserializeBinaryFromReader(message: GuidanceScheduleParameters, reader: jspb.BinaryReader): GuidanceScheduleParameters;
+}
+
+export namespace GuidanceScheduleParameters {
+  export type AsObject = {
+    duration: number,
+    value: number,
+  }
+}
+
 export class GuidanceInstanceParameters extends jspb.Message {
   clearModelsList(): void;
   getModelsList(): Array<Model>;
@@ -452,9 +482,9 @@ export class GuidanceInstanceParameters extends jspb.Message {
   setGuidanceStrength(value: number): void;
 
   clearScheduleList(): void;
-  getScheduleList(): Array<ScheduleParameters>;
-  setScheduleList(value: Array<ScheduleParameters>): void;
-  addSchedule(value?: ScheduleParameters, index?: number): ScheduleParameters;
+  getScheduleList(): Array<GuidanceScheduleParameters>;
+  setScheduleList(value: Array<GuidanceScheduleParameters>): void;
+  addSchedule(value?: GuidanceScheduleParameters, index?: number): GuidanceScheduleParameters;
 
   hasCutouts(): boolean;
   clearCutouts(): void;
@@ -480,7 +510,7 @@ export namespace GuidanceInstanceParameters {
   export type AsObject = {
     modelsList: Array<Model.AsObject>,
     guidanceStrength: number,
-    scheduleList: Array<ScheduleParameters.AsObject>,
+    scheduleList: Array<GuidanceScheduleParameters.AsObject>,
     cutouts?: CutoutParameters.AsObject,
     prompt?: Prompt.AsObject,
   }
@@ -1323,10 +1353,12 @@ export const Upscaler: UpscalerMap;
 
 export interface GuidancePresetMap {
   GUIDANCE_PRESET_NONE: 0;
-  GUIDANCE_PRESET_FAST: 1;
-  GUIDANCE_PRESET_EFFICIENT: 2;
-  GUIDANCE_PRESET_BALANCED: 3;
-  GUIDANCE_PRESET_QUALITY: 4;
+  GUIDANCE_PRESET_SIMPLE: 1;
+  GUIDANCE_PRESET_FAST_BLUE: 2;
+  GUIDANCE_PRESET_FAST_GREEN: 3;
+  GUIDANCE_PRESET_SLOW: 4;
+  GUIDANCE_PRESET_SLOWER: 5;
+  GUIDANCE_PRESET_SLOWEST: 6;
 }
 
 export const GuidancePreset: GuidancePresetMap;
