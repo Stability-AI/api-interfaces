@@ -22,13 +22,13 @@ enum ProjectAssetUse {
 }
 
 message ProjectAsset {
-  bytes id = 1;            // ID of the asset, UUIDv4
+  string id = 1;            // ID of the asset, UUIDv4
   string URI = 2;          // The URI to the asset
   ProjectAssetUse use = 3; // The use of the asset with respect to the project
 }
 
 message Project {
-  bytes id = 1;                      // ID of the project, UUIDv4
+  string id = 1;                      // ID of the project, UUIDv4
   string title = 2;                  // Title of the project
   string owner_id = 3;               // The ID of the organization owning the project
   ProjectAccess access = 4;          // The access of the project (such as public vs private)
@@ -49,7 +49,7 @@ message CreateProjectRequest {
 }
 
 message UpdateProjectRequest {
-  bytes id = 1;                      // ID of the project, UUIDv4
+  string id = 1;                      // ID of the project, UUIDv4
   optional string owner_id = 2;      // The ID of the organization owning the project, empty for default org for user
   optional string title = 3;         // Title of the project
   optional ProjectAccess access = 4; // The access of the project (such as public vs private)
@@ -62,12 +62,12 @@ message ListProjectRequest {
 }
 
 message GetProjectRequest {
-  bytes id = 1;                 // ID of the project to request, UUIDv4
+  string id = 1;                 // ID of the project to request, UUIDv4
   optional string owner_id = 2; // The ID of the organization owning the project, empty for default org for user
 }
 
 message DeleteProjectRequest {
-  bytes id = 1;                 // ID of the project to request, UUIDv4
+  string id = 1;                 // ID of the project to request, UUIDv4
   optional string owner_id = 2; // The ID of the organization owning the project, empty for default org for user
 }
 

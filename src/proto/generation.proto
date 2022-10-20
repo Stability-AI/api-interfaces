@@ -49,7 +49,7 @@ message Artifact {
   uint32 index = 8;               // Index of this artifact in input/output list
   FinishReason finish_reason = 9; // Reason for finishing, if applicable
   uint32 seed = 10;               // Seed used to generate this artifact
-  bytes uuid = 12;                // UUIDv4 of the artifact, used for asset lookup
+  string uuid = 12;               // UUIDv4 of the artifact, used for asset lookup
   uint64 size = 13;               // Size of the artifact in bytes
 }
 
@@ -264,7 +264,7 @@ enum AssetUse {
 
 message AssetParameters {
   AssetAction action = 1;
-  bytes project_id = 2;
+  string project_id = 2;
   AssetUse use = 3;
 }
 

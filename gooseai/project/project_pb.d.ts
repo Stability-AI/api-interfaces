@@ -4,10 +4,8 @@
 import * as jspb from "google-protobuf";
 
 export class ProjectAsset extends jspb.Message {
-  getId(): Uint8Array | string;
-  getId_asU8(): Uint8Array;
-  getId_asB64(): string;
-  setId(value: Uint8Array | string): void;
+  getId(): string;
+  setId(value: string): void;
 
   getUri(): string;
   setUri(value: string): void;
@@ -27,17 +25,15 @@ export class ProjectAsset extends jspb.Message {
 
 export namespace ProjectAsset {
   export type AsObject = {
-    id: Uint8Array | string,
+    id: string,
     uri: string,
     use: ProjectAssetUseMap[keyof ProjectAssetUseMap],
   }
 }
 
 export class Project extends jspb.Message {
-  getId(): Uint8Array | string;
-  getId_asU8(): Uint8Array;
-  getId_asB64(): string;
-  setId(value: Uint8Array | string): void;
+  getId(): string;
+  setId(value: string): void;
 
   getTitle(): string;
   setTitle(value: string): void;
@@ -82,7 +78,7 @@ export class Project extends jspb.Message {
 
 export namespace Project {
   export type AsObject = {
-    id: Uint8Array | string,
+    id: string,
     title: string,
     ownerId: string,
     access: ProjectAccessMap[keyof ProjectAccessMap],
@@ -136,10 +132,8 @@ export namespace CreateProjectRequest {
 }
 
 export class UpdateProjectRequest extends jspb.Message {
-  getId(): Uint8Array | string;
-  getId_asU8(): Uint8Array;
-  getId_asB64(): string;
-  setId(value: Uint8Array | string): void;
+  getId(): string;
+  setId(value: string): void;
 
   hasOwnerId(): boolean;
   clearOwnerId(): void;
@@ -178,7 +172,7 @@ export class UpdateProjectRequest extends jspb.Message {
 
 export namespace UpdateProjectRequest {
   export type AsObject = {
-    id: Uint8Array | string,
+    id: string,
     ownerId: string,
     title: string,
     access: ProjectAccessMap[keyof ProjectAccessMap],
@@ -210,10 +204,8 @@ export namespace ListProjectRequest {
 }
 
 export class GetProjectRequest extends jspb.Message {
-  getId(): Uint8Array | string;
-  getId_asU8(): Uint8Array;
-  getId_asB64(): string;
-  setId(value: Uint8Array | string): void;
+  getId(): string;
+  setId(value: string): void;
 
   hasOwnerId(): boolean;
   clearOwnerId(): void;
@@ -232,16 +224,14 @@ export class GetProjectRequest extends jspb.Message {
 
 export namespace GetProjectRequest {
   export type AsObject = {
-    id: Uint8Array | string,
+    id: string,
     ownerId: string,
   }
 }
 
 export class DeleteProjectRequest extends jspb.Message {
-  getId(): Uint8Array | string;
-  getId_asU8(): Uint8Array;
-  getId_asB64(): string;
-  setId(value: Uint8Array | string): void;
+  getId(): string;
+  setId(value: string): void;
 
   hasOwnerId(): boolean;
   clearOwnerId(): void;
@@ -260,7 +250,7 @@ export class DeleteProjectRequest extends jspb.Message {
 
 export namespace DeleteProjectRequest {
   export type AsObject = {
-    id: Uint8Array | string,
+    id: string,
     ownerId: string,
   }
 }

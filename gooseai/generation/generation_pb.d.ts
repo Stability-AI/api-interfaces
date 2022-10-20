@@ -103,10 +103,8 @@ export class Artifact extends jspb.Message {
   getSeed(): number;
   setSeed(value: number): void;
 
-  getUuid(): Uint8Array | string;
-  getUuid_asU8(): Uint8Array;
-  getUuid_asB64(): string;
-  setUuid(value: Uint8Array | string): void;
+  getUuid(): string;
+  setUuid(value: string): void;
 
   getSize(): number;
   setSize(value: number): void;
@@ -135,7 +133,7 @@ export namespace Artifact {
     index: number,
     finishReason: FinishReasonMap[keyof FinishReasonMap],
     seed: number,
-    uuid: Uint8Array | string,
+    uuid: string,
     size: number,
   }
 
@@ -753,10 +751,8 @@ export class AssetParameters extends jspb.Message {
   getAction(): AssetActionMap[keyof AssetActionMap];
   setAction(value: AssetActionMap[keyof AssetActionMap]): void;
 
-  getProjectId(): Uint8Array | string;
-  getProjectId_asU8(): Uint8Array;
-  getProjectId_asB64(): string;
-  setProjectId(value: Uint8Array | string): void;
+  getProjectId(): string;
+  setProjectId(value: string): void;
 
   getUse(): AssetUseMap[keyof AssetUseMap];
   setUse(value: AssetUseMap[keyof AssetUseMap]): void;
@@ -774,7 +770,7 @@ export class AssetParameters extends jspb.Message {
 export namespace AssetParameters {
   export type AsObject = {
     action: AssetActionMap[keyof AssetActionMap],
-    projectId: Uint8Array | string,
+    projectId: string,
     use: AssetUseMap[keyof AssetUseMap],
   }
 }
