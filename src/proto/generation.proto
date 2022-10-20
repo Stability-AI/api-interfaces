@@ -286,6 +286,7 @@ message Answer {
   uint64 created = 4;
   optional AnswerMeta meta = 6;
   repeated Artifact artifacts = 7;
+  double credit_cost = 8;
 }
 
 // A Request is a set of Artifacts, which can be of any type with model or
@@ -302,6 +303,10 @@ message Request {
     AssetParameters asset = 8;
   }
   optional ConditionerParameters conditioner = 6;
+
+  // If true, artifacts will not be generated, but the request
+  // will be validated and the cost will be returned.
+  bool dry_run = 9;
 }
 
 //
