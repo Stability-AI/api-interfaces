@@ -103,6 +103,12 @@ export class Artifact extends jspb.Message {
   getSeed(): number;
   setSeed(value: number): void;
 
+  getUuid(): string;
+  setUuid(value: string): void;
+
+  getSize(): number;
+  setSize(value: number): void;
+
   getDataCase(): Artifact.DataCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Artifact.AsObject;
@@ -127,6 +133,8 @@ export namespace Artifact {
     index: number,
     finishReason: FinishReasonMap[keyof FinishReasonMap],
     seed: number,
+    uuid: string,
+    size: number,
   }
 
   export enum DataCase {
@@ -743,8 +751,11 @@ export class AssetParameters extends jspb.Message {
   getAction(): AssetActionMap[keyof AssetActionMap];
   setAction(value: AssetActionMap[keyof AssetActionMap]): void;
 
-  getProject(): number;
-  setProject(value: number): void;
+  getProjectId(): string;
+  setProjectId(value: string): void;
+
+  getUse(): AssetUseMap[keyof AssetUseMap];
+  setUse(value: AssetUseMap[keyof AssetUseMap]): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AssetParameters.AsObject;
@@ -759,7 +770,8 @@ export class AssetParameters extends jspb.Message {
 export namespace AssetParameters {
   export type AsObject = {
     action: AssetActionMap[keyof AssetActionMap],
-    project: number,
+    projectId: string,
+    use: AssetUseMap[keyof AssetUseMap],
   }
 }
 
@@ -1095,6 +1107,16 @@ export interface AssetActionMap {
 }
 
 export const AssetAction: AssetActionMap;
+
+export interface AssetUseMap {
+  ASSET_USE_UNDEFINED: 0;
+  ASSET_USE_INPUT: 1;
+  ASSET_USE_OUTPUT: 2;
+  ASSET_USE_INTERMEDIATE: 3;
+  ASSET_USE_PROJECT: 4;
+}
+
+export const AssetUse: AssetUseMap;
 
 export interface StageActionMap {
   STAGE_ACTION_PASS: 0;

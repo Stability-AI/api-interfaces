@@ -49,6 +49,8 @@ message Artifact {
   uint32 index = 8;               // Index of this artifact in input/output list
   FinishReason finish_reason = 9; // Reason for finishing, if applicable
   uint32 seed = 10;               // Seed used to generate this artifact
+  string uuid = 12;               // UUIDv4 of the artifact, used for asset lookup
+  uint64 size = 13;               // Size of the artifact in bytes
 }
 
 // A set of parameters for each individual Prompt.
@@ -250,9 +252,20 @@ enum AssetAction {
   ASSET_DELETE = 2;
 }
 
+// AssetUse defines how the asset is used within a project.  This enum matches
+// the values the project proto.
+enum AssetUse {
+  ASSET_USE_UNDEFINED = 0;    // Asset does not have use defined
+  ASSET_USE_INPUT = 1;        // Asset is used as an input for the project
+  ASSET_USE_OUTPUT = 2;       // Asset is an output from the project 
+  ASSET_USE_INTERMEDIATE = 3; // Asset is an output from an intermediate step of the project
+  ASSET_USE_PROJECT = 4;      // Asset is used as the project file for the project
+}
+
 message AssetParameters {
   AssetAction action = 1;
-  uint64 project = 2;
+  string project_id = 2;
+  AssetUse use = 3;
 }
 
 // AnswerMeta is a set of metadata about an answer, usually the operating
