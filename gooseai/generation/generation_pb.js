@@ -6537,7 +6537,8 @@ proto.gooseai.Answer.toObject = function(includeInstance, msg) {
     created: jspb.Message.getFieldWithDefault(msg, 4, 0),
     meta: (f = msg.getMeta()) && proto.gooseai.AnswerMeta.toObject(includeInstance, f),
     artifactsList: jspb.Message.toObjectList(msg.getArtifactsList(),
-    proto.gooseai.Artifact.toObject, includeInstance)
+    proto.gooseai.Artifact.toObject, includeInstance),
+    creditCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0)
   };
 
   if (includeInstance) {
@@ -6599,6 +6600,10 @@ proto.gooseai.Answer.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.gooseai.Artifact;
       reader.readMessage(value,proto.gooseai.Artifact.deserializeBinaryFromReader);
       msg.addArtifacts(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setCreditCost(value);
       break;
     default:
       reader.skipField();
@@ -6671,6 +6676,13 @@ proto.gooseai.Answer.serializeBinaryToWriter = function(message, writer) {
       7,
       f,
       proto.gooseai.Artifact.serializeBinaryToWriter
+    );
+  }
+  f = message.getCreditCost();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      8,
+      f
     );
   }
 };
@@ -6823,6 +6835,24 @@ proto.gooseai.Answer.prototype.clearArtifactsList = function() {
 };
 
 
+/**
+ * optional double credit_cost = 8;
+ * @return {number}
+ */
+proto.gooseai.Answer.prototype.getCreditCost = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 8, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.gooseai.Answer} returns this
+ */
+proto.gooseai.Answer.prototype.setCreditCost = function(value) {
+  return jspb.Message.setProto3FloatField(this, 8, value);
+};
+
+
 
 /**
  * List of repeated fields within this message type.
@@ -6897,7 +6927,8 @@ proto.gooseai.Request.toObject = function(includeInstance, msg) {
     image: (f = msg.getImage()) && proto.gooseai.ImageParameters.toObject(includeInstance, f),
     classifier: (f = msg.getClassifier()) && proto.gooseai.ClassifierParameters.toObject(includeInstance, f),
     asset: (f = msg.getAsset()) && proto.gooseai.AssetParameters.toObject(includeInstance, f),
-    conditioner: (f = msg.getConditioner()) && proto.gooseai.ConditionerParameters.toObject(includeInstance, f)
+    conditioner: (f = msg.getConditioner()) && proto.gooseai.ConditionerParameters.toObject(includeInstance, f),
+    dryRun: jspb.Message.getBooleanFieldWithDefault(msg, 9, false)
   };
 
   if (includeInstance) {
@@ -6970,6 +7001,10 @@ proto.gooseai.Request.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.gooseai.ConditionerParameters;
       reader.readMessage(value,proto.gooseai.ConditionerParameters.deserializeBinaryFromReader);
       msg.setConditioner(value);
+      break;
+    case 9:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDryRun(value);
       break;
     default:
       reader.skipField();
@@ -7059,6 +7094,13 @@ proto.gooseai.Request.serializeBinaryToWriter = function(message, writer) {
       6,
       f,
       proto.gooseai.ConditionerParameters.serializeBinaryToWriter
+    );
+  }
+  f = message.getDryRun();
+  if (f) {
+    writer.writeBool(
+      9,
+      f
     );
   }
 };
@@ -7301,6 +7343,24 @@ proto.gooseai.Request.prototype.clearConditioner = function() {
  */
 proto.gooseai.Request.prototype.hasConditioner = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional bool dry_run = 9;
+ * @return {boolean}
+ */
+proto.gooseai.Request.prototype.getDryRun = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 9, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.gooseai.Request} returns this
+ */
+proto.gooseai.Request.prototype.setDryRun = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 9, value);
 };
 
 
