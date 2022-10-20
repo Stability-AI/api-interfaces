@@ -23,7 +23,7 @@ enum ProjectAssetUse {
 
 message ProjectAsset {
   string id = 1;            // ID of the asset, UUIDv4
-  string URI = 2;          // The URI to the asset
+  string uri = 2;          // The URI to the asset
   ProjectAssetUse use = 3; // The use of the asset with respect to the project
 }
 

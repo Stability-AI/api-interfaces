@@ -327,7 +327,7 @@ proto.gooseai.ProjectAsset.prototype.setId = function(value) {
 
 
 /**
- * optional string URI = 2;
+ * optional string uri = 2;
  * @return {string}
  */
 proto.gooseai.ProjectAsset.prototype.getUri = function() {
