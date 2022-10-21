@@ -242,7 +242,6 @@ add_target_languages(
 # Generate base protobufs
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/dashboard.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/generation.proto)
-add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/completion.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/engines.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/project.proto)
 generate_interfaces()
