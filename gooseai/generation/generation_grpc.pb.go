@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion7
 type GenerationServiceClient interface {
 	Generate(ctx context.Context, in *Request, opts ...grpc.CallOption) (GenerationService_GenerateClient, error)
 	ChainGenerate(ctx context.Context, in *ChainRequest, opts ...grpc.CallOption) (GenerationService_ChainGenerateClient, error)
+	EstimateCost(ctx context.Context, in *Request, opts ...grpc.CallOption) (*EstimateCostResponse, error)
 }
 
 type generationServiceClient struct {
@@ -94,12 +95,22 @@ func (x *generationServiceChainGenerateClient) Recv() (*Answer, error) {
 	return m, nil
 }
 
+func (c *generationServiceClient) EstimateCost(ctx context.Context, in *Request, opts ...grpc.CallOption) (*EstimateCostResponse, error) {
+	out := new(EstimateCostResponse)
+	err := c.cc.Invoke(ctx, "/gooseai.GenerationService/EstimateCost", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GenerationServiceServer is the server API for GenerationService service.
 // All implementations must embed UnimplementedGenerationServiceServer
 // for forward compatibility
 type GenerationServiceServer interface {
 	Generate(*Request, GenerationService_GenerateServer) error
 	ChainGenerate(*ChainRequest, GenerationService_ChainGenerateServer) error
+	EstimateCost(context.Context, *Request) (*EstimateCostResponse, error)
 	mustEmbedUnimplementedGenerationServiceServer()
 }
 
@@ -112,6 +123,9 @@ func (UnimplementedGenerationServiceServer) Generate(*Request, GenerationService
 }
 func (UnimplementedGenerationServiceServer) ChainGenerate(*ChainRequest, GenerationService_ChainGenerateServer) error {
 	return status.Errorf(codes.Unimplemented, "method ChainGenerate not implemented")
+}
+func (UnimplementedGenerationServiceServer) EstimateCost(context.Context, *Request) (*EstimateCostResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EstimateCost not implemented")
 }
 func (UnimplementedGenerationServiceServer) mustEmbedUnimplementedGenerationServiceServer() {}
 
@@ -168,13 +182,36 @@ func (x *generationServiceChainGenerateServer) Send(m *Answer) error {
 	return x.ServerStream.SendMsg(m)
 }
 
+func _GenerationService_EstimateCost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GenerationServiceServer).EstimateCost(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.GenerationService/EstimateCost",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GenerationServiceServer).EstimateCost(ctx, req.(*Request))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GenerationService_ServiceDesc is the grpc.ServiceDesc for GenerationService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var GenerationService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "gooseai.GenerationService",
 	HandlerType: (*GenerationServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "EstimateCost",
+			Handler:    _GenerationService_EstimateCost_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "Generate",

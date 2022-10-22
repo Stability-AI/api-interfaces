@@ -286,7 +286,6 @@ message Answer {
   uint64 created = 4;
   optional AnswerMeta meta = 6;
   repeated Artifact artifacts = 7;
-  double credit_cost = 8;
 }
 
 // A Request is a set of Artifacts, which can be of any type with model or
@@ -307,6 +306,10 @@ message Request {
   // If true, artifacts will not be generated, but the request
   // will be validated and the cost will be returned.
   bool dry_run = 9;
+}
+
+message EstimateCostResponse {
+  double credit_cost = 1;
 }
 
 //
@@ -344,4 +347,5 @@ message ChainRequest {
 service GenerationService {
   rpc Generate (Request) returns (stream Answer) {};
   rpc ChainGenerate (ChainRequest) returns (stream Answer) {};
+  rpc EstimateCost (Request) returns (EstimateCostResponse) {};
 }
