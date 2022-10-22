@@ -302,10 +302,6 @@ message Request {
     AssetParameters asset = 8;
   }
   optional ConditionerParameters conditioner = 6;
-
-  // If true, artifacts will not be generated, but the request
-  // will be validated and the cost will be returned.
-  bool dry_run = 9;
 }
 
 message EstimateCostResponse {

@@ -6919,8 +6919,7 @@ proto.gooseai.Request.toObject = function(includeInstance, msg) {
     image: (f = msg.getImage()) && proto.gooseai.ImageParameters.toObject(includeInstance, f),
     classifier: (f = msg.getClassifier()) && proto.gooseai.ClassifierParameters.toObject(includeInstance, f),
     asset: (f = msg.getAsset()) && proto.gooseai.AssetParameters.toObject(includeInstance, f),
-    conditioner: (f = msg.getConditioner()) && proto.gooseai.ConditionerParameters.toObject(includeInstance, f),
-    dryRun: jspb.Message.getBooleanFieldWithDefault(msg, 9, false)
+    conditioner: (f = msg.getConditioner()) && proto.gooseai.ConditionerParameters.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6993,10 +6992,6 @@ proto.gooseai.Request.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.gooseai.ConditionerParameters;
       reader.readMessage(value,proto.gooseai.ConditionerParameters.deserializeBinaryFromReader);
       msg.setConditioner(value);
-      break;
-    case 9:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setDryRun(value);
       break;
     default:
       reader.skipField();
@@ -7086,13 +7081,6 @@ proto.gooseai.Request.serializeBinaryToWriter = function(message, writer) {
       6,
       f,
       proto.gooseai.ConditionerParameters.serializeBinaryToWriter
-    );
-  }
-  f = message.getDryRun();
-  if (f) {
-    writer.writeBool(
-      9,
-      f
     );
   }
 };
@@ -7335,24 +7323,6 @@ proto.gooseai.Request.prototype.clearConditioner = function() {
  */
 proto.gooseai.Request.prototype.hasConditioner = function() {
   return jspb.Message.getField(this, 6) != null;
-};
-
-
-/**
- * optional bool dry_run = 9;
- * @return {boolean}
- */
-proto.gooseai.Request.prototype.getDryRun = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 9, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.gooseai.Request} returns this
- */
-proto.gooseai.Request.prototype.setDryRun = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 9, value);
 };
 
 

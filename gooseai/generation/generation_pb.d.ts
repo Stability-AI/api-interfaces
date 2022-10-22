@@ -894,9 +894,6 @@ export class Request extends jspb.Message {
   getConditioner(): ConditionerParameters | undefined;
   setConditioner(value?: ConditionerParameters): void;
 
-  getDryRun(): boolean;
-  setDryRun(value: boolean): void;
-
   getParamsCase(): Request.ParamsCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Request.AsObject;
@@ -918,7 +915,6 @@ export namespace Request {
     classifier?: ClassifierParameters.AsObject,
     asset?: AssetParameters.AsObject,
     conditioner?: ConditionerParameters.AsObject,
-    dryRun: boolean,
   }
 
   export enum ParamsCase {
