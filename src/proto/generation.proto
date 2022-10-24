@@ -213,6 +213,10 @@ enum Action {
   ACTION_DISCARD = 5;
 }
 
+message EstimateCostResponse {
+  double total_credit_cost = 1;
+}
+
 //
 // Artifact classification parameters.
 //
@@ -339,4 +343,5 @@ message ChainRequest {
 service GenerationService {
   rpc Generate (Request) returns (stream Answer) {};
   rpc ChainGenerate (ChainRequest) returns (stream Answer) {};
+  rpc EstimateCost (Request) returns (EstimateCostResponse) {};
 }

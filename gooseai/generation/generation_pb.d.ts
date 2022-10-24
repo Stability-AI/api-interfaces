@@ -643,6 +643,26 @@ export namespace ImageParameters {
   }
 }
 
+export class EstimateCostResponse extends jspb.Message {
+  getTotalCreditCost(): number;
+  setTotalCreditCost(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EstimateCostResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: EstimateCostResponse): EstimateCostResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: EstimateCostResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EstimateCostResponse;
+  static deserializeBinaryFromReader(message: EstimateCostResponse, reader: jspb.BinaryReader): EstimateCostResponse;
+}
+
+export namespace EstimateCostResponse {
+  export type AsObject = {
+    totalCreditCost: number,
+  }
+}
+
 export class ClassifierConcept extends jspb.Message {
   getConcept(): string;
   setConcept(value: string): void;
