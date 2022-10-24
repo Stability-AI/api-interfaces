@@ -246,33 +246,26 @@ message ClassifierParameters {
 //
 
 enum BorderMode {
-  BORDER_REFLECT = 0;
-  BORDER_REPLICATE = 1;
-  BORDER_WRAP = 2;
-  BORDER_ZERO = 3;
+  BORDER_REFLECT = 0;   // reflect image values across the border
+  BORDER_REPLICATE = 1; // replicate border values outside the image
+  BORDER_WRAP = 2;      // wrap around / tile the image values
+  BORDER_ZERO = 3;      // use 0 for locations outside the image
 }
 
 enum ColorMatchMode {
-  COLOR_MATCH_NONE = 0;
-  COLOR_MATCH_HSV = 1;
-  COLOR_MATCH_LAB = 2;
-  COLOR_MATCH_RGB = 3;
-}
-
-enum SamplingMode {
-  SAMPLING_BICUBIC = 0;
-  SAMPLING_BILINEAR = 1;
-  SAMPLING_NEAREST = 2;
+  COLOR_MATCH_HSV = 0;  // match hue, saturation, and value histograms
+  COLOR_MATCH_LAB = 1;  // match lightness, a, and b histograms
+  COLOR_MATCH_RGB = 2;  // match red, green, and blue histograms
 }
 
 message TransformAddNoise {
-  float amount = 1; // Amount of noise to add
-  uint32 seed = 2;  // Random seed
+  float amount = 1; // amount of noise to add
+  uint32 seed = 2;  // random seed for noise generation
 }
 
 message TransformBlend {
-  float amount = 1;     // Blend amount from 0 to 1
-  Artifact target = 2;  // Target image
+  float amount = 1;     // blend amount from 0 to 1
+  Artifact target = 2;  // target image
 }
 
 message TransformColorMatch {
@@ -280,31 +273,34 @@ message TransformColorMatch {
   Artifact image = 2;
 }
 
+message TransformDepthCalc {
+  optional bool export = 1;        // return the depth map as an artifact
+  optional float blend_weight = 2; // blend factor between AdaBins (0.0) and MiDaS (1.0)
+}
+
 message TransformWarp2d {
-  BorderMode border_mode = 1;
-  float rotate = 2;
-  float scale = 3;
-  float translate_x = 4;
+  BorderMode border_mode = 1; // extrapolation of border pixels
+  float translate_x = 4;      // translation in pixels
   float translate_y = 5;
+  float rotate = 2;           // rotation in degrees
+  float scale = 3;            // scale factor
 }
 
 message TransformWarp3d {
-  BorderMode border_mode = 1;
-  SamplingMode sampling_mode = 2;
-  float translate_x = 3;
-  float translate_y = 4;
-  float translate_z = 5;
-  float rotate_x = 6;
-  float rotate_y = 7;
-  float rotate_z = 8;
-  float near_plane = 9;
-  float far_plane = 10;
-  float fov = 11;
-  float midas_weight = 12;
+  BorderMode border_mode = 1; // extrapolation of border pixels
+  float translate_x = 3;      // horizontal translation
+  float translate_y = 4;      // vertical translation
+  float translate_z = 5;      // forward translation
+  float rotate_x = 6;         // rotation around X-axis in degrees (pitch)
+  float rotate_y = 7;         // rotation around Y-axis in degrees (yaw)
+  float rotate_z = 8;         // rotation around Z-axis in degrees (roll)
+  float near_plane = 9;       // near clipping plane of view frustum
+  float far_plane = 10;       // far clipping plane of view frustum
+  float fov = 11;             // field of view in degrees
 }
 
 message TransformWarpFlow {
-  optional Artifact flow_map = 1;   // Precomputed flow asset
+  optional Artifact flow_map = 1;   // precomputed flow asset
   optional Artifact prev_frame = 2;
   optional Artifact next_frame = 3;
 }
@@ -314,6 +310,7 @@ message TransformOperation {
     TransformAddNoise add_noise = 1;
     TransformBlend blend = 6;
     TransformColorMatch color_match = 2;
+    TransformDepthCalc depth_calc = 7;
     TransformWarp2d warp2d = 3;
     TransformWarp3d warp3d = 4;
     TransformWarpFlow warp_flow = 5;

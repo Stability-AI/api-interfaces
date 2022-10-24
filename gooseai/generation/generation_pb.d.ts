@@ -822,21 +822,49 @@ export namespace TransformColorMatch {
   }
 }
 
+export class TransformDepthCalc extends jspb.Message {
+  hasExport(): boolean;
+  clearExport(): void;
+  getExport(): boolean;
+  setExport(value: boolean): void;
+
+  hasBlendWeight(): boolean;
+  clearBlendWeight(): void;
+  getBlendWeight(): number;
+  setBlendWeight(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformDepthCalc.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformDepthCalc): TransformDepthCalc.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformDepthCalc, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformDepthCalc;
+  static deserializeBinaryFromReader(message: TransformDepthCalc, reader: jspb.BinaryReader): TransformDepthCalc;
+}
+
+export namespace TransformDepthCalc {
+  export type AsObject = {
+    pb_export: boolean,
+    blendWeight: number,
+  }
+}
+
 export class TransformWarp2d extends jspb.Message {
   getBorderMode(): BorderModeMap[keyof BorderModeMap];
   setBorderMode(value: BorderModeMap[keyof BorderModeMap]): void;
-
-  getRotate(): number;
-  setRotate(value: number): void;
-
-  getScale(): number;
-  setScale(value: number): void;
 
   getTranslateX(): number;
   setTranslateX(value: number): void;
 
   getTranslateY(): number;
   setTranslateY(value: number): void;
+
+  getRotate(): number;
+  setRotate(value: number): void;
+
+  getScale(): number;
+  setScale(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TransformWarp2d.AsObject;
@@ -851,19 +879,16 @@ export class TransformWarp2d extends jspb.Message {
 export namespace TransformWarp2d {
   export type AsObject = {
     borderMode: BorderModeMap[keyof BorderModeMap],
-    rotate: number,
-    scale: number,
     translateX: number,
     translateY: number,
+    rotate: number,
+    scale: number,
   }
 }
 
 export class TransformWarp3d extends jspb.Message {
   getBorderMode(): BorderModeMap[keyof BorderModeMap];
   setBorderMode(value: BorderModeMap[keyof BorderModeMap]): void;
-
-  getSamplingMode(): SamplingModeMap[keyof SamplingModeMap];
-  setSamplingMode(value: SamplingModeMap[keyof SamplingModeMap]): void;
 
   getTranslateX(): number;
   setTranslateX(value: number): void;
@@ -892,9 +917,6 @@ export class TransformWarp3d extends jspb.Message {
   getFov(): number;
   setFov(value: number): void;
 
-  getMidasWeight(): number;
-  setMidasWeight(value: number): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TransformWarp3d.AsObject;
   static toObject(includeInstance: boolean, msg: TransformWarp3d): TransformWarp3d.AsObject;
@@ -908,7 +930,6 @@ export class TransformWarp3d extends jspb.Message {
 export namespace TransformWarp3d {
   export type AsObject = {
     borderMode: BorderModeMap[keyof BorderModeMap],
-    samplingMode: SamplingModeMap[keyof SamplingModeMap],
     translateX: number,
     translateY: number,
     translateZ: number,
@@ -918,7 +939,6 @@ export namespace TransformWarp3d {
     nearPlane: number,
     farPlane: number,
     fov: number,
-    midasWeight: number,
   }
 }
 
@@ -972,6 +992,11 @@ export class TransformOperation extends jspb.Message {
   getColorMatch(): TransformColorMatch | undefined;
   setColorMatch(value?: TransformColorMatch): void;
 
+  hasDepthCalc(): boolean;
+  clearDepthCalc(): void;
+  getDepthCalc(): TransformDepthCalc | undefined;
+  setDepthCalc(value?: TransformDepthCalc): void;
+
   hasWarp2d(): boolean;
   clearWarp2d(): void;
   getWarp2d(): TransformWarp2d | undefined;
@@ -1003,6 +1028,7 @@ export namespace TransformOperation {
     addNoise?: TransformAddNoise.AsObject,
     blend?: TransformBlend.AsObject,
     colorMatch?: TransformColorMatch.AsObject,
+    depthCalc?: TransformDepthCalc.AsObject,
     warp2d?: TransformWarp2d.AsObject,
     warp3d?: TransformWarp3d.AsObject,
     warpFlow?: TransformWarpFlow.AsObject,
@@ -1013,6 +1039,7 @@ export namespace TransformOperation {
     ADD_NOISE = 1,
     BLEND = 6,
     COLOR_MATCH = 2,
+    DEPTH_CALC = 7,
     WARP2D = 3,
     WARP3D = 4,
     WARP_FLOW = 5,
@@ -1400,21 +1427,12 @@ export interface BorderModeMap {
 export const BorderMode: BorderModeMap;
 
 export interface ColorMatchModeMap {
-  COLOR_MATCH_NONE: 0;
-  COLOR_MATCH_HSV: 1;
-  COLOR_MATCH_LAB: 2;
-  COLOR_MATCH_RGB: 3;
+  COLOR_MATCH_HSV: 0;
+  COLOR_MATCH_LAB: 1;
+  COLOR_MATCH_RGB: 2;
 }
 
 export const ColorMatchMode: ColorMatchModeMap;
-
-export interface SamplingModeMap {
-  SAMPLING_BICUBIC: 0;
-  SAMPLING_BILINEAR: 1;
-  SAMPLING_NEAREST: 2;
-}
-
-export const SamplingMode: SamplingModeMap;
 
 export interface AssetActionMap {
   ASSET_PUT: 0;
