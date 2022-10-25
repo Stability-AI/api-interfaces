@@ -1,0 +1,8 @@
+version: v1
+breaking:
+  use:
+    - FILE
+build:
+  excludes:
+    - node_modules
+    - build
