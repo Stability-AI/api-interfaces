@@ -273,6 +273,11 @@ message TransformColorMatch {
   Artifact image = 2;
 }
 
+message TransformContrast {
+  optional float brightness = 1;  // scale on pixel intensities, 1.0 is no change
+  optional float contrast = 2;    // contrast adjustment, 1.0 is no change
+}
+
 message TransformDepthCalc {
   optional bool export = 1;        // return the depth map as an artifact
   optional float blend_weight = 2; // blend factor between AdaBins (0.0) and MiDaS (1.0)
@@ -280,8 +285,8 @@ message TransformDepthCalc {
 
 message TransformWarp2d {
   BorderMode border_mode = 1; // extrapolation of border pixels
-  float translate_x = 4;      // translation in pixels
-  float translate_y = 5;
+  float translate_x = 4;      // horizontal translation in pixels
+  float translate_y = 5;      // vertical translation in pixels
   float rotate = 2;           // rotation in degrees
   float scale = 3;            // scale factor
 }
@@ -310,6 +315,7 @@ message TransformOperation {
     TransformAddNoise add_noise = 1;
     TransformBlend blend = 6;
     TransformColorMatch color_match = 2;
+    TransformContrast contrast = 8;
     TransformDepthCalc depth_calc = 7;
     TransformWarp2d warp2d = 3;
     TransformWarp3d warp3d = 4;

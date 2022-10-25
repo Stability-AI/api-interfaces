@@ -822,6 +822,34 @@ export namespace TransformColorMatch {
   }
 }
 
+export class TransformContrast extends jspb.Message {
+  hasBrightness(): boolean;
+  clearBrightness(): void;
+  getBrightness(): number;
+  setBrightness(value: number): void;
+
+  hasContrast(): boolean;
+  clearContrast(): void;
+  getContrast(): number;
+  setContrast(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformContrast.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformContrast): TransformContrast.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformContrast, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformContrast;
+  static deserializeBinaryFromReader(message: TransformContrast, reader: jspb.BinaryReader): TransformContrast;
+}
+
+export namespace TransformContrast {
+  export type AsObject = {
+    brightness: number,
+    contrast: number,
+  }
+}
+
 export class TransformDepthCalc extends jspb.Message {
   hasExport(): boolean;
   clearExport(): void;
@@ -992,6 +1020,11 @@ export class TransformOperation extends jspb.Message {
   getColorMatch(): TransformColorMatch | undefined;
   setColorMatch(value?: TransformColorMatch): void;
 
+  hasContrast(): boolean;
+  clearContrast(): void;
+  getContrast(): TransformContrast | undefined;
+  setContrast(value?: TransformContrast): void;
+
   hasDepthCalc(): boolean;
   clearDepthCalc(): void;
   getDepthCalc(): TransformDepthCalc | undefined;
@@ -1028,6 +1061,7 @@ export namespace TransformOperation {
     addNoise?: TransformAddNoise.AsObject,
     blend?: TransformBlend.AsObject,
     colorMatch?: TransformColorMatch.AsObject,
+    contrast?: TransformContrast.AsObject,
     depthCalc?: TransformDepthCalc.AsObject,
     warp2d?: TransformWarp2d.AsObject,
     warp3d?: TransformWarp3d.AsObject,
@@ -1039,6 +1073,7 @@ export namespace TransformOperation {
     ADD_NOISE = 1,
     BLEND = 6,
     COLOR_MATCH = 2,
+    CONTRAST = 8,
     DEPTH_CALC = 7,
     WARP2D = 3,
     WARP3D = 4,
