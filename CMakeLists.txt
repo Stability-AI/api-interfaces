@@ -20,6 +20,7 @@ find_package(PkgConfig REQUIRED)
 find_package(Protobuf REQUIRED)
 #find_package(gRPC CONFIG REQUIRED)
 set(PROTO_PATH "${PROJECT_SOURCE_DIR}/src/proto")
+set(PROTO_PATH2 "${PROJECT_SOURCE_DIR}/src/tensorizer/proto")
 set(GENERATED_PROTOBUF_PATH "${PROJECT_SOURCE_DIR}/gooseai")
 file(MAKE_DIRECTORY ${GENERATED_PROTOBUF_PATH})
 
@@ -187,6 +188,7 @@ macro(_generate_interface LANG INTERFACE_FILE)
             COMMAND ${CMD_EXEC}
             ARGS ${${LANG}_args}
             ARGS "--proto_path=${PROTO_PATH}"
+            ARGS "--proto_path=${PROTO_PATH2}"
             ARGS "--experimental_allow_proto3_optional"
             ARGS ${${LANG}_plugin}
             ARGS "${${LANG}_output}${${LANG}_output_dir}/${_PROTOBUF_SHORT}"
@@ -250,7 +252,7 @@ add_custom_command(
         OUTPUT "${golang_grpc_output_dir}/go.mod"
         WORKING_DIRECTORY "${GENERATED_PROTOBUF_PATH}"
         COMMAND rm -f go.mod
-        COMMAND go mod init github.com/${PROJECT_REF}/gooseai
+        COMMAND GOPROXY=direct go mod init github.com/${PROJECT_REF}/gooseai
         COMMAND go mod tidy
         DEPENDS ${GENERATED_PROTOBUF_FILES_golang_grpc})
 
