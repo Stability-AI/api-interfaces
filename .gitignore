@@ -16,3 +16,5 @@ cmake/*
 !cmake/.gitkeep
 node_modules
 .idea
+
+build/
