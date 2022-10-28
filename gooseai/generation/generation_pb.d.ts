@@ -248,6 +248,11 @@ export class SamplerParameters extends jspb.Message {
   getCfgScale(): number;
   setCfgScale(value: number): void;
 
+  hasInitNoiseScale(): boolean;
+  clearInitNoiseScale(): void;
+  getInitNoiseScale(): number;
+  setInitNoiseScale(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SamplerParameters.AsObject;
   static toObject(includeInstance: boolean, msg: SamplerParameters): SamplerParameters.AsObject;
@@ -265,6 +270,7 @@ export namespace SamplerParameters {
     latentChannels: number,
     downsamplingFactor: number,
     cfgScale: number,
+    initNoiseScale: number,
   }
 }
 
@@ -758,6 +764,8 @@ export class TransformAddNoise extends jspb.Message {
   getAmount(): number;
   setAmount(value: number): void;
 
+  hasSeed(): boolean;
+  clearSeed(): void;
   getSeed(): number;
   setSeed(value: number): void;
 
