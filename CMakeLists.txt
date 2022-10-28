@@ -28,7 +28,7 @@ file(MAKE_DIRECTORY ${GENERATED_PROTOBUF_PATH})
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
 set(PYBUILD_PATH "${PROJECT_BINARY_DIR}/pybuild")
-execute_process(COMMAND python3 -m venv ${PYBUILD_PATH}
+execute_process(COMMAND python3.9 -m venv ${PYBUILD_PATH}
         RESULT_VARIABLE EXIT_CODE
         OUTPUT_QUIET)
 if (NOT ${EXIT_CODE} EQUAL 0)
@@ -107,6 +107,7 @@ if (NOT ${EXIT_CODE} EQUAL 0)
            "npm is not installed. Please ensure that it is installed by using your favorite package manager.")
 endif()
 
+set(ENV{npm_config_target_arch} x64)
 execute_process(COMMAND npm install
        RESULT_VARIABLE EXIT_CODE)
 if (NOT ${EXIT_CODE} EQUAL 0)
