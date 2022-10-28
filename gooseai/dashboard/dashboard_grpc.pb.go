@@ -35,6 +35,7 @@ type DashboardServiceClient interface {
 	// Payment functions
 	CreateCharge(ctx context.Context, in *CreateChargeRequest, opts ...grpc.CallOption) (*Charge, error)
 	GetCharges(ctx context.Context, in *GetChargesRequest, opts ...grpc.CallOption) (*Charges, error)
+	GetCheckoutSession(ctx context.Context, in *SessionRequestID, opts ...grpc.CallOption) (*SessionCharge, error)
 	CreateAutoChargeIntent(ctx context.Context, in *CreateAutoChargeIntentRequest, opts ...grpc.CallOption) (*AutoChargeIntent, error)
 	UpdateAutoChargeIntent(ctx context.Context, in *CreateAutoChargeIntentRequest, opts ...grpc.CallOption) (*AutoChargeIntent, error)
 	GetAutoChargeIntent(ctx context.Context, in *GetAutoChargeRequest, opts ...grpc.CallOption) (*AutoChargeIntent, error)
@@ -165,6 +166,15 @@ func (c *dashboardServiceClient) GetCharges(ctx context.Context, in *GetChargesR
 	return out, nil
 }
 
+func (c *dashboardServiceClient) GetCheckoutSession(ctx context.Context, in *SessionRequestID, opts ...grpc.CallOption) (*SessionCharge, error) {
+	out := new(SessionCharge)
+	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/GetCheckoutSession", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dashboardServiceClient) CreateAutoChargeIntent(ctx context.Context, in *CreateAutoChargeIntentRequest, opts ...grpc.CallOption) (*AutoChargeIntent, error) {
 	out := new(AutoChargeIntent)
 	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/CreateAutoChargeIntent", in, out, opts...)
@@ -213,6 +223,7 @@ type DashboardServiceServer interface {
 	// Payment functions
 	CreateCharge(context.Context, *CreateChargeRequest) (*Charge, error)
 	GetCharges(context.Context, *GetChargesRequest) (*Charges, error)
+	GetCheckoutSession(context.Context, *SessionRequestID) (*SessionCharge, error)
 	CreateAutoChargeIntent(context.Context, *CreateAutoChargeIntentRequest) (*AutoChargeIntent, error)
 	UpdateAutoChargeIntent(context.Context, *CreateAutoChargeIntentRequest) (*AutoChargeIntent, error)
 	GetAutoChargeIntent(context.Context, *GetAutoChargeRequest) (*AutoChargeIntent, error)
@@ -261,6 +272,9 @@ func (UnimplementedDashboardServiceServer) CreateCharge(context.Context, *Create
 }
 func (UnimplementedDashboardServiceServer) GetCharges(context.Context, *GetChargesRequest) (*Charges, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCharges not implemented")
+}
+func (UnimplementedDashboardServiceServer) GetCheckoutSession(context.Context, *SessionRequestID) (*SessionCharge, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCheckoutSession not implemented")
 }
 func (UnimplementedDashboardServiceServer) CreateAutoChargeIntent(context.Context, *CreateAutoChargeIntentRequest) (*AutoChargeIntent, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAutoChargeIntent not implemented")
@@ -518,6 +532,24 @@ func _DashboardService_GetCharges_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DashboardService_GetCheckoutSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SessionRequestID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DashboardServiceServer).GetCheckoutSession(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.DashboardService/GetCheckoutSession",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DashboardServiceServer).GetCheckoutSession(ctx, req.(*SessionRequestID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DashboardService_CreateAutoChargeIntent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateAutoChargeIntentRequest)
 	if err := dec(in); err != nil {
@@ -630,6 +662,10 @@ var DashboardService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCharges",
 			Handler:    _DashboardService_GetCharges_Handler,
+		},
+		{
+			MethodName: "GetCheckoutSession",
+			Handler:    _DashboardService_GetCheckoutSession_Handler,
 		},
 		{
 			MethodName: "CreateAutoChargeIntent",

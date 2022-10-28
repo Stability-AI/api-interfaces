@@ -20,6 +20,7 @@ interface IDashboardServiceService extends grpc.ServiceDefinition<grpc.UntypedSe
   deleteAccount: grpc.MethodDefinition<dashboard_pb.EmptyRequest, dashboard_pb.User>;
   createCharge: grpc.MethodDefinition<dashboard_pb.CreateChargeRequest, dashboard_pb.Charge>;
   getCharges: grpc.MethodDefinition<dashboard_pb.GetChargesRequest, dashboard_pb.Charges>;
+  getCheckoutSession: grpc.MethodDefinition<dashboard_pb.SessionRequestID, dashboard_pb.SessionCharge>;
   createAutoChargeIntent: grpc.MethodDefinition<dashboard_pb.CreateAutoChargeIntentRequest, dashboard_pb.AutoChargeIntent>;
   updateAutoChargeIntent: grpc.MethodDefinition<dashboard_pb.CreateAutoChargeIntentRequest, dashboard_pb.AutoChargeIntent>;
   getAutoChargeIntent: grpc.MethodDefinition<dashboard_pb.GetAutoChargeRequest, dashboard_pb.AutoChargeIntent>;
@@ -41,6 +42,7 @@ export interface IDashboardServiceServer extends grpc.UntypedServiceImplementati
   deleteAccount: grpc.handleUnaryCall<dashboard_pb.EmptyRequest, dashboard_pb.User>;
   createCharge: grpc.handleUnaryCall<dashboard_pb.CreateChargeRequest, dashboard_pb.Charge>;
   getCharges: grpc.handleUnaryCall<dashboard_pb.GetChargesRequest, dashboard_pb.Charges>;
+  getCheckoutSession: grpc.handleUnaryCall<dashboard_pb.SessionRequestID, dashboard_pb.SessionCharge>;
   createAutoChargeIntent: grpc.handleUnaryCall<dashboard_pb.CreateAutoChargeIntentRequest, dashboard_pb.AutoChargeIntent>;
   updateAutoChargeIntent: grpc.handleUnaryCall<dashboard_pb.CreateAutoChargeIntentRequest, dashboard_pb.AutoChargeIntent>;
   getAutoChargeIntent: grpc.handleUnaryCall<dashboard_pb.GetAutoChargeRequest, dashboard_pb.AutoChargeIntent>;
@@ -87,6 +89,9 @@ export class DashboardServiceClient extends grpc.Client {
   getCharges(argument: dashboard_pb.GetChargesRequest, callback: grpc.requestCallback<dashboard_pb.Charges>): grpc.ClientUnaryCall;
   getCharges(argument: dashboard_pb.GetChargesRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.Charges>): grpc.ClientUnaryCall;
   getCharges(argument: dashboard_pb.GetChargesRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.Charges>): grpc.ClientUnaryCall;
+  getCheckoutSession(argument: dashboard_pb.SessionRequestID, callback: grpc.requestCallback<dashboard_pb.SessionCharge>): grpc.ClientUnaryCall;
+  getCheckoutSession(argument: dashboard_pb.SessionRequestID, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.SessionCharge>): grpc.ClientUnaryCall;
+  getCheckoutSession(argument: dashboard_pb.SessionRequestID, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.SessionCharge>): grpc.ClientUnaryCall;
   createAutoChargeIntent(argument: dashboard_pb.CreateAutoChargeIntentRequest, callback: grpc.requestCallback<dashboard_pb.AutoChargeIntent>): grpc.ClientUnaryCall;
   createAutoChargeIntent(argument: dashboard_pb.CreateAutoChargeIntentRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.AutoChargeIntent>): grpc.ClientUnaryCall;
   createAutoChargeIntent(argument: dashboard_pb.CreateAutoChargeIntentRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<dashboard_pb.AutoChargeIntent>): grpc.ClientUnaryCall;

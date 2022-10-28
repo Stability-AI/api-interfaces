@@ -79,6 +79,11 @@ class DashboardServiceStub(object):
                 request_serializer=dashboard__pb2.GetChargesRequest.SerializeToString,
                 response_deserializer=dashboard__pb2.Charges.FromString,
                 )
+        self.GetCheckoutSession = channel.unary_unary(
+                '/gooseai.DashboardService/GetCheckoutSession',
+                request_serializer=dashboard__pb2.SessionRequestID.SerializeToString,
+                response_deserializer=dashboard__pb2.SessionCharge.FromString,
+                )
         self.CreateAutoChargeIntent = channel.unary_unary(
                 '/gooseai.DashboardService/CreateAutoChargeIntent',
                 request_serializer=dashboard__pb2.CreateAutoChargeIntentRequest.SerializeToString,
@@ -181,6 +186,12 @@ class DashboardServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetCheckoutSession(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def CreateAutoChargeIntent(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -266,6 +277,11 @@ def add_DashboardServiceServicer_to_server(servicer, server):
                     servicer.GetCharges,
                     request_deserializer=dashboard__pb2.GetChargesRequest.FromString,
                     response_serializer=dashboard__pb2.Charges.SerializeToString,
+            ),
+            'GetCheckoutSession': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetCheckoutSession,
+                    request_deserializer=dashboard__pb2.SessionRequestID.FromString,
+                    response_serializer=dashboard__pb2.SessionCharge.SerializeToString,
             ),
             'CreateAutoChargeIntent': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateAutoChargeIntent,
@@ -510,6 +526,23 @@ class DashboardService(object):
         return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/GetCharges',
             dashboard__pb2.GetChargesRequest.SerializeToString,
             dashboard__pb2.Charges.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetCheckoutSession(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/GetCheckoutSession',
+            dashboard__pb2.SessionRequestID.SerializeToString,
+            dashboard__pb2.SessionCharge.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

@@ -180,6 +180,28 @@ function deserialize_gooseai_Organization(buffer_arg) {
   return dashboard_pb.Organization.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_gooseai_SessionCharge(arg) {
+  if (!(arg instanceof dashboard_pb.SessionCharge)) {
+    throw new Error('Expected argument of type gooseai.SessionCharge');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_SessionCharge(buffer_arg) {
+  return dashboard_pb.SessionCharge.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_SessionRequestID(arg) {
+  if (!(arg instanceof dashboard_pb.SessionRequestID)) {
+    throw new Error('Expected argument of type gooseai.SessionRequestID');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_SessionRequestID(buffer_arg) {
+  return dashboard_pb.SessionRequestID.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_gooseai_UpdateDefaultOrganizationRequest(arg) {
   if (!(arg instanceof dashboard_pb.UpdateDefaultOrganizationRequest)) {
     throw new Error('Expected argument of type gooseai.UpdateDefaultOrganizationRequest');
@@ -372,6 +394,17 @@ createCharge: {
     requestDeserialize: deserialize_gooseai_GetChargesRequest,
     responseSerialize: serialize_gooseai_Charges,
     responseDeserialize: deserialize_gooseai_Charges,
+  },
+  getCheckoutSession: {
+    path: '/gooseai.DashboardService/GetCheckoutSession',
+    requestStream: false,
+    responseStream: false,
+    requestType: dashboard_pb.SessionRequestID,
+    responseType: dashboard_pb.SessionCharge,
+    requestSerialize: serialize_gooseai_SessionRequestID,
+    requestDeserialize: deserialize_gooseai_SessionRequestID,
+    responseSerialize: serialize_gooseai_SessionCharge,
+    responseDeserialize: deserialize_gooseai_SessionCharge,
   },
   createAutoChargeIntent: {
     path: '/gooseai.DashboardService/CreateAutoChargeIntent',

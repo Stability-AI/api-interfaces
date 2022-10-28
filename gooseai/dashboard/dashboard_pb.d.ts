@@ -691,6 +691,54 @@ export namespace Charge {
   }
 }
 
+export class SessionCharge extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getPaid(): boolean;
+  setPaid(value: boolean): void;
+
+  getAmount(): number;
+  setAmount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SessionCharge.AsObject;
+  static toObject(includeInstance: boolean, msg: SessionCharge): SessionCharge.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SessionCharge, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SessionCharge;
+  static deserializeBinaryFromReader(message: SessionCharge, reader: jspb.BinaryReader): SessionCharge;
+}
+
+export namespace SessionCharge {
+  export type AsObject = {
+    id: string,
+    paid: boolean,
+    amount: number,
+  }
+}
+
+export class SessionRequestID extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SessionRequestID.AsObject;
+  static toObject(includeInstance: boolean, msg: SessionRequestID): SessionRequestID.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SessionRequestID, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SessionRequestID;
+  static deserializeBinaryFromReader(message: SessionRequestID, reader: jspb.BinaryReader): SessionRequestID;
+}
+
+export namespace SessionRequestID {
+  export type AsObject = {
+    id: string,
+  }
+}
+
 export class Charges extends jspb.Message {
   clearChargesList(): void;
   getChargesList(): Array<Charge>;

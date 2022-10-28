@@ -121,6 +121,15 @@ type DashboardServiceGetCharges = {
   readonly responseType: typeof dashboard_pb.Charges;
 };
 
+type DashboardServiceGetCheckoutSession = {
+  readonly methodName: string;
+  readonly service: typeof DashboardService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof dashboard_pb.SessionRequestID;
+  readonly responseType: typeof dashboard_pb.SessionCharge;
+};
+
 type DashboardServiceCreateAutoChargeIntent = {
   readonly methodName: string;
   readonly service: typeof DashboardService;
@@ -163,6 +172,7 @@ export class DashboardService {
   static readonly DeleteAccount: DashboardServiceDeleteAccount;
   static readonly CreateCharge: DashboardServiceCreateCharge;
   static readonly GetCharges: DashboardServiceGetCharges;
+  static readonly GetCheckoutSession: DashboardServiceGetCheckoutSession;
   static readonly CreateAutoChargeIntent: DashboardServiceCreateAutoChargeIntent;
   static readonly UpdateAutoChargeIntent: DashboardServiceUpdateAutoChargeIntent;
   static readonly GetAutoChargeIntent: DashboardServiceGetAutoChargeIntent;
@@ -316,6 +326,15 @@ export class DashboardServiceClient {
   getCharges(
     requestMessage: dashboard_pb.GetChargesRequest,
     callback: (error: ServiceError|null, responseMessage: dashboard_pb.Charges|null) => void
+  ): UnaryResponse;
+  getCheckoutSession(
+    requestMessage: dashboard_pb.SessionRequestID,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: dashboard_pb.SessionCharge|null) => void
+  ): UnaryResponse;
+  getCheckoutSession(
+    requestMessage: dashboard_pb.SessionRequestID,
+    callback: (error: ServiceError|null, responseMessage: dashboard_pb.SessionCharge|null) => void
   ): UnaryResponse;
   createAutoChargeIntent(
     requestMessage: dashboard_pb.CreateAutoChargeIntentRequest,

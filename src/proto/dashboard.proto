@@ -146,6 +146,16 @@ message Charge {
   uint64 amount_credits = 6;
 }
 
+message SessionCharge {
+  string id = 1;
+  bool paid = 2;
+  uint64 amount = 3;
+}
+
+message SessionRequestID {
+  string id = 1;
+}
+
 message Charges {
   repeated Charge charges = 1;
 }
@@ -192,6 +202,7 @@ service DashboardService {
   // Payment functions
   rpc CreateCharge (CreateChargeRequest) returns (Charge);
   rpc GetCharges (GetChargesRequest) returns (Charges);
+  rpc GetCheckoutSession (SessionRequestID) returns (SessionCharge);
   rpc CreateAutoChargeIntent (CreateAutoChargeIntentRequest) returns (AutoChargeIntent);
   rpc UpdateAutoChargeIntent (CreateAutoChargeIntentRequest) returns (AutoChargeIntent);
   rpc GetAutoChargeIntent (GetAutoChargeRequest) returns (AutoChargeIntent);
