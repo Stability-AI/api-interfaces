@@ -21,6 +21,7 @@ enum ArtifactType {
   ARTIFACT_CLASSIFICATIONS = 6;
   ARTIFACT_MASK = 7;
   ARTIFACT_LATENTS = 8;
+  ARTIFACT_TENSOR = 9;
 }
 
 // Generally, a GPT BPE 16-bit token, paired with an optional string representation.
@@ -47,7 +48,7 @@ message Artifact {
     string text = 6;              // Text data, e.g. text prompt
     Tokens tokens = 7;            // Tokenized text data, e.g. GPT tokens
     ClassifierParameters classifier = 11;
-    tensors.Tensor latents = 14;  // Latent vector
+    tensors.Tensor tensor = 14;   // torch.Tensor; RGB 4D tensor, or VAE latents
   }
   uint32 index = 8;               // Index of this artifact in input/output list
   FinishReason finish_reason = 9; // Reason for finishing, if applicable
@@ -74,7 +75,6 @@ message Prompt {
     string text = 2;
     Tokens tokens = 3;
     Artifact artifact = 4;
-    tensors.Tensor latents = 5;
   }
 }
 
