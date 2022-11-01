@@ -838,6 +838,11 @@ export class Answer extends jspb.Message {
   setArtifactsList(value: Array<Artifact>): void;
   addArtifacts(value?: Artifact, index?: number): Artifact;
 
+  hasEstimatedCreditCost(): boolean;
+  clearEstimatedCreditCost(): void;
+  getEstimatedCreditCost(): number;
+  setEstimatedCreditCost(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Answer.AsObject;
   static toObject(includeInstance: boolean, msg: Answer): Answer.AsObject;
@@ -856,6 +861,7 @@ export namespace Answer {
     created: number,
     meta?: AnswerMeta.AsObject,
     artifactsList: Array<Artifact.AsObject>,
+    estimatedCreditCost: number,
   }
 }
 
@@ -894,6 +900,11 @@ export class Request extends jspb.Message {
   getConditioner(): ConditionerParameters | undefined;
   setConditioner(value?: ConditionerParameters): void;
 
+  hasDryRun(): boolean;
+  clearDryRun(): void;
+  getDryRun(): boolean;
+  setDryRun(value: boolean): void;
+
   getParamsCase(): Request.ParamsCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Request.AsObject;
@@ -915,6 +926,7 @@ export namespace Request {
     classifier?: ClassifierParameters.AsObject,
     asset?: AssetParameters.AsObject,
     conditioner?: ConditionerParameters.AsObject,
+    dryRun: boolean,
   }
 
   export enum ParamsCase {
@@ -922,26 +934,6 @@ export namespace Request {
     IMAGE = 5,
     CLASSIFIER = 7,
     ASSET = 8,
-  }
-}
-
-export class EstimateCostResponse extends jspb.Message {
-  getCreditCost(): number;
-  setCreditCost(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): EstimateCostResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: EstimateCostResponse): EstimateCostResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: EstimateCostResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): EstimateCostResponse;
-  static deserializeBinaryFromReader(message: EstimateCostResponse, reader: jspb.BinaryReader): EstimateCostResponse;
-}
-
-export namespace EstimateCostResponse {
-  export type AsObject = {
-    creditCost: number,
   }
 }
 

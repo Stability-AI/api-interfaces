@@ -26,17 +26,6 @@ function deserialize_gooseai_ChainRequest(buffer_arg) {
   return generation_pb.ChainRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_gooseai_EstimateCostResponse(arg) {
-  if (!(arg instanceof generation_pb.EstimateCostResponse)) {
-    throw new Error('Expected argument of type gooseai.EstimateCostResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_gooseai_EstimateCostResponse(buffer_arg) {
-  return generation_pb.EstimateCostResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_gooseai_Request(arg) {
   if (!(arg instanceof generation_pb.Request)) {
     throw new Error('Expected argument of type gooseai.Request');
@@ -74,17 +63,6 @@ var GenerationServiceService = exports.GenerationServiceService = {
     requestDeserialize: deserialize_gooseai_ChainRequest,
     responseSerialize: serialize_gooseai_Answer,
     responseDeserialize: deserialize_gooseai_Answer,
-  },
-  estimateCost: {
-    path: '/gooseai.GenerationService/EstimateCost',
-    requestStream: false,
-    responseStream: false,
-    requestType: generation_pb.Request,
-    responseType: generation_pb.EstimateCostResponse,
-    requestSerialize: serialize_gooseai_Request,
-    requestDeserialize: deserialize_gooseai_Request,
-    responseSerialize: serialize_gooseai_EstimateCostResponse,
-    responseDeserialize: deserialize_gooseai_EstimateCostResponse,
   },
 };
 

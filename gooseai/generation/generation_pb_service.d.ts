@@ -22,20 +22,10 @@ type GenerationServiceChainGenerate = {
   readonly responseType: typeof generation_pb.Answer;
 };
 
-type GenerationServiceEstimateCost = {
-  readonly methodName: string;
-  readonly service: typeof GenerationService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof generation_pb.Request;
-  readonly responseType: typeof generation_pb.EstimateCostResponse;
-};
-
 export class GenerationService {
   static readonly serviceName: string;
   static readonly Generate: GenerationServiceGenerate;
   static readonly ChainGenerate: GenerationServiceChainGenerate;
-  static readonly EstimateCost: GenerationServiceEstimateCost;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -72,14 +62,5 @@ export class GenerationServiceClient {
   constructor(serviceHost: string, options?: grpc.RpcOptions);
   generate(requestMessage: generation_pb.Request, metadata?: grpc.Metadata): ResponseStream<generation_pb.Answer>;
   chainGenerate(requestMessage: generation_pb.ChainRequest, metadata?: grpc.Metadata): ResponseStream<generation_pb.Answer>;
-  estimateCost(
-    requestMessage: generation_pb.Request,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: generation_pb.EstimateCostResponse|null) => void
-  ): UnaryResponse;
-  estimateCost(
-    requestMessage: generation_pb.Request,
-    callback: (error: ServiceError|null, responseMessage: generation_pb.EstimateCostResponse|null) => void
-  ): UnaryResponse;
 }
 
