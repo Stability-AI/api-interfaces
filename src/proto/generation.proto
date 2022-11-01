@@ -286,7 +286,7 @@ message Answer {
   uint64 created = 4;
   optional AnswerMeta meta = 6;
   repeated Artifact artifacts = 7;
-  optional double estimated_credit_cost = 8;  // Only set if Request.dry_run is true.
+  optional double estimated_cost = 8;  // Only set if Request.dry_run is true.
 }
 
 // A Request is a set of Artifacts, which can be of any type with model or

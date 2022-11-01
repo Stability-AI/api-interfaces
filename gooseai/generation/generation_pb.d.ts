@@ -838,10 +838,10 @@ export class Answer extends jspb.Message {
   setArtifactsList(value: Array<Artifact>): void;
   addArtifacts(value?: Artifact, index?: number): Artifact;
 
-  hasEstimatedCreditCost(): boolean;
-  clearEstimatedCreditCost(): void;
-  getEstimatedCreditCost(): number;
-  setEstimatedCreditCost(value: number): void;
+  hasEstimatedCost(): boolean;
+  clearEstimatedCost(): void;
+  getEstimatedCost(): number;
+  setEstimatedCost(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Answer.AsObject;
@@ -861,7 +861,7 @@ export namespace Answer {
     created: number,
     meta?: AnswerMeta.AsObject,
     artifactsList: Array<Artifact.AsObject>,
-    estimatedCreditCost: number,
+    estimatedCost: number,
   }
 }
 

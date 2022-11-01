@@ -6538,7 +6538,7 @@ proto.gooseai.Answer.toObject = function(includeInstance, msg) {
     meta: (f = msg.getMeta()) && proto.gooseai.AnswerMeta.toObject(includeInstance, f),
     artifactsList: jspb.Message.toObjectList(msg.getArtifactsList(),
     proto.gooseai.Artifact.toObject, includeInstance),
-    estimatedCreditCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0)
+    estimatedCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0)
   };
 
   if (includeInstance) {
@@ -6603,7 +6603,7 @@ proto.gooseai.Answer.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 8:
       var value = /** @type {number} */ (reader.readDouble());
-      msg.setEstimatedCreditCost(value);
+      msg.setEstimatedCost(value);
       break;
     default:
       reader.skipField();
@@ -6836,10 +6836,10 @@ proto.gooseai.Answer.prototype.clearArtifactsList = function() {
 
 
 /**
- * optional double estimated_credit_cost = 8;
+ * optional double estimated_cost = 8;
  * @return {number}
  */
-proto.gooseai.Answer.prototype.getEstimatedCreditCost = function() {
+proto.gooseai.Answer.prototype.getEstimatedCost = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 8, 0.0));
 };
 
@@ -6848,7 +6848,7 @@ proto.gooseai.Answer.prototype.getEstimatedCreditCost = function() {
  * @param {number} value
  * @return {!proto.gooseai.Answer} returns this
  */
-proto.gooseai.Answer.prototype.setEstimatedCreditCost = function(value) {
+proto.gooseai.Answer.prototype.setEstimatedCost = function(value) {
   return jspb.Message.setField(this, 8, value);
 };
 
@@ -6857,7 +6857,7 @@ proto.gooseai.Answer.prototype.setEstimatedCreditCost = function(value) {
  * Clears the field making it undefined.
  * @return {!proto.gooseai.Answer} returns this
  */
-proto.gooseai.Answer.prototype.clearEstimatedCreditCost = function() {
+proto.gooseai.Answer.prototype.clearEstimatedCost = function() {
   return jspb.Message.setField(this, 8, undefined);
 };
 
@@ -6866,7 +6866,7 @@ proto.gooseai.Answer.prototype.clearEstimatedCreditCost = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.gooseai.Answer.prototype.hasEstimatedCreditCost = function() {
+proto.gooseai.Answer.prototype.hasEstimatedCost = function() {
   return jspb.Message.getField(this, 8) != null;
 };
 
