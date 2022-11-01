@@ -286,6 +286,7 @@ message Answer {
   uint64 created = 4;
   optional AnswerMeta meta = 6;
   repeated Artifact artifacts = 7;
+  optional double estimated_cost = 8;  // Only set if Request.dry_run is true.
 }
 
 // A Request is a set of Artifacts, which can be of any type with model or
@@ -302,6 +303,9 @@ message Request {
     AssetParameters asset = 8;
   }
   optional ConditionerParameters conditioner = 6;
+  // If set to true, generation will not be performed, instead the request will be
+  // validated and a single Answer with an estimated credit cost will be returned.
+  bool dry_run = 9;
 }
 
 //

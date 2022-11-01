@@ -838,6 +838,11 @@ export class Answer extends jspb.Message {
   setArtifactsList(value: Array<Artifact>): void;
   addArtifacts(value?: Artifact, index?: number): Artifact;
 
+  hasEstimatedCost(): boolean;
+  clearEstimatedCost(): void;
+  getEstimatedCost(): number;
+  setEstimatedCost(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Answer.AsObject;
   static toObject(includeInstance: boolean, msg: Answer): Answer.AsObject;
@@ -856,6 +861,7 @@ export namespace Answer {
     created: number,
     meta?: AnswerMeta.AsObject,
     artifactsList: Array<Artifact.AsObject>,
+    estimatedCost: number,
   }
 }
 
@@ -894,6 +900,9 @@ export class Request extends jspb.Message {
   getConditioner(): ConditionerParameters | undefined;
   setConditioner(value?: ConditionerParameters): void;
 
+  getDryRun(): boolean;
+  setDryRun(value: boolean): void;
+
   getParamsCase(): Request.ParamsCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Request.AsObject;
@@ -915,6 +924,7 @@ export namespace Request {
     classifier?: ClassifierParameters.AsObject,
     asset?: AssetParameters.AsObject,
     conditioner?: ConditionerParameters.AsObject,
+    dryRun: boolean,
   }
 
   export enum ParamsCase {
