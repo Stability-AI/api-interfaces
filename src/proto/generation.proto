@@ -305,7 +305,7 @@ message Request {
   optional ConditionerParameters conditioner = 6;
   // If set to true, generation will not be performed, instead the request will be
   // validated and a single Answer with an estimated credit cost will be returned.
-  optional bool dry_run = 9;
+  bool dry_run = 9;
 }
 
 //

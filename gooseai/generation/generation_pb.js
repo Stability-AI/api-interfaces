@@ -7114,8 +7114,8 @@ proto.gooseai.Request.serializeBinaryToWriter = function(message, writer) {
       proto.gooseai.ConditionerParameters.serializeBinaryToWriter
     );
   }
-  f = /** @type {boolean} */ (jspb.Message.getField(message, 9));
-  if (f != null) {
+  f = message.getDryRun();
+  if (f) {
     writer.writeBool(
       9,
       f
@@ -7378,25 +7378,7 @@ proto.gooseai.Request.prototype.getDryRun = function() {
  * @return {!proto.gooseai.Request} returns this
  */
 proto.gooseai.Request.prototype.setDryRun = function(value) {
-  return jspb.Message.setField(this, 9, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.gooseai.Request} returns this
- */
-proto.gooseai.Request.prototype.clearDryRun = function() {
-  return jspb.Message.setField(this, 9, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.gooseai.Request.prototype.hasDryRun = function() {
-  return jspb.Message.getField(this, 9) != null;
+  return jspb.Message.setProto3BooleanField(this, 9, value);
 };
 
 

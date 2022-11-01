@@ -900,8 +900,6 @@ export class Request extends jspb.Message {
   getConditioner(): ConditionerParameters | undefined;
   setConditioner(value?: ConditionerParameters): void;
 
-  hasDryRun(): boolean;
-  clearDryRun(): void;
   getDryRun(): boolean;
   setDryRun(value: boolean): void;
 
