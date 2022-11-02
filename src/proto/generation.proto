@@ -20,7 +20,7 @@ enum ArtifactType {
   ARTIFACT_EMBEDDING = 5;
   ARTIFACT_CLASSIFICATIONS = 6;
   ARTIFACT_MASK = 7;
-  ARTIFACT_LATENTS = 8;
+  ARTIFACT_LATENT = 8;
   ARTIFACT_TENSOR = 9;
 }
 
@@ -48,7 +48,7 @@ message Artifact {
     string text = 6;              // Text data, e.g. text prompt
     Tokens tokens = 7;            // Tokenized text data, e.g. GPT tokens
     ClassifierParameters classifier = 11;
-    tensors.Tensor tensor = 14;   // torch.Tensor; RGB 4D tensor, or VAE latents
+    tensors.Tensor tensor = 14;   // 3D torch.Tensor; RGB tensor, VAE latents
   }
   uint32 index = 8;               // Index of this artifact in input/output list
   FinishReason finish_reason = 9; // Reason for finishing, if applicable
