@@ -15,6 +15,8 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
+var tensors_pb = require('./tensors_pb.js');
+goog.object.extend(proto, tensors_pb);
 goog.exportSymbol('proto.gooseai.Action', null, global);
 goog.exportSymbol('proto.gooseai.Answer', null, global);
 goog.exportSymbol('proto.gooseai.AnswerMeta', null, global);
@@ -997,7 +999,7 @@ proto.gooseai.Tokens.prototype.hasTokenizerId = function() {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.gooseai.Artifact.oneofGroups_ = [[5,6,7,11]];
+proto.gooseai.Artifact.oneofGroups_ = [[5,6,7,11,14]];
 
 /**
  * @enum {number}
@@ -1007,7 +1009,8 @@ proto.gooseai.Artifact.DataCase = {
   BINARY: 5,
   TEXT: 6,
   TOKENS: 7,
-  CLASSIFIER: 11
+  CLASSIFIER: 11,
+  TENSOR: 14
 };
 
 /**
@@ -1056,6 +1059,7 @@ proto.gooseai.Artifact.toObject = function(includeInstance, msg) {
     text: jspb.Message.getFieldWithDefault(msg, 6, ""),
     tokens: (f = msg.getTokens()) && proto.gooseai.Tokens.toObject(includeInstance, f),
     classifier: (f = msg.getClassifier()) && proto.gooseai.ClassifierParameters.toObject(includeInstance, f),
+    tensor: (f = msg.getTensor()) && tensors_pb.Tensor.toObject(includeInstance, f),
     index: jspb.Message.getFieldWithDefault(msg, 8, 0),
     finishReason: jspb.Message.getFieldWithDefault(msg, 9, 0),
     seed: jspb.Message.getFieldWithDefault(msg, 10, 0),
@@ -1130,6 +1134,11 @@ proto.gooseai.Artifact.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.gooseai.ClassifierParameters;
       reader.readMessage(value,proto.gooseai.ClassifierParameters.deserializeBinaryFromReader);
       msg.setClassifier(value);
+      break;
+    case 14:
+      var value = new tensors_pb.Tensor;
+      reader.readMessage(value,tensors_pb.Tensor.deserializeBinaryFromReader);
+      msg.setTensor(value);
       break;
     case 8:
       var value = /** @type {number} */ (reader.readUint32());
@@ -1236,6 +1245,14 @@ proto.gooseai.Artifact.serializeBinaryToWriter = function(message, writer) {
       11,
       f,
       proto.gooseai.ClassifierParameters.serializeBinaryToWriter
+    );
+  }
+  f = message.getTensor();
+  if (f != null) {
+    writer.writeMessage(
+      14,
+      f,
+      tensors_pb.Tensor.serializeBinaryToWriter
     );
   }
   f = message.getIndex();
@@ -1533,6 +1550,43 @@ proto.gooseai.Artifact.prototype.clearClassifier = function() {
  */
 proto.gooseai.Artifact.prototype.hasClassifier = function() {
   return jspb.Message.getField(this, 11) != null;
+};
+
+
+/**
+ * optional tensors.Tensor tensor = 14;
+ * @return {?proto.tensors.Tensor}
+ */
+proto.gooseai.Artifact.prototype.getTensor = function() {
+  return /** @type{?proto.tensors.Tensor} */ (
+    jspb.Message.getWrapperField(this, tensors_pb.Tensor, 14));
+};
+
+
+/**
+ * @param {?proto.tensors.Tensor|undefined} value
+ * @return {!proto.gooseai.Artifact} returns this
+*/
+proto.gooseai.Artifact.prototype.setTensor = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 14, proto.gooseai.Artifact.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.gooseai.Artifact} returns this
+ */
+proto.gooseai.Artifact.prototype.clearTensor = function() {
+  return this.setTensor(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.Artifact.prototype.hasTensor = function() {
+  return jspb.Message.getField(this, 14) != null;
 };
 
 
@@ -8014,7 +8068,9 @@ proto.gooseai.ArtifactType = {
   ARTIFACT_TOKENS: 4,
   ARTIFACT_EMBEDDING: 5,
   ARTIFACT_CLASSIFICATIONS: 6,
-  ARTIFACT_MASK: 7
+  ARTIFACT_MASK: 7,
+  ARTIFACT_LATENT: 8,
+  ARTIFACT_TENSOR: 9
 };
 
 /**
