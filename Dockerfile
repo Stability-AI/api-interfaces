@@ -1,5 +1,5 @@
 ARG NODE_IMAGE_TAG=16-bullseye
-FROM node:${NODE_IMAGE_TAG} as builder
+FROM --platform=linux/amd64 node:${NODE_IMAGE_TAG} as builder
 ARG GOLANG_VERSION=1.18.6
 ARG GOLANG_PACKAGE=https://go.dev/dl/go${GOLANG_VERSION}.linux-amd64.tar.gz
 ARG GRPC_VERSION=v1.48.2
@@ -26,12 +26,14 @@ RUN mkdir -p cmake/build; cd cmake/build; cmake -DgRPC_INSTALL=ON -DgRPC_BUILD_T
 RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@${PROTOC_GEN_GO_VERSION}
 RUN go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@${PROTOC_GEN_GO_GRPC_VERSION}
 
-COPY CMakeLists.txt package.json package-lock.json requirements.txt /build/api-interfaces/
+COPY package.json package-lock.json requirements.txt /build/api-interfaces/
 COPY .git /build/api-interfaces/.git/
 COPY src/ /build/api-interfaces/src/
 COPY gooseai/ /build/api-interfaces/gooseai/
 WORKDIR /build/api-interfaces
-RUN cmake . && make clean && cmake --build .
+COPY CMakeLists.txt /build/api-interfaces/
+RUN cmake .
+RUN make clean && cmake --build .
 
 # Copy output to a bare container
 FROM debian:bullseye-slim

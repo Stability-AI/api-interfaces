@@ -1,0 +1,3 @@
+[submodule "src/tensorizer"]
+	path = src/tensorizer
+	url = https://github.com/coreweave/tensorizer.git
