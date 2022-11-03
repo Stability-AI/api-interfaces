@@ -2240,7 +2240,8 @@ proto.gooseai.SamplerParameters.toObject = function(includeInstance, msg) {
     samplingSteps: jspb.Message.getFieldWithDefault(msg, 2, 0),
     latentChannels: jspb.Message.getFieldWithDefault(msg, 3, 0),
     downsamplingFactor: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    cfgScale: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0)
+    cfgScale: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+    initNoiseScale: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0)
   };
 
   if (includeInstance) {
@@ -2296,6 +2297,10 @@ proto.gooseai.SamplerParameters.deserializeBinaryFromReader = function(msg, read
     case 5:
       var value = /** @type {number} */ (reader.readFloat());
       msg.setCfgScale(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setInitNoiseScale(value);
       break;
     default:
       reader.skipField();
@@ -2358,6 +2363,13 @@ proto.gooseai.SamplerParameters.serializeBinaryToWriter = function(message, writ
   if (f != null) {
     writer.writeFloat(
       5,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 6));
+  if (f != null) {
+    writer.writeFloat(
+      6,
       f
     );
   }
@@ -2541,6 +2553,42 @@ proto.gooseai.SamplerParameters.prototype.clearCfgScale = function() {
  */
 proto.gooseai.SamplerParameters.prototype.hasCfgScale = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional float init_noise_scale = 6;
+ * @return {number}
+ */
+proto.gooseai.SamplerParameters.prototype.getInitNoiseScale = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 6, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.gooseai.SamplerParameters} returns this
+ */
+proto.gooseai.SamplerParameters.prototype.setInitNoiseScale = function(value) {
+  return jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.SamplerParameters} returns this
+ */
+proto.gooseai.SamplerParameters.prototype.clearInitNoiseScale = function() {
+  return jspb.Message.setField(this, 6, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.SamplerParameters.prototype.hasInitNoiseScale = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
