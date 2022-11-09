@@ -244,6 +244,14 @@ message ClassifierParameters {
   optional Action realized_action = 3;
 }
 
+
+// Interpolation using intermediate flows computed from first two images and
+// applied at specified ratios to either those or the following images.
+message InterpolateParameters {
+  repeated float ratios = 1;
+}
+
+
 //
 // Transforms
 //
@@ -388,6 +396,7 @@ message Request {
     ImageParameters image = 5;
     ClassifierParameters classifier = 7;
     AssetParameters asset = 8;
+    InterpolateParameters interpolate = 9;
   }
   optional ConditionerParameters conditioner = 6;
 }

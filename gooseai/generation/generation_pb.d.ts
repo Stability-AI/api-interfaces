@@ -1231,6 +1231,28 @@ export namespace Answer {
   }
 }
 
+export class InterpolateParameters extends jspb.Message {
+  clearRatiosList(): void;
+  getRatiosList(): Array<number>;
+  setRatiosList(value: Array<number>): void;
+  addRatios(value: number, index?: number): number;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): InterpolateParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: InterpolateParameters): InterpolateParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: InterpolateParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InterpolateParameters;
+  static deserializeBinaryFromReader(message: InterpolateParameters, reader: jspb.BinaryReader): InterpolateParameters;
+}
+
+export namespace InterpolateParameters {
+  export type AsObject = {
+    ratiosList: Array<number>,
+  }
+}
+
 export class Request extends jspb.Message {
   getEngineId(): string;
   setEngineId(value: string): void;
@@ -1261,6 +1283,11 @@ export class Request extends jspb.Message {
   getAsset(): AssetParameters | undefined;
   setAsset(value?: AssetParameters): void;
 
+  hasInterpolate(): boolean;
+  clearInterpolate(): void;
+  getInterpolate(): InterpolateParameters | undefined;
+  setInterpolate(value?: InterpolateParameters): void;
+
   hasConditioner(): boolean;
   clearConditioner(): void;
   getConditioner(): ConditionerParameters | undefined;
@@ -1286,6 +1313,7 @@ export namespace Request {
     image?: ImageParameters.AsObject,
     classifier?: ClassifierParameters.AsObject,
     asset?: AssetParameters.AsObject,
+    interpolate?: InterpolateParameters.AsObject,
     conditioner?: ConditionerParameters.AsObject,
   }
 
@@ -1294,6 +1322,7 @@ export namespace Request {
     IMAGE = 5,
     CLASSIFIER = 7,
     ASSET = 8,
+    INTERPOLATE = 9,
   }
 }
 
