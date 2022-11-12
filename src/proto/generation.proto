@@ -59,10 +59,15 @@ message Artifact {
   uint64 size = 13;               // Size of the artifact in bytes
 }
 
+enum WeightMethod {
+  TEXT_ENCODER = 0;
+  CROSS_ATTENTION = 1;
+}
+
 // A set of parameters for each individual Prompt.
 message PromptParameters {
   optional bool init = 1;
-  optional float weight = 2;
+  optional double weight = 2;
 }
 
 // A Prompt is a special type of Artifact that is used to generate an output.
@@ -309,6 +314,8 @@ message Request {
     AssetParameters asset = 8;
   }
   optional ConditionerParameters conditioner = 6;
+  optional WeightMethod weight_method = 9;
+  repeated Prompt uc_prompt = 10;
 }
 
 //

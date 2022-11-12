@@ -2,8 +2,8 @@ cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMT
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
-github.com/coreweave/tensorizer/tensors v0.0.0-20221030202250-3e471a7fc2da h1:EyZTaJGnutieomlxv4LQTuHAAsNPyiSz85MP3POkP84=
-github.com/coreweave/tensorizer/tensors v0.0.0-20221030202250-3e471a7fc2da/go.mod h1:SBsa3erqu4GCZbu2jeiMIE86eZ6Tx9fDmi/0BZpjHcU=
+github.com/coreweave/tensorizer/tensors v0.0.0-20221108135123-fdaed5d2ece4 h1:f5bq1Htt79XItOrsRxiHNHCe7fRcI6n8FMeCzzVNke8=
+github.com/coreweave/tensorizer/tensors v0.0.0-20221108135123-fdaed5d2ece4/go.mod h1:SBsa3erqu4GCZbu2jeiMIE86eZ6Tx9fDmi/0BZpjHcU=
 github.com/envoyproxy/go-control-plane v0.9.1-0.20191026205805-5f8ba28d4473/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/protoc-gen-validate v0.1.0/go.mod h1:iSmxcyjqTsJpI2R4NaDN7+kN2VEUnK/pcBlmesArF7c=
 github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b/go.mod h1:SBH7ygxi8pfUlaOkMMuAQtPIUF8ecWP5IEl/CR7VP2Q=
