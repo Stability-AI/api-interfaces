@@ -1756,7 +1756,7 @@ proto.gooseai.PromptParameters.deserializeBinaryFromReader = function(msg, reade
       msg.setInit(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readDouble());
+      var value = /** @type {number} */ (reader.readFloat());
       msg.setWeight(value);
       break;
     default:
@@ -1797,7 +1797,7 @@ proto.gooseai.PromptParameters.serializeBinaryToWriter = function(message, write
   }
   f = /** @type {number} */ (jspb.Message.getField(message, 2));
   if (f != null) {
-    writer.writeDouble(
+    writer.writeFloat(
       2,
       f
     );
@@ -1842,7 +1842,7 @@ proto.gooseai.PromptParameters.prototype.hasInit = function() {
 
 
 /**
- * optional double weight = 2;
+ * optional float weight = 2;
  * @return {number}
  */
 proto.gooseai.PromptParameters.prototype.getWeight = function() {

@@ -67,7 +67,7 @@ enum WeightMethod {
 // A set of parameters for each individual Prompt.
 message PromptParameters {
   optional bool init = 1;
-  optional double weight = 2;
+  optional float weight = 2;
 }
 
 // A Prompt is a special type of Artifact that is used to generate an output.
