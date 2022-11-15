@@ -908,6 +908,16 @@ export class Request extends jspb.Message {
   getConditioner(): ConditionerParameters | undefined;
   setConditioner(value?: ConditionerParameters): void;
 
+  hasWeightMethod(): boolean;
+  clearWeightMethod(): void;
+  getWeightMethod(): WeightMethodMap[keyof WeightMethodMap];
+  setWeightMethod(value: WeightMethodMap[keyof WeightMethodMap]): void;
+
+  clearUcPromptList(): void;
+  getUcPromptList(): Array<Prompt>;
+  setUcPromptList(value: Array<Prompt>): void;
+  addUcPrompt(value?: Prompt, index?: number): Prompt;
+
   getParamsCase(): Request.ParamsCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Request.AsObject;
@@ -929,6 +939,8 @@ export namespace Request {
     classifier?: ClassifierParameters.AsObject,
     asset?: AssetParameters.AsObject,
     conditioner?: ConditionerParameters.AsObject,
+    weightMethod: WeightMethodMap[keyof WeightMethodMap],
+    ucPromptList: Array<Prompt.AsObject>,
   }
 
   export enum ParamsCase {
@@ -1055,6 +1067,13 @@ export interface ArtifactTypeMap {
 }
 
 export const ArtifactType: ArtifactTypeMap;
+
+export interface WeightMethodMap {
+  TEXT_ENCODER: 0;
+  CROSS_ATTENTION: 1;
+}
+
+export const WeightMethod: WeightMethodMap;
 
 export interface DiffusionSamplerMap {
   SAMPLER_DDIM: 0;
