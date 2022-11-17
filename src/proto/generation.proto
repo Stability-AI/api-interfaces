@@ -294,12 +294,20 @@ message TransformDepthCalc {
   optional float blend_weight = 2; // blend factor between AdaBins (0.0) and MiDaS (1.0)
 }
 
+message TransformMatrix {
+  // [a, b, tx]   [x]
+  // [c, d, ty] . [y]
+  // [0, 0, 1 ]   [1]
+  repeated float data = 1 [packed=true]; // 3x3 affine or perspective matrix for 2D
+}
+
 message TransformWarp2d {
   BorderMode border_mode = 1; // extrapolation of border pixels
-  float translate_x = 4;      // horizontal translation in pixels
-  float translate_y = 5;      // vertical translation in pixels
-  float rotate = 2;           // rotation in degrees
-  float scale = 3;            // scale factor (>1 zooms in, <1 zooms out)
+  float translate_x = 4;  // horizontal translation in pixels
+  float translate_y = 5;  // vertical translation in pixels
+  float rotate = 2;       // rotation in degrees
+  float scale = 3;        // scale factor (>1 zooms in, <1 zooms out)  
+  optional TransformMatrix matrix = 6;  // 3x3 matrix
 }
 
 message TransformWarp3d {

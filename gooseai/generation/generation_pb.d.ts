@@ -760,6 +760,28 @@ export namespace ClassifierParameters {
   }
 }
 
+export class InterpolateParameters extends jspb.Message {
+  clearRatiosList(): void;
+  getRatiosList(): Array<number>;
+  setRatiosList(value: Array<number>): void;
+  addRatios(value: number, index?: number): number;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): InterpolateParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: InterpolateParameters): InterpolateParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: InterpolateParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InterpolateParameters;
+  static deserializeBinaryFromReader(message: InterpolateParameters, reader: jspb.BinaryReader): InterpolateParameters;
+}
+
+export namespace InterpolateParameters {
+  export type AsObject = {
+    ratiosList: Array<number>,
+  }
+}
+
 export class TransformAddNoise extends jspb.Message {
   getAmount(): number;
   setAmount(value: number): void;
@@ -894,6 +916,28 @@ export namespace TransformDepthCalc {
   }
 }
 
+export class TransformMatrix extends jspb.Message {
+  clearDataList(): void;
+  getDataList(): Array<number>;
+  setDataList(value: Array<number>): void;
+  addData(value: number, index?: number): number;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformMatrix.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformMatrix): TransformMatrix.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformMatrix, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformMatrix;
+  static deserializeBinaryFromReader(message: TransformMatrix, reader: jspb.BinaryReader): TransformMatrix;
+}
+
+export namespace TransformMatrix {
+  export type AsObject = {
+    dataList: Array<number>,
+  }
+}
+
 export class TransformWarp2d extends jspb.Message {
   getBorderMode(): BorderModeMap[keyof BorderModeMap];
   setBorderMode(value: BorderModeMap[keyof BorderModeMap]): void;
@@ -909,6 +953,11 @@ export class TransformWarp2d extends jspb.Message {
 
   getScale(): number;
   setScale(value: number): void;
+
+  hasMatrix(): boolean;
+  clearMatrix(): void;
+  getMatrix(): TransformMatrix | undefined;
+  setMatrix(value?: TransformMatrix): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TransformWarp2d.AsObject;
@@ -927,6 +976,7 @@ export namespace TransformWarp2d {
     translateY: number,
     rotate: number,
     scale: number,
+    matrix?: TransformMatrix.AsObject,
   }
 }
 
@@ -1228,28 +1278,6 @@ export namespace Answer {
     created: number,
     meta?: AnswerMeta.AsObject,
     artifactsList: Array<Artifact.AsObject>,
-  }
-}
-
-export class InterpolateParameters extends jspb.Message {
-  clearRatiosList(): void;
-  getRatiosList(): Array<number>;
-  setRatiosList(value: Array<number>): void;
-  addRatios(value: number, index?: number): number;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): InterpolateParameters.AsObject;
-  static toObject(includeInstance: boolean, msg: InterpolateParameters): InterpolateParameters.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: InterpolateParameters, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): InterpolateParameters;
-  static deserializeBinaryFromReader(message: InterpolateParameters, reader: jspb.BinaryReader): InterpolateParameters;
-}
-
-export namespace InterpolateParameters {
-  export type AsObject = {
-    ratiosList: Array<number>,
   }
 }
 
