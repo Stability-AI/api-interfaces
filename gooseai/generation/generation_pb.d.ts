@@ -766,6 +766,11 @@ export class InterpolateParameters extends jspb.Message {
   setRatiosList(value: Array<number>): void;
   addRatios(value: number, index?: number): number;
 
+  hasMode(): boolean;
+  clearMode(): void;
+  getMode(): InterpolateModeMap[keyof InterpolateModeMap];
+  setMode(value: InterpolateModeMap[keyof InterpolateModeMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): InterpolateParameters.AsObject;
   static toObject(includeInstance: boolean, msg: InterpolateParameters): InterpolateParameters.AsObject;
@@ -779,6 +784,7 @@ export class InterpolateParameters extends jspb.Message {
 export namespace InterpolateParameters {
   export type AsObject = {
     ratiosList: Array<number>,
+    mode: InterpolateModeMap[keyof InterpolateModeMap],
   }
 }
 
@@ -1528,6 +1534,15 @@ export interface ClassifierModeMap {
 }
 
 export const ClassifierMode: ClassifierModeMap;
+
+export interface InterpolateModeMap {
+  INTERPOLATE_LINEAR: 0;
+  INTERPOLATE_RIFE: 1;
+  INTERPOLATE_VAE_LINEAR: 2;
+  INTERPOLATE_VAE_SLERP: 3;
+}
+
+export const InterpolateMode: InterpolateModeMap;
 
 export interface BorderModeMap {
   BORDER_REFLECT: 0;

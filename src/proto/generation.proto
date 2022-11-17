@@ -245,10 +245,21 @@ message ClassifierParameters {
 }
 
 
-// Interpolation using intermediate flows computed from first two images and
-// applied at specified ratios to either those or the following images.
+//
+// Interpolation
+//
+
+enum InterpolateMode {
+  INTERPOLATE_LINEAR = 0;
+  INTERPOLATE_RIFE = 1;
+  INTERPOLATE_VAE_LINEAR = 2;
+  INTERPOLATE_VAE_SLERP = 3;
+}
+
+// Interpolation between two images applied at specified blend ratios
 message InterpolateParameters {
   repeated float ratios = 1;
+  optional InterpolateMode mode = 2;
 }
 
 
