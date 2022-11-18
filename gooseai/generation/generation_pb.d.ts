@@ -2,6 +2,7 @@
 // file: generation.proto
 
 import * as jspb from "google-protobuf";
+import * as tensors_pb from "./tensors_pb";
 
 export class Token extends jspb.Message {
   hasText(): boolean;
@@ -94,6 +95,11 @@ export class Artifact extends jspb.Message {
   getClassifier(): ClassifierParameters | undefined;
   setClassifier(value?: ClassifierParameters): void;
 
+  hasTensor(): boolean;
+  clearTensor(): void;
+  getTensor(): tensors_pb.Tensor | undefined;
+  setTensor(value?: tensors_pb.Tensor): void;
+
   getIndex(): number;
   setIndex(value: number): void;
 
@@ -130,6 +136,7 @@ export namespace Artifact {
     text: string,
     tokens?: Tokens.AsObject,
     classifier?: ClassifierParameters.AsObject,
+    tensor?: tensors_pb.Tensor.AsObject,
     index: number,
     finishReason: FinishReasonMap[keyof FinishReasonMap],
     seed: number,
@@ -143,6 +150,7 @@ export namespace Artifact {
     TEXT = 6,
     TOKENS = 7,
     CLASSIFIER = 11,
+    TENSOR = 14,
   }
 }
 
@@ -1471,6 +1479,8 @@ export interface ArtifactTypeMap {
   ARTIFACT_EMBEDDING: 5;
   ARTIFACT_CLASSIFICATIONS: 6;
   ARTIFACT_MASK: 7;
+  ARTIFACT_LATENT: 8;
+  ARTIFACT_TENSOR: 9;
 }
 
 export const ArtifactType: ArtifactTypeMap;
