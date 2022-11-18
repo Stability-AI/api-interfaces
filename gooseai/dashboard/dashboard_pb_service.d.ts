@@ -103,6 +103,42 @@ type DashboardServiceDeleteAccount = {
   readonly responseType: typeof dashboard_pb.User;
 };
 
+type DashboardServiceListOrganizationMembers = {
+  readonly methodName: string;
+  readonly service: typeof DashboardService;
+  readonly requestStream: false;
+  readonly responseStream: true;
+  readonly requestType: typeof dashboard_pb.ListOrganizationMembersRequest;
+  readonly responseType: typeof dashboard_pb.OrganizationMember;
+};
+
+type DashboardServiceRemoveOrganizationMember = {
+  readonly methodName: string;
+  readonly service: typeof DashboardService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof dashboard_pb.RemoveOrganizationMemberRequest;
+  readonly responseType: typeof dashboard_pb.RemoveOrganizationMemberResponse;
+};
+
+type DashboardServiceAddOrganizationMember = {
+  readonly methodName: string;
+  readonly service: typeof DashboardService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof dashboard_pb.AddOrganizationMemberRequest;
+  readonly responseType: typeof dashboard_pb.OrganizationMember;
+};
+
+type DashboardServiceUpdateOrganizationMember = {
+  readonly methodName: string;
+  readonly service: typeof DashboardService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof dashboard_pb.UpdateOrganizationMemberRequest;
+  readonly responseType: typeof dashboard_pb.OrganizationMember;
+};
+
 type DashboardServiceCreateCharge = {
   readonly methodName: string;
   readonly service: typeof DashboardService;
@@ -161,6 +197,10 @@ export class DashboardService {
   static readonly UpdateUserInfo: DashboardServiceUpdateUserInfo;
   static readonly CreatePasswordChangeTicket: DashboardServiceCreatePasswordChangeTicket;
   static readonly DeleteAccount: DashboardServiceDeleteAccount;
+  static readonly ListOrganizationMembers: DashboardServiceListOrganizationMembers;
+  static readonly RemoveOrganizationMember: DashboardServiceRemoveOrganizationMember;
+  static readonly AddOrganizationMember: DashboardServiceAddOrganizationMember;
+  static readonly UpdateOrganizationMember: DashboardServiceUpdateOrganizationMember;
   static readonly CreateCharge: DashboardServiceCreateCharge;
   static readonly GetCharges: DashboardServiceGetCharges;
   static readonly CreateAutoChargeIntent: DashboardServiceCreateAutoChargeIntent;
@@ -298,6 +338,34 @@ export class DashboardServiceClient {
   deleteAccount(
     requestMessage: dashboard_pb.EmptyRequest,
     callback: (error: ServiceError|null, responseMessage: dashboard_pb.User|null) => void
+  ): UnaryResponse;
+  listOrganizationMembers(requestMessage: dashboard_pb.ListOrganizationMembersRequest, metadata?: grpc.Metadata): ResponseStream<dashboard_pb.OrganizationMember>;
+  removeOrganizationMember(
+    requestMessage: dashboard_pb.RemoveOrganizationMemberRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: dashboard_pb.RemoveOrganizationMemberResponse|null) => void
+  ): UnaryResponse;
+  removeOrganizationMember(
+    requestMessage: dashboard_pb.RemoveOrganizationMemberRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_pb.RemoveOrganizationMemberResponse|null) => void
+  ): UnaryResponse;
+  addOrganizationMember(
+    requestMessage: dashboard_pb.AddOrganizationMemberRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: dashboard_pb.OrganizationMember|null) => void
+  ): UnaryResponse;
+  addOrganizationMember(
+    requestMessage: dashboard_pb.AddOrganizationMemberRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_pb.OrganizationMember|null) => void
+  ): UnaryResponse;
+  updateOrganizationMember(
+    requestMessage: dashboard_pb.UpdateOrganizationMemberRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: dashboard_pb.OrganizationMember|null) => void
+  ): UnaryResponse;
+  updateOrganizationMember(
+    requestMessage: dashboard_pb.UpdateOrganizationMemberRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_pb.OrganizationMember|null) => void
   ): UnaryResponse;
   createCharge(
     requestMessage: dashboard_pb.CreateChargeRequest,

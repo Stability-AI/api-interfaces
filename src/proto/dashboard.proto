@@ -171,6 +171,29 @@ message UserPasswordChangeTicket {
   string ticket = 1;
 }
 
+message ListOrganizationMembersRequest {
+  optional string org_id = 1; // ID of the organization
+}
+
+message RemoveOrganizationMemberRequest {
+  optional string org_id = 1; // ID of the organization
+  string user_id = 2;         // ID of the user
+}
+
+message RemoveOrganizationMemberResponse {}
+
+message AddOrganizationMemberRequest {
+  optional string org_id = 1; // ID of the organization
+  string user_id = 2;         // ID of the user
+  OrganizationRole role = 3;  // The role to assign the user
+}
+
+message UpdateOrganizationMemberRequest {
+  optional string org_id = 1;         // ID of the organization
+  string user_id = 2;                 // ID of the user
+  optional OrganizationRole role = 3; // The role to assign the user
+}
+
 service DashboardService {
   // Get info
   rpc GetMe (EmptyRequest) returns (User);
@@ -188,6 +211,12 @@ service DashboardService {
   rpc UpdateUserInfo (UpdateUserInfoRequest) returns (User);
   rpc CreatePasswordChangeTicket (EmptyRequest) returns (UserPasswordChangeTicket);
   rpc DeleteAccount (EmptyRequest) returns (User);
+
+  // Organization management
+  rpc ListOrganizationMembers (ListOrganizationMembersRequest) returns (stream OrganizationMember);
+  rpc RemoveOrganizationMember (RemoveOrganizationMemberRequest) returns (RemoveOrganizationMemberResponse);
+  rpc AddOrganizationMember (AddOrganizationMemberRequest) returns (OrganizationMember);
+  rpc UpdateOrganizationMember (UpdateOrganizationMemberRequest) returns (OrganizationMember);
 
   // Payment functions
   rpc CreateCharge (CreateChargeRequest) returns (Charge);

@@ -109,6 +109,42 @@ DashboardService.DeleteAccount = {
   responseType: dashboard_pb.User
 };
 
+DashboardService.ListOrganizationMembers = {
+  methodName: "ListOrganizationMembers",
+  service: DashboardService,
+  requestStream: false,
+  responseStream: true,
+  requestType: dashboard_pb.ListOrganizationMembersRequest,
+  responseType: dashboard_pb.OrganizationMember
+};
+
+DashboardService.RemoveOrganizationMember = {
+  methodName: "RemoveOrganizationMember",
+  service: DashboardService,
+  requestStream: false,
+  responseStream: false,
+  requestType: dashboard_pb.RemoveOrganizationMemberRequest,
+  responseType: dashboard_pb.RemoveOrganizationMemberResponse
+};
+
+DashboardService.AddOrganizationMember = {
+  methodName: "AddOrganizationMember",
+  service: DashboardService,
+  requestStream: false,
+  responseStream: false,
+  requestType: dashboard_pb.AddOrganizationMemberRequest,
+  responseType: dashboard_pb.OrganizationMember
+};
+
+DashboardService.UpdateOrganizationMember = {
+  methodName: "UpdateOrganizationMember",
+  service: DashboardService,
+  requestStream: false,
+  responseStream: false,
+  requestType: dashboard_pb.UpdateOrganizationMemberRequest,
+  responseType: dashboard_pb.OrganizationMember
+};
+
 DashboardService.CreateCharge = {
   methodName: "CreateCharge",
   service: DashboardService,
@@ -476,6 +512,138 @@ DashboardServiceClient.prototype.deleteAccount = function deleteAccount(requestM
     callback = arguments[1];
   }
   var client = grpc.unary(DashboardService.DeleteAccount, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DashboardServiceClient.prototype.listOrganizationMembers = function listOrganizationMembers(requestMessage, metadata) {
+  var listeners = {
+    data: [],
+    end: [],
+    status: []
+  };
+  var client = grpc.invoke(DashboardService.ListOrganizationMembers, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onMessage: function (responseMessage) {
+      listeners.data.forEach(function (handler) {
+        handler(responseMessage);
+      });
+    },
+    onEnd: function (status, statusMessage, trailers) {
+      listeners.status.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners.end.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners = null;
+    }
+  });
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    cancel: function () {
+      listeners = null;
+      client.close();
+    }
+  };
+};
+
+DashboardServiceClient.prototype.removeOrganizationMember = function removeOrganizationMember(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DashboardService.RemoveOrganizationMember, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DashboardServiceClient.prototype.addOrganizationMember = function addOrganizationMember(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DashboardService.AddOrganizationMember, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DashboardServiceClient.prototype.updateOrganizationMember = function updateOrganizationMember(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DashboardService.UpdateOrganizationMember, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

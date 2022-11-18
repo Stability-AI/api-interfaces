@@ -32,6 +32,11 @@ type DashboardServiceClient interface {
 	UpdateUserInfo(ctx context.Context, in *UpdateUserInfoRequest, opts ...grpc.CallOption) (*User, error)
 	CreatePasswordChangeTicket(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*UserPasswordChangeTicket, error)
 	DeleteAccount(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*User, error)
+	// Organization management
+	ListOrganizationMembers(ctx context.Context, in *ListOrganizationMembersRequest, opts ...grpc.CallOption) (DashboardService_ListOrganizationMembersClient, error)
+	RemoveOrganizationMember(ctx context.Context, in *RemoveOrganizationMemberRequest, opts ...grpc.CallOption) (*RemoveOrganizationMemberResponse, error)
+	AddOrganizationMember(ctx context.Context, in *AddOrganizationMemberRequest, opts ...grpc.CallOption) (*OrganizationMember, error)
+	UpdateOrganizationMember(ctx context.Context, in *UpdateOrganizationMemberRequest, opts ...grpc.CallOption) (*OrganizationMember, error)
 	// Payment functions
 	CreateCharge(ctx context.Context, in *CreateChargeRequest, opts ...grpc.CallOption) (*Charge, error)
 	GetCharges(ctx context.Context, in *GetChargesRequest, opts ...grpc.CallOption) (*Charges, error)
@@ -147,6 +152,65 @@ func (c *dashboardServiceClient) DeleteAccount(ctx context.Context, in *EmptyReq
 	return out, nil
 }
 
+func (c *dashboardServiceClient) ListOrganizationMembers(ctx context.Context, in *ListOrganizationMembersRequest, opts ...grpc.CallOption) (DashboardService_ListOrganizationMembersClient, error) {
+	stream, err := c.cc.NewStream(ctx, &DashboardService_ServiceDesc.Streams[0], "/gooseai.DashboardService/ListOrganizationMembers", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &dashboardServiceListOrganizationMembersClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type DashboardService_ListOrganizationMembersClient interface {
+	Recv() (*OrganizationMember, error)
+	grpc.ClientStream
+}
+
+type dashboardServiceListOrganizationMembersClient struct {
+	grpc.ClientStream
+}
+
+func (x *dashboardServiceListOrganizationMembersClient) Recv() (*OrganizationMember, error) {
+	m := new(OrganizationMember)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *dashboardServiceClient) RemoveOrganizationMember(ctx context.Context, in *RemoveOrganizationMemberRequest, opts ...grpc.CallOption) (*RemoveOrganizationMemberResponse, error) {
+	out := new(RemoveOrganizationMemberResponse)
+	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/RemoveOrganizationMember", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dashboardServiceClient) AddOrganizationMember(ctx context.Context, in *AddOrganizationMemberRequest, opts ...grpc.CallOption) (*OrganizationMember, error) {
+	out := new(OrganizationMember)
+	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/AddOrganizationMember", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dashboardServiceClient) UpdateOrganizationMember(ctx context.Context, in *UpdateOrganizationMemberRequest, opts ...grpc.CallOption) (*OrganizationMember, error) {
+	out := new(OrganizationMember)
+	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/UpdateOrganizationMember", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dashboardServiceClient) CreateCharge(ctx context.Context, in *CreateChargeRequest, opts ...grpc.CallOption) (*Charge, error) {
 	out := new(Charge)
 	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/CreateCharge", in, out, opts...)
@@ -210,6 +274,11 @@ type DashboardServiceServer interface {
 	UpdateUserInfo(context.Context, *UpdateUserInfoRequest) (*User, error)
 	CreatePasswordChangeTicket(context.Context, *EmptyRequest) (*UserPasswordChangeTicket, error)
 	DeleteAccount(context.Context, *EmptyRequest) (*User, error)
+	// Organization management
+	ListOrganizationMembers(*ListOrganizationMembersRequest, DashboardService_ListOrganizationMembersServer) error
+	RemoveOrganizationMember(context.Context, *RemoveOrganizationMemberRequest) (*RemoveOrganizationMemberResponse, error)
+	AddOrganizationMember(context.Context, *AddOrganizationMemberRequest) (*OrganizationMember, error)
+	UpdateOrganizationMember(context.Context, *UpdateOrganizationMemberRequest) (*OrganizationMember, error)
 	// Payment functions
 	CreateCharge(context.Context, *CreateChargeRequest) (*Charge, error)
 	GetCharges(context.Context, *GetChargesRequest) (*Charges, error)
@@ -255,6 +324,18 @@ func (UnimplementedDashboardServiceServer) CreatePasswordChangeTicket(context.Co
 }
 func (UnimplementedDashboardServiceServer) DeleteAccount(context.Context, *EmptyRequest) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteAccount not implemented")
+}
+func (UnimplementedDashboardServiceServer) ListOrganizationMembers(*ListOrganizationMembersRequest, DashboardService_ListOrganizationMembersServer) error {
+	return status.Errorf(codes.Unimplemented, "method ListOrganizationMembers not implemented")
+}
+func (UnimplementedDashboardServiceServer) RemoveOrganizationMember(context.Context, *RemoveOrganizationMemberRequest) (*RemoveOrganizationMemberResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveOrganizationMember not implemented")
+}
+func (UnimplementedDashboardServiceServer) AddOrganizationMember(context.Context, *AddOrganizationMemberRequest) (*OrganizationMember, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddOrganizationMember not implemented")
+}
+func (UnimplementedDashboardServiceServer) UpdateOrganizationMember(context.Context, *UpdateOrganizationMemberRequest) (*OrganizationMember, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganizationMember not implemented")
 }
 func (UnimplementedDashboardServiceServer) CreateCharge(context.Context, *CreateChargeRequest) (*Charge, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCharge not implemented")
@@ -482,6 +563,81 @@ func _DashboardService_DeleteAccount_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DashboardService_ListOrganizationMembers_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ListOrganizationMembersRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(DashboardServiceServer).ListOrganizationMembers(m, &dashboardServiceListOrganizationMembersServer{stream})
+}
+
+type DashboardService_ListOrganizationMembersServer interface {
+	Send(*OrganizationMember) error
+	grpc.ServerStream
+}
+
+type dashboardServiceListOrganizationMembersServer struct {
+	grpc.ServerStream
+}
+
+func (x *dashboardServiceListOrganizationMembersServer) Send(m *OrganizationMember) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _DashboardService_RemoveOrganizationMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveOrganizationMemberRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DashboardServiceServer).RemoveOrganizationMember(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.DashboardService/RemoveOrganizationMember",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DashboardServiceServer).RemoveOrganizationMember(ctx, req.(*RemoveOrganizationMemberRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DashboardService_AddOrganizationMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddOrganizationMemberRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DashboardServiceServer).AddOrganizationMember(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.DashboardService/AddOrganizationMember",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DashboardServiceServer).AddOrganizationMember(ctx, req.(*AddOrganizationMemberRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DashboardService_UpdateOrganizationMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrganizationMemberRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DashboardServiceServer).UpdateOrganizationMember(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.DashboardService/UpdateOrganizationMember",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DashboardServiceServer).UpdateOrganizationMember(ctx, req.(*UpdateOrganizationMemberRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DashboardService_CreateCharge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateChargeRequest)
 	if err := dec(in); err != nil {
@@ -624,6 +780,18 @@ var DashboardService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DashboardService_DeleteAccount_Handler,
 		},
 		{
+			MethodName: "RemoveOrganizationMember",
+			Handler:    _DashboardService_RemoveOrganizationMember_Handler,
+		},
+		{
+			MethodName: "AddOrganizationMember",
+			Handler:    _DashboardService_AddOrganizationMember_Handler,
+		},
+		{
+			MethodName: "UpdateOrganizationMember",
+			Handler:    _DashboardService_UpdateOrganizationMember_Handler,
+		},
+		{
 			MethodName: "CreateCharge",
 			Handler:    _DashboardService_CreateCharge_Handler,
 		},
@@ -644,6 +812,12 @@ var DashboardService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DashboardService_GetAutoChargeIntent_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "ListOrganizationMembers",
+			Handler:       _DashboardService_ListOrganizationMembers_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "dashboard.proto",
 }
