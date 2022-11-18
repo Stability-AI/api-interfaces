@@ -59,6 +59,11 @@ message Artifact {
   uint64 size = 13;               // Size of the artifact in bytes
 }
 
+enum WeightMethod {
+  TEXT_ENCODER = 0;
+  CROSS_ATTENTION = 1;
+}
+
 // A set of parameters for each individual Prompt.
 message PromptParameters {
   optional bool init = 1;
@@ -100,7 +105,7 @@ message SamplerParameters {
   optional uint64 latent_channels = 3;
   optional uint64 downsampling_factor = 4;
   optional float cfg_scale = 5;
-  optional float init_noise_scale = 6;
+  optional float init_noise_scale = 6; // defaults to 0.99
 }
 
 // Unused, but reserved for future use. Adjustments to the latents after
@@ -421,9 +426,11 @@ message Request {
     ImageParameters image = 5;
     ClassifierParameters classifier = 7;
     AssetParameters asset = 8;
-    InterpolateParameters interpolate = 9;
+    InterpolateParameters interpolate = 11;
   }
   optional ConditionerParameters conditioner = 6;
+  optional WeightMethod weight_method = 9;
+  repeated Prompt uc_prompt = 10;
 }
 
 //
