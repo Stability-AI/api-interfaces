@@ -1,14 +1,13 @@
 {
   "name": "api-interfaces",
-  "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {},
-  "keywords": [],
-  "author": "",
-  "license": "",
+  "private": true,
+  "scripts": {
+    "generate": "zx ./scripts/clean-and-generate.mjs"
+  },
   "dependencies": {
     "grpc-tools": "^1.11.2",
-    "ts-protoc-gen": "^0.15.0"
+    "toml": "^3.0.0",
+    "ts-protoc-gen": "^0.15.0",
+    "zx": "^7.0.8"
   }
 }
