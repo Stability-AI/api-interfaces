@@ -18,7 +18,7 @@ include(src/cmake/FindgRPC.cmake)
 
 find_package(PkgConfig REQUIRED)
 find_package(Protobuf REQUIRED)
-find_package(gRPC CONFIG REQUIRED)
+#find_package(gRPC CONFIG REQUIRED)
 set(PROTO_PATH "${PROJECT_SOURCE_DIR}/src/proto")
 set(GENERATED_PROTOBUF_PATH "${PROJECT_SOURCE_DIR}/gooseai")
 file(MAKE_DIRECTORY ${GENERATED_PROTOBUF_PATH})
@@ -245,7 +245,6 @@ add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/dashboard.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/generation.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/engines.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/project.proto)
-#add_protobufs(${CMAKE_SOURCE_DIR}/src/tensorizer/proto/tensors.proto)
 generate_interfaces()
 
 add_custom_command(
