@@ -1942,7 +1942,7 @@ type ImageParameters struct {
 	Steps          *uint64          `protobuf:"varint,5,opt,name=steps,proto3,oneof" json:"steps,omitempty"`
 	Transform      *TransformType   `protobuf:"bytes,6,opt,name=transform,proto3,oneof" json:"transform,omitempty"`
 	Parameters     []*StepParameter `protobuf:"bytes,7,rep,name=parameters,proto3" json:"parameters,omitempty"`
-	MaskedAreaInit *MaskedAreaInit  `protobuf:"varint,8,opt,name=masked_area_init,json=maskedAreaInit,proto3,enum=gooseai.MaskedAreaInit,oneof" json:"masked_area_init,omitempty"`
+	MaskedAreaInit *MaskedAreaInit  `protobuf:"varint,8,opt,name=masked_area_init,json=maskedAreaInit,proto3,enum=gooseai.MaskedAreaInit,oneof" json:"masked_area_init,omitempty"` // defaults to MASKED_AREA_INIT_ZERO
 }
 
 func (x *ImageParameters) Reset() {

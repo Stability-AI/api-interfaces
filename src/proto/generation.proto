@@ -220,7 +220,7 @@ message ImageParameters {
   optional uint64 steps = 5;
   optional TransformType transform = 6;
   repeated StepParameter parameters = 7;
-  optional MaskedAreaInit masked_area_init = 8;  
+  optional MaskedAreaInit masked_area_init = 8; // defaults to MASKED_AREA_INIT_ZERO 
 }
 
 enum Action {
