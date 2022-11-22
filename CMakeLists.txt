@@ -18,9 +18,8 @@ include(src/cmake/FindgRPC.cmake)
 
 find_package(PkgConfig REQUIRED)
 find_package(Protobuf REQUIRED)
-#find_package(gRPC CONFIG REQUIRED)
+find_package(gRPC CONFIG REQUIRED)
 set(PROTO_PATH "${PROJECT_SOURCE_DIR}/src/proto")
-set(PROTO_PATH2 "${PROJECT_SOURCE_DIR}/src/tensorizer/proto")
 set(GENERATED_PROTOBUF_PATH "${PROJECT_SOURCE_DIR}/gooseai")
 file(MAKE_DIRECTORY ${GENERATED_PROTOBUF_PATH})
 
@@ -28,7 +27,7 @@ file(MAKE_DIRECTORY ${GENERATED_PROTOBUF_PATH})
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
 set(PYBUILD_PATH "${PROJECT_BINARY_DIR}/pybuild")
-execute_process(COMMAND python3.9 -m venv ${PYBUILD_PATH}
+execute_process(COMMAND python3 -m venv ${PYBUILD_PATH}
         RESULT_VARIABLE EXIT_CODE
         OUTPUT_QUIET)
 if (NOT ${EXIT_CODE} EQUAL 0)
@@ -189,7 +188,6 @@ macro(_generate_interface LANG INTERFACE_FILE)
             COMMAND ${CMD_EXEC}
             ARGS ${${LANG}_args}
             ARGS "--proto_path=${PROTO_PATH}"
-            ARGS "--proto_path=${PROTO_PATH2}"
             ARGS "--experimental_allow_proto3_optional"
             ARGS ${${LANG}_plugin}
             ARGS "${${LANG}_output}${${LANG}_output_dir}/${_PROTOBUF_SHORT}"
@@ -247,6 +245,7 @@ add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/dashboard.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/generation.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/engines.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/project.proto)
+#add_protobufs(${CMAKE_SOURCE_DIR}/src/tensorizer/proto/tensors.proto)
 generate_interfaces()
 
 add_custom_command(
@@ -256,6 +255,22 @@ add_custom_command(
         COMMAND GOPROXY=direct go mod init github.com/${PROJECT_REF}/gooseai
         COMMAND go mod tidy
         DEPENDS ${GENERATED_PROTOBUF_FILES_golang_grpc})
+
+add_custom_command(
+        OUTPUT ${PROJECT_SOURCE_DIR}/gooseai/generation/tensorizer/proto/tensors_pb.d.ts
+        WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}/gooseai"
+        COMMAND mkdir -p ./generation/tensorizer/proto/
+        COMMAND cp "${PROTO_PATH}/tensorizer/tensors/tensors_pb.d.ts" ./generation/tensorizer/proto/
+        DEPENDS "${PROTO_PATH}/tensorizer/tensors/tensors_pb.d.ts"
+)
+
+add_custom_command(
+        OUTPUT ${PROJECT_SOURCE_DIR}/gooseai/generation/tensorizer/proto/tensors_pb.js
+        WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}/gooseai"
+        COMMAND mkdir -p ./generation/tensorizer/proto/
+        COMMAND cp "${PROTO_PATH}/tensorizer/tensors/tensors_pb.js" ./generation/tensorizer/proto/
+        DEPENDS "${PROTO_PATH}/tensorizer/tensors/tensors_pb.js"
+)
 
 add_custom_target(
         generated ALL
@@ -269,4 +284,6 @@ add_custom_target(
         ${GENERATED_PROTOBUF_FILES_typescript_web}
         ${GENERATED_PROTOBUF_FILES_typescript_node}
         ${PROJECT_SOURCE_DIR}/gooseai/go.mod
+        ${PROJECT_SOURCE_DIR}/gooseai/generation/tensorizer/proto/tensors_pb.d.ts
+        ${PROJECT_SOURCE_DIR}/gooseai/generation/tensorizer/proto/tensors_pb.js
 )
