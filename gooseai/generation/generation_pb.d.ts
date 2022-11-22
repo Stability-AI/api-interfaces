@@ -2,7 +2,7 @@
 // file: generation.proto
 
 import * as jspb from "google-protobuf";
-import * as tensors_pb from "./tensors_pb";
+import * as tensorizer_proto_tensors_pb from "./tensorizer/proto/tensors_pb";
 
 export class Token extends jspb.Message {
   hasText(): boolean;
@@ -97,8 +97,8 @@ export class Artifact extends jspb.Message {
 
   hasTensor(): boolean;
   clearTensor(): void;
-  getTensor(): tensors_pb.Tensor | undefined;
-  setTensor(value?: tensors_pb.Tensor): void;
+  getTensor(): tensorizer_proto_tensors_pb.Tensor | undefined;
+  setTensor(value?: tensorizer_proto_tensors_pb.Tensor): void;
 
   getIndex(): number;
   setIndex(value: number): void;
@@ -136,7 +136,7 @@ export namespace Artifact {
     text: string,
     tokens?: Tokens.AsObject,
     classifier?: ClassifierParameters.AsObject,
-    tensor?: tensors_pb.Tensor.AsObject,
+    tensor?: tensorizer_proto_tensors_pb.Tensor.AsObject,
     index: number,
     finishReason: FinishReasonMap[keyof FinishReasonMap],
     seed: number,
