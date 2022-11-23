@@ -1,7 +1,7 @@
 syntax = 'proto3';
 package gooseai;
 option go_package = "./;generation";
-import "tensorizer/proto/tensors.proto";
+import "tensors.proto";
 
 enum FinishReason {
   NULL = 0;

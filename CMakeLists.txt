@@ -20,6 +20,7 @@ find_package(PkgConfig REQUIRED)
 find_package(Protobuf REQUIRED)
 #find_package(gRPC CONFIG REQUIRED)
 set(PROTO_PATH "${PROJECT_SOURCE_DIR}/src/proto")
+set(TENSORIZER_PROTO_PATH "${PROJECT_SOURCE_DIR}/src/tensorizer/proto")
 set(GENERATED_PROTOBUF_PATH "${PROJECT_SOURCE_DIR}/gooseai")
 file(MAKE_DIRECTORY ${GENERATED_PROTOBUF_PATH})
 
@@ -188,6 +189,7 @@ macro(_generate_interface LANG INTERFACE_FILE)
             COMMAND ${CMD_EXEC}
             ARGS ${${LANG}_args}
             ARGS "--proto_path=${PROTO_PATH}"
+            ARGS "--proto_path=${TENSORIZER_PROTO_PATH}"
             ARGS "--experimental_allow_proto3_optional"
             ARGS ${${LANG}_plugin}
             ARGS "${${LANG}_output}${${LANG}_output_dir}/${_PROTOBUF_SHORT}"
@@ -274,9 +276,9 @@ macro(copy_files FILES SRC DEST)
     endforeach()
 endmacro()
 
-set(TENSORIZER_FILES "tensors_pb.d.ts;tensors_pb.js;tensors_pb2.py;__init__.py")
-set(TENSORIZER_SRC "${PROTO_PATH}/tensorizer/tensors")
-set(TENSORIZER_DEST "${PROJECT_SOURCE_DIR}/gooseai/generation/tensorizer/proto")
+set(TENSORIZER_FILES "tensors_pb.d.ts;tensors_pb.js;tensors_pb2.py")
+set(TENSORIZER_SRC "${PROJECT_SOURCE_DIR}/src/tensorizer/tensors")
+set(TENSORIZER_DEST "${PROJECT_SOURCE_DIR}/gooseai/generation")
 
 set(OUTPUT_FILES "")
 copy_files("${TENSORIZER_FILES}" "${TENSORIZER_SRC}" "${TENSORIZER_DEST}")

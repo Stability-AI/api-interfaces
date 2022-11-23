@@ -97,3 +97,10 @@ to your project).
 To use them make sure they are in a location that can be found by your typescript/javascript files.
 
 *NOTE: Typescript requires both the typescript and javascript files to be available.*
+
+### Other Languages / Custom Build
+
+If not using the CMake defined builds to generate make sure when building from the source proto 
+files that the following proto include paths are set:
+- `src/proto`
+- `src/tensorizer/proto`

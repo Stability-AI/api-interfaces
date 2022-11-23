@@ -17,4 +17,4 @@ cmake/*
 node_modules
 .idea
 
-build/
+pybuild/
