@@ -59,6 +59,12 @@ message Artifact {
   uint64 size = 13;               // Size of the artifact in bytes
 }
 
+enum MaskedAreaInit {
+  MASKED_AREA_INIT_ZERO = 0;
+  MASKED_AREA_INIT_RANDOM = 1;
+  MASKED_AREA_INIT_ORIGINAL = 2;
+}
+
 enum WeightMethod {
   TEXT_ENCODER = 0;
   CROSS_ATTENTION = 1;
@@ -216,6 +222,7 @@ message ImageParameters {
   optional uint64 steps = 5;
   optional TransformType transform = 6;
   repeated StepParameter parameters = 7;
+  optional MaskedAreaInit masked_area_init = 8; // defaults to MASKED_AREA_INIT_ZERO 
 }
 
 enum Action {
