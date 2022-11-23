@@ -255,21 +255,31 @@ add_custom_command(
         COMMAND go mod tidy
         DEPENDS ${GENERATED_PROTOBUF_FILES_golang_grpc})
 
-add_custom_command(
-        OUTPUT ${PROJECT_SOURCE_DIR}/gooseai/generation/tensorizer/proto/tensors_pb.d.ts
-        WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}/gooseai"
-        COMMAND mkdir -p ./generation/tensorizer/proto/
-        COMMAND cp "${PROTO_PATH}/tensorizer/tensors/tensors_pb.d.ts" ./generation/tensorizer/proto/
-        DEPENDS "${PROTO_PATH}/tensorizer/tensors/tensors_pb.d.ts"
-)
+# Tensorizer files
+macro(copy_files FILES SRC DEST)
+    set(DEPENDS_FILES "")
+    foreach(_file ${FILES})
+        list(APPEND OUTPUT_FILES "${DEST}/${_file}")
+        add_custom_command(
+            OUTPUT "${DEST}/${_file}"
 
-add_custom_command(
-        OUTPUT ${PROJECT_SOURCE_DIR}/gooseai/generation/tensorizer/proto/tensors_pb.js
-        WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}/gooseai"
-        COMMAND mkdir -p ./generation/tensorizer/proto/
-        COMMAND cp "${PROTO_PATH}/tensorizer/tensors/tensors_pb.js" ./generation/tensorizer/proto/
-        DEPENDS "${PROTO_PATH}/tensorizer/tensors/tensors_pb.js"
-)
+            COMMAND "mkdir"
+            ARGS "-p"
+            ARGS "${DEST}"
+
+            COMMAND cp
+            ARGS "${SRC}/${_file}"
+            ARGS "${DEST}"
+            DEPENDS "${SRC}/${_file}")
+    endforeach()
+endmacro()
+
+set(TENSORIZER_FILES "tensors_pb.d.ts;tensors_pb.js;tensors_pb2.py;__init__.py")
+set(TENSORIZER_SRC "${PROTO_PATH}/tensorizer/tensors")
+set(TENSORIZER_DEST "${PROJECT_SOURCE_DIR}/gooseai/generation/tensorizer/proto")
+
+set(OUTPUT_FILES "")
+copy_files("${TENSORIZER_FILES}" "${TENSORIZER_SRC}" "${TENSORIZER_DEST}")
 
 add_custom_target(
         generated ALL
@@ -283,6 +293,5 @@ add_custom_target(
         ${GENERATED_PROTOBUF_FILES_typescript_web}
         ${GENERATED_PROTOBUF_FILES_typescript_node}
         ${PROJECT_SOURCE_DIR}/gooseai/go.mod
-        ${PROJECT_SOURCE_DIR}/gooseai/generation/tensorizer/proto/tensors_pb.d.ts
-        ${PROJECT_SOURCE_DIR}/gooseai/generation/tensorizer/proto/tensors_pb.js
+        ${OUTPUT_FILES}
 )
