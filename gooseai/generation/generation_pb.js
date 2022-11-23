@@ -21,8 +21,8 @@ var global = (function() {
   return Function('return this')();
 }.call(null));
 
-var tensorizer_proto_tensors_pb = require('./tensorizer/proto/tensors_pb.js');
-goog.object.extend(proto, tensorizer_proto_tensors_pb);
+var tensors_pb = require('./tensors_pb.js');
+goog.object.extend(proto, tensors_pb);
 goog.exportSymbol('proto.gooseai.Action', null, global);
 goog.exportSymbol('proto.gooseai.Answer', null, global);
 goog.exportSymbol('proto.gooseai.AnswerMeta', null, global);
@@ -1067,7 +1067,7 @@ proto.gooseai.Artifact.toObject = function(includeInstance, msg) {
     text: jspb.Message.getFieldWithDefault(msg, 6, ""),
     tokens: (f = msg.getTokens()) && proto.gooseai.Tokens.toObject(includeInstance, f),
     classifier: (f = msg.getClassifier()) && proto.gooseai.ClassifierParameters.toObject(includeInstance, f),
-    tensor: (f = msg.getTensor()) && tensorizer_proto_tensors_pb.Tensor.toObject(includeInstance, f),
+    tensor: (f = msg.getTensor()) && tensors_pb.Tensor.toObject(includeInstance, f),
     index: jspb.Message.getFieldWithDefault(msg, 8, 0),
     finishReason: jspb.Message.getFieldWithDefault(msg, 9, 0),
     seed: jspb.Message.getFieldWithDefault(msg, 10, 0),
@@ -1144,8 +1144,8 @@ proto.gooseai.Artifact.deserializeBinaryFromReader = function(msg, reader) {
       msg.setClassifier(value);
       break;
     case 14:
-      var value = new tensorizer_proto_tensors_pb.Tensor;
-      reader.readMessage(value,tensorizer_proto_tensors_pb.Tensor.deserializeBinaryFromReader);
+      var value = new tensors_pb.Tensor;
+      reader.readMessage(value,tensors_pb.Tensor.deserializeBinaryFromReader);
       msg.setTensor(value);
       break;
     case 8:
@@ -1260,7 +1260,7 @@ proto.gooseai.Artifact.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       14,
       f,
-      tensorizer_proto_tensors_pb.Tensor.serializeBinaryToWriter
+      tensors_pb.Tensor.serializeBinaryToWriter
     );
   }
   f = message.getIndex();
@@ -1567,7 +1567,7 @@ proto.gooseai.Artifact.prototype.hasClassifier = function() {
  */
 proto.gooseai.Artifact.prototype.getTensor = function() {
   return /** @type{?proto.tensors.Tensor} */ (
-    jspb.Message.getWrapperField(this, tensorizer_proto_tensors_pb.Tensor, 14));
+    jspb.Message.getWrapperField(this, tensors_pb.Tensor, 14));
 };
 
 
