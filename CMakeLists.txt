@@ -20,7 +20,6 @@ find_package(PkgConfig REQUIRED)
 find_package(Protobuf REQUIRED)
 #find_package(gRPC CONFIG REQUIRED)
 set(PROTO_PATH "${PROJECT_SOURCE_DIR}/src/proto")
-set(PROTO_PATH2 "${PROJECT_SOURCE_DIR}/src/tensorizer/proto")
 set(GENERATED_PROTOBUF_PATH "${PROJECT_SOURCE_DIR}/gooseai")
 file(MAKE_DIRECTORY ${GENERATED_PROTOBUF_PATH})
 
@@ -28,7 +27,7 @@ file(MAKE_DIRECTORY ${GENERATED_PROTOBUF_PATH})
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
 set(PYBUILD_PATH "${PROJECT_BINARY_DIR}/pybuild")
-execute_process(COMMAND python3.9 -m venv ${PYBUILD_PATH}
+execute_process(COMMAND python3 -m venv ${PYBUILD_PATH}
         RESULT_VARIABLE EXIT_CODE
         OUTPUT_QUIET)
 if (NOT ${EXIT_CODE} EQUAL 0)
@@ -189,7 +188,6 @@ macro(_generate_interface LANG INTERFACE_FILE)
             COMMAND ${CMD_EXEC}
             ARGS ${${LANG}_args}
             ARGS "--proto_path=${PROTO_PATH}"
-            ARGS "--proto_path=${PROTO_PATH2}"
             ARGS "--experimental_allow_proto3_optional"
             ARGS ${${LANG}_plugin}
             ARGS "${${LANG}_output}${${LANG}_output_dir}/${_PROTOBUF_SHORT}"
@@ -257,6 +255,32 @@ add_custom_command(
         COMMAND go mod tidy
         DEPENDS ${GENERATED_PROTOBUF_FILES_golang_grpc})
 
+# Tensorizer files
+macro(copy_files FILES SRC DEST)
+    set(DEPENDS_FILES "")
+    foreach(_file ${FILES})
+        list(APPEND OUTPUT_FILES "${DEST}/${_file}")
+        add_custom_command(
+            OUTPUT "${DEST}/${_file}"
+
+            COMMAND "mkdir"
+            ARGS "-p"
+            ARGS "${DEST}"
+
+            COMMAND cp
+            ARGS "${SRC}/${_file}"
+            ARGS "${DEST}"
+            DEPENDS "${SRC}/${_file}")
+    endforeach()
+endmacro()
+
+set(TENSORIZER_FILES "tensors_pb.d.ts;tensors_pb.js;tensors_pb2.py;__init__.py")
+set(TENSORIZER_SRC "${PROTO_PATH}/tensorizer/tensors")
+set(TENSORIZER_DEST "${PROJECT_SOURCE_DIR}/gooseai/generation/tensorizer/proto")
+
+set(OUTPUT_FILES "")
+copy_files("${TENSORIZER_FILES}" "${TENSORIZER_SRC}" "${TENSORIZER_DEST}")
+
 add_custom_target(
         generated ALL
         DEPENDS
@@ -269,4 +293,5 @@ add_custom_target(
         ${GENERATED_PROTOBUF_FILES_typescript_web}
         ${GENERATED_PROTOBUF_FILES_typescript_node}
         ${PROJECT_SOURCE_DIR}/gooseai/go.mod
+        ${OUTPUT_FILES}
 )
