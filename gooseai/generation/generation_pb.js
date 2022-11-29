@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global = (function() {
+  if (this) { return this; }
+  if (typeof window !== 'undefined') { return window; }
+  if (typeof global !== 'undefined') { return global; }
+  if (typeof self !== 'undefined') { return self; }
+  return Function('return this')();
+}.call(null));
 
 var tensors_pb = require('./tensors_pb.js');
 goog.object.extend(proto, tensors_pb);
@@ -42,6 +48,8 @@ goog.exportSymbol('proto.gooseai.GuidanceParameters', null, global);
 goog.exportSymbol('proto.gooseai.GuidancePreset', null, global);
 goog.exportSymbol('proto.gooseai.GuidanceScheduleParameters', null, global);
 goog.exportSymbol('proto.gooseai.ImageParameters', null, global);
+goog.exportSymbol('proto.gooseai.InterpolateMode', null, global);
+goog.exportSymbol('proto.gooseai.InterpolateParameters', null, global);
 goog.exportSymbol('proto.gooseai.MaskedAreaInit', null, global);
 goog.exportSymbol('proto.gooseai.Model', null, global);
 goog.exportSymbol('proto.gooseai.ModelArchitecture', null, global);
@@ -10259,7 +10267,7 @@ proto.gooseai.Request.repeatedFields_ = [4,10];
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.gooseai.Request.oneofGroups_ = [[5,7,8,9]];
+proto.gooseai.Request.oneofGroups_ = [[5,7,8,11]];
 
 /**
  * @enum {number}
@@ -10269,7 +10277,7 @@ proto.gooseai.Request.ParamsCase = {
   IMAGE: 5,
   CLASSIFIER: 7,
   ASSET: 8,
-  INTERPOLATE: 9
+  INTERPOLATE: 11
 };
 
 /**
@@ -10318,6 +10326,7 @@ proto.gooseai.Request.toObject = function(includeInstance, msg) {
     image: (f = msg.getImage()) && proto.gooseai.ImageParameters.toObject(includeInstance, f),
     classifier: (f = msg.getClassifier()) && proto.gooseai.ClassifierParameters.toObject(includeInstance, f),
     asset: (f = msg.getAsset()) && proto.gooseai.AssetParameters.toObject(includeInstance, f),
+    interpolate: (f = msg.getInterpolate()) && proto.gooseai.InterpolateParameters.toObject(includeInstance, f),
     conditioner: (f = msg.getConditioner()) && proto.gooseai.ConditionerParameters.toObject(includeInstance, f),
     weightMethod: jspb.Message.getFieldWithDefault(msg, 9, 0),
     ucPromptList: jspb.Message.toObjectList(msg.getUcPromptList(),
@@ -10390,7 +10399,7 @@ proto.gooseai.Request.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,proto.gooseai.AssetParameters.deserializeBinaryFromReader);
       msg.setAsset(value);
       break;
-    case 9:
+    case 11:
       var value = new proto.gooseai.InterpolateParameters;
       reader.readMessage(value,proto.gooseai.InterpolateParameters.deserializeBinaryFromReader);
       msg.setInterpolate(value);
@@ -10494,7 +10503,7 @@ proto.gooseai.Request.serializeBinaryToWriter = function(message, writer) {
   f = message.getInterpolate();
   if (f != null) {
     writer.writeMessage(
-      9,
+      11,
       f,
       proto.gooseai.InterpolateParameters.serializeBinaryToWriter
     );
@@ -10729,12 +10738,12 @@ proto.gooseai.Request.prototype.hasAsset = function() {
 
 
 /**
- * optional InterpolateParameters interpolate = 9;
+ * optional InterpolateParameters interpolate = 11;
  * @return {?proto.gooseai.InterpolateParameters}
  */
 proto.gooseai.Request.prototype.getInterpolate = function() {
   return /** @type{?proto.gooseai.InterpolateParameters} */ (
-    jspb.Message.getWrapperField(this, proto.gooseai.InterpolateParameters, 9));
+    jspb.Message.getWrapperField(this, proto.gooseai.InterpolateParameters, 11));
 };
 
 
@@ -10743,7 +10752,7 @@ proto.gooseai.Request.prototype.getInterpolate = function() {
  * @return {!proto.gooseai.Request} returns this
 */
 proto.gooseai.Request.prototype.setInterpolate = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 9, proto.gooseai.Request.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 11, proto.gooseai.Request.oneofGroups_[0], value);
 };
 
 
@@ -10761,7 +10770,7 @@ proto.gooseai.Request.prototype.clearInterpolate = function() {
  * @return {boolean}
  */
 proto.gooseai.Request.prototype.hasInterpolate = function() {
-  return jspb.Message.getField(this, 9) != null;
+  return jspb.Message.getField(this, 11) != null;
 };
 
 
@@ -11619,7 +11628,9 @@ proto.gooseai.DiffusionSampler = {
   SAMPLER_K_HEUN: 4,
   SAMPLER_K_DPM_2: 5,
   SAMPLER_K_DPM_2_ANCESTRAL: 6,
-  SAMPLER_K_LMS: 7
+  SAMPLER_K_LMS: 7,
+  SAMPLER_K_DPMPP_2S_ANCESTRAL: 8,
+  SAMPLER_K_DPMPP_2M: 9
 };
 
 /**

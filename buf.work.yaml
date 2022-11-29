@@ -1,4 +1,4 @@
 version: v1
 directories:
   - src/proto
-  - src/tensorizer/proto/
+  - src/tensorizer/proto

@@ -38,7 +38,7 @@ does appear to work.  To force ssh (for github) put the following in your `.gitc
 After all the prerequisites are installed and available, this project can be setup by the following:
 
 ```shell
-git clone git@github.com:Stability-AI/api-interfaces.git
+git clone --recurse-submodules git@github.com:Stability-AI/api-interfaces.git
 cd api-interfaces
 cmake .
 cmake --build .
@@ -71,7 +71,7 @@ The files have different usages and not all are required depending on the situat
 For Golang the interfaces can be added to the project as a normal module require.  To add them run:
 
 ```shell
-go get github.com/Stability-AI/api-interfaces@0a4465b
+go get github.com/Stability-AI/api-interfaces@latest
 ```
 
 Similarly to update them just run the same command with the short sha of the version to update to. 
@@ -97,3 +97,10 @@ to your project).
 To use them make sure they are in a location that can be found by your typescript/javascript files.
 
 *NOTE: Typescript requires both the typescript and javascript files to be available.*
+
+### Other Languages / Custom Build
+
+If not using the CMake defined builds to generate make sure when building from the source proto 
+files that the following proto include paths are set:
+- `src/proto`
+- `src/tensorizer/proto`
