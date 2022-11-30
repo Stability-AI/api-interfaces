@@ -223,6 +223,7 @@ message ImageParameters {
   optional TransformType transform = 6;
   repeated StepParameter parameters = 7;
   optional MaskedAreaInit masked_area_init = 8; // defaults to MASKED_AREA_INIT_ZERO 
+  optional WeightMethod weight_method = 9; //defaults to TEXT_ENCODER
 }
 
 enum Action {
@@ -323,8 +324,6 @@ message Request {
     AssetParameters asset = 8;
   }
   optional ConditionerParameters conditioner = 6;
-  optional WeightMethod weight_method = 9;
-  repeated Prompt uc_prompt = 10;
 }
 
 //
