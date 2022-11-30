@@ -324,6 +324,7 @@ message Request {
     AssetParameters asset = 8;
   }
   optional ConditionerParameters conditioner = 6;
+  reserved 9,10; //9, 10 are reserved
 }
 
 //
