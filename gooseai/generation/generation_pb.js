@@ -4940,7 +4940,8 @@ proto.gooseai.ImageParameters.toObject = function(includeInstance, msg) {
     transform: (f = msg.getTransform()) && proto.gooseai.TransformType.toObject(includeInstance, f),
     parametersList: jspb.Message.toObjectList(msg.getParametersList(),
     proto.gooseai.StepParameter.toObject, includeInstance),
-    maskedAreaInit: jspb.Message.getFieldWithDefault(msg, 8, 0)
+    maskedAreaInit: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    weightMethod: jspb.Message.getFieldWithDefault(msg, 9, 0)
   };
 
   if (includeInstance) {
@@ -5012,6 +5013,10 @@ proto.gooseai.ImageParameters.deserializeBinaryFromReader = function(msg, reader
     case 8:
       var value = /** @type {!proto.gooseai.MaskedAreaInit} */ (reader.readEnum());
       msg.setMaskedAreaInit(value);
+      break;
+    case 9:
+      var value = /** @type {!proto.gooseai.WeightMethod} */ (reader.readEnum());
+      msg.setWeightMethod(value);
       break;
     default:
       reader.skipField();
@@ -5097,6 +5102,13 @@ proto.gooseai.ImageParameters.serializeBinaryToWriter = function(message, writer
   if (f != null) {
     writer.writeEnum(
       8,
+      f
+    );
+  }
+  f = /** @type {!proto.gooseai.WeightMethod} */ (jspb.Message.getField(message, 9));
+  if (f != null) {
+    writer.writeEnum(
+      9,
       f
     );
   }
@@ -5392,6 +5404,42 @@ proto.gooseai.ImageParameters.prototype.clearMaskedAreaInit = function() {
  */
 proto.gooseai.ImageParameters.prototype.hasMaskedAreaInit = function() {
   return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional WeightMethod weight_method = 9;
+ * @return {!proto.gooseai.WeightMethod}
+ */
+proto.gooseai.ImageParameters.prototype.getWeightMethod = function() {
+  return /** @type {!proto.gooseai.WeightMethod} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+};
+
+
+/**
+ * @param {!proto.gooseai.WeightMethod} value
+ * @return {!proto.gooseai.ImageParameters} returns this
+ */
+proto.gooseai.ImageParameters.prototype.setWeightMethod = function(value) {
+  return jspb.Message.setField(this, 9, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.ImageParameters} returns this
+ */
+proto.gooseai.ImageParameters.prototype.clearWeightMethod = function() {
+  return jspb.Message.setField(this, 9, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.ImageParameters.prototype.hasWeightMethod = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
@@ -6987,7 +7035,7 @@ proto.gooseai.Answer.prototype.clearArtifactsList = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.gooseai.Request.repeatedFields_ = [4,10];
+proto.gooseai.Request.repeatedFields_ = [4];
 
 /**
  * Oneof group definitions for this message. Each group defines the field
@@ -7055,10 +7103,7 @@ proto.gooseai.Request.toObject = function(includeInstance, msg) {
     image: (f = msg.getImage()) && proto.gooseai.ImageParameters.toObject(includeInstance, f),
     classifier: (f = msg.getClassifier()) && proto.gooseai.ClassifierParameters.toObject(includeInstance, f),
     asset: (f = msg.getAsset()) && proto.gooseai.AssetParameters.toObject(includeInstance, f),
-    conditioner: (f = msg.getConditioner()) && proto.gooseai.ConditionerParameters.toObject(includeInstance, f),
-    weightMethod: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    ucPromptList: jspb.Message.toObjectList(msg.getUcPromptList(),
-    proto.gooseai.Prompt.toObject, includeInstance)
+    conditioner: (f = msg.getConditioner()) && proto.gooseai.ConditionerParameters.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7131,15 +7176,6 @@ proto.gooseai.Request.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.gooseai.ConditionerParameters;
       reader.readMessage(value,proto.gooseai.ConditionerParameters.deserializeBinaryFromReader);
       msg.setConditioner(value);
-      break;
-    case 9:
-      var value = /** @type {!proto.gooseai.WeightMethod} */ (reader.readEnum());
-      msg.setWeightMethod(value);
-      break;
-    case 10:
-      var value = new proto.gooseai.Prompt;
-      reader.readMessage(value,proto.gooseai.Prompt.deserializeBinaryFromReader);
-      msg.addUcPrompt(value);
       break;
     default:
       reader.skipField();
@@ -7229,21 +7265,6 @@ proto.gooseai.Request.serializeBinaryToWriter = function(message, writer) {
       6,
       f,
       proto.gooseai.ConditionerParameters.serializeBinaryToWriter
-    );
-  }
-  f = /** @type {!proto.gooseai.WeightMethod} */ (jspb.Message.getField(message, 9));
-  if (f != null) {
-    writer.writeEnum(
-      9,
-      f
-    );
-  }
-  f = message.getUcPromptList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      10,
-      f,
-      proto.gooseai.Prompt.serializeBinaryToWriter
     );
   }
 };
@@ -7486,80 +7507,6 @@ proto.gooseai.Request.prototype.clearConditioner = function() {
  */
 proto.gooseai.Request.prototype.hasConditioner = function() {
   return jspb.Message.getField(this, 6) != null;
-};
-
-
-/**
- * optional WeightMethod weight_method = 9;
- * @return {!proto.gooseai.WeightMethod}
- */
-proto.gooseai.Request.prototype.getWeightMethod = function() {
-  return /** @type {!proto.gooseai.WeightMethod} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
-};
-
-
-/**
- * @param {!proto.gooseai.WeightMethod} value
- * @return {!proto.gooseai.Request} returns this
- */
-proto.gooseai.Request.prototype.setWeightMethod = function(value) {
-  return jspb.Message.setField(this, 9, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.gooseai.Request} returns this
- */
-proto.gooseai.Request.prototype.clearWeightMethod = function() {
-  return jspb.Message.setField(this, 9, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.gooseai.Request.prototype.hasWeightMethod = function() {
-  return jspb.Message.getField(this, 9) != null;
-};
-
-
-/**
- * repeated Prompt uc_prompt = 10;
- * @return {!Array<!proto.gooseai.Prompt>}
- */
-proto.gooseai.Request.prototype.getUcPromptList = function() {
-  return /** @type{!Array<!proto.gooseai.Prompt>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.gooseai.Prompt, 10));
-};
-
-
-/**
- * @param {!Array<!proto.gooseai.Prompt>} value
- * @return {!proto.gooseai.Request} returns this
-*/
-proto.gooseai.Request.prototype.setUcPromptList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 10, value);
-};
-
-
-/**
- * @param {!proto.gooseai.Prompt=} opt_value
- * @param {number=} opt_index
- * @return {!proto.gooseai.Prompt}
- */
-proto.gooseai.Request.prototype.addUcPrompt = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 10, opt_value, proto.gooseai.Prompt, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.gooseai.Request} returns this
- */
-proto.gooseai.Request.prototype.clearUcPromptList = function() {
-  return this.setUcPromptList([]);
 };
 
 
