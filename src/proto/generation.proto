@@ -327,10 +327,20 @@ message TransformDepthCalc {
 }
 
 message TransformMatrix {
-  // [a, b, tx]   [x]
-  // [c, d, ty] . [y]
-  // [0, 0, 1 ]   [1]
-  repeated float data = 1 [packed=true]; // 3x3 affine or perspective matrix for 2D
+  // Column-major 3x3 or 4x4 perspective matrix
+  // [sx, 10, 20, tx]   [x]
+  // [01, sy, 21, ty] . [y]
+  // [02, 12, sz, tz]   [z]
+  // [03, 13, 23, 33]   [1]
+  repeated float data = 1 [packed=true];
+}
+
+message TransformResample {
+  BorderMode border_mode = 1;                  // extrapolation of border pixels
+  TransformMatrix transform = 2;               // 3x3 or 4x4 matrix
+  optional TransformMatrix prev_transform = 3; // 3x3 or 4x4 matrix, defaults to identity
+  optional float depth_warp = 4;               // depth warp factor, defaults to 1.0
+  optional bool export_mask = 5;               // return inpaint mask
 }
 
 message TransformWarp2d {
@@ -368,6 +378,7 @@ message TransformOperation {
     TransformColorMatch color_match = 2;
     TransformContrast contrast = 8;
     TransformDepthCalc depth_calc = 7;
+    TransformResample resample = 9;
     TransformWarp2d warp2d = 3;
     TransformWarp3d warp3d = 4;
     TransformWarpFlow warp_flow = 5;

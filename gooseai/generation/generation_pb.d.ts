@@ -964,6 +964,50 @@ export namespace TransformMatrix {
   }
 }
 
+export class TransformResample extends jspb.Message {
+  getBorderMode(): BorderModeMap[keyof BorderModeMap];
+  setBorderMode(value: BorderModeMap[keyof BorderModeMap]): void;
+
+  hasTransform(): boolean;
+  clearTransform(): void;
+  getTransform(): TransformMatrix | undefined;
+  setTransform(value?: TransformMatrix): void;
+
+  hasPrevTransform(): boolean;
+  clearPrevTransform(): void;
+  getPrevTransform(): TransformMatrix | undefined;
+  setPrevTransform(value?: TransformMatrix): void;
+
+  hasDepthWarp(): boolean;
+  clearDepthWarp(): void;
+  getDepthWarp(): number;
+  setDepthWarp(value: number): void;
+
+  hasExportMask(): boolean;
+  clearExportMask(): void;
+  getExportMask(): boolean;
+  setExportMask(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformResample.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformResample): TransformResample.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformResample, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformResample;
+  static deserializeBinaryFromReader(message: TransformResample, reader: jspb.BinaryReader): TransformResample;
+}
+
+export namespace TransformResample {
+  export type AsObject = {
+    borderMode: BorderModeMap[keyof BorderModeMap],
+    transform?: TransformMatrix.AsObject,
+    prevTransform?: TransformMatrix.AsObject,
+    depthWarp: number,
+    exportMask: boolean,
+  }
+}
+
 export class TransformWarp2d extends jspb.Message {
   getBorderMode(): BorderModeMap[keyof BorderModeMap];
   setBorderMode(value: BorderModeMap[keyof BorderModeMap]): void;
@@ -1122,6 +1166,11 @@ export class TransformOperation extends jspb.Message {
   getDepthCalc(): TransformDepthCalc | undefined;
   setDepthCalc(value?: TransformDepthCalc): void;
 
+  hasResample(): boolean;
+  clearResample(): void;
+  getResample(): TransformResample | undefined;
+  setResample(value?: TransformResample): void;
+
   hasWarp2d(): boolean;
   clearWarp2d(): void;
   getWarp2d(): TransformWarp2d | undefined;
@@ -1155,6 +1204,7 @@ export namespace TransformOperation {
     colorMatch?: TransformColorMatch.AsObject,
     contrast?: TransformContrast.AsObject,
     depthCalc?: TransformDepthCalc.AsObject,
+    resample?: TransformResample.AsObject,
     warp2d?: TransformWarp2d.AsObject,
     warp3d?: TransformWarp3d.AsObject,
     warpFlow?: TransformWarpFlow.AsObject,
@@ -1167,6 +1217,7 @@ export namespace TransformOperation {
     COLOR_MATCH = 2,
     CONTRAST = 8,
     DEPTH_CALC = 7,
+    RESAMPLE = 9,
     WARP2D = 3,
     WARP3D = 4,
     WARP_FLOW = 5,
