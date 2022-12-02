@@ -69,6 +69,26 @@ class DashboardServiceStub(object):
                 request_serializer=dashboard__pb2.EmptyRequest.SerializeToString,
                 response_deserializer=dashboard__pb2.User.FromString,
                 )
+        self.ListOrganizationMembers = channel.unary_stream(
+                '/gooseai.DashboardService/ListOrganizationMembers',
+                request_serializer=dashboard__pb2.ListOrganizationMembersRequest.SerializeToString,
+                response_deserializer=dashboard__pb2.OrganizationMember.FromString,
+                )
+        self.RemoveOrganizationMember = channel.unary_unary(
+                '/gooseai.DashboardService/RemoveOrganizationMember',
+                request_serializer=dashboard__pb2.RemoveOrganizationMemberRequest.SerializeToString,
+                response_deserializer=dashboard__pb2.RemoveOrganizationMemberResponse.FromString,
+                )
+        self.AddOrganizationMember = channel.unary_unary(
+                '/gooseai.DashboardService/AddOrganizationMember',
+                request_serializer=dashboard__pb2.AddOrganizationMemberRequest.SerializeToString,
+                response_deserializer=dashboard__pb2.OrganizationMember.FromString,
+                )
+        self.UpdateOrganizationMember = channel.unary_unary(
+                '/gooseai.DashboardService/UpdateOrganizationMember',
+                request_serializer=dashboard__pb2.UpdateOrganizationMemberRequest.SerializeToString,
+                response_deserializer=dashboard__pb2.OrganizationMember.FromString,
+                )
         self.CreateCharge = channel.unary_unary(
                 '/gooseai.DashboardService/CreateCharge',
                 request_serializer=dashboard__pb2.CreateChargeRequest.SerializeToString,
@@ -168,6 +188,31 @@ class DashboardServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ListOrganizationMembers(self, request, context):
+        """Organization management
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RemoveOrganizationMember(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AddOrganizationMember(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateOrganizationMember(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def CreateCharge(self, request, context):
         """Payment functions
         """
@@ -256,6 +301,26 @@ def add_DashboardServiceServicer_to_server(servicer, server):
                     servicer.DeleteAccount,
                     request_deserializer=dashboard__pb2.EmptyRequest.FromString,
                     response_serializer=dashboard__pb2.User.SerializeToString,
+            ),
+            'ListOrganizationMembers': grpc.unary_stream_rpc_method_handler(
+                    servicer.ListOrganizationMembers,
+                    request_deserializer=dashboard__pb2.ListOrganizationMembersRequest.FromString,
+                    response_serializer=dashboard__pb2.OrganizationMember.SerializeToString,
+            ),
+            'RemoveOrganizationMember': grpc.unary_unary_rpc_method_handler(
+                    servicer.RemoveOrganizationMember,
+                    request_deserializer=dashboard__pb2.RemoveOrganizationMemberRequest.FromString,
+                    response_serializer=dashboard__pb2.RemoveOrganizationMemberResponse.SerializeToString,
+            ),
+            'AddOrganizationMember': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddOrganizationMember,
+                    request_deserializer=dashboard__pb2.AddOrganizationMemberRequest.FromString,
+                    response_serializer=dashboard__pb2.OrganizationMember.SerializeToString,
+            ),
+            'UpdateOrganizationMember': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateOrganizationMember,
+                    request_deserializer=dashboard__pb2.UpdateOrganizationMemberRequest.FromString,
+                    response_serializer=dashboard__pb2.OrganizationMember.SerializeToString,
             ),
             'CreateCharge': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateCharge,
@@ -476,6 +541,74 @@ class DashboardService(object):
         return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/DeleteAccount',
             dashboard__pb2.EmptyRequest.SerializeToString,
             dashboard__pb2.User.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListOrganizationMembers(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/gooseai.DashboardService/ListOrganizationMembers',
+            dashboard__pb2.ListOrganizationMembersRequest.SerializeToString,
+            dashboard__pb2.OrganizationMember.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RemoveOrganizationMember(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/RemoveOrganizationMember',
+            dashboard__pb2.RemoveOrganizationMemberRequest.SerializeToString,
+            dashboard__pb2.RemoveOrganizationMemberResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddOrganizationMember(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/AddOrganizationMember',
+            dashboard__pb2.AddOrganizationMemberRequest.SerializeToString,
+            dashboard__pb2.OrganizationMember.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UpdateOrganizationMember(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/UpdateOrganizationMember',
+            dashboard__pb2.UpdateOrganizationMemberRequest.SerializeToString,
+            dashboard__pb2.OrganizationMember.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

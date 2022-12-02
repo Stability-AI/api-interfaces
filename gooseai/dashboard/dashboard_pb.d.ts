@@ -815,6 +815,132 @@ export namespace UserPasswordChangeTicket {
   }
 }
 
+export class ListOrganizationMembersRequest extends jspb.Message {
+  hasOrgId(): boolean;
+  clearOrgId(): void;
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListOrganizationMembersRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListOrganizationMembersRequest): ListOrganizationMembersRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListOrganizationMembersRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListOrganizationMembersRequest;
+  static deserializeBinaryFromReader(message: ListOrganizationMembersRequest, reader: jspb.BinaryReader): ListOrganizationMembersRequest;
+}
+
+export namespace ListOrganizationMembersRequest {
+  export type AsObject = {
+    orgId: string,
+  }
+}
+
+export class RemoveOrganizationMemberRequest extends jspb.Message {
+  hasOrgId(): boolean;
+  clearOrgId(): void;
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveOrganizationMemberRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveOrganizationMemberRequest): RemoveOrganizationMemberRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RemoveOrganizationMemberRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveOrganizationMemberRequest;
+  static deserializeBinaryFromReader(message: RemoveOrganizationMemberRequest, reader: jspb.BinaryReader): RemoveOrganizationMemberRequest;
+}
+
+export namespace RemoveOrganizationMemberRequest {
+  export type AsObject = {
+    orgId: string,
+    userId: string,
+  }
+}
+
+export class RemoveOrganizationMemberResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveOrganizationMemberResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveOrganizationMemberResponse): RemoveOrganizationMemberResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RemoveOrganizationMemberResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveOrganizationMemberResponse;
+  static deserializeBinaryFromReader(message: RemoveOrganizationMemberResponse, reader: jspb.BinaryReader): RemoveOrganizationMemberResponse;
+}
+
+export namespace RemoveOrganizationMemberResponse {
+  export type AsObject = {
+  }
+}
+
+export class AddOrganizationMemberRequest extends jspb.Message {
+  hasOrgId(): boolean;
+  clearOrgId(): void;
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  getRole(): OrganizationRoleMap[keyof OrganizationRoleMap];
+  setRole(value: OrganizationRoleMap[keyof OrganizationRoleMap]): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddOrganizationMemberRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddOrganizationMemberRequest): AddOrganizationMemberRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AddOrganizationMemberRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddOrganizationMemberRequest;
+  static deserializeBinaryFromReader(message: AddOrganizationMemberRequest, reader: jspb.BinaryReader): AddOrganizationMemberRequest;
+}
+
+export namespace AddOrganizationMemberRequest {
+  export type AsObject = {
+    orgId: string,
+    userId: string,
+    role: OrganizationRoleMap[keyof OrganizationRoleMap],
+  }
+}
+
+export class UpdateOrganizationMemberRequest extends jspb.Message {
+  hasOrgId(): boolean;
+  clearOrgId(): void;
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  hasRole(): boolean;
+  clearRole(): void;
+  getRole(): OrganizationRoleMap[keyof OrganizationRoleMap];
+  setRole(value: OrganizationRoleMap[keyof OrganizationRoleMap]): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateOrganizationMemberRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateOrganizationMemberRequest): UpdateOrganizationMemberRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateOrganizationMemberRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateOrganizationMemberRequest;
+  static deserializeBinaryFromReader(message: UpdateOrganizationMemberRequest, reader: jspb.BinaryReader): UpdateOrganizationMemberRequest;
+}
+
+export namespace UpdateOrganizationMemberRequest {
+  export type AsObject = {
+    orgId: string,
+    userId: string,
+    role: OrganizationRoleMap[keyof OrganizationRoleMap],
+  }
+}
+
 export interface OrganizationRoleMap {
   MEMBER: 0;
   ACCOUNTANT: 1;

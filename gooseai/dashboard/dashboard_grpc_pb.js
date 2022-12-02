@@ -37,6 +37,17 @@ function deserialize_gooseai_APIKeyRequest(buffer_arg) {
   return dashboard_pb.APIKeyRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_gooseai_AddOrganizationMemberRequest(arg) {
+  if (!(arg instanceof dashboard_pb.AddOrganizationMemberRequest)) {
+    throw new Error('Expected argument of type gooseai.AddOrganizationMemberRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_AddOrganizationMemberRequest(buffer_arg) {
+  return dashboard_pb.AddOrganizationMemberRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_gooseai_AutoChargeIntent(arg) {
   if (!(arg instanceof dashboard_pb.AutoChargeIntent)) {
     throw new Error('Expected argument of type gooseai.AutoChargeIntent');
@@ -158,6 +169,17 @@ function deserialize_gooseai_GetOrganizationRequest(buffer_arg) {
   return dashboard_pb.GetOrganizationRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_gooseai_ListOrganizationMembersRequest(arg) {
+  if (!(arg instanceof dashboard_pb.ListOrganizationMembersRequest)) {
+    throw new Error('Expected argument of type gooseai.ListOrganizationMembersRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_ListOrganizationMembersRequest(buffer_arg) {
+  return dashboard_pb.ListOrganizationMembersRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_gooseai_Metrics(arg) {
   if (!(arg instanceof dashboard_pb.Metrics)) {
     throw new Error('Expected argument of type gooseai.Metrics');
@@ -180,6 +202,39 @@ function deserialize_gooseai_Organization(buffer_arg) {
   return dashboard_pb.Organization.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_gooseai_OrganizationMember(arg) {
+  if (!(arg instanceof dashboard_pb.OrganizationMember)) {
+    throw new Error('Expected argument of type gooseai.OrganizationMember');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_OrganizationMember(buffer_arg) {
+  return dashboard_pb.OrganizationMember.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_RemoveOrganizationMemberRequest(arg) {
+  if (!(arg instanceof dashboard_pb.RemoveOrganizationMemberRequest)) {
+    throw new Error('Expected argument of type gooseai.RemoveOrganizationMemberRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_RemoveOrganizationMemberRequest(buffer_arg) {
+  return dashboard_pb.RemoveOrganizationMemberRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_RemoveOrganizationMemberResponse(arg) {
+  if (!(arg instanceof dashboard_pb.RemoveOrganizationMemberResponse)) {
+    throw new Error('Expected argument of type gooseai.RemoveOrganizationMemberResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_RemoveOrganizationMemberResponse(buffer_arg) {
+  return dashboard_pb.RemoveOrganizationMemberResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_gooseai_UpdateDefaultOrganizationRequest(arg) {
   if (!(arg instanceof dashboard_pb.UpdateDefaultOrganizationRequest)) {
     throw new Error('Expected argument of type gooseai.UpdateDefaultOrganizationRequest');
@@ -189,6 +244,17 @@ function serialize_gooseai_UpdateDefaultOrganizationRequest(arg) {
 
 function deserialize_gooseai_UpdateDefaultOrganizationRequest(buffer_arg) {
   return dashboard_pb.UpdateDefaultOrganizationRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_UpdateOrganizationMemberRequest(arg) {
+  if (!(arg instanceof dashboard_pb.UpdateOrganizationMemberRequest)) {
+    throw new Error('Expected argument of type gooseai.UpdateOrganizationMemberRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_UpdateOrganizationMemberRequest(buffer_arg) {
+  return dashboard_pb.UpdateOrganizationMemberRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_gooseai_UpdateUserInfoRequest(arg) {
@@ -349,6 +415,51 @@ updateDefaultOrganization: {
     requestDeserialize: deserialize_gooseai_EmptyRequest,
     responseSerialize: serialize_gooseai_User,
     responseDeserialize: deserialize_gooseai_User,
+  },
+  // Organization management
+listOrganizationMembers: {
+    path: '/gooseai.DashboardService/ListOrganizationMembers',
+    requestStream: false,
+    responseStream: true,
+    requestType: dashboard_pb.ListOrganizationMembersRequest,
+    responseType: dashboard_pb.OrganizationMember,
+    requestSerialize: serialize_gooseai_ListOrganizationMembersRequest,
+    requestDeserialize: deserialize_gooseai_ListOrganizationMembersRequest,
+    responseSerialize: serialize_gooseai_OrganizationMember,
+    responseDeserialize: deserialize_gooseai_OrganizationMember,
+  },
+  removeOrganizationMember: {
+    path: '/gooseai.DashboardService/RemoveOrganizationMember',
+    requestStream: false,
+    responseStream: false,
+    requestType: dashboard_pb.RemoveOrganizationMemberRequest,
+    responseType: dashboard_pb.RemoveOrganizationMemberResponse,
+    requestSerialize: serialize_gooseai_RemoveOrganizationMemberRequest,
+    requestDeserialize: deserialize_gooseai_RemoveOrganizationMemberRequest,
+    responseSerialize: serialize_gooseai_RemoveOrganizationMemberResponse,
+    responseDeserialize: deserialize_gooseai_RemoveOrganizationMemberResponse,
+  },
+  addOrganizationMember: {
+    path: '/gooseai.DashboardService/AddOrganizationMember',
+    requestStream: false,
+    responseStream: false,
+    requestType: dashboard_pb.AddOrganizationMemberRequest,
+    responseType: dashboard_pb.OrganizationMember,
+    requestSerialize: serialize_gooseai_AddOrganizationMemberRequest,
+    requestDeserialize: deserialize_gooseai_AddOrganizationMemberRequest,
+    responseSerialize: serialize_gooseai_OrganizationMember,
+    responseDeserialize: deserialize_gooseai_OrganizationMember,
+  },
+  updateOrganizationMember: {
+    path: '/gooseai.DashboardService/UpdateOrganizationMember',
+    requestStream: false,
+    responseStream: false,
+    requestType: dashboard_pb.UpdateOrganizationMemberRequest,
+    responseType: dashboard_pb.OrganizationMember,
+    requestSerialize: serialize_gooseai_UpdateOrganizationMemberRequest,
+    requestDeserialize: deserialize_gooseai_UpdateOrganizationMemberRequest,
+    responseSerialize: serialize_gooseai_OrganizationMember,
+    responseDeserialize: deserialize_gooseai_OrganizationMember,
   },
   // Payment functions
 createCharge: {
