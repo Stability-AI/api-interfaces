@@ -324,6 +324,7 @@ message TransformContrast {
 message TransformDepthCalc {
   optional bool export = 1;        // return the depth map as an artifact
   optional float blend_weight = 2; // blend factor between AdaBins (0.0) and MiDaS (1.0)
+  optional uint32 blur_radius = 3; // defaults to 0.0
 }
 
 message TransformMatrix {
