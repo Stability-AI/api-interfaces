@@ -1,0 +1,4736 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Protocol Documentation</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        margin: 1em auto;
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0;  
+      }
+
+       
+      .field-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(3) {  
+        width: 6em;
+      }
+      .field-table td:nth-child(4) {  
+        width: auto;
+      }
+
+       
+      .extension-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) {  
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) {  
+        width: auto;
+      }
+
+       
+      .enum-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) {  
+        width: auto;
+      }
+
+       
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+       
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+       
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+       
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+  </head>
+
+  <body>
+
+    <h1 id="title">Protocol Documentation</h1>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+        
+          
+          <li>
+            <a href="#gooseai%2fdashboard.proto">gooseai/dashboard.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#gooseai.APIKey"><span class="badge">M</span>APIKey</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.APIKeyFindRequest"><span class="badge">M</span>APIKeyFindRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.APIKeyRequest"><span class="badge">M</span>APIKeyRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.AutoChargeIntent"><span class="badge">M</span>AutoChargeIntent</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.Charge"><span class="badge">M</span>Charge</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.Charges"><span class="badge">M</span>Charges</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.ClientSettings"><span class="badge">M</span>ClientSettings</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.CostData"><span class="badge">M</span>CostData</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.CostTotal"><span class="badge">M</span>CostTotal</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.CreateAutoChargeIntentRequest"><span class="badge">M</span>CreateAutoChargeIntentRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.CreateChargeRequest"><span class="badge">M</span>CreateChargeRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.EmptyRequest"><span class="badge">M</span>EmptyRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.GetAutoChargeRequest"><span class="badge">M</span>GetAutoChargeRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.GetChargesRequest"><span class="badge">M</span>GetChargesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.GetMetricsRequest"><span class="badge">M</span>GetMetricsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.GetOrganizationRequest"><span class="badge">M</span>GetOrganizationRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.Metrics"><span class="badge">M</span>Metrics</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.Organization"><span class="badge">M</span>Organization</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.OrganizationAutoCharge"><span class="badge">M</span>OrganizationAutoCharge</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.OrganizationGrant"><span class="badge">M</span>OrganizationGrant</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.OrganizationMember"><span class="badge">M</span>OrganizationMember</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.OrganizationPaymentInfo"><span class="badge">M</span>OrganizationPaymentInfo</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.TotalMetricsData"><span class="badge">M</span>TotalMetricsData</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.UpdateDefaultOrganizationRequest"><span class="badge">M</span>UpdateDefaultOrganizationRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.UpdateUserInfoRequest"><span class="badge">M</span>UpdateUserInfoRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.UsageMetric"><span class="badge">M</span>UsageMetric</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.User"><span class="badge">M</span>User</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.UserPasswordChangeTicket"><span class="badge">M</span>UserPasswordChangeTicket</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#gooseai.OrganizationRole"><span class="badge">E</span>OrganizationRole</a>
+                </li>
+              
+              
+              
+                <li>
+                  <a href="#gooseai.DashboardService"><span class="badge">S</span>DashboardService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#gooseai%2fengines.proto">gooseai/engines.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#gooseai.EngineInfo"><span class="badge">M</span>EngineInfo</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.Engines"><span class="badge">M</span>Engines</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.ListEnginesRequest"><span class="badge">M</span>ListEnginesRequest</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#gooseai.EngineTokenizer"><span class="badge">E</span>EngineTokenizer</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.EngineType"><span class="badge">E</span>EngineType</a>
+                </li>
+              
+              
+              
+                <li>
+                  <a href="#gooseai.EnginesService"><span class="badge">S</span>EnginesService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#tensorizer%2fproto%2ftensors.proto">tensorizer/proto/tensors.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#tensors.Attribute"><span class="badge">M</span>Attribute</a>
+                </li>
+              
+                <li>
+                  <a href="#tensors.Module"><span class="badge">M</span>Module</a>
+                </li>
+              
+                <li>
+                  <a href="#tensors.Tensor"><span class="badge">M</span>Tensor</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#tensors.AttributeType"><span class="badge">E</span>AttributeType</a>
+                </li>
+              
+                <li>
+                  <a href="#tensors.Dtype"><span class="badge">E</span>Dtype</a>
+                </li>
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#gooseai%2fgeneration.proto">gooseai/generation.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#gooseai.Answer"><span class="badge">M</span>Answer</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.AnswerMeta"><span class="badge">M</span>AnswerMeta</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.Artifact"><span class="badge">M</span>Artifact</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.AssetParameters"><span class="badge">M</span>AssetParameters</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.ChainRequest"><span class="badge">M</span>ChainRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.ClassifierCategory"><span class="badge">M</span>ClassifierCategory</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.ClassifierConcept"><span class="badge">M</span>ClassifierConcept</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.ClassifierParameters"><span class="badge">M</span>ClassifierParameters</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.ConditionerParameters"><span class="badge">M</span>ConditionerParameters</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.CutoutParameters"><span class="badge">M</span>CutoutParameters</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.GuidanceInstanceParameters"><span class="badge">M</span>GuidanceInstanceParameters</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.GuidanceParameters"><span class="badge">M</span>GuidanceParameters</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.GuidanceScheduleParameters"><span class="badge">M</span>GuidanceScheduleParameters</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.ImageParameters"><span class="badge">M</span>ImageParameters</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.Model"><span class="badge">M</span>Model</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.OnStatus"><span class="badge">M</span>OnStatus</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.Prompt"><span class="badge">M</span>Prompt</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.PromptParameters"><span class="badge">M</span>PromptParameters</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.Request"><span class="badge">M</span>Request</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.SamplerParameters"><span class="badge">M</span>SamplerParameters</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.ScheduleParameters"><span class="badge">M</span>ScheduleParameters</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.Stage"><span class="badge">M</span>Stage</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.StepParameter"><span class="badge">M</span>StepParameter</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.Token"><span class="badge">M</span>Token</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.Tokens"><span class="badge">M</span>Tokens</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.TransformType"><span class="badge">M</span>TransformType</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#gooseai.Action"><span class="badge">E</span>Action</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.ArtifactType"><span class="badge">E</span>ArtifactType</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.AssetAction"><span class="badge">E</span>AssetAction</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.AssetUse"><span class="badge">E</span>AssetUse</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.ClassifierMode"><span class="badge">E</span>ClassifierMode</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.DiffusionSampler"><span class="badge">E</span>DiffusionSampler</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.FinishReason"><span class="badge">E</span>FinishReason</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.GuidancePreset"><span class="badge">E</span>GuidancePreset</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.MaskedAreaInit"><span class="badge">E</span>MaskedAreaInit</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.ModelArchitecture"><span class="badge">E</span>ModelArchitecture</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.StageAction"><span class="badge">E</span>StageAction</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.Upscaler"><span class="badge">E</span>Upscaler</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.WeightMethod"><span class="badge">E</span>WeightMethod</a>
+                </li>
+              
+              
+              
+                <li>
+                  <a href="#gooseai.GenerationService"><span class="badge">S</span>GenerationService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#gooseai%2fproject.proto">gooseai/project.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#gooseai.CreateProjectRequest"><span class="badge">M</span>CreateProjectRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.DeleteProjectRequest"><span class="badge">M</span>DeleteProjectRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.GetProjectRequest"><span class="badge">M</span>GetProjectRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.ListProjectRequest"><span class="badge">M</span>ListProjectRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.Project"><span class="badge">M</span>Project</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.ProjectAsset"><span class="badge">M</span>ProjectAsset</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.UpdateProjectRequest"><span class="badge">M</span>UpdateProjectRequest</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#gooseai.ProjectAccess"><span class="badge">E</span>ProjectAccess</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.ProjectAssetUse"><span class="badge">E</span>ProjectAssetUse</a>
+                </li>
+              
+                <li>
+                  <a href="#gooseai.ProjectStatus"><span class="badge">E</span>ProjectStatus</a>
+                </li>
+              
+              
+              
+                <li>
+                  <a href="#gooseai.ProjectService"><span class="badge">S</span>ProjectService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+    
+      
+      <div class="file-heading">
+        <h2 id="gooseai/dashboard.proto">gooseai/dashboard.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="gooseai.APIKey">APIKey</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_secret</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.APIKeyFindRequest">APIKeyFindRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.APIKeyRequest">APIKeyRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>is_secret</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.AutoChargeIntent">AutoChargeIntent</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>payment_link</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>monthly_maximum</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>minimum_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>amount_credits</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.Charge">Charge</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>paid</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>receipt_link</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>payment_link</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>amount_credits</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.Charges">Charges</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>charges</td>
+                  <td><a href="#gooseai.Charge">Charge</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.ClientSettings">ClientSettings</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>settings</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.CostData">CostData</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>amount_tokens</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>amount_credits</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.CostTotal">CostTotal</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>amount_tokens</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>amount_credits</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.CreateAutoChargeIntentRequest">CreateAutoChargeIntentRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>monthly_maximum</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>minimum_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>amount_credits</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.CreateChargeRequest">CreateChargeRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>organization_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.EmptyRequest">EmptyRequest</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="gooseai.GetAutoChargeRequest">GetAutoChargeRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.GetChargesRequest">GetChargesRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>range_from</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>range_to</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.GetMetricsRequest">GetMetricsRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>range_from</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>range_to</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>include_per_request_metrics</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.GetOrganizationRequest">GetOrganizationRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.Metrics">Metrics</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>metrics</td>
+                  <td><a href="#gooseai.UsageMetric">UsageMetric</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>total</td>
+                  <td><a href="#gooseai.TotalMetricsData">TotalMetricsData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.Organization">Organization</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>members</td>
+                  <td><a href="#gooseai.OrganizationMember">OrganizationMember</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>payment_info</td>
+                  <td><a href="#gooseai.OrganizationPaymentInfo">OrganizationPaymentInfo</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>stripe_customer_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>auto_charge</td>
+                  <td><a href="#gooseai.OrganizationAutoCharge">OrganizationAutoCharge</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.OrganizationAutoCharge">OrganizationAutoCharge</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>enabled</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.OrganizationGrant">OrganizationGrant</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>amount_granted</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>amount_used</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expires_at</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>granted_at</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.OrganizationMember">OrganizationMember</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#gooseai.Organization">Organization</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user</td>
+                  <td><a href="#gooseai.User">User</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>role</td>
+                  <td><a href="#gooseai.OrganizationRole">OrganizationRole</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_default</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.OrganizationPaymentInfo">OrganizationPaymentInfo</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>balance</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>grants</td>
+                  <td><a href="#gooseai.OrganizationGrant">OrganizationGrant</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.TotalMetricsData">TotalMetricsData</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>input_total</td>
+                  <td><a href="#gooseai.CostTotal">CostTotal</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>output_total</td>
+                  <td><a href="#gooseai.CostTotal">CostTotal</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.UpdateDefaultOrganizationRequest">UpdateDefaultOrganizationRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.UpdateUserInfoRequest">UpdateUserInfoRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.UsageMetric">UsageMetric</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>operation</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>engine</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>input_cost</td>
+                  <td><a href="#gooseai.CostData">CostData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>output_cost</td>
+                  <td><a href="#gooseai.CostData">CostData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>aggregation_timestamp</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.User">User</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>auth_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>profile_picture</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>organizations</td>
+                  <td><a href="#gooseai.OrganizationMember">OrganizationMember</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>api_keys</td>
+                  <td><a href="#gooseai.APIKey">APIKey</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>email_verified</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.UserPasswordChangeTicket">UserPasswordChangeTicket</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ticket</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="gooseai.OrganizationRole">OrganizationRole</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>MEMBER</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ACCOUNTANT</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OWNER</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+        <h3 id="gooseai.DashboardService">DashboardService</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>GetMe</td>
+                <td><a href="#gooseai.EmptyRequest">EmptyRequest</a></td>
+                <td><a href="#gooseai.User">User</a></td>
+                <td><p>Get info</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetOrganization</td>
+                <td><a href="#gooseai.GetOrganizationRequest">GetOrganizationRequest</a></td>
+                <td><a href="#gooseai.Organization">Organization</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetMetrics</td>
+                <td><a href="#gooseai.GetMetricsRequest">GetMetricsRequest</a></td>
+                <td><a href="#gooseai.Metrics">Metrics</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateAPIKey</td>
+                <td><a href="#gooseai.APIKeyRequest">APIKeyRequest</a></td>
+                <td><a href="#gooseai.APIKey">APIKey</a></td>
+                <td><p>API key management</p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteAPIKey</td>
+                <td><a href="#gooseai.APIKeyFindRequest">APIKeyFindRequest</a></td>
+                <td><a href="#gooseai.APIKey">APIKey</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateDefaultOrganization</td>
+                <td><a href="#gooseai.UpdateDefaultOrganizationRequest">UpdateDefaultOrganizationRequest</a></td>
+                <td><a href="#gooseai.User">User</a></td>
+                <td><p>User settings</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetClientSettings</td>
+                <td><a href="#gooseai.EmptyRequest">EmptyRequest</a></td>
+                <td><a href="#gooseai.ClientSettings">ClientSettings</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SetClientSettings</td>
+                <td><a href="#gooseai.ClientSettings">ClientSettings</a></td>
+                <td><a href="#gooseai.ClientSettings">ClientSettings</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateUserInfo</td>
+                <td><a href="#gooseai.UpdateUserInfoRequest">UpdateUserInfoRequest</a></td>
+                <td><a href="#gooseai.User">User</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CreatePasswordChangeTicket</td>
+                <td><a href="#gooseai.EmptyRequest">EmptyRequest</a></td>
+                <td><a href="#gooseai.UserPasswordChangeTicket">UserPasswordChangeTicket</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteAccount</td>
+                <td><a href="#gooseai.EmptyRequest">EmptyRequest</a></td>
+                <td><a href="#gooseai.User">User</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateCharge</td>
+                <td><a href="#gooseai.CreateChargeRequest">CreateChargeRequest</a></td>
+                <td><a href="#gooseai.Charge">Charge</a></td>
+                <td><p>Payment functions</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetCharges</td>
+                <td><a href="#gooseai.GetChargesRequest">GetChargesRequest</a></td>
+                <td><a href="#gooseai.Charges">Charges</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateAutoChargeIntent</td>
+                <td><a href="#gooseai.CreateAutoChargeIntentRequest">CreateAutoChargeIntentRequest</a></td>
+                <td><a href="#gooseai.AutoChargeIntent">AutoChargeIntent</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateAutoChargeIntent</td>
+                <td><a href="#gooseai.CreateAutoChargeIntentRequest">CreateAutoChargeIntentRequest</a></td>
+                <td><a href="#gooseai.AutoChargeIntent">AutoChargeIntent</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetAutoChargeIntent</td>
+                <td><a href="#gooseai.GetAutoChargeRequest">GetAutoChargeRequest</a></td>
+                <td><a href="#gooseai.AutoChargeIntent">AutoChargeIntent</a></td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="gooseai/engines.proto">gooseai/engines.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="gooseai.EngineInfo">EngineInfo</h3>
+        <p>Engine info struct</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ready</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#gooseai.EngineType">EngineType</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tokenizer</td>
+                  <td><a href="#gooseai.EngineTokenizer">EngineTokenizer</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.Engines">Engines</h3>
+        <p>Engine info list</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>engine</td>
+                  <td><a href="#gooseai.EngineInfo">EngineInfo</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.ListEnginesRequest">ListEnginesRequest</h3>
+        <p>Empty</p>
+
+        
+
+        
+      
+
+      
+        <h3 id="gooseai.EngineTokenizer">EngineTokenizer</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>GPT2</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PILE</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="gooseai.EngineType">EngineType</h3>
+        <p>Possible engine type</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>TEXT</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PICTURE</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>AUDIO</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>VIDEO</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CLASSIFICATION</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>STORAGE</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+        <h3 id="gooseai.EnginesService">EnginesService</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ListEngines</td>
+                <td><a href="#gooseai.ListEnginesRequest">ListEnginesRequest</a></td>
+                <td><a href="#gooseai.Engines">Engines</a></td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="tensorizer/proto/tensors.proto">tensorizer/proto/tensors.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="tensors.Attribute">Attribute</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>module</td>
+                  <td><a href="#tensors.Module">Module</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tensor</td>
+                  <td><a href="#tensors.Tensor">Tensor</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>string</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>int64</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>float</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>bool</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="tensors.Module">Module</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>names</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>attributes</td>
+                  <td><a href="#tensors.Attribute">Attribute</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="tensors.Tensor">Tensor</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>dtype</td>
+                  <td><a href="#tensors.Dtype">Dtype</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>shape</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>attr_type</td>
+                  <td><a href="#tensors.AttributeType">AttributeType</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="tensors.AttributeType">AttributeType</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>AT_PARAMETER</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>AT_BUFFER</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="tensors.Dtype">Dtype</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>DT_INVALID</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DT_FLOAT32</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DT_FLOAT64</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DT_FLOAT16</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DT_BFLOAT16</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DT_COMPLEX32</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DT_COMPLEX64</td>
+                <td>6</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DT_COMPLEX128</td>
+                <td>7</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DT_UINT8</td>
+                <td>8</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DT_INT8</td>
+                <td>9</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DT_INT16</td>
+                <td>10</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DT_INT32</td>
+                <td>11</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DT_INT64</td>
+                <td>12</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DT_BOOL</td>
+                <td>13</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DT_QUINT8</td>
+                <td>14</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DT_QINT8</td>
+                <td>15</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DT_QINT32</td>
+                <td>16</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DT_QUINT4_2</td>
+                <td>17</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="gooseai/generation.proto">gooseai/generation.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="gooseai.Answer">Answer</h3>
+        <p>An Answer is a response to a Request. It is a set of Artifacts, which can be</p><p>of any type and forwarded to the client or the next stage.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>answer_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>received</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#gooseai.AnswerMeta">AnswerMeta</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>artifacts</td>
+                  <td><a href="#gooseai.Artifact">Artifact</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.AnswerMeta">AnswerMeta</h3>
+        <p>AnswerMeta is a set of metadata about an answer, usually the operating</p><p>environment.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>gpu_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cpu_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>node_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>engine_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.Artifact">Artifact</h3>
+        <p>A tangible Artifact, such as an image, video, or text that is used for input</p><p>or output.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#gooseai.ArtifactType">ArtifactType</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mime</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>MIME type identifier, e.g. &#34;image/png&#34; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>magic</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Magic number, e.g. &#34;PNG&#34; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>binary</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>Binary data, e.g. PNG image </p></td>
+                </tr>
+              
+                <tr>
+                  <td>text</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Text data, e.g. text prompt </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tokens</td>
+                  <td><a href="#gooseai.Tokens">Tokens</a></td>
+                  <td></td>
+                  <td><p>Tokenized text data, e.g. GPT tokens </p></td>
+                </tr>
+              
+                <tr>
+                  <td>classifier</td>
+                  <td><a href="#gooseai.ClassifierParameters">ClassifierParameters</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tensor</td>
+                  <td><a href="#tensors.Tensor">tensors.Tensor</a></td>
+                  <td></td>
+                  <td><p>torch.Tensor: </p></td>
+                </tr>
+              
+                <tr>
+                  <td>index</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Index of this artifact in input/output list </p></td>
+                </tr>
+              
+                <tr>
+                  <td>finish_reason</td>
+                  <td><a href="#gooseai.FinishReason">FinishReason</a></td>
+                  <td></td>
+                  <td><p>Reason for finishing, if applicable </p></td>
+                </tr>
+              
+                <tr>
+                  <td>seed</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Seed used to generate this artifact </p></td>
+                </tr>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUIDv4 of the artifact, used for asset lookup </p></td>
+                </tr>
+              
+                <tr>
+                  <td>size</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>Size of the artifact in bytes </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.AssetParameters">AssetParameters</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>action</td>
+                  <td><a href="#gooseai.AssetAction">AssetAction</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use</td>
+                  <td><a href="#gooseai.AssetUse">AssetUse</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.ChainRequest">ChainRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>request_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>stage</td>
+                  <td><a href="#gooseai.Stage">Stage</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.ClassifierCategory">ClassifierCategory</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>concepts</td>
+                  <td><a href="#gooseai.ClassifierConcept">ClassifierConcept</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>adjustment</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>action</td>
+                  <td><a href="#gooseai.Action">Action</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>classifier_mode</td>
+                  <td><a href="#gooseai.ClassifierMode">ClassifierMode</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.ClassifierConcept">ClassifierConcept</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>concept</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>threshold</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.ClassifierParameters">ClassifierParameters</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>categories</td>
+                  <td><a href="#gooseai.ClassifierCategory">ClassifierCategory</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>exceeds</td>
+                  <td><a href="#gooseai.ClassifierCategory">ClassifierCategory</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>realized_action</td>
+                  <td><a href="#gooseai.Action">Action</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.ConditionerParameters">ConditionerParameters</h3>
+        <p>Unused, but reserved for future use. Adjustments to the latents after</p><p>initialization.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>vector_adjust_prior</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>conditioner</td>
+                  <td><a href="#gooseai.Model">Model</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.CutoutParameters">CutoutParameters</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>cutouts</td>
+                  <td><a href="#gooseai.CutoutParameters">CutoutParameters</a></td>
+                  <td>repeated</td>
+                  <td><p>Nested cutouts, unsupported </p></td>
+                </tr>
+              
+                <tr>
+                  <td>count</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td>optional</td>
+                  <td><p>0 to n, usually 8 to 32, 0 inner </p></td>
+                </tr>
+              
+                <tr>
+                  <td>gray</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p>0.0 to 1.0, defaults to 0.2 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>blur</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p>percentage of cutouts to blur </p></td>
+                </tr>
+              
+                <tr>
+                  <td>size_power</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p>defaults to inner: 0.5, outer: 0.0 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.GuidanceInstanceParameters">GuidanceInstanceParameters</h3>
+        <p>Parameters that affect the behavior of the guidance, typically used for CLIP.</p><p>We can specify more than one model, and the guidance will be a weighted sum</p><p>of the models.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>models</td>
+                  <td><a href="#gooseai.Model">Model</a></td>
+                  <td>repeated</td>
+                  <td><p>models to use for this set </p></td>
+                </tr>
+              
+                <tr>
+                  <td>guidance_strength</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p>0.0 to 1.0, usually 0.05 to 0.225 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>schedule</td>
+                  <td><a href="#gooseai.GuidanceScheduleParameters">GuidanceScheduleParameters</a></td>
+                  <td>repeated</td>
+                  <td><p>when to apply guidance </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cutouts</td>
+                  <td><a href="#gooseai.CutoutParameters">CutoutParameters</a></td>
+                  <td>optional</td>
+                  <td><p>cutout parameters </p></td>
+                </tr>
+              
+                <tr>
+                  <td>prompt</td>
+                  <td><a href="#gooseai.Prompt">Prompt</a></td>
+                  <td>optional</td>
+                  <td><p>prompt to use for guidance </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.GuidanceParameters">GuidanceParameters</h3>
+        <p>Parameters that affect the behavior of the guidance, typically used for CLIP.</p><p>The omission of this field implies the default guidance of CFG.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guidance_preset</td>
+                  <td><a href="#gooseai.GuidancePreset">GuidancePreset</a></td>
+                  <td></td>
+                  <td><p>base preset for guidance </p></td>
+                </tr>
+              
+                <tr>
+                  <td>instances</td>
+                  <td><a href="#gooseai.GuidanceInstanceParameters">GuidanceInstanceParameters</a></td>
+                  <td>repeated</td>
+                  <td><p>guidance instances </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.GuidanceScheduleParameters">GuidanceScheduleParameters</h3>
+        <p>GuidanceScheduleParameters are used to define a schedule for CLIP guidance, and</p><p>are used to define the behavior of the guidance over time. They are relative</p><p>to the total number of steps, and are scaled to the number of steps in the</p><p>current run.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>duration</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.ImageParameters">ImageParameters</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>height</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>width</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>seed</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>samples</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>steps</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>transform</td>
+                  <td><a href="#gooseai.TransformType">TransformType</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>parameters</td>
+                  <td><a href="#gooseai.StepParameter">StepParameter</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>masked_area_init</td>
+                  <td><a href="#gooseai.MaskedAreaInit">MaskedAreaInit</a></td>
+                  <td>optional</td>
+                  <td><p>defaults to MASKED_AREA_INIT_ZERO </p></td>
+                </tr>
+              
+                <tr>
+                  <td>weight_method</td>
+                  <td><a href="#gooseai.WeightMethod">WeightMethod</a></td>
+                  <td>optional</td>
+                  <td><p>defaults to TEXT_ENCODER </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.Model">Model</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>architecture</td>
+                  <td><a href="#gooseai.ModelArchitecture">ModelArchitecture</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>publisher</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>dataset</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>version</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>semantic_version</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>alias</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.OnStatus">OnStatus</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>reason</td>
+                  <td><a href="#gooseai.FinishReason">FinishReason</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>target</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>action</td>
+                  <td><a href="#gooseai.StageAction">StageAction</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.Prompt">Prompt</h3>
+        <p>A Prompt is a special type of Artifact that is used to generate an output.</p><p>There can be multiple Prompts that affect the same output. Currently, the</p><p>only Prompts supported are:</p><p>- Text (singular)</p><p>- Init Image (singular, optional, type ARTIFACT_IMAGE, with init=true)</p><p>- Mask (singular, optional, Artifact type ARTIFACT_MASK)</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>parameters</td>
+                  <td><a href="#gooseai.PromptParameters">PromptParameters</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>text</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tokens</td>
+                  <td><a href="#gooseai.Tokens">Tokens</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>artifact</td>
+                  <td><a href="#gooseai.Artifact">Artifact</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.PromptParameters">PromptParameters</h3>
+        <p>A set of parameters for each individual Prompt.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>init</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>weight</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.Request">Request</h3>
+        <p>A Request is a set of Artifacts, which can be of any type with model or</p><p>transform parameters. It is sent to the server, which will respond with an</p><p>Answer.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>engine_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>requested_type</td>
+                  <td><a href="#gooseai.ArtifactType">ArtifactType</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>prompt</td>
+                  <td><a href="#gooseai.Prompt">Prompt</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>image</td>
+                  <td><a href="#gooseai.ImageParameters">ImageParameters</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>classifier</td>
+                  <td><a href="#gooseai.ClassifierParameters">ClassifierParameters</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset</td>
+                  <td><a href="#gooseai.AssetParameters">AssetParameters</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>conditioner</td>
+                  <td><a href="#gooseai.ConditionerParameters">ConditionerParameters</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.SamplerParameters">SamplerParameters</h3>
+        <p>Parameters that affect the behavior of the sampler, typically used for CFG.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>eta</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sampling_steps</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>latent_channels</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>downsampling_factor</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cfg_scale</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>init_noise_scale</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p>defaults to 0.99 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.ScheduleParameters">ScheduleParameters</h3>
+        <p>When does this schedule definition apply?</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>start</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p>0.0 to 1.0 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>end</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p>0.0 to 1.0 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#float">float</a></td>
+                  <td>optional</td>
+                  <td><p>float value to apply on this schedule </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.Stage">Stage</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#gooseai.Request">Request</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>on_status</td>
+                  <td><a href="#gooseai.OnStatus">OnStatus</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.StepParameter">StepParameter</h3>
+        <p>Parameters that apply to this block of the schedule.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>scaled_step</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sampler</td>
+                  <td><a href="#gooseai.SamplerParameters">SamplerParameters</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>schedule</td>
+                  <td><a href="#gooseai.ScheduleParameters">ScheduleParameters</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>guidance</td>
+                  <td><a href="#gooseai.GuidanceParameters">GuidanceParameters</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.Token">Token</h3>
+        <p>Generally, a GPT BPE 16-bit token, paired with an optional string representation.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>text</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.Tokens">Tokens</h3>
+        <p>Sequence of tokens, paired with the id of the tokenizer used to generate them.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tokens</td>
+                  <td><a href="#gooseai.Token">Token</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tokenizer_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.TransformType">TransformType</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>diffusion</td>
+                  <td><a href="#gooseai.DiffusionSampler">DiffusionSampler</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>upscaler</td>
+                  <td><a href="#gooseai.Upscaler">Upscaler</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="gooseai.Action">Action</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ACTION_PASSTHROUGH</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ACTION_REGENERATE_DUPLICATE</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ACTION_REGENERATE</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ACTION_OBFUSCATE_DUPLICATE</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ACTION_OBFUSCATE</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ACTION_DISCARD</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="gooseai.ArtifactType">ArtifactType</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ARTIFACT_NONE</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ARTIFACT_IMAGE</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ARTIFACT_VIDEO</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ARTIFACT_TEXT</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ARTIFACT_TOKENS</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ARTIFACT_EMBEDDING</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ARTIFACT_CLASSIFICATIONS</td>
+                <td>6</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ARTIFACT_MASK</td>
+                <td>7</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ARTIFACT_LATENT</td>
+                <td>8</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ARTIFACT_TENSOR</td>
+                <td>9</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="gooseai.AssetAction">AssetAction</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ASSET_PUT</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSET_GET</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSET_DELETE</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="gooseai.AssetUse">AssetUse</h3>
+        <p>AssetUse defines how the asset is used within a project.  This enum matches</p><p>the values the project proto.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ASSET_USE_UNDEFINED</td>
+                <td>0</td>
+                <td><p>Asset does not have use defined</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSET_USE_INPUT</td>
+                <td>1</td>
+                <td><p>Asset is used as an input for the project</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSET_USE_OUTPUT</td>
+                <td>2</td>
+                <td><p>Asset is an output from the project</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSET_USE_INTERMEDIATE</td>
+                <td>3</td>
+                <td><p>Asset is an output from an intermediate step of the project</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSET_USE_PROJECT</td>
+                <td>4</td>
+                <td><p>Asset is used as the project file for the project</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="gooseai.ClassifierMode">ClassifierMode</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CLSFR_MODE_ZEROSHOT</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CLSFR_MODE_MULTICLASS</td>
+                <td>1</td>
+                <td><p>CLSFR_MODE_ODDSRATIO = 2;</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="gooseai.DiffusionSampler">DiffusionSampler</h3>
+        <p>DiffusionSampler identifies which sampler to use for Diffusion, and represents</p><p>the internal set of supported samplers.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SAMPLER_DDIM</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SAMPLER_DDPM</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SAMPLER_K_EULER</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SAMPLER_K_EULER_ANCESTRAL</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SAMPLER_K_HEUN</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SAMPLER_K_DPM_2</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SAMPLER_K_DPM_2_ANCESTRAL</td>
+                <td>6</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SAMPLER_K_LMS</td>
+                <td>7</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SAMPLER_K_DPMPP_2S_ANCESTRAL</td>
+                <td>8</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SAMPLER_K_DPMPP_2M</td>
+                <td>9</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="gooseai.FinishReason">FinishReason</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>NULL</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LENGTH</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>STOP</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ERROR</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>FILTER</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="gooseai.GuidancePreset">GuidancePreset</h3>
+        <p>Presets for CLIP guidance.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>GUIDANCE_PRESET_NONE</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GUIDANCE_PRESET_SIMPLE</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GUIDANCE_PRESET_FAST_BLUE</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GUIDANCE_PRESET_FAST_GREEN</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GUIDANCE_PRESET_SLOW</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GUIDANCE_PRESET_SLOWER</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GUIDANCE_PRESET_SLOWEST</td>
+                <td>6</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="gooseai.MaskedAreaInit">MaskedAreaInit</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>MASKED_AREA_INIT_ZERO</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>MASKED_AREA_INIT_RANDOM</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>MASKED_AREA_INIT_ORIGINAL</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="gooseai.ModelArchitecture">ModelArchitecture</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>MODEL_ARCHITECTURE_NONE</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEL_ARCHITECTURE_CLIP_VIT</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEL_ARCHITECTURE_CLIP_RESNET</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEL_ARCHITECTURE_LDM</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="gooseai.StageAction">StageAction</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>STAGE_ACTION_PASS</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>STAGE_ACTION_DISCARD</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>STAGE_ACTION_RETURN</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="gooseai.Upscaler">Upscaler</h3>
+        <p>Future, unimplemented.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UPSCALER_RGB</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UPSCALER_GFPGAN</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UPSCALER_ESRGAN</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="gooseai.WeightMethod">WeightMethod</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>TEXT_ENCODER</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CROSS_ATTENTION</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+        <h3 id="gooseai.GenerationService">GenerationService</h3>
+        <p>gRPC services</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Generate</td>
+                <td><a href="#gooseai.Request">Request</a></td>
+                <td><a href="#gooseai.Answer">Answer</a> stream</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ChainGenerate</td>
+                <td><a href="#gooseai.ChainRequest">ChainRequest</a></td>
+                <td><a href="#gooseai.Answer">Answer</a> stream</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="gooseai/project.proto">gooseai/project.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="gooseai.CreateProjectRequest">CreateProjectRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>title of the project </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>The ID of the organization owning the project, empty for default org for user </p></td>
+                </tr>
+              
+                <tr>
+                  <td>access</td>
+                  <td><a href="#gooseai.ProjectAccess">ProjectAccess</a></td>
+                  <td></td>
+                  <td><p>The access of the project (such as public vs private) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#gooseai.ProjectStatus">ProjectStatus</a></td>
+                  <td></td>
+                  <td><p>The status of the project (such as active vs inactive) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>file</td>
+                  <td><a href="#gooseai.ProjectAsset">ProjectAsset</a></td>
+                  <td>optional</td>
+                  <td><p>Project file for the project (if existing, else will create) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.DeleteProjectRequest">DeleteProjectRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>ID of the project to request, UUIDv4 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>The ID of the organization owning the project, empty for default org for user </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.GetProjectRequest">GetProjectRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>ID of the project to request, UUIDv4 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>The ID of the organization owning the project, empty for default org for user </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.ListProjectRequest">ListProjectRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>owner_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>The ID of the organization owning the project, empty for default org for user </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.Project">Project</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>ID of the project, UUIDv4 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Title of the project </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the organization owning the project </p></td>
+                </tr>
+              
+                <tr>
+                  <td>access</td>
+                  <td><a href="#gooseai.ProjectAccess">ProjectAccess</a></td>
+                  <td></td>
+                  <td><p>The access of the project (such as public vs private) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#gooseai.ProjectStatus">ProjectStatus</a></td>
+                  <td></td>
+                  <td><p>The status of the project (such as active vs inactive) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>size</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>The size of the project in bytes </p></td>
+                </tr>
+              
+                <tr>
+                  <td>file</td>
+                  <td><a href="#gooseai.ProjectAsset">ProjectAsset</a></td>
+                  <td></td>
+                  <td><p>Project file for the project </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>Time of project creation (UTC seconds epoch) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>updated_at</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>Time of last project update (UTC seconds epoch) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>assets</td>
+                  <td><a href="#gooseai.ProjectAsset">ProjectAsset</a></td>
+                  <td>repeated</td>
+                  <td><p>The listing of all assets associated with the project </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.ProjectAsset">ProjectAsset</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>ID of the asset, UUIDv4 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>uri</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The URI to the asset </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use</td>
+                  <td><a href="#gooseai.ProjectAssetUse">ProjectAssetUse</a></td>
+                  <td></td>
+                  <td><p>The use of the asset with respect to the project </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="gooseai.UpdateProjectRequest">UpdateProjectRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>ID of the project, UUIDv4 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>The ID of the organization owning the project, empty for default org for user </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Title of the project </p></td>
+                </tr>
+              
+                <tr>
+                  <td>access</td>
+                  <td><a href="#gooseai.ProjectAccess">ProjectAccess</a></td>
+                  <td>optional</td>
+                  <td><p>The access of the project (such as public vs private) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#gooseai.ProjectStatus">ProjectStatus</a></td>
+                  <td>optional</td>
+                  <td><p>The status of the project (such as active vs inactive) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>file</td>
+                  <td><a href="#gooseai.ProjectAsset">ProjectAsset</a></td>
+                  <td>optional</td>
+                  <td><p>Project file for the project </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="gooseai.ProjectAccess">ProjectAccess</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>PROJECT_ACCESS_PRIVATE</td>
+                <td>0</td>
+                <td><p>Private access, only owner organization can access</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROJECT_ACCESS_PUBLIC</td>
+                <td>1</td>
+                <td><p>Public access, anyone can access</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="gooseai.ProjectAssetUse">ProjectAssetUse</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>PROJECT_ASSET_USE_UNDEFINED</td>
+                <td>0</td>
+                <td><p>Asset does not have use defined</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROJECT_ASSET_USE_INPUT</td>
+                <td>1</td>
+                <td><p>Asset is used as an input for the project</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROJECT_ASSET_USE_OUTPUT</td>
+                <td>2</td>
+                <td><p>Asset is an output from the project</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROJECT_ASSET_USE_INTERMEDIATE</td>
+                <td>3</td>
+                <td><p>Asset is an output from an intermediate step of the project</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROJECT_ASSET_USE_PROJECT</td>
+                <td>4</td>
+                <td><p>Asset is used as the project file for the project</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="gooseai.ProjectStatus">ProjectStatus</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>PROJECT_STATUS_INACTIVE</td>
+                <td>0</td>
+                <td><p>Inactive project</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROJECT_STATUS_ACTIVE</td>
+                <td>1</td>
+                <td><p>Active project</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROJECT_STATUS_DELETED</td>
+                <td>2</td>
+                <td><p>Deleted project, only set by delete endpoint</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+        <h3 id="gooseai.ProjectService">ProjectService</h3>
+        <p>gRPC services</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Create</td>
+                <td><a href="#gooseai.CreateProjectRequest">CreateProjectRequest</a></td>
+                <td><a href="#gooseai.Project">Project</a></td>
+                <td><p>Create a new project if it does not exist</p></td>
+              </tr>
+            
+              <tr>
+                <td>Update</td>
+                <td><a href="#gooseai.UpdateProjectRequest">UpdateProjectRequest</a></td>
+                <td><a href="#gooseai.Project">Project</a></td>
+                <td><p>Update an existing project</p></td>
+              </tr>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#gooseai.ListProjectRequest">ListProjectRequest</a></td>
+                <td><a href="#gooseai.Project">Project</a> stream</td>
+                <td><p>List all the projects for an organization</p></td>
+              </tr>
+            
+              <tr>
+                <td>Get</td>
+                <td><a href="#gooseai.GetProjectRequest">GetProjectRequest</a></td>
+                <td><a href="#gooseai.Project">Project</a></td>
+                <td><p>Get a project</p></td>
+              </tr>
+            
+              <tr>
+                <td>Delete</td>
+                <td><a href="#gooseai.DeleteProjectRequest">DeleteProjectRequest</a></td>
+                <td><a href="#gooseai.Project">Project</a></td>
+                <td><p>Delete a project</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr><td>.proto Type</td><td>Notes</td><td>C++</td><td>Java</td><td>Python</td><td>Go</td><td>C#</td><td>PHP</td><td>Ruby</td></tr>
+      </thead>
+      <tbody>
+        
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>double</td>
+            <td>double</td>
+            <td>float</td>
+            <td>float64</td>
+            <td>double</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+        
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+            <td>float</td>
+            <td>float</td>
+            <td>float32</td>
+            <td>float</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+        
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int/long</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>boolean</td>
+            <td>bool</td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>TrueClass/FalseClass</td>
+          </tr>
+        
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>string</td>
+            <td>String</td>
+            <td>str/unicode</td>
+            <td>string</td>
+            <td>string</td>
+            <td>string</td>
+            <td>String (UTF-8)</td>
+          </tr>
+        
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>string</td>
+            <td>ByteString</td>
+            <td>str</td>
+            <td>[]byte</td>
+            <td>ByteString</td>
+            <td>string</td>
+            <td>String (ASCII-8BIT)</td>
+          </tr>
+        
+      </tbody>
+    </table>
+  </body>
+</html>
+
