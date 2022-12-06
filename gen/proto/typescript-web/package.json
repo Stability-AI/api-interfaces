@@ -1,0 +1,18 @@
+{
+  "name": "@stability/api-interfaces-web",
+  "version": "0.15.0",
+  "description": "Stability API Interfaces for use with gRPC-Web and JS/TS",
+  "files": [
+    "lib"
+  ],
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/Stability-AI/api-interfaces"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "dependencies": {
+    "@improbable-eng/grpc-web": "^0.15.0"
+  }
+}

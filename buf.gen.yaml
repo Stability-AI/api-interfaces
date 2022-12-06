@@ -1,0 +1,33 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/stability-ai/api-interfaces/gen/proto/go
+plugins:
+  # Go
+  - remote: buf.build/library/plugins/go:v1.27.1-1
+    out: gen/proto/go
+    opt:
+      - paths=source_relative
+  - remote: buf.build/library/plugins/go-grpc:v1.1.0-2
+    out: gen/proto/go
+    opt:
+      - paths=source_relative
+
+  # Python
+  - plugin: buf.build/protocolbuffers/python
+    out: gen/proto/python/stability_api_interfaces
+  - plugin: buf.build/grpc/python
+    out: gen/proto/python/stability_api_interfaces
+
+  # JS/TS
+  - remote: buf.build/protocolbuffers/plugins/js:v3.19.1-1
+    out: gen/proto/typescript-web/lib
+    opt:
+      - import_style=commonjs
+      - binary
+  - name: ts
+    out: gen/proto/typescript-web/lib
+    opt:
+      - service=grpc-web
+    path: ./node_modules/.bin/protoc-gen-ts

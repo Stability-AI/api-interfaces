@@ -1,0 +1,16 @@
+
+[tool.poetry]
+name = "stability-api-interfaces"
+version = "1.0.0"
+description = "Stability API Interfaces for use with Python"
+authors = ["Place Holder <placeholder@stability.ai>"]
+packages = [{include = "stability_api_interfaces"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+protobuf = "^4.21.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
