@@ -640,6 +640,11 @@ export class ImageParameters extends jspb.Message {
   getMaskedAreaInit(): MaskedAreaInitMap[keyof MaskedAreaInitMap];
   setMaskedAreaInit(value: MaskedAreaInitMap[keyof MaskedAreaInitMap]): void;
 
+  hasWeightMethod(): boolean;
+  clearWeightMethod(): void;
+  getWeightMethod(): WeightMethodMap[keyof WeightMethodMap];
+  setWeightMethod(value: WeightMethodMap[keyof WeightMethodMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ImageParameters.AsObject;
   static toObject(includeInstance: boolean, msg: ImageParameters): ImageParameters.AsObject;
@@ -660,6 +665,7 @@ export namespace ImageParameters {
     transform?: TransformType.AsObject,
     parametersList: Array<StepParameter.AsObject>,
     maskedAreaInit: MaskedAreaInitMap[keyof MaskedAreaInitMap],
+    weightMethod: WeightMethodMap[keyof WeightMethodMap],
   }
 }
 
@@ -914,16 +920,6 @@ export class Request extends jspb.Message {
   getConditioner(): ConditionerParameters | undefined;
   setConditioner(value?: ConditionerParameters): void;
 
-  hasWeightMethod(): boolean;
-  clearWeightMethod(): void;
-  getWeightMethod(): WeightMethodMap[keyof WeightMethodMap];
-  setWeightMethod(value: WeightMethodMap[keyof WeightMethodMap]): void;
-
-  clearUcPromptList(): void;
-  getUcPromptList(): Array<Prompt>;
-  setUcPromptList(value: Array<Prompt>): void;
-  addUcPrompt(value?: Prompt, index?: number): Prompt;
-
   getParamsCase(): Request.ParamsCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Request.AsObject;
@@ -945,8 +941,6 @@ export namespace Request {
     classifier?: ClassifierParameters.AsObject,
     asset?: AssetParameters.AsObject,
     conditioner?: ConditionerParameters.AsObject,
-    weightMethod: WeightMethodMap[keyof WeightMethodMap],
-    ucPromptList: Array<Prompt.AsObject>,
   }
 
   export enum ParamsCase {
@@ -1098,6 +1092,8 @@ export interface DiffusionSamplerMap {
   SAMPLER_K_DPM_2: 5;
   SAMPLER_K_DPM_2_ANCESTRAL: 6;
   SAMPLER_K_LMS: 7;
+  SAMPLER_K_DPMPP_2S_ANCESTRAL: 8;
+  SAMPLER_K_DPMPP_2M: 9;
 }
 
 export const DiffusionSampler: DiffusionSamplerMap;

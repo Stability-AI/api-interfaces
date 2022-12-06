@@ -101,6 +101,8 @@ enum DiffusionSampler {
   SAMPLER_K_DPM_2 = 5;
   SAMPLER_K_DPM_2_ANCESTRAL = 6;
   SAMPLER_K_LMS = 7;
+  SAMPLER_K_DPMPP_2S_ANCESTRAL = 8;
+  SAMPLER_K_DPMPP_2M = 9;
 }
 
 // Parameters that affect the behavior of the sampler, typically used for CFG.
@@ -220,6 +222,7 @@ message ImageParameters {
   optional TransformType transform = 6;
   repeated StepParameter parameters = 7;
   optional MaskedAreaInit masked_area_init = 8; // defaults to MASKED_AREA_INIT_ZERO 
+  optional WeightMethod weight_method = 9; //defaults to TEXT_ENCODER
 }
 
 enum Action {
@@ -320,8 +323,7 @@ message Request {
     AssetParameters asset = 8;
   }
   optional ConditionerParameters conditioner = 6;
-  optional WeightMethod weight_method = 9;
-  repeated Prompt uc_prompt = 10;
+  reserved 9,10; //9, 10 are reserved
 }
 
 //
