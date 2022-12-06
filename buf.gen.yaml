@@ -31,7 +31,3 @@ plugins:
     opt:
       - service=grpc-web
     path: ./node_modules/.bin/protoc-gen-ts
-
-  # Docs
-  - plugin: buf.build/community/pseudomuto-doc
-    out: docs
