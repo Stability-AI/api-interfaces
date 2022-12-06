@@ -15,9 +15,9 @@ plugins:
       - paths=source_relative
 
   # Python
-  - remote: buf.build/protocolbuffers/plugins/python
+  - plugin: buf.build/protocolbuffers/python
     out: gen/proto/python/stability_api_interfaces
-  - remote: buf.build/grpc/plugins/python
+  - plugin: buf.build/grpc/python
     out: gen/proto/python/stability_api_interfaces
 
   # JS/TS

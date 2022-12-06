@@ -12,6 +12,16 @@ await $`buf --version`.then((res) => {
   }
 });
 
+// Ensure protol is installed
+await $`which protol`.then((res) => {
+  if (res.exitCode !== 0) {
+    console.error(
+      "protol is not installed. Please install it with `pip install protoletariat`"
+    );
+    process.exit(1);
+  }
+});
+
 // Remove all files in the generated directory except for these explicitly ignored files
 await glob("gen/**/*", {
   ignore: [
@@ -39,6 +49,8 @@ let pythonModules = await glob("gen/proto/python/**", { onlyDirectories: true })
 for (const pythonModule of pythonModules) {
   fs.ensureFileSync(path.join(pythonModule, "__init__.py"));
 }
+
+await $`protol --python-out ./gen/proto/python/stability_api_interfaces --in-place buf`;
 
 await glob("gen/**/pyproject.toml").then((files) =>
   Promise.all(
