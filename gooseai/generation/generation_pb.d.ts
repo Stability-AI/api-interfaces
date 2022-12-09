@@ -575,11 +575,6 @@ export class TransformType extends jspb.Message {
   getUpscaler(): UpscalerMap[keyof UpscalerMap];
   setUpscaler(value: UpscalerMap[keyof UpscalerMap]): void;
 
-  hasSequence(): boolean;
-  clearSequence(): void;
-  getSequence(): TransformSequence | undefined;
-  setSequence(value?: TransformSequence): void;
-
   getTypeCase(): TransformType.TypeCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TransformType.AsObject;
@@ -595,14 +590,12 @@ export namespace TransformType {
   export type AsObject = {
     diffusion: DiffusionSamplerMap[keyof DiffusionSamplerMap],
     upscaler: UpscalerMap[keyof UpscalerMap],
-    sequence?: TransformSequence.AsObject,
   }
 
   export enum TypeCase {
     TYPE_NOT_SET = 0,
     DIFFUSION = 1,
     UPSCALER = 2,
-    SEQUENCE = 3,
   }
 }
 
@@ -808,32 +801,6 @@ export namespace InterpolateParameters {
   }
 }
 
-export class TransformAddNoise extends jspb.Message {
-  getAmount(): number;
-  setAmount(value: number): void;
-
-  hasSeed(): boolean;
-  clearSeed(): void;
-  getSeed(): number;
-  setSeed(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): TransformAddNoise.AsObject;
-  static toObject(includeInstance: boolean, msg: TransformAddNoise): TransformAddNoise.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: TransformAddNoise, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): TransformAddNoise;
-  static deserializeBinaryFromReader(message: TransformAddNoise, reader: jspb.BinaryReader): TransformAddNoise;
-}
-
-export namespace TransformAddNoise {
-  export type AsObject = {
-    amount: number,
-    seed: number,
-  }
-}
-
 export class TransformBlend extends jspb.Message {
   getAmount(): number;
   setAmount(value: number): void;
@@ -915,11 +882,6 @@ export namespace TransformContrast {
 }
 
 export class TransformDepthCalc extends jspb.Message {
-  hasExport(): boolean;
-  clearExport(): void;
-  getExport(): boolean;
-  setExport(value: boolean): void;
-
   hasBlendWeight(): boolean;
   clearBlendWeight(): void;
   getBlendWeight(): number;
@@ -942,7 +904,6 @@ export class TransformDepthCalc extends jspb.Message {
 
 export namespace TransformDepthCalc {
   export type AsObject = {
-    pb_export: boolean,
     blendWeight: number,
     blurRadius: number,
   }
@@ -1014,104 +975,6 @@ export namespace TransformResample {
   }
 }
 
-export class TransformWarp2d extends jspb.Message {
-  getBorderMode(): BorderModeMap[keyof BorderModeMap];
-  setBorderMode(value: BorderModeMap[keyof BorderModeMap]): void;
-
-  getTranslateX(): number;
-  setTranslateX(value: number): void;
-
-  getTranslateY(): number;
-  setTranslateY(value: number): void;
-
-  getRotate(): number;
-  setRotate(value: number): void;
-
-  getScale(): number;
-  setScale(value: number): void;
-
-  hasMatrix(): boolean;
-  clearMatrix(): void;
-  getMatrix(): TransformMatrix | undefined;
-  setMatrix(value?: TransformMatrix): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): TransformWarp2d.AsObject;
-  static toObject(includeInstance: boolean, msg: TransformWarp2d): TransformWarp2d.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: TransformWarp2d, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): TransformWarp2d;
-  static deserializeBinaryFromReader(message: TransformWarp2d, reader: jspb.BinaryReader): TransformWarp2d;
-}
-
-export namespace TransformWarp2d {
-  export type AsObject = {
-    borderMode: BorderModeMap[keyof BorderModeMap],
-    translateX: number,
-    translateY: number,
-    rotate: number,
-    scale: number,
-    matrix?: TransformMatrix.AsObject,
-  }
-}
-
-export class TransformWarp3d extends jspb.Message {
-  getBorderMode(): BorderModeMap[keyof BorderModeMap];
-  setBorderMode(value: BorderModeMap[keyof BorderModeMap]): void;
-
-  getTranslateX(): number;
-  setTranslateX(value: number): void;
-
-  getTranslateY(): number;
-  setTranslateY(value: number): void;
-
-  getTranslateZ(): number;
-  setTranslateZ(value: number): void;
-
-  getRotateX(): number;
-  setRotateX(value: number): void;
-
-  getRotateY(): number;
-  setRotateY(value: number): void;
-
-  getRotateZ(): number;
-  setRotateZ(value: number): void;
-
-  getNearPlane(): number;
-  setNearPlane(value: number): void;
-
-  getFarPlane(): number;
-  setFarPlane(value: number): void;
-
-  getFov(): number;
-  setFov(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): TransformWarp3d.AsObject;
-  static toObject(includeInstance: boolean, msg: TransformWarp3d): TransformWarp3d.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: TransformWarp3d, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): TransformWarp3d;
-  static deserializeBinaryFromReader(message: TransformWarp3d, reader: jspb.BinaryReader): TransformWarp3d;
-}
-
-export namespace TransformWarp3d {
-  export type AsObject = {
-    borderMode: BorderModeMap[keyof BorderModeMap],
-    translateX: number,
-    translateY: number,
-    translateZ: number,
-    rotateX: number,
-    rotateY: number,
-    rotateZ: number,
-    nearPlane: number,
-    farPlane: number,
-    fov: number,
-  }
-}
-
 export class TransformWarpFlow extends jspb.Message {
   hasFlowMap(): boolean;
   clearFlowMap(): void;
@@ -1146,12 +1009,7 @@ export namespace TransformWarpFlow {
   }
 }
 
-export class TransformOperation extends jspb.Message {
-  hasAddNoise(): boolean;
-  clearAddNoise(): void;
-  getAddNoise(): TransformAddNoise | undefined;
-  setAddNoise(value?: TransformAddNoise): void;
-
+export class TransformParameters extends jspb.Message {
   hasBlend(): boolean;
   clearBlend(): void;
   getBlend(): TransformBlend | undefined;
@@ -1177,78 +1035,40 @@ export class TransformOperation extends jspb.Message {
   getResample(): TransformResample | undefined;
   setResample(value?: TransformResample): void;
 
-  hasWarp2d(): boolean;
-  clearWarp2d(): void;
-  getWarp2d(): TransformWarp2d | undefined;
-  setWarp2d(value?: TransformWarp2d): void;
-
-  hasWarp3d(): boolean;
-  clearWarp3d(): void;
-  getWarp3d(): TransformWarp3d | undefined;
-  setWarp3d(value?: TransformWarp3d): void;
-
   hasWarpFlow(): boolean;
   clearWarpFlow(): void;
   getWarpFlow(): TransformWarpFlow | undefined;
   setWarpFlow(value?: TransformWarpFlow): void;
 
-  getXformCase(): TransformOperation.XformCase;
+  getTransformCase(): TransformParameters.TransformCase;
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): TransformOperation.AsObject;
-  static toObject(includeInstance: boolean, msg: TransformOperation): TransformOperation.AsObject;
+  toObject(includeInstance?: boolean): TransformParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformParameters): TransformParameters.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: TransformOperation, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): TransformOperation;
-  static deserializeBinaryFromReader(message: TransformOperation, reader: jspb.BinaryReader): TransformOperation;
+  static serializeBinaryToWriter(message: TransformParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformParameters;
+  static deserializeBinaryFromReader(message: TransformParameters, reader: jspb.BinaryReader): TransformParameters;
 }
 
-export namespace TransformOperation {
+export namespace TransformParameters {
   export type AsObject = {
-    addNoise?: TransformAddNoise.AsObject,
     blend?: TransformBlend.AsObject,
     colorMatch?: TransformColorMatch.AsObject,
     contrast?: TransformContrast.AsObject,
     depthCalc?: TransformDepthCalc.AsObject,
     resample?: TransformResample.AsObject,
-    warp2d?: TransformWarp2d.AsObject,
-    warp3d?: TransformWarp3d.AsObject,
     warpFlow?: TransformWarpFlow.AsObject,
   }
 
-  export enum XformCase {
-    XFORM_NOT_SET = 0,
-    ADD_NOISE = 1,
-    BLEND = 6,
+  export enum TransformCase {
+    TRANSFORM_NOT_SET = 0,
+    BLEND = 1,
     COLOR_MATCH = 2,
-    CONTRAST = 8,
-    DEPTH_CALC = 7,
-    RESAMPLE = 9,
-    WARP2D = 3,
-    WARP3D = 4,
-    WARP_FLOW = 5,
-  }
-}
-
-export class TransformSequence extends jspb.Message {
-  clearOperationsList(): void;
-  getOperationsList(): Array<TransformOperation>;
-  setOperationsList(value: Array<TransformOperation>): void;
-  addOperations(value?: TransformOperation, index?: number): TransformOperation;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): TransformSequence.AsObject;
-  static toObject(includeInstance: boolean, msg: TransformSequence): TransformSequence.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: TransformSequence, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): TransformSequence;
-  static deserializeBinaryFromReader(message: TransformSequence, reader: jspb.BinaryReader): TransformSequence;
-}
-
-export namespace TransformSequence {
-  export type AsObject = {
-    operationsList: Array<TransformOperation.AsObject>,
+    CONTRAST = 3,
+    DEPTH_CALC = 4,
+    RESAMPLE = 5,
+    WARP_FLOW = 6,
   }
 }
 
@@ -1399,6 +1219,11 @@ export class Request extends jspb.Message {
   getInterpolate(): InterpolateParameters | undefined;
   setInterpolate(value?: InterpolateParameters): void;
 
+  hasTransform(): boolean;
+  clearTransform(): void;
+  getTransform(): TransformParameters | undefined;
+  setTransform(value?: TransformParameters): void;
+
   hasConditioner(): boolean;
   clearConditioner(): void;
   getConditioner(): ConditionerParameters | undefined;
@@ -1425,6 +1250,7 @@ export namespace Request {
     classifier?: ClassifierParameters.AsObject,
     asset?: AssetParameters.AsObject,
     interpolate?: InterpolateParameters.AsObject,
+    transform?: TransformParameters.AsObject,
     conditioner?: ConditionerParameters.AsObject,
   }
 
@@ -1434,6 +1260,7 @@ export namespace Request {
     CLASSIFIER = 7,
     ASSET = 8,
     INTERPOLATE = 11,
+    TRANSFORM = 12,
   }
 }
 

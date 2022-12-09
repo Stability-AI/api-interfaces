@@ -16,7 +16,7 @@ _sym_db = _symbol_database.Default()
 import tensors_pb2 as tensors__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10generation.proto\x12\x07gooseai\x1a\rtensors.proto\"/\n\x05Token\x12\x11\n\x04text\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\n\n\x02id\x18\x02 \x01(\rB\x07\n\x05_text\"T\n\x06Tokens\x12\x1e\n\x06tokens\x18\x01 \x03(\x0b\x32\x0e.gooseai.Token\x12\x19\n\x0ctokenizer_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\x0f\n\r_tokenizer_id\"\xf3\x02\n\x08\x41rtifact\x12\n\n\x02id\x18\x01 \x01(\x04\x12#\n\x04type\x18\x02 \x01(\x0e\x32\x15.gooseai.ArtifactType\x12\x0c\n\x04mime\x18\x03 \x01(\t\x12\x12\n\x05magic\x18\x04 \x01(\tH\x01\x88\x01\x01\x12\x10\n\x06\x62inary\x18\x05 \x01(\x0cH\x00\x12\x0e\n\x04text\x18\x06 \x01(\tH\x00\x12!\n\x06tokens\x18\x07 \x01(\x0b\x32\x0f.gooseai.TokensH\x00\x12\x33\n\nclassifier\x18\x0b \x01(\x0b\x32\x1d.gooseai.ClassifierParametersH\x00\x12!\n\x06tensor\x18\x0e \x01(\x0b\x32\x0f.tensors.TensorH\x00\x12\r\n\x05index\x18\x08 \x01(\r\x12,\n\rfinish_reason\x18\t \x01(\x0e\x32\x15.gooseai.FinishReason\x12\x0c\n\x04seed\x18\n \x01(\r\x12\x0c\n\x04uuid\x18\x0c \x01(\t\x12\x0c\n\x04size\x18\r \x01(\x04\x42\x06\n\x04\x64\x61taB\x08\n\x06_magic\"N\n\x10PromptParameters\x12\x11\n\x04init\x18\x01 \x01(\x08H\x00\x88\x01\x01\x12\x13\n\x06weight\x18\x02 \x01(\x02H\x01\x88\x01\x01\x42\x07\n\x05_initB\t\n\x07_weight\"\xaf\x01\n\x06Prompt\x12\x32\n\nparameters\x18\x01 \x01(\x0b\x32\x19.gooseai.PromptParametersH\x01\x88\x01\x01\x12\x0e\n\x04text\x18\x02 \x01(\tH\x00\x12!\n\x06tokens\x18\x03 \x01(\x0b\x32\x0f.gooseai.TokensH\x00\x12%\n\x08\x61rtifact\x18\x04 \x01(\x0b\x32\x11.gooseai.ArtifactH\x00\x42\x08\n\x06promptB\r\n\x0b_parameters\"\xa3\x02\n\x11SamplerParameters\x12\x10\n\x03\x65ta\x18\x01 \x01(\x02H\x00\x88\x01\x01\x12\x1b\n\x0esampling_steps\x18\x02 \x01(\x04H\x01\x88\x01\x01\x12\x1c\n\x0flatent_channels\x18\x03 \x01(\x04H\x02\x88\x01\x01\x12 \n\x13\x64ownsampling_factor\x18\x04 \x01(\x04H\x03\x88\x01\x01\x12\x16\n\tcfg_scale\x18\x05 \x01(\x02H\x04\x88\x01\x01\x12\x1d\n\x10init_noise_scale\x18\x06 \x01(\x02H\x05\x88\x01\x01\x42\x06\n\x04_etaB\x11\n\x0f_sampling_stepsB\x12\n\x10_latent_channelsB\x16\n\x14_downsampling_factorB\x0c\n\n_cfg_scaleB\x13\n\x11_init_noise_scale\"\x8b\x01\n\x15\x43onditionerParameters\x12 \n\x13vector_adjust_prior\x18\x01 \x01(\tH\x00\x88\x01\x01\x12(\n\x0b\x63onditioner\x18\x02 \x01(\x0b\x32\x0e.gooseai.ModelH\x01\x88\x01\x01\x42\x16\n\x14_vector_adjust_priorB\x0e\n\x0c_conditioner\"j\n\x12ScheduleParameters\x12\x12\n\x05start\x18\x01 \x01(\x02H\x00\x88\x01\x01\x12\x10\n\x03\x65nd\x18\x02 \x01(\x02H\x01\x88\x01\x01\x12\x12\n\x05value\x18\x03 \x01(\x02H\x02\x88\x01\x01\x42\x08\n\x06_startB\x06\n\x04_endB\x08\n\x06_value\"\xe4\x01\n\rStepParameter\x12\x13\n\x0bscaled_step\x18\x01 \x01(\x02\x12\x30\n\x07sampler\x18\x02 \x01(\x0b\x32\x1a.gooseai.SamplerParametersH\x00\x88\x01\x01\x12\x32\n\x08schedule\x18\x03 \x01(\x0b\x32\x1b.gooseai.ScheduleParametersH\x01\x88\x01\x01\x12\x32\n\x08guidance\x18\x04 \x01(\x0b\x32\x1b.gooseai.GuidanceParametersH\x02\x88\x01\x01\x42\n\n\x08_samplerB\x0b\n\t_scheduleB\x0b\n\t_guidance\"\x97\x01\n\x05Model\x12\x30\n\x0c\x61rchitecture\x18\x01 \x01(\x0e\x32\x1a.gooseai.ModelArchitecture\x12\x11\n\tpublisher\x18\x02 \x01(\t\x12\x0f\n\x07\x64\x61taset\x18\x03 \x01(\t\x12\x0f\n\x07version\x18\x04 \x01(\x02\x12\x18\n\x10semantic_version\x18\x05 \x01(\t\x12\r\n\x05\x61lias\x18\x06 \x01(\t\"\xbc\x01\n\x10\x43utoutParameters\x12*\n\x07\x63utouts\x18\x01 \x03(\x0b\x32\x19.gooseai.CutoutParameters\x12\x12\n\x05\x63ount\x18\x02 \x01(\rH\x00\x88\x01\x01\x12\x11\n\x04gray\x18\x03 \x01(\x02H\x01\x88\x01\x01\x12\x11\n\x04\x62lur\x18\x04 \x01(\x02H\x02\x88\x01\x01\x12\x17\n\nsize_power\x18\x05 \x01(\x02H\x03\x88\x01\x01\x42\x08\n\x06_countB\x07\n\x05_grayB\x07\n\x05_blurB\r\n\x0b_size_power\"=\n\x1aGuidanceScheduleParameters\x12\x10\n\x08\x64uration\x18\x01 \x01(\x02\x12\r\n\x05value\x18\x02 \x01(\x02\"\x97\x02\n\x1aGuidanceInstanceParameters\x12\x1e\n\x06models\x18\x02 \x03(\x0b\x32\x0e.gooseai.Model\x12\x1e\n\x11guidance_strength\x18\x03 \x01(\x02H\x00\x88\x01\x01\x12\x35\n\x08schedule\x18\x04 \x03(\x0b\x32#.gooseai.GuidanceScheduleParameters\x12/\n\x07\x63utouts\x18\x05 \x01(\x0b\x32\x19.gooseai.CutoutParametersH\x01\x88\x01\x01\x12$\n\x06prompt\x18\x06 \x01(\x0b\x32\x0f.gooseai.PromptH\x02\x88\x01\x01\x42\x14\n\x12_guidance_strengthB\n\n\x08_cutoutsB\t\n\x07_prompt\"~\n\x12GuidanceParameters\x12\x30\n\x0fguidance_preset\x18\x01 \x01(\x0e\x32\x17.gooseai.GuidancePreset\x12\x36\n\tinstances\x18\x02 \x03(\x0b\x32#.gooseai.GuidanceInstanceParameters\"\x9e\x01\n\rTransformType\x12.\n\tdiffusion\x18\x01 \x01(\x0e\x32\x19.gooseai.DiffusionSamplerH\x00\x12%\n\x08upscaler\x18\x02 \x01(\x0e\x32\x11.gooseai.UpscalerH\x00\x12.\n\x08sequence\x18\x03 \x01(\x0b\x32\x1a.gooseai.TransformSequenceH\x00\x42\x06\n\x04type\"\x99\x03\n\x0fImageParameters\x12\x13\n\x06height\x18\x01 \x01(\x04H\x00\x88\x01\x01\x12\x12\n\x05width\x18\x02 \x01(\x04H\x01\x88\x01\x01\x12\x0c\n\x04seed\x18\x03 \x03(\r\x12\x14\n\x07samples\x18\x04 \x01(\x04H\x02\x88\x01\x01\x12\x12\n\x05steps\x18\x05 \x01(\x04H\x03\x88\x01\x01\x12.\n\ttransform\x18\x06 \x01(\x0b\x32\x16.gooseai.TransformTypeH\x04\x88\x01\x01\x12*\n\nparameters\x18\x07 \x03(\x0b\x32\x16.gooseai.StepParameter\x12\x36\n\x10masked_area_init\x18\x08 \x01(\x0e\x32\x17.gooseai.MaskedAreaInitH\x05\x88\x01\x01\x12\x31\n\rweight_method\x18\t \x01(\x0e\x32\x15.gooseai.WeightMethodH\x06\x88\x01\x01\x42\t\n\x07_heightB\x08\n\x06_widthB\n\n\x08_samplesB\x08\n\x06_stepsB\x0c\n\n_transformB\x13\n\x11_masked_area_initB\x10\n\x0e_weight_method\"J\n\x11\x43lassifierConcept\x12\x0f\n\x07\x63oncept\x18\x01 \x01(\t\x12\x16\n\tthreshold\x18\x02 \x01(\x02H\x00\x88\x01\x01\x42\x0c\n\n_threshold\"\xf4\x01\n\x12\x43lassifierCategory\x12\x0c\n\x04name\x18\x01 \x01(\t\x12,\n\x08\x63oncepts\x18\x02 \x03(\x0b\x32\x1a.gooseai.ClassifierConcept\x12\x17\n\nadjustment\x18\x03 \x01(\x02H\x00\x88\x01\x01\x12$\n\x06\x61\x63tion\x18\x04 \x01(\x0e\x32\x0f.gooseai.ActionH\x01\x88\x01\x01\x12\x35\n\x0f\x63lassifier_mode\x18\x05 \x01(\x0e\x32\x17.gooseai.ClassifierModeH\x02\x88\x01\x01\x42\r\n\x0b_adjustmentB\t\n\x07_actionB\x12\n\x10_classifier_mode\"\xb8\x01\n\x14\x43lassifierParameters\x12/\n\ncategories\x18\x01 \x03(\x0b\x32\x1b.gooseai.ClassifierCategory\x12,\n\x07\x65xceeds\x18\x02 \x03(\x0b\x32\x1b.gooseai.ClassifierCategory\x12-\n\x0frealized_action\x18\x03 \x01(\x0e\x32\x0f.gooseai.ActionH\x00\x88\x01\x01\x42\x12\n\x10_realized_action\"]\n\x15InterpolateParameters\x12\x0e\n\x06ratios\x18\x01 \x03(\x02\x12+\n\x04mode\x18\x02 \x01(\x0e\x32\x18.gooseai.InterpolateModeH\x00\x88\x01\x01\x42\x07\n\x05_mode\"?\n\x11TransformAddNoise\x12\x0e\n\x06\x61mount\x18\x01 \x01(\x02\x12\x11\n\x04seed\x18\x02 \x01(\rH\x00\x88\x01\x01\x42\x07\n\x05_seed\"C\n\x0eTransformBlend\x12\x0e\n\x06\x61mount\x18\x01 \x01(\x02\x12!\n\x06target\x18\x02 \x01(\x0b\x32\x11.gooseai.Artifact\"d\n\x13TransformColorMatch\x12+\n\ncolor_mode\x18\x01 \x01(\x0e\x32\x17.gooseai.ColorMatchMode\x12 \n\x05image\x18\x02 \x01(\x0b\x32\x11.gooseai.Artifact\"_\n\x11TransformContrast\x12\x17\n\nbrightness\x18\x01 \x01(\x02H\x00\x88\x01\x01\x12\x15\n\x08\x63ontrast\x18\x02 \x01(\x02H\x01\x88\x01\x01\x42\r\n\x0b_brightnessB\x0b\n\t_contrast\"\x8a\x01\n\x12TransformDepthCalc\x12\x13\n\x06\x65xport\x18\x01 \x01(\x08H\x00\x88\x01\x01\x12\x19\n\x0c\x62lend_weight\x18\x02 \x01(\x02H\x01\x88\x01\x01\x12\x18\n\x0b\x62lur_radius\x18\x03 \x01(\rH\x02\x88\x01\x01\x42\t\n\x07_exportB\x0f\n\r_blend_weightB\x0e\n\x0c_blur_radius\"#\n\x0fTransformMatrix\x12\x10\n\x04\x64\x61ta\x18\x01 \x03(\x02\x42\x02\x10\x01\"\x86\x02\n\x11TransformResample\x12(\n\x0b\x62order_mode\x18\x01 \x01(\x0e\x32\x13.gooseai.BorderMode\x12+\n\ttransform\x18\x02 \x01(\x0b\x32\x18.gooseai.TransformMatrix\x12\x35\n\x0eprev_transform\x18\x03 \x01(\x0b\x32\x18.gooseai.TransformMatrixH\x00\x88\x01\x01\x12\x17\n\ndepth_warp\x18\x04 \x01(\x02H\x01\x88\x01\x01\x12\x18\n\x0b\x65xport_mask\x18\x05 \x01(\x08H\x02\x88\x01\x01\x42\x11\n\x0f_prev_transformB\r\n\x0b_depth_warpB\x0e\n\x0c_export_mask\"\xbe\x01\n\x0fTransformWarp2d\x12(\n\x0b\x62order_mode\x18\x01 \x01(\x0e\x32\x13.gooseai.BorderMode\x12\x13\n\x0btranslate_x\x18\x04 \x01(\x02\x12\x13\n\x0btranslate_y\x18\x05 \x01(\x02\x12\x0e\n\x06rotate\x18\x02 \x01(\x02\x12\r\n\x05scale\x18\x03 \x01(\x02\x12-\n\x06matrix\x18\x06 \x01(\x0b\x32\x18.gooseai.TransformMatrixH\x00\x88\x01\x01\x42\t\n\x07_matrix\"\xe4\x01\n\x0fTransformWarp3d\x12(\n\x0b\x62order_mode\x18\x01 \x01(\x0e\x32\x13.gooseai.BorderMode\x12\x13\n\x0btranslate_x\x18\x03 \x01(\x02\x12\x13\n\x0btranslate_y\x18\x04 \x01(\x02\x12\x13\n\x0btranslate_z\x18\x05 \x01(\x02\x12\x10\n\x08rotate_x\x18\x06 \x01(\x02\x12\x10\n\x08rotate_y\x18\x07 \x01(\x02\x12\x10\n\x08rotate_z\x18\x08 \x01(\x02\x12\x12\n\nnear_plane\x18\t \x01(\x02\x12\x11\n\tfar_plane\x18\n \x01(\x02\x12\x0b\n\x03\x66ov\x18\x0b \x01(\x02\"\xc0\x01\n\x11TransformWarpFlow\x12(\n\x08\x66low_map\x18\x01 \x01(\x0b\x32\x11.gooseai.ArtifactH\x00\x88\x01\x01\x12*\n\nprev_frame\x18\x02 \x01(\x0b\x32\x11.gooseai.ArtifactH\x01\x88\x01\x01\x12*\n\nnext_frame\x18\x03 \x01(\x0b\x32\x11.gooseai.ArtifactH\x02\x88\x01\x01\x42\x0b\n\t_flow_mapB\r\n\x0b_prev_frameB\r\n\x0b_next_frame\"\xc9\x03\n\x12TransformOperation\x12/\n\tadd_noise\x18\x01 \x01(\x0b\x32\x1a.gooseai.TransformAddNoiseH\x00\x12(\n\x05\x62lend\x18\x06 \x01(\x0b\x32\x17.gooseai.TransformBlendH\x00\x12\x33\n\x0b\x63olor_match\x18\x02 \x01(\x0b\x32\x1c.gooseai.TransformColorMatchH\x00\x12.\n\x08\x63ontrast\x18\x08 \x01(\x0b\x32\x1a.gooseai.TransformContrastH\x00\x12\x31\n\ndepth_calc\x18\x07 \x01(\x0b\x32\x1b.gooseai.TransformDepthCalcH\x00\x12.\n\x08resample\x18\t \x01(\x0b\x32\x1a.gooseai.TransformResampleH\x00\x12*\n\x06warp2d\x18\x03 \x01(\x0b\x32\x18.gooseai.TransformWarp2dH\x00\x12*\n\x06warp3d\x18\x04 \x01(\x0b\x32\x18.gooseai.TransformWarp3dH\x00\x12/\n\twarp_flow\x18\x05 \x01(\x0b\x32\x1a.gooseai.TransformWarpFlowH\x00\x42\x07\n\x05xform\"D\n\x11TransformSequence\x12/\n\noperations\x18\x01 \x03(\x0b\x32\x1b.gooseai.TransformOperation\"k\n\x0f\x41ssetParameters\x12$\n\x06\x61\x63tion\x18\x01 \x01(\x0e\x32\x14.gooseai.AssetAction\x12\x12\n\nproject_id\x18\x02 \x01(\t\x12\x1e\n\x03use\x18\x03 \x01(\x0e\x32\x11.gooseai.AssetUse\"\x94\x01\n\nAnswerMeta\x12\x13\n\x06gpu_id\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\x13\n\x06\x63pu_id\x18\x02 \x01(\tH\x01\x88\x01\x01\x12\x14\n\x07node_id\x18\x03 \x01(\tH\x02\x88\x01\x01\x12\x16\n\tengine_id\x18\x04 \x01(\tH\x03\x88\x01\x01\x42\t\n\x07_gpu_idB\t\n\x07_cpu_idB\n\n\x08_node_idB\x0c\n\n_engine_id\"\xa9\x01\n\x06\x41nswer\x12\x11\n\tanswer_id\x18\x01 \x01(\t\x12\x12\n\nrequest_id\x18\x02 \x01(\t\x12\x10\n\x08received\x18\x03 \x01(\x04\x12\x0f\n\x07\x63reated\x18\x04 \x01(\x04\x12&\n\x04meta\x18\x06 \x01(\x0b\x32\x13.gooseai.AnswerMetaH\x00\x88\x01\x01\x12$\n\tartifacts\x18\x07 \x03(\x0b\x32\x11.gooseai.ArtifactB\x07\n\x05_meta\"\xa2\x03\n\x07Request\x12\x11\n\tengine_id\x18\x01 \x01(\t\x12\x12\n\nrequest_id\x18\x02 \x01(\t\x12-\n\x0erequested_type\x18\x03 \x01(\x0e\x32\x15.gooseai.ArtifactType\x12\x1f\n\x06prompt\x18\x04 \x03(\x0b\x32\x0f.gooseai.Prompt\x12)\n\x05image\x18\x05 \x01(\x0b\x32\x18.gooseai.ImageParametersH\x00\x12\x33\n\nclassifier\x18\x07 \x01(\x0b\x32\x1d.gooseai.ClassifierParametersH\x00\x12)\n\x05\x61sset\x18\x08 \x01(\x0b\x32\x18.gooseai.AssetParametersH\x00\x12\x35\n\x0binterpolate\x18\x0b \x01(\x0b\x32\x1e.gooseai.InterpolateParametersH\x00\x12\x38\n\x0b\x63onditioner\x18\x06 \x01(\x0b\x32\x1e.gooseai.ConditionerParametersH\x01\x88\x01\x01\x42\x08\n\x06paramsB\x0e\n\x0c_conditionerJ\x04\x08\t\x10\nJ\x04\x08\n\x10\x0b\"w\n\x08OnStatus\x12%\n\x06reason\x18\x01 \x03(\x0e\x32\x15.gooseai.FinishReason\x12\x13\n\x06target\x18\x02 \x01(\tH\x00\x88\x01\x01\x12$\n\x06\x61\x63tion\x18\x03 \x03(\x0e\x32\x14.gooseai.StageActionB\t\n\x07_target\"\\\n\x05Stage\x12\n\n\x02id\x18\x01 \x01(\t\x12!\n\x07request\x18\x02 \x01(\x0b\x32\x10.gooseai.Request\x12$\n\ton_status\x18\x03 \x03(\x0b\x32\x11.gooseai.OnStatus\"A\n\x0c\x43hainRequest\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x1d\n\x05stage\x18\x02 \x03(\x0b\x32\x0e.gooseai.Stage*E\n\x0c\x46inishReason\x12\x08\n\x04NULL\x10\x00\x12\n\n\x06LENGTH\x10\x01\x12\x08\n\x04STOP\x10\x02\x12\t\n\x05\x45RROR\x10\x03\x12\n\n\x06\x46ILTER\x10\x04*\xe4\x01\n\x0c\x41rtifactType\x12\x11\n\rARTIFACT_NONE\x10\x00\x12\x12\n\x0e\x41RTIFACT_IMAGE\x10\x01\x12\x12\n\x0e\x41RTIFACT_VIDEO\x10\x02\x12\x11\n\rARTIFACT_TEXT\x10\x03\x12\x13\n\x0f\x41RTIFACT_TOKENS\x10\x04\x12\x16\n\x12\x41RTIFACT_EMBEDDING\x10\x05\x12\x1c\n\x18\x41RTIFACT_CLASSIFICATIONS\x10\x06\x12\x11\n\rARTIFACT_MASK\x10\x07\x12\x13\n\x0f\x41RTIFACT_LATENT\x10\x08\x12\x13\n\x0f\x41RTIFACT_TENSOR\x10\t*g\n\x0eMaskedAreaInit\x12\x19\n\x15MASKED_AREA_INIT_ZERO\x10\x00\x12\x1b\n\x17MASKED_AREA_INIT_RANDOM\x10\x01\x12\x1d\n\x19MASKED_AREA_INIT_ORIGINAL\x10\x02*5\n\x0cWeightMethod\x12\x10\n\x0cTEXT_ENCODER\x10\x00\x12\x13\n\x0f\x43ROSS_ATTENTION\x10\x01*\xff\x01\n\x10\x44iffusionSampler\x12\x10\n\x0cSAMPLER_DDIM\x10\x00\x12\x10\n\x0cSAMPLER_DDPM\x10\x01\x12\x13\n\x0fSAMPLER_K_EULER\x10\x02\x12\x1d\n\x19SAMPLER_K_EULER_ANCESTRAL\x10\x03\x12\x12\n\x0eSAMPLER_K_HEUN\x10\x04\x12\x13\n\x0fSAMPLER_K_DPM_2\x10\x05\x12\x1d\n\x19SAMPLER_K_DPM_2_ANCESTRAL\x10\x06\x12\x11\n\rSAMPLER_K_LMS\x10\x07\x12 \n\x1cSAMPLER_K_DPMPP_2S_ANCESTRAL\x10\x08\x12\x16\n\x12SAMPLER_K_DPMPP_2M\x10\t*F\n\x08Upscaler\x12\x10\n\x0cUPSCALER_RGB\x10\x00\x12\x13\n\x0fUPSCALER_GFPGAN\x10\x01\x12\x13\n\x0fUPSCALER_ESRGAN\x10\x02*\xd8\x01\n\x0eGuidancePreset\x12\x18\n\x14GUIDANCE_PRESET_NONE\x10\x00\x12\x1a\n\x16GUIDANCE_PRESET_SIMPLE\x10\x01\x12\x1d\n\x19GUIDANCE_PRESET_FAST_BLUE\x10\x02\x12\x1e\n\x1aGUIDANCE_PRESET_FAST_GREEN\x10\x03\x12\x18\n\x14GUIDANCE_PRESET_SLOW\x10\x04\x12\x1a\n\x16GUIDANCE_PRESET_SLOWER\x10\x05\x12\x1b\n\x17GUIDANCE_PRESET_SLOWEST\x10\x06*\x91\x01\n\x11ModelArchitecture\x12\x1b\n\x17MODEL_ARCHITECTURE_NONE\x10\x00\x12\x1f\n\x1bMODEL_ARCHITECTURE_CLIP_VIT\x10\x01\x12\"\n\x1eMODEL_ARCHITECTURE_CLIP_RESNET\x10\x02\x12\x1a\n\x16MODEL_ARCHITECTURE_LDM\x10\x03*\xa2\x01\n\x06\x41\x63tion\x12\x16\n\x12\x41\x43TION_PASSTHROUGH\x10\x00\x12\x1f\n\x1b\x41\x43TION_REGENERATE_DUPLICATE\x10\x01\x12\x15\n\x11\x41\x43TION_REGENERATE\x10\x02\x12\x1e\n\x1a\x41\x43TION_OBFUSCATE_DUPLICATE\x10\x03\x12\x14\n\x10\x41\x43TION_OBFUSCATE\x10\x04\x12\x12\n\x0e\x41\x43TION_DISCARD\x10\x05*D\n\x0e\x43lassifierMode\x12\x17\n\x13\x43LSFR_MODE_ZEROSHOT\x10\x00\x12\x19\n\x15\x43LSFR_MODE_MULTICLASS\x10\x01*v\n\x0fInterpolateMode\x12\x16\n\x12INTERPOLATE_LINEAR\x10\x00\x12\x14\n\x10INTERPOLATE_RIFE\x10\x01\x12\x1a\n\x16INTERPOLATE_VAE_LINEAR\x10\x02\x12\x19\n\x15INTERPOLATE_VAE_SLERP\x10\x03*X\n\nBorderMode\x12\x12\n\x0e\x42ORDER_REFLECT\x10\x00\x12\x14\n\x10\x42ORDER_REPLICATE\x10\x01\x12\x0f\n\x0b\x42ORDER_WRAP\x10\x02\x12\x0f\n\x0b\x42ORDER_ZERO\x10\x03*O\n\x0e\x43olorMatchMode\x12\x13\n\x0f\x43OLOR_MATCH_HSV\x10\x00\x12\x13\n\x0f\x43OLOR_MATCH_LAB\x10\x01\x12\x13\n\x0f\x43OLOR_MATCH_RGB\x10\x02*=\n\x0b\x41ssetAction\x12\r\n\tASSET_PUT\x10\x00\x12\r\n\tASSET_GET\x10\x01\x12\x10\n\x0c\x41SSET_DELETE\x10\x02*\x81\x01\n\x08\x41ssetUse\x12\x17\n\x13\x41SSET_USE_UNDEFINED\x10\x00\x12\x13\n\x0f\x41SSET_USE_INPUT\x10\x01\x12\x14\n\x10\x41SSET_USE_OUTPUT\x10\x02\x12\x1a\n\x16\x41SSET_USE_INTERMEDIATE\x10\x03\x12\x15\n\x11\x41SSET_USE_PROJECT\x10\x04*W\n\x0bStageAction\x12\x15\n\x11STAGE_ACTION_PASS\x10\x00\x12\x18\n\x14STAGE_ACTION_DISCARD\x10\x01\x12\x17\n\x13STAGE_ACTION_RETURN\x10\x02\x32\x83\x01\n\x11GenerationService\x12\x31\n\x08Generate\x12\x10.gooseai.Request\x1a\x0f.gooseai.Answer\"\x00\x30\x01\x12;\n\rChainGenerate\x12\x15.gooseai.ChainRequest\x1a\x0f.gooseai.Answer\"\x00\x30\x01\x42\x0fZ\r./;generationb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10generation.proto\x12\x07gooseai\x1a\rtensors.proto\"/\n\x05Token\x12\x11\n\x04text\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\n\n\x02id\x18\x02 \x01(\rB\x07\n\x05_text\"T\n\x06Tokens\x12\x1e\n\x06tokens\x18\x01 \x03(\x0b\x32\x0e.gooseai.Token\x12\x19\n\x0ctokenizer_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\x0f\n\r_tokenizer_id\"\xf3\x02\n\x08\x41rtifact\x12\n\n\x02id\x18\x01 \x01(\x04\x12#\n\x04type\x18\x02 \x01(\x0e\x32\x15.gooseai.ArtifactType\x12\x0c\n\x04mime\x18\x03 \x01(\t\x12\x12\n\x05magic\x18\x04 \x01(\tH\x01\x88\x01\x01\x12\x10\n\x06\x62inary\x18\x05 \x01(\x0cH\x00\x12\x0e\n\x04text\x18\x06 \x01(\tH\x00\x12!\n\x06tokens\x18\x07 \x01(\x0b\x32\x0f.gooseai.TokensH\x00\x12\x33\n\nclassifier\x18\x0b \x01(\x0b\x32\x1d.gooseai.ClassifierParametersH\x00\x12!\n\x06tensor\x18\x0e \x01(\x0b\x32\x0f.tensors.TensorH\x00\x12\r\n\x05index\x18\x08 \x01(\r\x12,\n\rfinish_reason\x18\t \x01(\x0e\x32\x15.gooseai.FinishReason\x12\x0c\n\x04seed\x18\n \x01(\r\x12\x0c\n\x04uuid\x18\x0c \x01(\t\x12\x0c\n\x04size\x18\r \x01(\x04\x42\x06\n\x04\x64\x61taB\x08\n\x06_magic\"N\n\x10PromptParameters\x12\x11\n\x04init\x18\x01 \x01(\x08H\x00\x88\x01\x01\x12\x13\n\x06weight\x18\x02 \x01(\x02H\x01\x88\x01\x01\x42\x07\n\x05_initB\t\n\x07_weight\"\xaf\x01\n\x06Prompt\x12\x32\n\nparameters\x18\x01 \x01(\x0b\x32\x19.gooseai.PromptParametersH\x01\x88\x01\x01\x12\x0e\n\x04text\x18\x02 \x01(\tH\x00\x12!\n\x06tokens\x18\x03 \x01(\x0b\x32\x0f.gooseai.TokensH\x00\x12%\n\x08\x61rtifact\x18\x04 \x01(\x0b\x32\x11.gooseai.ArtifactH\x00\x42\x08\n\x06promptB\r\n\x0b_parameters\"\xa3\x02\n\x11SamplerParameters\x12\x10\n\x03\x65ta\x18\x01 \x01(\x02H\x00\x88\x01\x01\x12\x1b\n\x0esampling_steps\x18\x02 \x01(\x04H\x01\x88\x01\x01\x12\x1c\n\x0flatent_channels\x18\x03 \x01(\x04H\x02\x88\x01\x01\x12 \n\x13\x64ownsampling_factor\x18\x04 \x01(\x04H\x03\x88\x01\x01\x12\x16\n\tcfg_scale\x18\x05 \x01(\x02H\x04\x88\x01\x01\x12\x1d\n\x10init_noise_scale\x18\x06 \x01(\x02H\x05\x88\x01\x01\x42\x06\n\x04_etaB\x11\n\x0f_sampling_stepsB\x12\n\x10_latent_channelsB\x16\n\x14_downsampling_factorB\x0c\n\n_cfg_scaleB\x13\n\x11_init_noise_scale\"\x8b\x01\n\x15\x43onditionerParameters\x12 \n\x13vector_adjust_prior\x18\x01 \x01(\tH\x00\x88\x01\x01\x12(\n\x0b\x63onditioner\x18\x02 \x01(\x0b\x32\x0e.gooseai.ModelH\x01\x88\x01\x01\x42\x16\n\x14_vector_adjust_priorB\x0e\n\x0c_conditioner\"j\n\x12ScheduleParameters\x12\x12\n\x05start\x18\x01 \x01(\x02H\x00\x88\x01\x01\x12\x10\n\x03\x65nd\x18\x02 \x01(\x02H\x01\x88\x01\x01\x12\x12\n\x05value\x18\x03 \x01(\x02H\x02\x88\x01\x01\x42\x08\n\x06_startB\x06\n\x04_endB\x08\n\x06_value\"\xe4\x01\n\rStepParameter\x12\x13\n\x0bscaled_step\x18\x01 \x01(\x02\x12\x30\n\x07sampler\x18\x02 \x01(\x0b\x32\x1a.gooseai.SamplerParametersH\x00\x88\x01\x01\x12\x32\n\x08schedule\x18\x03 \x01(\x0b\x32\x1b.gooseai.ScheduleParametersH\x01\x88\x01\x01\x12\x32\n\x08guidance\x18\x04 \x01(\x0b\x32\x1b.gooseai.GuidanceParametersH\x02\x88\x01\x01\x42\n\n\x08_samplerB\x0b\n\t_scheduleB\x0b\n\t_guidance\"\x97\x01\n\x05Model\x12\x30\n\x0c\x61rchitecture\x18\x01 \x01(\x0e\x32\x1a.gooseai.ModelArchitecture\x12\x11\n\tpublisher\x18\x02 \x01(\t\x12\x0f\n\x07\x64\x61taset\x18\x03 \x01(\t\x12\x0f\n\x07version\x18\x04 \x01(\x02\x12\x18\n\x10semantic_version\x18\x05 \x01(\t\x12\r\n\x05\x61lias\x18\x06 \x01(\t\"\xbc\x01\n\x10\x43utoutParameters\x12*\n\x07\x63utouts\x18\x01 \x03(\x0b\x32\x19.gooseai.CutoutParameters\x12\x12\n\x05\x63ount\x18\x02 \x01(\rH\x00\x88\x01\x01\x12\x11\n\x04gray\x18\x03 \x01(\x02H\x01\x88\x01\x01\x12\x11\n\x04\x62lur\x18\x04 \x01(\x02H\x02\x88\x01\x01\x12\x17\n\nsize_power\x18\x05 \x01(\x02H\x03\x88\x01\x01\x42\x08\n\x06_countB\x07\n\x05_grayB\x07\n\x05_blurB\r\n\x0b_size_power\"=\n\x1aGuidanceScheduleParameters\x12\x10\n\x08\x64uration\x18\x01 \x01(\x02\x12\r\n\x05value\x18\x02 \x01(\x02\"\x97\x02\n\x1aGuidanceInstanceParameters\x12\x1e\n\x06models\x18\x02 \x03(\x0b\x32\x0e.gooseai.Model\x12\x1e\n\x11guidance_strength\x18\x03 \x01(\x02H\x00\x88\x01\x01\x12\x35\n\x08schedule\x18\x04 \x03(\x0b\x32#.gooseai.GuidanceScheduleParameters\x12/\n\x07\x63utouts\x18\x05 \x01(\x0b\x32\x19.gooseai.CutoutParametersH\x01\x88\x01\x01\x12$\n\x06prompt\x18\x06 \x01(\x0b\x32\x0f.gooseai.PromptH\x02\x88\x01\x01\x42\x14\n\x12_guidance_strengthB\n\n\x08_cutoutsB\t\n\x07_prompt\"~\n\x12GuidanceParameters\x12\x30\n\x0fguidance_preset\x18\x01 \x01(\x0e\x32\x17.gooseai.GuidancePreset\x12\x36\n\tinstances\x18\x02 \x03(\x0b\x32#.gooseai.GuidanceInstanceParameters\"n\n\rTransformType\x12.\n\tdiffusion\x18\x01 \x01(\x0e\x32\x19.gooseai.DiffusionSamplerH\x00\x12%\n\x08upscaler\x18\x02 \x01(\x0e\x32\x11.gooseai.UpscalerH\x00\x42\x06\n\x04type\"\x99\x03\n\x0fImageParameters\x12\x13\n\x06height\x18\x01 \x01(\x04H\x00\x88\x01\x01\x12\x12\n\x05width\x18\x02 \x01(\x04H\x01\x88\x01\x01\x12\x0c\n\x04seed\x18\x03 \x03(\r\x12\x14\n\x07samples\x18\x04 \x01(\x04H\x02\x88\x01\x01\x12\x12\n\x05steps\x18\x05 \x01(\x04H\x03\x88\x01\x01\x12.\n\ttransform\x18\x06 \x01(\x0b\x32\x16.gooseai.TransformTypeH\x04\x88\x01\x01\x12*\n\nparameters\x18\x07 \x03(\x0b\x32\x16.gooseai.StepParameter\x12\x36\n\x10masked_area_init\x18\x08 \x01(\x0e\x32\x17.gooseai.MaskedAreaInitH\x05\x88\x01\x01\x12\x31\n\rweight_method\x18\t \x01(\x0e\x32\x15.gooseai.WeightMethodH\x06\x88\x01\x01\x42\t\n\x07_heightB\x08\n\x06_widthB\n\n\x08_samplesB\x08\n\x06_stepsB\x0c\n\n_transformB\x13\n\x11_masked_area_initB\x10\n\x0e_weight_method\"J\n\x11\x43lassifierConcept\x12\x0f\n\x07\x63oncept\x18\x01 \x01(\t\x12\x16\n\tthreshold\x18\x02 \x01(\x02H\x00\x88\x01\x01\x42\x0c\n\n_threshold\"\xf4\x01\n\x12\x43lassifierCategory\x12\x0c\n\x04name\x18\x01 \x01(\t\x12,\n\x08\x63oncepts\x18\x02 \x03(\x0b\x32\x1a.gooseai.ClassifierConcept\x12\x17\n\nadjustment\x18\x03 \x01(\x02H\x00\x88\x01\x01\x12$\n\x06\x61\x63tion\x18\x04 \x01(\x0e\x32\x0f.gooseai.ActionH\x01\x88\x01\x01\x12\x35\n\x0f\x63lassifier_mode\x18\x05 \x01(\x0e\x32\x17.gooseai.ClassifierModeH\x02\x88\x01\x01\x42\r\n\x0b_adjustmentB\t\n\x07_actionB\x12\n\x10_classifier_mode\"\xb8\x01\n\x14\x43lassifierParameters\x12/\n\ncategories\x18\x01 \x03(\x0b\x32\x1b.gooseai.ClassifierCategory\x12,\n\x07\x65xceeds\x18\x02 \x03(\x0b\x32\x1b.gooseai.ClassifierCategory\x12-\n\x0frealized_action\x18\x03 \x01(\x0e\x32\x0f.gooseai.ActionH\x00\x88\x01\x01\x42\x12\n\x10_realized_action\"]\n\x15InterpolateParameters\x12\x0e\n\x06ratios\x18\x01 \x03(\x02\x12+\n\x04mode\x18\x02 \x01(\x0e\x32\x18.gooseai.InterpolateModeH\x00\x88\x01\x01\x42\x07\n\x05_mode\"C\n\x0eTransformBlend\x12\x0e\n\x06\x61mount\x18\x01 \x01(\x02\x12!\n\x06target\x18\x02 \x01(\x0b\x32\x11.gooseai.Artifact\"d\n\x13TransformColorMatch\x12+\n\ncolor_mode\x18\x01 \x01(\x0e\x32\x17.gooseai.ColorMatchMode\x12 \n\x05image\x18\x02 \x01(\x0b\x32\x11.gooseai.Artifact\"_\n\x11TransformContrast\x12\x17\n\nbrightness\x18\x01 \x01(\x02H\x00\x88\x01\x01\x12\x15\n\x08\x63ontrast\x18\x02 \x01(\x02H\x01\x88\x01\x01\x42\r\n\x0b_brightnessB\x0b\n\t_contrast\"j\n\x12TransformDepthCalc\x12\x19\n\x0c\x62lend_weight\x18\x01 \x01(\x02H\x00\x88\x01\x01\x12\x18\n\x0b\x62lur_radius\x18\x02 \x01(\rH\x01\x88\x01\x01\x42\x0f\n\r_blend_weightB\x0e\n\x0c_blur_radius\"#\n\x0fTransformMatrix\x12\x10\n\x04\x64\x61ta\x18\x01 \x03(\x02\x42\x02\x10\x01\"\x86\x02\n\x11TransformResample\x12(\n\x0b\x62order_mode\x18\x01 \x01(\x0e\x32\x13.gooseai.BorderMode\x12+\n\ttransform\x18\x02 \x01(\x0b\x32\x18.gooseai.TransformMatrix\x12\x35\n\x0eprev_transform\x18\x03 \x01(\x0b\x32\x18.gooseai.TransformMatrixH\x00\x88\x01\x01\x12\x17\n\ndepth_warp\x18\x04 \x01(\x02H\x01\x88\x01\x01\x12\x18\n\x0b\x65xport_mask\x18\x05 \x01(\x08H\x02\x88\x01\x01\x42\x11\n\x0f_prev_transformB\r\n\x0b_depth_warpB\x0e\n\x0c_export_mask\"\xc0\x01\n\x11TransformWarpFlow\x12(\n\x08\x66low_map\x18\x01 \x01(\x0b\x32\x11.gooseai.ArtifactH\x00\x88\x01\x01\x12*\n\nprev_frame\x18\x02 \x01(\x0b\x32\x11.gooseai.ArtifactH\x01\x88\x01\x01\x12*\n\nnext_frame\x18\x03 \x01(\x0b\x32\x11.gooseai.ArtifactH\x02\x88\x01\x01\x42\x0b\n\t_flow_mapB\r\n\x0b_prev_frameB\r\n\x0b_next_frame\"\xc5\x02\n\x13TransformParameters\x12(\n\x05\x62lend\x18\x01 \x01(\x0b\x32\x17.gooseai.TransformBlendH\x00\x12\x33\n\x0b\x63olor_match\x18\x02 \x01(\x0b\x32\x1c.gooseai.TransformColorMatchH\x00\x12.\n\x08\x63ontrast\x18\x03 \x01(\x0b\x32\x1a.gooseai.TransformContrastH\x00\x12\x31\n\ndepth_calc\x18\x04 \x01(\x0b\x32\x1b.gooseai.TransformDepthCalcH\x00\x12.\n\x08resample\x18\x05 \x01(\x0b\x32\x1a.gooseai.TransformResampleH\x00\x12/\n\twarp_flow\x18\x06 \x01(\x0b\x32\x1a.gooseai.TransformWarpFlowH\x00\x42\x0b\n\ttransform\"k\n\x0f\x41ssetParameters\x12$\n\x06\x61\x63tion\x18\x01 \x01(\x0e\x32\x14.gooseai.AssetAction\x12\x12\n\nproject_id\x18\x02 \x01(\t\x12\x1e\n\x03use\x18\x03 \x01(\x0e\x32\x11.gooseai.AssetUse\"\x94\x01\n\nAnswerMeta\x12\x13\n\x06gpu_id\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\x13\n\x06\x63pu_id\x18\x02 \x01(\tH\x01\x88\x01\x01\x12\x14\n\x07node_id\x18\x03 \x01(\tH\x02\x88\x01\x01\x12\x16\n\tengine_id\x18\x04 \x01(\tH\x03\x88\x01\x01\x42\t\n\x07_gpu_idB\t\n\x07_cpu_idB\n\n\x08_node_idB\x0c\n\n_engine_id\"\xa9\x01\n\x06\x41nswer\x12\x11\n\tanswer_id\x18\x01 \x01(\t\x12\x12\n\nrequest_id\x18\x02 \x01(\t\x12\x10\n\x08received\x18\x03 \x01(\x04\x12\x0f\n\x07\x63reated\x18\x04 \x01(\x04\x12&\n\x04meta\x18\x06 \x01(\x0b\x32\x13.gooseai.AnswerMetaH\x00\x88\x01\x01\x12$\n\tartifacts\x18\x07 \x03(\x0b\x32\x11.gooseai.ArtifactB\x07\n\x05_meta\"\xd5\x03\n\x07Request\x12\x11\n\tengine_id\x18\x01 \x01(\t\x12\x12\n\nrequest_id\x18\x02 \x01(\t\x12-\n\x0erequested_type\x18\x03 \x01(\x0e\x32\x15.gooseai.ArtifactType\x12\x1f\n\x06prompt\x18\x04 \x03(\x0b\x32\x0f.gooseai.Prompt\x12)\n\x05image\x18\x05 \x01(\x0b\x32\x18.gooseai.ImageParametersH\x00\x12\x33\n\nclassifier\x18\x07 \x01(\x0b\x32\x1d.gooseai.ClassifierParametersH\x00\x12)\n\x05\x61sset\x18\x08 \x01(\x0b\x32\x18.gooseai.AssetParametersH\x00\x12\x35\n\x0binterpolate\x18\x0b \x01(\x0b\x32\x1e.gooseai.InterpolateParametersH\x00\x12\x31\n\ttransform\x18\x0c \x01(\x0b\x32\x1c.gooseai.TransformParametersH\x00\x12\x38\n\x0b\x63onditioner\x18\x06 \x01(\x0b\x32\x1e.gooseai.ConditionerParametersH\x01\x88\x01\x01\x42\x08\n\x06paramsB\x0e\n\x0c_conditionerJ\x04\x08\t\x10\nJ\x04\x08\n\x10\x0b\"w\n\x08OnStatus\x12%\n\x06reason\x18\x01 \x03(\x0e\x32\x15.gooseai.FinishReason\x12\x13\n\x06target\x18\x02 \x01(\tH\x00\x88\x01\x01\x12$\n\x06\x61\x63tion\x18\x03 \x03(\x0e\x32\x14.gooseai.StageActionB\t\n\x07_target\"\\\n\x05Stage\x12\n\n\x02id\x18\x01 \x01(\t\x12!\n\x07request\x18\x02 \x01(\x0b\x32\x10.gooseai.Request\x12$\n\ton_status\x18\x03 \x03(\x0b\x32\x11.gooseai.OnStatus\"A\n\x0c\x43hainRequest\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x1d\n\x05stage\x18\x02 \x03(\x0b\x32\x0e.gooseai.Stage*E\n\x0c\x46inishReason\x12\x08\n\x04NULL\x10\x00\x12\n\n\x06LENGTH\x10\x01\x12\x08\n\x04STOP\x10\x02\x12\t\n\x05\x45RROR\x10\x03\x12\n\n\x06\x46ILTER\x10\x04*\xe4\x01\n\x0c\x41rtifactType\x12\x11\n\rARTIFACT_NONE\x10\x00\x12\x12\n\x0e\x41RTIFACT_IMAGE\x10\x01\x12\x12\n\x0e\x41RTIFACT_VIDEO\x10\x02\x12\x11\n\rARTIFACT_TEXT\x10\x03\x12\x13\n\x0f\x41RTIFACT_TOKENS\x10\x04\x12\x16\n\x12\x41RTIFACT_EMBEDDING\x10\x05\x12\x1c\n\x18\x41RTIFACT_CLASSIFICATIONS\x10\x06\x12\x11\n\rARTIFACT_MASK\x10\x07\x12\x13\n\x0f\x41RTIFACT_LATENT\x10\x08\x12\x13\n\x0f\x41RTIFACT_TENSOR\x10\t*g\n\x0eMaskedAreaInit\x12\x19\n\x15MASKED_AREA_INIT_ZERO\x10\x00\x12\x1b\n\x17MASKED_AREA_INIT_RANDOM\x10\x01\x12\x1d\n\x19MASKED_AREA_INIT_ORIGINAL\x10\x02*5\n\x0cWeightMethod\x12\x10\n\x0cTEXT_ENCODER\x10\x00\x12\x13\n\x0f\x43ROSS_ATTENTION\x10\x01*\xff\x01\n\x10\x44iffusionSampler\x12\x10\n\x0cSAMPLER_DDIM\x10\x00\x12\x10\n\x0cSAMPLER_DDPM\x10\x01\x12\x13\n\x0fSAMPLER_K_EULER\x10\x02\x12\x1d\n\x19SAMPLER_K_EULER_ANCESTRAL\x10\x03\x12\x12\n\x0eSAMPLER_K_HEUN\x10\x04\x12\x13\n\x0fSAMPLER_K_DPM_2\x10\x05\x12\x1d\n\x19SAMPLER_K_DPM_2_ANCESTRAL\x10\x06\x12\x11\n\rSAMPLER_K_LMS\x10\x07\x12 \n\x1cSAMPLER_K_DPMPP_2S_ANCESTRAL\x10\x08\x12\x16\n\x12SAMPLER_K_DPMPP_2M\x10\t*F\n\x08Upscaler\x12\x10\n\x0cUPSCALER_RGB\x10\x00\x12\x13\n\x0fUPSCALER_GFPGAN\x10\x01\x12\x13\n\x0fUPSCALER_ESRGAN\x10\x02*\xd8\x01\n\x0eGuidancePreset\x12\x18\n\x14GUIDANCE_PRESET_NONE\x10\x00\x12\x1a\n\x16GUIDANCE_PRESET_SIMPLE\x10\x01\x12\x1d\n\x19GUIDANCE_PRESET_FAST_BLUE\x10\x02\x12\x1e\n\x1aGUIDANCE_PRESET_FAST_GREEN\x10\x03\x12\x18\n\x14GUIDANCE_PRESET_SLOW\x10\x04\x12\x1a\n\x16GUIDANCE_PRESET_SLOWER\x10\x05\x12\x1b\n\x17GUIDANCE_PRESET_SLOWEST\x10\x06*\x91\x01\n\x11ModelArchitecture\x12\x1b\n\x17MODEL_ARCHITECTURE_NONE\x10\x00\x12\x1f\n\x1bMODEL_ARCHITECTURE_CLIP_VIT\x10\x01\x12\"\n\x1eMODEL_ARCHITECTURE_CLIP_RESNET\x10\x02\x12\x1a\n\x16MODEL_ARCHITECTURE_LDM\x10\x03*\xa2\x01\n\x06\x41\x63tion\x12\x16\n\x12\x41\x43TION_PASSTHROUGH\x10\x00\x12\x1f\n\x1b\x41\x43TION_REGENERATE_DUPLICATE\x10\x01\x12\x15\n\x11\x41\x43TION_REGENERATE\x10\x02\x12\x1e\n\x1a\x41\x43TION_OBFUSCATE_DUPLICATE\x10\x03\x12\x14\n\x10\x41\x43TION_OBFUSCATE\x10\x04\x12\x12\n\x0e\x41\x43TION_DISCARD\x10\x05*D\n\x0e\x43lassifierMode\x12\x17\n\x13\x43LSFR_MODE_ZEROSHOT\x10\x00\x12\x19\n\x15\x43LSFR_MODE_MULTICLASS\x10\x01*v\n\x0fInterpolateMode\x12\x16\n\x12INTERPOLATE_LINEAR\x10\x00\x12\x14\n\x10INTERPOLATE_RIFE\x10\x01\x12\x1a\n\x16INTERPOLATE_VAE_LINEAR\x10\x02\x12\x19\n\x15INTERPOLATE_VAE_SLERP\x10\x03*X\n\nBorderMode\x12\x12\n\x0e\x42ORDER_REFLECT\x10\x00\x12\x14\n\x10\x42ORDER_REPLICATE\x10\x01\x12\x0f\n\x0b\x42ORDER_WRAP\x10\x02\x12\x0f\n\x0b\x42ORDER_ZERO\x10\x03*O\n\x0e\x43olorMatchMode\x12\x13\n\x0f\x43OLOR_MATCH_HSV\x10\x00\x12\x13\n\x0f\x43OLOR_MATCH_LAB\x10\x01\x12\x13\n\x0f\x43OLOR_MATCH_RGB\x10\x02*=\n\x0b\x41ssetAction\x12\r\n\tASSET_PUT\x10\x00\x12\r\n\tASSET_GET\x10\x01\x12\x10\n\x0c\x41SSET_DELETE\x10\x02*\x81\x01\n\x08\x41ssetUse\x12\x17\n\x13\x41SSET_USE_UNDEFINED\x10\x00\x12\x13\n\x0f\x41SSET_USE_INPUT\x10\x01\x12\x14\n\x10\x41SSET_USE_OUTPUT\x10\x02\x12\x1a\n\x16\x41SSET_USE_INTERMEDIATE\x10\x03\x12\x15\n\x11\x41SSET_USE_PROJECT\x10\x04*W\n\x0bStageAction\x12\x15\n\x11STAGE_ACTION_PASS\x10\x00\x12\x18\n\x14STAGE_ACTION_DISCARD\x10\x01\x12\x17\n\x13STAGE_ACTION_RETURN\x10\x02\x32\x83\x01\n\x11GenerationService\x12\x31\n\x08Generate\x12\x10.gooseai.Request\x1a\x0f.gooseai.Answer\"\x00\x30\x01\x12;\n\rChainGenerate\x12\x15.gooseai.ChainRequest\x1a\x0f.gooseai.Answer\"\x00\x30\x01\x42\x0fZ\r./;generationb\x06proto3')
 
 _FINISHREASON = DESCRIPTOR.enum_types_by_name['FinishReason']
 FinishReason = enum_type_wrapper.EnumTypeWrapper(_FINISHREASON)
@@ -146,18 +146,14 @@ _CLASSIFIERCONCEPT = DESCRIPTOR.message_types_by_name['ClassifierConcept']
 _CLASSIFIERCATEGORY = DESCRIPTOR.message_types_by_name['ClassifierCategory']
 _CLASSIFIERPARAMETERS = DESCRIPTOR.message_types_by_name['ClassifierParameters']
 _INTERPOLATEPARAMETERS = DESCRIPTOR.message_types_by_name['InterpolateParameters']
-_TRANSFORMADDNOISE = DESCRIPTOR.message_types_by_name['TransformAddNoise']
 _TRANSFORMBLEND = DESCRIPTOR.message_types_by_name['TransformBlend']
 _TRANSFORMCOLORMATCH = DESCRIPTOR.message_types_by_name['TransformColorMatch']
 _TRANSFORMCONTRAST = DESCRIPTOR.message_types_by_name['TransformContrast']
 _TRANSFORMDEPTHCALC = DESCRIPTOR.message_types_by_name['TransformDepthCalc']
 _TRANSFORMMATRIX = DESCRIPTOR.message_types_by_name['TransformMatrix']
 _TRANSFORMRESAMPLE = DESCRIPTOR.message_types_by_name['TransformResample']
-_TRANSFORMWARP2D = DESCRIPTOR.message_types_by_name['TransformWarp2d']
-_TRANSFORMWARP3D = DESCRIPTOR.message_types_by_name['TransformWarp3d']
 _TRANSFORMWARPFLOW = DESCRIPTOR.message_types_by_name['TransformWarpFlow']
-_TRANSFORMOPERATION = DESCRIPTOR.message_types_by_name['TransformOperation']
-_TRANSFORMSEQUENCE = DESCRIPTOR.message_types_by_name['TransformSequence']
+_TRANSFORMPARAMETERS = DESCRIPTOR.message_types_by_name['TransformParameters']
 _ASSETPARAMETERS = DESCRIPTOR.message_types_by_name['AssetParameters']
 _ANSWERMETA = DESCRIPTOR.message_types_by_name['AnswerMeta']
 _ANSWER = DESCRIPTOR.message_types_by_name['Answer']
@@ -305,13 +301,6 @@ InterpolateParameters = _reflection.GeneratedProtocolMessageType('InterpolatePar
   })
 _sym_db.RegisterMessage(InterpolateParameters)
 
-TransformAddNoise = _reflection.GeneratedProtocolMessageType('TransformAddNoise', (_message.Message,), {
-  'DESCRIPTOR' : _TRANSFORMADDNOISE,
-  '__module__' : 'generation_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.TransformAddNoise)
-  })
-_sym_db.RegisterMessage(TransformAddNoise)
-
 TransformBlend = _reflection.GeneratedProtocolMessageType('TransformBlend', (_message.Message,), {
   'DESCRIPTOR' : _TRANSFORMBLEND,
   '__module__' : 'generation_pb2'
@@ -354,20 +343,6 @@ TransformResample = _reflection.GeneratedProtocolMessageType('TransformResample'
   })
 _sym_db.RegisterMessage(TransformResample)
 
-TransformWarp2d = _reflection.GeneratedProtocolMessageType('TransformWarp2d', (_message.Message,), {
-  'DESCRIPTOR' : _TRANSFORMWARP2D,
-  '__module__' : 'generation_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.TransformWarp2d)
-  })
-_sym_db.RegisterMessage(TransformWarp2d)
-
-TransformWarp3d = _reflection.GeneratedProtocolMessageType('TransformWarp3d', (_message.Message,), {
-  'DESCRIPTOR' : _TRANSFORMWARP3D,
-  '__module__' : 'generation_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.TransformWarp3d)
-  })
-_sym_db.RegisterMessage(TransformWarp3d)
-
 TransformWarpFlow = _reflection.GeneratedProtocolMessageType('TransformWarpFlow', (_message.Message,), {
   'DESCRIPTOR' : _TRANSFORMWARPFLOW,
   '__module__' : 'generation_pb2'
@@ -375,19 +350,12 @@ TransformWarpFlow = _reflection.GeneratedProtocolMessageType('TransformWarpFlow'
   })
 _sym_db.RegisterMessage(TransformWarpFlow)
 
-TransformOperation = _reflection.GeneratedProtocolMessageType('TransformOperation', (_message.Message,), {
-  'DESCRIPTOR' : _TRANSFORMOPERATION,
+TransformParameters = _reflection.GeneratedProtocolMessageType('TransformParameters', (_message.Message,), {
+  'DESCRIPTOR' : _TRANSFORMPARAMETERS,
   '__module__' : 'generation_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.TransformOperation)
+  # @@protoc_insertion_point(class_scope:gooseai.TransformParameters)
   })
-_sym_db.RegisterMessage(TransformOperation)
-
-TransformSequence = _reflection.GeneratedProtocolMessageType('TransformSequence', (_message.Message,), {
-  'DESCRIPTOR' : _TRANSFORMSEQUENCE,
-  '__module__' : 'generation_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.TransformSequence)
-  })
-_sym_db.RegisterMessage(TransformSequence)
+_sym_db.RegisterMessage(TransformParameters)
 
 AssetParameters = _reflection.GeneratedProtocolMessageType('AssetParameters', (_message.Message,), {
   'DESCRIPTOR' : _ASSETPARAMETERS,
@@ -445,38 +413,38 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._serialized_options = b'Z\r./;generation'
   _TRANSFORMMATRIX.fields_by_name['data']._options = None
   _TRANSFORMMATRIX.fields_by_name['data']._serialized_options = b'\020\001'
-  _FINISHREASON._serialized_start=6642
-  _FINISHREASON._serialized_end=6711
-  _ARTIFACTTYPE._serialized_start=6714
-  _ARTIFACTTYPE._serialized_end=6942
-  _MASKEDAREAINIT._serialized_start=6944
-  _MASKEDAREAINIT._serialized_end=7047
-  _WEIGHTMETHOD._serialized_start=7049
-  _WEIGHTMETHOD._serialized_end=7102
-  _DIFFUSIONSAMPLER._serialized_start=7105
-  _DIFFUSIONSAMPLER._serialized_end=7360
-  _UPSCALER._serialized_start=7362
-  _UPSCALER._serialized_end=7432
-  _GUIDANCEPRESET._serialized_start=7435
-  _GUIDANCEPRESET._serialized_end=7651
-  _MODELARCHITECTURE._serialized_start=7654
-  _MODELARCHITECTURE._serialized_end=7799
-  _ACTION._serialized_start=7802
-  _ACTION._serialized_end=7964
-  _CLASSIFIERMODE._serialized_start=7966
-  _CLASSIFIERMODE._serialized_end=8034
-  _INTERPOLATEMODE._serialized_start=8036
-  _INTERPOLATEMODE._serialized_end=8154
-  _BORDERMODE._serialized_start=8156
-  _BORDERMODE._serialized_end=8244
-  _COLORMATCHMODE._serialized_start=8246
-  _COLORMATCHMODE._serialized_end=8325
-  _ASSETACTION._serialized_start=8327
-  _ASSETACTION._serialized_end=8388
-  _ASSETUSE._serialized_start=8391
-  _ASSETUSE._serialized_end=8520
-  _STAGEACTION._serialized_start=8522
-  _STAGEACTION._serialized_end=8609
+  _FINISHREASON._serialized_start=5920
+  _FINISHREASON._serialized_end=5989
+  _ARTIFACTTYPE._serialized_start=5992
+  _ARTIFACTTYPE._serialized_end=6220
+  _MASKEDAREAINIT._serialized_start=6222
+  _MASKEDAREAINIT._serialized_end=6325
+  _WEIGHTMETHOD._serialized_start=6327
+  _WEIGHTMETHOD._serialized_end=6380
+  _DIFFUSIONSAMPLER._serialized_start=6383
+  _DIFFUSIONSAMPLER._serialized_end=6638
+  _UPSCALER._serialized_start=6640
+  _UPSCALER._serialized_end=6710
+  _GUIDANCEPRESET._serialized_start=6713
+  _GUIDANCEPRESET._serialized_end=6929
+  _MODELARCHITECTURE._serialized_start=6932
+  _MODELARCHITECTURE._serialized_end=7077
+  _ACTION._serialized_start=7080
+  _ACTION._serialized_end=7242
+  _CLASSIFIERMODE._serialized_start=7244
+  _CLASSIFIERMODE._serialized_end=7312
+  _INTERPOLATEMODE._serialized_start=7314
+  _INTERPOLATEMODE._serialized_end=7432
+  _BORDERMODE._serialized_start=7434
+  _BORDERMODE._serialized_end=7522
+  _COLORMATCHMODE._serialized_start=7524
+  _COLORMATCHMODE._serialized_end=7603
+  _ASSETACTION._serialized_start=7605
+  _ASSETACTION._serialized_end=7666
+  _ASSETUSE._serialized_start=7669
+  _ASSETUSE._serialized_end=7798
+  _STAGEACTION._serialized_start=7800
+  _STAGEACTION._serialized_end=7887
   _TOKEN._serialized_start=44
   _TOKEN._serialized_end=91
   _TOKENS._serialized_start=93
@@ -505,56 +473,48 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _GUIDANCEINSTANCEPARAMETERS._serialized_end=2274
   _GUIDANCEPARAMETERS._serialized_start=2276
   _GUIDANCEPARAMETERS._serialized_end=2402
-  _TRANSFORMTYPE._serialized_start=2405
-  _TRANSFORMTYPE._serialized_end=2563
-  _IMAGEPARAMETERS._serialized_start=2566
-  _IMAGEPARAMETERS._serialized_end=2975
-  _CLASSIFIERCONCEPT._serialized_start=2977
-  _CLASSIFIERCONCEPT._serialized_end=3051
-  _CLASSIFIERCATEGORY._serialized_start=3054
-  _CLASSIFIERCATEGORY._serialized_end=3298
-  _CLASSIFIERPARAMETERS._serialized_start=3301
-  _CLASSIFIERPARAMETERS._serialized_end=3485
-  _INTERPOLATEPARAMETERS._serialized_start=3487
-  _INTERPOLATEPARAMETERS._serialized_end=3580
-  _TRANSFORMADDNOISE._serialized_start=3582
-  _TRANSFORMADDNOISE._serialized_end=3645
-  _TRANSFORMBLEND._serialized_start=3647
-  _TRANSFORMBLEND._serialized_end=3714
-  _TRANSFORMCOLORMATCH._serialized_start=3716
-  _TRANSFORMCOLORMATCH._serialized_end=3816
-  _TRANSFORMCONTRAST._serialized_start=3818
-  _TRANSFORMCONTRAST._serialized_end=3913
-  _TRANSFORMDEPTHCALC._serialized_start=3916
-  _TRANSFORMDEPTHCALC._serialized_end=4054
-  _TRANSFORMMATRIX._serialized_start=4056
-  _TRANSFORMMATRIX._serialized_end=4091
-  _TRANSFORMRESAMPLE._serialized_start=4094
-  _TRANSFORMRESAMPLE._serialized_end=4356
-  _TRANSFORMWARP2D._serialized_start=4359
-  _TRANSFORMWARP2D._serialized_end=4549
-  _TRANSFORMWARP3D._serialized_start=4552
-  _TRANSFORMWARP3D._serialized_end=4780
-  _TRANSFORMWARPFLOW._serialized_start=4783
-  _TRANSFORMWARPFLOW._serialized_end=4975
-  _TRANSFORMOPERATION._serialized_start=4978
-  _TRANSFORMOPERATION._serialized_end=5435
-  _TRANSFORMSEQUENCE._serialized_start=5437
-  _TRANSFORMSEQUENCE._serialized_end=5505
-  _ASSETPARAMETERS._serialized_start=5507
-  _ASSETPARAMETERS._serialized_end=5614
-  _ANSWERMETA._serialized_start=5617
-  _ANSWERMETA._serialized_end=5765
-  _ANSWER._serialized_start=5768
-  _ANSWER._serialized_end=5937
-  _REQUEST._serialized_start=5940
-  _REQUEST._serialized_end=6358
-  _ONSTATUS._serialized_start=6360
-  _ONSTATUS._serialized_end=6479
-  _STAGE._serialized_start=6481
-  _STAGE._serialized_end=6573
-  _CHAINREQUEST._serialized_start=6575
-  _CHAINREQUEST._serialized_end=6640
-  _GENERATIONSERVICE._serialized_start=8612
-  _GENERATIONSERVICE._serialized_end=8743
+  _TRANSFORMTYPE._serialized_start=2404
+  _TRANSFORMTYPE._serialized_end=2514
+  _IMAGEPARAMETERS._serialized_start=2517
+  _IMAGEPARAMETERS._serialized_end=2926
+  _CLASSIFIERCONCEPT._serialized_start=2928
+  _CLASSIFIERCONCEPT._serialized_end=3002
+  _CLASSIFIERCATEGORY._serialized_start=3005
+  _CLASSIFIERCATEGORY._serialized_end=3249
+  _CLASSIFIERPARAMETERS._serialized_start=3252
+  _CLASSIFIERPARAMETERS._serialized_end=3436
+  _INTERPOLATEPARAMETERS._serialized_start=3438
+  _INTERPOLATEPARAMETERS._serialized_end=3531
+  _TRANSFORMBLEND._serialized_start=3533
+  _TRANSFORMBLEND._serialized_end=3600
+  _TRANSFORMCOLORMATCH._serialized_start=3602
+  _TRANSFORMCOLORMATCH._serialized_end=3702
+  _TRANSFORMCONTRAST._serialized_start=3704
+  _TRANSFORMCONTRAST._serialized_end=3799
+  _TRANSFORMDEPTHCALC._serialized_start=3801
+  _TRANSFORMDEPTHCALC._serialized_end=3907
+  _TRANSFORMMATRIX._serialized_start=3909
+  _TRANSFORMMATRIX._serialized_end=3944
+  _TRANSFORMRESAMPLE._serialized_start=3947
+  _TRANSFORMRESAMPLE._serialized_end=4209
+  _TRANSFORMWARPFLOW._serialized_start=4212
+  _TRANSFORMWARPFLOW._serialized_end=4404
+  _TRANSFORMPARAMETERS._serialized_start=4407
+  _TRANSFORMPARAMETERS._serialized_end=4732
+  _ASSETPARAMETERS._serialized_start=4734
+  _ASSETPARAMETERS._serialized_end=4841
+  _ANSWERMETA._serialized_start=4844
+  _ANSWERMETA._serialized_end=4992
+  _ANSWER._serialized_start=4995
+  _ANSWER._serialized_end=5164
+  _REQUEST._serialized_start=5167
+  _REQUEST._serialized_end=5636
+  _ONSTATUS._serialized_start=5638
+  _ONSTATUS._serialized_end=5757
+  _STAGE._serialized_start=5759
+  _STAGE._serialized_end=5851
+  _CHAINREQUEST._serialized_start=5853
+  _CHAINREQUEST._serialized_end=5918
+  _GENERATIONSERVICE._serialized_start=7890
+  _GENERATIONSERVICE._serialized_end=8021
 # @@protoc_insertion_point(module_scope)

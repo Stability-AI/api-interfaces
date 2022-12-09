@@ -211,7 +211,6 @@ message TransformType {
   oneof type {
       DiffusionSampler diffusion = 1;
       Upscaler upscaler = 2;
-      TransformSequence sequence = 3;
   }
 }
 
@@ -301,11 +300,6 @@ enum ColorMatchMode {
   COLOR_MATCH_RGB = 2;  // match red, green, and blue histograms
 }
 
-message TransformAddNoise {
-  float amount = 1;         // amount of gaussian noise to add
-  optional uint32 seed = 2; // random seed for the noise generation
-}
-
 message TransformBlend {
   float amount = 1;     // blend amount from 0 to 1
   Artifact target = 2;  // target image
@@ -322,9 +316,8 @@ message TransformContrast {
 }
 
 message TransformDepthCalc {
-  optional bool export = 1;        // return the depth map as an artifact
-  optional float blend_weight = 2; // blend factor between AdaBins (0.0) and MiDaS (1.0)
-  optional uint32 blur_radius = 3; // defaults to 0.0
+  optional float blend_weight = 1; // blend factor between AdaBins (0.0) and MiDaS (1.0)
+  optional uint32 blur_radius = 2; // defaults to 0.0
 }
 
 message TransformMatrix {
@@ -344,51 +337,23 @@ message TransformResample {
   optional bool export_mask = 5;               // return inpaint mask
 }
 
-message TransformWarp2d {
-  BorderMode border_mode = 1; // extrapolation of border pixels
-  float translate_x = 4;  // horizontal translation in pixels
-  float translate_y = 5;  // vertical translation in pixels
-  float rotate = 2;       // rotation in degrees
-  float scale = 3;        // scale factor (>1 zooms in, <1 zooms out)  
-  optional TransformMatrix matrix = 6;  // 3x3 matrix
-}
-
-message TransformWarp3d {
-  BorderMode border_mode = 1; // extrapolation of border pixels
-  float translate_x = 3;      // horizontal translation
-  float translate_y = 4;      // vertical translation
-  float translate_z = 5;      // forward translation
-  float rotate_x = 6;         // rotation around X-axis in degrees (pitch)
-  float rotate_y = 7;         // rotation around Y-axis in degrees (yaw)
-  float rotate_z = 8;         // rotation around Z-axis in degrees (roll)
-  float near_plane = 9;       // near clipping plane of view frustum
-  float far_plane = 10;       // far clipping plane of view frustum
-  float fov = 11;             // field of view in degrees
-}
-
 message TransformWarpFlow {
   optional Artifact flow_map = 1;   // precomputed flow asset
   optional Artifact prev_frame = 2; // pair of frames to compute flow from
   optional Artifact next_frame = 3;
 }
 
-message TransformOperation {
-  oneof xform {
-    TransformAddNoise add_noise = 1;
-    TransformBlend blend = 6;
+message TransformParameters {
+  oneof transform {
+    TransformBlend blend = 1;
     TransformColorMatch color_match = 2;
-    TransformContrast contrast = 8;
-    TransformDepthCalc depth_calc = 7;
-    TransformResample resample = 9;
-    TransformWarp2d warp2d = 3;
-    TransformWarp3d warp3d = 4;
-    TransformWarpFlow warp_flow = 5;
+    TransformContrast contrast = 3;
+    TransformDepthCalc depth_calc = 4;
+    TransformResample resample = 5;
+    TransformWarpFlow warp_flow = 6;
   }
 }
 
-message TransformSequence {
-  repeated TransformOperation operations = 1;
-}
 
 //
 // Asset parameters
@@ -449,6 +414,7 @@ message Request {
     ClassifierParameters classifier = 7;
     AssetParameters asset = 8;
     InterpolateParameters interpolate = 11;
+    TransformParameters transform = 12;
   }
   optional ConditionerParameters conditioner = 6;
   reserved 9,10; //9, 10 are reserved
