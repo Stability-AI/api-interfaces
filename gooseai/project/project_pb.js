@@ -212,7 +212,11 @@ proto.gooseai.ProjectAsset.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     uri: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    use: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    use: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    name: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    size: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    createdAt: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    updatedAt: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -261,6 +265,22 @@ proto.gooseai.ProjectAsset.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {!proto.gooseai.ProjectAssetUse} */ (reader.readEnum());
       msg.setUse(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setSize(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setCreatedAt(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setUpdatedAt(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -308,6 +328,34 @@ proto.gooseai.ProjectAsset.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0.0) {
     writer.writeEnum(
       3,
+      f
+    );
+  }
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getSize();
+  if (f !== 0) {
+    writer.writeUint64(
+      5,
+      f
+    );
+  }
+  f = message.getCreatedAt();
+  if (f !== 0) {
+    writer.writeUint64(
+      6,
+      f
+    );
+  }
+  f = message.getUpdatedAt();
+  if (f !== 0) {
+    writer.writeUint64(
+      7,
       f
     );
   }
@@ -365,6 +413,78 @@ proto.gooseai.ProjectAsset.prototype.getUse = function() {
  */
 proto.gooseai.ProjectAsset.prototype.setUse = function(value) {
   return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+/**
+ * optional string name = 4;
+ * @return {string}
+ */
+proto.gooseai.ProjectAsset.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.gooseai.ProjectAsset} returns this
+ */
+proto.gooseai.ProjectAsset.prototype.setName = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional uint64 size = 5;
+ * @return {number}
+ */
+proto.gooseai.ProjectAsset.prototype.getSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.gooseai.ProjectAsset} returns this
+ */
+proto.gooseai.ProjectAsset.prototype.setSize = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+/**
+ * optional uint64 created_at = 6;
+ * @return {number}
+ */
+proto.gooseai.ProjectAsset.prototype.getCreatedAt = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.gooseai.ProjectAsset} returns this
+ */
+proto.gooseai.ProjectAsset.prototype.setCreatedAt = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * optional uint64 updated_at = 7;
+ * @return {number}
+ */
+proto.gooseai.ProjectAsset.prototype.getUpdatedAt = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.gooseai.ProjectAsset} returns this
+ */
+proto.gooseai.ProjectAsset.prototype.setUpdatedAt = function(value) {
+  return jspb.Message.setProto3IntField(this, 7, value);
 };
 
 

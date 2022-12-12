@@ -22,13 +22,17 @@ enum ProjectAssetUse {
 }
 
 message ProjectAsset {
-  string id = 1;            // ID of the asset, UUIDv4
+  string id = 1;           // ID of the asset, UUIDv4
   string uri = 2;          // The URI to the asset
   ProjectAssetUse use = 3; // The use of the asset with respect to the project
+  string name = 4;         // The name of the asset
+  uint64 size = 5;         // The asset size in bytes
+  uint64 created_at = 6;   // Time of asset creation (UTC seconds epoch)
+  uint64 updated_at = 7;   // Time of last asset update (UTC seconds epoch)
 }
 
 message Project {
-  string id = 1;                      // ID of the project, UUIDv4
+  string id = 1;                     // ID of the project, UUIDv4
   string title = 2;                  // Title of the project
   string owner_id = 3;               // The ID of the organization owning the project
   ProjectAccess access = 4;          // The access of the project (such as public vs private)
@@ -49,7 +53,7 @@ message CreateProjectRequest {
 }
 
 message UpdateProjectRequest {
-  string id = 1;                      // ID of the project, UUIDv4
+  string id = 1;                     // ID of the project, UUIDv4
   optional string owner_id = 2;      // The ID of the organization owning the project, empty for default org for user
   optional string title = 3;         // Title of the project
   optional ProjectAccess access = 4; // The access of the project (such as public vs private)
@@ -62,12 +66,12 @@ message ListProjectRequest {
 }
 
 message GetProjectRequest {
-  string id = 1;                 // ID of the project to request, UUIDv4
+  string id = 1;                // ID of the project to request, UUIDv4
   optional string owner_id = 2; // The ID of the organization owning the project, empty for default org for user
 }
 
 message DeleteProjectRequest {
-  string id = 1;                 // ID of the project to request, UUIDv4
+  string id = 1;                // ID of the project to request, UUIDv4
   optional string owner_id = 2; // The ID of the organization owning the project, empty for default org for user
 }
 

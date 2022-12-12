@@ -13,6 +13,18 @@ export class ProjectAsset extends jspb.Message {
   getUse(): ProjectAssetUseMap[keyof ProjectAssetUseMap];
   setUse(value: ProjectAssetUseMap[keyof ProjectAssetUseMap]): void;
 
+  getName(): string;
+  setName(value: string): void;
+
+  getSize(): number;
+  setSize(value: number): void;
+
+  getCreatedAt(): number;
+  setCreatedAt(value: number): void;
+
+  getUpdatedAt(): number;
+  setUpdatedAt(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ProjectAsset.AsObject;
   static toObject(includeInstance: boolean, msg: ProjectAsset): ProjectAsset.AsObject;
@@ -28,6 +40,10 @@ export namespace ProjectAsset {
     id: string,
     uri: string,
     use: ProjectAssetUseMap[keyof ProjectAssetUseMap],
+    name: string,
+    size: number,
+    createdAt: number,
+    updatedAt: number,
   }
 }
 
