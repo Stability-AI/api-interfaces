@@ -42,10 +42,10 @@ class ProjectServiceStub(object):
                 request_serializer=project__pb2.DeleteProjectRequest.SerializeToString,
                 response_deserializer=project__pb2.Project.FromString,
                 )
-        self.QueryAssets = channel.unary_stream(
+        self.QueryAssets = channel.unary_unary(
                 '/gooseai.ProjectService/QueryAssets',
                 request_serializer=project__pb2.QueryAssetsRequest.SerializeToString,
-                response_deserializer=project__pb2.ProjectAsset.FromString,
+                response_deserializer=project__pb2.QueryAssetsResponse.FromString,
                 )
 
 
@@ -91,7 +91,8 @@ class ProjectServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def QueryAssets(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Query the assets of a project, with additional filtering
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -124,10 +125,10 @@ def add_ProjectServiceServicer_to_server(servicer, server):
                     request_deserializer=project__pb2.DeleteProjectRequest.FromString,
                     response_serializer=project__pb2.Project.SerializeToString,
             ),
-            'QueryAssets': grpc.unary_stream_rpc_method_handler(
+            'QueryAssets': grpc.unary_unary_rpc_method_handler(
                     servicer.QueryAssets,
                     request_deserializer=project__pb2.QueryAssetsRequest.FromString,
-                    response_serializer=project__pb2.ProjectAsset.SerializeToString,
+                    response_serializer=project__pb2.QueryAssetsResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -238,8 +239,8 @@ class ProjectService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/gooseai.ProjectService/QueryAssets',
+        return grpc.experimental.unary_unary(request, target, '/gooseai.ProjectService/QueryAssets',
             project__pb2.QueryAssetsRequest.SerializeToString,
-            project__pb2.ProjectAsset.FromString,
+            project__pb2.QueryAssetsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

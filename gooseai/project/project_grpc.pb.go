@@ -28,7 +28,8 @@ type ProjectServiceClient interface {
 	Get(ctx context.Context, in *GetProjectRequest, opts ...grpc.CallOption) (*Project, error)
 	// Delete a project
 	Delete(ctx context.Context, in *DeleteProjectRequest, opts ...grpc.CallOption) (*Project, error)
-	QueryAssets(ctx context.Context, in *QueryAssetsRequest, opts ...grpc.CallOption) (ProjectService_QueryAssetsClient, error)
+	// Query the assets of a project, with additional filtering
+	QueryAssets(ctx context.Context, in *QueryAssetsRequest, opts ...grpc.CallOption) (*QueryAssetsResponse, error)
 }
 
 type projectServiceClient struct {
@@ -107,36 +108,13 @@ func (c *projectServiceClient) Delete(ctx context.Context, in *DeleteProjectRequ
 	return out, nil
 }
 
-func (c *projectServiceClient) QueryAssets(ctx context.Context, in *QueryAssetsRequest, opts ...grpc.CallOption) (ProjectService_QueryAssetsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ProjectService_ServiceDesc.Streams[1], "/gooseai.ProjectService/QueryAssets", opts...)
+func (c *projectServiceClient) QueryAssets(ctx context.Context, in *QueryAssetsRequest, opts ...grpc.CallOption) (*QueryAssetsResponse, error) {
+	out := new(QueryAssetsResponse)
+	err := c.cc.Invoke(ctx, "/gooseai.ProjectService/QueryAssets", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &projectServiceQueryAssetsClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type ProjectService_QueryAssetsClient interface {
-	Recv() (*ProjectAsset, error)
-	grpc.ClientStream
-}
-
-type projectServiceQueryAssetsClient struct {
-	grpc.ClientStream
-}
-
-func (x *projectServiceQueryAssetsClient) Recv() (*ProjectAsset, error) {
-	m := new(ProjectAsset)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	return out, nil
 }
 
 // ProjectServiceServer is the server API for ProjectService service.
@@ -153,7 +131,8 @@ type ProjectServiceServer interface {
 	Get(context.Context, *GetProjectRequest) (*Project, error)
 	// Delete a project
 	Delete(context.Context, *DeleteProjectRequest) (*Project, error)
-	QueryAssets(*QueryAssetsRequest, ProjectService_QueryAssetsServer) error
+	// Query the assets of a project, with additional filtering
+	QueryAssets(context.Context, *QueryAssetsRequest) (*QueryAssetsResponse, error)
 	mustEmbedUnimplementedProjectServiceServer()
 }
 
@@ -176,8 +155,8 @@ func (UnimplementedProjectServiceServer) Get(context.Context, *GetProjectRequest
 func (UnimplementedProjectServiceServer) Delete(context.Context, *DeleteProjectRequest) (*Project, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedProjectServiceServer) QueryAssets(*QueryAssetsRequest, ProjectService_QueryAssetsServer) error {
-	return status.Errorf(codes.Unimplemented, "method QueryAssets not implemented")
+func (UnimplementedProjectServiceServer) QueryAssets(context.Context, *QueryAssetsRequest) (*QueryAssetsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueryAssets not implemented")
 }
 func (UnimplementedProjectServiceServer) mustEmbedUnimplementedProjectServiceServer() {}
 
@@ -285,25 +264,22 @@ func _ProjectService_Delete_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProjectService_QueryAssets_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(QueryAssetsRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _ProjectService_QueryAssets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAssetsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(ProjectServiceServer).QueryAssets(m, &projectServiceQueryAssetsServer{stream})
-}
-
-type ProjectService_QueryAssetsServer interface {
-	Send(*ProjectAsset) error
-	grpc.ServerStream
-}
-
-type projectServiceQueryAssetsServer struct {
-	grpc.ServerStream
-}
-
-func (x *projectServiceQueryAssetsServer) Send(m *ProjectAsset) error {
-	return x.ServerStream.SendMsg(m)
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).QueryAssets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.ProjectService/QueryAssets",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).QueryAssets(ctx, req.(*QueryAssetsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 // ProjectService_ServiceDesc is the grpc.ServiceDesc for ProjectService service.
@@ -329,16 +305,15 @@ var ProjectService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "Delete",
 			Handler:    _ProjectService_Delete_Handler,
 		},
+		{
+			MethodName: "QueryAssets",
+			Handler:    _ProjectService_QueryAssets_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "List",
 			Handler:       _ProjectService_List_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "QueryAssets",
-			Handler:       _ProjectService_QueryAssets_Handler,
 			ServerStreams: true,
 		},
 	},

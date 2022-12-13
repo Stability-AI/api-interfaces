@@ -295,10 +295,10 @@ export class QueryAssetsRequest extends jspb.Message {
   getLimit(): number;
   setLimit(value: number): void;
 
-  hasOffest(): boolean;
-  clearOffest(): void;
-  getOffest(): number;
-  setOffest(value: number): void;
+  hasStartKey(): boolean;
+  clearStartKey(): void;
+  getStartKey(): string;
+  setStartKey(value: string): void;
 
   clearUseList(): void;
   getUseList(): Array<ProjectAssetUseMap[keyof ProjectAssetUseMap]>;
@@ -322,8 +322,36 @@ export namespace QueryAssetsRequest {
     since: number,
     until: number,
     limit: number,
-    offest: number,
+    startKey: string,
     useList: Array<ProjectAssetUseMap[keyof ProjectAssetUseMap]>,
+  }
+}
+
+export class QueryAssetsResponse extends jspb.Message {
+  clearAssetsList(): void;
+  getAssetsList(): Array<ProjectAsset>;
+  setAssetsList(value: Array<ProjectAsset>): void;
+  addAssets(value?: ProjectAsset, index?: number): ProjectAsset;
+
+  hasLastKey(): boolean;
+  clearLastKey(): void;
+  getLastKey(): string;
+  setLastKey(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): QueryAssetsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: QueryAssetsResponse): QueryAssetsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: QueryAssetsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): QueryAssetsResponse;
+  static deserializeBinaryFromReader(message: QueryAssetsResponse, reader: jspb.BinaryReader): QueryAssetsResponse;
+}
+
+export namespace QueryAssetsResponse {
+  export type AsObject = {
+    assetsList: Array<ProjectAsset.AsObject>,
+    lastKey: string,
   }
 }
 

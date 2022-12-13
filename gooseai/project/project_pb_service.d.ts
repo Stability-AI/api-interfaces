@@ -53,9 +53,9 @@ type ProjectServiceQueryAssets = {
   readonly methodName: string;
   readonly service: typeof ProjectService;
   readonly requestStream: false;
-  readonly responseStream: true;
+  readonly responseStream: false;
   readonly requestType: typeof project_pb.QueryAssetsRequest;
-  readonly responseType: typeof project_pb.ProjectAsset;
+  readonly responseType: typeof project_pb.QueryAssetsResponse;
 };
 
 export class ProjectService {
@@ -137,6 +137,14 @@ export class ProjectServiceClient {
     requestMessage: project_pb.DeleteProjectRequest,
     callback: (error: ServiceError|null, responseMessage: project_pb.Project|null) => void
   ): UnaryResponse;
-  queryAssets(requestMessage: project_pb.QueryAssetsRequest, metadata?: grpc.Metadata): ResponseStream<project_pb.ProjectAsset>;
+  queryAssets(
+    requestMessage: project_pb.QueryAssetsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: project_pb.QueryAssetsResponse|null) => void
+  ): UnaryResponse;
+  queryAssets(
+    requestMessage: project_pb.QueryAssetsRequest,
+    callback: (error: ServiceError|null, responseMessage: project_pb.QueryAssetsResponse|null) => void
+  ): UnaryResponse;
 }
 
