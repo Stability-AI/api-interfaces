@@ -66,13 +66,23 @@ message ListProjectRequest {
 }
 
 message GetProjectRequest {
-  string id = 1;                // ID of the project to request, UUIDv4
+  string id = 1;                // ID of the project to request, UUIDv4, empty string uses default project
   optional string owner_id = 2; // The ID of the organization owning the project, empty for default org for user
 }
 
 message DeleteProjectRequest {
   string id = 1;                // ID of the project to request, UUIDv4
   optional string owner_id = 2; // The ID of the organization owning the project, empty for default org for user
+}
+
+message QueryAssetsRequest {
+  string id = 1;                     // ID of the project to request, UUIDv4, empty string uses default project
+	optional string owner_id = 2;      // The ID of the organization owning the assets, empty for default org for user
+	optional uint64 since = 3;         // The unix time to start listing assets from, empty for no restriction
+	optional uint64 until = 4;         // The unix time to stop listing assets at, empty for no restriction
+	optional uint64 limit = 5;         // The maximum number of assets to return, empty for no limit
+	optional uint64 offest = 6;        // The starting offset when returning assets, empty for no offset
+	repeated ProjectAssetUse use = 7;  // The asset usage to filter the assets returned, empty for no filter
 }
 
 //
@@ -89,4 +99,6 @@ service ProjectService {
   rpc Get (GetProjectRequest) returns (Project) {};
   // Delete a project
   rpc Delete (DeleteProjectRequest) returns (Project) {};
+  // Query the assets of a project, with additional filtering
+  rpc QueryAssets (QueryAssetsRequest) returns (stream ProjectAsset) {};
 }

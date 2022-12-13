@@ -271,6 +271,62 @@ export namespace DeleteProjectRequest {
   }
 }
 
+export class QueryAssetsRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  hasOwnerId(): boolean;
+  clearOwnerId(): void;
+  getOwnerId(): string;
+  setOwnerId(value: string): void;
+
+  hasSince(): boolean;
+  clearSince(): void;
+  getSince(): number;
+  setSince(value: number): void;
+
+  hasUntil(): boolean;
+  clearUntil(): void;
+  getUntil(): number;
+  setUntil(value: number): void;
+
+  hasLimit(): boolean;
+  clearLimit(): void;
+  getLimit(): number;
+  setLimit(value: number): void;
+
+  hasOffest(): boolean;
+  clearOffest(): void;
+  getOffest(): number;
+  setOffest(value: number): void;
+
+  clearUseList(): void;
+  getUseList(): Array<ProjectAssetUseMap[keyof ProjectAssetUseMap]>;
+  setUseList(value: Array<ProjectAssetUseMap[keyof ProjectAssetUseMap]>): void;
+  addUse(value: ProjectAssetUseMap[keyof ProjectAssetUseMap], index?: number): ProjectAssetUseMap[keyof ProjectAssetUseMap];
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): QueryAssetsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: QueryAssetsRequest): QueryAssetsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: QueryAssetsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): QueryAssetsRequest;
+  static deserializeBinaryFromReader(message: QueryAssetsRequest, reader: jspb.BinaryReader): QueryAssetsRequest;
+}
+
+export namespace QueryAssetsRequest {
+  export type AsObject = {
+    id: string,
+    ownerId: string,
+    since: number,
+    until: number,
+    limit: number,
+    offest: number,
+    useList: Array<ProjectAssetUseMap[keyof ProjectAssetUseMap]>,
+  }
+}
+
 export interface ProjectAccessMap {
   PROJECT_ACCESS_PRIVATE: 0;
   PROJECT_ACCESS_PUBLIC: 1;
