@@ -78,8 +78,8 @@ message DeleteProjectRequest {
 message QueryAssetsRequest {
   string id = 1;                    // ID of the project to request, UUIDv4, empty string uses default project
   optional string owner_id = 2;     // The ID of the organization owning the assets, unset for default org for user
-  optional uint64 since = 3;        // The unix time to start listing assets from, unset for no restriction
-  optional uint64 until = 4;        // The unix time to stop listing assets at, unset for no restriction
+  optional uint64 since = 3;        // The time (UTC seconds epoch) to start listing assets from, unset for no restriction
+  optional uint64 until = 4;        // The time (UTC seconds epoch) to stop listing assets at, unset for no restriction
   optional uint64 limit = 5;        // The maximum number of assets to return, unset for no limit
   optional string start_key = 6;    // The key to start from, used to paginate results, unset for no offset
   repeated ProjectAssetUse use = 7; // The asset usage to filter the assets returned, empty for no filter

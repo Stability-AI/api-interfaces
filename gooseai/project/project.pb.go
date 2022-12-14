@@ -714,8 +714,8 @@ type QueryAssetsRequest struct {
 
 	Id       string            `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                                        // ID of the project to request, UUIDv4, empty string uses default project
 	OwnerId  *string           `protobuf:"bytes,2,opt,name=owner_id,json=ownerId,proto3,oneof" json:"owner_id,omitempty"`         // The ID of the organization owning the assets, unset for default org for user
-	Since    *uint64           `protobuf:"varint,3,opt,name=since,proto3,oneof" json:"since,omitempty"`                           // The unix time to start listing assets from, unset for no restriction
-	Until    *uint64           `protobuf:"varint,4,opt,name=until,proto3,oneof" json:"until,omitempty"`                           // The unix time to stop listing assets at, unset for no restriction
+	Since    *uint64           `protobuf:"varint,3,opt,name=since,proto3,oneof" json:"since,omitempty"`                           // The time (UTC seconds epoch) to start listing assets from, unset for no restriction
+	Until    *uint64           `protobuf:"varint,4,opt,name=until,proto3,oneof" json:"until,omitempty"`                           // The time (UTC seconds epoch) to stop listing assets at, unset for no restriction
 	Limit    *uint64           `protobuf:"varint,5,opt,name=limit,proto3,oneof" json:"limit,omitempty"`                           // The maximum number of assets to return, unset for no limit
 	StartKey *string           `protobuf:"bytes,6,opt,name=start_key,json=startKey,proto3,oneof" json:"start_key,omitempty"`      // The key to start from, used to paginate results, unset for no offset
 	Use      []ProjectAssetUse `protobuf:"varint,7,rep,packed,name=use,proto3,enum=gooseai.ProjectAssetUse" json:"use,omitempty"` // The asset usage to filter the assets returned, empty for no filter
