@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rproject.proto\x12\x07gooseai\"\x92\x01\n\x0cProjectAsset\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0b\n\x03uri\x18\x02 \x01(\t\x12%\n\x03use\x18\x03 \x01(\x0e\x32\x18.gooseai.ProjectAssetUse\x12\x0c\n\x04name\x18\x04 \x01(\t\x12\x0c\n\x04size\x18\x05 \x01(\x04\x12\x12\n\ncreated_at\x18\x06 \x01(\x04\x12\x12\n\nupdated_at\x18\x07 \x01(\x04\"\x88\x02\n\x07Project\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x10\n\x08owner_id\x18\x03 \x01(\t\x12&\n\x06\x61\x63\x63\x65ss\x18\x04 \x01(\x0e\x32\x16.gooseai.ProjectAccess\x12&\n\x06status\x18\x05 \x01(\x0e\x32\x16.gooseai.ProjectStatus\x12\x0c\n\x04size\x18\x06 \x01(\x04\x12#\n\x04\x66ile\x18\x07 \x01(\x0b\x32\x15.gooseai.ProjectAsset\x12\x12\n\ncreated_at\x18\x08 \x01(\x04\x12\x12\n\nupdated_at\x18\t \x01(\x04\x12%\n\x06\x61ssets\x18\n \x03(\x0b\x32\x15.gooseai.ProjectAsset\"\xcc\x01\n\x14\x43reateProjectRequest\x12\r\n\x05title\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12&\n\x06\x61\x63\x63\x65ss\x18\x03 \x01(\x0e\x32\x16.gooseai.ProjectAccess\x12&\n\x06status\x18\x04 \x01(\x0e\x32\x16.gooseai.ProjectStatus\x12(\n\x04\x66ile\x18\x05 \x01(\x0b\x32\x15.gooseai.ProjectAssetH\x01\x88\x01\x01\x42\x0b\n\t_owner_idB\x07\n\x05_file\"\x87\x02\n\x14UpdateProjectRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x12\n\x05title\x18\x03 \x01(\tH\x01\x88\x01\x01\x12+\n\x06\x61\x63\x63\x65ss\x18\x04 \x01(\x0e\x32\x16.gooseai.ProjectAccessH\x02\x88\x01\x01\x12+\n\x06status\x18\x05 \x01(\x0e\x32\x16.gooseai.ProjectStatusH\x03\x88\x01\x01\x12(\n\x04\x66ile\x18\x06 \x01(\x0b\x32\x15.gooseai.ProjectAssetH\x04\x88\x01\x01\x42\x0b\n\t_owner_idB\x08\n\x06_titleB\t\n\x07_accessB\t\n\x07_statusB\x07\n\x05_file\"8\n\x12ListProjectRequest\x12\x15\n\x08owner_id\x18\x01 \x01(\tH\x00\x88\x01\x01\x42\x0b\n\t_owner_id\"C\n\x11GetProjectRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\x0b\n\t_owner_id\"F\n\x14\x44\x65leteProjectRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\x0b\n\t_owner_id*F\n\rProjectAccess\x12\x1a\n\x16PROJECT_ACCESS_PRIVATE\x10\x00\x12\x19\n\x15PROJECT_ACCESS_PUBLIC\x10\x01*c\n\rProjectStatus\x12\x1b\n\x17PROJECT_STATUS_INACTIVE\x10\x00\x12\x19\n\x15PROJECT_STATUS_ACTIVE\x10\x01\x12\x1a\n\x16PROJECT_STATUS_DELETED\x10\x02*\xb0\x01\n\x0fProjectAssetUse\x12\x1f\n\x1bPROJECT_ASSET_USE_UNDEFINED\x10\x00\x12\x1b\n\x17PROJECT_ASSET_USE_INPUT\x10\x01\x12\x1c\n\x18PROJECT_ASSET_USE_OUTPUT\x10\x02\x12\"\n\x1ePROJECT_ASSET_USE_INTERMEDIATE\x10\x03\x12\x1d\n\x19PROJECT_ASSET_USE_PROJECT\x10\x04\x32\xb9\x02\n\x0eProjectService\x12;\n\x06\x43reate\x12\x1d.gooseai.CreateProjectRequest\x1a\x10.gooseai.Project\"\x00\x12;\n\x06Update\x12\x1d.gooseai.UpdateProjectRequest\x1a\x10.gooseai.Project\"\x00\x12\x39\n\x04List\x12\x1b.gooseai.ListProjectRequest\x1a\x10.gooseai.Project\"\x00\x30\x01\x12\x35\n\x03Get\x12\x1a.gooseai.GetProjectRequest\x1a\x10.gooseai.Project\"\x00\x12;\n\x06\x44\x65lete\x12\x1d.gooseai.DeleteProjectRequest\x1a\x10.gooseai.Project\"\x00\x42\x0cZ\n./;projectb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rproject.proto\x12\x07gooseai\"\x92\x01\n\x0cProjectAsset\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0b\n\x03uri\x18\x02 \x01(\t\x12%\n\x03use\x18\x03 \x01(\x0e\x32\x18.gooseai.ProjectAssetUse\x12\x0c\n\x04name\x18\x04 \x01(\t\x12\x0c\n\x04size\x18\x05 \x01(\x04\x12\x12\n\ncreated_at\x18\x06 \x01(\x04\x12\x12\n\nupdated_at\x18\x07 \x01(\x04\"\x88\x02\n\x07Project\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x10\n\x08owner_id\x18\x03 \x01(\t\x12&\n\x06\x61\x63\x63\x65ss\x18\x04 \x01(\x0e\x32\x16.gooseai.ProjectAccess\x12&\n\x06status\x18\x05 \x01(\x0e\x32\x16.gooseai.ProjectStatus\x12\x0c\n\x04size\x18\x06 \x01(\x04\x12#\n\x04\x66ile\x18\x07 \x01(\x0b\x32\x15.gooseai.ProjectAsset\x12\x12\n\ncreated_at\x18\x08 \x01(\x04\x12\x12\n\nupdated_at\x18\t \x01(\x04\x12%\n\x06\x61ssets\x18\n \x03(\x0b\x32\x15.gooseai.ProjectAsset\"\xcc\x01\n\x14\x43reateProjectRequest\x12\r\n\x05title\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12&\n\x06\x61\x63\x63\x65ss\x18\x03 \x01(\x0e\x32\x16.gooseai.ProjectAccess\x12&\n\x06status\x18\x04 \x01(\x0e\x32\x16.gooseai.ProjectStatus\x12(\n\x04\x66ile\x18\x05 \x01(\x0b\x32\x15.gooseai.ProjectAssetH\x01\x88\x01\x01\x42\x0b\n\t_owner_idB\x07\n\x05_file\"\x87\x02\n\x14UpdateProjectRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x12\n\x05title\x18\x03 \x01(\tH\x01\x88\x01\x01\x12+\n\x06\x61\x63\x63\x65ss\x18\x04 \x01(\x0e\x32\x16.gooseai.ProjectAccessH\x02\x88\x01\x01\x12+\n\x06status\x18\x05 \x01(\x0e\x32\x16.gooseai.ProjectStatusH\x03\x88\x01\x01\x12(\n\x04\x66ile\x18\x06 \x01(\x0b\x32\x15.gooseai.ProjectAssetH\x04\x88\x01\x01\x42\x0b\n\t_owner_idB\x08\n\x06_titleB\t\n\x07_accessB\t\n\x07_statusB\x07\n\x05_file\"8\n\x12ListProjectRequest\x12\x15\n\x08owner_id\x18\x01 \x01(\tH\x00\x88\x01\x01\x42\x0b\n\t_owner_id\"C\n\x11GetProjectRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\x0b\n\t_owner_id\"F\n\x14\x44\x65leteProjectRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\x0b\n\t_owner_id\"\xe5\x01\n\x12QueryAssetsRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x12\n\x05since\x18\x03 \x01(\x04H\x01\x88\x01\x01\x12\x12\n\x05until\x18\x04 \x01(\x04H\x02\x88\x01\x01\x12\x12\n\x05limit\x18\x05 \x01(\x04H\x03\x88\x01\x01\x12\x13\n\x06offest\x18\x06 \x01(\x04H\x04\x88\x01\x01\x12%\n\x03use\x18\x07 \x03(\x0e\x32\x18.gooseai.ProjectAssetUseB\x0b\n\t_owner_idB\x08\n\x06_sinceB\x08\n\x06_untilB\x08\n\x06_limitB\t\n\x07_offest*F\n\rProjectAccess\x12\x1a\n\x16PROJECT_ACCESS_PRIVATE\x10\x00\x12\x19\n\x15PROJECT_ACCESS_PUBLIC\x10\x01*c\n\rProjectStatus\x12\x1b\n\x17PROJECT_STATUS_INACTIVE\x10\x00\x12\x19\n\x15PROJECT_STATUS_ACTIVE\x10\x01\x12\x1a\n\x16PROJECT_STATUS_DELETED\x10\x02*\xb0\x01\n\x0fProjectAssetUse\x12\x1f\n\x1bPROJECT_ASSET_USE_UNDEFINED\x10\x00\x12\x1b\n\x17PROJECT_ASSET_USE_INPUT\x10\x01\x12\x1c\n\x18PROJECT_ASSET_USE_OUTPUT\x10\x02\x12\"\n\x1ePROJECT_ASSET_USE_INTERMEDIATE\x10\x03\x12\x1d\n\x19PROJECT_ASSET_USE_PROJECT\x10\x04\x32\x80\x03\n\x0eProjectService\x12;\n\x06\x43reate\x12\x1d.gooseai.CreateProjectRequest\x1a\x10.gooseai.Project\"\x00\x12;\n\x06Update\x12\x1d.gooseai.UpdateProjectRequest\x1a\x10.gooseai.Project\"\x00\x12\x39\n\x04List\x12\x1b.gooseai.ListProjectRequest\x1a\x10.gooseai.Project\"\x00\x30\x01\x12\x35\n\x03Get\x12\x1a.gooseai.GetProjectRequest\x1a\x10.gooseai.Project\"\x00\x12;\n\x06\x44\x65lete\x12\x1d.gooseai.DeleteProjectRequest\x1a\x10.gooseai.Project\"\x00\x12\x45\n\x0bQueryAssets\x12\x1b.gooseai.QueryAssetsRequest\x1a\x15.gooseai.ProjectAsset\"\x00\x30\x01\x42\x0cZ\n./;projectb\x06proto3')
 
 _PROJECTACCESS = DESCRIPTOR.enum_types_by_name['ProjectAccess']
 ProjectAccess = enum_type_wrapper.EnumTypeWrapper(_PROJECTACCESS)
@@ -42,6 +42,7 @@ _UPDATEPROJECTREQUEST = DESCRIPTOR.message_types_by_name['UpdateProjectRequest']
 _LISTPROJECTREQUEST = DESCRIPTOR.message_types_by_name['ListProjectRequest']
 _GETPROJECTREQUEST = DESCRIPTOR.message_types_by_name['GetProjectRequest']
 _DELETEPROJECTREQUEST = DESCRIPTOR.message_types_by_name['DeleteProjectRequest']
+_QUERYASSETSREQUEST = DESCRIPTOR.message_types_by_name['QueryAssetsRequest']
 ProjectAsset = _reflection.GeneratedProtocolMessageType('ProjectAsset', (_message.Message,), {
   'DESCRIPTOR' : _PROJECTASSET,
   '__module__' : 'project_pb2'
@@ -91,17 +92,24 @@ DeleteProjectRequest = _reflection.GeneratedProtocolMessageType('DeleteProjectRe
   })
 _sym_db.RegisterMessage(DeleteProjectRequest)
 
+QueryAssetsRequest = _reflection.GeneratedProtocolMessageType('QueryAssetsRequest', (_message.Message,), {
+  'DESCRIPTOR' : _QUERYASSETSREQUEST,
+  '__module__' : 'project_pb2'
+  # @@protoc_insertion_point(class_scope:gooseai.QueryAssetsRequest)
+  })
+_sym_db.RegisterMessage(QueryAssetsRequest)
+
 _PROJECTSERVICE = DESCRIPTOR.services_by_name['ProjectService']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z\n./;project'
-  _PROJECTACCESS._serialized_start=1114
-  _PROJECTACCESS._serialized_end=1184
-  _PROJECTSTATUS._serialized_start=1186
-  _PROJECTSTATUS._serialized_end=1285
-  _PROJECTASSETUSE._serialized_start=1288
-  _PROJECTASSETUSE._serialized_end=1464
+  _PROJECTACCESS._serialized_start=1346
+  _PROJECTACCESS._serialized_end=1416
+  _PROJECTSTATUS._serialized_start=1418
+  _PROJECTSTATUS._serialized_end=1517
+  _PROJECTASSETUSE._serialized_start=1520
+  _PROJECTASSETUSE._serialized_end=1696
   _PROJECTASSET._serialized_start=27
   _PROJECTASSET._serialized_end=173
   _PROJECT._serialized_start=176
@@ -116,6 +124,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _GETPROJECTREQUEST._serialized_end=1040
   _DELETEPROJECTREQUEST._serialized_start=1042
   _DELETEPROJECTREQUEST._serialized_end=1112
-  _PROJECTSERVICE._serialized_start=1467
-  _PROJECTSERVICE._serialized_end=1780
+  _QUERYASSETSREQUEST._serialized_start=1115
+  _QUERYASSETSREQUEST._serialized_end=1344
+  _PROJECTSERVICE._serialized_start=1699
+  _PROJECTSERVICE._serialized_end=2083
 # @@protoc_insertion_point(module_scope)
