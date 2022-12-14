@@ -209,8 +209,8 @@ message GuidanceParameters {
 
 message TransformType {
   oneof type {
-      DiffusionSampler diffusion = 1;
-      Upscaler upscaler = 2;
+    DiffusionSampler diffusion = 1;
+    Upscaler upscaler = 2;
   }
 }
 
