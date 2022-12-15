@@ -307,11 +307,11 @@ message TransformBlend {
 }
 
 message TransformColorAdjust {
-  optional float brightness = 1;  // scale on pixel intensities, 1.0 is no change
+  optional float brightness = 1;  // scale pixel intensities, 1.0 is no change
   optional float contrast = 2;    // contrast adjustment, 1.0 is no change
-  optional float hue = 3;         // -180 to 180 hue adjustment
-  optional float saturation = 4;  // 0.0 to 2.0 saturation adjustment
-  optional float lightness = 5;   // -1.0 to 1.0 lightness adjustment
+  optional float hue = 3;         // -180 to 180 hue adjustment, 0.0 is no change
+  optional float saturation = 4;  // 0.0 to 2.0 saturation scale, 1.0 is no change
+  optional float lightness = 5;   // -1.0 to 1.0 lightness adjustment, 0.0 is no change
 }
 
 message TransformColorMatch {
