@@ -1,6 +1,6 @@
 syntax = 'proto3';
 package gooseai;
-option go_package = "./;generation";
+option go_package = "github.com/stability-ai/api-interfaces/gooseai/generation";
 import "google/protobuf/struct.proto";
 import "tensors.proto";
 
@@ -105,6 +105,7 @@ enum DiffusionSampler {
   SAMPLER_K_LMS = 7;
   SAMPLER_K_DPMPP_2S_ANCESTRAL = 8;
   SAMPLER_K_DPMPP_2M = 9;
+  SAMPLER_K_DPMPP_SDE = 10;
 }
 
 // Parameters that affect the behavior of the sampler, typically used for CFG.
@@ -115,6 +116,7 @@ message SamplerParameters {
   optional uint64 downsampling_factor = 4;
   optional float cfg_scale = 5;
   optional float init_noise_scale = 6; // defaults to 0.99
+  optional float step_noise_scale = 7; // defaults to 0.99
 }
 
 // Unused, but reserved for future use. Adjustments to the latents after
@@ -225,6 +227,7 @@ message ImageParameters {
   repeated StepParameter parameters = 7;
   optional MaskedAreaInit masked_area_init = 8; // defaults to MASKED_AREA_INIT_ZERO 
   optional WeightMethod weight_method = 9; //defaults to TEXT_ENCODER
+  optional bool quantize = 10; //defaults to true
 }
 
 enum Action {

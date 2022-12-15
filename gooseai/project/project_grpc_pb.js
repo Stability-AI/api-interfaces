@@ -3,6 +3,7 @@
 'use strict';
 var grpc = require('grpc');
 var project_pb = require('./project_pb.js');
+var generation_pb = require('./generation_pb.js');
 
 function serialize_gooseai_CreateProjectRequest(arg) {
   if (!(arg instanceof project_pb.CreateProjectRequest)) {
@@ -57,6 +58,28 @@ function serialize_gooseai_Project(arg) {
 
 function deserialize_gooseai_Project(buffer_arg) {
   return project_pb.Project.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_QueryAssetsRequest(arg) {
+  if (!(arg instanceof project_pb.QueryAssetsRequest)) {
+    throw new Error('Expected argument of type gooseai.QueryAssetsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_QueryAssetsRequest(buffer_arg) {
+  return project_pb.QueryAssetsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_QueryAssetsResponse(arg) {
+  if (!(arg instanceof project_pb.QueryAssetsResponse)) {
+    throw new Error('Expected argument of type gooseai.QueryAssetsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_QueryAssetsResponse(buffer_arg) {
+  return project_pb.QueryAssetsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_gooseai_UpdateProjectRequest(arg) {
@@ -134,6 +157,18 @@ delete: {
     requestDeserialize: deserialize_gooseai_DeleteProjectRequest,
     responseSerialize: serialize_gooseai_Project,
     responseDeserialize: deserialize_gooseai_Project,
+  },
+  // Query the assets of a project, with additional filtering
+queryAssets: {
+    path: '/gooseai.ProjectService/QueryAssets',
+    requestStream: false,
+    responseStream: false,
+    requestType: project_pb.QueryAssetsRequest,
+    responseType: project_pb.QueryAssetsResponse,
+    requestSerialize: serialize_gooseai_QueryAssetsRequest,
+    requestDeserialize: deserialize_gooseai_QueryAssetsRequest,
+    responseSerialize: serialize_gooseai_QueryAssetsResponse,
+    responseDeserialize: deserialize_gooseai_QueryAssetsResponse,
   },
 };
 
