@@ -12,7 +12,7 @@ interface IProjectServiceService extends grpc.ServiceDefinition<grpc.UntypedServ
   list: grpc.MethodDefinition<project_pb.ListProjectRequest, project_pb.Project>;
   get: grpc.MethodDefinition<project_pb.GetProjectRequest, project_pb.Project>;
   delete: grpc.MethodDefinition<project_pb.DeleteProjectRequest, project_pb.Project>;
-  queryAssets: grpc.MethodDefinition<project_pb.QueryAssetsRequest, project_pb.ProjectAsset>;
+  queryAssets: grpc.MethodDefinition<project_pb.QueryAssetsRequest, project_pb.QueryAssetsResponse>;
 }
 
 export const ProjectServiceService: IProjectServiceService;
@@ -23,7 +23,7 @@ export interface IProjectServiceServer extends grpc.UntypedServiceImplementation
   list: grpc.handleServerStreamingCall<project_pb.ListProjectRequest, project_pb.Project>;
   get: grpc.handleUnaryCall<project_pb.GetProjectRequest, project_pb.Project>;
   delete: grpc.handleUnaryCall<project_pb.DeleteProjectRequest, project_pb.Project>;
-  queryAssets: grpc.handleServerStreamingCall<project_pb.QueryAssetsRequest, project_pb.ProjectAsset>;
+  queryAssets: grpc.handleUnaryCall<project_pb.QueryAssetsRequest, project_pb.QueryAssetsResponse>;
 }
 
 export class ProjectServiceClient extends grpc.Client {
@@ -42,6 +42,7 @@ export class ProjectServiceClient extends grpc.Client {
   delete(argument: project_pb.DeleteProjectRequest, callback: grpc.requestCallback<project_pb.Project>): grpc.ClientUnaryCall;
   delete(argument: project_pb.DeleteProjectRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.Project>): grpc.ClientUnaryCall;
   delete(argument: project_pb.DeleteProjectRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.Project>): grpc.ClientUnaryCall;
-  queryAssets(argument: project_pb.QueryAssetsRequest, metadataOrOptions?: grpc.Metadata | grpc.CallOptions | null): grpc.ClientReadableStream<project_pb.ProjectAsset>;
-  queryAssets(argument: project_pb.QueryAssetsRequest, metadata?: grpc.Metadata | null, options?: grpc.CallOptions | null): grpc.ClientReadableStream<project_pb.ProjectAsset>;
+  queryAssets(argument: project_pb.QueryAssetsRequest, callback: grpc.requestCallback<project_pb.QueryAssetsResponse>): grpc.ClientUnaryCall;
+  queryAssets(argument: project_pb.QueryAssetsRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.QueryAssetsResponse>): grpc.ClientUnaryCall;
+  queryAssets(argument: project_pb.QueryAssetsRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.QueryAssetsResponse>): grpc.ClientUnaryCall;
 }
