@@ -828,6 +828,52 @@ export namespace TransformBlend {
   }
 }
 
+export class TransformColorAdjust extends jspb.Message {
+  hasBrightness(): boolean;
+  clearBrightness(): void;
+  getBrightness(): number;
+  setBrightness(value: number): void;
+
+  hasContrast(): boolean;
+  clearContrast(): void;
+  getContrast(): number;
+  setContrast(value: number): void;
+
+  hasHue(): boolean;
+  clearHue(): void;
+  getHue(): number;
+  setHue(value: number): void;
+
+  hasSaturation(): boolean;
+  clearSaturation(): void;
+  getSaturation(): number;
+  setSaturation(value: number): void;
+
+  hasLightness(): boolean;
+  clearLightness(): void;
+  getLightness(): number;
+  setLightness(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformColorAdjust.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformColorAdjust): TransformColorAdjust.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformColorAdjust, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformColorAdjust;
+  static deserializeBinaryFromReader(message: TransformColorAdjust, reader: jspb.BinaryReader): TransformColorAdjust;
+}
+
+export namespace TransformColorAdjust {
+  export type AsObject = {
+    brightness: number,
+    contrast: number,
+    hue: number,
+    saturation: number,
+    lightness: number,
+  }
+}
+
 export class TransformColorMatch extends jspb.Message {
   getColorMode(): ColorMatchModeMap[keyof ColorMatchModeMap];
   setColorMode(value: ColorMatchModeMap[keyof ColorMatchModeMap]): void;
@@ -851,34 +897,6 @@ export namespace TransformColorMatch {
   export type AsObject = {
     colorMode: ColorMatchModeMap[keyof ColorMatchModeMap],
     image?: Artifact.AsObject,
-  }
-}
-
-export class TransformContrast extends jspb.Message {
-  hasBrightness(): boolean;
-  clearBrightness(): void;
-  getBrightness(): number;
-  setBrightness(value: number): void;
-
-  hasContrast(): boolean;
-  clearContrast(): void;
-  getContrast(): number;
-  setContrast(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): TransformContrast.AsObject;
-  static toObject(includeInstance: boolean, msg: TransformContrast): TransformContrast.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: TransformContrast, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): TransformContrast;
-  static deserializeBinaryFromReader(message: TransformContrast, reader: jspb.BinaryReader): TransformContrast;
-}
-
-export namespace TransformContrast {
-  export type AsObject = {
-    brightness: number,
-    contrast: number,
   }
 }
 
@@ -976,55 +994,21 @@ export namespace TransformResample {
   }
 }
 
-export class TransformWarpFlow extends jspb.Message {
-  hasFlowMap(): boolean;
-  clearFlowMap(): void;
-  getFlowMap(): Artifact | undefined;
-  setFlowMap(value?: Artifact): void;
-
-  hasPrevFrame(): boolean;
-  clearPrevFrame(): void;
-  getPrevFrame(): Artifact | undefined;
-  setPrevFrame(value?: Artifact): void;
-
-  hasNextFrame(): boolean;
-  clearNextFrame(): void;
-  getNextFrame(): Artifact | undefined;
-  setNextFrame(value?: Artifact): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): TransformWarpFlow.AsObject;
-  static toObject(includeInstance: boolean, msg: TransformWarpFlow): TransformWarpFlow.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: TransformWarpFlow, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): TransformWarpFlow;
-  static deserializeBinaryFromReader(message: TransformWarpFlow, reader: jspb.BinaryReader): TransformWarpFlow;
-}
-
-export namespace TransformWarpFlow {
-  export type AsObject = {
-    flowMap?: Artifact.AsObject,
-    prevFrame?: Artifact.AsObject,
-    nextFrame?: Artifact.AsObject,
-  }
-}
-
 export class TransformParameters extends jspb.Message {
   hasBlend(): boolean;
   clearBlend(): void;
   getBlend(): TransformBlend | undefined;
   setBlend(value?: TransformBlend): void;
 
+  hasColorAdjust(): boolean;
+  clearColorAdjust(): void;
+  getColorAdjust(): TransformColorAdjust | undefined;
+  setColorAdjust(value?: TransformColorAdjust): void;
+
   hasColorMatch(): boolean;
   clearColorMatch(): void;
   getColorMatch(): TransformColorMatch | undefined;
   setColorMatch(value?: TransformColorMatch): void;
-
-  hasContrast(): boolean;
-  clearContrast(): void;
-  getContrast(): TransformContrast | undefined;
-  setContrast(value?: TransformContrast): void;
 
   hasDepthCalc(): boolean;
   clearDepthCalc(): void;
@@ -1035,11 +1019,6 @@ export class TransformParameters extends jspb.Message {
   clearResample(): void;
   getResample(): TransformResample | undefined;
   setResample(value?: TransformResample): void;
-
-  hasWarpFlow(): boolean;
-  clearWarpFlow(): void;
-  getWarpFlow(): TransformWarpFlow | undefined;
-  setWarpFlow(value?: TransformWarpFlow): void;
 
   getTransformCase(): TransformParameters.TransformCase;
   serializeBinary(): Uint8Array;
@@ -1055,21 +1034,19 @@ export class TransformParameters extends jspb.Message {
 export namespace TransformParameters {
   export type AsObject = {
     blend?: TransformBlend.AsObject,
+    colorAdjust?: TransformColorAdjust.AsObject,
     colorMatch?: TransformColorMatch.AsObject,
-    contrast?: TransformContrast.AsObject,
     depthCalc?: TransformDepthCalc.AsObject,
     resample?: TransformResample.AsObject,
-    warpFlow?: TransformWarpFlow.AsObject,
   }
 
   export enum TransformCase {
     TRANSFORM_NOT_SET = 0,
     BLEND = 1,
-    COLOR_MATCH = 2,
-    CONTRAST = 3,
+    COLOR_ADJUST = 2,
+    COLOR_MATCH = 3,
     DEPTH_CALC = 4,
     RESAMPLE = 5,
-    WARP_FLOW = 6,
   }
 }
 

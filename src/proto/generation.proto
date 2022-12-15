@@ -306,14 +306,17 @@ message TransformBlend {
   Artifact target = 2;  // target image
 }
 
+message TransformColorAdjust {
+  optional float brightness = 1;  // scale on pixel intensities, 1.0 is no change
+  optional float contrast = 2;    // contrast adjustment, 1.0 is no change
+  optional float hue = 3;         // -180 to 180 hue adjustment
+  optional float saturation = 4;  // 0.0 to 2.0 saturation adjustment
+  optional float lightness = 5;   // -1.0 to 1.0 lightness adjustment
+}
+
 message TransformColorMatch {
   ColorMatchMode color_mode = 1;  // color mode to use
   Artifact image = 2;             // image to match
-}
-
-message TransformContrast {
-  optional float brightness = 1;  // scale on pixel intensities, 1.0 is no change
-  optional float contrast = 2;    // contrast adjustment, 1.0 is no change
 }
 
 message TransformDepthCalc {
@@ -338,20 +341,13 @@ message TransformResample {
   optional bool export_mask = 5;               // return inpaint mask
 }
 
-message TransformWarpFlow {
-  optional Artifact flow_map = 1;   // precomputed flow asset
-  optional Artifact prev_frame = 2; // pair of frames to compute flow from
-  optional Artifact next_frame = 3;
-}
-
 message TransformParameters {
   oneof transform {
     TransformBlend blend = 1;
-    TransformColorMatch color_match = 2;
-    TransformContrast contrast = 3;
+    TransformColorAdjust color_adjust = 2;
+    TransformColorMatch color_match = 3;
     TransformDepthCalc depth_calc = 4;
     TransformResample resample = 5;
-    TransformWarpFlow warp_flow = 6;
   }
 }
 
