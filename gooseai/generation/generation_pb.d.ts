@@ -261,6 +261,11 @@ export class SamplerParameters extends jspb.Message {
   getInitNoiseScale(): number;
   setInitNoiseScale(value: number): void;
 
+  hasStepNoiseScale(): boolean;
+  clearStepNoiseScale(): void;
+  getStepNoiseScale(): number;
+  setStepNoiseScale(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SamplerParameters.AsObject;
   static toObject(includeInstance: boolean, msg: SamplerParameters): SamplerParameters.AsObject;
@@ -279,6 +284,7 @@ export namespace SamplerParameters {
     downsamplingFactor: number,
     cfgScale: number,
     initNoiseScale: number,
+    stepNoiseScale: number,
   }
 }
 
@@ -645,6 +651,11 @@ export class ImageParameters extends jspb.Message {
   getWeightMethod(): WeightMethodMap[keyof WeightMethodMap];
   setWeightMethod(value: WeightMethodMap[keyof WeightMethodMap]): void;
 
+  hasQuantize(): boolean;
+  clearQuantize(): void;
+  getQuantize(): boolean;
+  setQuantize(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ImageParameters.AsObject;
   static toObject(includeInstance: boolean, msg: ImageParameters): ImageParameters.AsObject;
@@ -666,6 +677,7 @@ export namespace ImageParameters {
     parametersList: Array<StepParameter.AsObject>,
     maskedAreaInit: MaskedAreaInitMap[keyof MaskedAreaInitMap],
     weightMethod: WeightMethodMap[keyof WeightMethodMap],
+    quantize: boolean,
   }
 }
 
@@ -1094,6 +1106,7 @@ export interface DiffusionSamplerMap {
   SAMPLER_K_LMS: 7;
   SAMPLER_K_DPMPP_2S_ANCESTRAL: 8;
   SAMPLER_K_DPMPP_2M: 9;
+  SAMPLER_K_DPMPP_SDE: 10;
 }
 
 export const DiffusionSampler: DiffusionSamplerMap;

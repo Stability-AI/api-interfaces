@@ -2249,7 +2249,8 @@ proto.gooseai.SamplerParameters.toObject = function(includeInstance, msg) {
     latentChannels: jspb.Message.getFieldWithDefault(msg, 3, 0),
     downsamplingFactor: jspb.Message.getFieldWithDefault(msg, 4, 0),
     cfgScale: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    initNoiseScale: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0)
+    initNoiseScale: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
+    stepNoiseScale: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0)
   };
 
   if (includeInstance) {
@@ -2309,6 +2310,10 @@ proto.gooseai.SamplerParameters.deserializeBinaryFromReader = function(msg, read
     case 6:
       var value = /** @type {number} */ (reader.readFloat());
       msg.setInitNoiseScale(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setStepNoiseScale(value);
       break;
     default:
       reader.skipField();
@@ -2378,6 +2383,13 @@ proto.gooseai.SamplerParameters.serializeBinaryToWriter = function(message, writ
   if (f != null) {
     writer.writeFloat(
       6,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 7));
+  if (f != null) {
+    writer.writeFloat(
+      7,
       f
     );
   }
@@ -2597,6 +2609,42 @@ proto.gooseai.SamplerParameters.prototype.clearInitNoiseScale = function() {
  */
 proto.gooseai.SamplerParameters.prototype.hasInitNoiseScale = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional float step_noise_scale = 7;
+ * @return {number}
+ */
+proto.gooseai.SamplerParameters.prototype.getStepNoiseScale = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 7, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.gooseai.SamplerParameters} returns this
+ */
+proto.gooseai.SamplerParameters.prototype.setStepNoiseScale = function(value) {
+  return jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.SamplerParameters} returns this
+ */
+proto.gooseai.SamplerParameters.prototype.clearStepNoiseScale = function() {
+  return jspb.Message.setField(this, 7, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.SamplerParameters.prototype.hasStepNoiseScale = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
@@ -4941,7 +4989,8 @@ proto.gooseai.ImageParameters.toObject = function(includeInstance, msg) {
     parametersList: jspb.Message.toObjectList(msg.getParametersList(),
     proto.gooseai.StepParameter.toObject, includeInstance),
     maskedAreaInit: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    weightMethod: jspb.Message.getFieldWithDefault(msg, 9, 0)
+    weightMethod: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    quantize: jspb.Message.getBooleanFieldWithDefault(msg, 10, false)
   };
 
   if (includeInstance) {
@@ -5017,6 +5066,10 @@ proto.gooseai.ImageParameters.deserializeBinaryFromReader = function(msg, reader
     case 9:
       var value = /** @type {!proto.gooseai.WeightMethod} */ (reader.readEnum());
       msg.setWeightMethod(value);
+      break;
+    case 10:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setQuantize(value);
       break;
     default:
       reader.skipField();
@@ -5109,6 +5162,13 @@ proto.gooseai.ImageParameters.serializeBinaryToWriter = function(message, writer
   if (f != null) {
     writer.writeEnum(
       9,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 10));
+  if (f != null) {
+    writer.writeBool(
+      10,
       f
     );
   }
@@ -5440,6 +5500,42 @@ proto.gooseai.ImageParameters.prototype.clearWeightMethod = function() {
  */
 proto.gooseai.ImageParameters.prototype.hasWeightMethod = function() {
   return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional bool quantize = 10;
+ * @return {boolean}
+ */
+proto.gooseai.ImageParameters.prototype.getQuantize = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.gooseai.ImageParameters} returns this
+ */
+proto.gooseai.ImageParameters.prototype.setQuantize = function(value) {
+  return jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.ImageParameters} returns this
+ */
+proto.gooseai.ImageParameters.prototype.clearQuantize = function() {
+  return jspb.Message.setField(this, 10, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.ImageParameters.prototype.hasQuantize = function() {
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
@@ -8255,7 +8351,8 @@ proto.gooseai.DiffusionSampler = {
   SAMPLER_K_DPM_2_ANCESTRAL: 6,
   SAMPLER_K_LMS: 7,
   SAMPLER_K_DPMPP_2S_ANCESTRAL: 8,
-  SAMPLER_K_DPMPP_2M: 9
+  SAMPLER_K_DPMPP_2M: 9,
+  SAMPLER_K_DPMPP_SDE: 10
 };
 
 /**
