@@ -2,6 +2,7 @@
 // file: generation.proto
 
 import * as jspb from "google-protobuf";
+import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as tensors_pb from "./tensors_pb";
 
 export class Token extends jspb.Message {
@@ -1229,6 +1230,11 @@ export class Request extends jspb.Message {
   getConditioner(): ConditionerParameters | undefined;
   setConditioner(value?: ConditionerParameters): void;
 
+  hasExtras(): boolean;
+  clearExtras(): void;
+  getExtras(): google_protobuf_struct_pb.Struct | undefined;
+  setExtras(value?: google_protobuf_struct_pb.Struct): void;
+
   getParamsCase(): Request.ParamsCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Request.AsObject;
@@ -1252,6 +1258,7 @@ export namespace Request {
     interpolate?: InterpolateParameters.AsObject,
     transform?: TransformParameters.AsObject,
     conditioner?: ConditionerParameters.AsObject,
+    extras?: google_protobuf_struct_pb.Struct.AsObject,
   }
 
   export enum ParamsCase {

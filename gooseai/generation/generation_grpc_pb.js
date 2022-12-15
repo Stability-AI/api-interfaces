@@ -3,6 +3,7 @@
 'use strict';
 var grpc = require('grpc');
 var generation_pb = require('./generation_pb.js');
+var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
 var tensors_pb = require('./tensors_pb.js');
 
 function serialize_gooseai_Answer(arg) {

@@ -1,6 +1,7 @@
 syntax = 'proto3';
 package gooseai;
 option go_package = "./;generation";
+import "google/protobuf/struct.proto";
 import "tensors.proto";
 
 enum FinishReason {
@@ -418,6 +419,7 @@ message Request {
   }
   optional ConditionerParameters conditioner = 6;
   reserved 9,10; //9, 10 are reserved
+  optional google.protobuf.Struct extras = 2047; // for development use
 }
 
 //
