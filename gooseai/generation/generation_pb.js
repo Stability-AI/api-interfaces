@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() {
-  if (this) { return this; }
-  if (typeof window !== 'undefined') { return window; }
-  if (typeof global !== 'undefined') { return global; }
-  if (typeof self !== 'undefined') { return self; }
-  return Function('return this')();
-}.call(null));
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var tensors_pb = require('./tensors_pb.js');
 goog.object.extend(proto, tensors_pb);
@@ -8255,7 +8249,8 @@ proto.gooseai.DiffusionSampler = {
   SAMPLER_K_DPM_2_ANCESTRAL: 6,
   SAMPLER_K_LMS: 7,
   SAMPLER_K_DPMPP_2S_ANCESTRAL: 8,
-  SAMPLER_K_DPMPP_2M: 9
+  SAMPLER_K_DPMPP_2M: 9,
+  SAMPLER_K_DPMPP_SDE: 10
 };
 
 /**

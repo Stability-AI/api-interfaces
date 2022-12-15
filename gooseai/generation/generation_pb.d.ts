@@ -1094,6 +1094,7 @@ export interface DiffusionSamplerMap {
   SAMPLER_K_LMS: 7;
   SAMPLER_K_DPMPP_2S_ANCESTRAL: 8;
   SAMPLER_K_DPMPP_2M: 9;
+  SAMPLER_K_DPMPP_SDE: 10;
 }
 
 export const DiffusionSampler: DiffusionSamplerMap;

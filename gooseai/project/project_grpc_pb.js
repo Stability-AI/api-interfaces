@@ -59,17 +59,6 @@ function deserialize_gooseai_Project(buffer_arg) {
   return project_pb.Project.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_gooseai_ProjectAsset(arg) {
-  if (!(arg instanceof project_pb.ProjectAsset)) {
-    throw new Error('Expected argument of type gooseai.ProjectAsset');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_gooseai_ProjectAsset(buffer_arg) {
-  return project_pb.ProjectAsset.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_gooseai_QueryAssetsRequest(arg) {
   if (!(arg instanceof project_pb.QueryAssetsRequest)) {
     throw new Error('Expected argument of type gooseai.QueryAssetsRequest');
@@ -79,6 +68,17 @@ function serialize_gooseai_QueryAssetsRequest(arg) {
 
 function deserialize_gooseai_QueryAssetsRequest(buffer_arg) {
   return project_pb.QueryAssetsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_QueryAssetsResponse(arg) {
+  if (!(arg instanceof project_pb.QueryAssetsResponse)) {
+    throw new Error('Expected argument of type gooseai.QueryAssetsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_QueryAssetsResponse(buffer_arg) {
+  return project_pb.QueryAssetsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_gooseai_UpdateProjectRequest(arg) {
@@ -157,16 +157,17 @@ delete: {
     responseSerialize: serialize_gooseai_Project,
     responseDeserialize: deserialize_gooseai_Project,
   },
-  queryAssets: {
+  // Query the assets of a project, with additional filtering
+queryAssets: {
     path: '/gooseai.ProjectService/QueryAssets',
     requestStream: false,
-    responseStream: true,
+    responseStream: false,
     requestType: project_pb.QueryAssetsRequest,
-    responseType: project_pb.ProjectAsset,
+    responseType: project_pb.QueryAssetsResponse,
     requestSerialize: serialize_gooseai_QueryAssetsRequest,
     requestDeserialize: deserialize_gooseai_QueryAssetsRequest,
-    responseSerialize: serialize_gooseai_ProjectAsset,
-    responseDeserialize: deserialize_gooseai_ProjectAsset,
+    responseSerialize: serialize_gooseai_QueryAssetsResponse,
+    responseDeserialize: deserialize_gooseai_QueryAssetsResponse,
   },
 };
 
