@@ -1,6 +1,8 @@
 syntax = 'proto3';
 package gooseai;
-option go_package = "./;project";
+option go_package = "github.com/stability-ai/api-interfaces/gooseai/project";
+
+import "generation.proto";
 
 enum ProjectAccess {
   PROJECT_ACCESS_PRIVATE = 0; // Private access, only owner organization can access
@@ -29,6 +31,7 @@ message ProjectAsset {
   uint64 size = 5;         // The asset size in bytes
   uint64 created_at = 6;   // Time of asset creation (UTC seconds epoch)
   uint64 updated_at = 7;   // Time of last asset update (UTC seconds epoch)
+  Request request = 8;     // The request object that is associated with the artifact
 }
 
 message Project {
@@ -66,13 +69,28 @@ message ListProjectRequest {
 }
 
 message GetProjectRequest {
-  string id = 1;                // ID of the project to request, UUIDv4
+  string id = 1;                // ID of the project to request, UUIDv4, empty string uses default project
   optional string owner_id = 2; // The ID of the organization owning the project, empty for default org for user
 }
 
 message DeleteProjectRequest {
   string id = 1;                // ID of the project to request, UUIDv4
   optional string owner_id = 2; // The ID of the organization owning the project, empty for default org for user
+}
+
+message QueryAssetsRequest {
+  string id = 1;                    // ID of the project to request, UUIDv4, empty string uses default project
+  optional string owner_id = 2;     // The ID of the organization owning the assets, unset for default org for user
+  optional uint64 since = 3;        // The time (UTC seconds epoch) to start listing assets from, unset for no restriction
+  optional uint64 until = 4;        // The time (UTC seconds epoch) to stop listing assets at, unset for no restriction
+  optional uint64 limit = 5;        // The maximum number of assets to return, unset for no limit
+  optional string start_key = 6;    // The key to start from, used to paginate results, unset for no offset
+  repeated ProjectAssetUse use = 7; // The asset usage to filter the assets returned, empty for no filter
+}
+
+message QueryAssetsResponse {
+  repeated ProjectAsset assets = 1; // The assets returned by the query
+  optional string last_key = 2;     // The last asset key returned when the results were limited, unset when not limited
 }
 
 //
@@ -89,4 +107,6 @@ service ProjectService {
   rpc Get (GetProjectRequest) returns (Project) {};
   // Delete a project
   rpc Delete (DeleteProjectRequest) returns (Project) {};
+  // Query the assets of a project, with additional filtering
+  rpc QueryAssets (QueryAssetsRequest) returns (QueryAssetsResponse) {};
 }
