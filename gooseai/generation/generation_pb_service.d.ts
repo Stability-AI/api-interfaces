@@ -1,7 +1,7 @@
 // package: gooseai
-// file: generation.proto
+// file: generation/generation.proto
 
-import * as generation_pb from "./generation_pb";
+import * as generation_generation_pb from "../generation/generation_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type GenerationServiceGenerate = {
@@ -9,8 +9,8 @@ type GenerationServiceGenerate = {
   readonly service: typeof GenerationService;
   readonly requestStream: false;
   readonly responseStream: true;
-  readonly requestType: typeof generation_pb.Request;
-  readonly responseType: typeof generation_pb.Answer;
+  readonly requestType: typeof generation_generation_pb.Request;
+  readonly responseType: typeof generation_generation_pb.Answer;
 };
 
 type GenerationServiceChainGenerate = {
@@ -18,8 +18,8 @@ type GenerationServiceChainGenerate = {
   readonly service: typeof GenerationService;
   readonly requestStream: false;
   readonly responseStream: true;
-  readonly requestType: typeof generation_pb.ChainRequest;
-  readonly responseType: typeof generation_pb.Answer;
+  readonly requestType: typeof generation_generation_pb.ChainRequest;
+  readonly responseType: typeof generation_generation_pb.Answer;
 };
 
 export class GenerationService {
@@ -60,7 +60,7 @@ export class GenerationServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  generate(requestMessage: generation_pb.Request, metadata?: grpc.Metadata): ResponseStream<generation_pb.Answer>;
-  chainGenerate(requestMessage: generation_pb.ChainRequest, metadata?: grpc.Metadata): ResponseStream<generation_pb.Answer>;
+  generate(requestMessage: generation_generation_pb.Request, metadata?: grpc.Metadata): ResponseStream<generation_generation_pb.Answer>;
+  chainGenerate(requestMessage: generation_generation_pb.ChainRequest, metadata?: grpc.Metadata): ResponseStream<generation_generation_pb.Answer>;
 }
 

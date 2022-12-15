@@ -1,4 +1,4 @@
-// source: dashboard.proto
+// source: dashboard/dashboard.proto
 /**
  * @fileoverview
  * @enhanceable

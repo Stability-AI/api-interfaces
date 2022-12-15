@@ -1,7 +1,7 @@
 // package: gooseai
-// file: dashboard.proto
+// file: dashboard/dashboard.proto
 
-import * as dashboard_pb from "./dashboard_pb";
+import * as dashboard_dashboard_pb from "../dashboard/dashboard_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type DashboardServiceGetMe = {
@@ -9,8 +9,8 @@ type DashboardServiceGetMe = {
   readonly service: typeof DashboardService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof dashboard_pb.EmptyRequest;
-  readonly responseType: typeof dashboard_pb.User;
+  readonly requestType: typeof dashboard_dashboard_pb.EmptyRequest;
+  readonly responseType: typeof dashboard_dashboard_pb.User;
 };
 
 type DashboardServiceGetOrganization = {
@@ -18,8 +18,8 @@ type DashboardServiceGetOrganization = {
   readonly service: typeof DashboardService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof dashboard_pb.GetOrganizationRequest;
-  readonly responseType: typeof dashboard_pb.Organization;
+  readonly requestType: typeof dashboard_dashboard_pb.GetOrganizationRequest;
+  readonly responseType: typeof dashboard_dashboard_pb.Organization;
 };
 
 type DashboardServiceGetMetrics = {
@@ -27,8 +27,8 @@ type DashboardServiceGetMetrics = {
   readonly service: typeof DashboardService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof dashboard_pb.GetMetricsRequest;
-  readonly responseType: typeof dashboard_pb.Metrics;
+  readonly requestType: typeof dashboard_dashboard_pb.GetMetricsRequest;
+  readonly responseType: typeof dashboard_dashboard_pb.Metrics;
 };
 
 type DashboardServiceCreateAPIKey = {
@@ -36,8 +36,8 @@ type DashboardServiceCreateAPIKey = {
   readonly service: typeof DashboardService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof dashboard_pb.APIKeyRequest;
-  readonly responseType: typeof dashboard_pb.APIKey;
+  readonly requestType: typeof dashboard_dashboard_pb.APIKeyRequest;
+  readonly responseType: typeof dashboard_dashboard_pb.APIKey;
 };
 
 type DashboardServiceDeleteAPIKey = {
@@ -45,8 +45,8 @@ type DashboardServiceDeleteAPIKey = {
   readonly service: typeof DashboardService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof dashboard_pb.APIKeyFindRequest;
-  readonly responseType: typeof dashboard_pb.APIKey;
+  readonly requestType: typeof dashboard_dashboard_pb.APIKeyFindRequest;
+  readonly responseType: typeof dashboard_dashboard_pb.APIKey;
 };
 
 type DashboardServiceUpdateDefaultOrganization = {
@@ -54,8 +54,8 @@ type DashboardServiceUpdateDefaultOrganization = {
   readonly service: typeof DashboardService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof dashboard_pb.UpdateDefaultOrganizationRequest;
-  readonly responseType: typeof dashboard_pb.User;
+  readonly requestType: typeof dashboard_dashboard_pb.UpdateDefaultOrganizationRequest;
+  readonly responseType: typeof dashboard_dashboard_pb.User;
 };
 
 type DashboardServiceGetClientSettings = {
@@ -63,8 +63,8 @@ type DashboardServiceGetClientSettings = {
   readonly service: typeof DashboardService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof dashboard_pb.EmptyRequest;
-  readonly responseType: typeof dashboard_pb.ClientSettings;
+  readonly requestType: typeof dashboard_dashboard_pb.EmptyRequest;
+  readonly responseType: typeof dashboard_dashboard_pb.ClientSettings;
 };
 
 type DashboardServiceSetClientSettings = {
@@ -72,8 +72,8 @@ type DashboardServiceSetClientSettings = {
   readonly service: typeof DashboardService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof dashboard_pb.ClientSettings;
-  readonly responseType: typeof dashboard_pb.ClientSettings;
+  readonly requestType: typeof dashboard_dashboard_pb.ClientSettings;
+  readonly responseType: typeof dashboard_dashboard_pb.ClientSettings;
 };
 
 type DashboardServiceUpdateUserInfo = {
@@ -81,8 +81,8 @@ type DashboardServiceUpdateUserInfo = {
   readonly service: typeof DashboardService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof dashboard_pb.UpdateUserInfoRequest;
-  readonly responseType: typeof dashboard_pb.User;
+  readonly requestType: typeof dashboard_dashboard_pb.UpdateUserInfoRequest;
+  readonly responseType: typeof dashboard_dashboard_pb.User;
 };
 
 type DashboardServiceCreatePasswordChangeTicket = {
@@ -90,8 +90,8 @@ type DashboardServiceCreatePasswordChangeTicket = {
   readonly service: typeof DashboardService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof dashboard_pb.EmptyRequest;
-  readonly responseType: typeof dashboard_pb.UserPasswordChangeTicket;
+  readonly requestType: typeof dashboard_dashboard_pb.EmptyRequest;
+  readonly responseType: typeof dashboard_dashboard_pb.UserPasswordChangeTicket;
 };
 
 type DashboardServiceDeleteAccount = {
@@ -99,8 +99,8 @@ type DashboardServiceDeleteAccount = {
   readonly service: typeof DashboardService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof dashboard_pb.EmptyRequest;
-  readonly responseType: typeof dashboard_pb.User;
+  readonly requestType: typeof dashboard_dashboard_pb.EmptyRequest;
+  readonly responseType: typeof dashboard_dashboard_pb.User;
 };
 
 type DashboardServiceCreateCharge = {
@@ -108,8 +108,8 @@ type DashboardServiceCreateCharge = {
   readonly service: typeof DashboardService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof dashboard_pb.CreateChargeRequest;
-  readonly responseType: typeof dashboard_pb.Charge;
+  readonly requestType: typeof dashboard_dashboard_pb.CreateChargeRequest;
+  readonly responseType: typeof dashboard_dashboard_pb.Charge;
 };
 
 type DashboardServiceGetCharges = {
@@ -117,8 +117,8 @@ type DashboardServiceGetCharges = {
   readonly service: typeof DashboardService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof dashboard_pb.GetChargesRequest;
-  readonly responseType: typeof dashboard_pb.Charges;
+  readonly requestType: typeof dashboard_dashboard_pb.GetChargesRequest;
+  readonly responseType: typeof dashboard_dashboard_pb.Charges;
 };
 
 type DashboardServiceCreateAutoChargeIntent = {
@@ -126,8 +126,8 @@ type DashboardServiceCreateAutoChargeIntent = {
   readonly service: typeof DashboardService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof dashboard_pb.CreateAutoChargeIntentRequest;
-  readonly responseType: typeof dashboard_pb.AutoChargeIntent;
+  readonly requestType: typeof dashboard_dashboard_pb.CreateAutoChargeIntentRequest;
+  readonly responseType: typeof dashboard_dashboard_pb.AutoChargeIntent;
 };
 
 type DashboardServiceUpdateAutoChargeIntent = {
@@ -135,8 +135,8 @@ type DashboardServiceUpdateAutoChargeIntent = {
   readonly service: typeof DashboardService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof dashboard_pb.CreateAutoChargeIntentRequest;
-  readonly responseType: typeof dashboard_pb.AutoChargeIntent;
+  readonly requestType: typeof dashboard_dashboard_pb.CreateAutoChargeIntentRequest;
+  readonly responseType: typeof dashboard_dashboard_pb.AutoChargeIntent;
 };
 
 type DashboardServiceGetAutoChargeIntent = {
@@ -144,8 +144,8 @@ type DashboardServiceGetAutoChargeIntent = {
   readonly service: typeof DashboardService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof dashboard_pb.GetAutoChargeRequest;
-  readonly responseType: typeof dashboard_pb.AutoChargeIntent;
+  readonly requestType: typeof dashboard_dashboard_pb.GetAutoChargeRequest;
+  readonly responseType: typeof dashboard_dashboard_pb.AutoChargeIntent;
 };
 
 export class DashboardService {
@@ -201,148 +201,148 @@ export class DashboardServiceClient {
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
   getMe(
-    requestMessage: dashboard_pb.EmptyRequest,
+    requestMessage: dashboard_dashboard_pb.EmptyRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.User|null) => void
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.User|null) => void
   ): UnaryResponse;
   getMe(
-    requestMessage: dashboard_pb.EmptyRequest,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.User|null) => void
+    requestMessage: dashboard_dashboard_pb.EmptyRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.User|null) => void
   ): UnaryResponse;
   getOrganization(
-    requestMessage: dashboard_pb.GetOrganizationRequest,
+    requestMessage: dashboard_dashboard_pb.GetOrganizationRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.Organization|null) => void
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.Organization|null) => void
   ): UnaryResponse;
   getOrganization(
-    requestMessage: dashboard_pb.GetOrganizationRequest,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.Organization|null) => void
+    requestMessage: dashboard_dashboard_pb.GetOrganizationRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.Organization|null) => void
   ): UnaryResponse;
   getMetrics(
-    requestMessage: dashboard_pb.GetMetricsRequest,
+    requestMessage: dashboard_dashboard_pb.GetMetricsRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.Metrics|null) => void
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.Metrics|null) => void
   ): UnaryResponse;
   getMetrics(
-    requestMessage: dashboard_pb.GetMetricsRequest,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.Metrics|null) => void
+    requestMessage: dashboard_dashboard_pb.GetMetricsRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.Metrics|null) => void
   ): UnaryResponse;
   createAPIKey(
-    requestMessage: dashboard_pb.APIKeyRequest,
+    requestMessage: dashboard_dashboard_pb.APIKeyRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.APIKey|null) => void
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.APIKey|null) => void
   ): UnaryResponse;
   createAPIKey(
-    requestMessage: dashboard_pb.APIKeyRequest,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.APIKey|null) => void
+    requestMessage: dashboard_dashboard_pb.APIKeyRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.APIKey|null) => void
   ): UnaryResponse;
   deleteAPIKey(
-    requestMessage: dashboard_pb.APIKeyFindRequest,
+    requestMessage: dashboard_dashboard_pb.APIKeyFindRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.APIKey|null) => void
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.APIKey|null) => void
   ): UnaryResponse;
   deleteAPIKey(
-    requestMessage: dashboard_pb.APIKeyFindRequest,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.APIKey|null) => void
+    requestMessage: dashboard_dashboard_pb.APIKeyFindRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.APIKey|null) => void
   ): UnaryResponse;
   updateDefaultOrganization(
-    requestMessage: dashboard_pb.UpdateDefaultOrganizationRequest,
+    requestMessage: dashboard_dashboard_pb.UpdateDefaultOrganizationRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.User|null) => void
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.User|null) => void
   ): UnaryResponse;
   updateDefaultOrganization(
-    requestMessage: dashboard_pb.UpdateDefaultOrganizationRequest,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.User|null) => void
+    requestMessage: dashboard_dashboard_pb.UpdateDefaultOrganizationRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.User|null) => void
   ): UnaryResponse;
   getClientSettings(
-    requestMessage: dashboard_pb.EmptyRequest,
+    requestMessage: dashboard_dashboard_pb.EmptyRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.ClientSettings|null) => void
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.ClientSettings|null) => void
   ): UnaryResponse;
   getClientSettings(
-    requestMessage: dashboard_pb.EmptyRequest,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.ClientSettings|null) => void
+    requestMessage: dashboard_dashboard_pb.EmptyRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.ClientSettings|null) => void
   ): UnaryResponse;
   setClientSettings(
-    requestMessage: dashboard_pb.ClientSettings,
+    requestMessage: dashboard_dashboard_pb.ClientSettings,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.ClientSettings|null) => void
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.ClientSettings|null) => void
   ): UnaryResponse;
   setClientSettings(
-    requestMessage: dashboard_pb.ClientSettings,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.ClientSettings|null) => void
+    requestMessage: dashboard_dashboard_pb.ClientSettings,
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.ClientSettings|null) => void
   ): UnaryResponse;
   updateUserInfo(
-    requestMessage: dashboard_pb.UpdateUserInfoRequest,
+    requestMessage: dashboard_dashboard_pb.UpdateUserInfoRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.User|null) => void
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.User|null) => void
   ): UnaryResponse;
   updateUserInfo(
-    requestMessage: dashboard_pb.UpdateUserInfoRequest,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.User|null) => void
+    requestMessage: dashboard_dashboard_pb.UpdateUserInfoRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.User|null) => void
   ): UnaryResponse;
   createPasswordChangeTicket(
-    requestMessage: dashboard_pb.EmptyRequest,
+    requestMessage: dashboard_dashboard_pb.EmptyRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.UserPasswordChangeTicket|null) => void
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.UserPasswordChangeTicket|null) => void
   ): UnaryResponse;
   createPasswordChangeTicket(
-    requestMessage: dashboard_pb.EmptyRequest,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.UserPasswordChangeTicket|null) => void
+    requestMessage: dashboard_dashboard_pb.EmptyRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.UserPasswordChangeTicket|null) => void
   ): UnaryResponse;
   deleteAccount(
-    requestMessage: dashboard_pb.EmptyRequest,
+    requestMessage: dashboard_dashboard_pb.EmptyRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.User|null) => void
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.User|null) => void
   ): UnaryResponse;
   deleteAccount(
-    requestMessage: dashboard_pb.EmptyRequest,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.User|null) => void
+    requestMessage: dashboard_dashboard_pb.EmptyRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.User|null) => void
   ): UnaryResponse;
   createCharge(
-    requestMessage: dashboard_pb.CreateChargeRequest,
+    requestMessage: dashboard_dashboard_pb.CreateChargeRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.Charge|null) => void
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.Charge|null) => void
   ): UnaryResponse;
   createCharge(
-    requestMessage: dashboard_pb.CreateChargeRequest,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.Charge|null) => void
+    requestMessage: dashboard_dashboard_pb.CreateChargeRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.Charge|null) => void
   ): UnaryResponse;
   getCharges(
-    requestMessage: dashboard_pb.GetChargesRequest,
+    requestMessage: dashboard_dashboard_pb.GetChargesRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.Charges|null) => void
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.Charges|null) => void
   ): UnaryResponse;
   getCharges(
-    requestMessage: dashboard_pb.GetChargesRequest,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.Charges|null) => void
+    requestMessage: dashboard_dashboard_pb.GetChargesRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.Charges|null) => void
   ): UnaryResponse;
   createAutoChargeIntent(
-    requestMessage: dashboard_pb.CreateAutoChargeIntentRequest,
+    requestMessage: dashboard_dashboard_pb.CreateAutoChargeIntentRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.AutoChargeIntent|null) => void
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.AutoChargeIntent|null) => void
   ): UnaryResponse;
   createAutoChargeIntent(
-    requestMessage: dashboard_pb.CreateAutoChargeIntentRequest,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.AutoChargeIntent|null) => void
+    requestMessage: dashboard_dashboard_pb.CreateAutoChargeIntentRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.AutoChargeIntent|null) => void
   ): UnaryResponse;
   updateAutoChargeIntent(
-    requestMessage: dashboard_pb.CreateAutoChargeIntentRequest,
+    requestMessage: dashboard_dashboard_pb.CreateAutoChargeIntentRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.AutoChargeIntent|null) => void
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.AutoChargeIntent|null) => void
   ): UnaryResponse;
   updateAutoChargeIntent(
-    requestMessage: dashboard_pb.CreateAutoChargeIntentRequest,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.AutoChargeIntent|null) => void
+    requestMessage: dashboard_dashboard_pb.CreateAutoChargeIntentRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.AutoChargeIntent|null) => void
   ): UnaryResponse;
   getAutoChargeIntent(
-    requestMessage: dashboard_pb.GetAutoChargeRequest,
+    requestMessage: dashboard_dashboard_pb.GetAutoChargeRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.AutoChargeIntent|null) => void
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.AutoChargeIntent|null) => void
   ): UnaryResponse;
   getAutoChargeIntent(
-    requestMessage: dashboard_pb.GetAutoChargeRequest,
-    callback: (error: ServiceError|null, responseMessage: dashboard_pb.AutoChargeIntent|null) => void
+    requestMessage: dashboard_dashboard_pb.GetAutoChargeRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_dashboard_pb.AutoChargeIntent|null) => void
   ): UnaryResponse;
 }
 

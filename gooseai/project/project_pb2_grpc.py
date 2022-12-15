@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import project_pb2 as project__pb2
+from project import project_pb2 as project_dot_project__pb2
 
 
 class ProjectServiceStub(object):
@@ -19,33 +19,33 @@ class ProjectServiceStub(object):
         """
         self.Create = channel.unary_unary(
                 '/gooseai.ProjectService/Create',
-                request_serializer=project__pb2.CreateProjectRequest.SerializeToString,
-                response_deserializer=project__pb2.Project.FromString,
+                request_serializer=project_dot_project__pb2.CreateProjectRequest.SerializeToString,
+                response_deserializer=project_dot_project__pb2.Project.FromString,
                 )
         self.Update = channel.unary_unary(
                 '/gooseai.ProjectService/Update',
-                request_serializer=project__pb2.UpdateProjectRequest.SerializeToString,
-                response_deserializer=project__pb2.Project.FromString,
+                request_serializer=project_dot_project__pb2.UpdateProjectRequest.SerializeToString,
+                response_deserializer=project_dot_project__pb2.Project.FromString,
                 )
         self.List = channel.unary_stream(
                 '/gooseai.ProjectService/List',
-                request_serializer=project__pb2.ListProjectRequest.SerializeToString,
-                response_deserializer=project__pb2.Project.FromString,
+                request_serializer=project_dot_project__pb2.ListProjectRequest.SerializeToString,
+                response_deserializer=project_dot_project__pb2.Project.FromString,
                 )
         self.Get = channel.unary_unary(
                 '/gooseai.ProjectService/Get',
-                request_serializer=project__pb2.GetProjectRequest.SerializeToString,
-                response_deserializer=project__pb2.Project.FromString,
+                request_serializer=project_dot_project__pb2.GetProjectRequest.SerializeToString,
+                response_deserializer=project_dot_project__pb2.Project.FromString,
                 )
         self.Delete = channel.unary_unary(
                 '/gooseai.ProjectService/Delete',
-                request_serializer=project__pb2.DeleteProjectRequest.SerializeToString,
-                response_deserializer=project__pb2.Project.FromString,
+                request_serializer=project_dot_project__pb2.DeleteProjectRequest.SerializeToString,
+                response_deserializer=project_dot_project__pb2.Project.FromString,
                 )
         self.QueryAssets = channel.unary_unary(
                 '/gooseai.ProjectService/QueryAssets',
-                request_serializer=project__pb2.QueryAssetsRequest.SerializeToString,
-                response_deserializer=project__pb2.QueryAssetsResponse.FromString,
+                request_serializer=project_dot_project__pb2.QueryAssetsRequest.SerializeToString,
+                response_deserializer=project_dot_project__pb2.QueryAssetsResponse.FromString,
                 )
 
 
@@ -102,33 +102,33 @@ def add_ProjectServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Create': grpc.unary_unary_rpc_method_handler(
                     servicer.Create,
-                    request_deserializer=project__pb2.CreateProjectRequest.FromString,
-                    response_serializer=project__pb2.Project.SerializeToString,
+                    request_deserializer=project_dot_project__pb2.CreateProjectRequest.FromString,
+                    response_serializer=project_dot_project__pb2.Project.SerializeToString,
             ),
             'Update': grpc.unary_unary_rpc_method_handler(
                     servicer.Update,
-                    request_deserializer=project__pb2.UpdateProjectRequest.FromString,
-                    response_serializer=project__pb2.Project.SerializeToString,
+                    request_deserializer=project_dot_project__pb2.UpdateProjectRequest.FromString,
+                    response_serializer=project_dot_project__pb2.Project.SerializeToString,
             ),
             'List': grpc.unary_stream_rpc_method_handler(
                     servicer.List,
-                    request_deserializer=project__pb2.ListProjectRequest.FromString,
-                    response_serializer=project__pb2.Project.SerializeToString,
+                    request_deserializer=project_dot_project__pb2.ListProjectRequest.FromString,
+                    response_serializer=project_dot_project__pb2.Project.SerializeToString,
             ),
             'Get': grpc.unary_unary_rpc_method_handler(
                     servicer.Get,
-                    request_deserializer=project__pb2.GetProjectRequest.FromString,
-                    response_serializer=project__pb2.Project.SerializeToString,
+                    request_deserializer=project_dot_project__pb2.GetProjectRequest.FromString,
+                    response_serializer=project_dot_project__pb2.Project.SerializeToString,
             ),
             'Delete': grpc.unary_unary_rpc_method_handler(
                     servicer.Delete,
-                    request_deserializer=project__pb2.DeleteProjectRequest.FromString,
-                    response_serializer=project__pb2.Project.SerializeToString,
+                    request_deserializer=project_dot_project__pb2.DeleteProjectRequest.FromString,
+                    response_serializer=project_dot_project__pb2.Project.SerializeToString,
             ),
             'QueryAssets': grpc.unary_unary_rpc_method_handler(
                     servicer.QueryAssets,
-                    request_deserializer=project__pb2.QueryAssetsRequest.FromString,
-                    response_serializer=project__pb2.QueryAssetsResponse.SerializeToString,
+                    request_deserializer=project_dot_project__pb2.QueryAssetsRequest.FromString,
+                    response_serializer=project_dot_project__pb2.QueryAssetsResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -155,8 +155,8 @@ class ProjectService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.ProjectService/Create',
-            project__pb2.CreateProjectRequest.SerializeToString,
-            project__pb2.Project.FromString,
+            project_dot_project__pb2.CreateProjectRequest.SerializeToString,
+            project_dot_project__pb2.Project.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -172,8 +172,8 @@ class ProjectService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.ProjectService/Update',
-            project__pb2.UpdateProjectRequest.SerializeToString,
-            project__pb2.Project.FromString,
+            project_dot_project__pb2.UpdateProjectRequest.SerializeToString,
+            project_dot_project__pb2.Project.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -189,8 +189,8 @@ class ProjectService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/gooseai.ProjectService/List',
-            project__pb2.ListProjectRequest.SerializeToString,
-            project__pb2.Project.FromString,
+            project_dot_project__pb2.ListProjectRequest.SerializeToString,
+            project_dot_project__pb2.Project.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -206,8 +206,8 @@ class ProjectService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.ProjectService/Get',
-            project__pb2.GetProjectRequest.SerializeToString,
-            project__pb2.Project.FromString,
+            project_dot_project__pb2.GetProjectRequest.SerializeToString,
+            project_dot_project__pb2.Project.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -223,8 +223,8 @@ class ProjectService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.ProjectService/Delete',
-            project__pb2.DeleteProjectRequest.SerializeToString,
-            project__pb2.Project.FromString,
+            project_dot_project__pb2.DeleteProjectRequest.SerializeToString,
+            project_dot_project__pb2.Project.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -240,7 +240,7 @@ class ProjectService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.ProjectService/QueryAssets',
-            project__pb2.QueryAssetsRequest.SerializeToString,
-            project__pb2.QueryAssetsResponse.FromString,
+            project_dot_project__pb2.QueryAssetsRequest.SerializeToString,
+            project_dot_project__pb2.QueryAssetsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

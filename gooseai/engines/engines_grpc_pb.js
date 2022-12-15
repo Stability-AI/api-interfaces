@@ -2,28 +2,28 @@
 
 'use strict';
 var grpc = require('grpc');
-var engines_pb = require('./engines_pb.js');
+var engines_engines_pb = require('../engines/engines_pb.js');
 
 function serialize_gooseai_Engines(arg) {
-  if (!(arg instanceof engines_pb.Engines)) {
+  if (!(arg instanceof engines_engines_pb.Engines)) {
     throw new Error('Expected argument of type gooseai.Engines');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_gooseai_Engines(buffer_arg) {
-  return engines_pb.Engines.deserializeBinary(new Uint8Array(buffer_arg));
+  return engines_engines_pb.Engines.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_gooseai_ListEnginesRequest(arg) {
-  if (!(arg instanceof engines_pb.ListEnginesRequest)) {
+  if (!(arg instanceof engines_engines_pb.ListEnginesRequest)) {
     throw new Error('Expected argument of type gooseai.ListEnginesRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_gooseai_ListEnginesRequest(buffer_arg) {
-  return engines_pb.ListEnginesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+  return engines_engines_pb.ListEnginesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 
@@ -32,8 +32,8 @@ var EnginesServiceService = exports.EnginesServiceService = {
     path: '/gooseai.EnginesService/ListEngines',
     requestStream: false,
     responseStream: false,
-    requestType: engines_pb.ListEnginesRequest,
-    responseType: engines_pb.Engines,
+    requestType: engines_engines_pb.ListEnginesRequest,
+    responseType: engines_engines_pb.Engines,
     requestSerialize: serialize_gooseai_ListEnginesRequest,
     requestDeserialize: deserialize_gooseai_ListEnginesRequest,
     responseSerialize: serialize_gooseai_Engines,

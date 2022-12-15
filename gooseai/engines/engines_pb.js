@@ -1,4 +1,4 @@
-// source: engines.proto
+// source: engines/engines.proto
 /**
  * @fileoverview
  * @enhanceable

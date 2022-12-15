@@ -1,7 +1,7 @@
 // package: gooseai
-// file: generation.proto
+// file: generation/generation.proto
 
-var generation_pb = require("./generation_pb");
+var generation_generation_pb = require("../generation/generation_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var GenerationService = (function () {
@@ -15,8 +15,8 @@ GenerationService.Generate = {
   service: GenerationService,
   requestStream: false,
   responseStream: true,
-  requestType: generation_pb.Request,
-  responseType: generation_pb.Answer
+  requestType: generation_generation_pb.Request,
+  responseType: generation_generation_pb.Answer
 };
 
 GenerationService.ChainGenerate = {
@@ -24,8 +24,8 @@ GenerationService.ChainGenerate = {
   service: GenerationService,
   requestStream: false,
   responseStream: true,
-  requestType: generation_pb.ChainRequest,
-  responseType: generation_pb.Answer
+  requestType: generation_generation_pb.ChainRequest,
+  responseType: generation_generation_pb.Answer
 };
 
 exports.GenerationService = GenerationService;

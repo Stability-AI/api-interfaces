@@ -1,5 +1,5 @@
 // package: gooseai
-// file: dashboard.proto
+// file: dashboard/dashboard.proto
 
 import * as jspb from "google-protobuf";
 

@@ -1,7 +1,7 @@
 // package: gooseai
-// file: engines.proto
+// file: engines/engines.proto
 
-var engines_pb = require("./engines_pb");
+var engines_engines_pb = require("../engines/engines_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var EnginesService = (function () {
@@ -15,8 +15,8 @@ EnginesService.ListEngines = {
   service: EnginesService,
   requestStream: false,
   responseStream: false,
-  requestType: engines_pb.ListEnginesRequest,
-  responseType: engines_pb.Engines
+  requestType: engines_engines_pb.ListEnginesRequest,
+  responseType: engines_engines_pb.Engines
 };
 
 exports.EnginesService = EnginesService;

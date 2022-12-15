@@ -645,5 +645,5 @@ var DashboardService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "dashboard.proto",
+	Metadata: "dashboard/dashboard.proto",
 }

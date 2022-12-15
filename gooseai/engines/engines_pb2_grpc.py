@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import engines_pb2 as engines__pb2
+from engines import engines_pb2 as engines_dot_engines__pb2
 
 
 class EnginesServiceStub(object):
@@ -16,8 +16,8 @@ class EnginesServiceStub(object):
         """
         self.ListEngines = channel.unary_unary(
                 '/gooseai.EnginesService/ListEngines',
-                request_serializer=engines__pb2.ListEnginesRequest.SerializeToString,
-                response_deserializer=engines__pb2.Engines.FromString,
+                request_serializer=engines_dot_engines__pb2.ListEnginesRequest.SerializeToString,
+                response_deserializer=engines_dot_engines__pb2.Engines.FromString,
                 )
 
 
@@ -35,8 +35,8 @@ def add_EnginesServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'ListEngines': grpc.unary_unary_rpc_method_handler(
                     servicer.ListEngines,
-                    request_deserializer=engines__pb2.ListEnginesRequest.FromString,
-                    response_serializer=engines__pb2.Engines.SerializeToString,
+                    request_deserializer=engines_dot_engines__pb2.ListEnginesRequest.FromString,
+                    response_serializer=engines_dot_engines__pb2.Engines.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -60,7 +60,7 @@ class EnginesService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.EnginesService/ListEngines',
-            engines__pb2.ListEnginesRequest.SerializeToString,
-            engines__pb2.Engines.FromString,
+            engines_dot_engines__pb2.ListEnginesRequest.SerializeToString,
+            engines_dot_engines__pb2.Engines.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

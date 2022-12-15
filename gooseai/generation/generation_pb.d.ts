@@ -1,8 +1,8 @@
 // package: gooseai
-// file: generation.proto
+// file: generation/generation.proto
 
 import * as jspb from "google-protobuf";
-import * as tensors_pb from "./tensors_pb";
+import * as tensors_pb from "../tensors_pb";
 
 export class Token extends jspb.Message {
   hasText(): boolean;

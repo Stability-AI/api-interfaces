@@ -187,5 +187,5 @@ var GenerationService_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "generation.proto",
+	Metadata: "generation/generation.proto",
 }

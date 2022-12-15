@@ -1,7 +1,7 @@
 // package: gooseai
-// file: engines.proto
+// file: engines/engines.proto
 
-import * as engines_pb from "./engines_pb";
+import * as engines_engines_pb from "../engines/engines_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type EnginesServiceListEngines = {
@@ -9,8 +9,8 @@ type EnginesServiceListEngines = {
   readonly service: typeof EnginesService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof engines_pb.ListEnginesRequest;
-  readonly responseType: typeof engines_pb.Engines;
+  readonly requestType: typeof engines_engines_pb.ListEnginesRequest;
+  readonly responseType: typeof engines_engines_pb.Engines;
 };
 
 export class EnginesService {
@@ -51,13 +51,13 @@ export class EnginesServiceClient {
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
   listEngines(
-    requestMessage: engines_pb.ListEnginesRequest,
+    requestMessage: engines_engines_pb.ListEnginesRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: engines_pb.Engines|null) => void
+    callback: (error: ServiceError|null, responseMessage: engines_engines_pb.Engines|null) => void
   ): UnaryResponse;
   listEngines(
-    requestMessage: engines_pb.ListEnginesRequest,
-    callback: (error: ServiceError|null, responseMessage: engines_pb.Engines|null) => void
+    requestMessage: engines_engines_pb.ListEnginesRequest,
+    callback: (error: ServiceError|null, responseMessage: engines_engines_pb.Engines|null) => void
   ): UnaryResponse;
 }
 

@@ -1,7 +1,8 @@
 // package: gooseai
-// file: project.proto
+// file: project/project.proto
 
 import * as jspb from "google-protobuf";
+import * as generation_generation_pb from "../generation/generation_pb";
 
 export class ProjectAsset extends jspb.Message {
   getId(): string;
@@ -25,6 +26,11 @@ export class ProjectAsset extends jspb.Message {
   getUpdatedAt(): number;
   setUpdatedAt(value: number): void;
 
+  hasRequest(): boolean;
+  clearRequest(): void;
+  getRequest(): generation_generation_pb.Request | undefined;
+  setRequest(value?: generation_generation_pb.Request): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ProjectAsset.AsObject;
   static toObject(includeInstance: boolean, msg: ProjectAsset): ProjectAsset.AsObject;
@@ -44,6 +50,7 @@ export namespace ProjectAsset {
     size: number,
     createdAt: number,
     updatedAt: number,
+    request?: generation_generation_pb.Request.AsObject,
   }
 }
 

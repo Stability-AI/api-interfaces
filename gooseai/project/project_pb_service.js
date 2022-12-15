@@ -1,7 +1,7 @@
 // package: gooseai
-// file: project.proto
+// file: project/project.proto
 
-var project_pb = require("./project_pb");
+var project_project_pb = require("../project/project_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var ProjectService = (function () {
@@ -15,8 +15,8 @@ ProjectService.Create = {
   service: ProjectService,
   requestStream: false,
   responseStream: false,
-  requestType: project_pb.CreateProjectRequest,
-  responseType: project_pb.Project
+  requestType: project_project_pb.CreateProjectRequest,
+  responseType: project_project_pb.Project
 };
 
 ProjectService.Update = {
@@ -24,8 +24,8 @@ ProjectService.Update = {
   service: ProjectService,
   requestStream: false,
   responseStream: false,
-  requestType: project_pb.UpdateProjectRequest,
-  responseType: project_pb.Project
+  requestType: project_project_pb.UpdateProjectRequest,
+  responseType: project_project_pb.Project
 };
 
 ProjectService.List = {
@@ -33,8 +33,8 @@ ProjectService.List = {
   service: ProjectService,
   requestStream: false,
   responseStream: true,
-  requestType: project_pb.ListProjectRequest,
-  responseType: project_pb.Project
+  requestType: project_project_pb.ListProjectRequest,
+  responseType: project_project_pb.Project
 };
 
 ProjectService.Get = {
@@ -42,8 +42,8 @@ ProjectService.Get = {
   service: ProjectService,
   requestStream: false,
   responseStream: false,
-  requestType: project_pb.GetProjectRequest,
-  responseType: project_pb.Project
+  requestType: project_project_pb.GetProjectRequest,
+  responseType: project_project_pb.Project
 };
 
 ProjectService.Delete = {
@@ -51,8 +51,8 @@ ProjectService.Delete = {
   service: ProjectService,
   requestStream: false,
   responseStream: false,
-  requestType: project_pb.DeleteProjectRequest,
-  responseType: project_pb.Project
+  requestType: project_project_pb.DeleteProjectRequest,
+  responseType: project_project_pb.Project
 };
 
 ProjectService.QueryAssets = {
@@ -60,8 +60,8 @@ ProjectService.QueryAssets = {
   service: ProjectService,
   requestStream: false,
   responseStream: false,
-  requestType: project_pb.QueryAssetsRequest,
-  responseType: project_pb.QueryAssetsResponse
+  requestType: project_project_pb.QueryAssetsRequest,
+  responseType: project_project_pb.QueryAssetsResponse
 };
 
 exports.ProjectService = ProjectService;

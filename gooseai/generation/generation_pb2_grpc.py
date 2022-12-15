@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import generation_pb2 as generation__pb2
+from generation import generation_pb2 as generation_dot_generation__pb2
 
 
 class GenerationServiceStub(object):
@@ -19,13 +19,13 @@ class GenerationServiceStub(object):
         """
         self.Generate = channel.unary_stream(
                 '/gooseai.GenerationService/Generate',
-                request_serializer=generation__pb2.Request.SerializeToString,
-                response_deserializer=generation__pb2.Answer.FromString,
+                request_serializer=generation_dot_generation__pb2.Request.SerializeToString,
+                response_deserializer=generation_dot_generation__pb2.Answer.FromString,
                 )
         self.ChainGenerate = channel.unary_stream(
                 '/gooseai.GenerationService/ChainGenerate',
-                request_serializer=generation__pb2.ChainRequest.SerializeToString,
-                response_deserializer=generation__pb2.Answer.FromString,
+                request_serializer=generation_dot_generation__pb2.ChainRequest.SerializeToString,
+                response_deserializer=generation_dot_generation__pb2.Answer.FromString,
                 )
 
 
@@ -52,13 +52,13 @@ def add_GenerationServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Generate': grpc.unary_stream_rpc_method_handler(
                     servicer.Generate,
-                    request_deserializer=generation__pb2.Request.FromString,
-                    response_serializer=generation__pb2.Answer.SerializeToString,
+                    request_deserializer=generation_dot_generation__pb2.Request.FromString,
+                    response_serializer=generation_dot_generation__pb2.Answer.SerializeToString,
             ),
             'ChainGenerate': grpc.unary_stream_rpc_method_handler(
                     servicer.ChainGenerate,
-                    request_deserializer=generation__pb2.ChainRequest.FromString,
-                    response_serializer=generation__pb2.Answer.SerializeToString,
+                    request_deserializer=generation_dot_generation__pb2.ChainRequest.FromString,
+                    response_serializer=generation_dot_generation__pb2.Answer.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -85,8 +85,8 @@ class GenerationService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/gooseai.GenerationService/Generate',
-            generation__pb2.Request.SerializeToString,
-            generation__pb2.Answer.FromString,
+            generation_dot_generation__pb2.Request.SerializeToString,
+            generation_dot_generation__pb2.Answer.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -102,7 +102,7 @@ class GenerationService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/gooseai.GenerationService/ChainGenerate',
-            generation__pb2.ChainRequest.SerializeToString,
-            generation__pb2.Answer.FromString,
+            generation_dot_generation__pb2.ChainRequest.SerializeToString,
+            generation_dot_generation__pb2.Answer.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

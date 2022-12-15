@@ -1,4 +1,4 @@
-// source: generation.proto
+// source: generation/generation.proto
 /**
  * @fileoverview
  * @enhanceable
@@ -21,7 +21,7 @@ var global = (function() {
   return Function('return this')();
 }.call(null));
 
-var tensors_pb = require('./tensors_pb.js');
+var tensors_pb = require('../tensors_pb.js');
 goog.object.extend(proto, tensors_pb);
 goog.exportSymbol('proto.gooseai.Action', null, global);
 goog.exportSymbol('proto.gooseai.Answer', null, global);

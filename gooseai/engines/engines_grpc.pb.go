@@ -97,5 +97,5 @@ var EnginesService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "engines.proto",
+	Metadata: "engines/engines.proto",
 }

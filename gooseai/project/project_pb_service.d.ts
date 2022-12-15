@@ -1,7 +1,7 @@
 // package: gooseai
-// file: project.proto
+// file: project/project.proto
 
-import * as project_pb from "./project_pb";
+import * as project_project_pb from "../project/project_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type ProjectServiceCreate = {
@@ -9,8 +9,8 @@ type ProjectServiceCreate = {
   readonly service: typeof ProjectService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof project_pb.CreateProjectRequest;
-  readonly responseType: typeof project_pb.Project;
+  readonly requestType: typeof project_project_pb.CreateProjectRequest;
+  readonly responseType: typeof project_project_pb.Project;
 };
 
 type ProjectServiceUpdate = {
@@ -18,8 +18,8 @@ type ProjectServiceUpdate = {
   readonly service: typeof ProjectService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof project_pb.UpdateProjectRequest;
-  readonly responseType: typeof project_pb.Project;
+  readonly requestType: typeof project_project_pb.UpdateProjectRequest;
+  readonly responseType: typeof project_project_pb.Project;
 };
 
 type ProjectServiceList = {
@@ -27,8 +27,8 @@ type ProjectServiceList = {
   readonly service: typeof ProjectService;
   readonly requestStream: false;
   readonly responseStream: true;
-  readonly requestType: typeof project_pb.ListProjectRequest;
-  readonly responseType: typeof project_pb.Project;
+  readonly requestType: typeof project_project_pb.ListProjectRequest;
+  readonly responseType: typeof project_project_pb.Project;
 };
 
 type ProjectServiceGet = {
@@ -36,8 +36,8 @@ type ProjectServiceGet = {
   readonly service: typeof ProjectService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof project_pb.GetProjectRequest;
-  readonly responseType: typeof project_pb.Project;
+  readonly requestType: typeof project_project_pb.GetProjectRequest;
+  readonly responseType: typeof project_project_pb.Project;
 };
 
 type ProjectServiceDelete = {
@@ -45,8 +45,8 @@ type ProjectServiceDelete = {
   readonly service: typeof ProjectService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof project_pb.DeleteProjectRequest;
-  readonly responseType: typeof project_pb.Project;
+  readonly requestType: typeof project_project_pb.DeleteProjectRequest;
+  readonly responseType: typeof project_project_pb.Project;
 };
 
 type ProjectServiceQueryAssets = {
@@ -54,8 +54,8 @@ type ProjectServiceQueryAssets = {
   readonly service: typeof ProjectService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof project_pb.QueryAssetsRequest;
-  readonly responseType: typeof project_pb.QueryAssetsResponse;
+  readonly requestType: typeof project_project_pb.QueryAssetsRequest;
+  readonly responseType: typeof project_project_pb.QueryAssetsResponse;
 };
 
 export class ProjectService {
@@ -101,50 +101,50 @@ export class ProjectServiceClient {
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
   create(
-    requestMessage: project_pb.CreateProjectRequest,
+    requestMessage: project_project_pb.CreateProjectRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: project_pb.Project|null) => void
+    callback: (error: ServiceError|null, responseMessage: project_project_pb.Project|null) => void
   ): UnaryResponse;
   create(
-    requestMessage: project_pb.CreateProjectRequest,
-    callback: (error: ServiceError|null, responseMessage: project_pb.Project|null) => void
+    requestMessage: project_project_pb.CreateProjectRequest,
+    callback: (error: ServiceError|null, responseMessage: project_project_pb.Project|null) => void
   ): UnaryResponse;
   update(
-    requestMessage: project_pb.UpdateProjectRequest,
+    requestMessage: project_project_pb.UpdateProjectRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: project_pb.Project|null) => void
+    callback: (error: ServiceError|null, responseMessage: project_project_pb.Project|null) => void
   ): UnaryResponse;
   update(
-    requestMessage: project_pb.UpdateProjectRequest,
-    callback: (error: ServiceError|null, responseMessage: project_pb.Project|null) => void
+    requestMessage: project_project_pb.UpdateProjectRequest,
+    callback: (error: ServiceError|null, responseMessage: project_project_pb.Project|null) => void
   ): UnaryResponse;
-  list(requestMessage: project_pb.ListProjectRequest, metadata?: grpc.Metadata): ResponseStream<project_pb.Project>;
+  list(requestMessage: project_project_pb.ListProjectRequest, metadata?: grpc.Metadata): ResponseStream<project_project_pb.Project>;
   get(
-    requestMessage: project_pb.GetProjectRequest,
+    requestMessage: project_project_pb.GetProjectRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: project_pb.Project|null) => void
+    callback: (error: ServiceError|null, responseMessage: project_project_pb.Project|null) => void
   ): UnaryResponse;
   get(
-    requestMessage: project_pb.GetProjectRequest,
-    callback: (error: ServiceError|null, responseMessage: project_pb.Project|null) => void
+    requestMessage: project_project_pb.GetProjectRequest,
+    callback: (error: ServiceError|null, responseMessage: project_project_pb.Project|null) => void
   ): UnaryResponse;
   delete(
-    requestMessage: project_pb.DeleteProjectRequest,
+    requestMessage: project_project_pb.DeleteProjectRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: project_pb.Project|null) => void
+    callback: (error: ServiceError|null, responseMessage: project_project_pb.Project|null) => void
   ): UnaryResponse;
   delete(
-    requestMessage: project_pb.DeleteProjectRequest,
-    callback: (error: ServiceError|null, responseMessage: project_pb.Project|null) => void
+    requestMessage: project_project_pb.DeleteProjectRequest,
+    callback: (error: ServiceError|null, responseMessage: project_project_pb.Project|null) => void
   ): UnaryResponse;
   queryAssets(
-    requestMessage: project_pb.QueryAssetsRequest,
+    requestMessage: project_project_pb.QueryAssetsRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: project_pb.QueryAssetsResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: project_project_pb.QueryAssetsResponse|null) => void
   ): UnaryResponse;
   queryAssets(
-    requestMessage: project_pb.QueryAssetsRequest,
-    callback: (error: ServiceError|null, responseMessage: project_pb.QueryAssetsResponse|null) => void
+    requestMessage: project_project_pb.QueryAssetsRequest,
+    callback: (error: ServiceError|null, responseMessage: project_project_pb.QueryAssetsResponse|null) => void
   ): UnaryResponse;
 }
 

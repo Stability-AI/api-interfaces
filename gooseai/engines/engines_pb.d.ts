@@ -1,5 +1,5 @@
 // package: gooseai
-// file: engines.proto
+// file: engines/engines.proto
 
 import * as jspb from "google-protobuf";
 

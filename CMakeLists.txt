@@ -87,13 +87,13 @@ if (NOT ${EXIT_CODE} EQUAL 0)
 endif()
 
 set(golang_plugin "")
-set(golang_output "--go_out=")
+set(golang_output "--go_out=paths=source_relative:")
 set(golang_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
 file(MAKE_DIRECTORY "${golang_output_dir}")
 set(golang_exts ".go")
 
 set(golang_grpc "")
-set(golang_grpc_output "--go-grpc_out=")
+set(golang_grpc_output "--go-grpc_out=paths=source_relative:")
 set(golang_grpc_output_dir "${PROJECT_SOURCE_DIR}/gooseai")
 file(MAKE_DIRECTORY "${golang_grpc_output_dir}")
 set(golang_grpc_exts "-grpc.go")
@@ -192,7 +192,7 @@ macro(_generate_interface LANG INTERFACE_FILE)
             ARGS "--proto_path=${TENSORIZER_PROTO_PATH}"
             ARGS "--experimental_allow_proto3_optional"
             ARGS ${${LANG}_plugin}
-            ARGS "${${LANG}_output}${${LANG}_output_dir}/${_PROTOBUF_SHORT}"
+            ARGS "${${LANG}_output}${${LANG}_output_dir}"
             ARGS "${INTERFACE_FILE}")
 endmacro()
 
@@ -243,10 +243,10 @@ add_target_languages(
 )
 
 # Generate base protobufs
-add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/dashboard.proto)
-add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/generation.proto)
-add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/engines.proto)
-add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/project.proto)
+add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/dashboard/dashboard.proto)
+add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/generation/generation.proto)
+add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/engines/engines.proto)
+add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/project/project.proto)
 generate_interfaces()
 
 add_custom_command(
@@ -278,7 +278,7 @@ endmacro()
 
 set(TENSORIZER_FILES "tensors_pb.d.ts;tensors_pb.js;tensors_pb2.py")
 set(TENSORIZER_SRC "${PROJECT_SOURCE_DIR}/src/tensorizer/tensors")
-set(TENSORIZER_DEST "${PROJECT_SOURCE_DIR}/gooseai/generation")
+set(TENSORIZER_DEST "${PROJECT_SOURCE_DIR}/gooseai")
 
 set(OUTPUT_FILES "")
 copy_files("${TENSORIZER_FILES}" "${TENSORIZER_SRC}" "${TENSORIZER_DEST}")

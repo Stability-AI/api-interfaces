@@ -1,7 +1,7 @@
 // package: gooseai
-// file: dashboard.proto
+// file: dashboard/dashboard.proto
 
-var dashboard_pb = require("./dashboard_pb");
+var dashboard_dashboard_pb = require("../dashboard/dashboard_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var DashboardService = (function () {
@@ -15,8 +15,8 @@ DashboardService.GetMe = {
   service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: dashboard_pb.EmptyRequest,
-  responseType: dashboard_pb.User
+  requestType: dashboard_dashboard_pb.EmptyRequest,
+  responseType: dashboard_dashboard_pb.User
 };
 
 DashboardService.GetOrganization = {
@@ -24,8 +24,8 @@ DashboardService.GetOrganization = {
   service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: dashboard_pb.GetOrganizationRequest,
-  responseType: dashboard_pb.Organization
+  requestType: dashboard_dashboard_pb.GetOrganizationRequest,
+  responseType: dashboard_dashboard_pb.Organization
 };
 
 DashboardService.GetMetrics = {
@@ -33,8 +33,8 @@ DashboardService.GetMetrics = {
   service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: dashboard_pb.GetMetricsRequest,
-  responseType: dashboard_pb.Metrics
+  requestType: dashboard_dashboard_pb.GetMetricsRequest,
+  responseType: dashboard_dashboard_pb.Metrics
 };
 
 DashboardService.CreateAPIKey = {
@@ -42,8 +42,8 @@ DashboardService.CreateAPIKey = {
   service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: dashboard_pb.APIKeyRequest,
-  responseType: dashboard_pb.APIKey
+  requestType: dashboard_dashboard_pb.APIKeyRequest,
+  responseType: dashboard_dashboard_pb.APIKey
 };
 
 DashboardService.DeleteAPIKey = {
@@ -51,8 +51,8 @@ DashboardService.DeleteAPIKey = {
   service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: dashboard_pb.APIKeyFindRequest,
-  responseType: dashboard_pb.APIKey
+  requestType: dashboard_dashboard_pb.APIKeyFindRequest,
+  responseType: dashboard_dashboard_pb.APIKey
 };
 
 DashboardService.UpdateDefaultOrganization = {
@@ -60,8 +60,8 @@ DashboardService.UpdateDefaultOrganization = {
   service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: dashboard_pb.UpdateDefaultOrganizationRequest,
-  responseType: dashboard_pb.User
+  requestType: dashboard_dashboard_pb.UpdateDefaultOrganizationRequest,
+  responseType: dashboard_dashboard_pb.User
 };
 
 DashboardService.GetClientSettings = {
@@ -69,8 +69,8 @@ DashboardService.GetClientSettings = {
   service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: dashboard_pb.EmptyRequest,
-  responseType: dashboard_pb.ClientSettings
+  requestType: dashboard_dashboard_pb.EmptyRequest,
+  responseType: dashboard_dashboard_pb.ClientSettings
 };
 
 DashboardService.SetClientSettings = {
@@ -78,8 +78,8 @@ DashboardService.SetClientSettings = {
   service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: dashboard_pb.ClientSettings,
-  responseType: dashboard_pb.ClientSettings
+  requestType: dashboard_dashboard_pb.ClientSettings,
+  responseType: dashboard_dashboard_pb.ClientSettings
 };
 
 DashboardService.UpdateUserInfo = {
@@ -87,8 +87,8 @@ DashboardService.UpdateUserInfo = {
   service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: dashboard_pb.UpdateUserInfoRequest,
-  responseType: dashboard_pb.User
+  requestType: dashboard_dashboard_pb.UpdateUserInfoRequest,
+  responseType: dashboard_dashboard_pb.User
 };
 
 DashboardService.CreatePasswordChangeTicket = {
@@ -96,8 +96,8 @@ DashboardService.CreatePasswordChangeTicket = {
   service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: dashboard_pb.EmptyRequest,
-  responseType: dashboard_pb.UserPasswordChangeTicket
+  requestType: dashboard_dashboard_pb.EmptyRequest,
+  responseType: dashboard_dashboard_pb.UserPasswordChangeTicket
 };
 
 DashboardService.DeleteAccount = {
@@ -105,8 +105,8 @@ DashboardService.DeleteAccount = {
   service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: dashboard_pb.EmptyRequest,
-  responseType: dashboard_pb.User
+  requestType: dashboard_dashboard_pb.EmptyRequest,
+  responseType: dashboard_dashboard_pb.User
 };
 
 DashboardService.CreateCharge = {
@@ -114,8 +114,8 @@ DashboardService.CreateCharge = {
   service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: dashboard_pb.CreateChargeRequest,
-  responseType: dashboard_pb.Charge
+  requestType: dashboard_dashboard_pb.CreateChargeRequest,
+  responseType: dashboard_dashboard_pb.Charge
 };
 
 DashboardService.GetCharges = {
@@ -123,8 +123,8 @@ DashboardService.GetCharges = {
   service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: dashboard_pb.GetChargesRequest,
-  responseType: dashboard_pb.Charges
+  requestType: dashboard_dashboard_pb.GetChargesRequest,
+  responseType: dashboard_dashboard_pb.Charges
 };
 
 DashboardService.CreateAutoChargeIntent = {
@@ -132,8 +132,8 @@ DashboardService.CreateAutoChargeIntent = {
   service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: dashboard_pb.CreateAutoChargeIntentRequest,
-  responseType: dashboard_pb.AutoChargeIntent
+  requestType: dashboard_dashboard_pb.CreateAutoChargeIntentRequest,
+  responseType: dashboard_dashboard_pb.AutoChargeIntent
 };
 
 DashboardService.UpdateAutoChargeIntent = {
@@ -141,8 +141,8 @@ DashboardService.UpdateAutoChargeIntent = {
   service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: dashboard_pb.CreateAutoChargeIntentRequest,
-  responseType: dashboard_pb.AutoChargeIntent
+  requestType: dashboard_dashboard_pb.CreateAutoChargeIntentRequest,
+  responseType: dashboard_dashboard_pb.AutoChargeIntent
 };
 
 DashboardService.GetAutoChargeIntent = {
@@ -150,8 +150,8 @@ DashboardService.GetAutoChargeIntent = {
   service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: dashboard_pb.GetAutoChargeRequest,
-  responseType: dashboard_pb.AutoChargeIntent
+  requestType: dashboard_dashboard_pb.GetAutoChargeRequest,
+  responseType: dashboard_dashboard_pb.AutoChargeIntent
 };
 
 exports.DashboardService = DashboardService;
