@@ -1373,6 +1373,7 @@ export interface ArtifactTypeMap {
   ARTIFACT_MASK: 7;
   ARTIFACT_LATENT: 8;
   ARTIFACT_TENSOR: 9;
+  ARTIFACT_DEPTH: 10;
 }
 
 export const ArtifactType: ArtifactTypeMap;
