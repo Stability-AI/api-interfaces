@@ -31,6 +31,7 @@ goog.exportSymbol('proto.gooseai.Project', null, global);
 goog.exportSymbol('proto.gooseai.ProjectAccess', null, global);
 goog.exportSymbol('proto.gooseai.ProjectAsset', null, global);
 goog.exportSymbol('proto.gooseai.ProjectAssetUse', null, global);
+goog.exportSymbol('proto.gooseai.ProjectSortDir', null, global);
 goog.exportSymbol('proto.gooseai.ProjectStatus', null, global);
 goog.exportSymbol('proto.gooseai.QueryAssetsRequest', null, global);
 goog.exportSymbol('proto.gooseai.QueryAssetsResponse', null, global);
@@ -2247,7 +2248,8 @@ proto.gooseai.QueryAssetsRequest.toObject = function(includeInstance, msg) {
     until: jspb.Message.getFieldWithDefault(msg, 4, 0),
     limit: jspb.Message.getFieldWithDefault(msg, 5, 0),
     startKey: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    useList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f
+    useList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
+    sortDir: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -2313,6 +2315,10 @@ proto.gooseai.QueryAssetsRequest.deserializeBinaryFromReader = function(msg, rea
       for (var i = 0; i < values.length; i++) {
         msg.addUse(values[i]);
       }
+      break;
+    case 8:
+      var value = /** @type {!proto.gooseai.ProjectSortDir} */ (reader.readEnum());
+      msg.setSortDir(value);
       break;
     default:
       reader.skipField();
@@ -2389,6 +2395,13 @@ proto.gooseai.QueryAssetsRequest.serializeBinaryToWriter = function(message, wri
   if (f.length > 0) {
     writer.writePackedEnum(
       7,
+      f
+    );
+  }
+  f = message.getSortDir();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      8,
       f
     );
   }
@@ -2630,6 +2643,24 @@ proto.gooseai.QueryAssetsRequest.prototype.clearUseList = function() {
 };
 
 
+/**
+ * optional ProjectSortDir sort_dir = 8;
+ * @return {!proto.gooseai.ProjectSortDir}
+ */
+proto.gooseai.QueryAssetsRequest.prototype.getSortDir = function() {
+  return /** @type {!proto.gooseai.ProjectSortDir} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/**
+ * @param {!proto.gooseai.ProjectSortDir} value
+ * @return {!proto.gooseai.QueryAssetsRequest} returns this
+ */
+proto.gooseai.QueryAssetsRequest.prototype.setSortDir = function(value) {
+  return jspb.Message.setProto3EnumField(this, 8, value);
+};
+
+
 
 /**
  * List of repeated fields within this message type.
@@ -2864,6 +2895,15 @@ proto.gooseai.ProjectAssetUse = {
   PROJECT_ASSET_USE_OUTPUT: 2,
   PROJECT_ASSET_USE_INTERMEDIATE: 3,
   PROJECT_ASSET_USE_PROJECT: 4
+};
+
+/**
+ * @enum {number}
+ */
+proto.gooseai.ProjectSortDir = {
+  PROJECT_SORT_DIR_UNSPECIFIED: 0,
+  PROJECT_SORT_DIR_ASC: 1,
+  PROJECT_SORT_DIR_DESC: 2
 };
 
 goog.object.extend(exports, proto.gooseai);
