@@ -23,6 +23,12 @@ enum ProjectAssetUse {
   PROJECT_ASSET_USE_PROJECT = 4;      // Asset is used as the project file for the project
 }
 
+enum ProjectSortDir {
+  PROJECT_SORT_DIR_UNSPECIFIED = 0; // Sort direction is not specified, uses default
+  PROJECT_SORT_DIR_ASC = 1;         // Sort in ascending order
+  PROJECT_SORT_DIR_DESC = 2;        // Sort in descending order
+}
+
 message ProjectAsset {
   string id = 1;           // ID of the asset, UUIDv4
   string uri = 2;          // The URI to the asset
@@ -86,6 +92,7 @@ message QueryAssetsRequest {
   optional uint64 limit = 5;        // The maximum number of assets to return, unset for no limit
   optional string start_key = 6;    // The key to start from, used to paginate results, unset for no offset
   repeated ProjectAssetUse use = 7; // The asset usage to filter the assets returned, empty for no filter
+  ProjectSortDir sort_dir = 8;      // The sort direction based on asset creation time, default is descending
 }
 
 message QueryAssetsResponse {

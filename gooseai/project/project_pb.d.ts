@@ -312,6 +312,9 @@ export class QueryAssetsRequest extends jspb.Message {
   setUseList(value: Array<ProjectAssetUseMap[keyof ProjectAssetUseMap]>): void;
   addUse(value: ProjectAssetUseMap[keyof ProjectAssetUseMap], index?: number): ProjectAssetUseMap[keyof ProjectAssetUseMap];
 
+  getSortDir(): ProjectSortDirMap[keyof ProjectSortDirMap];
+  setSortDir(value: ProjectSortDirMap[keyof ProjectSortDirMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): QueryAssetsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: QueryAssetsRequest): QueryAssetsRequest.AsObject;
@@ -331,6 +334,7 @@ export namespace QueryAssetsRequest {
     limit: number,
     startKey: string,
     useList: Array<ProjectAssetUseMap[keyof ProjectAssetUseMap]>,
+    sortDir: ProjectSortDirMap[keyof ProjectSortDirMap],
   }
 }
 
@@ -386,4 +390,12 @@ export interface ProjectAssetUseMap {
 }
 
 export const ProjectAssetUse: ProjectAssetUseMap;
+
+export interface ProjectSortDirMap {
+  PROJECT_SORT_DIR_UNSPECIFIED: 0;
+  PROJECT_SORT_DIR_ASC: 1;
+  PROJECT_SORT_DIR_DESC: 2;
+}
+
+export const ProjectSortDir: ProjectSortDirMap;
 
