@@ -346,6 +346,43 @@ message TransformResample {
   optional bool export_mask = 5;               // return inpaint mask
 }
 
+message PointCloudRenderSettings {
+  float radius = 1;            // The radius (in NDC units) of each disk to be rasterized 
+  uint32 points_per_pixel = 2;  // Number of points to keep track of per pixel
+  // compositor?
+}
+
+message MeshRenderSettings {
+
+}
+
+message RenderSettings {
+  oneof render_settings {
+    PointCloudRenderSettings pointcloud_settings = 1;
+    MeshRenderSettings mesh_settings = 2;
+  }
+}
+
+enum CameraType {
+  CAMERA_PERSPECTIVE = 0;
+  CAMERA_ORTHOGRAPHIC = 1;
+}
+
+message CameraSettings {
+  float near_plane = 1;
+  float far_plane = 2;
+  optional float fov = 3;  // Camera field of view (in angles). Must be set for CAMERA_PERSPECTIVE type.
+}
+
+message TransformCameraPose {
+  TransformMatrix world_to_view_matrix = 1;
+  CameraSettings camera_settings = 2;
+  CameraType camera_type = 3;
+  RenderSettings image_render_settings = 4;
+  RenderSettings mask_render_settings = 5;
+  bool do_prefill = 6;
+}
+
 message TransformParameters {
   oneof transform {
     TransformBlend blend = 1;
@@ -353,6 +390,7 @@ message TransformParameters {
     TransformColorMatch color_match = 3;
     TransformDepthCalc depth_calc = 4;
     TransformResample resample = 5;
+    TransformCameraPose camera_pose = 6;
   }
 }
 

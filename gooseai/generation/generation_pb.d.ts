@@ -1006,6 +1006,159 @@ export namespace TransformResample {
   }
 }
 
+export class PointCloudRenderSettings extends jspb.Message {
+  getRadius(): number;
+  setRadius(value: number): void;
+
+  getPointsPerPixel(): number;
+  setPointsPerPixel(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PointCloudRenderSettings.AsObject;
+  static toObject(includeInstance: boolean, msg: PointCloudRenderSettings): PointCloudRenderSettings.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PointCloudRenderSettings, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PointCloudRenderSettings;
+  static deserializeBinaryFromReader(message: PointCloudRenderSettings, reader: jspb.BinaryReader): PointCloudRenderSettings;
+}
+
+export namespace PointCloudRenderSettings {
+  export type AsObject = {
+    radius: number,
+    pointsPerPixel: number,
+  }
+}
+
+export class MeshRenderSettings extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MeshRenderSettings.AsObject;
+  static toObject(includeInstance: boolean, msg: MeshRenderSettings): MeshRenderSettings.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MeshRenderSettings, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MeshRenderSettings;
+  static deserializeBinaryFromReader(message: MeshRenderSettings, reader: jspb.BinaryReader): MeshRenderSettings;
+}
+
+export namespace MeshRenderSettings {
+  export type AsObject = {
+  }
+}
+
+export class RenderSettings extends jspb.Message {
+  hasPointcloudSettings(): boolean;
+  clearPointcloudSettings(): void;
+  getPointcloudSettings(): PointCloudRenderSettings | undefined;
+  setPointcloudSettings(value?: PointCloudRenderSettings): void;
+
+  hasMeshSettings(): boolean;
+  clearMeshSettings(): void;
+  getMeshSettings(): MeshRenderSettings | undefined;
+  setMeshSettings(value?: MeshRenderSettings): void;
+
+  getRenderSettingsCase(): RenderSettings.RenderSettingsCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RenderSettings.AsObject;
+  static toObject(includeInstance: boolean, msg: RenderSettings): RenderSettings.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RenderSettings, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RenderSettings;
+  static deserializeBinaryFromReader(message: RenderSettings, reader: jspb.BinaryReader): RenderSettings;
+}
+
+export namespace RenderSettings {
+  export type AsObject = {
+    pointcloudSettings?: PointCloudRenderSettings.AsObject,
+    meshSettings?: MeshRenderSettings.AsObject,
+  }
+
+  export enum RenderSettingsCase {
+    RENDER_SETTINGS_NOT_SET = 0,
+    POINTCLOUD_SETTINGS = 1,
+    MESH_SETTINGS = 2,
+  }
+}
+
+export class CameraSettings extends jspb.Message {
+  getNearPlane(): number;
+  setNearPlane(value: number): void;
+
+  getFarPlane(): number;
+  setFarPlane(value: number): void;
+
+  hasFov(): boolean;
+  clearFov(): void;
+  getFov(): number;
+  setFov(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CameraSettings.AsObject;
+  static toObject(includeInstance: boolean, msg: CameraSettings): CameraSettings.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CameraSettings, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CameraSettings;
+  static deserializeBinaryFromReader(message: CameraSettings, reader: jspb.BinaryReader): CameraSettings;
+}
+
+export namespace CameraSettings {
+  export type AsObject = {
+    nearPlane: number,
+    farPlane: number,
+    fov: number,
+  }
+}
+
+export class TransformCameraPose extends jspb.Message {
+  hasWorldToViewMatrix(): boolean;
+  clearWorldToViewMatrix(): void;
+  getWorldToViewMatrix(): TransformMatrix | undefined;
+  setWorldToViewMatrix(value?: TransformMatrix): void;
+
+  hasCameraSettings(): boolean;
+  clearCameraSettings(): void;
+  getCameraSettings(): CameraSettings | undefined;
+  setCameraSettings(value?: CameraSettings): void;
+
+  getCameraType(): CameraTypeMap[keyof CameraTypeMap];
+  setCameraType(value: CameraTypeMap[keyof CameraTypeMap]): void;
+
+  hasImageRenderSettings(): boolean;
+  clearImageRenderSettings(): void;
+  getImageRenderSettings(): RenderSettings | undefined;
+  setImageRenderSettings(value?: RenderSettings): void;
+
+  hasMaskRenderSettings(): boolean;
+  clearMaskRenderSettings(): void;
+  getMaskRenderSettings(): RenderSettings | undefined;
+  setMaskRenderSettings(value?: RenderSettings): void;
+
+  getDoPrefill(): boolean;
+  setDoPrefill(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformCameraPose.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformCameraPose): TransformCameraPose.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformCameraPose, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformCameraPose;
+  static deserializeBinaryFromReader(message: TransformCameraPose, reader: jspb.BinaryReader): TransformCameraPose;
+}
+
+export namespace TransformCameraPose {
+  export type AsObject = {
+    worldToViewMatrix?: TransformMatrix.AsObject,
+    cameraSettings?: CameraSettings.AsObject,
+    cameraType: CameraTypeMap[keyof CameraTypeMap],
+    imageRenderSettings?: RenderSettings.AsObject,
+    maskRenderSettings?: RenderSettings.AsObject,
+    doPrefill: boolean,
+  }
+}
+
 export class TransformParameters extends jspb.Message {
   hasBlend(): boolean;
   clearBlend(): void;
@@ -1032,6 +1185,11 @@ export class TransformParameters extends jspb.Message {
   getResample(): TransformResample | undefined;
   setResample(value?: TransformResample): void;
 
+  hasCameraPose(): boolean;
+  clearCameraPose(): void;
+  getCameraPose(): TransformCameraPose | undefined;
+  setCameraPose(value?: TransformCameraPose): void;
+
   getTransformCase(): TransformParameters.TransformCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TransformParameters.AsObject;
@@ -1050,6 +1208,7 @@ export namespace TransformParameters {
     colorMatch?: TransformColorMatch.AsObject,
     depthCalc?: TransformDepthCalc.AsObject,
     resample?: TransformResample.AsObject,
+    cameraPose?: TransformCameraPose.AsObject,
   }
 
   export enum TransformCase {
@@ -1059,6 +1218,7 @@ export namespace TransformParameters {
     COLOR_MATCH = 3,
     DEPTH_CALC = 4,
     RESAMPLE = 5,
+    CAMERA_POSE = 6,
   }
 }
 
@@ -1481,6 +1641,13 @@ export interface ColorMatchModeMap {
 }
 
 export const ColorMatchMode: ColorMatchModeMap;
+
+export interface CameraTypeMap {
+  CAMERA_PERSPECTIVE: 0;
+  CAMERA_ORTHOGRAPHIC: 1;
+}
+
+export const CameraType: CameraTypeMap;
 
 export interface AssetActionMap {
   ASSET_PUT: 0;
