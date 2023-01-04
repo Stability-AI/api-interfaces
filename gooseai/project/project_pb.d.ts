@@ -366,6 +366,68 @@ export namespace QueryAssetsResponse {
   }
 }
 
+export class DeleteAssetsRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  hasOwnerId(): boolean;
+  clearOwnerId(): void;
+  getOwnerId(): string;
+  setOwnerId(value: string): void;
+
+  clearAssetIdsList(): void;
+  getAssetIdsList(): Array<string>;
+  setAssetIdsList(value: Array<string>): void;
+  addAssetIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteAssetsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteAssetsRequest): DeleteAssetsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteAssetsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteAssetsRequest;
+  static deserializeBinaryFromReader(message: DeleteAssetsRequest, reader: jspb.BinaryReader): DeleteAssetsRequest;
+}
+
+export namespace DeleteAssetsRequest {
+  export type AsObject = {
+    id: string,
+    ownerId: string,
+    assetIdsList: Array<string>,
+  }
+}
+
+export class DeleteAssetsResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getOwnerId(): string;
+  setOwnerId(value: string): void;
+
+  clearAssetIdsList(): void;
+  getAssetIdsList(): Array<string>;
+  setAssetIdsList(value: Array<string>): void;
+  addAssetIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteAssetsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteAssetsResponse): DeleteAssetsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteAssetsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteAssetsResponse;
+  static deserializeBinaryFromReader(message: DeleteAssetsResponse, reader: jspb.BinaryReader): DeleteAssetsResponse;
+}
+
+export namespace DeleteAssetsResponse {
+  export type AsObject = {
+    id: string,
+    ownerId: string,
+    assetIdsList: Array<string>,
+  }
+}
+
 export interface ProjectAccessMap {
   PROJECT_ACCESS_PRIVATE: 0;
   PROJECT_ACCESS_PUBLIC: 1;

@@ -16,6 +16,28 @@ function deserialize_gooseai_CreateProjectRequest(buffer_arg) {
   return project_pb.CreateProjectRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_gooseai_DeleteAssetsRequest(arg) {
+  if (!(arg instanceof project_pb.DeleteAssetsRequest)) {
+    throw new Error('Expected argument of type gooseai.DeleteAssetsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_DeleteAssetsRequest(buffer_arg) {
+  return project_pb.DeleteAssetsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_DeleteAssetsResponse(arg) {
+  if (!(arg instanceof project_pb.DeleteAssetsResponse)) {
+    throw new Error('Expected argument of type gooseai.DeleteAssetsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_DeleteAssetsResponse(buffer_arg) {
+  return project_pb.DeleteAssetsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_gooseai_DeleteProjectRequest(arg) {
   if (!(arg instanceof project_pb.DeleteProjectRequest)) {
     throw new Error('Expected argument of type gooseai.DeleteProjectRequest');
@@ -169,6 +191,18 @@ queryAssets: {
     requestDeserialize: deserialize_gooseai_QueryAssetsRequest,
     responseSerialize: serialize_gooseai_QueryAssetsResponse,
     responseDeserialize: deserialize_gooseai_QueryAssetsResponse,
+  },
+  // Delete one or more assets of a project
+deleteAssets: {
+    path: '/gooseai.ProjectService/DeleteAssets',
+    requestStream: false,
+    responseStream: false,
+    requestType: project_pb.DeleteAssetsRequest,
+    responseType: project_pb.DeleteAssetsResponse,
+    requestSerialize: serialize_gooseai_DeleteAssetsRequest,
+    requestDeserialize: deserialize_gooseai_DeleteAssetsRequest,
+    responseSerialize: serialize_gooseai_DeleteAssetsResponse,
+    responseDeserialize: deserialize_gooseai_DeleteAssetsResponse,
   },
 };
 
