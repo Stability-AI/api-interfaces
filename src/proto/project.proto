@@ -100,6 +100,18 @@ message QueryAssetsResponse {
   optional string last_key = 2;     // The last asset key returned when the results were limited, unset when not limited
 }
 
+message DeleteAssetsRequest {
+  string id = 1;                 // ID of the project to request, UUIDv4, empty string uses default project
+  optional string owner_id = 2;  // The ID of the organization owning the project, unset for default org for user
+  repeated string asset_ids = 3; // The IDs of the assets to delete from the project, UUIDv4
+}
+
+message DeleteAssetsResponse {
+  string id = 1;                 // ID of the project, UUIDv4
+  string owner_id = 2;           // The ID of the organization owning the project
+  repeated string asset_ids = 3; // The IDs of the assets deleted from the project, UUIDv4
+}
+
 //
 // gRPC services
 //
@@ -116,4 +128,6 @@ service ProjectService {
   rpc Delete (DeleteProjectRequest) returns (Project) {};
   // Query the assets of a project, with additional filtering
   rpc QueryAssets (QueryAssetsRequest) returns (QueryAssetsResponse) {};
+  // Delete one or more assets of a project
+  rpc DeleteAssets (DeleteAssetsRequest) returns (DeleteAssetsResponse) {};
 }

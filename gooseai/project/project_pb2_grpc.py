@@ -47,6 +47,11 @@ class ProjectServiceStub(object):
                 request_serializer=project__pb2.QueryAssetsRequest.SerializeToString,
                 response_deserializer=project__pb2.QueryAssetsResponse.FromString,
                 )
+        self.DeleteAssets = channel.unary_unary(
+                '/gooseai.ProjectService/DeleteAssets',
+                request_serializer=project__pb2.DeleteAssetsRequest.SerializeToString,
+                response_deserializer=project__pb2.DeleteAssetsResponse.FromString,
+                )
 
 
 class ProjectServiceServicer(object):
@@ -97,6 +102,13 @@ class ProjectServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def DeleteAssets(self, request, context):
+        """Delete one or more assets of a project
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ProjectServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -129,6 +141,11 @@ def add_ProjectServiceServicer_to_server(servicer, server):
                     servicer.QueryAssets,
                     request_deserializer=project__pb2.QueryAssetsRequest.FromString,
                     response_serializer=project__pb2.QueryAssetsResponse.SerializeToString,
+            ),
+            'DeleteAssets': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteAssets,
+                    request_deserializer=project__pb2.DeleteAssetsRequest.FromString,
+                    response_serializer=project__pb2.DeleteAssetsResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -242,5 +259,22 @@ class ProjectService(object):
         return grpc.experimental.unary_unary(request, target, '/gooseai.ProjectService/QueryAssets',
             project__pb2.QueryAssetsRequest.SerializeToString,
             project__pb2.QueryAssetsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DeleteAssets(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gooseai.ProjectService/DeleteAssets',
+            project__pb2.DeleteAssetsRequest.SerializeToString,
+            project__pb2.DeleteAssetsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

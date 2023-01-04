@@ -30,6 +30,8 @@ type ProjectServiceClient interface {
 	Delete(ctx context.Context, in *DeleteProjectRequest, opts ...grpc.CallOption) (*Project, error)
 	// Query the assets of a project, with additional filtering
 	QueryAssets(ctx context.Context, in *QueryAssetsRequest, opts ...grpc.CallOption) (*QueryAssetsResponse, error)
+	// Delete one or more assets of a project
+	DeleteAssets(ctx context.Context, in *DeleteAssetsRequest, opts ...grpc.CallOption) (*DeleteAssetsResponse, error)
 }
 
 type projectServiceClient struct {
@@ -117,6 +119,15 @@ func (c *projectServiceClient) QueryAssets(ctx context.Context, in *QueryAssetsR
 	return out, nil
 }
 
+func (c *projectServiceClient) DeleteAssets(ctx context.Context, in *DeleteAssetsRequest, opts ...grpc.CallOption) (*DeleteAssetsResponse, error) {
+	out := new(DeleteAssetsResponse)
+	err := c.cc.Invoke(ctx, "/gooseai.ProjectService/DeleteAssets", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProjectServiceServer is the server API for ProjectService service.
 // All implementations must embed UnimplementedProjectServiceServer
 // for forward compatibility
@@ -133,6 +144,8 @@ type ProjectServiceServer interface {
 	Delete(context.Context, *DeleteProjectRequest) (*Project, error)
 	// Query the assets of a project, with additional filtering
 	QueryAssets(context.Context, *QueryAssetsRequest) (*QueryAssetsResponse, error)
+	// Delete one or more assets of a project
+	DeleteAssets(context.Context, *DeleteAssetsRequest) (*DeleteAssetsResponse, error)
 	mustEmbedUnimplementedProjectServiceServer()
 }
 
@@ -157,6 +170,9 @@ func (UnimplementedProjectServiceServer) Delete(context.Context, *DeleteProjectR
 }
 func (UnimplementedProjectServiceServer) QueryAssets(context.Context, *QueryAssetsRequest) (*QueryAssetsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method QueryAssets not implemented")
+}
+func (UnimplementedProjectServiceServer) DeleteAssets(context.Context, *DeleteAssetsRequest) (*DeleteAssetsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteAssets not implemented")
 }
 func (UnimplementedProjectServiceServer) mustEmbedUnimplementedProjectServiceServer() {}
 
@@ -282,6 +298,24 @@ func _ProjectService_QueryAssets_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProjectService_DeleteAssets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteAssetsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).DeleteAssets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.ProjectService/DeleteAssets",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).DeleteAssets(ctx, req.(*DeleteAssetsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProjectService_ServiceDesc is the grpc.ServiceDesc for ProjectService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -308,6 +342,10 @@ var ProjectService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "QueryAssets",
 			Handler:    _ProjectService_QueryAssets_Handler,
+		},
+		{
+			MethodName: "DeleteAssets",
+			Handler:    _ProjectService_DeleteAssets_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
