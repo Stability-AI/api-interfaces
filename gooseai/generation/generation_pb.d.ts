@@ -681,6 +681,26 @@ export namespace ImageParameters {
   }
 }
 
+export class UpscaleParameters extends jspb.Message {
+  getScale(): number;
+  setScale(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpscaleParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: UpscaleParameters): UpscaleParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpscaleParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpscaleParameters;
+  static deserializeBinaryFromReader(message: UpscaleParameters, reader: jspb.BinaryReader): UpscaleParameters;
+}
+
+export namespace UpscaleParameters {
+  export type AsObject = {
+    scale: number,
+  }
+}
+
 export class ClassifierConcept extends jspb.Message {
   getConcept(): string;
   setConcept(value: string): void;
@@ -927,6 +947,11 @@ export class Request extends jspb.Message {
   getAsset(): AssetParameters | undefined;
   setAsset(value?: AssetParameters): void;
 
+  hasUpscale(): boolean;
+  clearUpscale(): void;
+  getUpscale(): UpscaleParameters | undefined;
+  setUpscale(value?: UpscaleParameters): void;
+
   hasConditioner(): boolean;
   clearConditioner(): void;
   getConditioner(): ConditionerParameters | undefined;
@@ -952,6 +977,7 @@ export namespace Request {
     image?: ImageParameters.AsObject,
     classifier?: ClassifierParameters.AsObject,
     asset?: AssetParameters.AsObject,
+    upscale?: UpscaleParameters.AsObject,
     conditioner?: ConditionerParameters.AsObject,
   }
 
@@ -960,6 +986,7 @@ export namespace Request {
     IMAGE = 5,
     CLASSIFIER = 7,
     ASSET = 8,
+    UPSCALE = 11,
   }
 }
 

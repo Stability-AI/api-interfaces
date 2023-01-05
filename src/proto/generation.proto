@@ -238,6 +238,11 @@ enum Action {
   ACTION_DISCARD = 5;
 }
 
+// Parameters for the Upscaler
+message UpscaleParameters {
+  float scale = 1;
+}
+
 //
 // Artifact classification parameters.
 //
@@ -325,6 +330,7 @@ message Request {
     ImageParameters image = 5;
     ClassifierParameters classifier = 7;
     AssetParameters asset = 8;
+    UpscaleParameters upscale = 11;
   }
   optional ConditionerParameters conditioner = 6;
   reserved 9,10; //9, 10 are reserved
