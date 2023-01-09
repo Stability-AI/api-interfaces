@@ -188,6 +188,7 @@ macro(_generate_interface LANG INTERFACE_FILE)
 
             COMMAND ${CMD_EXEC}
             ARGS ${${LANG}_args}
+            ARGS "--proto_path=${PROTOBUF_INCLUDE_DIRS}"            
             ARGS "--proto_path=${PROTO_PATH}"
             ARGS "--proto_path=${TENSORIZER_PROTO_PATH}"
             ARGS "--experimental_allow_proto3_optional"
