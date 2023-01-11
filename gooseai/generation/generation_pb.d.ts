@@ -923,6 +923,11 @@ export class TransformDepthCalc extends jspb.Message {
   getBlurRadius(): number;
   setBlurRadius(value: number): void;
 
+  hasReverse(): boolean;
+  clearReverse(): void;
+  getReverse(): boolean;
+  setReverse(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TransformDepthCalc.AsObject;
   static toObject(includeInstance: boolean, msg: TransformDepthCalc): TransformDepthCalc.AsObject;
@@ -937,6 +942,7 @@ export namespace TransformDepthCalc {
   export type AsObject = {
     blendWeight: number,
     blurRadius: number,
+    reverse: boolean,
   }
 }
 
