@@ -1031,6 +1031,9 @@ export namespace PointCloudRenderSettings {
 }
 
 export class MeshRenderSettings extends jspb.Message {
+  getMaxMeshEdge(): number;
+  setMaxMeshEdge(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MeshRenderSettings.AsObject;
   static toObject(includeInstance: boolean, msg: MeshRenderSettings): MeshRenderSettings.AsObject;
@@ -1043,6 +1046,7 @@ export class MeshRenderSettings extends jspb.Message {
 
 export namespace MeshRenderSettings {
   export type AsObject = {
+    maxMeshEdge: number,
   }
 }
 

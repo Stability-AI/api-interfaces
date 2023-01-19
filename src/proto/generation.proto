@@ -349,11 +349,10 @@ message TransformResample {
 message PointCloudRenderSettings {
   float radius = 1;            // The radius (in NDC units) of each disk to be rasterized 
   uint32 points_per_pixel = 2;  // Number of points to keep track of per pixel
-  // compositor?
 }
 
 message MeshRenderSettings {
-
+  float max_mesh_edge = 1;
 }
 
 message RenderSettings {

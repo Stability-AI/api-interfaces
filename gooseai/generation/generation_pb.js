@@ -8388,7 +8388,7 @@ proto.gooseai.MeshRenderSettings.prototype.toObject = function(opt_includeInstan
  */
 proto.gooseai.MeshRenderSettings.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    maxMeshEdge: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0)
   };
 
   if (includeInstance) {
@@ -8425,6 +8425,10 @@ proto.gooseai.MeshRenderSettings.deserializeBinaryFromReader = function(msg, rea
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setMaxMeshEdge(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -8454,6 +8458,31 @@ proto.gooseai.MeshRenderSettings.prototype.serializeBinary = function() {
  */
 proto.gooseai.MeshRenderSettings.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getMaxMeshEdge();
+  if (f !== 0.0) {
+    writer.writeFloat(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional float max_mesh_edge = 1;
+ * @return {number}
+ */
+proto.gooseai.MeshRenderSettings.prototype.getMaxMeshEdge = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 1, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.gooseai.MeshRenderSettings} returns this
+ */
+proto.gooseai.MeshRenderSettings.prototype.setMaxMeshEdge = function(value) {
+  return jspb.Message.setProto3FloatField(this, 1, value);
 };
 
 
