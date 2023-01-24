@@ -2,6 +2,7 @@
 // file: generation.proto
 
 import * as jspb from "google-protobuf";
+import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as tensors_pb from "./tensors_pb";
 
 export class Token extends jspb.Message {
@@ -785,6 +786,288 @@ export namespace ClassifierParameters {
   }
 }
 
+export class InterpolateParameters extends jspb.Message {
+  clearRatiosList(): void;
+  getRatiosList(): Array<number>;
+  setRatiosList(value: Array<number>): void;
+  addRatios(value: number, index?: number): number;
+
+  hasMode(): boolean;
+  clearMode(): void;
+  getMode(): InterpolateModeMap[keyof InterpolateModeMap];
+  setMode(value: InterpolateModeMap[keyof InterpolateModeMap]): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): InterpolateParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: InterpolateParameters): InterpolateParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: InterpolateParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InterpolateParameters;
+  static deserializeBinaryFromReader(message: InterpolateParameters, reader: jspb.BinaryReader): InterpolateParameters;
+}
+
+export namespace InterpolateParameters {
+  export type AsObject = {
+    ratiosList: Array<number>,
+    mode: InterpolateModeMap[keyof InterpolateModeMap],
+  }
+}
+
+export class TransformBlend extends jspb.Message {
+  getAmount(): number;
+  setAmount(value: number): void;
+
+  hasTarget(): boolean;
+  clearTarget(): void;
+  getTarget(): Artifact | undefined;
+  setTarget(value?: Artifact): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformBlend.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformBlend): TransformBlend.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformBlend, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformBlend;
+  static deserializeBinaryFromReader(message: TransformBlend, reader: jspb.BinaryReader): TransformBlend;
+}
+
+export namespace TransformBlend {
+  export type AsObject = {
+    amount: number,
+    target?: Artifact.AsObject,
+  }
+}
+
+export class TransformColorAdjust extends jspb.Message {
+  hasBrightness(): boolean;
+  clearBrightness(): void;
+  getBrightness(): number;
+  setBrightness(value: number): void;
+
+  hasContrast(): boolean;
+  clearContrast(): void;
+  getContrast(): number;
+  setContrast(value: number): void;
+
+  hasHue(): boolean;
+  clearHue(): void;
+  getHue(): number;
+  setHue(value: number): void;
+
+  hasSaturation(): boolean;
+  clearSaturation(): void;
+  getSaturation(): number;
+  setSaturation(value: number): void;
+
+  hasLightness(): boolean;
+  clearLightness(): void;
+  getLightness(): number;
+  setLightness(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformColorAdjust.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformColorAdjust): TransformColorAdjust.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformColorAdjust, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformColorAdjust;
+  static deserializeBinaryFromReader(message: TransformColorAdjust, reader: jspb.BinaryReader): TransformColorAdjust;
+}
+
+export namespace TransformColorAdjust {
+  export type AsObject = {
+    brightness: number,
+    contrast: number,
+    hue: number,
+    saturation: number,
+    lightness: number,
+  }
+}
+
+export class TransformColorMatch extends jspb.Message {
+  getColorMode(): ColorMatchModeMap[keyof ColorMatchModeMap];
+  setColorMode(value: ColorMatchModeMap[keyof ColorMatchModeMap]): void;
+
+  hasImage(): boolean;
+  clearImage(): void;
+  getImage(): Artifact | undefined;
+  setImage(value?: Artifact): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformColorMatch.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformColorMatch): TransformColorMatch.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformColorMatch, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformColorMatch;
+  static deserializeBinaryFromReader(message: TransformColorMatch, reader: jspb.BinaryReader): TransformColorMatch;
+}
+
+export namespace TransformColorMatch {
+  export type AsObject = {
+    colorMode: ColorMatchModeMap[keyof ColorMatchModeMap],
+    image?: Artifact.AsObject,
+  }
+}
+
+export class TransformDepthCalc extends jspb.Message {
+  hasBlendWeight(): boolean;
+  clearBlendWeight(): void;
+  getBlendWeight(): number;
+  setBlendWeight(value: number): void;
+
+  hasBlurRadius(): boolean;
+  clearBlurRadius(): void;
+  getBlurRadius(): number;
+  setBlurRadius(value: number): void;
+
+  hasReverse(): boolean;
+  clearReverse(): void;
+  getReverse(): boolean;
+  setReverse(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformDepthCalc.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformDepthCalc): TransformDepthCalc.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformDepthCalc, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformDepthCalc;
+  static deserializeBinaryFromReader(message: TransformDepthCalc, reader: jspb.BinaryReader): TransformDepthCalc;
+}
+
+export namespace TransformDepthCalc {
+  export type AsObject = {
+    blendWeight: number,
+    blurRadius: number,
+    reverse: boolean,
+  }
+}
+
+export class TransformMatrix extends jspb.Message {
+  clearDataList(): void;
+  getDataList(): Array<number>;
+  setDataList(value: Array<number>): void;
+  addData(value: number, index?: number): number;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformMatrix.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformMatrix): TransformMatrix.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformMatrix, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformMatrix;
+  static deserializeBinaryFromReader(message: TransformMatrix, reader: jspb.BinaryReader): TransformMatrix;
+}
+
+export namespace TransformMatrix {
+  export type AsObject = {
+    dataList: Array<number>,
+  }
+}
+
+export class TransformResample extends jspb.Message {
+  getBorderMode(): BorderModeMap[keyof BorderModeMap];
+  setBorderMode(value: BorderModeMap[keyof BorderModeMap]): void;
+
+  hasTransform(): boolean;
+  clearTransform(): void;
+  getTransform(): TransformMatrix | undefined;
+  setTransform(value?: TransformMatrix): void;
+
+  hasPrevTransform(): boolean;
+  clearPrevTransform(): void;
+  getPrevTransform(): TransformMatrix | undefined;
+  setPrevTransform(value?: TransformMatrix): void;
+
+  hasDepthWarp(): boolean;
+  clearDepthWarp(): void;
+  getDepthWarp(): number;
+  setDepthWarp(value: number): void;
+
+  hasExportMask(): boolean;
+  clearExportMask(): void;
+  getExportMask(): boolean;
+  setExportMask(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformResample.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformResample): TransformResample.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformResample, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformResample;
+  static deserializeBinaryFromReader(message: TransformResample, reader: jspb.BinaryReader): TransformResample;
+}
+
+export namespace TransformResample {
+  export type AsObject = {
+    borderMode: BorderModeMap[keyof BorderModeMap],
+    transform?: TransformMatrix.AsObject,
+    prevTransform?: TransformMatrix.AsObject,
+    depthWarp: number,
+    exportMask: boolean,
+  }
+}
+
+export class TransformParameters extends jspb.Message {
+  hasBlend(): boolean;
+  clearBlend(): void;
+  getBlend(): TransformBlend | undefined;
+  setBlend(value?: TransformBlend): void;
+
+  hasColorAdjust(): boolean;
+  clearColorAdjust(): void;
+  getColorAdjust(): TransformColorAdjust | undefined;
+  setColorAdjust(value?: TransformColorAdjust): void;
+
+  hasColorMatch(): boolean;
+  clearColorMatch(): void;
+  getColorMatch(): TransformColorMatch | undefined;
+  setColorMatch(value?: TransformColorMatch): void;
+
+  hasDepthCalc(): boolean;
+  clearDepthCalc(): void;
+  getDepthCalc(): TransformDepthCalc | undefined;
+  setDepthCalc(value?: TransformDepthCalc): void;
+
+  hasResample(): boolean;
+  clearResample(): void;
+  getResample(): TransformResample | undefined;
+  setResample(value?: TransformResample): void;
+
+  getTransformCase(): TransformParameters.TransformCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformParameters): TransformParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformParameters;
+  static deserializeBinaryFromReader(message: TransformParameters, reader: jspb.BinaryReader): TransformParameters;
+}
+
+export namespace TransformParameters {
+  export type AsObject = {
+    blend?: TransformBlend.AsObject,
+    colorAdjust?: TransformColorAdjust.AsObject,
+    colorMatch?: TransformColorMatch.AsObject,
+    depthCalc?: TransformDepthCalc.AsObject,
+    resample?: TransformResample.AsObject,
+  }
+
+  export enum TransformCase {
+    TRANSFORM_NOT_SET = 0,
+    BLEND = 1,
+    COLOR_ADJUST = 2,
+    COLOR_MATCH = 3,
+    DEPTH_CALC = 4,
+    RESAMPLE = 5,
+  }
+}
+
 export class AssetParameters extends jspb.Message {
   getAction(): AssetActionMap[keyof AssetActionMap];
   setAction(value: AssetActionMap[keyof AssetActionMap]): void;
@@ -927,10 +1210,25 @@ export class Request extends jspb.Message {
   getAsset(): AssetParameters | undefined;
   setAsset(value?: AssetParameters): void;
 
+  hasInterpolate(): boolean;
+  clearInterpolate(): void;
+  getInterpolate(): InterpolateParameters | undefined;
+  setInterpolate(value?: InterpolateParameters): void;
+
+  hasTransform(): boolean;
+  clearTransform(): void;
+  getTransform(): TransformParameters | undefined;
+  setTransform(value?: TransformParameters): void;
+
   hasConditioner(): boolean;
   clearConditioner(): void;
   getConditioner(): ConditionerParameters | undefined;
   setConditioner(value?: ConditionerParameters): void;
+
+  hasExtras(): boolean;
+  clearExtras(): void;
+  getExtras(): google_protobuf_struct_pb.Struct | undefined;
+  setExtras(value?: google_protobuf_struct_pb.Struct): void;
 
   getParamsCase(): Request.ParamsCase;
   serializeBinary(): Uint8Array;
@@ -952,7 +1250,10 @@ export namespace Request {
     image?: ImageParameters.AsObject,
     classifier?: ClassifierParameters.AsObject,
     asset?: AssetParameters.AsObject,
+    interpolate?: InterpolateParameters.AsObject,
+    transform?: TransformParameters.AsObject,
     conditioner?: ConditionerParameters.AsObject,
+    extras?: google_protobuf_struct_pb.Struct.AsObject,
   }
 
   export enum ParamsCase {
@@ -960,6 +1261,8 @@ export namespace Request {
     IMAGE = 5,
     CLASSIFIER = 7,
     ASSET = 8,
+    INTERPOLATE = 11,
+    TRANSFORM = 12,
   }
 }
 
@@ -1076,6 +1379,7 @@ export interface ArtifactTypeMap {
   ARTIFACT_MASK: 7;
   ARTIFACT_LATENT: 8;
   ARTIFACT_TENSOR: 9;
+  ARTIFACT_DEPTH: 10;
 }
 
 export const ArtifactType: ArtifactTypeMap;
@@ -1157,6 +1461,32 @@ export interface ClassifierModeMap {
 }
 
 export const ClassifierMode: ClassifierModeMap;
+
+export interface InterpolateModeMap {
+  INTERPOLATE_LINEAR: 0;
+  INTERPOLATE_RIFE: 1;
+  INTERPOLATE_VAE_LINEAR: 2;
+  INTERPOLATE_VAE_SLERP: 3;
+}
+
+export const InterpolateMode: InterpolateModeMap;
+
+export interface BorderModeMap {
+  BORDER_REFLECT: 0;
+  BORDER_REPLICATE: 1;
+  BORDER_WRAP: 2;
+  BORDER_ZERO: 3;
+}
+
+export const BorderMode: BorderModeMap;
+
+export interface ColorMatchModeMap {
+  COLOR_MATCH_HSV: 0;
+  COLOR_MATCH_LAB: 1;
+  COLOR_MATCH_RGB: 2;
+}
+
+export const ColorMatchMode: ColorMatchModeMap;
 
 export interface AssetActionMap {
   ASSET_PUT: 0;

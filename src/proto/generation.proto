@@ -1,6 +1,7 @@
 syntax = 'proto3';
 package gooseai;
 option go_package = "github.com/stability-ai/api-interfaces/gooseai/generation";
+import "google/protobuf/struct.proto";
 import "tensors.proto";
 
 enum FinishReason {
@@ -22,6 +23,7 @@ enum ArtifactType {
   ARTIFACT_MASK = 7;
   ARTIFACT_LATENT = 8;
   ARTIFACT_TENSOR = 9;
+  ARTIFACT_DEPTH = 10;
 }
 
 // Generally, a GPT BPE 16-bit token, paired with an optional string representation.
@@ -82,6 +84,7 @@ message PromptParameters {
 //   - Text (singular)
 //   - Init Image (singular, optional, type ARTIFACT_IMAGE, with init=true)
 //   - Mask (singular, optional, Artifact type ARTIFACT_MASK)
+//   - Init Depth (singular, optional, Artifact type ARTIFACT_DEPTH)
 message Prompt {
   optional PromptParameters parameters = 1;
   oneof prompt {
@@ -224,7 +227,7 @@ message ImageParameters {
   optional uint64 steps = 5;
   optional TransformType transform = 6;
   repeated StepParameter parameters = 7;
-  optional MaskedAreaInit masked_area_init = 8; // defaults to MASKED_AREA_INIT_ZERO 
+  optional MaskedAreaInit masked_area_init = 8; // defaults to MASKED_AREA_INIT_ZERO
   optional WeightMethod weight_method = 9; //defaults to TEXT_ENCODER
   optional bool quantize = 10; //defaults to true
 }
@@ -267,6 +270,94 @@ message ClassifierParameters {
   optional Action realized_action = 3;
 }
 
+
+//
+// Interpolation
+//
+
+enum InterpolateMode {
+  INTERPOLATE_LINEAR = 0;
+  INTERPOLATE_RIFE = 1;
+  INTERPOLATE_VAE_LINEAR = 2;
+  INTERPOLATE_VAE_SLERP = 3;
+}
+
+// Interpolation between two images applied at specified blend ratios
+message InterpolateParameters {
+  repeated float ratios = 1;
+  optional InterpolateMode mode = 2;
+}
+
+
+//
+// Transforms
+//
+
+enum BorderMode {
+  BORDER_REFLECT = 0;   // reflect image values across the border
+  BORDER_REPLICATE = 1; // replicate border values outside the image
+  BORDER_WRAP = 2;      // wrap around / tile the image values
+  BORDER_ZERO = 3;      // use 0 for locations outside the image
+}
+
+enum ColorMatchMode {
+  COLOR_MATCH_HSV = 0;  // match hue, saturation, and value histograms
+  COLOR_MATCH_LAB = 1;  // match lightness, a, and b histograms
+  COLOR_MATCH_RGB = 2;  // match red, green, and blue histograms
+}
+
+message TransformBlend {
+  float amount = 1;     // blend amount from 0 to 1
+  Artifact target = 2;  // target image
+}
+
+message TransformColorAdjust {
+  optional float brightness = 1;  // scale pixel intensities, 1.0 is no change
+  optional float contrast = 2;    // contrast adjustment, 1.0 is no change
+  optional float hue = 3;         // -180 to 180 hue adjustment, 0.0 is no change
+  optional float saturation = 4;  // 0.0 to 2.0 saturation scale, 1.0 is no change
+  optional float lightness = 5;   // -1.0 to 1.0 lightness adjustment, 0.0 is no change
+}
+
+message TransformColorMatch {
+  ColorMatchMode color_mode = 1;  // color mode to use
+  Artifact image = 2;             // image to match
+}
+
+message TransformDepthCalc {
+  optional float blend_weight = 1; // blend factor between AdaBins (0.0) and MiDaS (1.0)
+  optional uint32 blur_radius = 2; // defaults to 0.0
+  optional bool reverse = 3;       // make near depths have higher values
+}
+
+message TransformMatrix {
+  // Column-major 3x3 or 4x4 perspective matrix
+  // [sx, 10, 20, tx]   [x]
+  // [01, sy, 21, ty] . [y]
+  // [02, 12, sz, tz]   [z]
+  // [03, 13, 23, 33]   [1]
+  repeated float data = 1 [packed=true];
+}
+
+message TransformResample {
+  BorderMode border_mode = 1;                  // extrapolation of border pixels
+  TransformMatrix transform = 2;               // 3x3 or 4x4 matrix
+  optional TransformMatrix prev_transform = 3; // 3x3 or 4x4 matrix, defaults to identity
+  optional float depth_warp = 4;               // depth warp factor, defaults to 1.0
+  optional bool export_mask = 5;               // return inpaint mask
+}
+
+message TransformParameters {
+  oneof transform {
+    TransformBlend blend = 1;
+    TransformColorAdjust color_adjust = 2;
+    TransformColorMatch color_match = 3;
+    TransformDepthCalc depth_calc = 4;
+    TransformResample resample = 5;
+  }
+}
+
+
 //
 // Asset parameters
 //
@@ -282,7 +373,7 @@ enum AssetAction {
 enum AssetUse {
   ASSET_USE_UNDEFINED = 0;    // Asset does not have use defined
   ASSET_USE_INPUT = 1;        // Asset is used as an input for the project
-  ASSET_USE_OUTPUT = 2;       // Asset is an output from the project 
+  ASSET_USE_OUTPUT = 2;       // Asset is an output from the project
   ASSET_USE_INTERMEDIATE = 3; // Asset is an output from an intermediate step of the project
   ASSET_USE_PROJECT = 4;      // Asset is used as the project file for the project
 }
@@ -325,9 +416,12 @@ message Request {
     ImageParameters image = 5;
     ClassifierParameters classifier = 7;
     AssetParameters asset = 8;
+    InterpolateParameters interpolate = 11;
+    TransformParameters transform = 12;
   }
   optional ConditionerParameters conditioner = 6;
   reserved 9,10; //9, 10 are reserved
+  optional google.protobuf.Struct extras = 2047; // for development use
 }
 
 //
