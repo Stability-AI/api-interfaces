@@ -227,7 +227,7 @@ message ImageParameters {
   optional uint64 steps = 5;
   optional TransformType transform = 6;
   repeated StepParameter parameters = 7;
-  optional MaskedAreaInit masked_area_init = 8; // defaults to MASKED_AREA_INIT_ZERO 
+  optional MaskedAreaInit masked_area_init = 8; // defaults to MASKED_AREA_INIT_ZERO
   optional WeightMethod weight_method = 9; //defaults to TEXT_ENCODER
   optional bool quantize = 10; //defaults to true
 }
@@ -327,6 +327,7 @@ message TransformColorMatch {
 message TransformDepthCalc {
   optional float blend_weight = 1; // blend factor between AdaBins (0.0) and MiDaS (1.0)
   optional uint32 blur_radius = 2; // defaults to 0.0
+  optional bool reverse = 3;       // make near depths have higher values
 }
 
 message TransformMatrix {
@@ -409,7 +410,7 @@ enum AssetAction {
 enum AssetUse {
   ASSET_USE_UNDEFINED = 0;    // Asset does not have use defined
   ASSET_USE_INPUT = 1;        // Asset is used as an input for the project
-  ASSET_USE_OUTPUT = 2;       // Asset is an output from the project 
+  ASSET_USE_OUTPUT = 2;       // Asset is an output from the project
   ASSET_USE_INTERMEDIATE = 3; // Asset is an output from an intermediate step of the project
   ASSET_USE_PROJECT = 4;      // Asset is used as the project file for the project
 }

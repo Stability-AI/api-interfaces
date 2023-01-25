@@ -7547,7 +7547,8 @@ proto.gooseai.TransformDepthCalc.prototype.toObject = function(opt_includeInstan
 proto.gooseai.TransformDepthCalc.toObject = function(includeInstance, msg) {
   var f, obj = {
     blendWeight: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    blurRadius: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    blurRadius: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    reverse: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -7592,6 +7593,10 @@ proto.gooseai.TransformDepthCalc.deserializeBinaryFromReader = function(msg, rea
       var value = /** @type {number} */ (reader.readUint32());
       msg.setBlurRadius(value);
       break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setReverse(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -7632,6 +7637,13 @@ proto.gooseai.TransformDepthCalc.serializeBinaryToWriter = function(message, wri
   if (f != null) {
     writer.writeUint32(
       2,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeBool(
+      3,
       f
     );
   }
@@ -7707,6 +7719,42 @@ proto.gooseai.TransformDepthCalc.prototype.clearBlurRadius = function() {
  */
 proto.gooseai.TransformDepthCalc.prototype.hasBlurRadius = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional bool reverse = 3;
+ * @return {boolean}
+ */
+proto.gooseai.TransformDepthCalc.prototype.getReverse = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.gooseai.TransformDepthCalc} returns this
+ */
+proto.gooseai.TransformDepthCalc.prototype.setReverse = function(value) {
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.TransformDepthCalc} returns this
+ */
+proto.gooseai.TransformDepthCalc.prototype.clearReverse = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.TransformDepthCalc.prototype.hasReverse = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
