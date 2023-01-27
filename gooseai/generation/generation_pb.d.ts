@@ -992,6 +992,11 @@ export class TransformResample extends jspb.Message {
   getExportMask(): boolean;
   setExportMask(value: boolean): void;
 
+  hasDoPrefill(): boolean;
+  clearDoPrefill(): void;
+  getDoPrefill(): boolean;
+  setDoPrefill(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TransformResample.AsObject;
   static toObject(includeInstance: boolean, msg: TransformResample): TransformResample.AsObject;
@@ -1009,6 +1014,7 @@ export namespace TransformResample {
     prevTransform?: TransformMatrix.AsObject,
     depthWarp: number,
     exportMask: boolean,
+    doPrefill: boolean,
   }
 }
 

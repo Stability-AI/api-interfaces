@@ -345,6 +345,7 @@ message TransformResample {
   optional TransformMatrix prev_transform = 3; // 3x3 or 4x4 matrix, defaults to identity
   optional float depth_warp = 4;               // depth warp factor, defaults to 1.0
   optional bool export_mask = 5;               // return inpaint mask
+  optional bool do_prefill = 6;                // prefill border areas with values matching the colors around the area
 }
 
 message PointCloudRenderSettings {
@@ -353,7 +354,7 @@ message PointCloudRenderSettings {
 }
 
 message MeshRenderSettings {
-  float max_mesh_edge = 1;
+  float max_mesh_edge = 1;  // Mesh edges longer that this values are discarded
 }
 
 message RenderSettings {
@@ -364,23 +365,23 @@ message RenderSettings {
 }
 
 enum CameraType {
-  CAMERA_PERSPECTIVE = 0;
-  CAMERA_ORTHOGRAPHIC = 1;
+  CAMERA_PERSPECTIVE = 0;   // Perspective camera
+  CAMERA_ORTHOGRAPHIC = 1;  // Orthographic camera. Well suited for isometric animations
 }
 
 message CameraSettings {
-  float near_plane = 1;
-  float far_plane = 2;
+  float near_plane = 1;    // Nearest plane depth of a rendered frustum
+  float far_plane = 2;     // Farthest plane depth of a rendered frustum
   optional float fov = 3;  // Camera field of view (in angles). Must be set for CAMERA_PERSPECTIVE type.
 }
 
 message TransformCameraPose {
-  TransformMatrix world_to_view_matrix = 1;
+  TransformMatrix world_to_view_matrix = 1;  // 4x4 transform matrix for the next frame
   CameraSettings camera_settings = 2;
   CameraType camera_type = 3;
   RenderSettings image_render_settings = 4;
   RenderSettings mask_render_settings = 5;
-  bool do_prefill = 6;
+  bool do_prefill = 6;   // Prefill masked areas with values matching the colors around the area
 }
 
 message TransformParameters {

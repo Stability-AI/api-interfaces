@@ -7952,7 +7952,8 @@ proto.gooseai.TransformResample.toObject = function(includeInstance, msg) {
     transform: (f = msg.getTransform()) && proto.gooseai.TransformMatrix.toObject(includeInstance, f),
     prevTransform: (f = msg.getPrevTransform()) && proto.gooseai.TransformMatrix.toObject(includeInstance, f),
     depthWarp: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    exportMask: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
+    exportMask: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    doPrefill: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
   };
 
   if (includeInstance) {
@@ -8010,6 +8011,10 @@ proto.gooseai.TransformResample.deserializeBinaryFromReader = function(msg, read
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setExportMask(value);
+      break;
+    case 6:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDoPrefill(value);
       break;
     default:
       reader.skipField();
@@ -8074,6 +8079,13 @@ proto.gooseai.TransformResample.serializeBinaryToWriter = function(message, writ
   if (f != null) {
     writer.writeBool(
       5,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 6));
+  if (f != null) {
+    writer.writeBool(
+      6,
       f
     );
   }
@@ -8241,6 +8253,42 @@ proto.gooseai.TransformResample.prototype.clearExportMask = function() {
  */
 proto.gooseai.TransformResample.prototype.hasExportMask = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional bool do_prefill = 6;
+ * @return {boolean}
+ */
+proto.gooseai.TransformResample.prototype.getDoPrefill = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.gooseai.TransformResample} returns this
+ */
+proto.gooseai.TransformResample.prototype.setDoPrefill = function(value) {
+  return jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.TransformResample} returns this
+ */
+proto.gooseai.TransformResample.prototype.clearDoPrefill = function() {
+  return jspb.Message.setField(this, 6, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.TransformResample.prototype.hasDoPrefill = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
