@@ -1,0 +1,63 @@
+syntax = 'proto3';
+package gooseai;
+option go_package = "github.com/stability-ai/api-interfaces/gooseai/finetuning";
+
+import "project.proto";
+import "dashboard.proto";
+
+enum FineTuningMode {
+  NONE = 0;
+  FACE = 1;
+  STYLE = 2;
+  OBJECT = 3;
+}
+
+// TODO: wasn't sure if this should just be called 'Session'?  FineTuningJob seemed more direct / descriptive
+message FineTuningJob {
+  string id = 1; // uuid unique identifier
+  User user = 2; // user who created the job
+  string model_name = 3; // a readable model name
+  optional FineTuningMode mode = 4; // the mode of the job
+  optional string object_name = 5;  // freeform text description of object
+  repeated ProjectAsset assets = 6; // the list of assets to be used for fine tuning
+  string job_output_path = 7; // the path to the output of the job
+}
+
+message CreateFineTuningJobRequest{
+  User user = 1;
+  string model_name = 2; // a readable model name
+  optional FineTuningMode mode = 3; // the mode of the job
+  optional string object_name = 4;  // freeform text description of object
+  repeated ProjectAsset assets = 5; // the list of assets to be used for fine tuning
+}
+
+message UpdateFineTuningJobRequest{
+  string id = 1;
+  User user = 2;
+  string model_name = 3; // a readable model name
+  optional FineTuningMode mode = 4; // the mode of the job
+  optional string object_name = 5;  // freeform text description of object
+  repeated ProjectAsset assets = 6; // the list of assets to be used for fine tuning
+}
+
+message FineTuningJobRequestById {
+  string id = 1;
+}
+
+message FineTuningJobProgress {
+  string id = 1; // the id of the job that was checked
+  int32 progress = 2; // the percentage of progress
+}
+
+service FineTuningService {
+  // Create a new project if it does not exist
+  rpc CreateFineTuningJob (CreateFineTuningJobRequest) returns (FineTuningJob);
+  // Get a FineTuningJob by id
+  rpc GetFineTuningJobById (FineTuningJobRequestById) returns (FineTuningJob);
+  // Update a FineTuningJob by id
+  rpc UpdateFineTuningJob (UpdateFineTuningJobRequest) returns (FineTuningJob);
+  // Delete a FineTuningJob by id
+  rpc DeleteFineTuningJob (FineTuningJobRequestById) returns (FineTuningJob);
+  // Check the progress of a FineTuningJob by id
+  rpc GetFineTuningJobProgress (FineTuningJobRequestById) returns (FineTuningJobProgress);
+}
