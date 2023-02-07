@@ -992,11 +992,6 @@ export class TransformResample extends jspb.Message {
   getExportMask(): boolean;
   setExportMask(value: boolean): void;
 
-  hasDoPrefill(): boolean;
-  clearDoPrefill(): void;
-  getDoPrefill(): boolean;
-  setDoPrefill(value: boolean): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TransformResample.AsObject;
   static toObject(includeInstance: boolean, msg: TransformResample): TransformResample.AsObject;
@@ -1014,7 +1009,6 @@ export namespace TransformResample {
     prevTransform?: TransformMatrix.AsObject,
     depthWarp: number,
     exportMask: boolean,
-    doPrefill: boolean,
   }
 }
 
@@ -1098,6 +1092,9 @@ export namespace RenderSettings {
 }
 
 export class CameraSettings extends jspb.Message {
+  getCameraType(): CameraTypeMap[keyof CameraTypeMap];
+  setCameraType(value: CameraTypeMap[keyof CameraTypeMap]): void;
+
   getNearPlane(): number;
   setNearPlane(value: number): void;
 
@@ -1121,6 +1118,7 @@ export class CameraSettings extends jspb.Message {
 
 export namespace CameraSettings {
   export type AsObject = {
+    cameraType: CameraTypeMap[keyof CameraTypeMap],
     nearPlane: number,
     farPlane: number,
     fov: number,
@@ -1137,9 +1135,6 @@ export class TransformCameraPose extends jspb.Message {
   clearCameraSettings(): void;
   getCameraSettings(): CameraSettings | undefined;
   setCameraSettings(value?: CameraSettings): void;
-
-  getCameraType(): CameraTypeMap[keyof CameraTypeMap];
-  setCameraType(value: CameraTypeMap[keyof CameraTypeMap]): void;
 
   hasImageRenderSettings(): boolean;
   clearImageRenderSettings(): void;
@@ -1168,7 +1163,6 @@ export namespace TransformCameraPose {
   export type AsObject = {
     worldToViewMatrix?: TransformMatrix.AsObject,
     cameraSettings?: CameraSettings.AsObject,
-    cameraType: CameraTypeMap[keyof CameraTypeMap],
     imageRenderSettings?: RenderSettings.AsObject,
     maskRenderSettings?: RenderSettings.AsObject,
     doPrefill: boolean,
@@ -1646,6 +1640,7 @@ export interface BorderModeMap {
   BORDER_REPLICATE: 1;
   BORDER_WRAP: 2;
   BORDER_ZERO: 3;
+  BORDER_PREFILL: 4;
 }
 
 export const BorderMode: BorderModeMap;

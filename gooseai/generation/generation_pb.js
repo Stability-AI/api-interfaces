@@ -7952,8 +7952,7 @@ proto.gooseai.TransformResample.toObject = function(includeInstance, msg) {
     transform: (f = msg.getTransform()) && proto.gooseai.TransformMatrix.toObject(includeInstance, f),
     prevTransform: (f = msg.getPrevTransform()) && proto.gooseai.TransformMatrix.toObject(includeInstance, f),
     depthWarp: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    exportMask: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    doPrefill: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
+    exportMask: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -8011,10 +8010,6 @@ proto.gooseai.TransformResample.deserializeBinaryFromReader = function(msg, read
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setExportMask(value);
-      break;
-    case 6:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setDoPrefill(value);
       break;
     default:
       reader.skipField();
@@ -8079,13 +8074,6 @@ proto.gooseai.TransformResample.serializeBinaryToWriter = function(message, writ
   if (f != null) {
     writer.writeBool(
       5,
-      f
-    );
-  }
-  f = /** @type {boolean} */ (jspb.Message.getField(message, 6));
-  if (f != null) {
-    writer.writeBool(
-      6,
       f
     );
   }
@@ -8253,42 +8241,6 @@ proto.gooseai.TransformResample.prototype.clearExportMask = function() {
  */
 proto.gooseai.TransformResample.prototype.hasExportMask = function() {
   return jspb.Message.getField(this, 5) != null;
-};
-
-
-/**
- * optional bool do_prefill = 6;
- * @return {boolean}
- */
-proto.gooseai.TransformResample.prototype.getDoPrefill = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.gooseai.TransformResample} returns this
- */
-proto.gooseai.TransformResample.prototype.setDoPrefill = function(value) {
-  return jspb.Message.setField(this, 6, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.gooseai.TransformResample} returns this
- */
-proto.gooseai.TransformResample.prototype.clearDoPrefill = function() {
-  return jspb.Message.setField(this, 6, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.gooseai.TransformResample.prototype.hasDoPrefill = function() {
-  return jspb.Message.getField(this, 6) != null;
 };
 
 
@@ -8842,9 +8794,10 @@ proto.gooseai.CameraSettings.prototype.toObject = function(opt_includeInstance) 
  */
 proto.gooseai.CameraSettings.toObject = function(includeInstance, msg) {
   var f, obj = {
-    nearPlane: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    farPlane: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    fov: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0)
+    cameraType: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    nearPlane: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    farPlane: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+    fov: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
   };
 
   if (includeInstance) {
@@ -8882,14 +8835,18 @@ proto.gooseai.CameraSettings.deserializeBinaryFromReader = function(msg, reader)
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readFloat());
-      msg.setNearPlane(value);
+      var value = /** @type {!proto.gooseai.CameraType} */ (reader.readEnum());
+      msg.setCameraType(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readFloat());
-      msg.setFarPlane(value);
+      msg.setNearPlane(value);
       break;
     case 3:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setFarPlane(value);
+      break;
+    case 4:
       var value = /** @type {number} */ (reader.readFloat());
       msg.setFov(value);
       break;
@@ -8922,24 +8879,31 @@ proto.gooseai.CameraSettings.prototype.serializeBinary = function() {
  */
 proto.gooseai.CameraSettings.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getNearPlane();
+  f = message.getCameraType();
   if (f !== 0.0) {
-    writer.writeFloat(
+    writer.writeEnum(
       1,
       f
     );
   }
-  f = message.getFarPlane();
+  f = message.getNearPlane();
   if (f !== 0.0) {
     writer.writeFloat(
       2,
       f
     );
   }
-  f = /** @type {number} */ (jspb.Message.getField(message, 3));
-  if (f != null) {
+  f = message.getFarPlane();
+  if (f !== 0.0) {
     writer.writeFloat(
       3,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
+    writer.writeFloat(
+      4,
       f
     );
   }
@@ -8947,28 +8911,28 @@ proto.gooseai.CameraSettings.serializeBinaryToWriter = function(message, writer)
 
 
 /**
- * optional float near_plane = 1;
+ * optional CameraType camera_type = 1;
+ * @return {!proto.gooseai.CameraType}
+ */
+proto.gooseai.CameraSettings.prototype.getCameraType = function() {
+  return /** @type {!proto.gooseai.CameraType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {!proto.gooseai.CameraType} value
+ * @return {!proto.gooseai.CameraSettings} returns this
+ */
+proto.gooseai.CameraSettings.prototype.setCameraType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 1, value);
+};
+
+
+/**
+ * optional float near_plane = 2;
  * @return {number}
  */
 proto.gooseai.CameraSettings.prototype.getNearPlane = function() {
-  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 1, 0.0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.gooseai.CameraSettings} returns this
- */
-proto.gooseai.CameraSettings.prototype.setNearPlane = function(value) {
-  return jspb.Message.setProto3FloatField(this, 1, value);
-};
-
-
-/**
- * optional float far_plane = 2;
- * @return {number}
- */
-proto.gooseai.CameraSettings.prototype.getFarPlane = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 2, 0.0));
 };
 
@@ -8977,16 +8941,16 @@ proto.gooseai.CameraSettings.prototype.getFarPlane = function() {
  * @param {number} value
  * @return {!proto.gooseai.CameraSettings} returns this
  */
-proto.gooseai.CameraSettings.prototype.setFarPlane = function(value) {
+proto.gooseai.CameraSettings.prototype.setNearPlane = function(value) {
   return jspb.Message.setProto3FloatField(this, 2, value);
 };
 
 
 /**
- * optional float fov = 3;
+ * optional float far_plane = 3;
  * @return {number}
  */
-proto.gooseai.CameraSettings.prototype.getFov = function() {
+proto.gooseai.CameraSettings.prototype.getFarPlane = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 3, 0.0));
 };
 
@@ -8995,8 +8959,26 @@ proto.gooseai.CameraSettings.prototype.getFov = function() {
  * @param {number} value
  * @return {!proto.gooseai.CameraSettings} returns this
  */
+proto.gooseai.CameraSettings.prototype.setFarPlane = function(value) {
+  return jspb.Message.setProto3FloatField(this, 3, value);
+};
+
+
+/**
+ * optional float fov = 4;
+ * @return {number}
+ */
+proto.gooseai.CameraSettings.prototype.getFov = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 4, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.gooseai.CameraSettings} returns this
+ */
 proto.gooseai.CameraSettings.prototype.setFov = function(value) {
-  return jspb.Message.setField(this, 3, value);
+  return jspb.Message.setField(this, 4, value);
 };
 
 
@@ -9005,7 +8987,7 @@ proto.gooseai.CameraSettings.prototype.setFov = function(value) {
  * @return {!proto.gooseai.CameraSettings} returns this
  */
 proto.gooseai.CameraSettings.prototype.clearFov = function() {
-  return jspb.Message.setField(this, 3, undefined);
+  return jspb.Message.setField(this, 4, undefined);
 };
 
 
@@ -9014,7 +8996,7 @@ proto.gooseai.CameraSettings.prototype.clearFov = function() {
  * @return {boolean}
  */
 proto.gooseai.CameraSettings.prototype.hasFov = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
@@ -9052,10 +9034,9 @@ proto.gooseai.TransformCameraPose.toObject = function(includeInstance, msg) {
   var f, obj = {
     worldToViewMatrix: (f = msg.getWorldToViewMatrix()) && proto.gooseai.TransformMatrix.toObject(includeInstance, f),
     cameraSettings: (f = msg.getCameraSettings()) && proto.gooseai.CameraSettings.toObject(includeInstance, f),
-    cameraType: jspb.Message.getFieldWithDefault(msg, 3, 0),
     imageRenderSettings: (f = msg.getImageRenderSettings()) && proto.gooseai.RenderSettings.toObject(includeInstance, f),
     maskRenderSettings: (f = msg.getMaskRenderSettings()) && proto.gooseai.RenderSettings.toObject(includeInstance, f),
-    doPrefill: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
+    doPrefill: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -9103,20 +9084,16 @@ proto.gooseai.TransformCameraPose.deserializeBinaryFromReader = function(msg, re
       msg.setCameraSettings(value);
       break;
     case 3:
-      var value = /** @type {!proto.gooseai.CameraType} */ (reader.readEnum());
-      msg.setCameraType(value);
-      break;
-    case 4:
       var value = new proto.gooseai.RenderSettings;
       reader.readMessage(value,proto.gooseai.RenderSettings.deserializeBinaryFromReader);
       msg.setImageRenderSettings(value);
       break;
-    case 5:
+    case 4:
       var value = new proto.gooseai.RenderSettings;
       reader.readMessage(value,proto.gooseai.RenderSettings.deserializeBinaryFromReader);
       msg.setMaskRenderSettings(value);
       break;
-    case 6:
+    case 5:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setDoPrefill(value);
       break;
@@ -9165,17 +9142,10 @@ proto.gooseai.TransformCameraPose.serializeBinaryToWriter = function(message, wr
       proto.gooseai.CameraSettings.serializeBinaryToWriter
     );
   }
-  f = message.getCameraType();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      3,
-      f
-    );
-  }
   f = message.getImageRenderSettings();
   if (f != null) {
     writer.writeMessage(
-      4,
+      3,
       f,
       proto.gooseai.RenderSettings.serializeBinaryToWriter
     );
@@ -9183,7 +9153,7 @@ proto.gooseai.TransformCameraPose.serializeBinaryToWriter = function(message, wr
   f = message.getMaskRenderSettings();
   if (f != null) {
     writer.writeMessage(
-      5,
+      4,
       f,
       proto.gooseai.RenderSettings.serializeBinaryToWriter
     );
@@ -9191,7 +9161,7 @@ proto.gooseai.TransformCameraPose.serializeBinaryToWriter = function(message, wr
   f = message.getDoPrefill();
   if (f) {
     writer.writeBool(
-      6,
+      5,
       f
     );
   }
@@ -9273,30 +9243,12 @@ proto.gooseai.TransformCameraPose.prototype.hasCameraSettings = function() {
 
 
 /**
- * optional CameraType camera_type = 3;
- * @return {!proto.gooseai.CameraType}
- */
-proto.gooseai.TransformCameraPose.prototype.getCameraType = function() {
-  return /** @type {!proto.gooseai.CameraType} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
-};
-
-
-/**
- * @param {!proto.gooseai.CameraType} value
- * @return {!proto.gooseai.TransformCameraPose} returns this
- */
-proto.gooseai.TransformCameraPose.prototype.setCameraType = function(value) {
-  return jspb.Message.setProto3EnumField(this, 3, value);
-};
-
-
-/**
- * optional RenderSettings image_render_settings = 4;
+ * optional RenderSettings image_render_settings = 3;
  * @return {?proto.gooseai.RenderSettings}
  */
 proto.gooseai.TransformCameraPose.prototype.getImageRenderSettings = function() {
   return /** @type{?proto.gooseai.RenderSettings} */ (
-    jspb.Message.getWrapperField(this, proto.gooseai.RenderSettings, 4));
+    jspb.Message.getWrapperField(this, proto.gooseai.RenderSettings, 3));
 };
 
 
@@ -9305,7 +9257,7 @@ proto.gooseai.TransformCameraPose.prototype.getImageRenderSettings = function() 
  * @return {!proto.gooseai.TransformCameraPose} returns this
 */
 proto.gooseai.TransformCameraPose.prototype.setImageRenderSettings = function(value) {
-  return jspb.Message.setWrapperField(this, 4, value);
+  return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
@@ -9323,17 +9275,17 @@ proto.gooseai.TransformCameraPose.prototype.clearImageRenderSettings = function(
  * @return {boolean}
  */
 proto.gooseai.TransformCameraPose.prototype.hasImageRenderSettings = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
- * optional RenderSettings mask_render_settings = 5;
+ * optional RenderSettings mask_render_settings = 4;
  * @return {?proto.gooseai.RenderSettings}
  */
 proto.gooseai.TransformCameraPose.prototype.getMaskRenderSettings = function() {
   return /** @type{?proto.gooseai.RenderSettings} */ (
-    jspb.Message.getWrapperField(this, proto.gooseai.RenderSettings, 5));
+    jspb.Message.getWrapperField(this, proto.gooseai.RenderSettings, 4));
 };
 
 
@@ -9342,7 +9294,7 @@ proto.gooseai.TransformCameraPose.prototype.getMaskRenderSettings = function() {
  * @return {!proto.gooseai.TransformCameraPose} returns this
 */
 proto.gooseai.TransformCameraPose.prototype.setMaskRenderSettings = function(value) {
-  return jspb.Message.setWrapperField(this, 5, value);
+  return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
@@ -9360,16 +9312,16 @@ proto.gooseai.TransformCameraPose.prototype.clearMaskRenderSettings = function()
  * @return {boolean}
  */
 proto.gooseai.TransformCameraPose.prototype.hasMaskRenderSettings = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
- * optional bool do_prefill = 6;
+ * optional bool do_prefill = 5;
  * @return {boolean}
  */
 proto.gooseai.TransformCameraPose.prototype.getDoPrefill = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
 };
 
 
@@ -9378,7 +9330,7 @@ proto.gooseai.TransformCameraPose.prototype.getDoPrefill = function() {
  * @return {!proto.gooseai.TransformCameraPose} returns this
  */
 proto.gooseai.TransformCameraPose.prototype.setDoPrefill = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 6, value);
+  return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
@@ -12086,7 +12038,8 @@ proto.gooseai.BorderMode = {
   BORDER_REFLECT: 0,
   BORDER_REPLICATE: 1,
   BORDER_WRAP: 2,
-  BORDER_ZERO: 3
+  BORDER_ZERO: 3,
+  BORDER_PREFILL: 4
 };
 
 /**
