@@ -58,11 +58,6 @@ export namespace FineTuningJob {
 }
 
 export class CreateFineTuningJobRequest extends jspb.Message {
-  hasUser(): boolean;
-  clearUser(): void;
-  getUser(): dashboard_pb.User | undefined;
-  setUser(value?: dashboard_pb.User): void;
-
   getModelName(): string;
   setModelName(value: string): void;
 
@@ -76,10 +71,8 @@ export class CreateFineTuningJobRequest extends jspb.Message {
   getObjectName(): string;
   setObjectName(value: string): void;
 
-  clearAssetsList(): void;
-  getAssetsList(): Array<project_pb.ProjectAsset>;
-  setAssetsList(value: Array<project_pb.ProjectAsset>): void;
-  addAssets(value?: project_pb.ProjectAsset, index?: number): project_pb.ProjectAsset;
+  getProjectId(): string;
+  setProjectId(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateFineTuningJobRequest.AsObject;
@@ -93,22 +86,16 @@ export class CreateFineTuningJobRequest extends jspb.Message {
 
 export namespace CreateFineTuningJobRequest {
   export type AsObject = {
-    user?: dashboard_pb.User.AsObject,
     modelName: string,
     mode: FineTuningModeMap[keyof FineTuningModeMap],
     objectName: string,
-    assetsList: Array<project_pb.ProjectAsset.AsObject>,
+    projectId: string,
   }
 }
 
 export class UpdateFineTuningJobRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
-
-  hasUser(): boolean;
-  clearUser(): void;
-  getUser(): dashboard_pb.User | undefined;
-  setUser(value?: dashboard_pb.User): void;
 
   getModelName(): string;
   setModelName(value: string): void;
@@ -123,10 +110,8 @@ export class UpdateFineTuningJobRequest extends jspb.Message {
   getObjectName(): string;
   setObjectName(value: string): void;
 
-  clearAssetsList(): void;
-  getAssetsList(): Array<project_pb.ProjectAsset>;
-  setAssetsList(value: Array<project_pb.ProjectAsset>): void;
-  addAssets(value?: project_pb.ProjectAsset, index?: number): project_pb.ProjectAsset;
+  getProjectId(): string;
+  setProjectId(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateFineTuningJobRequest.AsObject;
@@ -141,11 +126,10 @@ export class UpdateFineTuningJobRequest extends jspb.Message {
 export namespace UpdateFineTuningJobRequest {
   export type AsObject = {
     id: string,
-    user?: dashboard_pb.User.AsObject,
     modelName: string,
     mode: FineTuningModeMap[keyof FineTuningModeMap],
     objectName: string,
-    assetsList: Array<project_pb.ProjectAsset.AsObject>,
+    projectId: string,
   }
 }
 

@@ -63,7 +63,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.gooseai.CreateFineTuningJobRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.gooseai.CreateFineTuningJobRequest.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.gooseai.CreateFineTuningJobRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -84,7 +84,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.gooseai.UpdateFineTuningJobRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.gooseai.UpdateFineTuningJobRequest.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.gooseai.UpdateFineTuningJobRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -534,13 +534,6 @@ proto.gooseai.FineTuningJob.prototype.setJobOutputPath = function(value) {
 
 
 
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.gooseai.CreateFineTuningJobRequest.repeatedFields_ = [5];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -572,12 +565,10 @@ proto.gooseai.CreateFineTuningJobRequest.prototype.toObject = function(opt_inclu
  */
 proto.gooseai.CreateFineTuningJobRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    user: (f = msg.getUser()) && dashboard_pb.User.toObject(includeInstance, f),
-    modelName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    mode: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    objectName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    assetsList: jspb.Message.toObjectList(msg.getAssetsList(),
-    project_pb.ProjectAsset.toObject, includeInstance)
+    modelName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    mode: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    objectName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    projectId: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -615,26 +606,20 @@ proto.gooseai.CreateFineTuningJobRequest.deserializeBinaryFromReader = function(
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new dashboard_pb.User;
-      reader.readMessage(value,dashboard_pb.User.deserializeBinaryFromReader);
-      msg.setUser(value);
-      break;
-    case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setModelName(value);
       break;
-    case 3:
+    case 2:
       var value = /** @type {!proto.gooseai.FineTuningMode} */ (reader.readEnum());
       msg.setMode(value);
       break;
-    case 4:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setObjectName(value);
       break;
-    case 5:
-      var value = new project_pb.ProjectAsset;
-      reader.readMessage(value,project_pb.ProjectAsset.deserializeBinaryFromReader);
-      msg.addAssets(value);
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setProjectId(value);
       break;
     default:
       reader.skipField();
@@ -665,89 +650,43 @@ proto.gooseai.CreateFineTuningJobRequest.prototype.serializeBinary = function() 
  */
 proto.gooseai.CreateFineTuningJobRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getUser();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      dashboard_pb.User.serializeBinaryToWriter
-    );
-  }
   f = message.getModelName();
   if (f.length > 0) {
     writer.writeString(
+      1,
+      f
+    );
+  }
+  f = /** @type {!proto.gooseai.FineTuningMode} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
+    writer.writeEnum(
       2,
       f
     );
   }
-  f = /** @type {!proto.gooseai.FineTuningMode} */ (jspb.Message.getField(message, 3));
+  f = /** @type {string} */ (jspb.Message.getField(message, 3));
   if (f != null) {
-    writer.writeEnum(
+    writer.writeString(
       3,
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 4));
-  if (f != null) {
+  f = message.getProjectId();
+  if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
-  f = message.getAssetsList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      5,
-      f,
-      project_pb.ProjectAsset.serializeBinaryToWriter
-    );
-  }
 };
 
 
 /**
- * optional User user = 1;
- * @return {?proto.gooseai.User}
- */
-proto.gooseai.CreateFineTuningJobRequest.prototype.getUser = function() {
-  return /** @type{?proto.gooseai.User} */ (
-    jspb.Message.getWrapperField(this, dashboard_pb.User, 1));
-};
-
-
-/**
- * @param {?proto.gooseai.User|undefined} value
- * @return {!proto.gooseai.CreateFineTuningJobRequest} returns this
-*/
-proto.gooseai.CreateFineTuningJobRequest.prototype.setUser = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.gooseai.CreateFineTuningJobRequest} returns this
- */
-proto.gooseai.CreateFineTuningJobRequest.prototype.clearUser = function() {
-  return this.setUser(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.gooseai.CreateFineTuningJobRequest.prototype.hasUser = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional string model_name = 2;
+ * optional string model_name = 1;
  * @return {string}
  */
 proto.gooseai.CreateFineTuningJobRequest.prototype.getModelName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
@@ -756,16 +695,16 @@ proto.gooseai.CreateFineTuningJobRequest.prototype.getModelName = function() {
  * @return {!proto.gooseai.CreateFineTuningJobRequest} returns this
  */
 proto.gooseai.CreateFineTuningJobRequest.prototype.setModelName = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional FineTuningMode mode = 3;
+ * optional FineTuningMode mode = 2;
  * @return {!proto.gooseai.FineTuningMode}
  */
 proto.gooseai.CreateFineTuningJobRequest.prototype.getMode = function() {
-  return /** @type {!proto.gooseai.FineTuningMode} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+  return /** @type {!proto.gooseai.FineTuningMode} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
@@ -774,7 +713,7 @@ proto.gooseai.CreateFineTuningJobRequest.prototype.getMode = function() {
  * @return {!proto.gooseai.CreateFineTuningJobRequest} returns this
  */
 proto.gooseai.CreateFineTuningJobRequest.prototype.setMode = function(value) {
-  return jspb.Message.setField(this, 3, value);
+  return jspb.Message.setField(this, 2, value);
 };
 
 
@@ -783,7 +722,7 @@ proto.gooseai.CreateFineTuningJobRequest.prototype.setMode = function(value) {
  * @return {!proto.gooseai.CreateFineTuningJobRequest} returns this
  */
 proto.gooseai.CreateFineTuningJobRequest.prototype.clearMode = function() {
-  return jspb.Message.setField(this, 3, undefined);
+  return jspb.Message.setField(this, 2, undefined);
 };
 
 
@@ -792,16 +731,16 @@ proto.gooseai.CreateFineTuningJobRequest.prototype.clearMode = function() {
  * @return {boolean}
  */
 proto.gooseai.CreateFineTuningJobRequest.prototype.hasMode = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
- * optional string object_name = 4;
+ * optional string object_name = 3;
  * @return {string}
  */
 proto.gooseai.CreateFineTuningJobRequest.prototype.getObjectName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
@@ -810,7 +749,7 @@ proto.gooseai.CreateFineTuningJobRequest.prototype.getObjectName = function() {
  * @return {!proto.gooseai.CreateFineTuningJobRequest} returns this
  */
 proto.gooseai.CreateFineTuningJobRequest.prototype.setObjectName = function(value) {
-  return jspb.Message.setField(this, 4, value);
+  return jspb.Message.setField(this, 3, value);
 };
 
 
@@ -819,7 +758,7 @@ proto.gooseai.CreateFineTuningJobRequest.prototype.setObjectName = function(valu
  * @return {!proto.gooseai.CreateFineTuningJobRequest} returns this
  */
 proto.gooseai.CreateFineTuningJobRequest.prototype.clearObjectName = function() {
-  return jspb.Message.setField(this, 4, undefined);
+  return jspb.Message.setField(this, 3, undefined);
 };
 
 
@@ -828,55 +767,28 @@ proto.gooseai.CreateFineTuningJobRequest.prototype.clearObjectName = function() 
  * @return {boolean}
  */
 proto.gooseai.CreateFineTuningJobRequest.prototype.hasObjectName = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
- * repeated ProjectAsset assets = 5;
- * @return {!Array<!proto.gooseai.ProjectAsset>}
+ * optional string project_id = 4;
+ * @return {string}
  */
-proto.gooseai.CreateFineTuningJobRequest.prototype.getAssetsList = function() {
-  return /** @type{!Array<!proto.gooseai.ProjectAsset>} */ (
-    jspb.Message.getRepeatedWrapperField(this, project_pb.ProjectAsset, 5));
+proto.gooseai.CreateFineTuningJobRequest.prototype.getProjectId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
- * @param {!Array<!proto.gooseai.ProjectAsset>} value
- * @return {!proto.gooseai.CreateFineTuningJobRequest} returns this
-*/
-proto.gooseai.CreateFineTuningJobRequest.prototype.setAssetsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 5, value);
-};
-
-
-/**
- * @param {!proto.gooseai.ProjectAsset=} opt_value
- * @param {number=} opt_index
- * @return {!proto.gooseai.ProjectAsset}
- */
-proto.gooseai.CreateFineTuningJobRequest.prototype.addAssets = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.gooseai.ProjectAsset, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
+ * @param {string} value
  * @return {!proto.gooseai.CreateFineTuningJobRequest} returns this
  */
-proto.gooseai.CreateFineTuningJobRequest.prototype.clearAssetsList = function() {
-  return this.setAssetsList([]);
+proto.gooseai.CreateFineTuningJobRequest.prototype.setProjectId = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
-
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.gooseai.UpdateFineTuningJobRequest.repeatedFields_ = [6];
 
 
 
@@ -910,12 +822,10 @@ proto.gooseai.UpdateFineTuningJobRequest.prototype.toObject = function(opt_inclu
 proto.gooseai.UpdateFineTuningJobRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    user: (f = msg.getUser()) && dashboard_pb.User.toObject(includeInstance, f),
-    modelName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    mode: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    objectName: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    assetsList: jspb.Message.toObjectList(msg.getAssetsList(),
-    project_pb.ProjectAsset.toObject, includeInstance)
+    modelName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    mode: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    objectName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    projectId: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -957,26 +867,20 @@ proto.gooseai.UpdateFineTuningJobRequest.deserializeBinaryFromReader = function(
       msg.setId(value);
       break;
     case 2:
-      var value = new dashboard_pb.User;
-      reader.readMessage(value,dashboard_pb.User.deserializeBinaryFromReader);
-      msg.setUser(value);
-      break;
-    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setModelName(value);
       break;
-    case 4:
+    case 3:
       var value = /** @type {!proto.gooseai.FineTuningMode} */ (reader.readEnum());
       msg.setMode(value);
       break;
-    case 5:
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setObjectName(value);
       break;
-    case 6:
-      var value = new project_pb.ProjectAsset;
-      reader.readMessage(value,project_pb.ProjectAsset.deserializeBinaryFromReader);
-      msg.addAssets(value);
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setProjectId(value);
       break;
     default:
       reader.skipField();
@@ -1014,41 +918,32 @@ proto.gooseai.UpdateFineTuningJobRequest.serializeBinaryToWriter = function(mess
       f
     );
   }
-  f = message.getUser();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      dashboard_pb.User.serializeBinaryToWriter
-    );
-  }
   f = message.getModelName();
   if (f.length > 0) {
     writer.writeString(
+      2,
+      f
+    );
+  }
+  f = /** @type {!proto.gooseai.FineTuningMode} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeEnum(
       3,
       f
     );
   }
-  f = /** @type {!proto.gooseai.FineTuningMode} */ (jspb.Message.getField(message, 4));
+  f = /** @type {string} */ (jspb.Message.getField(message, 4));
   if (f != null) {
-    writer.writeEnum(
+    writer.writeString(
       4,
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 5));
-  if (f != null) {
+  f = message.getProjectId();
+  if (f.length > 0) {
     writer.writeString(
       5,
       f
-    );
-  }
-  f = message.getAssetsList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      6,
-      f,
-      project_pb.ProjectAsset.serializeBinaryToWriter
     );
   }
 };
@@ -1073,48 +968,11 @@ proto.gooseai.UpdateFineTuningJobRequest.prototype.setId = function(value) {
 
 
 /**
- * optional User user = 2;
- * @return {?proto.gooseai.User}
- */
-proto.gooseai.UpdateFineTuningJobRequest.prototype.getUser = function() {
-  return /** @type{?proto.gooseai.User} */ (
-    jspb.Message.getWrapperField(this, dashboard_pb.User, 2));
-};
-
-
-/**
- * @param {?proto.gooseai.User|undefined} value
- * @return {!proto.gooseai.UpdateFineTuningJobRequest} returns this
-*/
-proto.gooseai.UpdateFineTuningJobRequest.prototype.setUser = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.gooseai.UpdateFineTuningJobRequest} returns this
- */
-proto.gooseai.UpdateFineTuningJobRequest.prototype.clearUser = function() {
-  return this.setUser(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.gooseai.UpdateFineTuningJobRequest.prototype.hasUser = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * optional string model_name = 3;
+ * optional string model_name = 2;
  * @return {string}
  */
 proto.gooseai.UpdateFineTuningJobRequest.prototype.getModelName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
@@ -1123,16 +981,16 @@ proto.gooseai.UpdateFineTuningJobRequest.prototype.getModelName = function() {
  * @return {!proto.gooseai.UpdateFineTuningJobRequest} returns this
  */
 proto.gooseai.UpdateFineTuningJobRequest.prototype.setModelName = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional FineTuningMode mode = 4;
+ * optional FineTuningMode mode = 3;
  * @return {!proto.gooseai.FineTuningMode}
  */
 proto.gooseai.UpdateFineTuningJobRequest.prototype.getMode = function() {
-  return /** @type {!proto.gooseai.FineTuningMode} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+  return /** @type {!proto.gooseai.FineTuningMode} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
@@ -1141,7 +999,7 @@ proto.gooseai.UpdateFineTuningJobRequest.prototype.getMode = function() {
  * @return {!proto.gooseai.UpdateFineTuningJobRequest} returns this
  */
 proto.gooseai.UpdateFineTuningJobRequest.prototype.setMode = function(value) {
-  return jspb.Message.setField(this, 4, value);
+  return jspb.Message.setField(this, 3, value);
 };
 
 
@@ -1150,7 +1008,7 @@ proto.gooseai.UpdateFineTuningJobRequest.prototype.setMode = function(value) {
  * @return {!proto.gooseai.UpdateFineTuningJobRequest} returns this
  */
 proto.gooseai.UpdateFineTuningJobRequest.prototype.clearMode = function() {
-  return jspb.Message.setField(this, 4, undefined);
+  return jspb.Message.setField(this, 3, undefined);
 };
 
 
@@ -1159,16 +1017,16 @@ proto.gooseai.UpdateFineTuningJobRequest.prototype.clearMode = function() {
  * @return {boolean}
  */
 proto.gooseai.UpdateFineTuningJobRequest.prototype.hasMode = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
- * optional string object_name = 5;
+ * optional string object_name = 4;
  * @return {string}
  */
 proto.gooseai.UpdateFineTuningJobRequest.prototype.getObjectName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
@@ -1177,7 +1035,7 @@ proto.gooseai.UpdateFineTuningJobRequest.prototype.getObjectName = function() {
  * @return {!proto.gooseai.UpdateFineTuningJobRequest} returns this
  */
 proto.gooseai.UpdateFineTuningJobRequest.prototype.setObjectName = function(value) {
-  return jspb.Message.setField(this, 5, value);
+  return jspb.Message.setField(this, 4, value);
 };
 
 
@@ -1186,7 +1044,7 @@ proto.gooseai.UpdateFineTuningJobRequest.prototype.setObjectName = function(valu
  * @return {!proto.gooseai.UpdateFineTuningJobRequest} returns this
  */
 proto.gooseai.UpdateFineTuningJobRequest.prototype.clearObjectName = function() {
-  return jspb.Message.setField(this, 5, undefined);
+  return jspb.Message.setField(this, 4, undefined);
 };
 
 
@@ -1195,45 +1053,25 @@ proto.gooseai.UpdateFineTuningJobRequest.prototype.clearObjectName = function() 
  * @return {boolean}
  */
 proto.gooseai.UpdateFineTuningJobRequest.prototype.hasObjectName = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
- * repeated ProjectAsset assets = 6;
- * @return {!Array<!proto.gooseai.ProjectAsset>}
+ * optional string project_id = 5;
+ * @return {string}
  */
-proto.gooseai.UpdateFineTuningJobRequest.prototype.getAssetsList = function() {
-  return /** @type{!Array<!proto.gooseai.ProjectAsset>} */ (
-    jspb.Message.getRepeatedWrapperField(this, project_pb.ProjectAsset, 6));
+proto.gooseai.UpdateFineTuningJobRequest.prototype.getProjectId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
- * @param {!Array<!proto.gooseai.ProjectAsset>} value
- * @return {!proto.gooseai.UpdateFineTuningJobRequest} returns this
-*/
-proto.gooseai.UpdateFineTuningJobRequest.prototype.setAssetsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 6, value);
-};
-
-
-/**
- * @param {!proto.gooseai.ProjectAsset=} opt_value
- * @param {number=} opt_index
- * @return {!proto.gooseai.ProjectAsset}
- */
-proto.gooseai.UpdateFineTuningJobRequest.prototype.addAssets = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.gooseai.ProjectAsset, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
+ * @param {string} value
  * @return {!proto.gooseai.UpdateFineTuningJobRequest} returns this
  */
-proto.gooseai.UpdateFineTuningJobRequest.prototype.clearAssetsList = function() {
-  return this.setAssetsList([]);
+proto.gooseai.UpdateFineTuningJobRequest.prototype.setProjectId = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
