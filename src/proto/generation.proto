@@ -348,19 +348,19 @@ message TransformResample {
   optional bool export_mask = 5;               // return inpaint mask
 }
 
-message PointCloudRenderSettings {
+message PointCloudRenderParameters {
   float radius = 1;            // The radius (in NDC units) of each disk to be rasterized 
   uint32 points_per_pixel = 2;  // Number of points to keep track of per pixel
 }
 
-message MeshRenderSettings {
+message MeshRenderParameters {
   float max_mesh_edge = 1;  // Mesh edges longer than this value are discarded
 }
 
-message RenderSettings {
-  oneof render_settings {
-    PointCloudRenderSettings pointcloud_settings = 1;
-    MeshRenderSettings mesh_settings = 2;
+message RenderParameters {
+  oneof render_parameters {
+    PointCloudRenderParameters pointcloud_parameters = 1;
+    MeshRenderParameters mesh_parameters = 2;
   }
 }
 
@@ -369,7 +369,7 @@ enum CameraType {
   CAMERA_ORTHOGRAPHIC = 1;  // Orthographic camera. Well suited for isometric animations
 }
 
-message CameraSettings {
+message CameraParameters {
   CameraType camera_type = 1;
   float near_plane = 2;    // Nearest plane depth of a rendered frustum
   float far_plane = 3;     // Farthest plane depth of a rendered frustum
@@ -378,9 +378,9 @@ message CameraSettings {
 
 message TransformCameraPose {
   TransformMatrix world_to_view_matrix = 1;  // 4x4 transform matrix for the next frame
-  CameraSettings camera_settings = 2;
-  RenderSettings image_render_settings = 3;
-  RenderSettings mask_render_settings = 4;
+  CameraParameters camera_parameters = 2;
+  RenderParameters image_render_parameters = 3;
+  RenderParameters mask_render_parameters = 4;
   bool do_prefill = 5;   // Prefill masked areas with values matching the colors around the area
 }
 
