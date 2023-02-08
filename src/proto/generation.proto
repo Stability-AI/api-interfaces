@@ -298,7 +298,6 @@ enum BorderMode {
   BORDER_REPLICATE = 1; // replicate border values outside the image
   BORDER_WRAP = 2;      // wrap around / tile the image values
   BORDER_ZERO = 3;      // use 0 for locations outside the image
-  BORDER_PREFILL = 4;   // prefill border areas with values matching the colors around the area
 }
 
 enum ColorMatchMode {
@@ -348,42 +347,6 @@ message TransformResample {
   optional bool export_mask = 5;               // return inpaint mask
 }
 
-message PointCloudRenderParameters {
-  float radius = 1;            // The radius (in NDC units) of each disk to be rasterized 
-  uint32 points_per_pixel = 2;  // Number of points to keep track of per pixel
-}
-
-message MeshRenderParameters {
-  float max_mesh_edge = 1;  // Mesh edges longer than this value are discarded
-}
-
-message RenderParameters {
-  oneof render_parameters {
-    PointCloudRenderParameters pointcloud_parameters = 1;
-    MeshRenderParameters mesh_parameters = 2;
-  }
-}
-
-enum CameraType {
-  CAMERA_PERSPECTIVE = 0;   // Perspective camera
-  CAMERA_ORTHOGRAPHIC = 1;  // Orthographic camera. Well suited for isometric animations
-}
-
-message CameraParameters {
-  CameraType camera_type = 1;
-  float near_plane = 2;    // Nearest plane depth of a rendered frustum
-  float far_plane = 3;     // Farthest plane depth of a rendered frustum
-  optional float fov = 4;  // Camera field of view (in degrees). Must be set for CAMERA_PERSPECTIVE type.
-}
-
-message TransformCameraPose {
-  TransformMatrix world_to_view_matrix = 1;  // 4x4 transform matrix for the next frame
-  CameraParameters camera_parameters = 2;
-  RenderParameters image_render_parameters = 3;
-  RenderParameters mask_render_parameters = 4;
-  bool do_prefill = 5;   // Prefill masked areas with values matching the colors around the area
-}
-
 message TransformParameters {
   oneof transform {
     TransformBlend blend = 1;
@@ -391,7 +354,6 @@ message TransformParameters {
     TransformColorMatch color_match = 3;
     TransformDepthCalc depth_calc = 4;
     TransformResample resample = 5;
-    TransformCameraPose camera_pose = 6;
   }
 }
 
