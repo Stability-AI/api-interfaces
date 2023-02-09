@@ -18,7 +18,7 @@ message FineTuningJob {
   string model_name = 3; // a readable model name
   optional FineTuningMode mode = 4; // the mode of the job
   optional string object_name = 5;  // freeform text description of object
-  repeated ProjectAsset assets = 6; // the list of assets to be used for fine tuning
+  string project_id = 6; // the list of assets to be used for fine tuning
   string job_output_path = 7; // the path to the output of the job
 }
 

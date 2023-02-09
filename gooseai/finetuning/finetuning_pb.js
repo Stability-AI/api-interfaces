@@ -42,7 +42,7 @@ goog.exportSymbol('proto.gooseai.UpdateFineTuningJobRequest', null, global);
  * @constructor
  */
 proto.gooseai.FineTuningJob = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.gooseai.FineTuningJob.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.gooseai.FineTuningJob, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -137,13 +137,6 @@ if (goog.DEBUG && !COMPILED) {
   proto.gooseai.FineTuningJobProgress.displayName = 'proto.gooseai.FineTuningJobProgress';
 }
 
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.gooseai.FineTuningJob.repeatedFields_ = [6];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -180,8 +173,7 @@ proto.gooseai.FineTuningJob.toObject = function(includeInstance, msg) {
     modelName: jspb.Message.getFieldWithDefault(msg, 3, ""),
     mode: jspb.Message.getFieldWithDefault(msg, 4, 0),
     objectName: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    assetsList: jspb.Message.toObjectList(msg.getAssetsList(),
-    project_pb.ProjectAsset.toObject, includeInstance),
+    projectId: jspb.Message.getFieldWithDefault(msg, 6, ""),
     jobOutputPath: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
@@ -241,9 +233,8 @@ proto.gooseai.FineTuningJob.deserializeBinaryFromReader = function(msg, reader) 
       msg.setObjectName(value);
       break;
     case 6:
-      var value = new project_pb.ProjectAsset;
-      reader.readMessage(value,project_pb.ProjectAsset.deserializeBinaryFromReader);
-      msg.addAssets(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setProjectId(value);
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
@@ -314,12 +305,11 @@ proto.gooseai.FineTuningJob.serializeBinaryToWriter = function(message, writer) 
       f
     );
   }
-  f = message.getAssetsList();
+  f = message.getProjectId();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(
+    writer.writeString(
       6,
-      f,
-      project_pb.ProjectAsset.serializeBinaryToWriter
+      f
     );
   }
   f = message.getJobOutputPath();
@@ -478,40 +468,20 @@ proto.gooseai.FineTuningJob.prototype.hasObjectName = function() {
 
 
 /**
- * repeated ProjectAsset assets = 6;
- * @return {!Array<!proto.gooseai.ProjectAsset>}
+ * optional string project_id = 6;
+ * @return {string}
  */
-proto.gooseai.FineTuningJob.prototype.getAssetsList = function() {
-  return /** @type{!Array<!proto.gooseai.ProjectAsset>} */ (
-    jspb.Message.getRepeatedWrapperField(this, project_pb.ProjectAsset, 6));
+proto.gooseai.FineTuningJob.prototype.getProjectId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
 
 /**
- * @param {!Array<!proto.gooseai.ProjectAsset>} value
- * @return {!proto.gooseai.FineTuningJob} returns this
-*/
-proto.gooseai.FineTuningJob.prototype.setAssetsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 6, value);
-};
-
-
-/**
- * @param {!proto.gooseai.ProjectAsset=} opt_value
- * @param {number=} opt_index
- * @return {!proto.gooseai.ProjectAsset}
- */
-proto.gooseai.FineTuningJob.prototype.addAssets = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.gooseai.ProjectAsset, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
+ * @param {string} value
  * @return {!proto.gooseai.FineTuningJob} returns this
  */
-proto.gooseai.FineTuningJob.prototype.clearAssetsList = function() {
-  return this.setAssetsList([]);
+proto.gooseai.FineTuningJob.prototype.setProjectId = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 

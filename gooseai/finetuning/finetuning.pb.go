@@ -8,7 +8,7 @@ package finetuning
 
 import (
 	dashboard "github.com/stability-ai/api-interfaces/gooseai/dashboard"
-	project "github.com/stability-ai/api-interfaces/gooseai/project"
+	_ "github.com/stability-ai/api-interfaces/gooseai/project"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -79,13 +79,13 @@ type FineTuningJob struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id            string                  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                                              // uuid unique identifier
-	User          *dashboard.User         `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`                                          // user who created the job
-	ModelName     string                  `protobuf:"bytes,3,opt,name=model_name,json=modelName,proto3" json:"model_name,omitempty"`               // a readable model name
-	Mode          *FineTuningMode         `protobuf:"varint,4,opt,name=mode,proto3,enum=gooseai.FineTuningMode,oneof" json:"mode,omitempty"`       // the mode of the job
-	ObjectName    *string                 `protobuf:"bytes,5,opt,name=object_name,json=objectName,proto3,oneof" json:"object_name,omitempty"`      // freeform text description of object
-	Assets        []*project.ProjectAsset `protobuf:"bytes,6,rep,name=assets,proto3" json:"assets,omitempty"`                                      // the list of assets to be used for fine tuning
-	JobOutputPath string                  `protobuf:"bytes,7,opt,name=job_output_path,json=jobOutputPath,proto3" json:"job_output_path,omitempty"` // the path to the output of the job
+	Id            string          `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                                              // uuid unique identifier
+	User          *dashboard.User `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`                                          // user who created the job
+	ModelName     string          `protobuf:"bytes,3,opt,name=model_name,json=modelName,proto3" json:"model_name,omitempty"`               // a readable model name
+	Mode          *FineTuningMode `protobuf:"varint,4,opt,name=mode,proto3,enum=gooseai.FineTuningMode,oneof" json:"mode,omitempty"`       // the mode of the job
+	ObjectName    *string         `protobuf:"bytes,5,opt,name=object_name,json=objectName,proto3,oneof" json:"object_name,omitempty"`      // freeform text description of object
+	ProjectId     string          `protobuf:"bytes,6,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`               // the list of assets to be used for fine tuning
+	JobOutputPath string          `protobuf:"bytes,7,opt,name=job_output_path,json=jobOutputPath,proto3" json:"job_output_path,omitempty"` // the path to the output of the job
 }
 
 func (x *FineTuningJob) Reset() {
@@ -155,11 +155,11 @@ func (x *FineTuningJob) GetObjectName() string {
 	return ""
 }
 
-func (x *FineTuningJob) GetAssets() []*project.ProjectAsset {
+func (x *FineTuningJob) GetProjectId() string {
 	if x != nil {
-		return x.Assets
+		return x.ProjectId
 	}
-	return nil
+	return ""
 }
 
 func (x *FineTuningJob) GetJobOutputPath() string {
@@ -427,7 +427,7 @@ var file_finetuning_proto_rawDesc = []byte{
 	0x0a, 0x10, 0x66, 0x69, 0x6e, 0x65, 0x74, 0x75, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x12, 0x07, 0x67, 0x6f, 0x6f, 0x73, 0x65, 0x61, 0x69, 0x1a, 0x0d, 0x70, 0x72, 0x6f,
 	0x6a, 0x65, 0x63, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x0f, 0x64, 0x61, 0x73, 0x68,
-	0x62, 0x6f, 0x61, 0x72, 0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xa9, 0x02, 0x0a, 0x0d,
+	0x62, 0x6f, 0x61, 0x72, 0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x99, 0x02, 0x0a, 0x0d,
 	0x46, 0x69, 0x6e, 0x65, 0x54, 0x75, 0x6e, 0x69, 0x6e, 0x67, 0x4a, 0x6f, 0x62, 0x12, 0x0e, 0x0a,
 	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x21, 0x0a,
 	0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x67, 0x6f,
@@ -439,10 +439,9 @@ var file_finetuning_proto_rawDesc = []byte{
 	0x6e, 0x67, 0x4d, 0x6f, 0x64, 0x65, 0x48, 0x00, 0x52, 0x04, 0x6d, 0x6f, 0x64, 0x65, 0x88, 0x01,
 	0x01, 0x12, 0x24, 0x0a, 0x0b, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65,
 	0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x48, 0x01, 0x52, 0x0a, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74,
-	0x4e, 0x61, 0x6d, 0x65, 0x88, 0x01, 0x01, 0x12, 0x2d, 0x0a, 0x06, 0x61, 0x73, 0x73, 0x65, 0x74,
-	0x73, 0x18, 0x06, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x67, 0x6f, 0x6f, 0x73, 0x65, 0x61,
-	0x69, 0x2e, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x41, 0x73, 0x73, 0x65, 0x74, 0x52, 0x06,
-	0x61, 0x73, 0x73, 0x65, 0x74, 0x73, 0x12, 0x26, 0x0a, 0x0f, 0x6a, 0x6f, 0x62, 0x5f, 0x6f, 0x75,
+	0x4e, 0x61, 0x6d, 0x65, 0x88, 0x01, 0x01, 0x12, 0x1d, 0x0a, 0x0a, 0x70, 0x72, 0x6f, 0x6a, 0x65,
+	0x63, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x70, 0x72, 0x6f,
+	0x6a, 0x65, 0x63, 0x74, 0x49, 0x64, 0x12, 0x26, 0x0a, 0x0f, 0x6a, 0x6f, 0x62, 0x5f, 0x6f, 0x75,
 	0x74, 0x70, 0x75, 0x74, 0x5f, 0x70, 0x61, 0x74, 0x68, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52,
 	0x0d, 0x6a, 0x6f, 0x62, 0x4f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x50, 0x61, 0x74, 0x68, 0x42, 0x07,
 	0x0a, 0x05, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x42, 0x0e, 0x0a, 0x0c, 0x5f, 0x6f, 0x62, 0x6a, 0x65,
@@ -541,29 +540,27 @@ var file_finetuning_proto_goTypes = []interface{}{
 	(*FineTuningJobRequestById)(nil),   // 4: gooseai.FineTuningJobRequestById
 	(*FineTuningJobProgress)(nil),      // 5: gooseai.FineTuningJobProgress
 	(*dashboard.User)(nil),             // 6: gooseai.User
-	(*project.ProjectAsset)(nil),       // 7: gooseai.ProjectAsset
 }
 var file_finetuning_proto_depIdxs = []int32{
-	6,  // 0: gooseai.FineTuningJob.user:type_name -> gooseai.User
-	0,  // 1: gooseai.FineTuningJob.mode:type_name -> gooseai.FineTuningMode
-	7,  // 2: gooseai.FineTuningJob.assets:type_name -> gooseai.ProjectAsset
-	0,  // 3: gooseai.CreateFineTuningJobRequest.mode:type_name -> gooseai.FineTuningMode
-	0,  // 4: gooseai.UpdateFineTuningJobRequest.mode:type_name -> gooseai.FineTuningMode
-	2,  // 5: gooseai.FineTuningService.CreateFineTuningJob:input_type -> gooseai.CreateFineTuningJobRequest
-	4,  // 6: gooseai.FineTuningService.GetFineTuningJobById:input_type -> gooseai.FineTuningJobRequestById
-	3,  // 7: gooseai.FineTuningService.UpdateFineTuningJob:input_type -> gooseai.UpdateFineTuningJobRequest
-	4,  // 8: gooseai.FineTuningService.DeleteFineTuningJob:input_type -> gooseai.FineTuningJobRequestById
-	4,  // 9: gooseai.FineTuningService.GetFineTuningJobProgress:input_type -> gooseai.FineTuningJobRequestById
-	1,  // 10: gooseai.FineTuningService.CreateFineTuningJob:output_type -> gooseai.FineTuningJob
-	1,  // 11: gooseai.FineTuningService.GetFineTuningJobById:output_type -> gooseai.FineTuningJob
-	1,  // 12: gooseai.FineTuningService.UpdateFineTuningJob:output_type -> gooseai.FineTuningJob
-	1,  // 13: gooseai.FineTuningService.DeleteFineTuningJob:output_type -> gooseai.FineTuningJob
-	5,  // 14: gooseai.FineTuningService.GetFineTuningJobProgress:output_type -> gooseai.FineTuningJobProgress
-	10, // [10:15] is the sub-list for method output_type
-	5,  // [5:10] is the sub-list for method input_type
-	5,  // [5:5] is the sub-list for extension type_name
-	5,  // [5:5] is the sub-list for extension extendee
-	0,  // [0:5] is the sub-list for field type_name
+	6, // 0: gooseai.FineTuningJob.user:type_name -> gooseai.User
+	0, // 1: gooseai.FineTuningJob.mode:type_name -> gooseai.FineTuningMode
+	0, // 2: gooseai.CreateFineTuningJobRequest.mode:type_name -> gooseai.FineTuningMode
+	0, // 3: gooseai.UpdateFineTuningJobRequest.mode:type_name -> gooseai.FineTuningMode
+	2, // 4: gooseai.FineTuningService.CreateFineTuningJob:input_type -> gooseai.CreateFineTuningJobRequest
+	4, // 5: gooseai.FineTuningService.GetFineTuningJobById:input_type -> gooseai.FineTuningJobRequestById
+	3, // 6: gooseai.FineTuningService.UpdateFineTuningJob:input_type -> gooseai.UpdateFineTuningJobRequest
+	4, // 7: gooseai.FineTuningService.DeleteFineTuningJob:input_type -> gooseai.FineTuningJobRequestById
+	4, // 8: gooseai.FineTuningService.GetFineTuningJobProgress:input_type -> gooseai.FineTuningJobRequestById
+	1, // 9: gooseai.FineTuningService.CreateFineTuningJob:output_type -> gooseai.FineTuningJob
+	1, // 10: gooseai.FineTuningService.GetFineTuningJobById:output_type -> gooseai.FineTuningJob
+	1, // 11: gooseai.FineTuningService.UpdateFineTuningJob:output_type -> gooseai.FineTuningJob
+	1, // 12: gooseai.FineTuningService.DeleteFineTuningJob:output_type -> gooseai.FineTuningJob
+	5, // 13: gooseai.FineTuningService.GetFineTuningJobProgress:output_type -> gooseai.FineTuningJobProgress
+	9, // [9:14] is the sub-list for method output_type
+	4, // [4:9] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_finetuning_proto_init() }

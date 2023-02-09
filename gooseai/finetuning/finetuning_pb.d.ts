@@ -27,10 +27,8 @@ export class FineTuningJob extends jspb.Message {
   getObjectName(): string;
   setObjectName(value: string): void;
 
-  clearAssetsList(): void;
-  getAssetsList(): Array<project_pb.ProjectAsset>;
-  setAssetsList(value: Array<project_pb.ProjectAsset>): void;
-  addAssets(value?: project_pb.ProjectAsset, index?: number): project_pb.ProjectAsset;
+  getProjectId(): string;
+  setProjectId(value: string): void;
 
   getJobOutputPath(): string;
   setJobOutputPath(value: string): void;
@@ -52,7 +50,7 @@ export namespace FineTuningJob {
     modelName: string,
     mode: FineTuningModeMap[keyof FineTuningModeMap],
     objectName: string,
-    assetsList: Array<project_pb.ProjectAsset.AsObject>,
+    projectId: string,
     jobOutputPath: string,
   }
 }
