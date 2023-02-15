@@ -876,10 +876,15 @@ export class TransformColorAdjust extends jspb.Message {
   getMatchMode(): ColorMatchModeMap[keyof ColorMatchModeMap];
   setMatchMode(value: ColorMatchModeMap[keyof ColorMatchModeMap]): void;
 
-  hasNoise(): boolean;
-  clearNoise(): void;
-  getNoise(): number;
-  setNoise(value: number): void;
+  hasNoiseAmount(): boolean;
+  clearNoiseAmount(): void;
+  getNoiseAmount(): number;
+  setNoiseAmount(value: number): void;
+
+  hasNoiseSeed(): boolean;
+  clearNoiseSeed(): void;
+  getNoiseSeed(): number;
+  setNoiseSeed(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TransformColorAdjust.AsObject;
@@ -900,7 +905,8 @@ export namespace TransformColorAdjust {
     lightness: number,
     matchImage?: Artifact.AsObject,
     matchMode: ColorMatchModeMap[keyof ColorMatchModeMap],
-    noise: number,
+    noiseAmount: number,
+    noiseSeed: number,
   }
 }
 

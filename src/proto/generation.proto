@@ -320,7 +320,8 @@ message TransformColorAdjust {
   optional float lightness = 5;           // -1.0 to 1.0 lightness adjustment, 0.0 is no change
   optional Artifact match_image = 6;      // image to color match
   optional ColorMatchMode match_mode = 7; // color match mode to use
-  optional float noise = 8;               // amount of gaussian noise to add
+  optional float noise_amount = 8;        // amount of gaussian noise to add
+  optional uint32 noise_seed = 9;         // random seed for noise
 }
 
 message TransformColorMatch {
