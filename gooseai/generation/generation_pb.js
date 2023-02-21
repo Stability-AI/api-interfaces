@@ -7029,7 +7029,11 @@ proto.gooseai.TransformColorAdjust.toObject = function(includeInstance, msg) {
     contrast: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
     hue: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
     saturation: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    lightness: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0)
+    lightness: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+    matchImage: (f = msg.getMatchImage()) && proto.gooseai.Artifact.toObject(includeInstance, f),
+    matchMode: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    noiseAmount: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
+    noiseSeed: jspb.Message.getFieldWithDefault(msg, 9, 0)
   };
 
   if (includeInstance) {
@@ -7085,6 +7089,23 @@ proto.gooseai.TransformColorAdjust.deserializeBinaryFromReader = function(msg, r
     case 5:
       var value = /** @type {number} */ (reader.readFloat());
       msg.setLightness(value);
+      break;
+    case 6:
+      var value = new proto.gooseai.Artifact;
+      reader.readMessage(value,proto.gooseai.Artifact.deserializeBinaryFromReader);
+      msg.setMatchImage(value);
+      break;
+    case 7:
+      var value = /** @type {!proto.gooseai.ColorMatchMode} */ (reader.readEnum());
+      msg.setMatchMode(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setNoiseAmount(value);
+      break;
+    case 9:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setNoiseSeed(value);
       break;
     default:
       reader.skipField();
@@ -7147,6 +7168,35 @@ proto.gooseai.TransformColorAdjust.serializeBinaryToWriter = function(message, w
   if (f != null) {
     writer.writeFloat(
       5,
+      f
+    );
+  }
+  f = message.getMatchImage();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      proto.gooseai.Artifact.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {!proto.gooseai.ColorMatchMode} */ (jspb.Message.getField(message, 7));
+  if (f != null) {
+    writer.writeEnum(
+      7,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 8));
+  if (f != null) {
+    writer.writeFloat(
+      8,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 9));
+  if (f != null) {
+    writer.writeUint32(
+      9,
       f
     );
   }
@@ -7330,6 +7380,151 @@ proto.gooseai.TransformColorAdjust.prototype.clearLightness = function() {
  */
 proto.gooseai.TransformColorAdjust.prototype.hasLightness = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional Artifact match_image = 6;
+ * @return {?proto.gooseai.Artifact}
+ */
+proto.gooseai.TransformColorAdjust.prototype.getMatchImage = function() {
+  return /** @type{?proto.gooseai.Artifact} */ (
+    jspb.Message.getWrapperField(this, proto.gooseai.Artifact, 6));
+};
+
+
+/**
+ * @param {?proto.gooseai.Artifact|undefined} value
+ * @return {!proto.gooseai.TransformColorAdjust} returns this
+*/
+proto.gooseai.TransformColorAdjust.prototype.setMatchImage = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.gooseai.TransformColorAdjust} returns this
+ */
+proto.gooseai.TransformColorAdjust.prototype.clearMatchImage = function() {
+  return this.setMatchImage(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.TransformColorAdjust.prototype.hasMatchImage = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional ColorMatchMode match_mode = 7;
+ * @return {!proto.gooseai.ColorMatchMode}
+ */
+proto.gooseai.TransformColorAdjust.prototype.getMatchMode = function() {
+  return /** @type {!proto.gooseai.ColorMatchMode} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {!proto.gooseai.ColorMatchMode} value
+ * @return {!proto.gooseai.TransformColorAdjust} returns this
+ */
+proto.gooseai.TransformColorAdjust.prototype.setMatchMode = function(value) {
+  return jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.TransformColorAdjust} returns this
+ */
+proto.gooseai.TransformColorAdjust.prototype.clearMatchMode = function() {
+  return jspb.Message.setField(this, 7, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.TransformColorAdjust.prototype.hasMatchMode = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional float noise_amount = 8;
+ * @return {number}
+ */
+proto.gooseai.TransformColorAdjust.prototype.getNoiseAmount = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 8, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.gooseai.TransformColorAdjust} returns this
+ */
+proto.gooseai.TransformColorAdjust.prototype.setNoiseAmount = function(value) {
+  return jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.TransformColorAdjust} returns this
+ */
+proto.gooseai.TransformColorAdjust.prototype.clearNoiseAmount = function() {
+  return jspb.Message.setField(this, 8, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.TransformColorAdjust.prototype.hasNoiseAmount = function() {
+  return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional uint32 noise_seed = 9;
+ * @return {number}
+ */
+proto.gooseai.TransformColorAdjust.prototype.getNoiseSeed = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.gooseai.TransformColorAdjust} returns this
+ */
+proto.gooseai.TransformColorAdjust.prototype.setNoiseSeed = function(value) {
+  return jspb.Message.setField(this, 9, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.TransformColorAdjust} returns this
+ */
+proto.gooseai.TransformColorAdjust.prototype.clearNoiseSeed = function() {
+  return jspb.Message.setField(this, 9, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.TransformColorAdjust.prototype.hasNoiseSeed = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
