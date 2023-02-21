@@ -71,7 +71,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.gooseai.TransferRequest.repeatedFields_ = [3];
+proto.gooseai.TransferRequest.repeatedFields_ = [4];
 
 
 
@@ -105,8 +105,9 @@ proto.gooseai.TransferRequest.prototype.toObject = function(opt_includeInstance)
 proto.gooseai.TransferRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     userId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fineTuningJobId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    sourceUrlsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
+    orgId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    fineTuningJobId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    sourceUrlsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -149,9 +150,13 @@ proto.gooseai.TransferRequest.deserializeBinaryFromReader = function(msg, reader
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setFineTuningJobId(value);
+      msg.setOrgId(value);
       break;
     case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFineTuningJobId(value);
+      break;
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.addSourceUrls(value);
       break;
@@ -191,17 +196,24 @@ proto.gooseai.TransferRequest.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getFineTuningJobId();
+  f = message.getOrgId();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
+  f = message.getFineTuningJobId();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
   f = message.getSourceUrlsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      3,
+      4,
       f
     );
   }
@@ -227,10 +239,10 @@ proto.gooseai.TransferRequest.prototype.setUserId = function(value) {
 
 
 /**
- * optional string fine_tuning_job_id = 2;
+ * optional string org_id = 2;
  * @return {string}
  */
-proto.gooseai.TransferRequest.prototype.getFineTuningJobId = function() {
+proto.gooseai.TransferRequest.prototype.getOrgId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -239,17 +251,35 @@ proto.gooseai.TransferRequest.prototype.getFineTuningJobId = function() {
  * @param {string} value
  * @return {!proto.gooseai.TransferRequest} returns this
  */
-proto.gooseai.TransferRequest.prototype.setFineTuningJobId = function(value) {
+proto.gooseai.TransferRequest.prototype.setOrgId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * repeated string source_urls = 3;
+ * optional string fine_tuning_job_id = 3;
+ * @return {string}
+ */
+proto.gooseai.TransferRequest.prototype.getFineTuningJobId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.gooseai.TransferRequest} returns this
+ */
+proto.gooseai.TransferRequest.prototype.setFineTuningJobId = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * repeated string source_urls = 4;
  * @return {!Array<string>}
  */
 proto.gooseai.TransferRequest.prototype.getSourceUrlsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
 };
 
 
@@ -258,7 +288,7 @@ proto.gooseai.TransferRequest.prototype.getSourceUrlsList = function() {
  * @return {!proto.gooseai.TransferRequest} returns this
  */
 proto.gooseai.TransferRequest.prototype.setSourceUrlsList = function(value) {
-  return jspb.Message.setField(this, 3, value || []);
+  return jspb.Message.setField(this, 4, value || []);
 };
 
 
@@ -268,7 +298,7 @@ proto.gooseai.TransferRequest.prototype.setSourceUrlsList = function(value) {
  * @return {!proto.gooseai.TransferRequest} returns this
  */
 proto.gooseai.TransferRequest.prototype.addSourceUrls = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
 };
 
 
@@ -287,7 +317,7 @@ proto.gooseai.TransferRequest.prototype.clearSourceUrlsList = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.gooseai.TransferResponse.repeatedFields_ = [3];
+proto.gooseai.TransferResponse.repeatedFields_ = [1];
 
 
 
@@ -320,7 +350,7 @@ proto.gooseai.TransferResponse.prototype.toObject = function(opt_includeInstance
  */
 proto.gooseai.TransferResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    urlsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
+    urlsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -357,7 +387,7 @@ proto.gooseai.TransferResponse.deserializeBinaryFromReader = function(msg, reade
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 3:
+    case 1:
       var value = /** @type {string} */ (reader.readString());
       msg.addUrls(value);
       break;
@@ -393,7 +423,7 @@ proto.gooseai.TransferResponse.serializeBinaryToWriter = function(message, write
   f = message.getUrlsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      3,
+      1,
       f
     );
   }
@@ -401,11 +431,11 @@ proto.gooseai.TransferResponse.serializeBinaryToWriter = function(message, write
 
 
 /**
- * repeated string urls = 3;
+ * repeated string urls = 1;
  * @return {!Array<string>}
  */
 proto.gooseai.TransferResponse.prototype.getUrlsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
@@ -414,7 +444,7 @@ proto.gooseai.TransferResponse.prototype.getUrlsList = function() {
  * @return {!proto.gooseai.TransferResponse} returns this
  */
 proto.gooseai.TransferResponse.prototype.setUrlsList = function(value) {
-  return jspb.Message.setField(this, 3, value || []);
+  return jspb.Message.setField(this, 1, value || []);
 };
 
 
@@ -424,7 +454,7 @@ proto.gooseai.TransferResponse.prototype.setUrlsList = function(value) {
  * @return {!proto.gooseai.TransferResponse} returns this
  */
 proto.gooseai.TransferResponse.prototype.addUrls = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
 };
 
 

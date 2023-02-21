@@ -5,12 +5,13 @@ option go_package = "github.com/stability-ai/api-interfaces/gooseai/transfer";
 
 message TransferRequest {
     string user_id = 1; // user_id of the user who is requesting the transfer
-    string fine_tuning_job_id = 2; // the id of the fine tuning job
-    repeated string source_urls = 3; // a list of urls to the assets to be transferred
+    string org_id = 2; // org_id of the user who is requesting the transfer
+    string fine_tuning_job_id = 3; // the id of the fine tuning job
+    repeated string source_urls = 4; // a list of urls to the assets to be transferred
   }
 
 message TransferResponse {
-    repeated string urls = 3; // the list of transferred assets in their destination location
+    repeated string urls = 1; // the list of transferred assets in their destination location
   }
 
  service TransferService {

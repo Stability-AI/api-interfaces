@@ -7,6 +7,9 @@ export class TransferRequest extends jspb.Message {
   getUserId(): string;
   setUserId(value: string): void;
 
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
   getFineTuningJobId(): string;
   setFineTuningJobId(value: string): void;
 
@@ -28,6 +31,7 @@ export class TransferRequest extends jspb.Message {
 export namespace TransferRequest {
   export type AsObject = {
     userId: string,
+    orgId: string,
     fineTuningJobId: string,
     sourceUrlsList: Array<string>,
   }
