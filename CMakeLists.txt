@@ -249,6 +249,7 @@ add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/generation.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/engines.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/project.proto)
 add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/finetuning.proto)
+add_protobufs(${CMAKE_SOURCE_DIR}/src/proto/transfer.proto)
 generate_interfaces()
 
 add_custom_command(
