@@ -151,27 +151,27 @@ export namespace FineTuningJobRequestById {
   }
 }
 
-export class FineTuningJobProgress extends jspb.Message {
+export class FineTuningJobStatus extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  getProgress(): number;
-  setProgress(value: number): void;
+  getStatus(): JobStatusMap[keyof JobStatusMap];
+  setStatus(value: JobStatusMap[keyof JobStatusMap]): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FineTuningJobProgress.AsObject;
-  static toObject(includeInstance: boolean, msg: FineTuningJobProgress): FineTuningJobProgress.AsObject;
+  toObject(includeInstance?: boolean): FineTuningJobStatus.AsObject;
+  static toObject(includeInstance: boolean, msg: FineTuningJobStatus): FineTuningJobStatus.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FineTuningJobProgress, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FineTuningJobProgress;
-  static deserializeBinaryFromReader(message: FineTuningJobProgress, reader: jspb.BinaryReader): FineTuningJobProgress;
+  static serializeBinaryToWriter(message: FineTuningJobStatus, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FineTuningJobStatus;
+  static deserializeBinaryFromReader(message: FineTuningJobStatus, reader: jspb.BinaryReader): FineTuningJobStatus;
 }
 
-export namespace FineTuningJobProgress {
+export namespace FineTuningJobStatus {
   export type AsObject = {
     id: string,
-    progress: number,
+    status: JobStatusMap[keyof JobStatusMap],
   }
 }
 
@@ -183,4 +183,12 @@ export interface FineTuningModeMap {
 }
 
 export const FineTuningMode: FineTuningModeMap;
+
+export interface JobStatusMap {
+  NOT_STARTED: 0;
+  RUNNING: 1;
+  COMPLETED: 2;
+}
+
+export const JobStatus: JobStatusMap;
 

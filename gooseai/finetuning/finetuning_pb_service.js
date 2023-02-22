@@ -52,7 +52,7 @@ FineTuningService.GetFineTuningJobProgress = {
   requestStream: false,
   responseStream: false,
   requestType: finetuning_pb.FineTuningJobRequestById,
-  responseType: finetuning_pb.FineTuningJobProgress
+  responseType: finetuning_pb.FineTuningJobStatus
 };
 
 exports.FineTuningService = FineTuningService;

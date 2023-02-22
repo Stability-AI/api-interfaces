@@ -28,17 +28,6 @@ function deserialize_gooseai_FineTuningJob(buffer_arg) {
   return finetuning_pb.FineTuningJob.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_gooseai_FineTuningJobProgress(arg) {
-  if (!(arg instanceof finetuning_pb.FineTuningJobProgress)) {
-    throw new Error('Expected argument of type gooseai.FineTuningJobProgress');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_gooseai_FineTuningJobProgress(buffer_arg) {
-  return finetuning_pb.FineTuningJobProgress.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_gooseai_FineTuningJobRequestById(arg) {
   if (!(arg instanceof finetuning_pb.FineTuningJobRequestById)) {
     throw new Error('Expected argument of type gooseai.FineTuningJobRequestById');
@@ -48,6 +37,17 @@ function serialize_gooseai_FineTuningJobRequestById(arg) {
 
 function deserialize_gooseai_FineTuningJobRequestById(buffer_arg) {
   return finetuning_pb.FineTuningJobRequestById.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_FineTuningJobStatus(arg) {
+  if (!(arg instanceof finetuning_pb.FineTuningJobStatus)) {
+    throw new Error('Expected argument of type gooseai.FineTuningJobStatus');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_FineTuningJobStatus(buffer_arg) {
+  return finetuning_pb.FineTuningJobStatus.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_gooseai_UpdateFineTuningJobRequest(arg) {
@@ -117,11 +117,11 @@ getFineTuningJobProgress: {
     requestStream: false,
     responseStream: false,
     requestType: finetuning_pb.FineTuningJobRequestById,
-    responseType: finetuning_pb.FineTuningJobProgress,
+    responseType: finetuning_pb.FineTuningJobStatus,
     requestSerialize: serialize_gooseai_FineTuningJobRequestById,
     requestDeserialize: deserialize_gooseai_FineTuningJobRequestById,
-    responseSerialize: serialize_gooseai_FineTuningJobProgress,
-    responseDeserialize: deserialize_gooseai_FineTuningJobProgress,
+    responseSerialize: serialize_gooseai_FineTuningJobStatus,
+    responseDeserialize: deserialize_gooseai_FineTuningJobStatus,
   },
 };
 

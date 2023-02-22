@@ -41,9 +41,15 @@ message FineTuningJobRequestById {
   string id = 1; // the id of the job
 }
 
-message FineTuningJobProgress {
+enum JobStatus {
+  NOT_STARTED = 0;
+  RUNNING = 1;
+  COMPLETED = 2;  
+}
+
+message FineTuningJobStatus {
   string id = 1; // the id of the job that was checked
-  int32 progress = 2; // the percentage of progress
+  JobStatus status = 2; // the current status of the job
 }
 
 service FineTuningService {
@@ -56,5 +62,5 @@ service FineTuningService {
   // Delete a FineTuningJob by id
   rpc DeleteFineTuningJob (FineTuningJobRequestById) returns (FineTuningJob);
   // Check the progress of a FineTuningJob by id
-  rpc GetFineTuningJobProgress (FineTuningJobRequestById) returns (FineTuningJobProgress);
+  rpc GetFineTuningJobProgress (FineTuningJobRequestById) returns (FineTuningJobStatus);
 }

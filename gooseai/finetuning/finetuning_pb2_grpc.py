@@ -37,7 +37,7 @@ class FineTuningServiceStub(object):
         self.GetFineTuningJobProgress = channel.unary_unary(
                 '/gooseai.FineTuningService/GetFineTuningJobProgress',
                 request_serializer=finetuning__pb2.FineTuningJobRequestById.SerializeToString,
-                response_deserializer=finetuning__pb2.FineTuningJobProgress.FromString,
+                response_deserializer=finetuning__pb2.FineTuningJobStatus.FromString,
                 )
 
 
@@ -105,7 +105,7 @@ def add_FineTuningServiceServicer_to_server(servicer, server):
             'GetFineTuningJobProgress': grpc.unary_unary_rpc_method_handler(
                     servicer.GetFineTuningJobProgress,
                     request_deserializer=finetuning__pb2.FineTuningJobRequestById.FromString,
-                    response_serializer=finetuning__pb2.FineTuningJobProgress.SerializeToString,
+                    response_serializer=finetuning__pb2.FineTuningJobStatus.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -198,6 +198,6 @@ class FineTuningService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetFineTuningJobProgress',
             finetuning__pb2.FineTuningJobRequestById.SerializeToString,
-            finetuning__pb2.FineTuningJobProgress.FromString,
+            finetuning__pb2.FineTuningJobStatus.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

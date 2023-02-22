@@ -27,7 +27,7 @@ type FineTuningServiceClient interface {
 	// Delete a FineTuningJob by id
 	DeleteFineTuningJob(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJob, error)
 	// Check the progress of a FineTuningJob by id
-	GetFineTuningJobProgress(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJobProgress, error)
+	GetFineTuningJobProgress(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJobStatus, error)
 }
 
 type fineTuningServiceClient struct {
@@ -74,8 +74,8 @@ func (c *fineTuningServiceClient) DeleteFineTuningJob(ctx context.Context, in *F
 	return out, nil
 }
 
-func (c *fineTuningServiceClient) GetFineTuningJobProgress(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJobProgress, error) {
-	out := new(FineTuningJobProgress)
+func (c *fineTuningServiceClient) GetFineTuningJobProgress(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJobStatus, error) {
+	out := new(FineTuningJobStatus)
 	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/GetFineTuningJobProgress", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -96,7 +96,7 @@ type FineTuningServiceServer interface {
 	// Delete a FineTuningJob by id
 	DeleteFineTuningJob(context.Context, *FineTuningJobRequestById) (*FineTuningJob, error)
 	// Check the progress of a FineTuningJob by id
-	GetFineTuningJobProgress(context.Context, *FineTuningJobRequestById) (*FineTuningJobProgress, error)
+	GetFineTuningJobProgress(context.Context, *FineTuningJobRequestById) (*FineTuningJobStatus, error)
 	mustEmbedUnimplementedFineTuningServiceServer()
 }
 
@@ -116,7 +116,7 @@ func (UnimplementedFineTuningServiceServer) UpdateFineTuningJob(context.Context,
 func (UnimplementedFineTuningServiceServer) DeleteFineTuningJob(context.Context, *FineTuningJobRequestById) (*FineTuningJob, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFineTuningJob not implemented")
 }
-func (UnimplementedFineTuningServiceServer) GetFineTuningJobProgress(context.Context, *FineTuningJobRequestById) (*FineTuningJobProgress, error) {
+func (UnimplementedFineTuningServiceServer) GetFineTuningJobProgress(context.Context, *FineTuningJobRequestById) (*FineTuningJobStatus, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFineTuningJobProgress not implemented")
 }
 func (UnimplementedFineTuningServiceServer) mustEmbedUnimplementedFineTuningServiceServer() {}

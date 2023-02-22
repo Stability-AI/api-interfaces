@@ -46,7 +46,7 @@ type FineTuningServiceGetFineTuningJobProgress = {
   readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof finetuning_pb.FineTuningJobRequestById;
-  readonly responseType: typeof finetuning_pb.FineTuningJobProgress;
+  readonly responseType: typeof finetuning_pb.FineTuningJobStatus;
 };
 
 export class FineTuningService {
@@ -129,11 +129,11 @@ export class FineTuningServiceClient {
   getFineTuningJobProgress(
     requestMessage: finetuning_pb.FineTuningJobRequestById,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJobProgress|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJobStatus|null) => void
   ): UnaryResponse;
   getFineTuningJobProgress(
     requestMessage: finetuning_pb.FineTuningJobRequestById,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJobProgress|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJobStatus|null) => void
   ): UnaryResponse;
 }
 
