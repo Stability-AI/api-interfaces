@@ -404,6 +404,13 @@ message Answer {
   repeated Artifact artifacts = 7;
 }
 
+// An AnswerBatch is a set of Answers. It can represent one or several completed
+// requests, which may be sent to the client in a single response.
+message AnswerBatch {
+  string batch_id = 1;
+  repeated Answer answers = 2;
+}
+
 // A Request is a set of Artifacts, which can be of any type with model or
 // transform parameters. It is sent to the server, which will respond with an
 // Answer.
@@ -422,13 +429,6 @@ message Request {
   optional ConditionerParameters conditioner = 6;
   reserved 9,10; //9, 10 are reserved
   optional google.protobuf.Struct extras = 2047; // for development use
-}
-
-// A response is a collection of answers. It is not used by the streaming
-// protocol, but can be helpful for clients that want to send the entire 
-// response somewhere, such as the REST API wrapper.
-message Response {
-  repeated Answer answers = 1;
 }
 
 //
