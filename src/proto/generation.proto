@@ -424,6 +424,13 @@ message Request {
   optional google.protobuf.Struct extras = 2047; // for development use
 }
 
+// A response is a collection of answers. It is not used by the streaming
+// protocol, but can be helpful for clients that want to send the entire 
+// response somewhere, such as the REST API wrapper.
+message Response {
+  repeated Answer answers = 1;
+}
+
 //
 // Stages
 //

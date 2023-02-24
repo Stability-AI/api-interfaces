@@ -1266,6 +1266,28 @@ export namespace Request {
   }
 }
 
+export class Response extends jspb.Message {
+  clearAnswersList(): void;
+  getAnswersList(): Array<Answer>;
+  setAnswersList(value: Array<Answer>): void;
+  addAnswers(value?: Answer, index?: number): Answer;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Response.AsObject;
+  static toObject(includeInstance: boolean, msg: Response): Response.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Response, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Response;
+  static deserializeBinaryFromReader(message: Response, reader: jspb.BinaryReader): Response;
+}
+
+export namespace Response {
+  export type AsObject = {
+    answersList: Array<Answer.AsObject>,
+  }
+}
+
 export class OnStatus extends jspb.Message {
   clearReasonList(): void;
   getReasonList(): Array<FinishReasonMap[keyof FinishReasonMap]>;
