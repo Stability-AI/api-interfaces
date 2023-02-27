@@ -814,32 +814,6 @@ export namespace InterpolateParameters {
   }
 }
 
-export class TransformBlend extends jspb.Message {
-  getAmount(): number;
-  setAmount(value: number): void;
-
-  hasTarget(): boolean;
-  clearTarget(): void;
-  getTarget(): Artifact | undefined;
-  setTarget(value?: Artifact): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): TransformBlend.AsObject;
-  static toObject(includeInstance: boolean, msg: TransformBlend): TransformBlend.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: TransformBlend, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): TransformBlend;
-  static deserializeBinaryFromReader(message: TransformBlend, reader: jspb.BinaryReader): TransformBlend;
-}
-
-export namespace TransformBlend {
-  export type AsObject = {
-    amount: number,
-    target?: Artifact.AsObject,
-  }
-}
-
 export class TransformColorAdjust extends jspb.Message {
   hasBrightness(): boolean;
   clearBrightness(): void;
@@ -907,32 +881,6 @@ export namespace TransformColorAdjust {
     matchMode: ColorMatchModeMap[keyof ColorMatchModeMap],
     noiseAmount: number,
     noiseSeed: number,
-  }
-}
-
-export class TransformColorMatch extends jspb.Message {
-  getColorMode(): ColorMatchModeMap[keyof ColorMatchModeMap];
-  setColorMode(value: ColorMatchModeMap[keyof ColorMatchModeMap]): void;
-
-  hasImage(): boolean;
-  clearImage(): void;
-  getImage(): Artifact | undefined;
-  setImage(value?: Artifact): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): TransformColorMatch.AsObject;
-  static toObject(includeInstance: boolean, msg: TransformColorMatch): TransformColorMatch.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: TransformColorMatch, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): TransformColorMatch;
-  static deserializeBinaryFromReader(message: TransformColorMatch, reader: jspb.BinaryReader): TransformColorMatch;
-}
-
-export namespace TransformColorMatch {
-  export type AsObject = {
-    colorMode: ColorMatchModeMap[keyof ColorMatchModeMap],
-    image?: Artifact.AsObject,
   }
 }
 
@@ -1194,20 +1142,10 @@ export namespace TransformCameraPose {
 }
 
 export class TransformParameters extends jspb.Message {
-  hasBlend(): boolean;
-  clearBlend(): void;
-  getBlend(): TransformBlend | undefined;
-  setBlend(value?: TransformBlend): void;
-
   hasColorAdjust(): boolean;
   clearColorAdjust(): void;
   getColorAdjust(): TransformColorAdjust | undefined;
   setColorAdjust(value?: TransformColorAdjust): void;
-
-  hasColorMatch(): boolean;
-  clearColorMatch(): void;
-  getColorMatch(): TransformColorMatch | undefined;
-  setColorMatch(value?: TransformColorMatch): void;
 
   hasDepthCalc(): boolean;
   clearDepthCalc(): void;
@@ -1237,9 +1175,7 @@ export class TransformParameters extends jspb.Message {
 
 export namespace TransformParameters {
   export type AsObject = {
-    blend?: TransformBlend.AsObject,
     colorAdjust?: TransformColorAdjust.AsObject,
-    colorMatch?: TransformColorMatch.AsObject,
     depthCalc?: TransformDepthCalc.AsObject,
     resample?: TransformResample.AsObject,
     cameraPose?: TransformCameraPose.AsObject,
@@ -1247,9 +1183,7 @@ export namespace TransformParameters {
 
   export enum TransformCase {
     TRANSFORM_NOT_SET = 0,
-    BLEND = 1,
     COLOR_ADJUST = 2,
-    COLOR_MATCH = 3,
     DEPTH_CALC = 4,
     RESAMPLE = 5,
     CAMERA_POSE = 6,

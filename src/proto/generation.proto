@@ -74,7 +74,7 @@ enum WeightMethod {
 
 // A set of parameters for each individual Prompt.
 message PromptParameters {
-  optional bool init = 1;
+  optional bool init = 1;     // deprecated, no longer used
   optional float weight = 2;
 }
 
@@ -82,9 +82,9 @@ message PromptParameters {
 // There can be multiple Prompts that affect the same output. Currently, the
 // only Prompts supported are:
 //   - Text (singular)
-//   - Init Image (singular, optional, type ARTIFACT_IMAGE, with init=true)
-//   - Mask (singular, optional, Artifact type ARTIFACT_MASK)
-//   - Init Depth (singular, optional, Artifact type ARTIFACT_DEPTH)
+//   - Init Image (singular, optional, type ARTIFACT_IMAGE)
+//   - Mask (singular, optional, type ARTIFACT_MASK)
+//   - Depth (singular, optional, type ARTIFACT_DEPTH)
 message Prompt {
   optional PromptParameters parameters = 1;
   oneof prompt {
@@ -307,11 +307,6 @@ enum ColorMatchMode {
   COLOR_MATCH_RGB = 2;  // match red, green, and blue histograms
 }
 
-message TransformBlend {
-  float amount = 1;     // blend amount from 0 to 1
-  Artifact target = 2;  // target image
-}
-
 message TransformColorAdjust {
   optional float brightness = 1;          // scale pixel intensities, 1.0 is no change
   optional float contrast = 2;            // contrast adjustment, 1.0 is no change
@@ -322,11 +317,6 @@ message TransformColorAdjust {
   optional ColorMatchMode match_mode = 7; // color match mode to use
   optional float noise_amount = 8;        // amount of gaussian noise to add
   optional uint32 noise_seed = 9;         // random seed for noise
-}
-
-message TransformColorMatch {
-  ColorMatchMode color_mode = 1;  // color mode to use
-  Artifact image = 2;             // image to match
 }
 
 message TransformDepthCalc {
@@ -390,9 +380,7 @@ message TransformCameraPose {
 
 message TransformParameters {
   oneof transform {
-    TransformBlend blend = 1;
     TransformColorAdjust color_adjust = 2;
-    TransformColorMatch color_match = 3;
     TransformDepthCalc depth_calc = 4;
     TransformResample resample = 5;
     TransformCameraPose camera_pose = 6;
