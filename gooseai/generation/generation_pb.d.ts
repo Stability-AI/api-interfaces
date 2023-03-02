@@ -1302,6 +1302,32 @@ export namespace Answer {
   }
 }
 
+export class AnswerBatch extends jspb.Message {
+  getBatchId(): string;
+  setBatchId(value: string): void;
+
+  clearAnswersList(): void;
+  getAnswersList(): Array<Answer>;
+  setAnswersList(value: Array<Answer>): void;
+  addAnswers(value?: Answer, index?: number): Answer;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AnswerBatch.AsObject;
+  static toObject(includeInstance: boolean, msg: AnswerBatch): AnswerBatch.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AnswerBatch, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AnswerBatch;
+  static deserializeBinaryFromReader(message: AnswerBatch, reader: jspb.BinaryReader): AnswerBatch;
+}
+
+export namespace AnswerBatch {
+  export type AsObject = {
+    batchId: string,
+    answersList: Array<Answer.AsObject>,
+  }
+}
+
 export class Request extends jspb.Message {
   getEngineId(): string;
   setEngineId(value: string): void;
