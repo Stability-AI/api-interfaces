@@ -1,57 +1,112 @@
-syntax = 'proto3';
+syntax = "proto3";
 package gooseai;
+import "dashboard.proto";
+import "project.proto";
+
 option go_package = "github.com/stability-ai/api-interfaces/gooseai/finetuning";
 
-import "project.proto";
-import "dashboard.proto";
-
+// The Mode of Fine Tuning Job
 enum FineTuningMode {
-  NONE = 0;
-  FACE = 1;
-  STYLE = 2;
-  OBJECT = 3;
+  // No mode specified
+  FINE_TUNING_MODE_NONE_UNSPECIFIED = 0;
+  // Fine tuning a face model
+  FINE_TUNING_MODE_FACE = 1;
+  // Fine tuning a style model
+  FINE_TUNING_MODE_STYLE = 2;
+  // Fine tuning an object model
+  FINE_TUNING_MODE_OBJECT = 3;
 }
 
 message FineTuningJob {
-  string id = 1; // uuid unique identifier
-  User user = 2; // user who created the job
-  string model_name = 3; // a readable model name
-  optional FineTuningMode mode = 4; // the mode of the job
-  optional string object_name = 5;  // freeform text description of object
-  string project_id = 6; // the list of assets to be used for fine tuning
-  string job_output_path = 7; // the path to the output of the job
+  // uuid unique identifier
+  string id = 1;
+  // user who created the job
+  User user = 2; 
+  // a readable model name
+  string model_name = 3;
+  // the mode of the job
+  optional FineTuningMode mode = 4; 
+  // freeform text description of object
+  optional string object_name = 5;  
+  // the list of assets to be used for fine tuning
+  string project_id = 6; 
+  // the path to the output of the job, populated after the job completes.
+  string job_output_path = 7; 
 }
 
 message CreateFineTuningJobRequest{
-  string model_name = 1; // a readable model name
-  optional FineTuningMode mode = 2; // the mode of the job
-  optional string object_name = 3;  // freeform text description of object  
-  string project_id  = 4; // the list of assets to be used for fine tuning, grouped by project_id
+  // a readable model name
+  string model_name = 1;
+  // the mode of the job
+  optional FineTuningMode mode = 2;
+  // freeform text description of object, should only be set when mode is OBJECT
+  optional string object_name = 3;
+  // the project_id, which groups the list of assets to be used for fine tuning
+  string project_id  = 4;
 }
 
 message UpdateFineTuningJobRequest{
+  // the id of the job
   string id = 1;
-  string model_name = 2; // a readable model name
-  optional FineTuningMode mode = 3; // the mode of the job
-  optional string object_name = 4;  // freeform text description of object
-  string project_id  = 5; // the list of assets to be used for fine tuning, grouped by project_id
+  // a readable model name
+  string model_name = 2;
+  // the mode of the job
+  optional FineTuningMode mode = 3;
+  // freeform text description of object, should only be set when mode is OBJECT
+  optional string object_name = 4;
+  // the list of assets to be used for fine tuning, grouped by project_id
+  string project_id  = 5;
 }
 
 message FineTuningJobRequestById {
-  string id = 1; // the id of the job
+  // the id of the job
+  string id = 1;
 }
 
+// The Status of Fine Tuning Job as reported by the job processing system
 enum JobStatus {
-  NOT_STARTED = 0;
-  RUNNING = 1;
-  COMPLETED = 2;  
+  // Job not yet started
+  JOB_STATUS_NOT_STARTED_UNSPECIFIED = 0;
+  // Job is currently running
+  JOB_STATUS_RUNNING = 1;
+  // Job has completed successfully
+  JOB_STATUS_COMPLETED = 2;  
+  // Job has failed
+  JOB_STATUS_FAILED = 3;
 }
 
 message FineTuningJobStatus {
-  string id = 1; // the id of the job that was checked
-  JobStatus status = 2; // the current status of the job
+  // the id of the job that was checked
+  string id = 1;
+  // the current status of the job
+  JobStatus status = 2;
 }
 
+message JobRuntimeInfo {
+  // the name of the operation
+  string name = 1;
+  // how long the operation took
+  Duration duration = 2;
+}
+
+message JobStatusNotification {
+  // the id of the job that was checked
+  string id = 1;
+  // the current status of the job
+  JobStatus status = 2;
+  // the object storage path to the job's output
+  string job_output_path = 3;
+  // the runtime info of the job
+  repeated JobRuntimeInfo runtime_infos = 4;
+}
+
+message ProcessNotificationResponse {
+  // whether the notification was processed successfully
+  bool success = 1;
+}
+
+// TODO: should we add a list of jobs by userId / orgId?
+// TODO: should we add a list of jobs by status?
 service FineTuningService {
   // Create a new project if it does not exist
   rpc CreateFineTuningJob (CreateFineTuningJobRequest) returns (FineTuningJob);
@@ -63,4 +118,6 @@ service FineTuningService {
   rpc DeleteFineTuningJob (FineTuningJobRequestById) returns (FineTuningJob);
   // Check the progress of a FineTuningJob by id
   rpc GetFineTuningJobProgress (FineTuningJobRequestById) returns (FineTuningJobStatus);
+  // Handle notifications from the job processing system
+  rpc ProcessNotification (JobStatusNotification) returns (ProcessNotificationResponse);
 }
