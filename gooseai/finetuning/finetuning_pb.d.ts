@@ -2,8 +2,9 @@
 // file: finetuning.proto
 
 import * as jspb from "google-protobuf";
-import * as project_pb from "./project_pb";
 import * as dashboard_pb from "./dashboard_pb";
+import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
+import * as project_pb from "./project_pb";
 
 export class FineTuningJob extends jspb.Message {
   getId(): string;
@@ -175,19 +176,100 @@ export namespace FineTuningJobStatus {
   }
 }
 
+export class JobRuntimeInfo extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasDuration(): boolean;
+  clearDuration(): void;
+  getDuration(): google_protobuf_duration_pb.Duration | undefined;
+  setDuration(value?: google_protobuf_duration_pb.Duration): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): JobRuntimeInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: JobRuntimeInfo): JobRuntimeInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: JobRuntimeInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): JobRuntimeInfo;
+  static deserializeBinaryFromReader(message: JobRuntimeInfo, reader: jspb.BinaryReader): JobRuntimeInfo;
+}
+
+export namespace JobRuntimeInfo {
+  export type AsObject = {
+    name: string,
+    duration?: google_protobuf_duration_pb.Duration.AsObject,
+  }
+}
+
+export class JobStatusNotification extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getStatus(): JobStatusMap[keyof JobStatusMap];
+  setStatus(value: JobStatusMap[keyof JobStatusMap]): void;
+
+  getJobOutputPath(): string;
+  setJobOutputPath(value: string): void;
+
+  clearRuntimeInfosList(): void;
+  getRuntimeInfosList(): Array<JobRuntimeInfo>;
+  setRuntimeInfosList(value: Array<JobRuntimeInfo>): void;
+  addRuntimeInfos(value?: JobRuntimeInfo, index?: number): JobRuntimeInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): JobStatusNotification.AsObject;
+  static toObject(includeInstance: boolean, msg: JobStatusNotification): JobStatusNotification.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: JobStatusNotification, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): JobStatusNotification;
+  static deserializeBinaryFromReader(message: JobStatusNotification, reader: jspb.BinaryReader): JobStatusNotification;
+}
+
+export namespace JobStatusNotification {
+  export type AsObject = {
+    id: string,
+    status: JobStatusMap[keyof JobStatusMap],
+    jobOutputPath: string,
+    runtimeInfosList: Array<JobRuntimeInfo.AsObject>,
+  }
+}
+
+export class ProcessNotificationResponse extends jspb.Message {
+  getSuccess(): boolean;
+  setSuccess(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ProcessNotificationResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ProcessNotificationResponse): ProcessNotificationResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ProcessNotificationResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ProcessNotificationResponse;
+  static deserializeBinaryFromReader(message: ProcessNotificationResponse, reader: jspb.BinaryReader): ProcessNotificationResponse;
+}
+
+export namespace ProcessNotificationResponse {
+  export type AsObject = {
+    success: boolean,
+  }
+}
+
 export interface FineTuningModeMap {
-  NONE: 0;
-  FACE: 1;
-  STYLE: 2;
-  OBJECT: 3;
+  FINE_TUNING_MODE_NONE_UNSPECIFIED: 0;
+  FINE_TUNING_MODE_FACE: 1;
+  FINE_TUNING_MODE_STYLE: 2;
+  FINE_TUNING_MODE_OBJECT: 3;
 }
 
 export const FineTuningMode: FineTuningModeMap;
 
 export interface JobStatusMap {
-  NOT_STARTED: 0;
-  RUNNING: 1;
-  COMPLETED: 2;
+  JOB_STATUS_NOT_STARTED_UNSPECIFIED: 0;
+  JOB_STATUS_RUNNING: 1;
+  JOB_STATUS_COMPLETED: 2;
+  JOB_STATUS_FAILED: 3;
 }
 
 export const JobStatus: JobStatusMap;

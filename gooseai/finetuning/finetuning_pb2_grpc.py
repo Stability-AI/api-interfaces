@@ -6,7 +6,9 @@ import finetuning_pb2 as finetuning__pb2
 
 
 class FineTuningServiceStub(object):
-    """Missing associated documentation comment in .proto file."""
+    """TODO: should we add a list of jobs by userId / orgId?
+    TODO: should we add a list of jobs by status?
+    """
 
     def __init__(self, channel):
         """Constructor.
@@ -39,10 +41,17 @@ class FineTuningServiceStub(object):
                 request_serializer=finetuning__pb2.FineTuningJobRequestById.SerializeToString,
                 response_deserializer=finetuning__pb2.FineTuningJobStatus.FromString,
                 )
+        self.ProcessNotification = channel.unary_unary(
+                '/gooseai.FineTuningService/ProcessNotification',
+                request_serializer=finetuning__pb2.JobStatusNotification.SerializeToString,
+                response_deserializer=finetuning__pb2.ProcessNotificationResponse.FromString,
+                )
 
 
 class FineTuningServiceServicer(object):
-    """Missing associated documentation comment in .proto file."""
+    """TODO: should we add a list of jobs by userId / orgId?
+    TODO: should we add a list of jobs by status?
+    """
 
     def CreateFineTuningJob(self, request, context):
         """Create a new project if it does not exist
@@ -79,6 +88,13 @@ class FineTuningServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ProcessNotification(self, request, context):
+        """Handle notifications from the job processing system
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_FineTuningServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -107,6 +123,11 @@ def add_FineTuningServiceServicer_to_server(servicer, server):
                     request_deserializer=finetuning__pb2.FineTuningJobRequestById.FromString,
                     response_serializer=finetuning__pb2.FineTuningJobStatus.SerializeToString,
             ),
+            'ProcessNotification': grpc.unary_unary_rpc_method_handler(
+                    servicer.ProcessNotification,
+                    request_deserializer=finetuning__pb2.JobStatusNotification.FromString,
+                    response_serializer=finetuning__pb2.ProcessNotificationResponse.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
             'gooseai.FineTuningService', rpc_method_handlers)
@@ -115,7 +136,9 @@ def add_FineTuningServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class FineTuningService(object):
-    """Missing associated documentation comment in .proto file."""
+    """TODO: should we add a list of jobs by userId / orgId?
+    TODO: should we add a list of jobs by status?
+    """
 
     @staticmethod
     def CreateFineTuningJob(request,
@@ -199,5 +222,22 @@ class FineTuningService(object):
         return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetFineTuningJobProgress',
             finetuning__pb2.FineTuningJobRequestById.SerializeToString,
             finetuning__pb2.FineTuningJobStatus.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ProcessNotification(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/ProcessNotification',
+            finetuning__pb2.JobStatusNotification.SerializeToString,
+            finetuning__pb2.ProcessNotificationResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -1,6 +1,7 @@
 syntax = "proto3";
 package gooseai;
 import "dashboard.proto";
+import "google/protobuf/duration.proto";
 import "project.proto";
 
 option go_package = "github.com/stability-ai/api-interfaces/gooseai/finetuning";
@@ -86,7 +87,7 @@ message JobRuntimeInfo {
   // the name of the operation
   string name = 1;
   // how long the operation took
-  Duration duration = 2;
+  google.protobuf.Duration duration = 2;
 }
 
 message JobStatusNotification {

@@ -28,6 +28,8 @@ type FineTuningServiceClient interface {
 	DeleteFineTuningJob(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJob, error)
 	// Check the progress of a FineTuningJob by id
 	GetFineTuningJobProgress(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJobStatus, error)
+	// Handle notifications from the job processing system
+	ProcessNotification(ctx context.Context, in *JobStatusNotification, opts ...grpc.CallOption) (*ProcessNotificationResponse, error)
 }
 
 type fineTuningServiceClient struct {
@@ -83,6 +85,15 @@ func (c *fineTuningServiceClient) GetFineTuningJobProgress(ctx context.Context, 
 	return out, nil
 }
 
+func (c *fineTuningServiceClient) ProcessNotification(ctx context.Context, in *JobStatusNotification, opts ...grpc.CallOption) (*ProcessNotificationResponse, error) {
+	out := new(ProcessNotificationResponse)
+	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/ProcessNotification", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FineTuningServiceServer is the server API for FineTuningService service.
 // All implementations must embed UnimplementedFineTuningServiceServer
 // for forward compatibility
@@ -97,6 +108,8 @@ type FineTuningServiceServer interface {
 	DeleteFineTuningJob(context.Context, *FineTuningJobRequestById) (*FineTuningJob, error)
 	// Check the progress of a FineTuningJob by id
 	GetFineTuningJobProgress(context.Context, *FineTuningJobRequestById) (*FineTuningJobStatus, error)
+	// Handle notifications from the job processing system
+	ProcessNotification(context.Context, *JobStatusNotification) (*ProcessNotificationResponse, error)
 	mustEmbedUnimplementedFineTuningServiceServer()
 }
 
@@ -118,6 +131,9 @@ func (UnimplementedFineTuningServiceServer) DeleteFineTuningJob(context.Context,
 }
 func (UnimplementedFineTuningServiceServer) GetFineTuningJobProgress(context.Context, *FineTuningJobRequestById) (*FineTuningJobStatus, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFineTuningJobProgress not implemented")
+}
+func (UnimplementedFineTuningServiceServer) ProcessNotification(context.Context, *JobStatusNotification) (*ProcessNotificationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProcessNotification not implemented")
 }
 func (UnimplementedFineTuningServiceServer) mustEmbedUnimplementedFineTuningServiceServer() {}
 
@@ -222,6 +238,24 @@ func _FineTuningService_GetFineTuningJobProgress_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FineTuningService_ProcessNotification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(JobStatusNotification)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FineTuningServiceServer).ProcessNotification(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.FineTuningService/ProcessNotification",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FineTuningServiceServer).ProcessNotification(ctx, req.(*JobStatusNotification))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FineTuningService_ServiceDesc is the grpc.ServiceDesc for FineTuningService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -248,6 +282,10 @@ var FineTuningService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetFineTuningJobProgress",
 			Handler:    _FineTuningService_GetFineTuningJobProgress_Handler,
+		},
+		{
+			MethodName: "ProcessNotification",
+			Handler:    _FineTuningService_ProcessNotification_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
