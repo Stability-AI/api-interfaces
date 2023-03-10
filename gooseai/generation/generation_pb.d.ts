@@ -1528,6 +1528,7 @@ export interface ArtifactTypeMap {
   ARTIFACT_LATENT: 8;
   ARTIFACT_TENSOR: 9;
   ARTIFACT_DEPTH: 10;
+  ARTIFACT_MODEL: 11;
 }
 
 export const ArtifactType: ArtifactTypeMap;
