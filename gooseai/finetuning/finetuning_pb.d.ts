@@ -176,35 +176,15 @@ export namespace FineTuningJobStatus {
   }
 }
 
-export class JobRuntimeInfo extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  hasDuration(): boolean;
-  clearDuration(): void;
-  getDuration(): google_protobuf_duration_pb.Duration | undefined;
-  setDuration(value?: google_protobuf_duration_pb.Duration): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): JobRuntimeInfo.AsObject;
-  static toObject(includeInstance: boolean, msg: JobRuntimeInfo): JobRuntimeInfo.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: JobRuntimeInfo, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): JobRuntimeInfo;
-  static deserializeBinaryFromReader(message: JobRuntimeInfo, reader: jspb.BinaryReader): JobRuntimeInfo;
-}
-
-export namespace JobRuntimeInfo {
-  export type AsObject = {
-    name: string,
-    duration?: google_protobuf_duration_pb.Duration.AsObject,
-  }
-}
-
 export class JobStatusNotification extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  getFineTuneRequestId(): string;
+  setFineTuneRequestId(value: string): void;
+
+  getUserId(): string;
+  setUserId(value: string): void;
 
   getStatus(): JobStatusMap[keyof JobStatusMap];
   setStatus(value: JobStatusMap[keyof JobStatusMap]): void;
@@ -212,10 +192,10 @@ export class JobStatusNotification extends jspb.Message {
   getJobOutputPath(): string;
   setJobOutputPath(value: string): void;
 
-  clearRuntimeInfosList(): void;
-  getRuntimeInfosList(): Array<JobRuntimeInfo>;
-  setRuntimeInfosList(value: Array<JobRuntimeInfo>): void;
-  addRuntimeInfos(value?: JobRuntimeInfo, index?: number): JobRuntimeInfo;
+  hasDuration(): boolean;
+  clearDuration(): void;
+  getDuration(): google_protobuf_duration_pb.Duration | undefined;
+  setDuration(value?: google_protobuf_duration_pb.Duration): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): JobStatusNotification.AsObject;
@@ -229,10 +209,12 @@ export class JobStatusNotification extends jspb.Message {
 
 export namespace JobStatusNotification {
   export type AsObject = {
-    id: string,
+    orgId: string,
+    fineTuneRequestId: string,
+    userId: string,
     status: JobStatusMap[keyof JobStatusMap],
     jobOutputPath: string,
-    runtimeInfosList: Array<JobRuntimeInfo.AsObject>,
+    duration?: google_protobuf_duration_pb.Duration.AsObject,
   }
 }
 
@@ -253,6 +235,26 @@ export class ProcessNotificationResponse extends jspb.Message {
 export namespace ProcessNotificationResponse {
   export type AsObject = {
     success: boolean,
+  }
+}
+
+export class ResubmitFineTuningJobRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ResubmitFineTuningJobRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ResubmitFineTuningJobRequest): ResubmitFineTuningJobRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ResubmitFineTuningJobRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ResubmitFineTuningJobRequest;
+  static deserializeBinaryFromReader(message: ResubmitFineTuningJobRequest, reader: jspb.BinaryReader): ResubmitFineTuningJobRequest;
+}
+
+export namespace ResubmitFineTuningJobRequest {
+  export type AsObject = {
+    id: string,
   }
 }
 

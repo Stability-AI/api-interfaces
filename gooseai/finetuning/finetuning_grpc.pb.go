@@ -18,7 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FineTuningServiceClient interface {
-	// Create a new project if it does not exist
+	// Create a new project if it does not exist, and runs it
 	CreateFineTuningJob(ctx context.Context, in *CreateFineTuningJobRequest, opts ...grpc.CallOption) (*FineTuningJob, error)
 	// Get a FineTuningJob by id
 	GetFineTuningJobById(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJob, error)
@@ -30,6 +30,8 @@ type FineTuningServiceClient interface {
 	GetFineTuningJobProgress(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJobStatus, error)
 	// Handle notifications from the job processing system
 	ProcessNotification(ctx context.Context, in *JobStatusNotification, opts ...grpc.CallOption) (*ProcessNotificationResponse, error)
+	// Re-run training API call, does not create a new job in the DB
+	ResubmitFineTuningJob(ctx context.Context, in *ResubmitFineTuningJobRequest, opts ...grpc.CallOption) (*FineTuningJob, error)
 }
 
 type fineTuningServiceClient struct {
@@ -94,11 +96,20 @@ func (c *fineTuningServiceClient) ProcessNotification(ctx context.Context, in *J
 	return out, nil
 }
 
+func (c *fineTuningServiceClient) ResubmitFineTuningJob(ctx context.Context, in *ResubmitFineTuningJobRequest, opts ...grpc.CallOption) (*FineTuningJob, error) {
+	out := new(FineTuningJob)
+	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/ResubmitFineTuningJob", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FineTuningServiceServer is the server API for FineTuningService service.
 // All implementations must embed UnimplementedFineTuningServiceServer
 // for forward compatibility
 type FineTuningServiceServer interface {
-	// Create a new project if it does not exist
+	// Create a new project if it does not exist, and runs it
 	CreateFineTuningJob(context.Context, *CreateFineTuningJobRequest) (*FineTuningJob, error)
 	// Get a FineTuningJob by id
 	GetFineTuningJobById(context.Context, *FineTuningJobRequestById) (*FineTuningJob, error)
@@ -110,6 +121,8 @@ type FineTuningServiceServer interface {
 	GetFineTuningJobProgress(context.Context, *FineTuningJobRequestById) (*FineTuningJobStatus, error)
 	// Handle notifications from the job processing system
 	ProcessNotification(context.Context, *JobStatusNotification) (*ProcessNotificationResponse, error)
+	// Re-run training API call, does not create a new job in the DB
+	ResubmitFineTuningJob(context.Context, *ResubmitFineTuningJobRequest) (*FineTuningJob, error)
 	mustEmbedUnimplementedFineTuningServiceServer()
 }
 
@@ -134,6 +147,9 @@ func (UnimplementedFineTuningServiceServer) GetFineTuningJobProgress(context.Con
 }
 func (UnimplementedFineTuningServiceServer) ProcessNotification(context.Context, *JobStatusNotification) (*ProcessNotificationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ProcessNotification not implemented")
+}
+func (UnimplementedFineTuningServiceServer) ResubmitFineTuningJob(context.Context, *ResubmitFineTuningJobRequest) (*FineTuningJob, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResubmitFineTuningJob not implemented")
 }
 func (UnimplementedFineTuningServiceServer) mustEmbedUnimplementedFineTuningServiceServer() {}
 
@@ -256,6 +272,24 @@ func _FineTuningService_ProcessNotification_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FineTuningService_ResubmitFineTuningJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResubmitFineTuningJobRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FineTuningServiceServer).ResubmitFineTuningJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.FineTuningService/ResubmitFineTuningJob",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FineTuningServiceServer).ResubmitFineTuningJob(ctx, req.(*ResubmitFineTuningJobRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FineTuningService_ServiceDesc is the grpc.ServiceDesc for FineTuningService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -286,6 +320,10 @@ var FineTuningService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ProcessNotification",
 			Handler:    _FineTuningService_ProcessNotification_Handler,
+		},
+		{
+			MethodName: "ResubmitFineTuningJob",
+			Handler:    _FineTuningService_ResubmitFineTuningJob_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -83,22 +83,20 @@ message FineTuningJobStatus {
   JobStatus status = 2;
 }
 
-message JobRuntimeInfo {
-  // the name of the operation
-  string name = 1;
-  // how long the operation took
-  google.protobuf.Duration duration = 2;
-}
-
 message JobStatusNotification {
-  // the id of the job that was checked
-  string id = 1;
+  // the org id that owns the job
+  string org_id = 1;
+  // the middleware id of the job
+  string fine_tune_request_id = 2;
+  // the user id that owns the job
+  string user_id = 3;  
   // the current status of the job
-  JobStatus status = 2;
-  // the object storage path to the job's output
-  string job_output_path = 3;
+  JobStatus status = 4;
+  // the object storage path to the job's output, 
+  // Example: s3://somegreatbucket/this/is/a/pathtoamodel
+  string job_output_path = 5;
   // the runtime info of the job
-  repeated JobRuntimeInfo runtime_infos = 4;
+  google.protobuf.Duration duration = 6;
 }
 
 message ProcessNotificationResponse {
@@ -106,10 +104,15 @@ message ProcessNotificationResponse {
   bool success = 1;
 }
 
+message ResubmitFineTuningJobRequest {
+  // the middleware id of the fine tuning job
+  string id = 1;
+}
+
 // TODO: should we add a list of jobs by userId / orgId?
 // TODO: should we add a list of jobs by status?
 service FineTuningService {
-  // Create a new project if it does not exist
+  // Create a new project if it does not exist, and runs it
   rpc CreateFineTuningJob (CreateFineTuningJobRequest) returns (FineTuningJob);
   // Get a FineTuningJob by id
   rpc GetFineTuningJobById (FineTuningJobRequestById) returns (FineTuningJob);
@@ -121,4 +124,6 @@ service FineTuningService {
   rpc GetFineTuningJobProgress (FineTuningJobRequestById) returns (FineTuningJobStatus);
   // Handle notifications from the job processing system
   rpc ProcessNotification (JobStatusNotification) returns (ProcessNotificationResponse);
+  // Re-run training API call, does not create a new job in the DB
+  rpc ResubmitFineTuningJob (ResubmitFineTuningJobRequest) returns (FineTuningJob);
 }

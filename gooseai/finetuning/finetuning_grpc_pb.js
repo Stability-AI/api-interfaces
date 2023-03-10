@@ -73,6 +73,17 @@ function deserialize_gooseai_ProcessNotificationResponse(buffer_arg) {
   return finetuning_pb.ProcessNotificationResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_gooseai_ResubmitFineTuningJobRequest(arg) {
+  if (!(arg instanceof finetuning_pb.ResubmitFineTuningJobRequest)) {
+    throw new Error('Expected argument of type gooseai.ResubmitFineTuningJobRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_ResubmitFineTuningJobRequest(buffer_arg) {
+  return finetuning_pb.ResubmitFineTuningJobRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_gooseai_UpdateFineTuningJobRequest(arg) {
   if (!(arg instanceof finetuning_pb.UpdateFineTuningJobRequest)) {
     throw new Error('Expected argument of type gooseai.UpdateFineTuningJobRequest');
@@ -88,7 +99,7 @@ function deserialize_gooseai_UpdateFineTuningJobRequest(buffer_arg) {
 // TODO: should we add a list of jobs by userId / orgId?
 // TODO: should we add a list of jobs by status?
 var FineTuningServiceService = exports.FineTuningServiceService = {
-  // Create a new project if it does not exist
+  // Create a new project if it does not exist, and runs it
 createFineTuningJob: {
     path: '/gooseai.FineTuningService/CreateFineTuningJob',
     requestStream: false,
@@ -159,6 +170,18 @@ processNotification: {
     requestDeserialize: deserialize_gooseai_JobStatusNotification,
     responseSerialize: serialize_gooseai_ProcessNotificationResponse,
     responseDeserialize: deserialize_gooseai_ProcessNotificationResponse,
+  },
+  // Re-run training API call, does not create a new job in the DB
+resubmitFineTuningJob: {
+    path: '/gooseai.FineTuningService/ResubmitFineTuningJob',
+    requestStream: false,
+    responseStream: false,
+    requestType: finetuning_pb.ResubmitFineTuningJobRequest,
+    responseType: finetuning_pb.FineTuningJob,
+    requestSerialize: serialize_gooseai_ResubmitFineTuningJobRequest,
+    requestDeserialize: deserialize_gooseai_ResubmitFineTuningJobRequest,
+    responseSerialize: serialize_gooseai_FineTuningJob,
+    responseDeserialize: deserialize_gooseai_FineTuningJob,
   },
 };
 
