@@ -15,6 +15,11 @@ export class TransferRequest extends jspb.Message {
   getDestinationBucket(): string;
   setDestinationBucket(value: string): void;
 
+  clearDestinationKeysList(): void;
+  getDestinationKeysList(): Array<string>;
+  setDestinationKeysList(value: Array<string>): void;
+  addDestinationKeys(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TransferRequest.AsObject;
   static toObject(includeInstance: boolean, msg: TransferRequest): TransferRequest.AsObject;
@@ -30,6 +35,7 @@ export namespace TransferRequest {
     sourceBucket: string,
     sourceKeysList: Array<string>,
     destinationBucket: string,
+    destinationKeysList: Array<string>,
   }
 }
 

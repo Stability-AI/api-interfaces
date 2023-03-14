@@ -1,4 +1,4 @@
-syntax = 'proto3';
+syntax = "proto3";
 package gooseai;
 option go_package = "github.com/stability-ai/api-interfaces/gooseai/transfer";
 
@@ -9,6 +9,8 @@ message TransferRequest {
   repeated string source_keys = 2; 
   // the bucket to transfer the assets to
   string destination_bucket = 3; 
+  // a list of keys in the destination bucket to transfer the assets to
+  repeated string destination_keys = 4;
 }
 
 message TransferResponse {

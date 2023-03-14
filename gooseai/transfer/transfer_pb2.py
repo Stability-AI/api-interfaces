@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0etransfer.proto\x12\x07gooseai\"Y\n\x0fTransferRequest\x12\x15\n\rsource_bucket\x18\x01 \x01(\t\x12\x13\n\x0bsource_keys\x18\x02 \x03(\t\x12\x1a\n\x12\x64\x65stination_bucket\x18\x03 \x01(\t\" \n\x10TransferResponse\x12\x0c\n\x04urls\x18\x01 \x03(\t2T\n\x0fTransferService\x12\x41\n\x08Transfer\x12\x18.gooseai.TransferRequest\x1a\x19.gooseai.TransferResponse\"\x00\x42\x39Z7github.com/stability-ai/api-interfaces/gooseai/transferb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0etransfer.proto\x12\x07gooseai\"s\n\x0fTransferRequest\x12\x15\n\rsource_bucket\x18\x01 \x01(\t\x12\x13\n\x0bsource_keys\x18\x02 \x03(\t\x12\x1a\n\x12\x64\x65stination_bucket\x18\x03 \x01(\t\x12\x18\n\x10\x64\x65stination_keys\x18\x04 \x03(\t\" \n\x10TransferResponse\x12\x0c\n\x04urls\x18\x01 \x03(\t2T\n\x0fTransferService\x12\x41\n\x08Transfer\x12\x18.gooseai.TransferRequest\x1a\x19.gooseai.TransferResponse\"\x00\x42\x39Z7github.com/stability-ai/api-interfaces/gooseai/transferb\x06proto3')
 
 
 
@@ -40,9 +40,9 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z7github.com/stability-ai/api-interfaces/gooseai/transfer'
   _TRANSFERREQUEST._serialized_start=27
-  _TRANSFERREQUEST._serialized_end=116
-  _TRANSFERRESPONSE._serialized_start=118
-  _TRANSFERRESPONSE._serialized_end=150
-  _TRANSFERSERVICE._serialized_start=152
-  _TRANSFERSERVICE._serialized_end=236
+  _TRANSFERREQUEST._serialized_end=142
+  _TRANSFERRESPONSE._serialized_start=144
+  _TRANSFERRESPONSE._serialized_end=176
+  _TRANSFERSERVICE._serialized_start=178
+  _TRANSFERSERVICE._serialized_end=262
 # @@protoc_insertion_point(module_scope)

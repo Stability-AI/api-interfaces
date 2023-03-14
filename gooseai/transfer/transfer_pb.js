@@ -71,7 +71,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.gooseai.TransferRequest.repeatedFields_ = [2];
+proto.gooseai.TransferRequest.repeatedFields_ = [2,4];
 
 
 
@@ -106,7 +106,8 @@ proto.gooseai.TransferRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     sourceBucket: jspb.Message.getFieldWithDefault(msg, 1, ""),
     sourceKeysList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    destinationBucket: jspb.Message.getFieldWithDefault(msg, 3, "")
+    destinationBucket: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    destinationKeysList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -155,6 +156,10 @@ proto.gooseai.TransferRequest.deserializeBinaryFromReader = function(msg, reader
       var value = /** @type {string} */ (reader.readString());
       msg.setDestinationBucket(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addDestinationKeys(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -202,6 +207,13 @@ proto.gooseai.TransferRequest.serializeBinaryToWriter = function(message, writer
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getDestinationKeysList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      4,
       f
     );
   }
@@ -278,6 +290,43 @@ proto.gooseai.TransferRequest.prototype.getDestinationBucket = function() {
  */
 proto.gooseai.TransferRequest.prototype.setDestinationBucket = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * repeated string destination_keys = 4;
+ * @return {!Array<string>}
+ */
+proto.gooseai.TransferRequest.prototype.getDestinationKeysList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.gooseai.TransferRequest} returns this
+ */
+proto.gooseai.TransferRequest.prototype.setDestinationKeysList = function(value) {
+  return jspb.Message.setField(this, 4, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.gooseai.TransferRequest} returns this
+ */
+proto.gooseai.TransferRequest.prototype.addDestinationKeys = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.gooseai.TransferRequest} returns this
+ */
+proto.gooseai.TransferRequest.prototype.clearDestinationKeysList = function() {
+  return this.setDestinationKeysList([]);
 };
 
 
