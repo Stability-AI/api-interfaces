@@ -34,6 +34,14 @@ export class FineTuningJob extends jspb.Message {
   getJobOutputPath(): string;
   setJobOutputPath(value: string): void;
 
+  hasDuration(): boolean;
+  clearDuration(): void;
+  getDuration(): google_protobuf_duration_pb.Duration | undefined;
+  setDuration(value?: google_protobuf_duration_pb.Duration): void;
+
+  getStatus(): JobStatusMap[keyof JobStatusMap];
+  setStatus(value: JobStatusMap[keyof JobStatusMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FineTuningJob.AsObject;
   static toObject(includeInstance: boolean, msg: FineTuningJob): FineTuningJob.AsObject;
@@ -53,6 +61,8 @@ export namespace FineTuningJob {
     objectName: string,
     projectId: string,
     jobOutputPath: string,
+    duration?: google_protobuf_duration_pb.Duration.AsObject,
+    status: JobStatusMap[keyof JobStatusMap],
   }
 }
 

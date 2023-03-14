@@ -33,6 +33,10 @@ message FineTuningJob {
   string project_id = 6; 
   // the path to the output of the job, populated after the job completes.
   string job_output_path = 7; 
+  // how long the job took to run
+  google.protobuf.Duration duration = 8;
+  // the current status of the job
+  JobStatus status = 9;
 }
 
 message CreateFineTuningJobRequest{
