@@ -2,19 +2,18 @@ syntax = 'proto3';
 package gooseai;
 option go_package = "github.com/stability-ai/api-interfaces/gooseai/transfer";
 
-// TODO: should we include requestIds on both request and response to link incoming request
-// to be able to link them together on the client side?
-// TODO: should this instead just contain source bucket, and source keys?
-
 message TransferRequest {
-  string user_id = 1; // user_id of the user who is requesting the transfer
-  string org_id = 2; // org_id of the user who is requesting the transfer
-  string fine_tuning_job_id = 3; // the id of the fine tuning job
-  repeated string source_urls = 4; // a list of urls to the assets to be transferred
+  // the bucket to transfer the assets from
+  string source_bucket = 1; 
+  // a list of keys in the source bucket to transfer to the destination bucket
+  repeated string source_keys = 2; 
+  // the bucket to transfer the assets to
+  string destination_bucket = 3; 
 }
 
 message TransferResponse {
-  repeated string urls = 1; // the list of transferred assets in their destination location
+  // the list of transferred assets in their destination location    
+  repeated string urls = 1; 
 }
 
 service TransferService {

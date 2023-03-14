@@ -71,7 +71,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.gooseai.TransferRequest.repeatedFields_ = [4];
+proto.gooseai.TransferRequest.repeatedFields_ = [2];
 
 
 
@@ -104,10 +104,9 @@ proto.gooseai.TransferRequest.prototype.toObject = function(opt_includeInstance)
  */
 proto.gooseai.TransferRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    userId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    orgId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    fineTuningJobId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    sourceUrlsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
+    sourceBucket: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    sourceKeysList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+    destinationBucket: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -146,19 +145,15 @@ proto.gooseai.TransferRequest.deserializeBinaryFromReader = function(msg, reader
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUserId(value);
+      msg.setSourceBucket(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setOrgId(value);
+      msg.addSourceKeys(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setFineTuningJobId(value);
-      break;
-    case 4:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addSourceUrls(value);
+      msg.setDestinationBucket(value);
       break;
     default:
       reader.skipField();
@@ -189,31 +184,24 @@ proto.gooseai.TransferRequest.prototype.serializeBinary = function() {
  */
 proto.gooseai.TransferRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getUserId();
+  f = message.getSourceBucket();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
-  f = message.getOrgId();
+  f = message.getSourceKeysList();
   if (f.length > 0) {
-    writer.writeString(
+    writer.writeRepeatedString(
       2,
       f
     );
   }
-  f = message.getFineTuningJobId();
+  f = message.getDestinationBucket();
   if (f.length > 0) {
     writer.writeString(
       3,
-      f
-    );
-  }
-  f = message.getSourceUrlsList();
-  if (f.length > 0) {
-    writer.writeRepeatedString(
-      4,
       f
     );
   }
@@ -221,10 +209,10 @@ proto.gooseai.TransferRequest.serializeBinaryToWriter = function(message, writer
 
 
 /**
- * optional string user_id = 1;
+ * optional string source_bucket = 1;
  * @return {string}
  */
-proto.gooseai.TransferRequest.prototype.getUserId = function() {
+proto.gooseai.TransferRequest.prototype.getSourceBucket = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -233,53 +221,17 @@ proto.gooseai.TransferRequest.prototype.getUserId = function() {
  * @param {string} value
  * @return {!proto.gooseai.TransferRequest} returns this
  */
-proto.gooseai.TransferRequest.prototype.setUserId = function(value) {
+proto.gooseai.TransferRequest.prototype.setSourceBucket = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional string org_id = 2;
- * @return {string}
- */
-proto.gooseai.TransferRequest.prototype.getOrgId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.gooseai.TransferRequest} returns this
- */
-proto.gooseai.TransferRequest.prototype.setOrgId = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
- * optional string fine_tuning_job_id = 3;
- * @return {string}
- */
-proto.gooseai.TransferRequest.prototype.getFineTuningJobId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.gooseai.TransferRequest} returns this
- */
-proto.gooseai.TransferRequest.prototype.setFineTuningJobId = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
-};
-
-
-/**
- * repeated string source_urls = 4;
+ * repeated string source_keys = 2;
  * @return {!Array<string>}
  */
-proto.gooseai.TransferRequest.prototype.getSourceUrlsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+proto.gooseai.TransferRequest.prototype.getSourceKeysList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
@@ -287,8 +239,8 @@ proto.gooseai.TransferRequest.prototype.getSourceUrlsList = function() {
  * @param {!Array<string>} value
  * @return {!proto.gooseai.TransferRequest} returns this
  */
-proto.gooseai.TransferRequest.prototype.setSourceUrlsList = function(value) {
-  return jspb.Message.setField(this, 4, value || []);
+proto.gooseai.TransferRequest.prototype.setSourceKeysList = function(value) {
+  return jspb.Message.setField(this, 2, value || []);
 };
 
 
@@ -297,8 +249,8 @@ proto.gooseai.TransferRequest.prototype.setSourceUrlsList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.gooseai.TransferRequest} returns this
  */
-proto.gooseai.TransferRequest.prototype.addSourceUrls = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+proto.gooseai.TransferRequest.prototype.addSourceKeys = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
 };
 
 
@@ -306,8 +258,26 @@ proto.gooseai.TransferRequest.prototype.addSourceUrls = function(value, opt_inde
  * Clears the list making it empty but non-null.
  * @return {!proto.gooseai.TransferRequest} returns this
  */
-proto.gooseai.TransferRequest.prototype.clearSourceUrlsList = function() {
-  return this.setSourceUrlsList([]);
+proto.gooseai.TransferRequest.prototype.clearSourceKeysList = function() {
+  return this.setSourceKeysList([]);
+};
+
+
+/**
+ * optional string destination_bucket = 3;
+ * @return {string}
+ */
+proto.gooseai.TransferRequest.prototype.getDestinationBucket = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.gooseai.TransferRequest} returns this
+ */
+proto.gooseai.TransferRequest.prototype.setDestinationBucket = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

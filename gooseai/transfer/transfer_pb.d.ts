@@ -4,19 +4,16 @@
 import * as jspb from "google-protobuf";
 
 export class TransferRequest extends jspb.Message {
-  getUserId(): string;
-  setUserId(value: string): void;
+  getSourceBucket(): string;
+  setSourceBucket(value: string): void;
 
-  getOrgId(): string;
-  setOrgId(value: string): void;
+  clearSourceKeysList(): void;
+  getSourceKeysList(): Array<string>;
+  setSourceKeysList(value: Array<string>): void;
+  addSourceKeys(value: string, index?: number): string;
 
-  getFineTuningJobId(): string;
-  setFineTuningJobId(value: string): void;
-
-  clearSourceUrlsList(): void;
-  getSourceUrlsList(): Array<string>;
-  setSourceUrlsList(value: Array<string>): void;
-  addSourceUrls(value: string, index?: number): string;
+  getDestinationBucket(): string;
+  setDestinationBucket(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TransferRequest.AsObject;
@@ -30,10 +27,9 @@ export class TransferRequest extends jspb.Message {
 
 export namespace TransferRequest {
   export type AsObject = {
-    userId: string,
-    orgId: string,
-    fineTuningJobId: string,
-    sourceUrlsList: Array<string>,
+    sourceBucket: string,
+    sourceKeysList: Array<string>,
+    destinationBucket: string,
   }
 }
 
