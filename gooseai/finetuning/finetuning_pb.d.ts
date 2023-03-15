@@ -31,9 +31,6 @@ export class FineTuningJob extends jspb.Message {
   getProjectId(): string;
   setProjectId(value: string): void;
 
-  getJobOutputPath(): string;
-  setJobOutputPath(value: string): void;
-
   getDuration(): number;
   setDuration(value: number): void;
 
@@ -58,7 +55,6 @@ export namespace FineTuningJob {
     mode: FineTuningModeMap[keyof FineTuningModeMap],
     objectName: string,
     projectId: string,
-    jobOutputPath: string,
     duration: number,
     status: JobStatusMap[keyof JobStatusMap],
   }

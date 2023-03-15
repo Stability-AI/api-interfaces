@@ -31,12 +31,10 @@ message FineTuningJob {
   optional string object_name = 5;  
   // the list of assets to be used for fine tuning
   string project_id = 6; 
-  // the path to the output of the job, populated after the job completes.
-  string job_output_path = 7; 
   // how long the job took to run
-  double duration = 8;
+  double duration = 7;
   // the current status of the job
-  JobStatus status = 9;
+  JobStatus status = 8;
 }
 
 message CreateFineTuningJobRequest{
