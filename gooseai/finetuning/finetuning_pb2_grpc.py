@@ -41,15 +41,15 @@ class FineTuningServiceStub(object):
                 request_serializer=finetuning__pb2.FineTuningJobRequestById.SerializeToString,
                 response_deserializer=finetuning__pb2.FineTuningJobStatus.FromString,
                 )
-        self.ProcessNotification = channel.unary_unary(
-                '/gooseai.FineTuningService/ProcessNotification',
-                request_serializer=finetuning__pb2.JobStatusNotification.SerializeToString,
-                response_deserializer=finetuning__pb2.ProcessNotificationResponse.FromString,
-                )
         self.ResubmitFineTuningJob = channel.unary_unary(
                 '/gooseai.FineTuningService/ResubmitFineTuningJob',
                 request_serializer=finetuning__pb2.ResubmitFineTuningJobRequest.SerializeToString,
                 response_deserializer=finetuning__pb2.FineTuningJob.FromString,
+                )
+        self.GetJobsByUserId = channel.unary_unary(
+                '/gooseai.FineTuningService/GetJobsByUserId',
+                request_serializer=finetuning__pb2.FineTuningJobRequestByUserId.SerializeToString,
+                response_deserializer=finetuning__pb2.FineTuningJobList.FromString,
                 )
 
 
@@ -93,15 +93,15 @@ class FineTuningServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ProcessNotification(self, request, context):
-        """Handle notifications from the job processing system
+    def ResubmitFineTuningJob(self, request, context):
+        """Re-run training API call, does not create a new job in the DB
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ResubmitFineTuningJob(self, request, context):
-        """Re-run training API call, does not create a new job in the DB
+    def GetJobsByUserId(self, request, context):
+        """Get a list of FineTuningJobs by user id
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -135,15 +135,15 @@ def add_FineTuningServiceServicer_to_server(servicer, server):
                     request_deserializer=finetuning__pb2.FineTuningJobRequestById.FromString,
                     response_serializer=finetuning__pb2.FineTuningJobStatus.SerializeToString,
             ),
-            'ProcessNotification': grpc.unary_unary_rpc_method_handler(
-                    servicer.ProcessNotification,
-                    request_deserializer=finetuning__pb2.JobStatusNotification.FromString,
-                    response_serializer=finetuning__pb2.ProcessNotificationResponse.SerializeToString,
-            ),
             'ResubmitFineTuningJob': grpc.unary_unary_rpc_method_handler(
                     servicer.ResubmitFineTuningJob,
                     request_deserializer=finetuning__pb2.ResubmitFineTuningJobRequest.FromString,
                     response_serializer=finetuning__pb2.FineTuningJob.SerializeToString,
+            ),
+            'GetJobsByUserId': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetJobsByUserId,
+                    request_deserializer=finetuning__pb2.FineTuningJobRequestByUserId.FromString,
+                    response_serializer=finetuning__pb2.FineTuningJobList.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -243,23 +243,6 @@ class FineTuningService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ProcessNotification(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/ProcessNotification',
-            finetuning__pb2.JobStatusNotification.SerializeToString,
-            finetuning__pb2.ProcessNotificationResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
     def ResubmitFineTuningJob(request,
             target,
             options=(),
@@ -273,5 +256,22 @@ class FineTuningService(object):
         return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/ResubmitFineTuningJob',
             finetuning__pb2.ResubmitFineTuningJobRequest.SerializeToString,
             finetuning__pb2.FineTuningJob.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetJobsByUserId(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetJobsByUserId',
+            finetuning__pb2.FineTuningJobRequestByUserId.SerializeToString,
+            finetuning__pb2.FineTuningJobList.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

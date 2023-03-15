@@ -55,15 +55,6 @@ FineTuningService.GetFineTuningJobProgress = {
   responseType: finetuning_pb.FineTuningJobStatus
 };
 
-FineTuningService.ProcessNotification = {
-  methodName: "ProcessNotification",
-  service: FineTuningService,
-  requestStream: false,
-  responseStream: false,
-  requestType: finetuning_pb.JobStatusNotification,
-  responseType: finetuning_pb.ProcessNotificationResponse
-};
-
 FineTuningService.ResubmitFineTuningJob = {
   methodName: "ResubmitFineTuningJob",
   service: FineTuningService,
@@ -71,6 +62,15 @@ FineTuningService.ResubmitFineTuningJob = {
   responseStream: false,
   requestType: finetuning_pb.ResubmitFineTuningJobRequest,
   responseType: finetuning_pb.FineTuningJob
+};
+
+FineTuningService.GetJobsByUserId = {
+  methodName: "GetJobsByUserId",
+  service: FineTuningService,
+  requestStream: false,
+  responseStream: false,
+  requestType: finetuning_pb.FineTuningJobRequestByUserId,
+  responseType: finetuning_pb.FineTuningJobList
 };
 
 exports.FineTuningService = FineTuningService;
@@ -235,11 +235,11 @@ FineTuningServiceClient.prototype.getFineTuningJobProgress = function getFineTun
   };
 };
 
-FineTuningServiceClient.prototype.processNotification = function processNotification(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.resubmitFineTuningJob = function resubmitFineTuningJob(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.ProcessNotification, {
+  var client = grpc.unary(FineTuningService.ResubmitFineTuningJob, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -266,11 +266,11 @@ FineTuningServiceClient.prototype.processNotification = function processNotifica
   };
 };
 
-FineTuningServiceClient.prototype.resubmitFineTuningJob = function resubmitFineTuningJob(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.getJobsByUserId = function getJobsByUserId(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.ResubmitFineTuningJob, {
+  var client = grpc.unary(FineTuningService.GetJobsByUserId, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

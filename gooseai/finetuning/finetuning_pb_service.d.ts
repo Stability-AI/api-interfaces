@@ -49,15 +49,6 @@ type FineTuningServiceGetFineTuningJobProgress = {
   readonly responseType: typeof finetuning_pb.FineTuningJobStatus;
 };
 
-type FineTuningServiceProcessNotification = {
-  readonly methodName: string;
-  readonly service: typeof FineTuningService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof finetuning_pb.JobStatusNotification;
-  readonly responseType: typeof finetuning_pb.ProcessNotificationResponse;
-};
-
 type FineTuningServiceResubmitFineTuningJob = {
   readonly methodName: string;
   readonly service: typeof FineTuningService;
@@ -67,6 +58,15 @@ type FineTuningServiceResubmitFineTuningJob = {
   readonly responseType: typeof finetuning_pb.FineTuningJob;
 };
 
+type FineTuningServiceGetJobsByUserId = {
+  readonly methodName: string;
+  readonly service: typeof FineTuningService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof finetuning_pb.FineTuningJobRequestByUserId;
+  readonly responseType: typeof finetuning_pb.FineTuningJobList;
+};
+
 export class FineTuningService {
   static readonly serviceName: string;
   static readonly CreateFineTuningJob: FineTuningServiceCreateFineTuningJob;
@@ -74,8 +74,8 @@ export class FineTuningService {
   static readonly UpdateFineTuningJob: FineTuningServiceUpdateFineTuningJob;
   static readonly DeleteFineTuningJob: FineTuningServiceDeleteFineTuningJob;
   static readonly GetFineTuningJobProgress: FineTuningServiceGetFineTuningJobProgress;
-  static readonly ProcessNotification: FineTuningServiceProcessNotification;
   static readonly ResubmitFineTuningJob: FineTuningServiceResubmitFineTuningJob;
+  static readonly GetJobsByUserId: FineTuningServiceGetJobsByUserId;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -155,15 +155,6 @@ export class FineTuningServiceClient {
     requestMessage: finetuning_pb.FineTuningJobRequestById,
     callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJobStatus|null) => void
   ): UnaryResponse;
-  processNotification(
-    requestMessage: finetuning_pb.JobStatusNotification,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.ProcessNotificationResponse|null) => void
-  ): UnaryResponse;
-  processNotification(
-    requestMessage: finetuning_pb.JobStatusNotification,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.ProcessNotificationResponse|null) => void
-  ): UnaryResponse;
   resubmitFineTuningJob(
     requestMessage: finetuning_pb.ResubmitFineTuningJobRequest,
     metadata: grpc.Metadata,
@@ -172,6 +163,15 @@ export class FineTuningServiceClient {
   resubmitFineTuningJob(
     requestMessage: finetuning_pb.ResubmitFineTuningJobRequest,
     callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJob|null) => void
+  ): UnaryResponse;
+  getJobsByUserId(
+    requestMessage: finetuning_pb.FineTuningJobRequestByUserId,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJobList|null) => void
+  ): UnaryResponse;
+  getJobsByUserId(
+    requestMessage: finetuning_pb.FineTuningJobRequestByUserId,
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJobList|null) => void
   ): UnaryResponse;
 }
 

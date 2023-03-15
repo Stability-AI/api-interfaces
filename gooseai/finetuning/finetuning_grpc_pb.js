@@ -4,6 +4,7 @@
 var grpc = require('grpc');
 var finetuning_pb = require('./finetuning_pb.js');
 var dashboard_pb = require('./dashboard_pb.js');
+var google_protobuf_field_mask_pb = require('google-protobuf/google/protobuf/field_mask_pb.js');
 var project_pb = require('./project_pb.js');
 
 function serialize_gooseai_CreateFineTuningJobRequest(arg) {
@@ -28,6 +29,17 @@ function deserialize_gooseai_FineTuningJob(buffer_arg) {
   return finetuning_pb.FineTuningJob.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_gooseai_FineTuningJobList(arg) {
+  if (!(arg instanceof finetuning_pb.FineTuningJobList)) {
+    throw new Error('Expected argument of type gooseai.FineTuningJobList');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_FineTuningJobList(buffer_arg) {
+  return finetuning_pb.FineTuningJobList.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_gooseai_FineTuningJobRequestById(arg) {
   if (!(arg instanceof finetuning_pb.FineTuningJobRequestById)) {
     throw new Error('Expected argument of type gooseai.FineTuningJobRequestById');
@@ -39,6 +51,17 @@ function deserialize_gooseai_FineTuningJobRequestById(buffer_arg) {
   return finetuning_pb.FineTuningJobRequestById.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_gooseai_FineTuningJobRequestByUserId(arg) {
+  if (!(arg instanceof finetuning_pb.FineTuningJobRequestByUserId)) {
+    throw new Error('Expected argument of type gooseai.FineTuningJobRequestByUserId');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_FineTuningJobRequestByUserId(buffer_arg) {
+  return finetuning_pb.FineTuningJobRequestByUserId.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_gooseai_FineTuningJobStatus(arg) {
   if (!(arg instanceof finetuning_pb.FineTuningJobStatus)) {
     throw new Error('Expected argument of type gooseai.FineTuningJobStatus');
@@ -48,28 +71,6 @@ function serialize_gooseai_FineTuningJobStatus(arg) {
 
 function deserialize_gooseai_FineTuningJobStatus(buffer_arg) {
   return finetuning_pb.FineTuningJobStatus.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_gooseai_JobStatusNotification(arg) {
-  if (!(arg instanceof finetuning_pb.JobStatusNotification)) {
-    throw new Error('Expected argument of type gooseai.JobStatusNotification');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_gooseai_JobStatusNotification(buffer_arg) {
-  return finetuning_pb.JobStatusNotification.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_gooseai_ProcessNotificationResponse(arg) {
-  if (!(arg instanceof finetuning_pb.ProcessNotificationResponse)) {
-    throw new Error('Expected argument of type gooseai.ProcessNotificationResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_gooseai_ProcessNotificationResponse(buffer_arg) {
-  return finetuning_pb.ProcessNotificationResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_gooseai_ResubmitFineTuningJobRequest(arg) {
@@ -158,18 +159,6 @@ getFineTuningJobProgress: {
     responseSerialize: serialize_gooseai_FineTuningJobStatus,
     responseDeserialize: deserialize_gooseai_FineTuningJobStatus,
   },
-  // Handle notifications from the job processing system
-processNotification: {
-    path: '/gooseai.FineTuningService/ProcessNotification',
-    requestStream: false,
-    responseStream: false,
-    requestType: finetuning_pb.JobStatusNotification,
-    responseType: finetuning_pb.ProcessNotificationResponse,
-    requestSerialize: serialize_gooseai_JobStatusNotification,
-    requestDeserialize: deserialize_gooseai_JobStatusNotification,
-    responseSerialize: serialize_gooseai_ProcessNotificationResponse,
-    responseDeserialize: deserialize_gooseai_ProcessNotificationResponse,
-  },
   // Re-run training API call, does not create a new job in the DB
 resubmitFineTuningJob: {
     path: '/gooseai.FineTuningService/ResubmitFineTuningJob',
@@ -181,6 +170,18 @@ resubmitFineTuningJob: {
     requestDeserialize: deserialize_gooseai_ResubmitFineTuningJobRequest,
     responseSerialize: serialize_gooseai_FineTuningJob,
     responseDeserialize: deserialize_gooseai_FineTuningJob,
+  },
+  // Get a list of FineTuningJobs by user id
+getJobsByUserId: {
+    path: '/gooseai.FineTuningService/GetJobsByUserId',
+    requestStream: false,
+    responseStream: false,
+    requestType: finetuning_pb.FineTuningJobRequestByUserId,
+    responseType: finetuning_pb.FineTuningJobList,
+    requestSerialize: serialize_gooseai_FineTuningJobRequestByUserId,
+    requestDeserialize: deserialize_gooseai_FineTuningJobRequestByUserId,
+    responseSerialize: serialize_gooseai_FineTuningJobList,
+    responseDeserialize: deserialize_gooseai_FineTuningJobList,
   },
 };
 

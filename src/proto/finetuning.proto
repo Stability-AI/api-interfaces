@@ -1,6 +1,7 @@
 syntax = "proto3";
 package gooseai;
 import "dashboard.proto";
+import "google/protobuf/field_mask.proto";
 import "project.proto";
 
 option go_package = "github.com/stability-ai/api-interfaces/gooseai/finetuning";
@@ -86,30 +87,20 @@ message FineTuningJobStatus {
   JobStatus status = 2;
 }
 
-message JobStatusNotification {
-  // the org id that owns the job
-  string org_id = 1;
-  // the middleware id of the job
-  string fine_tune_request_id = 2;
-  // the user id that owns the job
-  string user_id = 3;  
-  // the current status of the job
-  JobStatus status = 4;
-  // the object storage path to the job's output, 
-  // Example: s3://somegreatbucket/this/is/a/pathtoamodel
-  string job_output_path = 5;
-  // the runtime info of the job
-  double duration = 6;
-}
-
-message ProcessNotificationResponse {
-  // whether the notification was processed successfully
-  bool success = 1;
-}
-
 message ResubmitFineTuningJobRequest {
   // the middleware id of the fine tuning job
   string id = 1;
+}
+
+message FineTuningJobRequestByUserId {
+  // the id of the user
+  string id = 1;
+}
+
+message FineTuningJobList {
+  // the list of jobs
+  repeated FineTuningJob jobs = 1;
+  google.protobuf.FieldMask field_mask = 2;
 }
 
 // TODO: should we add a list of jobs by userId / orgId?
@@ -124,9 +115,9 @@ service FineTuningService {
   // Delete a FineTuningJob by id
   rpc DeleteFineTuningJob (FineTuningJobRequestById) returns (FineTuningJob);
   // Check the progress of a FineTuningJob by id
-  rpc GetFineTuningJobProgress (FineTuningJobRequestById) returns (FineTuningJobStatus);
-  // Handle notifications from the job processing system
-  rpc ProcessNotification (JobStatusNotification) returns (ProcessNotificationResponse);
+  rpc GetFineTuningJobProgress (FineTuningJobRequestById) returns (FineTuningJobStatus);  
   // Re-run training API call, does not create a new job in the DB
   rpc ResubmitFineTuningJob (ResubmitFineTuningJobRequest) returns (FineTuningJob);
+  // Get a list of FineTuningJobs by user id
+  rpc GetJobsByUserId(FineTuningJobRequestByUserId) returns (FineTuningJobList);
 }
