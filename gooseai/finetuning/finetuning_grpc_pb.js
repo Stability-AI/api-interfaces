@@ -4,7 +4,6 @@
 var grpc = require('grpc');
 var finetuning_pb = require('./finetuning_pb.js');
 var dashboard_pb = require('./dashboard_pb.js');
-var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/duration_pb.js');
 var project_pb = require('./project_pb.js');
 
 function serialize_gooseai_CreateFineTuningJobRequest(arg) {

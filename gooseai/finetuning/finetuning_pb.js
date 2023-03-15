@@ -23,8 +23,6 @@ var global = (function() {
 
 var dashboard_pb = require('./dashboard_pb.js');
 goog.object.extend(proto, dashboard_pb);
-var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/duration_pb.js');
-goog.object.extend(proto, google_protobuf_duration_pb);
 var project_pb = require('./project_pb.js');
 goog.object.extend(proto, project_pb);
 goog.exportSymbol('proto.gooseai.CreateFineTuningJobRequest', null, global);
@@ -244,7 +242,7 @@ proto.gooseai.FineTuningJob.toObject = function(includeInstance, msg) {
     objectName: jspb.Message.getFieldWithDefault(msg, 5, ""),
     projectId: jspb.Message.getFieldWithDefault(msg, 6, ""),
     jobOutputPath: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    duration: (f = msg.getDuration()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
+    duration: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
     status: jspb.Message.getFieldWithDefault(msg, 9, 0)
   };
 
@@ -312,8 +310,7 @@ proto.gooseai.FineTuningJob.deserializeBinaryFromReader = function(msg, reader) 
       msg.setJobOutputPath(value);
       break;
     case 8:
-      var value = new google_protobuf_duration_pb.Duration;
-      reader.readMessage(value,google_protobuf_duration_pb.Duration.deserializeBinaryFromReader);
+      var value = /** @type {number} */ (reader.readDouble());
       msg.setDuration(value);
       break;
     case 9:
@@ -400,11 +397,10 @@ proto.gooseai.FineTuningJob.serializeBinaryToWriter = function(message, writer) 
     );
   }
   f = message.getDuration();
-  if (f != null) {
-    writer.writeMessage(
+  if (f !== 0.0) {
+    writer.writeDouble(
       8,
-      f,
-      google_protobuf_duration_pb.Duration.serializeBinaryToWriter
+      f
     );
   }
   f = message.getStatus();
@@ -599,39 +595,20 @@ proto.gooseai.FineTuningJob.prototype.setJobOutputPath = function(value) {
 
 
 /**
- * optional google.protobuf.Duration duration = 8;
- * @return {?proto.google.protobuf.Duration}
+ * optional double duration = 8;
+ * @return {number}
  */
 proto.gooseai.FineTuningJob.prototype.getDuration = function() {
-  return /** @type{?proto.google.protobuf.Duration} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_duration_pb.Duration, 8));
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 8, 0.0));
 };
 
 
 /**
- * @param {?proto.google.protobuf.Duration|undefined} value
+ * @param {number} value
  * @return {!proto.gooseai.FineTuningJob} returns this
-*/
+ */
 proto.gooseai.FineTuningJob.prototype.setDuration = function(value) {
-  return jspb.Message.setWrapperField(this, 8, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.gooseai.FineTuningJob} returns this
- */
-proto.gooseai.FineTuningJob.prototype.clearDuration = function() {
-  return this.setDuration(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.gooseai.FineTuningJob.prototype.hasDuration = function() {
-  return jspb.Message.getField(this, 8) != null;
+  return jspb.Message.setProto3FloatField(this, 8, value);
 };
 
 
@@ -1522,7 +1499,7 @@ proto.gooseai.JobStatusNotification.toObject = function(includeInstance, msg) {
     userId: jspb.Message.getFieldWithDefault(msg, 3, ""),
     status: jspb.Message.getFieldWithDefault(msg, 4, 0),
     jobOutputPath: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    duration: (f = msg.getDuration()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
+    duration: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0)
   };
 
   if (includeInstance) {
@@ -1580,8 +1557,7 @@ proto.gooseai.JobStatusNotification.deserializeBinaryFromReader = function(msg, 
       msg.setJobOutputPath(value);
       break;
     case 6:
-      var value = new google_protobuf_duration_pb.Duration;
-      reader.readMessage(value,google_protobuf_duration_pb.Duration.deserializeBinaryFromReader);
+      var value = /** @type {number} */ (reader.readDouble());
       msg.setDuration(value);
       break;
     default:
@@ -1649,11 +1625,10 @@ proto.gooseai.JobStatusNotification.serializeBinaryToWriter = function(message, 
     );
   }
   f = message.getDuration();
-  if (f != null) {
-    writer.writeMessage(
+  if (f !== 0.0) {
+    writer.writeDouble(
       6,
-      f,
-      google_protobuf_duration_pb.Duration.serializeBinaryToWriter
+      f
     );
   }
 };
@@ -1750,39 +1725,20 @@ proto.gooseai.JobStatusNotification.prototype.setJobOutputPath = function(value)
 
 
 /**
- * optional google.protobuf.Duration duration = 6;
- * @return {?proto.google.protobuf.Duration}
+ * optional double duration = 6;
+ * @return {number}
  */
 proto.gooseai.JobStatusNotification.prototype.getDuration = function() {
-  return /** @type{?proto.google.protobuf.Duration} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_duration_pb.Duration, 6));
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 6, 0.0));
 };
 
 
 /**
- * @param {?proto.google.protobuf.Duration|undefined} value
+ * @param {number} value
  * @return {!proto.gooseai.JobStatusNotification} returns this
-*/
+ */
 proto.gooseai.JobStatusNotification.prototype.setDuration = function(value) {
-  return jspb.Message.setWrapperField(this, 6, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.gooseai.JobStatusNotification} returns this
- */
-proto.gooseai.JobStatusNotification.prototype.clearDuration = function() {
-  return this.setDuration(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.gooseai.JobStatusNotification.prototype.hasDuration = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.setProto3FloatField(this, 6, value);
 };
 
 

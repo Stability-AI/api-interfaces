@@ -3,7 +3,6 @@
 
 import * as jspb from "google-protobuf";
 import * as dashboard_pb from "./dashboard_pb";
-import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
 import * as project_pb from "./project_pb";
 
 export class FineTuningJob extends jspb.Message {
@@ -34,10 +33,8 @@ export class FineTuningJob extends jspb.Message {
   getJobOutputPath(): string;
   setJobOutputPath(value: string): void;
 
-  hasDuration(): boolean;
-  clearDuration(): void;
-  getDuration(): google_protobuf_duration_pb.Duration | undefined;
-  setDuration(value?: google_protobuf_duration_pb.Duration): void;
+  getDuration(): number;
+  setDuration(value: number): void;
 
   getStatus(): JobStatusMap[keyof JobStatusMap];
   setStatus(value: JobStatusMap[keyof JobStatusMap]): void;
@@ -61,7 +58,7 @@ export namespace FineTuningJob {
     objectName: string,
     projectId: string,
     jobOutputPath: string,
-    duration?: google_protobuf_duration_pb.Duration.AsObject,
+    duration: number,
     status: JobStatusMap[keyof JobStatusMap],
   }
 }
@@ -202,10 +199,8 @@ export class JobStatusNotification extends jspb.Message {
   getJobOutputPath(): string;
   setJobOutputPath(value: string): void;
 
-  hasDuration(): boolean;
-  clearDuration(): void;
-  getDuration(): google_protobuf_duration_pb.Duration | undefined;
-  setDuration(value?: google_protobuf_duration_pb.Duration): void;
+  getDuration(): number;
+  setDuration(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): JobStatusNotification.AsObject;
@@ -224,7 +219,7 @@ export namespace JobStatusNotification {
     userId: string,
     status: JobStatusMap[keyof JobStatusMap],
     jobOutputPath: string,
-    duration?: google_protobuf_duration_pb.Duration.AsObject,
+    duration: number,
   }
 }
 

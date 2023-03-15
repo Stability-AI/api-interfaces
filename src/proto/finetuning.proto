@@ -1,7 +1,6 @@
 syntax = "proto3";
 package gooseai;
 import "dashboard.proto";
-import "google/protobuf/duration.proto";
 import "project.proto";
 
 option go_package = "github.com/stability-ai/api-interfaces/gooseai/finetuning";
@@ -34,7 +33,7 @@ message FineTuningJob {
   // the path to the output of the job, populated after the job completes.
   string job_output_path = 7; 
   // how long the job took to run
-  google.protobuf.Duration duration = 8;
+  double duration = 8;
   // the current status of the job
   JobStatus status = 9;
 }
@@ -100,7 +99,7 @@ message JobStatusNotification {
   // Example: s3://somegreatbucket/this/is/a/pathtoamodel
   string job_output_path = 5;
   // the runtime info of the job
-  google.protobuf.Duration duration = 6;
+  double duration = 6;
 }
 
 message ProcessNotificationResponse {
