@@ -1615,6 +1615,7 @@ export interface InterpolateModeMap {
   INTERPOLATE_RIFE: 1;
   INTERPOLATE_VAE_LINEAR: 2;
   INTERPOLATE_VAE_SLERP: 3;
+  INTERPOLATE_FILM: 4;
 }
 
 export const InterpolateMode: InterpolateModeMap;
