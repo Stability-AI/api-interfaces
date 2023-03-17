@@ -19,6 +19,15 @@ TransferService.Transfer = {
   responseType: transfer_pb.TransferResponse
 };
 
+TransferService.Delete = {
+  methodName: "Delete",
+  service: TransferService,
+  requestStream: false,
+  responseStream: false,
+  requestType: transfer_pb.DeleteRequest,
+  responseType: transfer_pb.DeleteResponse
+};
+
 exports.TransferService = TransferService;
 
 function TransferServiceClient(serviceHost, options) {
@@ -31,6 +40,37 @@ TransferServiceClient.prototype.transfer = function transfer(requestMessage, met
     callback = arguments[1];
   }
   var client = grpc.unary(TransferService.Transfer, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+TransferServiceClient.prototype.delete = function pb_delete(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(TransferService.Delete, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

@@ -13,9 +13,19 @@ type TransferServiceTransfer = {
   readonly responseType: typeof transfer_pb.TransferResponse;
 };
 
+type TransferServiceDelete = {
+  readonly methodName: string;
+  readonly service: typeof TransferService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof transfer_pb.DeleteRequest;
+  readonly responseType: typeof transfer_pb.DeleteResponse;
+};
+
 export class TransferService {
   static readonly serviceName: string;
   static readonly Transfer: TransferServiceTransfer;
+  static readonly Delete: TransferServiceDelete;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -58,6 +68,15 @@ export class TransferServiceClient {
   transfer(
     requestMessage: transfer_pb.TransferRequest,
     callback: (error: ServiceError|null, responseMessage: transfer_pb.TransferResponse|null) => void
+  ): UnaryResponse;
+  delete(
+    requestMessage: transfer_pb.DeleteRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: transfer_pb.DeleteResponse|null) => void
+  ): UnaryResponse;
+  delete(
+    requestMessage: transfer_pb.DeleteRequest,
+    callback: (error: ServiceError|null, responseMessage: transfer_pb.DeleteResponse|null) => void
   ): UnaryResponse;
 }
 

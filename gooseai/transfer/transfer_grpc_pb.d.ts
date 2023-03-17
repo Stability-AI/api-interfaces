@@ -8,12 +8,14 @@ import * as grpc from "grpc";
 
 interface ITransferServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
   transfer: grpc.MethodDefinition<transfer_pb.TransferRequest, transfer_pb.TransferResponse>;
+  delete: grpc.MethodDefinition<transfer_pb.DeleteRequest, transfer_pb.DeleteResponse>;
 }
 
 export const TransferServiceService: ITransferServiceService;
 
 export interface ITransferServiceServer extends grpc.UntypedServiceImplementation {
   transfer: grpc.handleUnaryCall<transfer_pb.TransferRequest, transfer_pb.TransferResponse>;
+  delete: grpc.handleUnaryCall<transfer_pb.DeleteRequest, transfer_pb.DeleteResponse>;
 }
 
 export class TransferServiceClient extends grpc.Client {
@@ -21,4 +23,7 @@ export class TransferServiceClient extends grpc.Client {
   transfer(argument: transfer_pb.TransferRequest, callback: grpc.requestCallback<transfer_pb.TransferResponse>): grpc.ClientUnaryCall;
   transfer(argument: transfer_pb.TransferRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<transfer_pb.TransferResponse>): grpc.ClientUnaryCall;
   transfer(argument: transfer_pb.TransferRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<transfer_pb.TransferResponse>): grpc.ClientUnaryCall;
+  delete(argument: transfer_pb.DeleteRequest, callback: grpc.requestCallback<transfer_pb.DeleteResponse>): grpc.ClientUnaryCall;
+  delete(argument: transfer_pb.DeleteRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<transfer_pb.DeleteResponse>): grpc.ClientUnaryCall;
+  delete(argument: transfer_pb.DeleteRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<transfer_pb.DeleteResponse>): grpc.ClientUnaryCall;
 }

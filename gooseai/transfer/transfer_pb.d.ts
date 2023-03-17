@@ -61,3 +61,51 @@ export namespace TransferResponse {
   }
 }
 
+export class DeleteRequest extends jspb.Message {
+  getBucket(): string;
+  setBucket(value: string): void;
+
+  clearKeysList(): void;
+  getKeysList(): Array<string>;
+  setKeysList(value: Array<string>): void;
+  addKeys(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteRequest): DeleteRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteRequest;
+  static deserializeBinaryFromReader(message: DeleteRequest, reader: jspb.BinaryReader): DeleteRequest;
+}
+
+export namespace DeleteRequest {
+  export type AsObject = {
+    bucket: string,
+    keysList: Array<string>,
+  }
+}
+
+export class DeleteResponse extends jspb.Message {
+  clearKeysList(): void;
+  getKeysList(): Array<string>;
+  setKeysList(value: Array<string>): void;
+  addKeys(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteResponse): DeleteResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteResponse;
+  static deserializeBinaryFromReader(message: DeleteResponse, reader: jspb.BinaryReader): DeleteResponse;
+}
+
+export namespace DeleteResponse {
+  export type AsObject = {
+    keysList: Array<string>,
+  }
+}
+

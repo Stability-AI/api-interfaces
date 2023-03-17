@@ -14,12 +14,14 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0etransfer.proto\x12\x07gooseai\"s\n\x0fTransferRequest\x12\x15\n\rsource_bucket\x18\x01 \x01(\t\x12\x13\n\x0bsource_keys\x18\x02 \x03(\t\x12\x1a\n\x12\x64\x65stination_bucket\x18\x03 \x01(\t\x12\x18\n\x10\x64\x65stination_keys\x18\x04 \x03(\t\" \n\x10TransferResponse\x12\x0c\n\x04urls\x18\x01 \x03(\t2T\n\x0fTransferService\x12\x41\n\x08Transfer\x12\x18.gooseai.TransferRequest\x1a\x19.gooseai.TransferResponse\"\x00\x42\x39Z7github.com/stability-ai/api-interfaces/gooseai/transferb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0etransfer.proto\x12\x07gooseai\"s\n\x0fTransferRequest\x12\x15\n\rsource_bucket\x18\x01 \x01(\t\x12\x13\n\x0bsource_keys\x18\x02 \x03(\t\x12\x1a\n\x12\x64\x65stination_bucket\x18\x03 \x01(\t\x12\x18\n\x10\x64\x65stination_keys\x18\x04 \x03(\t\" \n\x10TransferResponse\x12\x0c\n\x04urls\x18\x01 \x03(\t\"-\n\rDeleteRequest\x12\x0e\n\x06\x62ucket\x18\x01 \x01(\t\x12\x0c\n\x04keys\x18\x02 \x03(\t\"\x1e\n\x0e\x44\x65leteResponse\x12\x0c\n\x04keys\x18\x01 \x03(\t2\x91\x01\n\x0fTransferService\x12\x41\n\x08Transfer\x12\x18.gooseai.TransferRequest\x1a\x19.gooseai.TransferResponse\"\x00\x12;\n\x06\x44\x65lete\x12\x16.gooseai.DeleteRequest\x1a\x17.gooseai.DeleteResponse\"\x00\x42\x39Z7github.com/stability-ai/api-interfaces/gooseai/transferb\x06proto3')
 
 
 
 _TRANSFERREQUEST = DESCRIPTOR.message_types_by_name['TransferRequest']
 _TRANSFERRESPONSE = DESCRIPTOR.message_types_by_name['TransferResponse']
+_DELETEREQUEST = DESCRIPTOR.message_types_by_name['DeleteRequest']
+_DELETERESPONSE = DESCRIPTOR.message_types_by_name['DeleteResponse']
 TransferRequest = _reflection.GeneratedProtocolMessageType('TransferRequest', (_message.Message,), {
   'DESCRIPTOR' : _TRANSFERREQUEST,
   '__module__' : 'transfer_pb2'
@@ -34,6 +36,20 @@ TransferResponse = _reflection.GeneratedProtocolMessageType('TransferResponse', 
   })
 _sym_db.RegisterMessage(TransferResponse)
 
+DeleteRequest = _reflection.GeneratedProtocolMessageType('DeleteRequest', (_message.Message,), {
+  'DESCRIPTOR' : _DELETEREQUEST,
+  '__module__' : 'transfer_pb2'
+  # @@protoc_insertion_point(class_scope:gooseai.DeleteRequest)
+  })
+_sym_db.RegisterMessage(DeleteRequest)
+
+DeleteResponse = _reflection.GeneratedProtocolMessageType('DeleteResponse', (_message.Message,), {
+  'DESCRIPTOR' : _DELETERESPONSE,
+  '__module__' : 'transfer_pb2'
+  # @@protoc_insertion_point(class_scope:gooseai.DeleteResponse)
+  })
+_sym_db.RegisterMessage(DeleteResponse)
+
 _TRANSFERSERVICE = DESCRIPTOR.services_by_name['TransferService']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
@@ -43,6 +59,10 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _TRANSFERREQUEST._serialized_end=142
   _TRANSFERRESPONSE._serialized_start=144
   _TRANSFERRESPONSE._serialized_end=176
-  _TRANSFERSERVICE._serialized_start=178
-  _TRANSFERSERVICE._serialized_end=262
+  _DELETEREQUEST._serialized_start=178
+  _DELETEREQUEST._serialized_end=223
+  _DELETERESPONSE._serialized_start=225
+  _DELETERESPONSE._serialized_end=255
+  _TRANSFERSERVICE._serialized_start=258
+  _TRANSFERSERVICE._serialized_end=403
 # @@protoc_insertion_point(module_scope)

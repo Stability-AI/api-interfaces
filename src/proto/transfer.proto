@@ -18,6 +18,19 @@ message TransferResponse {
   repeated string urls = 1; 
 }
 
+message DeleteRequest {
+  // the bucket to delete the assets from
+  string bucket = 1; 
+  // a list of keys in the bucket to delete
+  repeated string keys = 2; 
+}
+
+message DeleteResponse {
+  // the list of deleted assets
+  repeated string keys = 1; 
+}
+
 service TransferService {
   rpc Transfer(TransferRequest) returns (TransferResponse) {}
-} 
+  rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+}
