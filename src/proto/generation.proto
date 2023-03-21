@@ -280,6 +280,7 @@ enum InterpolateMode {
   INTERPOLATE_RIFE = 1;
   INTERPOLATE_VAE_LINEAR = 2;
   INTERPOLATE_VAE_SLERP = 3;
+  INTERPOLATE_FILM = 4;
 }
 
 // Interpolation between two images applied at specified blend ratios
