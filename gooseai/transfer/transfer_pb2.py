@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0etransfer.proto\x12\x07gooseai\"s\n\x0fTransferRequest\x12\x15\n\rsource_bucket\x18\x01 \x01(\t\x12\x13\n\x0bsource_keys\x18\x02 \x03(\t\x12\x1a\n\x12\x64\x65stination_bucket\x18\x03 \x01(\t\x12\x18\n\x10\x64\x65stination_keys\x18\x04 \x03(\t\" \n\x10TransferResponse\x12\x0c\n\x04urls\x18\x01 \x03(\t\"-\n\rDeleteRequest\x12\x0e\n\x06\x62ucket\x18\x01 \x01(\t\x12\x0c\n\x04keys\x18\x02 \x03(\t\"\x1e\n\x0e\x44\x65leteResponse\x12\x0c\n\x04keys\x18\x01 \x03(\t\"z\n\x18\x43leanupFineTuningRequest\x12\x15\n\rarchiveBucket\x18\x01 \x01(\t\x12\x13\n\x0b\x61rchiveKeys\x18\x02 \x03(\t\x12\x18\n\x10processingBucket\x18\x03 \x01(\t\x12\x18\n\x10processingPrefix\x18\x04 \x01(\t\"H\n\x19\x43leanupFineTuningResponse\x12\x13\n\x0b\x61rchiveKeys\x18\x01 \x03(\t\x12\x16\n\x0eprocessingKeys\x18\x02 \x03(\t2\xef\x01\n\x0fTransferService\x12\x41\n\x08Transfer\x12\x18.gooseai.TransferRequest\x1a\x19.gooseai.TransferResponse\"\x00\x12;\n\x06\x44\x65lete\x12\x16.gooseai.DeleteRequest\x1a\x17.gooseai.DeleteResponse\"\x00\x12\\\n\x11\x43leanupFineTuning\x12!.gooseai.CleanupFineTuningRequest\x1a\".gooseai.CleanupFineTuningResponse\"\x00\x42\x39Z7github.com/stability-ai/api-interfaces/gooseai/transferb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0etransfer.proto\x12\x07gooseai\"s\n\x0fTransferRequest\x12\x15\n\rsource_bucket\x18\x01 \x01(\t\x12\x13\n\x0bsource_keys\x18\x02 \x03(\t\x12\x1a\n\x12\x64\x65stination_bucket\x18\x03 \x01(\t\x12\x18\n\x10\x64\x65stination_keys\x18\x04 \x03(\t\" \n\x10TransferResponse\x12\x0c\n\x04urls\x18\x01 \x03(\t\"-\n\rDeleteRequest\x12\x0e\n\x06\x62ucket\x18\x01 \x01(\t\x12\x0c\n\x04keys\x18\x02 \x03(\t\"\x1e\n\x0e\x44\x65leteResponse\x12\x0c\n\x04keys\x18\x01 \x03(\t\"z\n\x18\x43leanupFineTuningRequest\x12\x15\n\rarchiveBucket\x18\x01 \x01(\t\x12\x13\n\x0b\x61rchiveKeys\x18\x02 \x03(\t\x12\x18\n\x10processingBucket\x18\x03 \x01(\t\x12\x18\n\x10processingPrefix\x18\x04 \x01(\t\",\n\x19\x43leanupFineTuningResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\xef\x01\n\x0fTransferService\x12\x41\n\x08Transfer\x12\x18.gooseai.TransferRequest\x1a\x19.gooseai.TransferResponse\"\x00\x12;\n\x06\x44\x65lete\x12\x16.gooseai.DeleteRequest\x1a\x17.gooseai.DeleteResponse\"\x00\x12\\\n\x11\x43leanupFineTuning\x12!.gooseai.CleanupFineTuningRequest\x1a\".gooseai.CleanupFineTuningResponse\"\x00\x42\x39Z7github.com/stability-ai/api-interfaces/gooseai/transferb\x06proto3')
 
 
 
@@ -82,7 +82,7 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _CLEANUPFINETUNINGREQUEST._serialized_start=257
   _CLEANUPFINETUNINGREQUEST._serialized_end=379
   _CLEANUPFINETUNINGRESPONSE._serialized_start=381
-  _CLEANUPFINETUNINGRESPONSE._serialized_end=453
-  _TRANSFERSERVICE._serialized_start=456
-  _TRANSFERSERVICE._serialized_end=695
+  _CLEANUPFINETUNINGRESPONSE._serialized_end=425
+  _TRANSFERSERVICE._serialized_start=428
+  _TRANSFERSERVICE._serialized_end=667
 # @@protoc_insertion_point(module_scope)

@@ -143,7 +143,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.gooseai.CleanupFineTuningResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.gooseai.CleanupFineTuningResponse.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.gooseai.CleanupFineTuningResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -1163,13 +1163,6 @@ proto.gooseai.CleanupFineTuningRequest.prototype.setProcessingprefix = function(
 
 
 
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.gooseai.CleanupFineTuningResponse.repeatedFields_ = [1,2];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -1201,8 +1194,7 @@ proto.gooseai.CleanupFineTuningResponse.prototype.toObject = function(opt_includ
  */
 proto.gooseai.CleanupFineTuningResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    archivekeysList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    processingkeysList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+    success: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {
@@ -1240,12 +1232,8 @@ proto.gooseai.CleanupFineTuningResponse.deserializeBinaryFromReader = function(m
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addArchivekeys(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addProcessingkeys(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setSuccess(value);
       break;
     default:
       reader.skipField();
@@ -1276,94 +1264,31 @@ proto.gooseai.CleanupFineTuningResponse.prototype.serializeBinary = function() {
  */
 proto.gooseai.CleanupFineTuningResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getArchivekeysList();
-  if (f.length > 0) {
-    writer.writeRepeatedString(
+  f = message.getSuccess();
+  if (f) {
+    writer.writeBool(
       1,
       f
     );
   }
-  f = message.getProcessingkeysList();
-  if (f.length > 0) {
-    writer.writeRepeatedString(
-      2,
-      f
-    );
-  }
 };
 
 
 /**
- * repeated string archiveKeys = 1;
- * @return {!Array<string>}
+ * optional bool success = 1;
+ * @return {boolean}
  */
-proto.gooseai.CleanupFineTuningResponse.prototype.getArchivekeysList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
+proto.gooseai.CleanupFineTuningResponse.prototype.getSuccess = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
 };
 
 
 /**
- * @param {!Array<string>} value
+ * @param {boolean} value
  * @return {!proto.gooseai.CleanupFineTuningResponse} returns this
  */
-proto.gooseai.CleanupFineTuningResponse.prototype.setArchivekeysList = function(value) {
-  return jspb.Message.setField(this, 1, value || []);
-};
-
-
-/**
- * @param {string} value
- * @param {number=} opt_index
- * @return {!proto.gooseai.CleanupFineTuningResponse} returns this
- */
-proto.gooseai.CleanupFineTuningResponse.prototype.addArchivekeys = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.gooseai.CleanupFineTuningResponse} returns this
- */
-proto.gooseai.CleanupFineTuningResponse.prototype.clearArchivekeysList = function() {
-  return this.setArchivekeysList([]);
-};
-
-
-/**
- * repeated string processingKeys = 2;
- * @return {!Array<string>}
- */
-proto.gooseai.CleanupFineTuningResponse.prototype.getProcessingkeysList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
-};
-
-
-/**
- * @param {!Array<string>} value
- * @return {!proto.gooseai.CleanupFineTuningResponse} returns this
- */
-proto.gooseai.CleanupFineTuningResponse.prototype.setProcessingkeysList = function(value) {
-  return jspb.Message.setField(this, 2, value || []);
-};
-
-
-/**
- * @param {string} value
- * @param {number=} opt_index
- * @return {!proto.gooseai.CleanupFineTuningResponse} returns this
- */
-proto.gooseai.CleanupFineTuningResponse.prototype.addProcessingkeys = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.gooseai.CleanupFineTuningResponse} returns this
- */
-proto.gooseai.CleanupFineTuningResponse.prototype.clearProcessingkeysList = function() {
-  return this.setProcessingkeysList([]);
+proto.gooseai.CleanupFineTuningResponse.prototype.setSuccess = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 

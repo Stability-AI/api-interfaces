@@ -42,10 +42,8 @@ message CleanupFineTuningRequest {
 }
 
 message CleanupFineTuningResponse {
-  // the list of deleted archive assets 
-  repeated string archiveKeys = 1; 
-  // the list of deleted processing assets
-  repeated string processingKeys = 2;
+  // Whether this was successful or not
+  bool success = 1;
 }
 
 service TransferService {

@@ -144,15 +144,8 @@ export namespace CleanupFineTuningRequest {
 }
 
 export class CleanupFineTuningResponse extends jspb.Message {
-  clearArchivekeysList(): void;
-  getArchivekeysList(): Array<string>;
-  setArchivekeysList(value: Array<string>): void;
-  addArchivekeys(value: string, index?: number): string;
-
-  clearProcessingkeysList(): void;
-  getProcessingkeysList(): Array<string>;
-  setProcessingkeysList(value: Array<string>): void;
-  addProcessingkeys(value: string, index?: number): string;
+  getSuccess(): boolean;
+  setSuccess(value: boolean): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CleanupFineTuningResponse.AsObject;
@@ -166,8 +159,7 @@ export class CleanupFineTuningResponse extends jspb.Message {
 
 export namespace CleanupFineTuningResponse {
   export type AsObject = {
-    archivekeysList: Array<string>,
-    processingkeysList: Array<string>,
+    success: boolean,
   }
 }
 
