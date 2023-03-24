@@ -922,7 +922,7 @@ proto.gooseai.DeleteResponse.prototype.clearKeysList = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.gooseai.CleanupFineTuningRequest.repeatedFields_ = [2,4];
+proto.gooseai.CleanupFineTuningRequest.repeatedFields_ = [2];
 
 
 
@@ -958,7 +958,7 @@ proto.gooseai.CleanupFineTuningRequest.toObject = function(includeInstance, msg)
     archivebucket: jspb.Message.getFieldWithDefault(msg, 1, ""),
     archivekeysList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
     processingbucket: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    processingprefixList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
+    processingprefix: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -1009,7 +1009,7 @@ proto.gooseai.CleanupFineTuningRequest.deserializeBinaryFromReader = function(ms
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.addProcessingprefix(value);
+      msg.setProcessingprefix(value);
       break;
     default:
       reader.skipField();
@@ -1061,9 +1061,9 @@ proto.gooseai.CleanupFineTuningRequest.serializeBinaryToWriter = function(messag
       f
     );
   }
-  f = message.getProcessingprefixList();
+  f = message.getProcessingprefix();
   if (f.length > 0) {
-    writer.writeRepeatedString(
+    writer.writeString(
       4,
       f
     );
@@ -1145,39 +1145,20 @@ proto.gooseai.CleanupFineTuningRequest.prototype.setProcessingbucket = function(
 
 
 /**
- * repeated string processingPrefix = 4;
- * @return {!Array<string>}
+ * optional string processingPrefix = 4;
+ * @return {string}
  */
-proto.gooseai.CleanupFineTuningRequest.prototype.getProcessingprefixList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
-};
-
-
-/**
- * @param {!Array<string>} value
- * @return {!proto.gooseai.CleanupFineTuningRequest} returns this
- */
-proto.gooseai.CleanupFineTuningRequest.prototype.setProcessingprefixList = function(value) {
-  return jspb.Message.setField(this, 4, value || []);
+proto.gooseai.CleanupFineTuningRequest.prototype.getProcessingprefix = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
  * @param {string} value
- * @param {number=} opt_index
  * @return {!proto.gooseai.CleanupFineTuningRequest} returns this
  */
-proto.gooseai.CleanupFineTuningRequest.prototype.addProcessingprefix = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.gooseai.CleanupFineTuningRequest} returns this
- */
-proto.gooseai.CleanupFineTuningRequest.prototype.clearProcessingprefixList = function() {
-  return this.setProcessingprefixList([]);
+proto.gooseai.CleanupFineTuningRequest.prototype.setProcessingprefix = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 

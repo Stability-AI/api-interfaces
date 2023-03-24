@@ -38,7 +38,7 @@ message CleanupFineTuningRequest {
   // the processing bucket to delete the assets from
   string processingBucket = 3;
   // the prefix of the keys in the processing bucket to delete
-  repeated string processingPrefix = 4;
+  string processingPrefix = 4;
 }
 
 message CleanupFineTuningResponse {

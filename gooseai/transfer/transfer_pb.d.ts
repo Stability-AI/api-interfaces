@@ -121,10 +121,8 @@ export class CleanupFineTuningRequest extends jspb.Message {
   getProcessingbucket(): string;
   setProcessingbucket(value: string): void;
 
-  clearProcessingprefixList(): void;
-  getProcessingprefixList(): Array<string>;
-  setProcessingprefixList(value: Array<string>): void;
-  addProcessingprefix(value: string, index?: number): string;
+  getProcessingprefix(): string;
+  setProcessingprefix(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CleanupFineTuningRequest.AsObject;
@@ -141,7 +139,7 @@ export namespace CleanupFineTuningRequest {
     archivebucket: string,
     archivekeysList: Array<string>,
     processingbucket: string,
-    processingprefixList: Array<string>,
+    processingprefix: string,
   }
 }
 
