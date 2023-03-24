@@ -24,6 +24,11 @@ class TransferServiceStub(object):
                 request_serializer=transfer__pb2.DeleteRequest.SerializeToString,
                 response_deserializer=transfer__pb2.DeleteResponse.FromString,
                 )
+        self.CleanupFineTuning = channel.unary_unary(
+                '/gooseai.TransferService/CleanupFineTuning',
+                request_serializer=transfer__pb2.CleanupFineTuningRequest.SerializeToString,
+                response_deserializer=transfer__pb2.CleanupFineTuningResponse.FromString,
+                )
 
 
 class TransferServiceServicer(object):
@@ -41,6 +46,12 @@ class TransferServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CleanupFineTuning(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_TransferServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -53,6 +64,11 @@ def add_TransferServiceServicer_to_server(servicer, server):
                     servicer.Delete,
                     request_deserializer=transfer__pb2.DeleteRequest.FromString,
                     response_serializer=transfer__pb2.DeleteResponse.SerializeToString,
+            ),
+            'CleanupFineTuning': grpc.unary_unary_rpc_method_handler(
+                    servicer.CleanupFineTuning,
+                    request_deserializer=transfer__pb2.CleanupFineTuningRequest.FromString,
+                    response_serializer=transfer__pb2.CleanupFineTuningResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -95,5 +111,22 @@ class TransferService(object):
         return grpc.experimental.unary_unary(request, target, '/gooseai.TransferService/Delete',
             transfer__pb2.DeleteRequest.SerializeToString,
             transfer__pb2.DeleteResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CleanupFineTuning(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gooseai.TransferService/CleanupFineTuning',
+            transfer__pb2.CleanupFineTuningRequest.SerializeToString,
+            transfer__pb2.CleanupFineTuningResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

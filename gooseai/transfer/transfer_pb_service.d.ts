@@ -22,10 +22,20 @@ type TransferServiceDelete = {
   readonly responseType: typeof transfer_pb.DeleteResponse;
 };
 
+type TransferServiceCleanupFineTuning = {
+  readonly methodName: string;
+  readonly service: typeof TransferService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof transfer_pb.CleanupFineTuningRequest;
+  readonly responseType: typeof transfer_pb.CleanupFineTuningResponse;
+};
+
 export class TransferService {
   static readonly serviceName: string;
   static readonly Transfer: TransferServiceTransfer;
   static readonly Delete: TransferServiceDelete;
+  static readonly CleanupFineTuning: TransferServiceCleanupFineTuning;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -77,6 +87,15 @@ export class TransferServiceClient {
   delete(
     requestMessage: transfer_pb.DeleteRequest,
     callback: (error: ServiceError|null, responseMessage: transfer_pb.DeleteResponse|null) => void
+  ): UnaryResponse;
+  cleanupFineTuning(
+    requestMessage: transfer_pb.CleanupFineTuningRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: transfer_pb.CleanupFineTuningResponse|null) => void
+  ): UnaryResponse;
+  cleanupFineTuning(
+    requestMessage: transfer_pb.CleanupFineTuningRequest,
+    callback: (error: ServiceError|null, responseMessage: transfer_pb.CleanupFineTuningResponse|null) => void
   ): UnaryResponse;
 }
 

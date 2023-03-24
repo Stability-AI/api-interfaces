@@ -4,6 +4,28 @@
 var grpc = require('grpc');
 var transfer_pb = require('./transfer_pb.js');
 
+function serialize_gooseai_CleanupFineTuningRequest(arg) {
+  if (!(arg instanceof transfer_pb.CleanupFineTuningRequest)) {
+    throw new Error('Expected argument of type gooseai.CleanupFineTuningRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_CleanupFineTuningRequest(buffer_arg) {
+  return transfer_pb.CleanupFineTuningRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_CleanupFineTuningResponse(arg) {
+  if (!(arg instanceof transfer_pb.CleanupFineTuningResponse)) {
+    throw new Error('Expected argument of type gooseai.CleanupFineTuningResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_CleanupFineTuningResponse(buffer_arg) {
+  return transfer_pb.CleanupFineTuningResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_gooseai_DeleteRequest(arg) {
   if (!(arg instanceof transfer_pb.DeleteRequest)) {
     throw new Error('Expected argument of type gooseai.DeleteRequest');
@@ -71,6 +93,17 @@ var TransferServiceService = exports.TransferServiceService = {
     requestDeserialize: deserialize_gooseai_DeleteRequest,
     responseSerialize: serialize_gooseai_DeleteResponse,
     responseDeserialize: deserialize_gooseai_DeleteResponse,
+  },
+  cleanupFineTuning: {
+    path: '/gooseai.TransferService/CleanupFineTuning',
+    requestStream: false,
+    responseStream: false,
+    requestType: transfer_pb.CleanupFineTuningRequest,
+    responseType: transfer_pb.CleanupFineTuningResponse,
+    requestSerialize: serialize_gooseai_CleanupFineTuningRequest,
+    requestDeserialize: deserialize_gooseai_CleanupFineTuningRequest,
+    responseSerialize: serialize_gooseai_CleanupFineTuningResponse,
+    responseDeserialize: deserialize_gooseai_CleanupFineTuningResponse,
   },
 };
 

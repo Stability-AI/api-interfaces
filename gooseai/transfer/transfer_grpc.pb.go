@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion7
 type TransferServiceClient interface {
 	Transfer(ctx context.Context, in *TransferRequest, opts ...grpc.CallOption) (*TransferResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
+	CleanupFineTuning(ctx context.Context, in *CleanupFineTuningRequest, opts ...grpc.CallOption) (*CleanupFineTuningResponse, error)
 }
 
 type transferServiceClient struct {
@@ -48,12 +49,22 @@ func (c *transferServiceClient) Delete(ctx context.Context, in *DeleteRequest, o
 	return out, nil
 }
 
+func (c *transferServiceClient) CleanupFineTuning(ctx context.Context, in *CleanupFineTuningRequest, opts ...grpc.CallOption) (*CleanupFineTuningResponse, error) {
+	out := new(CleanupFineTuningResponse)
+	err := c.cc.Invoke(ctx, "/gooseai.TransferService/CleanupFineTuning", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TransferServiceServer is the server API for TransferService service.
 // All implementations must embed UnimplementedTransferServiceServer
 // for forward compatibility
 type TransferServiceServer interface {
 	Transfer(context.Context, *TransferRequest) (*TransferResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
+	CleanupFineTuning(context.Context, *CleanupFineTuningRequest) (*CleanupFineTuningResponse, error)
 	mustEmbedUnimplementedTransferServiceServer()
 }
 
@@ -66,6 +77,9 @@ func (UnimplementedTransferServiceServer) Transfer(context.Context, *TransferReq
 }
 func (UnimplementedTransferServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedTransferServiceServer) CleanupFineTuning(context.Context, *CleanupFineTuningRequest) (*CleanupFineTuningResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CleanupFineTuning not implemented")
 }
 func (UnimplementedTransferServiceServer) mustEmbedUnimplementedTransferServiceServer() {}
 
@@ -116,6 +130,24 @@ func _TransferService_Delete_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TransferService_CleanupFineTuning_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CleanupFineTuningRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransferServiceServer).CleanupFineTuning(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.TransferService/CleanupFineTuning",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransferServiceServer).CleanupFineTuning(ctx, req.(*CleanupFineTuningRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TransferService_ServiceDesc is the grpc.ServiceDesc for TransferService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -130,6 +162,10 @@ var TransferService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _TransferService_Delete_Handler,
+		},
+		{
+			MethodName: "CleanupFineTuning",
+			Handler:    _TransferService_CleanupFineTuning_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

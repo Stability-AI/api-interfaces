@@ -30,7 +30,26 @@ message DeleteResponse {
   repeated string keys = 1; 
 }
 
+message CleanupFineTuningRequest {
+  // the archive bucket to delete the assets from
+  string archiveBucket = 1;
+  // a list of keys in the archive bucket to delete
+  repeated string archiveKeys = 2; 
+  // the processing bucket to delete the assets from
+  string processingBucket = 3;
+  // the prefix of the keys in the processing bucket to delete
+  repeated string processingPrefix = 4;
+}
+
+message CleanupFineTuningResponse {
+  // the list of deleted archive assets 
+  repeated string archiveKeys = 1; 
+  // the list of deleted processing assets
+  repeated string processingKeys = 2;
+}
+
 service TransferService {
   rpc Transfer(TransferRequest) returns (TransferResponse) {}
   rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+  rpc CleanupFineTuning(CleanupFineTuningRequest) returns (CleanupFineTuningResponse) {}
 }

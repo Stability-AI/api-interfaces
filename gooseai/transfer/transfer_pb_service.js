@@ -28,6 +28,15 @@ TransferService.Delete = {
   responseType: transfer_pb.DeleteResponse
 };
 
+TransferService.CleanupFineTuning = {
+  methodName: "CleanupFineTuning",
+  service: TransferService,
+  requestStream: false,
+  responseStream: false,
+  requestType: transfer_pb.CleanupFineTuningRequest,
+  responseType: transfer_pb.CleanupFineTuningResponse
+};
+
 exports.TransferService = TransferService;
 
 function TransferServiceClient(serviceHost, options) {
@@ -71,6 +80,37 @@ TransferServiceClient.prototype.delete = function pb_delete(requestMessage, meta
     callback = arguments[1];
   }
   var client = grpc.unary(TransferService.Delete, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+TransferServiceClient.prototype.cleanupFineTuning = function cleanupFineTuning(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(TransferService.CleanupFineTuning, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

@@ -109,3 +109,67 @@ export namespace DeleteResponse {
   }
 }
 
+export class CleanupFineTuningRequest extends jspb.Message {
+  getArchivebucket(): string;
+  setArchivebucket(value: string): void;
+
+  clearArchivekeysList(): void;
+  getArchivekeysList(): Array<string>;
+  setArchivekeysList(value: Array<string>): void;
+  addArchivekeys(value: string, index?: number): string;
+
+  getProcessingbucket(): string;
+  setProcessingbucket(value: string): void;
+
+  clearProcessingprefixList(): void;
+  getProcessingprefixList(): Array<string>;
+  setProcessingprefixList(value: Array<string>): void;
+  addProcessingprefix(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CleanupFineTuningRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CleanupFineTuningRequest): CleanupFineTuningRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CleanupFineTuningRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CleanupFineTuningRequest;
+  static deserializeBinaryFromReader(message: CleanupFineTuningRequest, reader: jspb.BinaryReader): CleanupFineTuningRequest;
+}
+
+export namespace CleanupFineTuningRequest {
+  export type AsObject = {
+    archivebucket: string,
+    archivekeysList: Array<string>,
+    processingbucket: string,
+    processingprefixList: Array<string>,
+  }
+}
+
+export class CleanupFineTuningResponse extends jspb.Message {
+  clearArchivekeysList(): void;
+  getArchivekeysList(): Array<string>;
+  setArchivekeysList(value: Array<string>): void;
+  addArchivekeys(value: string, index?: number): string;
+
+  clearProcessingkeysList(): void;
+  getProcessingkeysList(): Array<string>;
+  setProcessingkeysList(value: Array<string>): void;
+  addProcessingkeys(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CleanupFineTuningResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CleanupFineTuningResponse): CleanupFineTuningResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CleanupFineTuningResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CleanupFineTuningResponse;
+  static deserializeBinaryFromReader(message: CleanupFineTuningResponse, reader: jspb.BinaryReader): CleanupFineTuningResponse;
+}
+
+export namespace CleanupFineTuningResponse {
+  export type AsObject = {
+    archivekeysList: Array<string>,
+    processingkeysList: Array<string>,
+  }
+}
+
