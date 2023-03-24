@@ -88,10 +88,8 @@ export namespace DeleteRequest {
 }
 
 export class DeleteResponse extends jspb.Message {
-  clearKeysList(): void;
-  getKeysList(): Array<string>;
-  setKeysList(value: Array<string>): void;
-  addKeys(value: string, index?: number): string;
+  getSuccess(): boolean;
+  setSuccess(value: boolean): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteResponse.AsObject;
@@ -105,7 +103,7 @@ export class DeleteResponse extends jspb.Message {
 
 export namespace DeleteResponse {
   export type AsObject = {
-    keysList: Array<string>,
+    success: boolean,
   }
 }
 

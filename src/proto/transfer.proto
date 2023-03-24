@@ -26,8 +26,8 @@ message DeleteRequest {
 }
 
 message DeleteResponse {
-  // the list of deleted assets
-  repeated string keys = 1; 
+  // Whether this was successful or not
+  bool success = 1;
 }
 
 message CleanupFineTuningRequest {

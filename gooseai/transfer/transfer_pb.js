@@ -101,7 +101,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.gooseai.DeleteResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.gooseai.DeleteResponse.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.gooseai.DeleteResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -761,13 +761,6 @@ proto.gooseai.DeleteRequest.prototype.clearKeysList = function() {
 
 
 
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.gooseai.DeleteResponse.repeatedFields_ = [1];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -799,7 +792,7 @@ proto.gooseai.DeleteResponse.prototype.toObject = function(opt_includeInstance) 
  */
 proto.gooseai.DeleteResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    keysList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    success: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {
@@ -837,8 +830,8 @@ proto.gooseai.DeleteResponse.deserializeBinaryFromReader = function(msg, reader)
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addKeys(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setSuccess(value);
       break;
     default:
       reader.skipField();
@@ -869,9 +862,9 @@ proto.gooseai.DeleteResponse.prototype.serializeBinary = function() {
  */
 proto.gooseai.DeleteResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getKeysList();
-  if (f.length > 0) {
-    writer.writeRepeatedString(
+  f = message.getSuccess();
+  if (f) {
+    writer.writeBool(
       1,
       f
     );
@@ -880,39 +873,20 @@ proto.gooseai.DeleteResponse.serializeBinaryToWriter = function(message, writer)
 
 
 /**
- * repeated string keys = 1;
- * @return {!Array<string>}
+ * optional bool success = 1;
+ * @return {boolean}
  */
-proto.gooseai.DeleteResponse.prototype.getKeysList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
+proto.gooseai.DeleteResponse.prototype.getSuccess = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
 };
 
 
 /**
- * @param {!Array<string>} value
+ * @param {boolean} value
  * @return {!proto.gooseai.DeleteResponse} returns this
  */
-proto.gooseai.DeleteResponse.prototype.setKeysList = function(value) {
-  return jspb.Message.setField(this, 1, value || []);
-};
-
-
-/**
- * @param {string} value
- * @param {number=} opt_index
- * @return {!proto.gooseai.DeleteResponse} returns this
- */
-proto.gooseai.DeleteResponse.prototype.addKeys = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.gooseai.DeleteResponse} returns this
- */
-proto.gooseai.DeleteResponse.prototype.clearKeysList = function() {
-  return this.setKeysList([]);
+proto.gooseai.DeleteResponse.prototype.setSuccess = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
