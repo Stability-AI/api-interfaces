@@ -22,10 +22,20 @@ type GenerationServiceChainGenerate = {
   readonly responseType: typeof generation_pb.Answer;
 };
 
+type GenerationServiceBatchGenerate = {
+  readonly methodName: string;
+  readonly service: typeof GenerationService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof generation_pb.BatchRequest;
+  readonly responseType: typeof generation_pb.AnswerBatch;
+};
+
 export class GenerationService {
   static readonly serviceName: string;
   static readonly Generate: GenerationServiceGenerate;
   static readonly ChainGenerate: GenerationServiceChainGenerate;
+  static readonly BatchGenerate: GenerationServiceBatchGenerate;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -62,5 +72,14 @@ export class GenerationServiceClient {
   constructor(serviceHost: string, options?: grpc.RpcOptions);
   generate(requestMessage: generation_pb.Request, metadata?: grpc.Metadata): ResponseStream<generation_pb.Answer>;
   chainGenerate(requestMessage: generation_pb.ChainRequest, metadata?: grpc.Metadata): ResponseStream<generation_pb.Answer>;
+  batchGenerate(
+    requestMessage: generation_pb.BatchRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: generation_pb.AnswerBatch|null) => void
+  ): UnaryResponse;
+  batchGenerate(
+    requestMessage: generation_pb.BatchRequest,
+    callback: (error: ServiceError|null, responseMessage: generation_pb.AnswerBatch|null) => void
+  ): UnaryResponse;
 }
 

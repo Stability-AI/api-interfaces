@@ -28,6 +28,15 @@ GenerationService.ChainGenerate = {
   responseType: generation_pb.Answer
 };
 
+GenerationService.BatchGenerate = {
+  methodName: "BatchGenerate",
+  service: GenerationService,
+  requestStream: false,
+  responseStream: false,
+  requestType: generation_pb.BatchRequest,
+  responseType: generation_pb.AnswerBatch
+};
+
 exports.GenerationService = GenerationService;
 
 function GenerationServiceClient(serviceHost, options) {
@@ -108,6 +117,37 @@ GenerationServiceClient.prototype.chainGenerate = function chainGenerate(request
     },
     cancel: function () {
       listeners = null;
+      client.close();
+    }
+  };
+};
+
+GenerationServiceClient.prototype.batchGenerate = function batchGenerate(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(GenerationService.BatchGenerate, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
       client.close();
     }
   };
