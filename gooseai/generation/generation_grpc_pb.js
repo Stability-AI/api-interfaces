@@ -17,6 +17,28 @@ function deserialize_gooseai_Answer(buffer_arg) {
   return generation_pb.Answer.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_gooseai_AnswerBatch(arg) {
+  if (!(arg instanceof generation_pb.AnswerBatch)) {
+    throw new Error('Expected argument of type gooseai.AnswerBatch');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_AnswerBatch(buffer_arg) {
+  return generation_pb.AnswerBatch.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_BatchRequest(arg) {
+  if (!(arg instanceof generation_pb.BatchRequest)) {
+    throw new Error('Expected argument of type gooseai.BatchRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_BatchRequest(buffer_arg) {
+  return generation_pb.BatchRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_gooseai_ChainRequest(arg) {
   if (!(arg instanceof generation_pb.ChainRequest)) {
     throw new Error('Expected argument of type gooseai.ChainRequest');
@@ -65,6 +87,18 @@ var GenerationServiceService = exports.GenerationServiceService = {
     requestDeserialize: deserialize_gooseai_ChainRequest,
     responseSerialize: serialize_gooseai_Answer,
     responseDeserialize: deserialize_gooseai_Answer,
+  },
+  // Unary version of ChainGenerate
+batchGenerate: {
+    path: '/gooseai.GenerationService/BatchGenerate',
+    requestStream: false,
+    responseStream: false,
+    requestType: generation_pb.BatchRequest,
+    responseType: generation_pb.AnswerBatch,
+    requestSerialize: serialize_gooseai_BatchRequest,
+    requestDeserialize: deserialize_gooseai_BatchRequest,
+    responseSerialize: serialize_gooseai_AnswerBatch,
+    responseDeserialize: deserialize_gooseai_AnswerBatch,
   },
 };
 

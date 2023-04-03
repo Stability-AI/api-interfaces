@@ -491,10 +491,20 @@ message ChainRequest {
   repeated Stage stage = 2;
 }
 
+// Currently the server will reject batches of more than 1 chain request.
+// This is still useful to enable unary responses via BatchGenerate.
+message BatchRequest {
+  string batch_id = 1;
+  repeated ChainRequest requests = 2;
+}
+
 //
 // gRPC services
 //
 service GenerationService {
   rpc Generate (Request) returns (stream Answer) {};
   rpc ChainGenerate (ChainRequest) returns (stream Answer) {};
+  
+  // Unary version of ChainGenerate
+  rpc BatchGenerate (BatchRequest) returns (AnswerBatch) {};
 }

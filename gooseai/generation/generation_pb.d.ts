@@ -1506,6 +1506,32 @@ export namespace ChainRequest {
   }
 }
 
+export class BatchRequest extends jspb.Message {
+  getBatchId(): string;
+  setBatchId(value: string): void;
+
+  clearRequestsList(): void;
+  getRequestsList(): Array<ChainRequest>;
+  setRequestsList(value: Array<ChainRequest>): void;
+  addRequests(value?: ChainRequest, index?: number): ChainRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BatchRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: BatchRequest): BatchRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: BatchRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BatchRequest;
+  static deserializeBinaryFromReader(message: BatchRequest, reader: jspb.BinaryReader): BatchRequest;
+}
+
+export namespace BatchRequest {
+  export type AsObject = {
+    batchId: string,
+    requestsList: Array<ChainRequest.AsObject>,
+  }
+}
+
 export interface FinishReasonMap {
   NULL: 0;
   LENGTH: 1;
