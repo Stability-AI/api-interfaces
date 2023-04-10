@@ -98,10 +98,10 @@ message QueryAssetsRequest {
 }
 
 message UpdateAssetsRequest {
-  string id = 1;                            // ID of the project to request, UUIDv4, empty string uses default project
-  optional string owner_id = 2;             // The ID of the organization owning the assets, unset for default org for user
-  repeated ProjectAsset assets = 3;         // Assets to update, must have ID and at least one updated field set
-  google.protobuf.FieldMask field_mask = 4; // Specifies which asset fields should be updated
+  string id = 1;                             // ID of the project to request, UUIDv4, empty string uses default project
+  optional string owner_id = 2;              // The ID of the organization owning the assets, unset for default org for user
+  repeated ProjectAsset assets = 3;          // Assets to update, must have ID and at least one updated field set
+  google.protobuf.FieldMask update_mask = 4; // Specifies which asset fields should be updated
 }
 
 message UpdateAssetsResponse {
