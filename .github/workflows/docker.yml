@@ -1,11 +1,11 @@
-name: Build Docker Image
+name: Docker
 
 on:
   push: {}
 
 jobs:
-  build-with-docker:
-    name: Build with Docker
+  generate-language-bindings:
+    name: Generate Language Bindings
     runs-on: ubuntu-20.04
     steps:
       # By default, when you use actions/checkout on a PR, it will checkout the 
