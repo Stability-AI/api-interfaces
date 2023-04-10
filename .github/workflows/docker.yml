@@ -38,7 +38,7 @@ jobs:
          path: ${{ runner.temp }}/docker-build/gooseai
       - name: Prepare artifacts for commit
         run: |
-          cp -r ${{ runner.temp }}/docker-build/gooseai ./gooseai
+          cp -r ${{ runner.temp }}/docker-build/gooseai/ ./gooseai/
       - name: Commit modified artifacts (if any)
         uses: EndBug/add-and-commit@v9
         with:
