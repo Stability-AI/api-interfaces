@@ -30,14 +30,15 @@ enum ProjectSortDir {
 }
 
 message ProjectAsset {
-  string id = 1;           // ID of the asset, UUIDv4
-  string uri = 2;          // The URI to the asset
-  ProjectAssetUse use = 3; // The use of the asset with respect to the project
-  string name = 4;         // The name of the asset
-  uint64 size = 5;         // The asset size in bytes
-  uint64 created_at = 6;   // Time of asset creation (UTC seconds epoch)
-  uint64 updated_at = 7;   // Time of last asset update (UTC seconds epoch)
-  Request request = 8;     // The request object that is associated with the artifact
+  string id = 1;                            // ID of the asset, UUIDv4
+  string uri = 2;                           // The URI to the asset
+  ProjectAssetUse use = 3;                  // The use of the asset with respect to the project
+  string name = 4;                          // The name of the asset
+  uint64 size = 5;                          // The asset size in bytes
+  uint64 created_at = 6;                    // Time of asset creation (UTC seconds epoch)
+  uint64 updated_at = 7;                    // Time of last asset update (UTC seconds epoch)
+  Request request = 8;                      // The request object that is associated with the artifact
+  optional google.protobuf.Struct tags = 9; // The tags associated with the asset
 }
 
 message Project {
@@ -95,6 +96,19 @@ message QueryAssetsRequest {
   ProjectSortDir sort_dir = 8;      // The sort direction based on asset creation time, default is descending
 }
 
+message UpdateAssetsRequest {
+  string id = 1;                            // ID of the project to request, UUIDv4, empty string uses default project
+  optional string owner_id = 2;             // The ID of the organization owning the assets, unset for default org for user
+  repeated ProjectAsset assets = 3;         // Assets to update, must have ID and at least one updated field set
+  google.protobuf.FieldMask field_mask = 4; // Specifies which asset fields should be updated
+}
+
+message UpdateAssetsResponse {
+  string id = 1;                 // ID of the project, UUIDv4
+  string owner_id = 2;           // The ID of the organization owning the project
+  repeated string asset_ids = 3; // The IDs of the assets updated in the project, UUIDv4
+}
+
 message QueryAssetsResponse {
   repeated ProjectAsset assets = 1; // The assets returned by the query
   optional string last_key = 2;     // The last asset key returned when the results were limited, unset when not limited
@@ -126,6 +140,8 @@ service ProjectService {
   rpc Get (GetProjectRequest) returns (Project) {};
   // Delete a project
   rpc Delete (DeleteProjectRequest) returns (Project) {};
+  // Update an asset of a project
+  rpc UpdateAssets (UpdateAssetsRequest) returns (UpdateAssetsResponse) {};
   // Query the assets of a project, with additional filtering
   rpc QueryAssets (QueryAssetsRequest) returns (QueryAssetsResponse) {};
   // Delete one or more assets of a project
