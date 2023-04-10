@@ -49,6 +49,15 @@ type ProjectServiceDelete = {
   readonly responseType: typeof project_pb.Project;
 };
 
+type ProjectServiceUpdateAssets = {
+  readonly methodName: string;
+  readonly service: typeof ProjectService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof project_pb.UpdateAssetsRequest;
+  readonly responseType: typeof project_pb.UpdateAssetsResponse;
+};
+
 type ProjectServiceQueryAssets = {
   readonly methodName: string;
   readonly service: typeof ProjectService;
@@ -74,6 +83,7 @@ export class ProjectService {
   static readonly List: ProjectServiceList;
   static readonly Get: ProjectServiceGet;
   static readonly Delete: ProjectServiceDelete;
+  static readonly UpdateAssets: ProjectServiceUpdateAssets;
   static readonly QueryAssets: ProjectServiceQueryAssets;
   static readonly DeleteAssets: ProjectServiceDeleteAssets;
 }
@@ -146,6 +156,15 @@ export class ProjectServiceClient {
   delete(
     requestMessage: project_pb.DeleteProjectRequest,
     callback: (error: ServiceError|null, responseMessage: project_pb.Project|null) => void
+  ): UnaryResponse;
+  updateAssets(
+    requestMessage: project_pb.UpdateAssetsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: project_pb.UpdateAssetsResponse|null) => void
+  ): UnaryResponse;
+  updateAssets(
+    requestMessage: project_pb.UpdateAssetsRequest,
+    callback: (error: ServiceError|null, responseMessage: project_pb.UpdateAssetsResponse|null) => void
   ): UnaryResponse;
   queryAssets(
     requestMessage: project_pb.QueryAssetsRequest,

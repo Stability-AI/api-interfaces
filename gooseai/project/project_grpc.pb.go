@@ -28,6 +28,8 @@ type ProjectServiceClient interface {
 	Get(ctx context.Context, in *GetProjectRequest, opts ...grpc.CallOption) (*Project, error)
 	// Delete a project
 	Delete(ctx context.Context, in *DeleteProjectRequest, opts ...grpc.CallOption) (*Project, error)
+	// Update an asset of a project
+	UpdateAssets(ctx context.Context, in *UpdateAssetsRequest, opts ...grpc.CallOption) (*UpdateAssetsResponse, error)
 	// Query the assets of a project, with additional filtering
 	QueryAssets(ctx context.Context, in *QueryAssetsRequest, opts ...grpc.CallOption) (*QueryAssetsResponse, error)
 	// Delete one or more assets of a project
@@ -110,6 +112,15 @@ func (c *projectServiceClient) Delete(ctx context.Context, in *DeleteProjectRequ
 	return out, nil
 }
 
+func (c *projectServiceClient) UpdateAssets(ctx context.Context, in *UpdateAssetsRequest, opts ...grpc.CallOption) (*UpdateAssetsResponse, error) {
+	out := new(UpdateAssetsResponse)
+	err := c.cc.Invoke(ctx, "/gooseai.ProjectService/UpdateAssets", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *projectServiceClient) QueryAssets(ctx context.Context, in *QueryAssetsRequest, opts ...grpc.CallOption) (*QueryAssetsResponse, error) {
 	out := new(QueryAssetsResponse)
 	err := c.cc.Invoke(ctx, "/gooseai.ProjectService/QueryAssets", in, out, opts...)
@@ -142,6 +153,8 @@ type ProjectServiceServer interface {
 	Get(context.Context, *GetProjectRequest) (*Project, error)
 	// Delete a project
 	Delete(context.Context, *DeleteProjectRequest) (*Project, error)
+	// Update an asset of a project
+	UpdateAssets(context.Context, *UpdateAssetsRequest) (*UpdateAssetsResponse, error)
 	// Query the assets of a project, with additional filtering
 	QueryAssets(context.Context, *QueryAssetsRequest) (*QueryAssetsResponse, error)
 	// Delete one or more assets of a project
@@ -167,6 +180,9 @@ func (UnimplementedProjectServiceServer) Get(context.Context, *GetProjectRequest
 }
 func (UnimplementedProjectServiceServer) Delete(context.Context, *DeleteProjectRequest) (*Project, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedProjectServiceServer) UpdateAssets(context.Context, *UpdateAssetsRequest) (*UpdateAssetsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateAssets not implemented")
 }
 func (UnimplementedProjectServiceServer) QueryAssets(context.Context, *QueryAssetsRequest) (*QueryAssetsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method QueryAssets not implemented")
@@ -280,6 +296,24 @@ func _ProjectService_Delete_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProjectService_UpdateAssets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAssetsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).UpdateAssets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.ProjectService/UpdateAssets",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).UpdateAssets(ctx, req.(*UpdateAssetsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ProjectService_QueryAssets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryAssetsRequest)
 	if err := dec(in); err != nil {
@@ -338,6 +372,10 @@ var ProjectService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _ProjectService_Delete_Handler,
+		},
+		{
+			MethodName: "UpdateAssets",
+			Handler:    _ProjectService_UpdateAssets_Handler,
 		},
 		{
 			MethodName: "QueryAssets",
