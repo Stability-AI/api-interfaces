@@ -360,10 +360,10 @@ export class UpdateAssetsRequest extends jspb.Message {
   setAssetsList(value: Array<ProjectAsset>): void;
   addAssets(value?: ProjectAsset, index?: number): ProjectAsset;
 
-  hasFieldMask(): boolean;
-  clearFieldMask(): void;
-  getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
-  setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): void;
+  hasUpdateMask(): boolean;
+  clearUpdateMask(): void;
+  getUpdateMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+  setUpdateMask(value?: google_protobuf_field_mask_pb.FieldMask): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateAssetsRequest.AsObject;
@@ -380,7 +380,7 @@ export namespace UpdateAssetsRequest {
     id: string,
     ownerId: string,
     assetsList: Array<ProjectAsset.AsObject>,
-    fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
+    updateMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
   }
 }
 

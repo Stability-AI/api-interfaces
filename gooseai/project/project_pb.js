@@ -2847,7 +2847,7 @@ proto.gooseai.UpdateAssetsRequest.toObject = function(includeInstance, msg) {
     ownerId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     assetsList: jspb.Message.toObjectList(msg.getAssetsList(),
     proto.gooseai.ProjectAsset.toObject, includeInstance),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+    updateMask: (f = msg.getUpdateMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2900,7 +2900,7 @@ proto.gooseai.UpdateAssetsRequest.deserializeBinaryFromReader = function(msg, re
     case 4:
       var value = new google_protobuf_field_mask_pb.FieldMask;
       reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
-      msg.setFieldMask(value);
+      msg.setUpdateMask(value);
       break;
     default:
       reader.skipField();
@@ -2953,7 +2953,7 @@ proto.gooseai.UpdateAssetsRequest.serializeBinaryToWriter = function(message, wr
       proto.gooseai.ProjectAsset.serializeBinaryToWriter
     );
   }
-  f = message.getFieldMask();
+  f = message.getUpdateMask();
   if (f != null) {
     writer.writeMessage(
       4,
@@ -3057,10 +3057,10 @@ proto.gooseai.UpdateAssetsRequest.prototype.clearAssetsList = function() {
 
 
 /**
- * optional google.protobuf.FieldMask field_mask = 4;
+ * optional google.protobuf.FieldMask update_mask = 4;
  * @return {?proto.google.protobuf.FieldMask}
  */
-proto.gooseai.UpdateAssetsRequest.prototype.getFieldMask = function() {
+proto.gooseai.UpdateAssetsRequest.prototype.getUpdateMask = function() {
   return /** @type{?proto.google.protobuf.FieldMask} */ (
     jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 4));
 };
@@ -3070,7 +3070,7 @@ proto.gooseai.UpdateAssetsRequest.prototype.getFieldMask = function() {
  * @param {?proto.google.protobuf.FieldMask|undefined} value
  * @return {!proto.gooseai.UpdateAssetsRequest} returns this
 */
-proto.gooseai.UpdateAssetsRequest.prototype.setFieldMask = function(value) {
+proto.gooseai.UpdateAssetsRequest.prototype.setUpdateMask = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
@@ -3079,8 +3079,8 @@ proto.gooseai.UpdateAssetsRequest.prototype.setFieldMask = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.gooseai.UpdateAssetsRequest} returns this
  */
-proto.gooseai.UpdateAssetsRequest.prototype.clearFieldMask = function() {
-  return this.setFieldMask(undefined);
+proto.gooseai.UpdateAssetsRequest.prototype.clearUpdateMask = function() {
+  return this.setUpdateMask(undefined);
 };
 
 
@@ -3088,7 +3088,7 @@ proto.gooseai.UpdateAssetsRequest.prototype.clearFieldMask = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.gooseai.UpdateAssetsRequest.prototype.hasFieldMask = function() {
+proto.gooseai.UpdateAssetsRequest.prototype.hasUpdateMask = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
