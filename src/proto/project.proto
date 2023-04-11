@@ -2,7 +2,6 @@ syntax = 'proto3';
 package gooseai;
 option go_package = "github.com/stability-ai/api-interfaces/gooseai/project";
 import "google/protobuf/struct.proto";
-import "google/protobuf/field_mask.proto";
 import "generation.proto";
 
 enum ProjectAccess {
@@ -97,22 +96,35 @@ message QueryAssetsRequest {
   ProjectSortDir sort_dir = 8;      // The sort direction based on asset creation time, default is descending
 }
 
-message UpdateAssetsRequest {
-  string id = 1;                             // ID of the project to request, UUIDv4, empty string uses default project
-  optional string owner_id = 2;              // The ID of the organization owning the assets, unset for default org for user
-  repeated ProjectAsset assets = 3;          // Assets to update, must have ID and at least one updated field set
-  google.protobuf.FieldMask update_mask = 4; // Specifies which asset fields should be updated
+message QueryAssetsResponse {
+  repeated ProjectAsset assets = 1; // The assets returned by the query
+  optional string last_key = 2;     // The last asset key returned when the results were limited, unset when not limited
 }
 
-message UpdateAssetsResponse {
+message TagAssetsRequest {
+  string id = 1;                   // ID of the project to request, UUIDv4, empty string uses default project
+  optional string owner_id = 2;    // The ID of the organization owning the assets, unset for default org for user
+  repeated string asset_ids = 3;   // The IDs of the assets to tag in the project, UUIDv4
+  google.protobuf.Struct tags = 9; // The tags to add to the assets
+}
+
+message TagAssetsResponse {
   string id = 1;                 // ID of the project, UUIDv4
   string owner_id = 2;           // The ID of the organization owning the project
   repeated string asset_ids = 3; // The IDs of the assets updated in the project, UUIDv4
 }
 
-message QueryAssetsResponse {
-  repeated ProjectAsset assets = 1; // The assets returned by the query
-  optional string last_key = 2;     // The last asset key returned when the results were limited, unset when not limited
+message UntagAssetsRequest {
+  string id = 1;                   // ID of the project to request, UUIDv4, empty string uses default project
+  optional string owner_id = 2;    // The ID of the organization owning the assets, unset for default org for user
+  repeated string asset_ids = 3;   // The IDs of the assets to tag in the project, UUIDv4
+  repeated string tag_keys = 4;    // The keys of the tags to remove from the assets
+}
+
+message UntagAssetsResponse {
+  string id = 1;                 // ID of the project, UUIDv4
+  string owner_id = 2;           // The ID of the organization owning the project
+  repeated string asset_ids = 3; // The IDs of the assets updated in the project, UUIDv4
 }
 
 message DeleteAssetsRequest {
@@ -141,8 +153,9 @@ service ProjectService {
   rpc Get (GetProjectRequest) returns (Project) {};
   // Delete a project
   rpc Delete (DeleteProjectRequest) returns (Project) {};
-  // Update an asset of a project
-  rpc UpdateAssets (UpdateAssetsRequest) returns (UpdateAssetsResponse) {};
+  // Add or remove tags from an asset
+  rpc TagAssets (TagAssetsRequest) returns (TagAssetResponse) {};
+  rpc UntagAssets (UntagAssetsRequest) returns (UntagAssetResponse) {};
   // Query the assets of a project, with additional filtering
   rpc QueryAssets (QueryAssetsRequest) returns (QueryAssetsResponse) {};
   // Delete one or more assets of a project
