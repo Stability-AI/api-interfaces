@@ -105,9 +105,9 @@ message UpdateAssetsRequest {
 }
 
 message UpdateAssetsResponse {
-  string id = 1;                    // ID of the project, UUIDv4
-  string owner_id = 2;              // The ID of the organization owning the project
-  repeated ProjectAsset assets = 3; // The assets updated in the project
+  string id = 1;                 // ID of the project, UUIDv4
+  string owner_id = 2;           // The ID of the organization owning the project
+  repeated string asset_ids = 3; // The IDs of the assets updated in the project, UUIDv4
 }
 
 message QueryAssetsResponse {
