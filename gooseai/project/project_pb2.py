@@ -14,11 +14,10 @@ _sym_db = _symbol_database.Default()
 
 
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-from google.protobuf import field_mask_pb2 as google_dot_protobuf_dot_field__mask__pb2
 import generation_pb2 as generation__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rproject.proto\x12\x07gooseai\x1a\x1cgoogle/protobuf/struct.proto\x1a google/protobuf/field_mask.proto\x1a\x10generation.proto\"\xea\x01\n\x0cProjectAsset\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0b\n\x03uri\x18\x02 \x01(\t\x12%\n\x03use\x18\x03 \x01(\x0e\x32\x18.gooseai.ProjectAssetUse\x12\x0c\n\x04name\x18\x04 \x01(\t\x12\x0c\n\x04size\x18\x05 \x01(\x04\x12\x12\n\ncreated_at\x18\x06 \x01(\x04\x12\x12\n\nupdated_at\x18\x07 \x01(\x04\x12!\n\x07request\x18\x08 \x01(\x0b\x32\x10.gooseai.Request\x12*\n\x04tags\x18\t \x01(\x0b\x32\x17.google.protobuf.StructH\x00\x88\x01\x01\x42\x07\n\x05_tags\"\x88\x02\n\x07Project\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x10\n\x08owner_id\x18\x03 \x01(\t\x12&\n\x06\x61\x63\x63\x65ss\x18\x04 \x01(\x0e\x32\x16.gooseai.ProjectAccess\x12&\n\x06status\x18\x05 \x01(\x0e\x32\x16.gooseai.ProjectStatus\x12\x0c\n\x04size\x18\x06 \x01(\x04\x12#\n\x04\x66ile\x18\x07 \x01(\x0b\x32\x15.gooseai.ProjectAsset\x12\x12\n\ncreated_at\x18\x08 \x01(\x04\x12\x12\n\nupdated_at\x18\t \x01(\x04\x12%\n\x06\x61ssets\x18\n \x03(\x0b\x32\x15.gooseai.ProjectAsset\"\xcc\x01\n\x14\x43reateProjectRequest\x12\r\n\x05title\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12&\n\x06\x61\x63\x63\x65ss\x18\x03 \x01(\x0e\x32\x16.gooseai.ProjectAccess\x12&\n\x06status\x18\x04 \x01(\x0e\x32\x16.gooseai.ProjectStatus\x12(\n\x04\x66ile\x18\x05 \x01(\x0b\x32\x15.gooseai.ProjectAssetH\x01\x88\x01\x01\x42\x0b\n\t_owner_idB\x07\n\x05_file\"\x87\x02\n\x14UpdateProjectRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x12\n\x05title\x18\x03 \x01(\tH\x01\x88\x01\x01\x12+\n\x06\x61\x63\x63\x65ss\x18\x04 \x01(\x0e\x32\x16.gooseai.ProjectAccessH\x02\x88\x01\x01\x12+\n\x06status\x18\x05 \x01(\x0e\x32\x16.gooseai.ProjectStatusH\x03\x88\x01\x01\x12(\n\x04\x66ile\x18\x06 \x01(\x0b\x32\x15.gooseai.ProjectAssetH\x04\x88\x01\x01\x42\x0b\n\t_owner_idB\x08\n\x06_titleB\t\n\x07_accessB\t\n\x07_statusB\x07\n\x05_file\"8\n\x12ListProjectRequest\x12\x15\n\x08owner_id\x18\x01 \x01(\tH\x00\x88\x01\x01\x42\x0b\n\t_owner_id\"C\n\x11GetProjectRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\x0b\n\t_owner_id\"F\n\x14\x44\x65leteProjectRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\x0b\n\t_owner_id\"\x96\x02\n\x12QueryAssetsRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x12\n\x05since\x18\x03 \x01(\x04H\x01\x88\x01\x01\x12\x12\n\x05until\x18\x04 \x01(\x04H\x02\x88\x01\x01\x12\x12\n\x05limit\x18\x05 \x01(\x04H\x03\x88\x01\x01\x12\x16\n\tstart_key\x18\x06 \x01(\tH\x04\x88\x01\x01\x12%\n\x03use\x18\x07 \x03(\x0e\x32\x18.gooseai.ProjectAssetUse\x12)\n\x08sort_dir\x18\x08 \x01(\x0e\x32\x17.gooseai.ProjectSortDirB\x0b\n\t_owner_idB\x08\n\x06_sinceB\x08\n\x06_untilB\x08\n\x06_limitB\x0c\n\n_start_key\"\x9d\x01\n\x13UpdateAssetsRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12%\n\x06\x61ssets\x18\x03 \x03(\x0b\x32\x15.gooseai.ProjectAsset\x12/\n\x0bupdate_mask\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskB\x0b\n\t_owner_id\"G\n\x14UpdateAssetsResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x10\n\x08owner_id\x18\x02 \x01(\t\x12\x11\n\tasset_ids\x18\x03 \x03(\t\"`\n\x13QueryAssetsResponse\x12%\n\x06\x61ssets\x18\x01 \x03(\x0b\x32\x15.gooseai.ProjectAsset\x12\x15\n\x08last_key\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\x0b\n\t_last_key\"X\n\x13\x44\x65leteAssetsRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x11\n\tasset_ids\x18\x03 \x03(\tB\x0b\n\t_owner_id\"G\n\x14\x44\x65leteAssetsResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x10\n\x08owner_id\x18\x02 \x01(\t\x12\x11\n\tasset_ids\x18\x03 \x03(\t*F\n\rProjectAccess\x12\x1a\n\x16PROJECT_ACCESS_PRIVATE\x10\x00\x12\x19\n\x15PROJECT_ACCESS_PUBLIC\x10\x01*c\n\rProjectStatus\x12\x1b\n\x17PROJECT_STATUS_INACTIVE\x10\x00\x12\x19\n\x15PROJECT_STATUS_ACTIVE\x10\x01\x12\x1a\n\x16PROJECT_STATUS_DELETED\x10\x02*\xb0\x01\n\x0fProjectAssetUse\x12\x1f\n\x1bPROJECT_ASSET_USE_UNDEFINED\x10\x00\x12\x1b\n\x17PROJECT_ASSET_USE_INPUT\x10\x01\x12\x1c\n\x18PROJECT_ASSET_USE_OUTPUT\x10\x02\x12\"\n\x1ePROJECT_ASSET_USE_INTERMEDIATE\x10\x03\x12\x1d\n\x19PROJECT_ASSET_USE_PROJECT\x10\x04*g\n\x0eProjectSortDir\x12 \n\x1cPROJECT_SORT_DIR_UNSPECIFIED\x10\x00\x12\x18\n\x14PROJECT_SORT_DIR_ASC\x10\x01\x12\x19\n\x15PROJECT_SORT_DIR_DESC\x10\x02\x32\xa3\x04\n\x0eProjectService\x12;\n\x06\x43reate\x12\x1d.gooseai.CreateProjectRequest\x1a\x10.gooseai.Project\"\x00\x12;\n\x06Update\x12\x1d.gooseai.UpdateProjectRequest\x1a\x10.gooseai.Project\"\x00\x12\x39\n\x04List\x12\x1b.gooseai.ListProjectRequest\x1a\x10.gooseai.Project\"\x00\x30\x01\x12\x35\n\x03Get\x12\x1a.gooseai.GetProjectRequest\x1a\x10.gooseai.Project\"\x00\x12;\n\x06\x44\x65lete\x12\x1d.gooseai.DeleteProjectRequest\x1a\x10.gooseai.Project\"\x00\x12M\n\x0cUpdateAssets\x12\x1c.gooseai.UpdateAssetsRequest\x1a\x1d.gooseai.UpdateAssetsResponse\"\x00\x12J\n\x0bQueryAssets\x12\x1b.gooseai.QueryAssetsRequest\x1a\x1c.gooseai.QueryAssetsResponse\"\x00\x12M\n\x0c\x44\x65leteAssets\x12\x1c.gooseai.DeleteAssetsRequest\x1a\x1d.gooseai.DeleteAssetsResponse\"\x00\x42\x38Z6github.com/stability-ai/api-interfaces/gooseai/projectb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rproject.proto\x12\x07gooseai\x1a\x1cgoogle/protobuf/struct.proto\x1a\x10generation.proto\"\xea\x01\n\x0cProjectAsset\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0b\n\x03uri\x18\x02 \x01(\t\x12%\n\x03use\x18\x03 \x01(\x0e\x32\x18.gooseai.ProjectAssetUse\x12\x0c\n\x04name\x18\x04 \x01(\t\x12\x0c\n\x04size\x18\x05 \x01(\x04\x12\x12\n\ncreated_at\x18\x06 \x01(\x04\x12\x12\n\nupdated_at\x18\x07 \x01(\x04\x12!\n\x07request\x18\x08 \x01(\x0b\x32\x10.gooseai.Request\x12*\n\x04tags\x18\t \x01(\x0b\x32\x17.google.protobuf.StructH\x00\x88\x01\x01\x42\x07\n\x05_tags\"\x88\x02\n\x07Project\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x10\n\x08owner_id\x18\x03 \x01(\t\x12&\n\x06\x61\x63\x63\x65ss\x18\x04 \x01(\x0e\x32\x16.gooseai.ProjectAccess\x12&\n\x06status\x18\x05 \x01(\x0e\x32\x16.gooseai.ProjectStatus\x12\x0c\n\x04size\x18\x06 \x01(\x04\x12#\n\x04\x66ile\x18\x07 \x01(\x0b\x32\x15.gooseai.ProjectAsset\x12\x12\n\ncreated_at\x18\x08 \x01(\x04\x12\x12\n\nupdated_at\x18\t \x01(\x04\x12%\n\x06\x61ssets\x18\n \x03(\x0b\x32\x15.gooseai.ProjectAsset\"\xcc\x01\n\x14\x43reateProjectRequest\x12\r\n\x05title\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12&\n\x06\x61\x63\x63\x65ss\x18\x03 \x01(\x0e\x32\x16.gooseai.ProjectAccess\x12&\n\x06status\x18\x04 \x01(\x0e\x32\x16.gooseai.ProjectStatus\x12(\n\x04\x66ile\x18\x05 \x01(\x0b\x32\x15.gooseai.ProjectAssetH\x01\x88\x01\x01\x42\x0b\n\t_owner_idB\x07\n\x05_file\"\x87\x02\n\x14UpdateProjectRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x12\n\x05title\x18\x03 \x01(\tH\x01\x88\x01\x01\x12+\n\x06\x61\x63\x63\x65ss\x18\x04 \x01(\x0e\x32\x16.gooseai.ProjectAccessH\x02\x88\x01\x01\x12+\n\x06status\x18\x05 \x01(\x0e\x32\x16.gooseai.ProjectStatusH\x03\x88\x01\x01\x12(\n\x04\x66ile\x18\x06 \x01(\x0b\x32\x15.gooseai.ProjectAssetH\x04\x88\x01\x01\x42\x0b\n\t_owner_idB\x08\n\x06_titleB\t\n\x07_accessB\t\n\x07_statusB\x07\n\x05_file\"8\n\x12ListProjectRequest\x12\x15\n\x08owner_id\x18\x01 \x01(\tH\x00\x88\x01\x01\x42\x0b\n\t_owner_id\"C\n\x11GetProjectRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\x0b\n\t_owner_id\"F\n\x14\x44\x65leteProjectRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\x0b\n\t_owner_id\"\xcb\x02\n\x12QueryAssetsRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x12\n\x05since\x18\x03 \x01(\x04H\x01\x88\x01\x01\x12\x12\n\x05until\x18\x04 \x01(\x04H\x02\x88\x01\x01\x12\x12\n\x05limit\x18\x05 \x01(\x04H\x03\x88\x01\x01\x12\x16\n\tstart_key\x18\x06 \x01(\tH\x04\x88\x01\x01\x12%\n\x03use\x18\x07 \x03(\x0e\x32\x18.gooseai.ProjectAssetUse\x12)\n\x08sort_dir\x18\x08 \x01(\x0e\x32\x17.gooseai.ProjectSortDir\x12*\n\x04tags\x18\t \x01(\x0b\x32\x17.google.protobuf.StructH\x05\x88\x01\x01\x42\x0b\n\t_owner_idB\x08\n\x06_sinceB\x08\n\x06_untilB\x08\n\x06_limitB\x0c\n\n_start_keyB\x07\n\x05_tags\"`\n\x13QueryAssetsResponse\x12%\n\x06\x61ssets\x18\x01 \x03(\x0b\x32\x15.gooseai.ProjectAsset\x12\x15\n\x08last_key\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\x0b\n\t_last_key\"|\n\x10TagAssetsRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x11\n\tasset_ids\x18\x03 \x03(\t\x12%\n\x04tags\x18\t \x01(\x0b\x32\x17.google.protobuf.StructB\x0b\n\t_owner_id\"D\n\x11TagAssetsResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x10\n\x08owner_id\x18\x02 \x01(\t\x12\x11\n\tasset_ids\x18\x03 \x03(\t\"i\n\x12UntagAssetsRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x11\n\tasset_ids\x18\x03 \x03(\t\x12\x10\n\x08tag_keys\x18\x04 \x03(\tB\x0b\n\t_owner_id\"F\n\x13UntagAssetsResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x10\n\x08owner_id\x18\x02 \x01(\t\x12\x11\n\tasset_ids\x18\x03 \x03(\t\"X\n\x13\x44\x65leteAssetsRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\x08owner_id\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x11\n\tasset_ids\x18\x03 \x03(\tB\x0b\n\t_owner_id\"G\n\x14\x44\x65leteAssetsResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x10\n\x08owner_id\x18\x02 \x01(\t\x12\x11\n\tasset_ids\x18\x03 \x03(\t*F\n\rProjectAccess\x12\x1a\n\x16PROJECT_ACCESS_PRIVATE\x10\x00\x12\x19\n\x15PROJECT_ACCESS_PUBLIC\x10\x01*c\n\rProjectStatus\x12\x1b\n\x17PROJECT_STATUS_INACTIVE\x10\x00\x12\x19\n\x15PROJECT_STATUS_ACTIVE\x10\x01\x12\x1a\n\x16PROJECT_STATUS_DELETED\x10\x02*\xb0\x01\n\x0fProjectAssetUse\x12\x1f\n\x1bPROJECT_ASSET_USE_UNDEFINED\x10\x00\x12\x1b\n\x17PROJECT_ASSET_USE_INPUT\x10\x01\x12\x1c\n\x18PROJECT_ASSET_USE_OUTPUT\x10\x02\x12\"\n\x1ePROJECT_ASSET_USE_INTERMEDIATE\x10\x03\x12\x1d\n\x19PROJECT_ASSET_USE_PROJECT\x10\x04*g\n\x0eProjectSortDir\x12 \n\x1cPROJECT_SORT_DIR_UNSPECIFIED\x10\x00\x12\x18\n\x14PROJECT_SORT_DIR_ASC\x10\x01\x12\x19\n\x15PROJECT_SORT_DIR_DESC\x10\x02\x32\xe6\x04\n\x0eProjectService\x12;\n\x06\x43reate\x12\x1d.gooseai.CreateProjectRequest\x1a\x10.gooseai.Project\"\x00\x12;\n\x06Update\x12\x1d.gooseai.UpdateProjectRequest\x1a\x10.gooseai.Project\"\x00\x12\x39\n\x04List\x12\x1b.gooseai.ListProjectRequest\x1a\x10.gooseai.Project\"\x00\x30\x01\x12\x35\n\x03Get\x12\x1a.gooseai.GetProjectRequest\x1a\x10.gooseai.Project\"\x00\x12;\n\x06\x44\x65lete\x12\x1d.gooseai.DeleteProjectRequest\x1a\x10.gooseai.Project\"\x00\x12\x44\n\tTagAssets\x12\x19.gooseai.TagAssetsRequest\x1a\x1a.gooseai.TagAssetsResponse\"\x00\x12J\n\x0bUntagAssets\x12\x1b.gooseai.UntagAssetsRequest\x1a\x1c.gooseai.UntagAssetsResponse\"\x00\x12J\n\x0bQueryAssets\x12\x1b.gooseai.QueryAssetsRequest\x1a\x1c.gooseai.QueryAssetsResponse\"\x00\x12M\n\x0c\x44\x65leteAssets\x12\x1c.gooseai.DeleteAssetsRequest\x1a\x1d.gooseai.DeleteAssetsResponse\"\x00\x42\x38Z6github.com/stability-ai/api-interfaces/gooseai/projectb\x06proto3')
 
 _PROJECTACCESS = DESCRIPTOR.enum_types_by_name['ProjectAccess']
 ProjectAccess = enum_type_wrapper.EnumTypeWrapper(_PROJECTACCESS)
@@ -51,9 +50,11 @@ _LISTPROJECTREQUEST = DESCRIPTOR.message_types_by_name['ListProjectRequest']
 _GETPROJECTREQUEST = DESCRIPTOR.message_types_by_name['GetProjectRequest']
 _DELETEPROJECTREQUEST = DESCRIPTOR.message_types_by_name['DeleteProjectRequest']
 _QUERYASSETSREQUEST = DESCRIPTOR.message_types_by_name['QueryAssetsRequest']
-_UPDATEASSETSREQUEST = DESCRIPTOR.message_types_by_name['UpdateAssetsRequest']
-_UPDATEASSETSRESPONSE = DESCRIPTOR.message_types_by_name['UpdateAssetsResponse']
 _QUERYASSETSRESPONSE = DESCRIPTOR.message_types_by_name['QueryAssetsResponse']
+_TAGASSETSREQUEST = DESCRIPTOR.message_types_by_name['TagAssetsRequest']
+_TAGASSETSRESPONSE = DESCRIPTOR.message_types_by_name['TagAssetsResponse']
+_UNTAGASSETSREQUEST = DESCRIPTOR.message_types_by_name['UntagAssetsRequest']
+_UNTAGASSETSRESPONSE = DESCRIPTOR.message_types_by_name['UntagAssetsResponse']
 _DELETEASSETSREQUEST = DESCRIPTOR.message_types_by_name['DeleteAssetsRequest']
 _DELETEASSETSRESPONSE = DESCRIPTOR.message_types_by_name['DeleteAssetsResponse']
 ProjectAsset = _reflection.GeneratedProtocolMessageType('ProjectAsset', (_message.Message,), {
@@ -112,26 +113,40 @@ QueryAssetsRequest = _reflection.GeneratedProtocolMessageType('QueryAssetsReques
   })
 _sym_db.RegisterMessage(QueryAssetsRequest)
 
-UpdateAssetsRequest = _reflection.GeneratedProtocolMessageType('UpdateAssetsRequest', (_message.Message,), {
-  'DESCRIPTOR' : _UPDATEASSETSREQUEST,
-  '__module__' : 'project_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.UpdateAssetsRequest)
-  })
-_sym_db.RegisterMessage(UpdateAssetsRequest)
-
-UpdateAssetsResponse = _reflection.GeneratedProtocolMessageType('UpdateAssetsResponse', (_message.Message,), {
-  'DESCRIPTOR' : _UPDATEASSETSRESPONSE,
-  '__module__' : 'project_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.UpdateAssetsResponse)
-  })
-_sym_db.RegisterMessage(UpdateAssetsResponse)
-
 QueryAssetsResponse = _reflection.GeneratedProtocolMessageType('QueryAssetsResponse', (_message.Message,), {
   'DESCRIPTOR' : _QUERYASSETSRESPONSE,
   '__module__' : 'project_pb2'
   # @@protoc_insertion_point(class_scope:gooseai.QueryAssetsResponse)
   })
 _sym_db.RegisterMessage(QueryAssetsResponse)
+
+TagAssetsRequest = _reflection.GeneratedProtocolMessageType('TagAssetsRequest', (_message.Message,), {
+  'DESCRIPTOR' : _TAGASSETSREQUEST,
+  '__module__' : 'project_pb2'
+  # @@protoc_insertion_point(class_scope:gooseai.TagAssetsRequest)
+  })
+_sym_db.RegisterMessage(TagAssetsRequest)
+
+TagAssetsResponse = _reflection.GeneratedProtocolMessageType('TagAssetsResponse', (_message.Message,), {
+  'DESCRIPTOR' : _TAGASSETSRESPONSE,
+  '__module__' : 'project_pb2'
+  # @@protoc_insertion_point(class_scope:gooseai.TagAssetsResponse)
+  })
+_sym_db.RegisterMessage(TagAssetsResponse)
+
+UntagAssetsRequest = _reflection.GeneratedProtocolMessageType('UntagAssetsRequest', (_message.Message,), {
+  'DESCRIPTOR' : _UNTAGASSETSREQUEST,
+  '__module__' : 'project_pb2'
+  # @@protoc_insertion_point(class_scope:gooseai.UntagAssetsRequest)
+  })
+_sym_db.RegisterMessage(UntagAssetsRequest)
+
+UntagAssetsResponse = _reflection.GeneratedProtocolMessageType('UntagAssetsResponse', (_message.Message,), {
+  'DESCRIPTOR' : _UNTAGASSETSRESPONSE,
+  '__module__' : 'project_pb2'
+  # @@protoc_insertion_point(class_scope:gooseai.UntagAssetsResponse)
+  })
+_sym_db.RegisterMessage(UntagAssetsResponse)
 
 DeleteAssetsRequest = _reflection.GeneratedProtocolMessageType('DeleteAssetsRequest', (_message.Message,), {
   'DESCRIPTOR' : _DELETEASSETSREQUEST,
@@ -152,40 +167,44 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z6github.com/stability-ai/api-interfaces/gooseai/project'
-  _PROJECTACCESS._serialized_start=2059
-  _PROJECTACCESS._serialized_end=2129
-  _PROJECTSTATUS._serialized_start=2131
-  _PROJECTSTATUS._serialized_end=2230
-  _PROJECTASSETUSE._serialized_start=2233
-  _PROJECTASSETUSE._serialized_end=2409
-  _PROJECTSORTDIR._serialized_start=2411
-  _PROJECTSORTDIR._serialized_end=2514
-  _PROJECTASSET._serialized_start=109
-  _PROJECTASSET._serialized_end=343
-  _PROJECT._serialized_start=346
-  _PROJECT._serialized_end=610
-  _CREATEPROJECTREQUEST._serialized_start=613
-  _CREATEPROJECTREQUEST._serialized_end=817
-  _UPDATEPROJECTREQUEST._serialized_start=820
-  _UPDATEPROJECTREQUEST._serialized_end=1083
-  _LISTPROJECTREQUEST._serialized_start=1085
-  _LISTPROJECTREQUEST._serialized_end=1141
-  _GETPROJECTREQUEST._serialized_start=1143
-  _GETPROJECTREQUEST._serialized_end=1210
-  _DELETEPROJECTREQUEST._serialized_start=1212
-  _DELETEPROJECTREQUEST._serialized_end=1282
-  _QUERYASSETSREQUEST._serialized_start=1285
-  _QUERYASSETSREQUEST._serialized_end=1563
-  _UPDATEASSETSREQUEST._serialized_start=1566
-  _UPDATEASSETSREQUEST._serialized_end=1723
-  _UPDATEASSETSRESPONSE._serialized_start=1725
-  _UPDATEASSETSRESPONSE._serialized_end=1796
-  _QUERYASSETSRESPONSE._serialized_start=1798
-  _QUERYASSETSRESPONSE._serialized_end=1894
-  _DELETEASSETSREQUEST._serialized_start=1896
-  _DELETEASSETSREQUEST._serialized_end=1984
-  _DELETEASSETSRESPONSE._serialized_start=1986
-  _DELETEASSETSRESPONSE._serialized_end=2057
-  _PROJECTSERVICE._serialized_start=2517
-  _PROJECTSERVICE._serialized_end=3064
+  _PROJECTACCESS._serialized_start=2220
+  _PROJECTACCESS._serialized_end=2290
+  _PROJECTSTATUS._serialized_start=2292
+  _PROJECTSTATUS._serialized_end=2391
+  _PROJECTASSETUSE._serialized_start=2394
+  _PROJECTASSETUSE._serialized_end=2570
+  _PROJECTSORTDIR._serialized_start=2572
+  _PROJECTSORTDIR._serialized_end=2675
+  _PROJECTASSET._serialized_start=75
+  _PROJECTASSET._serialized_end=309
+  _PROJECT._serialized_start=312
+  _PROJECT._serialized_end=576
+  _CREATEPROJECTREQUEST._serialized_start=579
+  _CREATEPROJECTREQUEST._serialized_end=783
+  _UPDATEPROJECTREQUEST._serialized_start=786
+  _UPDATEPROJECTREQUEST._serialized_end=1049
+  _LISTPROJECTREQUEST._serialized_start=1051
+  _LISTPROJECTREQUEST._serialized_end=1107
+  _GETPROJECTREQUEST._serialized_start=1109
+  _GETPROJECTREQUEST._serialized_end=1176
+  _DELETEPROJECTREQUEST._serialized_start=1178
+  _DELETEPROJECTREQUEST._serialized_end=1248
+  _QUERYASSETSREQUEST._serialized_start=1251
+  _QUERYASSETSREQUEST._serialized_end=1582
+  _QUERYASSETSRESPONSE._serialized_start=1584
+  _QUERYASSETSRESPONSE._serialized_end=1680
+  _TAGASSETSREQUEST._serialized_start=1682
+  _TAGASSETSREQUEST._serialized_end=1806
+  _TAGASSETSRESPONSE._serialized_start=1808
+  _TAGASSETSRESPONSE._serialized_end=1876
+  _UNTAGASSETSREQUEST._serialized_start=1878
+  _UNTAGASSETSREQUEST._serialized_end=1983
+  _UNTAGASSETSRESPONSE._serialized_start=1985
+  _UNTAGASSETSRESPONSE._serialized_end=2055
+  _DELETEASSETSREQUEST._serialized_start=2057
+  _DELETEASSETSREQUEST._serialized_end=2145
+  _DELETEASSETSRESPONSE._serialized_start=2147
+  _DELETEASSETSRESPONSE._serialized_end=2218
+  _PROJECTSERVICE._serialized_start=2678
+  _PROJECTSERVICE._serialized_end=3292
 # @@protoc_insertion_point(module_scope)

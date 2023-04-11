@@ -3,7 +3,6 @@
 
 import * as jspb from "google-protobuf";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
-import * as google_protobuf_field_mask_pb from "google-protobuf/google/protobuf/field_mask_pb";
 import * as generation_pb from "./generation_pb";
 
 export class ProjectAsset extends jspb.Message {
@@ -323,6 +322,11 @@ export class QueryAssetsRequest extends jspb.Message {
   getSortDir(): ProjectSortDirMap[keyof ProjectSortDirMap];
   setSortDir(value: ProjectSortDirMap[keyof ProjectSortDirMap]): void;
 
+  hasTags(): boolean;
+  clearTags(): void;
+  getTags(): google_protobuf_struct_pb.Struct | undefined;
+  setTags(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): QueryAssetsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: QueryAssetsRequest): QueryAssetsRequest.AsObject;
@@ -343,74 +347,7 @@ export namespace QueryAssetsRequest {
     startKey: string,
     useList: Array<ProjectAssetUseMap[keyof ProjectAssetUseMap]>,
     sortDir: ProjectSortDirMap[keyof ProjectSortDirMap],
-  }
-}
-
-export class UpdateAssetsRequest extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
-  hasOwnerId(): boolean;
-  clearOwnerId(): void;
-  getOwnerId(): string;
-  setOwnerId(value: string): void;
-
-  clearAssetsList(): void;
-  getAssetsList(): Array<ProjectAsset>;
-  setAssetsList(value: Array<ProjectAsset>): void;
-  addAssets(value?: ProjectAsset, index?: number): ProjectAsset;
-
-  hasUpdateMask(): boolean;
-  clearUpdateMask(): void;
-  getUpdateMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
-  setUpdateMask(value?: google_protobuf_field_mask_pb.FieldMask): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateAssetsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateAssetsRequest): UpdateAssetsRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UpdateAssetsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateAssetsRequest;
-  static deserializeBinaryFromReader(message: UpdateAssetsRequest, reader: jspb.BinaryReader): UpdateAssetsRequest;
-}
-
-export namespace UpdateAssetsRequest {
-  export type AsObject = {
-    id: string,
-    ownerId: string,
-    assetsList: Array<ProjectAsset.AsObject>,
-    updateMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
-  }
-}
-
-export class UpdateAssetsResponse extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
-  getOwnerId(): string;
-  setOwnerId(value: string): void;
-
-  clearAssetIdsList(): void;
-  getAssetIdsList(): Array<string>;
-  setAssetIdsList(value: Array<string>): void;
-  addAssetIds(value: string, index?: number): string;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateAssetsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateAssetsResponse): UpdateAssetsResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UpdateAssetsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateAssetsResponse;
-  static deserializeBinaryFromReader(message: UpdateAssetsResponse, reader: jspb.BinaryReader): UpdateAssetsResponse;
-}
-
-export namespace UpdateAssetsResponse {
-  export type AsObject = {
-    id: string,
-    ownerId: string,
-    assetIdsList: Array<string>,
+    tags?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -439,6 +376,142 @@ export namespace QueryAssetsResponse {
   export type AsObject = {
     assetsList: Array<ProjectAsset.AsObject>,
     lastKey: string,
+  }
+}
+
+export class TagAssetsRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  hasOwnerId(): boolean;
+  clearOwnerId(): void;
+  getOwnerId(): string;
+  setOwnerId(value: string): void;
+
+  clearAssetIdsList(): void;
+  getAssetIdsList(): Array<string>;
+  setAssetIdsList(value: Array<string>): void;
+  addAssetIds(value: string, index?: number): string;
+
+  hasTags(): boolean;
+  clearTags(): void;
+  getTags(): google_protobuf_struct_pb.Struct | undefined;
+  setTags(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TagAssetsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TagAssetsRequest): TagAssetsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TagAssetsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TagAssetsRequest;
+  static deserializeBinaryFromReader(message: TagAssetsRequest, reader: jspb.BinaryReader): TagAssetsRequest;
+}
+
+export namespace TagAssetsRequest {
+  export type AsObject = {
+    id: string,
+    ownerId: string,
+    assetIdsList: Array<string>,
+    tags?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class TagAssetsResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getOwnerId(): string;
+  setOwnerId(value: string): void;
+
+  clearAssetIdsList(): void;
+  getAssetIdsList(): Array<string>;
+  setAssetIdsList(value: Array<string>): void;
+  addAssetIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TagAssetsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: TagAssetsResponse): TagAssetsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TagAssetsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TagAssetsResponse;
+  static deserializeBinaryFromReader(message: TagAssetsResponse, reader: jspb.BinaryReader): TagAssetsResponse;
+}
+
+export namespace TagAssetsResponse {
+  export type AsObject = {
+    id: string,
+    ownerId: string,
+    assetIdsList: Array<string>,
+  }
+}
+
+export class UntagAssetsRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  hasOwnerId(): boolean;
+  clearOwnerId(): void;
+  getOwnerId(): string;
+  setOwnerId(value: string): void;
+
+  clearAssetIdsList(): void;
+  getAssetIdsList(): Array<string>;
+  setAssetIdsList(value: Array<string>): void;
+  addAssetIds(value: string, index?: number): string;
+
+  clearTagKeysList(): void;
+  getTagKeysList(): Array<string>;
+  setTagKeysList(value: Array<string>): void;
+  addTagKeys(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UntagAssetsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UntagAssetsRequest): UntagAssetsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UntagAssetsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UntagAssetsRequest;
+  static deserializeBinaryFromReader(message: UntagAssetsRequest, reader: jspb.BinaryReader): UntagAssetsRequest;
+}
+
+export namespace UntagAssetsRequest {
+  export type AsObject = {
+    id: string,
+    ownerId: string,
+    assetIdsList: Array<string>,
+    tagKeysList: Array<string>,
+  }
+}
+
+export class UntagAssetsResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getOwnerId(): string;
+  setOwnerId(value: string): void;
+
+  clearAssetIdsList(): void;
+  getAssetIdsList(): Array<string>;
+  setAssetIdsList(value: Array<string>): void;
+  addAssetIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UntagAssetsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UntagAssetsResponse): UntagAssetsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UntagAssetsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UntagAssetsResponse;
+  static deserializeBinaryFromReader(message: UntagAssetsResponse, reader: jspb.BinaryReader): UntagAssetsResponse;
+}
+
+export namespace UntagAssetsResponse {
+  export type AsObject = {
+    id: string,
+    ownerId: string,
+    assetIdsList: Array<string>,
   }
 }
 

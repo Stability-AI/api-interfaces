@@ -42,10 +42,15 @@ class ProjectServiceStub(object):
                 request_serializer=project__pb2.DeleteProjectRequest.SerializeToString,
                 response_deserializer=project__pb2.Project.FromString,
                 )
-        self.UpdateAssets = channel.unary_unary(
-                '/gooseai.ProjectService/UpdateAssets',
-                request_serializer=project__pb2.UpdateAssetsRequest.SerializeToString,
-                response_deserializer=project__pb2.UpdateAssetsResponse.FromString,
+        self.TagAssets = channel.unary_unary(
+                '/gooseai.ProjectService/TagAssets',
+                request_serializer=project__pb2.TagAssetsRequest.SerializeToString,
+                response_deserializer=project__pb2.TagAssetsResponse.FromString,
+                )
+        self.UntagAssets = channel.unary_unary(
+                '/gooseai.ProjectService/UntagAssets',
+                request_serializer=project__pb2.UntagAssetsRequest.SerializeToString,
+                response_deserializer=project__pb2.UntagAssetsResponse.FromString,
                 )
         self.QueryAssets = channel.unary_unary(
                 '/gooseai.ProjectService/QueryAssets',
@@ -100,9 +105,15 @@ class ProjectServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def UpdateAssets(self, request, context):
-        """Update an asset of a project
+    def TagAssets(self, request, context):
+        """Add or remove tags from an asset
         """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UntagAssets(self, request, context):
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -149,10 +160,15 @@ def add_ProjectServiceServicer_to_server(servicer, server):
                     request_deserializer=project__pb2.DeleteProjectRequest.FromString,
                     response_serializer=project__pb2.Project.SerializeToString,
             ),
-            'UpdateAssets': grpc.unary_unary_rpc_method_handler(
-                    servicer.UpdateAssets,
-                    request_deserializer=project__pb2.UpdateAssetsRequest.FromString,
-                    response_serializer=project__pb2.UpdateAssetsResponse.SerializeToString,
+            'TagAssets': grpc.unary_unary_rpc_method_handler(
+                    servicer.TagAssets,
+                    request_deserializer=project__pb2.TagAssetsRequest.FromString,
+                    response_serializer=project__pb2.TagAssetsResponse.SerializeToString,
+            ),
+            'UntagAssets': grpc.unary_unary_rpc_method_handler(
+                    servicer.UntagAssets,
+                    request_deserializer=project__pb2.UntagAssetsRequest.FromString,
+                    response_serializer=project__pb2.UntagAssetsResponse.SerializeToString,
             ),
             'QueryAssets': grpc.unary_unary_rpc_method_handler(
                     servicer.QueryAssets,
@@ -263,7 +279,7 @@ class ProjectService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def UpdateAssets(request,
+    def TagAssets(request,
             target,
             options=(),
             channel_credentials=None,
@@ -273,9 +289,26 @@ class ProjectService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/gooseai.ProjectService/UpdateAssets',
-            project__pb2.UpdateAssetsRequest.SerializeToString,
-            project__pb2.UpdateAssetsResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/gooseai.ProjectService/TagAssets',
+            project__pb2.TagAssetsRequest.SerializeToString,
+            project__pb2.TagAssetsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UntagAssets(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gooseai.ProjectService/UntagAssets',
+            project__pb2.UntagAssetsRequest.SerializeToString,
+            project__pb2.UntagAssetsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

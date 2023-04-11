@@ -55,13 +55,22 @@ ProjectService.Delete = {
   responseType: project_pb.Project
 };
 
-ProjectService.UpdateAssets = {
-  methodName: "UpdateAssets",
+ProjectService.TagAssets = {
+  methodName: "TagAssets",
   service: ProjectService,
   requestStream: false,
   responseStream: false,
-  requestType: project_pb.UpdateAssetsRequest,
-  responseType: project_pb.UpdateAssetsResponse
+  requestType: project_pb.TagAssetsRequest,
+  responseType: project_pb.TagAssetsResponse
+};
+
+ProjectService.UntagAssets = {
+  methodName: "UntagAssets",
+  service: ProjectService,
+  requestStream: false,
+  responseStream: false,
+  requestType: project_pb.UntagAssetsRequest,
+  responseType: project_pb.UntagAssetsResponse
 };
 
 ProjectService.QueryAssets = {
@@ -252,11 +261,42 @@ ProjectServiceClient.prototype.delete = function pb_delete(requestMessage, metad
   };
 };
 
-ProjectServiceClient.prototype.updateAssets = function updateAssets(requestMessage, metadata, callback) {
+ProjectServiceClient.prototype.tagAssets = function tagAssets(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ProjectService.UpdateAssets, {
+  var client = grpc.unary(ProjectService.TagAssets, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ProjectServiceClient.prototype.untagAssets = function untagAssets(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ProjectService.UntagAssets, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

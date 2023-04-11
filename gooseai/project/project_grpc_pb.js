@@ -4,7 +4,6 @@
 var grpc = require('grpc');
 var project_pb = require('./project_pb.js');
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
-var google_protobuf_field_mask_pb = require('google-protobuf/google/protobuf/field_mask_pb.js');
 var generation_pb = require('./generation_pb.js');
 
 function serialize_gooseai_CreateProjectRequest(arg) {
@@ -106,26 +105,48 @@ function deserialize_gooseai_QueryAssetsResponse(buffer_arg) {
   return project_pb.QueryAssetsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_gooseai_UpdateAssetsRequest(arg) {
-  if (!(arg instanceof project_pb.UpdateAssetsRequest)) {
-    throw new Error('Expected argument of type gooseai.UpdateAssetsRequest');
+function serialize_gooseai_TagAssetsRequest(arg) {
+  if (!(arg instanceof project_pb.TagAssetsRequest)) {
+    throw new Error('Expected argument of type gooseai.TagAssetsRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_gooseai_UpdateAssetsRequest(buffer_arg) {
-  return project_pb.UpdateAssetsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_gooseai_TagAssetsRequest(buffer_arg) {
+  return project_pb.TagAssetsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_gooseai_UpdateAssetsResponse(arg) {
-  if (!(arg instanceof project_pb.UpdateAssetsResponse)) {
-    throw new Error('Expected argument of type gooseai.UpdateAssetsResponse');
+function serialize_gooseai_TagAssetsResponse(arg) {
+  if (!(arg instanceof project_pb.TagAssetsResponse)) {
+    throw new Error('Expected argument of type gooseai.TagAssetsResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_gooseai_UpdateAssetsResponse(buffer_arg) {
-  return project_pb.UpdateAssetsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_gooseai_TagAssetsResponse(buffer_arg) {
+  return project_pb.TagAssetsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_UntagAssetsRequest(arg) {
+  if (!(arg instanceof project_pb.UntagAssetsRequest)) {
+    throw new Error('Expected argument of type gooseai.UntagAssetsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_UntagAssetsRequest(buffer_arg) {
+  return project_pb.UntagAssetsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_UntagAssetsResponse(arg) {
+  if (!(arg instanceof project_pb.UntagAssetsResponse)) {
+    throw new Error('Expected argument of type gooseai.UntagAssetsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_UntagAssetsResponse(buffer_arg) {
+  return project_pb.UntagAssetsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_gooseai_UpdateProjectRequest(arg) {
@@ -204,17 +225,28 @@ delete: {
     responseSerialize: serialize_gooseai_Project,
     responseDeserialize: deserialize_gooseai_Project,
   },
-  // Update an asset of a project
-updateAssets: {
-    path: '/gooseai.ProjectService/UpdateAssets',
+  // Add or remove tags from an asset
+tagAssets: {
+    path: '/gooseai.ProjectService/TagAssets',
     requestStream: false,
     responseStream: false,
-    requestType: project_pb.UpdateAssetsRequest,
-    responseType: project_pb.UpdateAssetsResponse,
-    requestSerialize: serialize_gooseai_UpdateAssetsRequest,
-    requestDeserialize: deserialize_gooseai_UpdateAssetsRequest,
-    responseSerialize: serialize_gooseai_UpdateAssetsResponse,
-    responseDeserialize: deserialize_gooseai_UpdateAssetsResponse,
+    requestType: project_pb.TagAssetsRequest,
+    responseType: project_pb.TagAssetsResponse,
+    requestSerialize: serialize_gooseai_TagAssetsRequest,
+    requestDeserialize: deserialize_gooseai_TagAssetsRequest,
+    responseSerialize: serialize_gooseai_TagAssetsResponse,
+    responseDeserialize: deserialize_gooseai_TagAssetsResponse,
+  },
+  untagAssets: {
+    path: '/gooseai.ProjectService/UntagAssets',
+    requestStream: false,
+    responseStream: false,
+    requestType: project_pb.UntagAssetsRequest,
+    responseType: project_pb.UntagAssetsResponse,
+    requestSerialize: serialize_gooseai_UntagAssetsRequest,
+    requestDeserialize: deserialize_gooseai_UntagAssetsRequest,
+    responseSerialize: serialize_gooseai_UntagAssetsResponse,
+    responseDeserialize: deserialize_gooseai_UntagAssetsResponse,
   },
   // Query the assets of a project, with additional filtering
 queryAssets: {

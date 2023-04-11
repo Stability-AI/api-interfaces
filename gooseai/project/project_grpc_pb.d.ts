@@ -12,7 +12,8 @@ interface IProjectServiceService extends grpc.ServiceDefinition<grpc.UntypedServ
   list: grpc.MethodDefinition<project_pb.ListProjectRequest, project_pb.Project>;
   get: grpc.MethodDefinition<project_pb.GetProjectRequest, project_pb.Project>;
   delete: grpc.MethodDefinition<project_pb.DeleteProjectRequest, project_pb.Project>;
-  updateAssets: grpc.MethodDefinition<project_pb.UpdateAssetsRequest, project_pb.UpdateAssetsResponse>;
+  tagAssets: grpc.MethodDefinition<project_pb.TagAssetsRequest, project_pb.TagAssetsResponse>;
+  untagAssets: grpc.MethodDefinition<project_pb.UntagAssetsRequest, project_pb.UntagAssetsResponse>;
   queryAssets: grpc.MethodDefinition<project_pb.QueryAssetsRequest, project_pb.QueryAssetsResponse>;
   deleteAssets: grpc.MethodDefinition<project_pb.DeleteAssetsRequest, project_pb.DeleteAssetsResponse>;
 }
@@ -25,7 +26,8 @@ export interface IProjectServiceServer extends grpc.UntypedServiceImplementation
   list: grpc.handleServerStreamingCall<project_pb.ListProjectRequest, project_pb.Project>;
   get: grpc.handleUnaryCall<project_pb.GetProjectRequest, project_pb.Project>;
   delete: grpc.handleUnaryCall<project_pb.DeleteProjectRequest, project_pb.Project>;
-  updateAssets: grpc.handleUnaryCall<project_pb.UpdateAssetsRequest, project_pb.UpdateAssetsResponse>;
+  tagAssets: grpc.handleUnaryCall<project_pb.TagAssetsRequest, project_pb.TagAssetsResponse>;
+  untagAssets: grpc.handleUnaryCall<project_pb.UntagAssetsRequest, project_pb.UntagAssetsResponse>;
   queryAssets: grpc.handleUnaryCall<project_pb.QueryAssetsRequest, project_pb.QueryAssetsResponse>;
   deleteAssets: grpc.handleUnaryCall<project_pb.DeleteAssetsRequest, project_pb.DeleteAssetsResponse>;
 }
@@ -46,9 +48,12 @@ export class ProjectServiceClient extends grpc.Client {
   delete(argument: project_pb.DeleteProjectRequest, callback: grpc.requestCallback<project_pb.Project>): grpc.ClientUnaryCall;
   delete(argument: project_pb.DeleteProjectRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.Project>): grpc.ClientUnaryCall;
   delete(argument: project_pb.DeleteProjectRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.Project>): grpc.ClientUnaryCall;
-  updateAssets(argument: project_pb.UpdateAssetsRequest, callback: grpc.requestCallback<project_pb.UpdateAssetsResponse>): grpc.ClientUnaryCall;
-  updateAssets(argument: project_pb.UpdateAssetsRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.UpdateAssetsResponse>): grpc.ClientUnaryCall;
-  updateAssets(argument: project_pb.UpdateAssetsRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.UpdateAssetsResponse>): grpc.ClientUnaryCall;
+  tagAssets(argument: project_pb.TagAssetsRequest, callback: grpc.requestCallback<project_pb.TagAssetsResponse>): grpc.ClientUnaryCall;
+  tagAssets(argument: project_pb.TagAssetsRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.TagAssetsResponse>): grpc.ClientUnaryCall;
+  tagAssets(argument: project_pb.TagAssetsRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.TagAssetsResponse>): grpc.ClientUnaryCall;
+  untagAssets(argument: project_pb.UntagAssetsRequest, callback: grpc.requestCallback<project_pb.UntagAssetsResponse>): grpc.ClientUnaryCall;
+  untagAssets(argument: project_pb.UntagAssetsRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.UntagAssetsResponse>): grpc.ClientUnaryCall;
+  untagAssets(argument: project_pb.UntagAssetsRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.UntagAssetsResponse>): grpc.ClientUnaryCall;
   queryAssets(argument: project_pb.QueryAssetsRequest, callback: grpc.requestCallback<project_pb.QueryAssetsResponse>): grpc.ClientUnaryCall;
   queryAssets(argument: project_pb.QueryAssetsRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.QueryAssetsResponse>): grpc.ClientUnaryCall;
   queryAssets(argument: project_pb.QueryAssetsRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<project_pb.QueryAssetsResponse>): grpc.ClientUnaryCall;

@@ -49,13 +49,22 @@ type ProjectServiceDelete = {
   readonly responseType: typeof project_pb.Project;
 };
 
-type ProjectServiceUpdateAssets = {
+type ProjectServiceTagAssets = {
   readonly methodName: string;
   readonly service: typeof ProjectService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof project_pb.UpdateAssetsRequest;
-  readonly responseType: typeof project_pb.UpdateAssetsResponse;
+  readonly requestType: typeof project_pb.TagAssetsRequest;
+  readonly responseType: typeof project_pb.TagAssetsResponse;
+};
+
+type ProjectServiceUntagAssets = {
+  readonly methodName: string;
+  readonly service: typeof ProjectService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof project_pb.UntagAssetsRequest;
+  readonly responseType: typeof project_pb.UntagAssetsResponse;
 };
 
 type ProjectServiceQueryAssets = {
@@ -83,7 +92,8 @@ export class ProjectService {
   static readonly List: ProjectServiceList;
   static readonly Get: ProjectServiceGet;
   static readonly Delete: ProjectServiceDelete;
-  static readonly UpdateAssets: ProjectServiceUpdateAssets;
+  static readonly TagAssets: ProjectServiceTagAssets;
+  static readonly UntagAssets: ProjectServiceUntagAssets;
   static readonly QueryAssets: ProjectServiceQueryAssets;
   static readonly DeleteAssets: ProjectServiceDeleteAssets;
 }
@@ -157,14 +167,23 @@ export class ProjectServiceClient {
     requestMessage: project_pb.DeleteProjectRequest,
     callback: (error: ServiceError|null, responseMessage: project_pb.Project|null) => void
   ): UnaryResponse;
-  updateAssets(
-    requestMessage: project_pb.UpdateAssetsRequest,
+  tagAssets(
+    requestMessage: project_pb.TagAssetsRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: project_pb.UpdateAssetsResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: project_pb.TagAssetsResponse|null) => void
   ): UnaryResponse;
-  updateAssets(
-    requestMessage: project_pb.UpdateAssetsRequest,
-    callback: (error: ServiceError|null, responseMessage: project_pb.UpdateAssetsResponse|null) => void
+  tagAssets(
+    requestMessage: project_pb.TagAssetsRequest,
+    callback: (error: ServiceError|null, responseMessage: project_pb.TagAssetsResponse|null) => void
+  ): UnaryResponse;
+  untagAssets(
+    requestMessage: project_pb.UntagAssetsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: project_pb.UntagAssetsResponse|null) => void
+  ): UnaryResponse;
+  untagAssets(
+    requestMessage: project_pb.UntagAssetsRequest,
+    callback: (error: ServiceError|null, responseMessage: project_pb.UntagAssetsResponse|null) => void
   ): UnaryResponse;
   queryAssets(
     requestMessage: project_pb.QueryAssetsRequest,
