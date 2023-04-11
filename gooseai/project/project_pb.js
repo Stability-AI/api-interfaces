@@ -3134,7 +3134,8 @@ proto.gooseai.UpdateAssetsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     ownerId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    assetIdsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
+    assetsList: jspb.Message.toObjectList(msg.getAssetsList(),
+    proto.gooseai.ProjectAsset.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -3180,8 +3181,9 @@ proto.gooseai.UpdateAssetsResponse.deserializeBinaryFromReader = function(msg, r
       msg.setOwnerId(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addAssetIds(value);
+      var value = new proto.gooseai.ProjectAsset;
+      reader.readMessage(value,proto.gooseai.ProjectAsset.deserializeBinaryFromReader);
+      msg.addAssets(value);
       break;
     default:
       reader.skipField();
@@ -3226,11 +3228,12 @@ proto.gooseai.UpdateAssetsResponse.serializeBinaryToWriter = function(message, w
       f
     );
   }
-  f = message.getAssetIdsList();
+  f = message.getAssetsList();
   if (f.length > 0) {
-    writer.writeRepeatedString(
+    writer.writeRepeatedMessage(
       3,
-      f
+      f,
+      proto.gooseai.ProjectAsset.serializeBinaryToWriter
     );
   }
 };
@@ -3273,30 +3276,31 @@ proto.gooseai.UpdateAssetsResponse.prototype.setOwnerId = function(value) {
 
 
 /**
- * repeated string asset_ids = 3;
- * @return {!Array<string>}
+ * repeated ProjectAsset assets = 3;
+ * @return {!Array<!proto.gooseai.ProjectAsset>}
  */
-proto.gooseai.UpdateAssetsResponse.prototype.getAssetIdsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+proto.gooseai.UpdateAssetsResponse.prototype.getAssetsList = function() {
+  return /** @type{!Array<!proto.gooseai.ProjectAsset>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.gooseai.ProjectAsset, 3));
 };
 
 
 /**
- * @param {!Array<string>} value
+ * @param {!Array<!proto.gooseai.ProjectAsset>} value
  * @return {!proto.gooseai.UpdateAssetsResponse} returns this
- */
-proto.gooseai.UpdateAssetsResponse.prototype.setAssetIdsList = function(value) {
-  return jspb.Message.setField(this, 3, value || []);
+*/
+proto.gooseai.UpdateAssetsResponse.prototype.setAssetsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
 
 
 /**
- * @param {string} value
+ * @param {!proto.gooseai.ProjectAsset=} opt_value
  * @param {number=} opt_index
- * @return {!proto.gooseai.UpdateAssetsResponse} returns this
+ * @return {!proto.gooseai.ProjectAsset}
  */
-proto.gooseai.UpdateAssetsResponse.prototype.addAssetIds = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+proto.gooseai.UpdateAssetsResponse.prototype.addAssets = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.gooseai.ProjectAsset, opt_index);
 };
 
 
@@ -3304,8 +3308,8 @@ proto.gooseai.UpdateAssetsResponse.prototype.addAssetIds = function(value, opt_i
  * Clears the list making it empty but non-null.
  * @return {!proto.gooseai.UpdateAssetsResponse} returns this
  */
-proto.gooseai.UpdateAssetsResponse.prototype.clearAssetIdsList = function() {
-  return this.setAssetIdsList([]);
+proto.gooseai.UpdateAssetsResponse.prototype.clearAssetsList = function() {
+  return this.setAssetsList([]);
 };
 
 
