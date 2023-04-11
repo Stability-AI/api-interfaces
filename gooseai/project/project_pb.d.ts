@@ -391,10 +391,10 @@ export class UpdateAssetsResponse extends jspb.Message {
   getOwnerId(): string;
   setOwnerId(value: string): void;
 
-  clearAssetsList(): void;
-  getAssetsList(): Array<ProjectAsset>;
-  setAssetsList(value: Array<ProjectAsset>): void;
-  addAssets(value?: ProjectAsset, index?: number): ProjectAsset;
+  clearAssetIdsList(): void;
+  getAssetIdsList(): Array<string>;
+  setAssetIdsList(value: Array<string>): void;
+  addAssetIds(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateAssetsResponse.AsObject;
@@ -410,7 +410,7 @@ export namespace UpdateAssetsResponse {
   export type AsObject = {
     id: string,
     ownerId: string,
-    assetsList: Array<ProjectAsset.AsObject>,
+    assetIdsList: Array<string>,
   }
 }
 
