@@ -76,6 +76,8 @@ enum JobStatus {
   JOB_STATUS_COMPLETED = 2;  
   // Job has failed
   JOB_STATUS_FAILED = 3;
+  // Job has been submitted
+  JOB_STATUS_SUBMITTED = 4;
 }
 
 message FineTuningJobStatus {
@@ -95,14 +97,17 @@ message FineTuningJobRequestByUserId {
   string id = 1;
 }
 
+message FineTuningJobRequestByOrgId {
+  // the organization's id
+  string id = 1;
+}
+
 message FineTuningJobList {
   // the list of jobs
   repeated FineTuningJob jobs = 1;
   google.protobuf.FieldMask field_mask = 2;
 }
 
-// TODO: should we add a list of jobs by userId / orgId?
-// TODO: should we add a list of jobs by status?
 service FineTuningService {
   // Create a new project if it does not exist, and runs it
   rpc CreateFineTuningJob (CreateFineTuningJobRequest) returns (FineTuningJob);
@@ -113,9 +118,11 @@ service FineTuningService {
   // Delete a FineTuningJob by id
   rpc DeleteFineTuningJob (FineTuningJobRequestById) returns (FineTuningJob);
   // Check the progress of a FineTuningJob by id
-  rpc GetFineTuningJobProgress (FineTuningJobRequestById) returns (FineTuningJobStatus);  
+  rpc GetFineTuningJobStatus (FineTuningJobRequestById) returns (FineTuningJobStatus);  
   // Re-run training API call, does not create a new job in the DB
   rpc ResubmitFineTuningJob (ResubmitFineTuningJobRequest) returns (FineTuningJob);
   // Get a list of FineTuningJobs by user id
   rpc GetJobsByUserId(FineTuningJobRequestByUserId) returns (FineTuningJobList);
+  // Get a list of FineTuningJobs by org id
+  rpc GetJobsByOrgId(FineTuningJobRequestByOrgId) returns (FineTuningJobList);
 }

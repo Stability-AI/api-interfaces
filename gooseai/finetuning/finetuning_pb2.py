@@ -18,7 +18,7 @@ from google.protobuf import field_mask_pb2 as google_dot_protobuf_dot_field__mas
 import project_pb2 as project__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x66inetuning.proto\x12\x07gooseai\x1a\x0f\x64\x61shboard.proto\x1a google/protobuf/field_mask.proto\x1a\rproject.proto\"\xf5\x01\n\rFineTuningJob\x12\n\n\x02id\x18\x01 \x01(\t\x12\x1b\n\x04user\x18\x02 \x01(\x0b\x32\r.gooseai.User\x12\x12\n\nmodel_name\x18\x03 \x01(\t\x12*\n\x04mode\x18\x04 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x00\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x05 \x01(\tH\x01\x88\x01\x01\x12\x12\n\nproject_id\x18\x06 \x01(\t\x12\x10\n\x08\x64uration\x18\x07 \x01(\x01\x12\"\n\x06status\x18\x08 \x01(\x0e\x32\x12.gooseai.JobStatusB\x07\n\x05_modeB\x0e\n\x0c_object_name\"\xa3\x01\n\x1a\x43reateFineTuningJobRequest\x12\x12\n\nmodel_name\x18\x01 \x01(\t\x12*\n\x04mode\x18\x02 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x00\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x03 \x01(\tH\x01\x88\x01\x01\x12\x12\n\nproject_id\x18\x04 \x01(\tB\x07\n\x05_modeB\x0e\n\x0c_object_name\"\xaf\x01\n\x1aUpdateFineTuningJobRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x12\n\nmodel_name\x18\x02 \x01(\t\x12*\n\x04mode\x18\x03 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x00\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x04 \x01(\tH\x01\x88\x01\x01\x12\x12\n\nproject_id\x18\x05 \x01(\tB\x07\n\x05_modeB\x0e\n\x0c_object_name\"&\n\x18\x46ineTuningJobRequestById\x12\n\n\x02id\x18\x01 \x01(\t\"E\n\x13\x46ineTuningJobStatus\x12\n\n\x02id\x18\x01 \x01(\t\x12\"\n\x06status\x18\x02 \x01(\x0e\x32\x12.gooseai.JobStatus\"*\n\x1cResubmitFineTuningJobRequest\x12\n\n\x02id\x18\x01 \x01(\t\"*\n\x1c\x46ineTuningJobRequestByUserId\x12\n\n\x02id\x18\x01 \x01(\t\"i\n\x11\x46ineTuningJobList\x12$\n\x04jobs\x18\x01 \x03(\x0b\x32\x16.gooseai.FineTuningJob\x12.\n\nfield_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMask*\x8b\x01\n\x0e\x46ineTuningMode\x12%\n!FINE_TUNING_MODE_NONE_UNSPECIFIED\x10\x00\x12\x19\n\x15\x46INE_TUNING_MODE_FACE\x10\x01\x12\x1a\n\x16\x46INE_TUNING_MODE_STYLE\x10\x02\x12\x1b\n\x17\x46INE_TUNING_MODE_OBJECT\x10\x03*|\n\tJobStatus\x12&\n\"JOB_STATUS_NOT_STARTED_UNSPECIFIED\x10\x00\x12\x16\n\x12JOB_STATUS_RUNNING\x10\x01\x12\x18\n\x14JOB_STATUS_COMPLETED\x10\x02\x12\x15\n\x11JOB_STATUS_FAILED\x10\x03\x32\xeb\x04\n\x11\x46ineTuningService\x12R\n\x13\x43reateFineTuningJob\x12#.gooseai.CreateFineTuningJobRequest\x1a\x16.gooseai.FineTuningJob\x12Q\n\x14GetFineTuningJobById\x12!.gooseai.FineTuningJobRequestById\x1a\x16.gooseai.FineTuningJob\x12R\n\x13UpdateFineTuningJob\x12#.gooseai.UpdateFineTuningJobRequest\x1a\x16.gooseai.FineTuningJob\x12P\n\x13\x44\x65leteFineTuningJob\x12!.gooseai.FineTuningJobRequestById\x1a\x16.gooseai.FineTuningJob\x12[\n\x18GetFineTuningJobProgress\x12!.gooseai.FineTuningJobRequestById\x1a\x1c.gooseai.FineTuningJobStatus\x12V\n\x15ResubmitFineTuningJob\x12%.gooseai.ResubmitFineTuningJobRequest\x1a\x16.gooseai.FineTuningJob\x12T\n\x0fGetJobsByUserId\x12%.gooseai.FineTuningJobRequestByUserId\x1a\x1a.gooseai.FineTuningJobListB;Z9github.com/stability-ai/api-interfaces/gooseai/finetuningb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x66inetuning.proto\x12\x07gooseai\x1a\x0f\x64\x61shboard.proto\x1a google/protobuf/field_mask.proto\x1a\rproject.proto\"\xf5\x01\n\rFineTuningJob\x12\n\n\x02id\x18\x01 \x01(\t\x12\x1b\n\x04user\x18\x02 \x01(\x0b\x32\r.gooseai.User\x12\x12\n\nmodel_name\x18\x03 \x01(\t\x12*\n\x04mode\x18\x04 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x00\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x05 \x01(\tH\x01\x88\x01\x01\x12\x12\n\nproject_id\x18\x06 \x01(\t\x12\x10\n\x08\x64uration\x18\x07 \x01(\x01\x12\"\n\x06status\x18\x08 \x01(\x0e\x32\x12.gooseai.JobStatusB\x07\n\x05_modeB\x0e\n\x0c_object_name\"\xa3\x01\n\x1a\x43reateFineTuningJobRequest\x12\x12\n\nmodel_name\x18\x01 \x01(\t\x12*\n\x04mode\x18\x02 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x00\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x03 \x01(\tH\x01\x88\x01\x01\x12\x12\n\nproject_id\x18\x04 \x01(\tB\x07\n\x05_modeB\x0e\n\x0c_object_name\"\xaf\x01\n\x1aUpdateFineTuningJobRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x12\n\nmodel_name\x18\x02 \x01(\t\x12*\n\x04mode\x18\x03 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x00\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x04 \x01(\tH\x01\x88\x01\x01\x12\x12\n\nproject_id\x18\x05 \x01(\tB\x07\n\x05_modeB\x0e\n\x0c_object_name\"&\n\x18\x46ineTuningJobRequestById\x12\n\n\x02id\x18\x01 \x01(\t\"E\n\x13\x46ineTuningJobStatus\x12\n\n\x02id\x18\x01 \x01(\t\x12\"\n\x06status\x18\x02 \x01(\x0e\x32\x12.gooseai.JobStatus\"*\n\x1cResubmitFineTuningJobRequest\x12\n\n\x02id\x18\x01 \x01(\t\"*\n\x1c\x46ineTuningJobRequestByUserId\x12\n\n\x02id\x18\x01 \x01(\t\")\n\x1b\x46ineTuningJobRequestByOrgId\x12\n\n\x02id\x18\x01 \x01(\t\"i\n\x11\x46ineTuningJobList\x12$\n\x04jobs\x18\x01 \x03(\x0b\x32\x16.gooseai.FineTuningJob\x12.\n\nfield_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMask*\x8b\x01\n\x0e\x46ineTuningMode\x12%\n!FINE_TUNING_MODE_NONE_UNSPECIFIED\x10\x00\x12\x19\n\x15\x46INE_TUNING_MODE_FACE\x10\x01\x12\x1a\n\x16\x46INE_TUNING_MODE_STYLE\x10\x02\x12\x1b\n\x17\x46INE_TUNING_MODE_OBJECT\x10\x03*\x96\x01\n\tJobStatus\x12&\n\"JOB_STATUS_NOT_STARTED_UNSPECIFIED\x10\x00\x12\x16\n\x12JOB_STATUS_RUNNING\x10\x01\x12\x18\n\x14JOB_STATUS_COMPLETED\x10\x02\x12\x15\n\x11JOB_STATUS_FAILED\x10\x03\x12\x18\n\x14JOB_STATUS_SUBMITTED\x10\x04\x32\xbd\x05\n\x11\x46ineTuningService\x12R\n\x13\x43reateFineTuningJob\x12#.gooseai.CreateFineTuningJobRequest\x1a\x16.gooseai.FineTuningJob\x12Q\n\x14GetFineTuningJobById\x12!.gooseai.FineTuningJobRequestById\x1a\x16.gooseai.FineTuningJob\x12R\n\x13UpdateFineTuningJob\x12#.gooseai.UpdateFineTuningJobRequest\x1a\x16.gooseai.FineTuningJob\x12P\n\x13\x44\x65leteFineTuningJob\x12!.gooseai.FineTuningJobRequestById\x1a\x16.gooseai.FineTuningJob\x12Y\n\x16GetFineTuningJobStatus\x12!.gooseai.FineTuningJobRequestById\x1a\x1c.gooseai.FineTuningJobStatus\x12V\n\x15ResubmitFineTuningJob\x12%.gooseai.ResubmitFineTuningJobRequest\x1a\x16.gooseai.FineTuningJob\x12T\n\x0fGetJobsByUserId\x12%.gooseai.FineTuningJobRequestByUserId\x1a\x1a.gooseai.FineTuningJobList\x12R\n\x0eGetJobsByOrgId\x12$.gooseai.FineTuningJobRequestByOrgId\x1a\x1a.gooseai.FineTuningJobListB;Z9github.com/stability-ai/api-interfaces/gooseai/finetuningb\x06proto3')
 
 _FINETUNINGMODE = DESCRIPTOR.enum_types_by_name['FineTuningMode']
 FineTuningMode = enum_type_wrapper.EnumTypeWrapper(_FINETUNINGMODE)
@@ -32,6 +32,7 @@ JOB_STATUS_NOT_STARTED_UNSPECIFIED = 0
 JOB_STATUS_RUNNING = 1
 JOB_STATUS_COMPLETED = 2
 JOB_STATUS_FAILED = 3
+JOB_STATUS_SUBMITTED = 4
 
 
 _FINETUNINGJOB = DESCRIPTOR.message_types_by_name['FineTuningJob']
@@ -41,6 +42,7 @@ _FINETUNINGJOBREQUESTBYID = DESCRIPTOR.message_types_by_name['FineTuningJobReque
 _FINETUNINGJOBSTATUS = DESCRIPTOR.message_types_by_name['FineTuningJobStatus']
 _RESUBMITFINETUNINGJOBREQUEST = DESCRIPTOR.message_types_by_name['ResubmitFineTuningJobRequest']
 _FINETUNINGJOBREQUESTBYUSERID = DESCRIPTOR.message_types_by_name['FineTuningJobRequestByUserId']
+_FINETUNINGJOBREQUESTBYORGID = DESCRIPTOR.message_types_by_name['FineTuningJobRequestByOrgId']
 _FINETUNINGJOBLIST = DESCRIPTOR.message_types_by_name['FineTuningJobList']
 FineTuningJob = _reflection.GeneratedProtocolMessageType('FineTuningJob', (_message.Message,), {
   'DESCRIPTOR' : _FINETUNINGJOB,
@@ -91,6 +93,13 @@ FineTuningJobRequestByUserId = _reflection.GeneratedProtocolMessageType('FineTun
   })
 _sym_db.RegisterMessage(FineTuningJobRequestByUserId)
 
+FineTuningJobRequestByOrgId = _reflection.GeneratedProtocolMessageType('FineTuningJobRequestByOrgId', (_message.Message,), {
+  'DESCRIPTOR' : _FINETUNINGJOBREQUESTBYORGID,
+  '__module__' : 'finetuning_pb2'
+  # @@protoc_insertion_point(class_scope:gooseai.FineTuningJobRequestByOrgId)
+  })
+_sym_db.RegisterMessage(FineTuningJobRequestByOrgId)
+
 FineTuningJobList = _reflection.GeneratedProtocolMessageType('FineTuningJobList', (_message.Message,), {
   'DESCRIPTOR' : _FINETUNINGJOBLIST,
   '__module__' : 'finetuning_pb2'
@@ -103,10 +112,10 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z9github.com/stability-ai/api-interfaces/gooseai/finetuning'
-  _FINETUNINGMODE._serialized_start=994
-  _FINETUNINGMODE._serialized_end=1133
-  _JOBSTATUS._serialized_start=1135
-  _JOBSTATUS._serialized_end=1259
+  _FINETUNINGMODE._serialized_start=1037
+  _FINETUNINGMODE._serialized_end=1176
+  _JOBSTATUS._serialized_start=1179
+  _JOBSTATUS._serialized_end=1329
   _FINETUNINGJOB._serialized_start=96
   _FINETUNINGJOB._serialized_end=341
   _CREATEFINETUNINGJOBREQUEST._serialized_start=344
@@ -121,8 +130,10 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _RESUBMITFINETUNINGJOBREQUEST._serialized_end=840
   _FINETUNINGJOBREQUESTBYUSERID._serialized_start=842
   _FINETUNINGJOBREQUESTBYUSERID._serialized_end=884
-  _FINETUNINGJOBLIST._serialized_start=886
-  _FINETUNINGJOBLIST._serialized_end=991
-  _FINETUNINGSERVICE._serialized_start=1262
-  _FINETUNINGSERVICE._serialized_end=1881
+  _FINETUNINGJOBREQUESTBYORGID._serialized_start=886
+  _FINETUNINGJOBREQUESTBYORGID._serialized_end=927
+  _FINETUNINGJOBLIST._serialized_start=929
+  _FINETUNINGJOBLIST._serialized_end=1034
+  _FINETUNINGSERVICE._serialized_start=1332
+  _FINETUNINGSERVICE._serialized_end=2033
 # @@protoc_insertion_point(module_scope)

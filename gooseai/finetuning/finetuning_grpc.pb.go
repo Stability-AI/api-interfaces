@@ -27,11 +27,13 @@ type FineTuningServiceClient interface {
 	// Delete a FineTuningJob by id
 	DeleteFineTuningJob(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJob, error)
 	// Check the progress of a FineTuningJob by id
-	GetFineTuningJobProgress(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJobStatus, error)
+	GetFineTuningJobStatus(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJobStatus, error)
 	// Re-run training API call, does not create a new job in the DB
 	ResubmitFineTuningJob(ctx context.Context, in *ResubmitFineTuningJobRequest, opts ...grpc.CallOption) (*FineTuningJob, error)
 	// Get a list of FineTuningJobs by user id
 	GetJobsByUserId(ctx context.Context, in *FineTuningJobRequestByUserId, opts ...grpc.CallOption) (*FineTuningJobList, error)
+	// Get a list of FineTuningJobs by org id
+	GetJobsByOrgId(ctx context.Context, in *FineTuningJobRequestByOrgId, opts ...grpc.CallOption) (*FineTuningJobList, error)
 }
 
 type fineTuningServiceClient struct {
@@ -78,9 +80,9 @@ func (c *fineTuningServiceClient) DeleteFineTuningJob(ctx context.Context, in *F
 	return out, nil
 }
 
-func (c *fineTuningServiceClient) GetFineTuningJobProgress(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJobStatus, error) {
+func (c *fineTuningServiceClient) GetFineTuningJobStatus(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJobStatus, error) {
 	out := new(FineTuningJobStatus)
-	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/GetFineTuningJobProgress", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/GetFineTuningJobStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -105,6 +107,15 @@ func (c *fineTuningServiceClient) GetJobsByUserId(ctx context.Context, in *FineT
 	return out, nil
 }
 
+func (c *fineTuningServiceClient) GetJobsByOrgId(ctx context.Context, in *FineTuningJobRequestByOrgId, opts ...grpc.CallOption) (*FineTuningJobList, error) {
+	out := new(FineTuningJobList)
+	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/GetJobsByOrgId", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FineTuningServiceServer is the server API for FineTuningService service.
 // All implementations must embed UnimplementedFineTuningServiceServer
 // for forward compatibility
@@ -118,11 +129,13 @@ type FineTuningServiceServer interface {
 	// Delete a FineTuningJob by id
 	DeleteFineTuningJob(context.Context, *FineTuningJobRequestById) (*FineTuningJob, error)
 	// Check the progress of a FineTuningJob by id
-	GetFineTuningJobProgress(context.Context, *FineTuningJobRequestById) (*FineTuningJobStatus, error)
+	GetFineTuningJobStatus(context.Context, *FineTuningJobRequestById) (*FineTuningJobStatus, error)
 	// Re-run training API call, does not create a new job in the DB
 	ResubmitFineTuningJob(context.Context, *ResubmitFineTuningJobRequest) (*FineTuningJob, error)
 	// Get a list of FineTuningJobs by user id
 	GetJobsByUserId(context.Context, *FineTuningJobRequestByUserId) (*FineTuningJobList, error)
+	// Get a list of FineTuningJobs by org id
+	GetJobsByOrgId(context.Context, *FineTuningJobRequestByOrgId) (*FineTuningJobList, error)
 	mustEmbedUnimplementedFineTuningServiceServer()
 }
 
@@ -142,14 +155,17 @@ func (UnimplementedFineTuningServiceServer) UpdateFineTuningJob(context.Context,
 func (UnimplementedFineTuningServiceServer) DeleteFineTuningJob(context.Context, *FineTuningJobRequestById) (*FineTuningJob, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFineTuningJob not implemented")
 }
-func (UnimplementedFineTuningServiceServer) GetFineTuningJobProgress(context.Context, *FineTuningJobRequestById) (*FineTuningJobStatus, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFineTuningJobProgress not implemented")
+func (UnimplementedFineTuningServiceServer) GetFineTuningJobStatus(context.Context, *FineTuningJobRequestById) (*FineTuningJobStatus, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFineTuningJobStatus not implemented")
 }
 func (UnimplementedFineTuningServiceServer) ResubmitFineTuningJob(context.Context, *ResubmitFineTuningJobRequest) (*FineTuningJob, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResubmitFineTuningJob not implemented")
 }
 func (UnimplementedFineTuningServiceServer) GetJobsByUserId(context.Context, *FineTuningJobRequestByUserId) (*FineTuningJobList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetJobsByUserId not implemented")
+}
+func (UnimplementedFineTuningServiceServer) GetJobsByOrgId(context.Context, *FineTuningJobRequestByOrgId) (*FineTuningJobList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetJobsByOrgId not implemented")
 }
 func (UnimplementedFineTuningServiceServer) mustEmbedUnimplementedFineTuningServiceServer() {}
 
@@ -236,20 +252,20 @@ func _FineTuningService_DeleteFineTuningJob_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FineTuningService_GetFineTuningJobProgress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FineTuningService_GetFineTuningJobStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FineTuningJobRequestById)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FineTuningServiceServer).GetFineTuningJobProgress(ctx, in)
+		return srv.(FineTuningServiceServer).GetFineTuningJobStatus(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gooseai.FineTuningService/GetFineTuningJobProgress",
+		FullMethod: "/gooseai.FineTuningService/GetFineTuningJobStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FineTuningServiceServer).GetFineTuningJobProgress(ctx, req.(*FineTuningJobRequestById))
+		return srv.(FineTuningServiceServer).GetFineTuningJobStatus(ctx, req.(*FineTuningJobRequestById))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -290,6 +306,24 @@ func _FineTuningService_GetJobsByUserId_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FineTuningService_GetJobsByOrgId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FineTuningJobRequestByOrgId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FineTuningServiceServer).GetJobsByOrgId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.FineTuningService/GetJobsByOrgId",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FineTuningServiceServer).GetJobsByOrgId(ctx, req.(*FineTuningJobRequestByOrgId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FineTuningService_ServiceDesc is the grpc.ServiceDesc for FineTuningService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -314,8 +348,8 @@ var FineTuningService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _FineTuningService_DeleteFineTuningJob_Handler,
 		},
 		{
-			MethodName: "GetFineTuningJobProgress",
-			Handler:    _FineTuningService_GetFineTuningJobProgress_Handler,
+			MethodName: "GetFineTuningJobStatus",
+			Handler:    _FineTuningService_GetFineTuningJobStatus_Handler,
 		},
 		{
 			MethodName: "ResubmitFineTuningJob",
@@ -324,6 +358,10 @@ var FineTuningService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetJobsByUserId",
 			Handler:    _FineTuningService_GetJobsByUserId_Handler,
+		},
+		{
+			MethodName: "GetJobsByOrgId",
+			Handler:    _FineTuningService_GetJobsByOrgId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

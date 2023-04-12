@@ -51,6 +51,17 @@ function deserialize_gooseai_FineTuningJobRequestById(buffer_arg) {
   return finetuning_pb.FineTuningJobRequestById.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_gooseai_FineTuningJobRequestByOrgId(arg) {
+  if (!(arg instanceof finetuning_pb.FineTuningJobRequestByOrgId)) {
+    throw new Error('Expected argument of type gooseai.FineTuningJobRequestByOrgId');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_FineTuningJobRequestByOrgId(buffer_arg) {
+  return finetuning_pb.FineTuningJobRequestByOrgId.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_gooseai_FineTuningJobRequestByUserId(arg) {
   if (!(arg instanceof finetuning_pb.FineTuningJobRequestByUserId)) {
     throw new Error('Expected argument of type gooseai.FineTuningJobRequestByUserId');
@@ -96,8 +107,6 @@ function deserialize_gooseai_UpdateFineTuningJobRequest(buffer_arg) {
 }
 
 
-// TODO: should we add a list of jobs by userId / orgId?
-// TODO: should we add a list of jobs by status?
 var FineTuningServiceService = exports.FineTuningServiceService = {
   // Create a new project if it does not exist, and runs it
 createFineTuningJob: {
@@ -148,8 +157,8 @@ deleteFineTuningJob: {
     responseDeserialize: deserialize_gooseai_FineTuningJob,
   },
   // Check the progress of a FineTuningJob by id
-getFineTuningJobProgress: {
-    path: '/gooseai.FineTuningService/GetFineTuningJobProgress',
+getFineTuningJobStatus: {
+    path: '/gooseai.FineTuningService/GetFineTuningJobStatus',
     requestStream: false,
     responseStream: false,
     requestType: finetuning_pb.FineTuningJobRequestById,
@@ -180,6 +189,18 @@ getJobsByUserId: {
     responseType: finetuning_pb.FineTuningJobList,
     requestSerialize: serialize_gooseai_FineTuningJobRequestByUserId,
     requestDeserialize: deserialize_gooseai_FineTuningJobRequestByUserId,
+    responseSerialize: serialize_gooseai_FineTuningJobList,
+    responseDeserialize: deserialize_gooseai_FineTuningJobList,
+  },
+  // Get a list of FineTuningJobs by org id
+getJobsByOrgId: {
+    path: '/gooseai.FineTuningService/GetJobsByOrgId',
+    requestStream: false,
+    responseStream: false,
+    requestType: finetuning_pb.FineTuningJobRequestByOrgId,
+    responseType: finetuning_pb.FineTuningJobList,
+    requestSerialize: serialize_gooseai_FineTuningJobRequestByOrgId,
+    requestDeserialize: deserialize_gooseai_FineTuningJobRequestByOrgId,
     responseSerialize: serialize_gooseai_FineTuningJobList,
     responseDeserialize: deserialize_gooseai_FineTuningJobList,
   },

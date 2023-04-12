@@ -46,8 +46,8 @@ FineTuningService.DeleteFineTuningJob = {
   responseType: finetuning_pb.FineTuningJob
 };
 
-FineTuningService.GetFineTuningJobProgress = {
-  methodName: "GetFineTuningJobProgress",
+FineTuningService.GetFineTuningJobStatus = {
+  methodName: "GetFineTuningJobStatus",
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
@@ -70,6 +70,15 @@ FineTuningService.GetJobsByUserId = {
   requestStream: false,
   responseStream: false,
   requestType: finetuning_pb.FineTuningJobRequestByUserId,
+  responseType: finetuning_pb.FineTuningJobList
+};
+
+FineTuningService.GetJobsByOrgId = {
+  methodName: "GetJobsByOrgId",
+  service: FineTuningService,
+  requestStream: false,
+  responseStream: false,
+  requestType: finetuning_pb.FineTuningJobRequestByOrgId,
   responseType: finetuning_pb.FineTuningJobList
 };
 
@@ -204,11 +213,11 @@ FineTuningServiceClient.prototype.deleteFineTuningJob = function deleteFineTunin
   };
 };
 
-FineTuningServiceClient.prototype.getFineTuningJobProgress = function getFineTuningJobProgress(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.getFineTuningJobStatus = function getFineTuningJobStatus(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.GetFineTuningJobProgress, {
+  var client = grpc.unary(FineTuningService.GetFineTuningJobStatus, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -271,6 +280,37 @@ FineTuningServiceClient.prototype.getJobsByUserId = function getJobsByUserId(req
     callback = arguments[1];
   }
   var client = grpc.unary(FineTuningService.GetJobsByUserId, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+FineTuningServiceClient.prototype.getJobsByOrgId = function getJobsByOrgId(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(FineTuningService.GetJobsByOrgId, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

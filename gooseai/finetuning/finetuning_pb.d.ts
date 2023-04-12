@@ -220,6 +220,26 @@ export namespace FineTuningJobRequestByUserId {
   }
 }
 
+export class FineTuningJobRequestByOrgId extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FineTuningJobRequestByOrgId.AsObject;
+  static toObject(includeInstance: boolean, msg: FineTuningJobRequestByOrgId): FineTuningJobRequestByOrgId.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FineTuningJobRequestByOrgId, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FineTuningJobRequestByOrgId;
+  static deserializeBinaryFromReader(message: FineTuningJobRequestByOrgId, reader: jspb.BinaryReader): FineTuningJobRequestByOrgId;
+}
+
+export namespace FineTuningJobRequestByOrgId {
+  export type AsObject = {
+    id: string,
+  }
+}
+
 export class FineTuningJobList extends jspb.Message {
   clearJobsList(): void;
   getJobsList(): Array<FineTuningJob>;
@@ -262,6 +282,7 @@ export interface JobStatusMap {
   JOB_STATUS_RUNNING: 1;
   JOB_STATUS_COMPLETED: 2;
   JOB_STATUS_FAILED: 3;
+  JOB_STATUS_SUBMITTED: 4;
 }
 
 export const JobStatus: JobStatusMap;

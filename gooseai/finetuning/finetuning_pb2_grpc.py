@@ -6,9 +6,7 @@ import finetuning_pb2 as finetuning__pb2
 
 
 class FineTuningServiceStub(object):
-    """TODO: should we add a list of jobs by userId / orgId?
-    TODO: should we add a list of jobs by status?
-    """
+    """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
         """Constructor.
@@ -36,8 +34,8 @@ class FineTuningServiceStub(object):
                 request_serializer=finetuning__pb2.FineTuningJobRequestById.SerializeToString,
                 response_deserializer=finetuning__pb2.FineTuningJob.FromString,
                 )
-        self.GetFineTuningJobProgress = channel.unary_unary(
-                '/gooseai.FineTuningService/GetFineTuningJobProgress',
+        self.GetFineTuningJobStatus = channel.unary_unary(
+                '/gooseai.FineTuningService/GetFineTuningJobStatus',
                 request_serializer=finetuning__pb2.FineTuningJobRequestById.SerializeToString,
                 response_deserializer=finetuning__pb2.FineTuningJobStatus.FromString,
                 )
@@ -51,12 +49,15 @@ class FineTuningServiceStub(object):
                 request_serializer=finetuning__pb2.FineTuningJobRequestByUserId.SerializeToString,
                 response_deserializer=finetuning__pb2.FineTuningJobList.FromString,
                 )
+        self.GetJobsByOrgId = channel.unary_unary(
+                '/gooseai.FineTuningService/GetJobsByOrgId',
+                request_serializer=finetuning__pb2.FineTuningJobRequestByOrgId.SerializeToString,
+                response_deserializer=finetuning__pb2.FineTuningJobList.FromString,
+                )
 
 
 class FineTuningServiceServicer(object):
-    """TODO: should we add a list of jobs by userId / orgId?
-    TODO: should we add a list of jobs by status?
-    """
+    """Missing associated documentation comment in .proto file."""
 
     def CreateFineTuningJob(self, request, context):
         """Create a new project if it does not exist, and runs it
@@ -86,7 +87,7 @@ class FineTuningServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetFineTuningJobProgress(self, request, context):
+    def GetFineTuningJobStatus(self, request, context):
         """Check the progress of a FineTuningJob by id
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -102,6 +103,13 @@ class FineTuningServiceServicer(object):
 
     def GetJobsByUserId(self, request, context):
         """Get a list of FineTuningJobs by user id
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetJobsByOrgId(self, request, context):
+        """Get a list of FineTuningJobs by org id
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -130,8 +138,8 @@ def add_FineTuningServiceServicer_to_server(servicer, server):
                     request_deserializer=finetuning__pb2.FineTuningJobRequestById.FromString,
                     response_serializer=finetuning__pb2.FineTuningJob.SerializeToString,
             ),
-            'GetFineTuningJobProgress': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetFineTuningJobProgress,
+            'GetFineTuningJobStatus': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetFineTuningJobStatus,
                     request_deserializer=finetuning__pb2.FineTuningJobRequestById.FromString,
                     response_serializer=finetuning__pb2.FineTuningJobStatus.SerializeToString,
             ),
@@ -145,6 +153,11 @@ def add_FineTuningServiceServicer_to_server(servicer, server):
                     request_deserializer=finetuning__pb2.FineTuningJobRequestByUserId.FromString,
                     response_serializer=finetuning__pb2.FineTuningJobList.SerializeToString,
             ),
+            'GetJobsByOrgId': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetJobsByOrgId,
+                    request_deserializer=finetuning__pb2.FineTuningJobRequestByOrgId.FromString,
+                    response_serializer=finetuning__pb2.FineTuningJobList.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
             'gooseai.FineTuningService', rpc_method_handlers)
@@ -153,9 +166,7 @@ def add_FineTuningServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class FineTuningService(object):
-    """TODO: should we add a list of jobs by userId / orgId?
-    TODO: should we add a list of jobs by status?
-    """
+    """Missing associated documentation comment in .proto file."""
 
     @staticmethod
     def CreateFineTuningJob(request,
@@ -226,7 +237,7 @@ class FineTuningService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetFineTuningJobProgress(request,
+    def GetFineTuningJobStatus(request,
             target,
             options=(),
             channel_credentials=None,
@@ -236,7 +247,7 @@ class FineTuningService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetFineTuningJobProgress',
+        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetFineTuningJobStatus',
             finetuning__pb2.FineTuningJobRequestById.SerializeToString,
             finetuning__pb2.FineTuningJobStatus.FromString,
             options, channel_credentials,
@@ -272,6 +283,23 @@ class FineTuningService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetJobsByUserId',
             finetuning__pb2.FineTuningJobRequestByUserId.SerializeToString,
+            finetuning__pb2.FineTuningJobList.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetJobsByOrgId(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetJobsByOrgId',
+            finetuning__pb2.FineTuningJobRequestByOrgId.SerializeToString,
             finetuning__pb2.FineTuningJobList.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
