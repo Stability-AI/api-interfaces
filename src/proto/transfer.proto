@@ -47,7 +47,10 @@ message CleanupFineTuningResponse {
 }
 
 service TransferService {
+  //  Internal use only. Initiates a transfer of assets between two Stability AI buckets.
   rpc Transfer(TransferRequest) returns (TransferResponse) {}
+  //  Internal use only. Deletes assets from Stability archive bucket.
   rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+  // Internal use only. Runs cleanup of Fine-Tuning assets.
   rpc CleanupFineTuning(CleanupFineTuningRequest) returns (CleanupFineTuningResponse) {}
 }
