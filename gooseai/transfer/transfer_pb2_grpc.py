@@ -35,19 +35,22 @@ class TransferServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def Transfer(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Internal use only. Initiates a transfer of assets between two Stability AI buckets.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def Delete(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Internal use only. Deletes assets from Stability archive bucket.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def CleanupFineTuning(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Internal use only. Runs cleanup of Fine-Tuning assets.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')

@@ -72,7 +72,8 @@ function deserialize_gooseai_TransferResponse(buffer_arg) {
 
 
 var TransferServiceService = exports.TransferServiceService = {
-  transfer: {
+  //  Internal use only. Initiates a transfer of assets between two Stability AI buckets.
+transfer: {
     path: '/gooseai.TransferService/Transfer',
     requestStream: false,
     responseStream: false,
@@ -83,7 +84,8 @@ var TransferServiceService = exports.TransferServiceService = {
     responseSerialize: serialize_gooseai_TransferResponse,
     responseDeserialize: deserialize_gooseai_TransferResponse,
   },
-  delete: {
+  //  Internal use only. Deletes assets from Stability archive bucket.
+delete: {
     path: '/gooseai.TransferService/Delete',
     requestStream: false,
     responseStream: false,
@@ -94,7 +96,8 @@ var TransferServiceService = exports.TransferServiceService = {
     responseSerialize: serialize_gooseai_DeleteResponse,
     responseDeserialize: deserialize_gooseai_DeleteResponse,
   },
-  cleanupFineTuning: {
+  // Internal use only. Runs cleanup of Fine-Tuning assets.
+cleanupFineTuning: {
     path: '/gooseai.TransferService/CleanupFineTuning',
     requestStream: false,
     responseStream: false,

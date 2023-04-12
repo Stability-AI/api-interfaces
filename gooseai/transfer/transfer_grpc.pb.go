@@ -18,8 +18,11 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TransferServiceClient interface {
+	//  Internal use only. Initiates a transfer of assets between two Stability AI buckets.
 	Transfer(ctx context.Context, in *TransferRequest, opts ...grpc.CallOption) (*TransferResponse, error)
+	//  Internal use only. Deletes assets from Stability archive bucket.
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
+	// Internal use only. Runs cleanup of Fine-Tuning assets.
 	CleanupFineTuning(ctx context.Context, in *CleanupFineTuningRequest, opts ...grpc.CallOption) (*CleanupFineTuningResponse, error)
 }
 
@@ -62,8 +65,11 @@ func (c *transferServiceClient) CleanupFineTuning(ctx context.Context, in *Clean
 // All implementations must embed UnimplementedTransferServiceServer
 // for forward compatibility
 type TransferServiceServer interface {
+	//  Internal use only. Initiates a transfer of assets between two Stability AI buckets.
 	Transfer(context.Context, *TransferRequest) (*TransferResponse, error)
+	//  Internal use only. Deletes assets from Stability archive bucket.
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
+	// Internal use only. Runs cleanup of Fine-Tuning assets.
 	CleanupFineTuning(context.Context, *CleanupFineTuningRequest) (*CleanupFineTuningResponse, error)
 	mustEmbedUnimplementedTransferServiceServer()
 }
