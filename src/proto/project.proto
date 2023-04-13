@@ -93,7 +93,7 @@ message QueryAssetsRequest {
   optional string start_key = 6;    // The key to start from, used to paginate results, unset for no offset
   repeated ProjectAssetUse use = 7; // The asset usage to filter the assets returned, empty for no filter
   ProjectSortDir sort_dir = 8;      // The sort direction based on asset creation time, default is descending
-  map<string, string> tags = 9;     // The tags that must be present on the assets returned, empty for no tag filter
+  map<string, string> tags = 9;     // The tag values used to filter the assets returned, empty for no filter
 }
 
 message QueryAssetsResponse {
