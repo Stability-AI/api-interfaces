@@ -29,27 +29,43 @@ class TransferServiceStub(object):
                 request_serializer=transfer__pb2.CleanupFineTuningRequest.SerializeToString,
                 response_deserializer=transfer__pb2.CleanupFineTuningResponse.FromString,
                 )
+        self.DeleteObjectsByPrefix = channel.unary_unary(
+                '/gooseai.TransferService/DeleteObjectsByPrefix',
+                request_serializer=transfer__pb2.DeleteObjectsByPrefixRequest.SerializeToString,
+                response_deserializer=transfer__pb2.DeleteObjectsByPrefixResponse.FromString,
+                )
 
 
 class TransferServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def Transfer(self, request, context):
-        """Internal use only. Initiates a transfer of assets between two Stability AI buckets.
+        """Internal use only. 
+        Initiates a transfer of assets between two Stability AI buckets.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def Delete(self, request, context):
-        """Internal use only. Deletes assets from Stability archive bucket.
+        """Internal use only. 
+        Deletes assets from Stability archive bucket.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def CleanupFineTuning(self, request, context):
-        """Internal use only. Runs cleanup of Fine-Tuning assets.
+        """Internal use only. 
+        Runs cleanup of Fine-Tuning assets.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteObjectsByPrefix(self, request, context):
+        """Internal use only.
+        Deletes objects from a bucket by prefix.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -72,6 +88,11 @@ def add_TransferServiceServicer_to_server(servicer, server):
                     servicer.CleanupFineTuning,
                     request_deserializer=transfer__pb2.CleanupFineTuningRequest.FromString,
                     response_serializer=transfer__pb2.CleanupFineTuningResponse.SerializeToString,
+            ),
+            'DeleteObjectsByPrefix': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteObjectsByPrefix,
+                    request_deserializer=transfer__pb2.DeleteObjectsByPrefixRequest.FromString,
+                    response_serializer=transfer__pb2.DeleteObjectsByPrefixResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -131,5 +152,22 @@ class TransferService(object):
         return grpc.experimental.unary_unary(request, target, '/gooseai.TransferService/CleanupFineTuning',
             transfer__pb2.CleanupFineTuningRequest.SerializeToString,
             transfer__pb2.CleanupFineTuningResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DeleteObjectsByPrefix(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gooseai.TransferService/DeleteObjectsByPrefix',
+            transfer__pb2.DeleteObjectsByPrefixRequest.SerializeToString,
+            transfer__pb2.DeleteObjectsByPrefixResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -37,6 +37,15 @@ TransferService.CleanupFineTuning = {
   responseType: transfer_pb.CleanupFineTuningResponse
 };
 
+TransferService.DeleteObjectsByPrefix = {
+  methodName: "DeleteObjectsByPrefix",
+  service: TransferService,
+  requestStream: false,
+  responseStream: false,
+  requestType: transfer_pb.DeleteObjectsByPrefixRequest,
+  responseType: transfer_pb.DeleteObjectsByPrefixResponse
+};
+
 exports.TransferService = TransferService;
 
 function TransferServiceClient(serviceHost, options) {
@@ -111,6 +120,37 @@ TransferServiceClient.prototype.cleanupFineTuning = function cleanupFineTuning(r
     callback = arguments[1];
   }
   var client = grpc.unary(TransferService.CleanupFineTuning, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+TransferServiceClient.prototype.deleteObjectsByPrefix = function deleteObjectsByPrefix(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(TransferService.DeleteObjectsByPrefix, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

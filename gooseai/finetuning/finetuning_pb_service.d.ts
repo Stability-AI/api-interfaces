@@ -10,7 +10,7 @@ type FineTuningServiceCreateFineTuningJob = {
   readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof finetuning_pb.CreateFineTuningJobRequest;
-  readonly responseType: typeof finetuning_pb.FineTuningJob;
+  readonly responseType: typeof finetuning_pb.CreateFineTuningJobResponse;
 };
 
 type FineTuningServiceGetFineTuningJobById = {
@@ -18,8 +18,8 @@ type FineTuningServiceGetFineTuningJobById = {
   readonly service: typeof FineTuningService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof finetuning_pb.FineTuningJobRequestById;
-  readonly responseType: typeof finetuning_pb.FineTuningJob;
+  readonly requestType: typeof finetuning_pb.GetFineTuningJobByIdRequest;
+  readonly responseType: typeof finetuning_pb.GetFineTuningJobByIdResponse;
 };
 
 type FineTuningServiceUpdateFineTuningJob = {
@@ -28,7 +28,7 @@ type FineTuningServiceUpdateFineTuningJob = {
   readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof finetuning_pb.UpdateFineTuningJobRequest;
-  readonly responseType: typeof finetuning_pb.FineTuningJob;
+  readonly responseType: typeof finetuning_pb.UpdateFineTuningJobResponse;
 };
 
 type FineTuningServiceDeleteFineTuningJob = {
@@ -36,8 +36,8 @@ type FineTuningServiceDeleteFineTuningJob = {
   readonly service: typeof FineTuningService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof finetuning_pb.FineTuningJobRequestById;
-  readonly responseType: typeof finetuning_pb.FineTuningJob;
+  readonly requestType: typeof finetuning_pb.DeleteFineTuningJobRequest;
+  readonly responseType: typeof finetuning_pb.DeleteFineTuningJobResponse;
 };
 
 type FineTuningServiceGetFineTuningJobStatus = {
@@ -45,8 +45,8 @@ type FineTuningServiceGetFineTuningJobStatus = {
   readonly service: typeof FineTuningService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof finetuning_pb.FineTuningJobRequestById;
-  readonly responseType: typeof finetuning_pb.FineTuningJobStatus;
+  readonly requestType: typeof finetuning_pb.GetFineTuningJobStatusRequest;
+  readonly responseType: typeof finetuning_pb.GetFineTuningJobStatusResponse;
 };
 
 type FineTuningServiceResubmitFineTuningJob = {
@@ -55,7 +55,7 @@ type FineTuningServiceResubmitFineTuningJob = {
   readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof finetuning_pb.ResubmitFineTuningJobRequest;
-  readonly responseType: typeof finetuning_pb.FineTuningJob;
+  readonly responseType: typeof finetuning_pb.ResubmitFineTuningJobResponse;
 };
 
 type FineTuningServiceGetJobsByUserId = {
@@ -63,8 +63,8 @@ type FineTuningServiceGetJobsByUserId = {
   readonly service: typeof FineTuningService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof finetuning_pb.FineTuningJobRequestByUserId;
-  readonly responseType: typeof finetuning_pb.FineTuningJobList;
+  readonly requestType: typeof finetuning_pb.GetJobsByUserIdRequest;
+  readonly responseType: typeof finetuning_pb.GetJobsByUserIdResponse;
 };
 
 type FineTuningServiceGetJobsByOrgId = {
@@ -72,8 +72,8 @@ type FineTuningServiceGetJobsByOrgId = {
   readonly service: typeof FineTuningService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof finetuning_pb.FineTuningJobRequestByOrgId;
-  readonly responseType: typeof finetuning_pb.FineTuningJobList;
+  readonly requestType: typeof finetuning_pb.GetJobsByOrgIdRequest;
+  readonly responseType: typeof finetuning_pb.GetJobsByOrgIdResponse;
 };
 
 export class FineTuningService {
@@ -123,74 +123,74 @@ export class FineTuningServiceClient {
   createFineTuningJob(
     requestMessage: finetuning_pb.CreateFineTuningJobRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJob|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.CreateFineTuningJobResponse|null) => void
   ): UnaryResponse;
   createFineTuningJob(
     requestMessage: finetuning_pb.CreateFineTuningJobRequest,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJob|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.CreateFineTuningJobResponse|null) => void
   ): UnaryResponse;
   getFineTuningJobById(
-    requestMessage: finetuning_pb.FineTuningJobRequestById,
+    requestMessage: finetuning_pb.GetFineTuningJobByIdRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJob|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetFineTuningJobByIdResponse|null) => void
   ): UnaryResponse;
   getFineTuningJobById(
-    requestMessage: finetuning_pb.FineTuningJobRequestById,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJob|null) => void
+    requestMessage: finetuning_pb.GetFineTuningJobByIdRequest,
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetFineTuningJobByIdResponse|null) => void
   ): UnaryResponse;
   updateFineTuningJob(
     requestMessage: finetuning_pb.UpdateFineTuningJobRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJob|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.UpdateFineTuningJobResponse|null) => void
   ): UnaryResponse;
   updateFineTuningJob(
     requestMessage: finetuning_pb.UpdateFineTuningJobRequest,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJob|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.UpdateFineTuningJobResponse|null) => void
   ): UnaryResponse;
   deleteFineTuningJob(
-    requestMessage: finetuning_pb.FineTuningJobRequestById,
+    requestMessage: finetuning_pb.DeleteFineTuningJobRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJob|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.DeleteFineTuningJobResponse|null) => void
   ): UnaryResponse;
   deleteFineTuningJob(
-    requestMessage: finetuning_pb.FineTuningJobRequestById,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJob|null) => void
+    requestMessage: finetuning_pb.DeleteFineTuningJobRequest,
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.DeleteFineTuningJobResponse|null) => void
   ): UnaryResponse;
   getFineTuningJobStatus(
-    requestMessage: finetuning_pb.FineTuningJobRequestById,
+    requestMessage: finetuning_pb.GetFineTuningJobStatusRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJobStatus|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetFineTuningJobStatusResponse|null) => void
   ): UnaryResponse;
   getFineTuningJobStatus(
-    requestMessage: finetuning_pb.FineTuningJobRequestById,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJobStatus|null) => void
+    requestMessage: finetuning_pb.GetFineTuningJobStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetFineTuningJobStatusResponse|null) => void
   ): UnaryResponse;
   resubmitFineTuningJob(
     requestMessage: finetuning_pb.ResubmitFineTuningJobRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJob|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.ResubmitFineTuningJobResponse|null) => void
   ): UnaryResponse;
   resubmitFineTuningJob(
     requestMessage: finetuning_pb.ResubmitFineTuningJobRequest,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJob|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.ResubmitFineTuningJobResponse|null) => void
   ): UnaryResponse;
   getJobsByUserId(
-    requestMessage: finetuning_pb.FineTuningJobRequestByUserId,
+    requestMessage: finetuning_pb.GetJobsByUserIdRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJobList|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetJobsByUserIdResponse|null) => void
   ): UnaryResponse;
   getJobsByUserId(
-    requestMessage: finetuning_pb.FineTuningJobRequestByUserId,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJobList|null) => void
+    requestMessage: finetuning_pb.GetJobsByUserIdRequest,
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetJobsByUserIdResponse|null) => void
   ): UnaryResponse;
   getJobsByOrgId(
-    requestMessage: finetuning_pb.FineTuningJobRequestByOrgId,
+    requestMessage: finetuning_pb.GetJobsByOrgIdRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJobList|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetJobsByOrgIdResponse|null) => void
   ): UnaryResponse;
   getJobsByOrgId(
-    requestMessage: finetuning_pb.FineTuningJobRequestByOrgId,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.FineTuningJobList|null) => void
+    requestMessage: finetuning_pb.GetJobsByOrgIdRequest,
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetJobsByOrgIdResponse|null) => void
   ): UnaryResponse;
 }
 

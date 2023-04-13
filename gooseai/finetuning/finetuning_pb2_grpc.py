@@ -17,42 +17,42 @@ class FineTuningServiceStub(object):
         self.CreateFineTuningJob = channel.unary_unary(
                 '/gooseai.FineTuningService/CreateFineTuningJob',
                 request_serializer=finetuning__pb2.CreateFineTuningJobRequest.SerializeToString,
-                response_deserializer=finetuning__pb2.FineTuningJob.FromString,
+                response_deserializer=finetuning__pb2.CreateFineTuningJobResponse.FromString,
                 )
         self.GetFineTuningJobById = channel.unary_unary(
                 '/gooseai.FineTuningService/GetFineTuningJobById',
-                request_serializer=finetuning__pb2.FineTuningJobRequestById.SerializeToString,
-                response_deserializer=finetuning__pb2.FineTuningJob.FromString,
+                request_serializer=finetuning__pb2.GetFineTuningJobByIdRequest.SerializeToString,
+                response_deserializer=finetuning__pb2.GetFineTuningJobByIdResponse.FromString,
                 )
         self.UpdateFineTuningJob = channel.unary_unary(
                 '/gooseai.FineTuningService/UpdateFineTuningJob',
                 request_serializer=finetuning__pb2.UpdateFineTuningJobRequest.SerializeToString,
-                response_deserializer=finetuning__pb2.FineTuningJob.FromString,
+                response_deserializer=finetuning__pb2.UpdateFineTuningJobResponse.FromString,
                 )
         self.DeleteFineTuningJob = channel.unary_unary(
                 '/gooseai.FineTuningService/DeleteFineTuningJob',
-                request_serializer=finetuning__pb2.FineTuningJobRequestById.SerializeToString,
-                response_deserializer=finetuning__pb2.FineTuningJob.FromString,
+                request_serializer=finetuning__pb2.DeleteFineTuningJobRequest.SerializeToString,
+                response_deserializer=finetuning__pb2.DeleteFineTuningJobResponse.FromString,
                 )
         self.GetFineTuningJobStatus = channel.unary_unary(
                 '/gooseai.FineTuningService/GetFineTuningJobStatus',
-                request_serializer=finetuning__pb2.FineTuningJobRequestById.SerializeToString,
-                response_deserializer=finetuning__pb2.FineTuningJobStatus.FromString,
+                request_serializer=finetuning__pb2.GetFineTuningJobStatusRequest.SerializeToString,
+                response_deserializer=finetuning__pb2.GetFineTuningJobStatusResponse.FromString,
                 )
         self.ResubmitFineTuningJob = channel.unary_unary(
                 '/gooseai.FineTuningService/ResubmitFineTuningJob',
                 request_serializer=finetuning__pb2.ResubmitFineTuningJobRequest.SerializeToString,
-                response_deserializer=finetuning__pb2.FineTuningJob.FromString,
+                response_deserializer=finetuning__pb2.ResubmitFineTuningJobResponse.FromString,
                 )
         self.GetJobsByUserId = channel.unary_unary(
                 '/gooseai.FineTuningService/GetJobsByUserId',
-                request_serializer=finetuning__pb2.FineTuningJobRequestByUserId.SerializeToString,
-                response_deserializer=finetuning__pb2.FineTuningJobList.FromString,
+                request_serializer=finetuning__pb2.GetJobsByUserIdRequest.SerializeToString,
+                response_deserializer=finetuning__pb2.GetJobsByUserIdResponse.FromString,
                 )
         self.GetJobsByOrgId = channel.unary_unary(
                 '/gooseai.FineTuningService/GetJobsByOrgId',
-                request_serializer=finetuning__pb2.FineTuningJobRequestByOrgId.SerializeToString,
-                response_deserializer=finetuning__pb2.FineTuningJobList.FromString,
+                request_serializer=finetuning__pb2.GetJobsByOrgIdRequest.SerializeToString,
+                response_deserializer=finetuning__pb2.GetJobsByOrgIdResponse.FromString,
                 )
 
 
@@ -121,42 +121,42 @@ def add_FineTuningServiceServicer_to_server(servicer, server):
             'CreateFineTuningJob': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateFineTuningJob,
                     request_deserializer=finetuning__pb2.CreateFineTuningJobRequest.FromString,
-                    response_serializer=finetuning__pb2.FineTuningJob.SerializeToString,
+                    response_serializer=finetuning__pb2.CreateFineTuningJobResponse.SerializeToString,
             ),
             'GetFineTuningJobById': grpc.unary_unary_rpc_method_handler(
                     servicer.GetFineTuningJobById,
-                    request_deserializer=finetuning__pb2.FineTuningJobRequestById.FromString,
-                    response_serializer=finetuning__pb2.FineTuningJob.SerializeToString,
+                    request_deserializer=finetuning__pb2.GetFineTuningJobByIdRequest.FromString,
+                    response_serializer=finetuning__pb2.GetFineTuningJobByIdResponse.SerializeToString,
             ),
             'UpdateFineTuningJob': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateFineTuningJob,
                     request_deserializer=finetuning__pb2.UpdateFineTuningJobRequest.FromString,
-                    response_serializer=finetuning__pb2.FineTuningJob.SerializeToString,
+                    response_serializer=finetuning__pb2.UpdateFineTuningJobResponse.SerializeToString,
             ),
             'DeleteFineTuningJob': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteFineTuningJob,
-                    request_deserializer=finetuning__pb2.FineTuningJobRequestById.FromString,
-                    response_serializer=finetuning__pb2.FineTuningJob.SerializeToString,
+                    request_deserializer=finetuning__pb2.DeleteFineTuningJobRequest.FromString,
+                    response_serializer=finetuning__pb2.DeleteFineTuningJobResponse.SerializeToString,
             ),
             'GetFineTuningJobStatus': grpc.unary_unary_rpc_method_handler(
                     servicer.GetFineTuningJobStatus,
-                    request_deserializer=finetuning__pb2.FineTuningJobRequestById.FromString,
-                    response_serializer=finetuning__pb2.FineTuningJobStatus.SerializeToString,
+                    request_deserializer=finetuning__pb2.GetFineTuningJobStatusRequest.FromString,
+                    response_serializer=finetuning__pb2.GetFineTuningJobStatusResponse.SerializeToString,
             ),
             'ResubmitFineTuningJob': grpc.unary_unary_rpc_method_handler(
                     servicer.ResubmitFineTuningJob,
                     request_deserializer=finetuning__pb2.ResubmitFineTuningJobRequest.FromString,
-                    response_serializer=finetuning__pb2.FineTuningJob.SerializeToString,
+                    response_serializer=finetuning__pb2.ResubmitFineTuningJobResponse.SerializeToString,
             ),
             'GetJobsByUserId': grpc.unary_unary_rpc_method_handler(
                     servicer.GetJobsByUserId,
-                    request_deserializer=finetuning__pb2.FineTuningJobRequestByUserId.FromString,
-                    response_serializer=finetuning__pb2.FineTuningJobList.SerializeToString,
+                    request_deserializer=finetuning__pb2.GetJobsByUserIdRequest.FromString,
+                    response_serializer=finetuning__pb2.GetJobsByUserIdResponse.SerializeToString,
             ),
             'GetJobsByOrgId': grpc.unary_unary_rpc_method_handler(
                     servicer.GetJobsByOrgId,
-                    request_deserializer=finetuning__pb2.FineTuningJobRequestByOrgId.FromString,
-                    response_serializer=finetuning__pb2.FineTuningJobList.SerializeToString,
+                    request_deserializer=finetuning__pb2.GetJobsByOrgIdRequest.FromString,
+                    response_serializer=finetuning__pb2.GetJobsByOrgIdResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -181,7 +181,7 @@ class FineTuningService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/CreateFineTuningJob',
             finetuning__pb2.CreateFineTuningJobRequest.SerializeToString,
-            finetuning__pb2.FineTuningJob.FromString,
+            finetuning__pb2.CreateFineTuningJobResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -197,8 +197,8 @@ class FineTuningService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetFineTuningJobById',
-            finetuning__pb2.FineTuningJobRequestById.SerializeToString,
-            finetuning__pb2.FineTuningJob.FromString,
+            finetuning__pb2.GetFineTuningJobByIdRequest.SerializeToString,
+            finetuning__pb2.GetFineTuningJobByIdResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -215,7 +215,7 @@ class FineTuningService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/UpdateFineTuningJob',
             finetuning__pb2.UpdateFineTuningJobRequest.SerializeToString,
-            finetuning__pb2.FineTuningJob.FromString,
+            finetuning__pb2.UpdateFineTuningJobResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -231,8 +231,8 @@ class FineTuningService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/DeleteFineTuningJob',
-            finetuning__pb2.FineTuningJobRequestById.SerializeToString,
-            finetuning__pb2.FineTuningJob.FromString,
+            finetuning__pb2.DeleteFineTuningJobRequest.SerializeToString,
+            finetuning__pb2.DeleteFineTuningJobResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -248,8 +248,8 @@ class FineTuningService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetFineTuningJobStatus',
-            finetuning__pb2.FineTuningJobRequestById.SerializeToString,
-            finetuning__pb2.FineTuningJobStatus.FromString,
+            finetuning__pb2.GetFineTuningJobStatusRequest.SerializeToString,
+            finetuning__pb2.GetFineTuningJobStatusResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -266,7 +266,7 @@ class FineTuningService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/ResubmitFineTuningJob',
             finetuning__pb2.ResubmitFineTuningJobRequest.SerializeToString,
-            finetuning__pb2.FineTuningJob.FromString,
+            finetuning__pb2.ResubmitFineTuningJobResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -282,8 +282,8 @@ class FineTuningService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetJobsByUserId',
-            finetuning__pb2.FineTuningJobRequestByUserId.SerializeToString,
-            finetuning__pb2.FineTuningJobList.FromString,
+            finetuning__pb2.GetJobsByUserIdRequest.SerializeToString,
+            finetuning__pb2.GetJobsByUserIdResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -299,7 +299,7 @@ class FineTuningService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetJobsByOrgId',
-            finetuning__pb2.FineTuningJobRequestByOrgId.SerializeToString,
-            finetuning__pb2.FineTuningJobList.FromString,
+            finetuning__pb2.GetJobsByOrgIdRequest.SerializeToString,
+            finetuning__pb2.GetJobsByOrgIdResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

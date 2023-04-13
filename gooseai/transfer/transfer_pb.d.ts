@@ -108,19 +108,19 @@ export namespace DeleteResponse {
 }
 
 export class CleanupFineTuningRequest extends jspb.Message {
-  getArchivebucket(): string;
-  setArchivebucket(value: string): void;
+  getArchiveBucket(): string;
+  setArchiveBucket(value: string): void;
 
-  clearArchivekeysList(): void;
-  getArchivekeysList(): Array<string>;
-  setArchivekeysList(value: Array<string>): void;
-  addArchivekeys(value: string, index?: number): string;
+  clearArchiveKeysList(): void;
+  getArchiveKeysList(): Array<string>;
+  setArchiveKeysList(value: Array<string>): void;
+  addArchiveKeys(value: string, index?: number): string;
 
-  getProcessingbucket(): string;
-  setProcessingbucket(value: string): void;
+  getProcessingBucket(): string;
+  setProcessingBucket(value: string): void;
 
-  getProcessingprefix(): string;
-  setProcessingprefix(value: string): void;
+  getProcessingPrefix(): string;
+  setProcessingPrefix(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CleanupFineTuningRequest.AsObject;
@@ -134,10 +134,10 @@ export class CleanupFineTuningRequest extends jspb.Message {
 
 export namespace CleanupFineTuningRequest {
   export type AsObject = {
-    archivebucket: string,
-    archivekeysList: Array<string>,
-    processingbucket: string,
-    processingprefix: string,
+    archiveBucket: string,
+    archiveKeysList: Array<string>,
+    processingBucket: string,
+    processingPrefix: string,
   }
 }
 
@@ -156,6 +156,50 @@ export class CleanupFineTuningResponse extends jspb.Message {
 }
 
 export namespace CleanupFineTuningResponse {
+  export type AsObject = {
+    success: boolean,
+  }
+}
+
+export class DeleteObjectsByPrefixRequest extends jspb.Message {
+  getBucketName(): string;
+  setBucketName(value: string): void;
+
+  getPrefix(): string;
+  setPrefix(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteObjectsByPrefixRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteObjectsByPrefixRequest): DeleteObjectsByPrefixRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteObjectsByPrefixRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteObjectsByPrefixRequest;
+  static deserializeBinaryFromReader(message: DeleteObjectsByPrefixRequest, reader: jspb.BinaryReader): DeleteObjectsByPrefixRequest;
+}
+
+export namespace DeleteObjectsByPrefixRequest {
+  export type AsObject = {
+    bucketName: string,
+    prefix: string,
+  }
+}
+
+export class DeleteObjectsByPrefixResponse extends jspb.Message {
+  getSuccess(): boolean;
+  setSuccess(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteObjectsByPrefixResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteObjectsByPrefixResponse): DeleteObjectsByPrefixResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteObjectsByPrefixResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteObjectsByPrefixResponse;
+  static deserializeBinaryFromReader(message: DeleteObjectsByPrefixResponse, reader: jspb.BinaryReader): DeleteObjectsByPrefixResponse;
+}
+
+export namespace DeleteObjectsByPrefixResponse {
   export type AsObject = {
     success: boolean,
   }

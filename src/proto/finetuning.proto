@@ -34,7 +34,27 @@ message FineTuningJob {
   // how long the job took to run
   double duration = 7;
   // the current status of the job
-  JobStatus status = 8;
+  FineTuningJobStatus status = 8;
+}
+
+message CreateFineTuningJobResponse {
+  FineTuningJob job = 1;
+}
+
+message GetFineTuningJobByIdResponse {
+  FineTuningJob job = 1;
+}
+
+message UpdateFineTuningJobResponse {
+  FineTuningJob job = 1;
+}
+
+message DeleteFineTuningJobResponse {
+  FineTuningJob job = 1;
+}
+
+message ResubmitFineTuningJobResponse {
+  FineTuningJob job = 1;
 }
 
 message CreateFineTuningJobRequest{
@@ -61,30 +81,40 @@ message UpdateFineTuningJobRequest{
   string project_id  = 5;
 }
 
-message FineTuningJobRequestById {
+message GetFineTuningJobByIdRequest {
+  // the id of the job
+  string id = 1;
+}
+
+message DeleteFineTuningJobRequest {
+  // the id of the job
+  string id = 1;
+}
+
+message GetFineTuningJobStatusRequest{
   // the id of the job
   string id = 1;
 }
 
 // The Status of Fine Tuning Job as reported by the job processing system
-enum JobStatus {
+enum FineTuningJobStatus {
   // Job not yet started
-  JOB_STATUS_NOT_STARTED_UNSPECIFIED = 0;
+  FINE_TUNING_JOB_STATUS_NOT_STARTED_UNSPECIFIED = 0;
   // Job is currently running
-  JOB_STATUS_RUNNING = 1;
+  FINE_TUNING_JOB_STATUS_RUNNING = 1;
   // Job has completed successfully
-  JOB_STATUS_COMPLETED = 2;  
+  FINE_TUNING_JOB_STATUS_COMPLETED = 2;  
   // Job has failed
-  JOB_STATUS_FAILED = 3;
+  FINE_TUNING_JOB_STATUS_FAILED = 3;
   // Job has been submitted
-  JOB_STATUS_SUBMITTED = 4;
+  FINE_TUNING_JOB_STATUS_SUBMITTED = 4;
 }
 
-message FineTuningJobStatus {
+message GetFineTuningJobStatusResponse {
   // the id of the job that was checked
   string id = 1;
   // the current status of the job
-  JobStatus status = 2;
+  FineTuningJobStatus status = 2;
 }
 
 message ResubmitFineTuningJobRequest {
@@ -92,17 +122,23 @@ message ResubmitFineTuningJobRequest {
   string id = 1;
 }
 
-message FineTuningJobRequestByUserId {
+message GetJobsByUserIdRequest {
   // the id of the user
   string id = 1;
 }
 
-message FineTuningJobRequestByOrgId {
+message GetJobsByOrgIdRequest {
   // the organization's id
   string id = 1;
 }
 
-message FineTuningJobList {
+message GetJobsByUserIdResponse {
+  // the list of jobs
+  repeated FineTuningJob jobs = 1;
+  google.protobuf.FieldMask field_mask = 2;
+}
+
+message GetJobsByOrgIdResponse {
   // the list of jobs
   repeated FineTuningJob jobs = 1;
   google.protobuf.FieldMask field_mask = 2;
@@ -110,19 +146,19 @@ message FineTuningJobList {
 
 service FineTuningService {
   // Create a new project if it does not exist, and runs it
-  rpc CreateFineTuningJob (CreateFineTuningJobRequest) returns (FineTuningJob);
+  rpc CreateFineTuningJob (CreateFineTuningJobRequest) returns (CreateFineTuningJobResponse);
   // Get a FineTuningJob by id
-  rpc GetFineTuningJobById (FineTuningJobRequestById) returns (FineTuningJob);
+  rpc GetFineTuningJobById (GetFineTuningJobByIdRequest) returns (GetFineTuningJobByIdResponse);
   // Update a FineTuningJob by id
-  rpc UpdateFineTuningJob (UpdateFineTuningJobRequest) returns (FineTuningJob);
+  rpc UpdateFineTuningJob (UpdateFineTuningJobRequest) returns (UpdateFineTuningJobResponse);
   // Delete a FineTuningJob by id
-  rpc DeleteFineTuningJob (FineTuningJobRequestById) returns (FineTuningJob);
+  rpc DeleteFineTuningJob (DeleteFineTuningJobRequest) returns (DeleteFineTuningJobResponse);
   // Check the progress of a FineTuningJob by id
-  rpc GetFineTuningJobStatus (FineTuningJobRequestById) returns (FineTuningJobStatus);  
+  rpc GetFineTuningJobStatus (GetFineTuningJobStatusRequest) returns (GetFineTuningJobStatusResponse);  
   // Re-run training API call, does not create a new job in the DB
-  rpc ResubmitFineTuningJob (ResubmitFineTuningJobRequest) returns (FineTuningJob);
+  rpc ResubmitFineTuningJob (ResubmitFineTuningJobRequest) returns (ResubmitFineTuningJobResponse);
   // Get a list of FineTuningJobs by user id
-  rpc GetJobsByUserId(FineTuningJobRequestByUserId) returns (FineTuningJobList);
+  rpc GetJobsByUserId(GetJobsByUserIdRequest) returns (GetJobsByUserIdResponse);
   // Get a list of FineTuningJobs by org id
-  rpc GetJobsByOrgId(FineTuningJobRequestByOrgId) returns (FineTuningJobList);
+  rpc GetJobsByOrgId(GetJobsByOrgIdRequest) returns (GetJobsByOrgIdResponse);
 }

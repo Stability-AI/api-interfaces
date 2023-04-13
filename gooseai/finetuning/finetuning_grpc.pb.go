@@ -19,21 +19,21 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FineTuningServiceClient interface {
 	// Create a new project if it does not exist, and runs it
-	CreateFineTuningJob(ctx context.Context, in *CreateFineTuningJobRequest, opts ...grpc.CallOption) (*FineTuningJob, error)
+	CreateFineTuningJob(ctx context.Context, in *CreateFineTuningJobRequest, opts ...grpc.CallOption) (*CreateFineTuningJobResponse, error)
 	// Get a FineTuningJob by id
-	GetFineTuningJobById(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJob, error)
+	GetFineTuningJobById(ctx context.Context, in *GetFineTuningJobByIdRequest, opts ...grpc.CallOption) (*GetFineTuningJobByIdResponse, error)
 	// Update a FineTuningJob by id
-	UpdateFineTuningJob(ctx context.Context, in *UpdateFineTuningJobRequest, opts ...grpc.CallOption) (*FineTuningJob, error)
+	UpdateFineTuningJob(ctx context.Context, in *UpdateFineTuningJobRequest, opts ...grpc.CallOption) (*UpdateFineTuningJobResponse, error)
 	// Delete a FineTuningJob by id
-	DeleteFineTuningJob(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJob, error)
+	DeleteFineTuningJob(ctx context.Context, in *DeleteFineTuningJobRequest, opts ...grpc.CallOption) (*DeleteFineTuningJobResponse, error)
 	// Check the progress of a FineTuningJob by id
-	GetFineTuningJobStatus(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJobStatus, error)
+	GetFineTuningJobStatus(ctx context.Context, in *GetFineTuningJobStatusRequest, opts ...grpc.CallOption) (*GetFineTuningJobStatusResponse, error)
 	// Re-run training API call, does not create a new job in the DB
-	ResubmitFineTuningJob(ctx context.Context, in *ResubmitFineTuningJobRequest, opts ...grpc.CallOption) (*FineTuningJob, error)
+	ResubmitFineTuningJob(ctx context.Context, in *ResubmitFineTuningJobRequest, opts ...grpc.CallOption) (*ResubmitFineTuningJobResponse, error)
 	// Get a list of FineTuningJobs by user id
-	GetJobsByUserId(ctx context.Context, in *FineTuningJobRequestByUserId, opts ...grpc.CallOption) (*FineTuningJobList, error)
+	GetJobsByUserId(ctx context.Context, in *GetJobsByUserIdRequest, opts ...grpc.CallOption) (*GetJobsByUserIdResponse, error)
 	// Get a list of FineTuningJobs by org id
-	GetJobsByOrgId(ctx context.Context, in *FineTuningJobRequestByOrgId, opts ...grpc.CallOption) (*FineTuningJobList, error)
+	GetJobsByOrgId(ctx context.Context, in *GetJobsByOrgIdRequest, opts ...grpc.CallOption) (*GetJobsByOrgIdResponse, error)
 }
 
 type fineTuningServiceClient struct {
@@ -44,8 +44,8 @@ func NewFineTuningServiceClient(cc grpc.ClientConnInterface) FineTuningServiceCl
 	return &fineTuningServiceClient{cc}
 }
 
-func (c *fineTuningServiceClient) CreateFineTuningJob(ctx context.Context, in *CreateFineTuningJobRequest, opts ...grpc.CallOption) (*FineTuningJob, error) {
-	out := new(FineTuningJob)
+func (c *fineTuningServiceClient) CreateFineTuningJob(ctx context.Context, in *CreateFineTuningJobRequest, opts ...grpc.CallOption) (*CreateFineTuningJobResponse, error) {
+	out := new(CreateFineTuningJobResponse)
 	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/CreateFineTuningJob", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -53,8 +53,8 @@ func (c *fineTuningServiceClient) CreateFineTuningJob(ctx context.Context, in *C
 	return out, nil
 }
 
-func (c *fineTuningServiceClient) GetFineTuningJobById(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJob, error) {
-	out := new(FineTuningJob)
+func (c *fineTuningServiceClient) GetFineTuningJobById(ctx context.Context, in *GetFineTuningJobByIdRequest, opts ...grpc.CallOption) (*GetFineTuningJobByIdResponse, error) {
+	out := new(GetFineTuningJobByIdResponse)
 	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/GetFineTuningJobById", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -62,8 +62,8 @@ func (c *fineTuningServiceClient) GetFineTuningJobById(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *fineTuningServiceClient) UpdateFineTuningJob(ctx context.Context, in *UpdateFineTuningJobRequest, opts ...grpc.CallOption) (*FineTuningJob, error) {
-	out := new(FineTuningJob)
+func (c *fineTuningServiceClient) UpdateFineTuningJob(ctx context.Context, in *UpdateFineTuningJobRequest, opts ...grpc.CallOption) (*UpdateFineTuningJobResponse, error) {
+	out := new(UpdateFineTuningJobResponse)
 	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/UpdateFineTuningJob", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -71,8 +71,8 @@ func (c *fineTuningServiceClient) UpdateFineTuningJob(ctx context.Context, in *U
 	return out, nil
 }
 
-func (c *fineTuningServiceClient) DeleteFineTuningJob(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJob, error) {
-	out := new(FineTuningJob)
+func (c *fineTuningServiceClient) DeleteFineTuningJob(ctx context.Context, in *DeleteFineTuningJobRequest, opts ...grpc.CallOption) (*DeleteFineTuningJobResponse, error) {
+	out := new(DeleteFineTuningJobResponse)
 	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/DeleteFineTuningJob", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func (c *fineTuningServiceClient) DeleteFineTuningJob(ctx context.Context, in *F
 	return out, nil
 }
 
-func (c *fineTuningServiceClient) GetFineTuningJobStatus(ctx context.Context, in *FineTuningJobRequestById, opts ...grpc.CallOption) (*FineTuningJobStatus, error) {
-	out := new(FineTuningJobStatus)
+func (c *fineTuningServiceClient) GetFineTuningJobStatus(ctx context.Context, in *GetFineTuningJobStatusRequest, opts ...grpc.CallOption) (*GetFineTuningJobStatusResponse, error) {
+	out := new(GetFineTuningJobStatusResponse)
 	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/GetFineTuningJobStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -89,8 +89,8 @@ func (c *fineTuningServiceClient) GetFineTuningJobStatus(ctx context.Context, in
 	return out, nil
 }
 
-func (c *fineTuningServiceClient) ResubmitFineTuningJob(ctx context.Context, in *ResubmitFineTuningJobRequest, opts ...grpc.CallOption) (*FineTuningJob, error) {
-	out := new(FineTuningJob)
+func (c *fineTuningServiceClient) ResubmitFineTuningJob(ctx context.Context, in *ResubmitFineTuningJobRequest, opts ...grpc.CallOption) (*ResubmitFineTuningJobResponse, error) {
+	out := new(ResubmitFineTuningJobResponse)
 	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/ResubmitFineTuningJob", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -98,8 +98,8 @@ func (c *fineTuningServiceClient) ResubmitFineTuningJob(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *fineTuningServiceClient) GetJobsByUserId(ctx context.Context, in *FineTuningJobRequestByUserId, opts ...grpc.CallOption) (*FineTuningJobList, error) {
-	out := new(FineTuningJobList)
+func (c *fineTuningServiceClient) GetJobsByUserId(ctx context.Context, in *GetJobsByUserIdRequest, opts ...grpc.CallOption) (*GetJobsByUserIdResponse, error) {
+	out := new(GetJobsByUserIdResponse)
 	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/GetJobsByUserId", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -107,8 +107,8 @@ func (c *fineTuningServiceClient) GetJobsByUserId(ctx context.Context, in *FineT
 	return out, nil
 }
 
-func (c *fineTuningServiceClient) GetJobsByOrgId(ctx context.Context, in *FineTuningJobRequestByOrgId, opts ...grpc.CallOption) (*FineTuningJobList, error) {
-	out := new(FineTuningJobList)
+func (c *fineTuningServiceClient) GetJobsByOrgId(ctx context.Context, in *GetJobsByOrgIdRequest, opts ...grpc.CallOption) (*GetJobsByOrgIdResponse, error) {
+	out := new(GetJobsByOrgIdResponse)
 	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/GetJobsByOrgId", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -121,21 +121,21 @@ func (c *fineTuningServiceClient) GetJobsByOrgId(ctx context.Context, in *FineTu
 // for forward compatibility
 type FineTuningServiceServer interface {
 	// Create a new project if it does not exist, and runs it
-	CreateFineTuningJob(context.Context, *CreateFineTuningJobRequest) (*FineTuningJob, error)
+	CreateFineTuningJob(context.Context, *CreateFineTuningJobRequest) (*CreateFineTuningJobResponse, error)
 	// Get a FineTuningJob by id
-	GetFineTuningJobById(context.Context, *FineTuningJobRequestById) (*FineTuningJob, error)
+	GetFineTuningJobById(context.Context, *GetFineTuningJobByIdRequest) (*GetFineTuningJobByIdResponse, error)
 	// Update a FineTuningJob by id
-	UpdateFineTuningJob(context.Context, *UpdateFineTuningJobRequest) (*FineTuningJob, error)
+	UpdateFineTuningJob(context.Context, *UpdateFineTuningJobRequest) (*UpdateFineTuningJobResponse, error)
 	// Delete a FineTuningJob by id
-	DeleteFineTuningJob(context.Context, *FineTuningJobRequestById) (*FineTuningJob, error)
+	DeleteFineTuningJob(context.Context, *DeleteFineTuningJobRequest) (*DeleteFineTuningJobResponse, error)
 	// Check the progress of a FineTuningJob by id
-	GetFineTuningJobStatus(context.Context, *FineTuningJobRequestById) (*FineTuningJobStatus, error)
+	GetFineTuningJobStatus(context.Context, *GetFineTuningJobStatusRequest) (*GetFineTuningJobStatusResponse, error)
 	// Re-run training API call, does not create a new job in the DB
-	ResubmitFineTuningJob(context.Context, *ResubmitFineTuningJobRequest) (*FineTuningJob, error)
+	ResubmitFineTuningJob(context.Context, *ResubmitFineTuningJobRequest) (*ResubmitFineTuningJobResponse, error)
 	// Get a list of FineTuningJobs by user id
-	GetJobsByUserId(context.Context, *FineTuningJobRequestByUserId) (*FineTuningJobList, error)
+	GetJobsByUserId(context.Context, *GetJobsByUserIdRequest) (*GetJobsByUserIdResponse, error)
 	// Get a list of FineTuningJobs by org id
-	GetJobsByOrgId(context.Context, *FineTuningJobRequestByOrgId) (*FineTuningJobList, error)
+	GetJobsByOrgId(context.Context, *GetJobsByOrgIdRequest) (*GetJobsByOrgIdResponse, error)
 	mustEmbedUnimplementedFineTuningServiceServer()
 }
 
@@ -143,28 +143,28 @@ type FineTuningServiceServer interface {
 type UnimplementedFineTuningServiceServer struct {
 }
 
-func (UnimplementedFineTuningServiceServer) CreateFineTuningJob(context.Context, *CreateFineTuningJobRequest) (*FineTuningJob, error) {
+func (UnimplementedFineTuningServiceServer) CreateFineTuningJob(context.Context, *CreateFineTuningJobRequest) (*CreateFineTuningJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateFineTuningJob not implemented")
 }
-func (UnimplementedFineTuningServiceServer) GetFineTuningJobById(context.Context, *FineTuningJobRequestById) (*FineTuningJob, error) {
+func (UnimplementedFineTuningServiceServer) GetFineTuningJobById(context.Context, *GetFineTuningJobByIdRequest) (*GetFineTuningJobByIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFineTuningJobById not implemented")
 }
-func (UnimplementedFineTuningServiceServer) UpdateFineTuningJob(context.Context, *UpdateFineTuningJobRequest) (*FineTuningJob, error) {
+func (UnimplementedFineTuningServiceServer) UpdateFineTuningJob(context.Context, *UpdateFineTuningJobRequest) (*UpdateFineTuningJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateFineTuningJob not implemented")
 }
-func (UnimplementedFineTuningServiceServer) DeleteFineTuningJob(context.Context, *FineTuningJobRequestById) (*FineTuningJob, error) {
+func (UnimplementedFineTuningServiceServer) DeleteFineTuningJob(context.Context, *DeleteFineTuningJobRequest) (*DeleteFineTuningJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFineTuningJob not implemented")
 }
-func (UnimplementedFineTuningServiceServer) GetFineTuningJobStatus(context.Context, *FineTuningJobRequestById) (*FineTuningJobStatus, error) {
+func (UnimplementedFineTuningServiceServer) GetFineTuningJobStatus(context.Context, *GetFineTuningJobStatusRequest) (*GetFineTuningJobStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFineTuningJobStatus not implemented")
 }
-func (UnimplementedFineTuningServiceServer) ResubmitFineTuningJob(context.Context, *ResubmitFineTuningJobRequest) (*FineTuningJob, error) {
+func (UnimplementedFineTuningServiceServer) ResubmitFineTuningJob(context.Context, *ResubmitFineTuningJobRequest) (*ResubmitFineTuningJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResubmitFineTuningJob not implemented")
 }
-func (UnimplementedFineTuningServiceServer) GetJobsByUserId(context.Context, *FineTuningJobRequestByUserId) (*FineTuningJobList, error) {
+func (UnimplementedFineTuningServiceServer) GetJobsByUserId(context.Context, *GetJobsByUserIdRequest) (*GetJobsByUserIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetJobsByUserId not implemented")
 }
-func (UnimplementedFineTuningServiceServer) GetJobsByOrgId(context.Context, *FineTuningJobRequestByOrgId) (*FineTuningJobList, error) {
+func (UnimplementedFineTuningServiceServer) GetJobsByOrgId(context.Context, *GetJobsByOrgIdRequest) (*GetJobsByOrgIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetJobsByOrgId not implemented")
 }
 func (UnimplementedFineTuningServiceServer) mustEmbedUnimplementedFineTuningServiceServer() {}
@@ -199,7 +199,7 @@ func _FineTuningService_CreateFineTuningJob_Handler(srv interface{}, ctx context
 }
 
 func _FineTuningService_GetFineTuningJobById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FineTuningJobRequestById)
+	in := new(GetFineTuningJobByIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -211,7 +211,7 @@ func _FineTuningService_GetFineTuningJobById_Handler(srv interface{}, ctx contex
 		FullMethod: "/gooseai.FineTuningService/GetFineTuningJobById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FineTuningServiceServer).GetFineTuningJobById(ctx, req.(*FineTuningJobRequestById))
+		return srv.(FineTuningServiceServer).GetFineTuningJobById(ctx, req.(*GetFineTuningJobByIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -235,7 +235,7 @@ func _FineTuningService_UpdateFineTuningJob_Handler(srv interface{}, ctx context
 }
 
 func _FineTuningService_DeleteFineTuningJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FineTuningJobRequestById)
+	in := new(DeleteFineTuningJobRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -247,13 +247,13 @@ func _FineTuningService_DeleteFineTuningJob_Handler(srv interface{}, ctx context
 		FullMethod: "/gooseai.FineTuningService/DeleteFineTuningJob",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FineTuningServiceServer).DeleteFineTuningJob(ctx, req.(*FineTuningJobRequestById))
+		return srv.(FineTuningServiceServer).DeleteFineTuningJob(ctx, req.(*DeleteFineTuningJobRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _FineTuningService_GetFineTuningJobStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FineTuningJobRequestById)
+	in := new(GetFineTuningJobStatusRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -265,7 +265,7 @@ func _FineTuningService_GetFineTuningJobStatus_Handler(srv interface{}, ctx cont
 		FullMethod: "/gooseai.FineTuningService/GetFineTuningJobStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FineTuningServiceServer).GetFineTuningJobStatus(ctx, req.(*FineTuningJobRequestById))
+		return srv.(FineTuningServiceServer).GetFineTuningJobStatus(ctx, req.(*GetFineTuningJobStatusRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -289,7 +289,7 @@ func _FineTuningService_ResubmitFineTuningJob_Handler(srv interface{}, ctx conte
 }
 
 func _FineTuningService_GetJobsByUserId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FineTuningJobRequestByUserId)
+	in := new(GetJobsByUserIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -301,13 +301,13 @@ func _FineTuningService_GetJobsByUserId_Handler(srv interface{}, ctx context.Con
 		FullMethod: "/gooseai.FineTuningService/GetJobsByUserId",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FineTuningServiceServer).GetJobsByUserId(ctx, req.(*FineTuningJobRequestByUserId))
+		return srv.(FineTuningServiceServer).GetJobsByUserId(ctx, req.(*GetJobsByUserIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _FineTuningService_GetJobsByOrgId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FineTuningJobRequestByOrgId)
+	in := new(GetJobsByOrgIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -319,7 +319,7 @@ func _FineTuningService_GetJobsByOrgId_Handler(srv interface{}, ctx context.Cont
 		FullMethod: "/gooseai.FineTuningService/GetJobsByOrgId",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FineTuningServiceServer).GetJobsByOrgId(ctx, req.(*FineTuningJobRequestByOrgId))
+		return srv.(FineTuningServiceServer).GetJobsByOrgId(ctx, req.(*GetJobsByOrgIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -26,6 +26,28 @@ function deserialize_gooseai_CleanupFineTuningResponse(buffer_arg) {
   return transfer_pb.CleanupFineTuningResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_gooseai_DeleteObjectsByPrefixRequest(arg) {
+  if (!(arg instanceof transfer_pb.DeleteObjectsByPrefixRequest)) {
+    throw new Error('Expected argument of type gooseai.DeleteObjectsByPrefixRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_DeleteObjectsByPrefixRequest(buffer_arg) {
+  return transfer_pb.DeleteObjectsByPrefixRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_DeleteObjectsByPrefixResponse(arg) {
+  if (!(arg instanceof transfer_pb.DeleteObjectsByPrefixResponse)) {
+    throw new Error('Expected argument of type gooseai.DeleteObjectsByPrefixResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_DeleteObjectsByPrefixResponse(buffer_arg) {
+  return transfer_pb.DeleteObjectsByPrefixResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_gooseai_DeleteRequest(arg) {
   if (!(arg instanceof transfer_pb.DeleteRequest)) {
     throw new Error('Expected argument of type gooseai.DeleteRequest');
@@ -72,7 +94,8 @@ function deserialize_gooseai_TransferResponse(buffer_arg) {
 
 
 var TransferServiceService = exports.TransferServiceService = {
-  //  Internal use only. Initiates a transfer of assets between two Stability AI buckets.
+  // Internal use only. 
+// Initiates a transfer of assets between two Stability AI buckets.
 transfer: {
     path: '/gooseai.TransferService/Transfer',
     requestStream: false,
@@ -84,7 +107,8 @@ transfer: {
     responseSerialize: serialize_gooseai_TransferResponse,
     responseDeserialize: deserialize_gooseai_TransferResponse,
   },
-  //  Internal use only. Deletes assets from Stability archive bucket.
+  // Internal use only. 
+// Deletes assets from Stability archive bucket.
 delete: {
     path: '/gooseai.TransferService/Delete',
     requestStream: false,
@@ -96,7 +120,8 @@ delete: {
     responseSerialize: serialize_gooseai_DeleteResponse,
     responseDeserialize: deserialize_gooseai_DeleteResponse,
   },
-  // Internal use only. Runs cleanup of Fine-Tuning assets.
+  // Internal use only. 
+// Runs cleanup of Fine-Tuning assets.
 cleanupFineTuning: {
     path: '/gooseai.TransferService/CleanupFineTuning',
     requestStream: false,
@@ -107,6 +132,19 @@ cleanupFineTuning: {
     requestDeserialize: deserialize_gooseai_CleanupFineTuningRequest,
     responseSerialize: serialize_gooseai_CleanupFineTuningResponse,
     responseDeserialize: deserialize_gooseai_CleanupFineTuningResponse,
+  },
+  // Internal use only.
+// Deletes objects from a bucket by prefix.
+deleteObjectsByPrefix: {
+    path: '/gooseai.TransferService/DeleteObjectsByPrefix',
+    requestStream: false,
+    responseStream: false,
+    requestType: transfer_pb.DeleteObjectsByPrefixRequest,
+    responseType: transfer_pb.DeleteObjectsByPrefixResponse,
+    requestSerialize: serialize_gooseai_DeleteObjectsByPrefixRequest,
+    requestDeserialize: deserialize_gooseai_DeleteObjectsByPrefixRequest,
+    responseSerialize: serialize_gooseai_DeleteObjectsByPrefixResponse,
+    responseDeserialize: deserialize_gooseai_DeleteObjectsByPrefixResponse,
   },
 };
 

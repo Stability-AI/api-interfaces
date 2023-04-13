@@ -16,7 +16,7 @@ FineTuningService.CreateFineTuningJob = {
   requestStream: false,
   responseStream: false,
   requestType: finetuning_pb.CreateFineTuningJobRequest,
-  responseType: finetuning_pb.FineTuningJob
+  responseType: finetuning_pb.CreateFineTuningJobResponse
 };
 
 FineTuningService.GetFineTuningJobById = {
@@ -24,8 +24,8 @@ FineTuningService.GetFineTuningJobById = {
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.FineTuningJobRequestById,
-  responseType: finetuning_pb.FineTuningJob
+  requestType: finetuning_pb.GetFineTuningJobByIdRequest,
+  responseType: finetuning_pb.GetFineTuningJobByIdResponse
 };
 
 FineTuningService.UpdateFineTuningJob = {
@@ -34,7 +34,7 @@ FineTuningService.UpdateFineTuningJob = {
   requestStream: false,
   responseStream: false,
   requestType: finetuning_pb.UpdateFineTuningJobRequest,
-  responseType: finetuning_pb.FineTuningJob
+  responseType: finetuning_pb.UpdateFineTuningJobResponse
 };
 
 FineTuningService.DeleteFineTuningJob = {
@@ -42,8 +42,8 @@ FineTuningService.DeleteFineTuningJob = {
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.FineTuningJobRequestById,
-  responseType: finetuning_pb.FineTuningJob
+  requestType: finetuning_pb.DeleteFineTuningJobRequest,
+  responseType: finetuning_pb.DeleteFineTuningJobResponse
 };
 
 FineTuningService.GetFineTuningJobStatus = {
@@ -51,8 +51,8 @@ FineTuningService.GetFineTuningJobStatus = {
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.FineTuningJobRequestById,
-  responseType: finetuning_pb.FineTuningJobStatus
+  requestType: finetuning_pb.GetFineTuningJobStatusRequest,
+  responseType: finetuning_pb.GetFineTuningJobStatusResponse
 };
 
 FineTuningService.ResubmitFineTuningJob = {
@@ -61,7 +61,7 @@ FineTuningService.ResubmitFineTuningJob = {
   requestStream: false,
   responseStream: false,
   requestType: finetuning_pb.ResubmitFineTuningJobRequest,
-  responseType: finetuning_pb.FineTuningJob
+  responseType: finetuning_pb.ResubmitFineTuningJobResponse
 };
 
 FineTuningService.GetJobsByUserId = {
@@ -69,8 +69,8 @@ FineTuningService.GetJobsByUserId = {
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.FineTuningJobRequestByUserId,
-  responseType: finetuning_pb.FineTuningJobList
+  requestType: finetuning_pb.GetJobsByUserIdRequest,
+  responseType: finetuning_pb.GetJobsByUserIdResponse
 };
 
 FineTuningService.GetJobsByOrgId = {
@@ -78,8 +78,8 @@ FineTuningService.GetJobsByOrgId = {
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.FineTuningJobRequestByOrgId,
-  responseType: finetuning_pb.FineTuningJobList
+  requestType: finetuning_pb.GetJobsByOrgIdRequest,
+  responseType: finetuning_pb.GetJobsByOrgIdResponse
 };
 
 exports.FineTuningService = FineTuningService;

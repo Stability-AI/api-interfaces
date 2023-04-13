@@ -18,12 +18,18 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TransferServiceClient interface {
-	//  Internal use only. Initiates a transfer of assets between two Stability AI buckets.
+	// Internal use only.
+	// Initiates a transfer of assets between two Stability AI buckets.
 	Transfer(ctx context.Context, in *TransferRequest, opts ...grpc.CallOption) (*TransferResponse, error)
-	//  Internal use only. Deletes assets from Stability archive bucket.
+	// Internal use only.
+	// Deletes assets from Stability archive bucket.
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
-	// Internal use only. Runs cleanup of Fine-Tuning assets.
+	// Internal use only.
+	// Runs cleanup of Fine-Tuning assets.
 	CleanupFineTuning(ctx context.Context, in *CleanupFineTuningRequest, opts ...grpc.CallOption) (*CleanupFineTuningResponse, error)
+	// Internal use only.
+	// Deletes objects from a bucket by prefix.
+	DeleteObjectsByPrefix(ctx context.Context, in *DeleteObjectsByPrefixRequest, opts ...grpc.CallOption) (*DeleteObjectsByPrefixResponse, error)
 }
 
 type transferServiceClient struct {
@@ -61,16 +67,31 @@ func (c *transferServiceClient) CleanupFineTuning(ctx context.Context, in *Clean
 	return out, nil
 }
 
+func (c *transferServiceClient) DeleteObjectsByPrefix(ctx context.Context, in *DeleteObjectsByPrefixRequest, opts ...grpc.CallOption) (*DeleteObjectsByPrefixResponse, error) {
+	out := new(DeleteObjectsByPrefixResponse)
+	err := c.cc.Invoke(ctx, "/gooseai.TransferService/DeleteObjectsByPrefix", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TransferServiceServer is the server API for TransferService service.
 // All implementations must embed UnimplementedTransferServiceServer
 // for forward compatibility
 type TransferServiceServer interface {
-	//  Internal use only. Initiates a transfer of assets between two Stability AI buckets.
+	// Internal use only.
+	// Initiates a transfer of assets between two Stability AI buckets.
 	Transfer(context.Context, *TransferRequest) (*TransferResponse, error)
-	//  Internal use only. Deletes assets from Stability archive bucket.
+	// Internal use only.
+	// Deletes assets from Stability archive bucket.
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
-	// Internal use only. Runs cleanup of Fine-Tuning assets.
+	// Internal use only.
+	// Runs cleanup of Fine-Tuning assets.
 	CleanupFineTuning(context.Context, *CleanupFineTuningRequest) (*CleanupFineTuningResponse, error)
+	// Internal use only.
+	// Deletes objects from a bucket by prefix.
+	DeleteObjectsByPrefix(context.Context, *DeleteObjectsByPrefixRequest) (*DeleteObjectsByPrefixResponse, error)
 	mustEmbedUnimplementedTransferServiceServer()
 }
 
@@ -86,6 +107,9 @@ func (UnimplementedTransferServiceServer) Delete(context.Context, *DeleteRequest
 }
 func (UnimplementedTransferServiceServer) CleanupFineTuning(context.Context, *CleanupFineTuningRequest) (*CleanupFineTuningResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CleanupFineTuning not implemented")
+}
+func (UnimplementedTransferServiceServer) DeleteObjectsByPrefix(context.Context, *DeleteObjectsByPrefixRequest) (*DeleteObjectsByPrefixResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteObjectsByPrefix not implemented")
 }
 func (UnimplementedTransferServiceServer) mustEmbedUnimplementedTransferServiceServer() {}
 
@@ -154,6 +178,24 @@ func _TransferService_CleanupFineTuning_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TransferService_DeleteObjectsByPrefix_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteObjectsByPrefixRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransferServiceServer).DeleteObjectsByPrefix(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.TransferService/DeleteObjectsByPrefix",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransferServiceServer).DeleteObjectsByPrefix(ctx, req.(*DeleteObjectsByPrefixRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TransferService_ServiceDesc is the grpc.ServiceDesc for TransferService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -172,6 +214,10 @@ var TransferService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CleanupFineTuning",
 			Handler:    _TransferService_CleanupFineTuning_Handler,
+		},
+		{
+			MethodName: "DeleteObjectsByPrefix",
+			Handler:    _TransferService_DeleteObjectsByPrefix_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
