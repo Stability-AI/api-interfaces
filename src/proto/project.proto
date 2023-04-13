@@ -102,10 +102,10 @@ message QueryAssetsResponse {
 }
 
 message TagAssetsRequest {
-  string id = 1;                   // ID of the project to request, UUIDv4, empty string uses default project
-  optional string owner_id = 2;    // The ID of the organization owning the assets, unset for default org for user
-  repeated string asset_ids = 3;   // The IDs of the assets to tag in the project, UUIDv4, limit 1000
-  map<string, string> tags = 4;    // The tags to add to the assets
+  string id = 1;                 // ID of the project to request, UUIDv4, empty string uses default project
+  optional string owner_id = 2;  // The ID of the organization owning the assets, unset for default org for user
+  repeated string asset_ids = 3; // The IDs of the assets to tag in the project, UUIDv4, limit 1000
+  map<string, string> tags = 4;  // The tags to add to the assets
 }
 
 message TagAssetsResponse {
@@ -115,10 +115,10 @@ message TagAssetsResponse {
 }
 
 message UntagAssetsRequest {
-  string id = 1;                   // ID of the project to request, UUIDv4, empty string uses default project
-  optional string owner_id = 2;    // The ID of the organization owning the assets, unset for default org for user
-  repeated string asset_ids = 3;   // The IDs of the assets to tag in the project, UUIDv4, limit 1000
-  repeated string tag_keys = 4;    // The keys of the tags to remove from the assets
+  string id = 1;                 // ID of the project to request, UUIDv4, empty string uses default project
+  optional string owner_id = 2;  // The ID of the organization owning the assets, unset for default org for user
+  repeated string asset_ids = 3; // The IDs of the assets to tag in the project, UUIDv4, limit 1000
+  repeated string tag_keys = 4;  // The keys of the tags to remove from the assets
 }
 
 message UntagAssetsResponse {
