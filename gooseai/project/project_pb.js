@@ -21,8 +21,6 @@ var global = (function() {
   return Function('return this')();
 }.call(null));
 
-var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
-goog.object.extend(proto, google_protobuf_struct_pb);
 var generation_pb = require('./generation_pb.js');
 goog.object.extend(proto, generation_pb);
 goog.exportSymbol('proto.gooseai.CreateProjectRequest', null, global);
@@ -399,7 +397,7 @@ proto.gooseai.ProjectAsset.toObject = function(includeInstance, msg) {
     createdAt: jspb.Message.getFieldWithDefault(msg, 6, 0),
     updatedAt: jspb.Message.getFieldWithDefault(msg, 7, 0),
     request: (f = msg.getRequest()) && generation_pb.Request.toObject(includeInstance, f),
-    tags: (f = msg.getTags()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    tagsMap: (f = msg.getTagsMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -470,9 +468,10 @@ proto.gooseai.ProjectAsset.deserializeBinaryFromReader = function(msg, reader) {
       msg.setRequest(value);
       break;
     case 9:
-      var value = new google_protobuf_struct_pb.Struct;
-      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
-      msg.setTags(value);
+      var value = msg.getTagsMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
+         });
       break;
     default:
       reader.skipField();
@@ -560,13 +559,9 @@ proto.gooseai.ProjectAsset.serializeBinaryToWriter = function(message, writer) {
       generation_pb.Request.serializeBinaryToWriter
     );
   }
-  f = message.getTags();
-  if (f != null) {
-    writer.writeMessage(
-      9,
-      f,
-      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
-    );
+  f = message.getTagsMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(9, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
 };
 
@@ -735,40 +730,25 @@ proto.gooseai.ProjectAsset.prototype.hasRequest = function() {
 
 
 /**
- * optional google.protobuf.Struct tags = 9;
- * @return {?proto.google.protobuf.Struct}
+ * map<string, string> tags = 9;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
  */
-proto.gooseai.ProjectAsset.prototype.getTags = function() {
-  return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 9));
+proto.gooseai.ProjectAsset.prototype.getTagsMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 9, opt_noLazyCreate,
+      null));
 };
 
 
 /**
- * @param {?proto.google.protobuf.Struct|undefined} value
- * @return {!proto.gooseai.ProjectAsset} returns this
-*/
-proto.gooseai.ProjectAsset.prototype.setTags = function(value) {
-  return jspb.Message.setWrapperField(this, 9, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
+ * Clears values from the map. The map will be non-null.
  * @return {!proto.gooseai.ProjectAsset} returns this
  */
-proto.gooseai.ProjectAsset.prototype.clearTags = function() {
-  return this.setTags(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.gooseai.ProjectAsset.prototype.hasTags = function() {
-  return jspb.Message.getField(this, 9) != null;
-};
+proto.gooseai.ProjectAsset.prototype.clearTagsMap = function() {
+  this.getTagsMap().clear();
+  return this;};
 
 
 
@@ -2435,7 +2415,7 @@ proto.gooseai.QueryAssetsRequest.toObject = function(includeInstance, msg) {
     startKey: jspb.Message.getFieldWithDefault(msg, 6, ""),
     useList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
     sortDir: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    tags: (f = msg.getTags()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    tagsMap: (f = msg.getTagsMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -2507,9 +2487,10 @@ proto.gooseai.QueryAssetsRequest.deserializeBinaryFromReader = function(msg, rea
       msg.setSortDir(value);
       break;
     case 9:
-      var value = new google_protobuf_struct_pb.Struct;
-      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
-      msg.setTags(value);
+      var value = msg.getTagsMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
+         });
       break;
     default:
       reader.skipField();
@@ -2596,13 +2577,9 @@ proto.gooseai.QueryAssetsRequest.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getTags();
-  if (f != null) {
-    writer.writeMessage(
-      9,
-      f,
-      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
-    );
+  f = message.getTagsMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(9, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
 };
 
@@ -2861,40 +2838,25 @@ proto.gooseai.QueryAssetsRequest.prototype.setSortDir = function(value) {
 
 
 /**
- * optional google.protobuf.Struct tags = 9;
- * @return {?proto.google.protobuf.Struct}
+ * map<string, string> tags = 9;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
  */
-proto.gooseai.QueryAssetsRequest.prototype.getTags = function() {
-  return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 9));
+proto.gooseai.QueryAssetsRequest.prototype.getTagsMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 9, opt_noLazyCreate,
+      null));
 };
 
 
 /**
- * @param {?proto.google.protobuf.Struct|undefined} value
- * @return {!proto.gooseai.QueryAssetsRequest} returns this
-*/
-proto.gooseai.QueryAssetsRequest.prototype.setTags = function(value) {
-  return jspb.Message.setWrapperField(this, 9, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
+ * Clears values from the map. The map will be non-null.
  * @return {!proto.gooseai.QueryAssetsRequest} returns this
  */
-proto.gooseai.QueryAssetsRequest.prototype.clearTags = function() {
-  return this.setTags(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.gooseai.QueryAssetsRequest.prototype.hasTags = function() {
-  return jspb.Message.getField(this, 9) != null;
-};
+proto.gooseai.QueryAssetsRequest.prototype.clearTagsMap = function() {
+  this.getTagsMap().clear();
+  return this;};
 
 
 
@@ -3147,7 +3109,7 @@ proto.gooseai.TagAssetsRequest.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     ownerId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     assetIdsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
-    tags: (f = msg.getTags()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    tagsMap: (f = msg.getTagsMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -3196,10 +3158,11 @@ proto.gooseai.TagAssetsRequest.deserializeBinaryFromReader = function(msg, reade
       var value = /** @type {string} */ (reader.readString());
       msg.addAssetIds(value);
       break;
-    case 9:
-      var value = new google_protobuf_struct_pb.Struct;
-      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
-      msg.setTags(value);
+    case 4:
+      var value = msg.getTagsMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
+         });
       break;
     default:
       reader.skipField();
@@ -3251,13 +3214,9 @@ proto.gooseai.TagAssetsRequest.serializeBinaryToWriter = function(message, write
       f
     );
   }
-  f = message.getTags();
-  if (f != null) {
-    writer.writeMessage(
-      9,
-      f,
-      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
-    );
+  f = message.getTagsMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(4, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
 };
 
@@ -3354,40 +3313,25 @@ proto.gooseai.TagAssetsRequest.prototype.clearAssetIdsList = function() {
 
 
 /**
- * optional google.protobuf.Struct tags = 9;
- * @return {?proto.google.protobuf.Struct}
+ * map<string, string> tags = 4;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
  */
-proto.gooseai.TagAssetsRequest.prototype.getTags = function() {
-  return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 9));
+proto.gooseai.TagAssetsRequest.prototype.getTagsMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 4, opt_noLazyCreate,
+      null));
 };
 
 
 /**
- * @param {?proto.google.protobuf.Struct|undefined} value
- * @return {!proto.gooseai.TagAssetsRequest} returns this
-*/
-proto.gooseai.TagAssetsRequest.prototype.setTags = function(value) {
-  return jspb.Message.setWrapperField(this, 9, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
+ * Clears values from the map. The map will be non-null.
  * @return {!proto.gooseai.TagAssetsRequest} returns this
  */
-proto.gooseai.TagAssetsRequest.prototype.clearTags = function() {
-  return this.setTags(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.gooseai.TagAssetsRequest.prototype.hasTags = function() {
-  return jspb.Message.getField(this, 9) != null;
-};
+proto.gooseai.TagAssetsRequest.prototype.clearTagsMap = function() {
+  this.getTagsMap().clear();
+  return this;};
 
 
 

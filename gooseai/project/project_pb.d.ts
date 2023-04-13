@@ -2,7 +2,6 @@
 // file: project.proto
 
 import * as jspb from "google-protobuf";
-import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as generation_pb from "./generation_pb";
 
 export class ProjectAsset extends jspb.Message {
@@ -32,11 +31,8 @@ export class ProjectAsset extends jspb.Message {
   getRequest(): generation_pb.Request | undefined;
   setRequest(value?: generation_pb.Request): void;
 
-  hasTags(): boolean;
-  clearTags(): void;
-  getTags(): google_protobuf_struct_pb.Struct | undefined;
-  setTags(value?: google_protobuf_struct_pb.Struct): void;
-
+  getTagsMap(): jspb.Map<string, string>;
+  clearTagsMap(): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ProjectAsset.AsObject;
   static toObject(includeInstance: boolean, msg: ProjectAsset): ProjectAsset.AsObject;
@@ -57,7 +53,7 @@ export namespace ProjectAsset {
     createdAt: number,
     updatedAt: number,
     request?: generation_pb.Request.AsObject,
-    tags?: google_protobuf_struct_pb.Struct.AsObject,
+    tagsMap: Array<[string, string]>,
   }
 }
 
@@ -322,11 +318,8 @@ export class QueryAssetsRequest extends jspb.Message {
   getSortDir(): ProjectSortDirMap[keyof ProjectSortDirMap];
   setSortDir(value: ProjectSortDirMap[keyof ProjectSortDirMap]): void;
 
-  hasTags(): boolean;
-  clearTags(): void;
-  getTags(): google_protobuf_struct_pb.Struct | undefined;
-  setTags(value?: google_protobuf_struct_pb.Struct): void;
-
+  getTagsMap(): jspb.Map<string, string>;
+  clearTagsMap(): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): QueryAssetsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: QueryAssetsRequest): QueryAssetsRequest.AsObject;
@@ -347,7 +340,7 @@ export namespace QueryAssetsRequest {
     startKey: string,
     useList: Array<ProjectAssetUseMap[keyof ProjectAssetUseMap]>,
     sortDir: ProjectSortDirMap[keyof ProjectSortDirMap],
-    tags?: google_protobuf_struct_pb.Struct.AsObject,
+    tagsMap: Array<[string, string]>,
   }
 }
 
@@ -393,11 +386,8 @@ export class TagAssetsRequest extends jspb.Message {
   setAssetIdsList(value: Array<string>): void;
   addAssetIds(value: string, index?: number): string;
 
-  hasTags(): boolean;
-  clearTags(): void;
-  getTags(): google_protobuf_struct_pb.Struct | undefined;
-  setTags(value?: google_protobuf_struct_pb.Struct): void;
-
+  getTagsMap(): jspb.Map<string, string>;
+  clearTagsMap(): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TagAssetsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: TagAssetsRequest): TagAssetsRequest.AsObject;
@@ -413,7 +403,7 @@ export namespace TagAssetsRequest {
     id: string,
     ownerId: string,
     assetIdsList: Array<string>,
-    tags?: google_protobuf_struct_pb.Struct.AsObject,
+    tagsMap: Array<[string, string]>,
   }
 }
 
