@@ -30,22 +30,6 @@ message DeleteResponse {
   bool success = 1;
 }
 
-message CleanupFineTuningRequest {
-  // the archive bucket to delete the assets from
-  string archive_bucket = 1;
-  // a list of keys in the archive bucket to delete
-  repeated string archive_keys = 2; 
-  // the processing bucket to delete the assets from
-  string processing_bucket = 3;
-  // the prefix of the keys in the processing bucket to delete
-  string processing_prefix = 4;
-}
-
-message CleanupFineTuningResponse {
-  // Whether this was successful or not
-  bool success = 1;
-}
-
 message DeleteObjectsByPrefixRequest {
   // the bucket to delete the assets from
   string bucket_name = 1;
@@ -63,11 +47,8 @@ service TransferService {
   // Initiates a transfer of assets between two Stability AI buckets.
   rpc Transfer(TransferRequest) returns (TransferResponse) {}
   // Internal use only. 
-  // Deletes assets from Stability archive bucket.
+  // Deletes specific assets by key from Stability archive bucket.
   rpc Delete(DeleteRequest) returns (DeleteResponse) {}
-  // Internal use only. 
-  // Runs cleanup of Fine-Tuning assets.
-  rpc CleanupFineTuning(CleanupFineTuningRequest) returns (CleanupFineTuningResponse) {}
   // Internal use only.
   // Deletes objects from a bucket by prefix.
   rpc DeleteObjectsByPrefix(DeleteObjectsByPrefixRequest) returns (DeleteObjectsByPrefixResponse) {}

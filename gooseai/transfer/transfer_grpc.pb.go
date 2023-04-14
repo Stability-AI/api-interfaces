@@ -22,11 +22,8 @@ type TransferServiceClient interface {
 	// Initiates a transfer of assets between two Stability AI buckets.
 	Transfer(ctx context.Context, in *TransferRequest, opts ...grpc.CallOption) (*TransferResponse, error)
 	// Internal use only.
-	// Deletes assets from Stability archive bucket.
+	// Deletes specific assets by key from Stability archive bucket.
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
-	// Internal use only.
-	// Runs cleanup of Fine-Tuning assets.
-	CleanupFineTuning(ctx context.Context, in *CleanupFineTuningRequest, opts ...grpc.CallOption) (*CleanupFineTuningResponse, error)
 	// Internal use only.
 	// Deletes objects from a bucket by prefix.
 	DeleteObjectsByPrefix(ctx context.Context, in *DeleteObjectsByPrefixRequest, opts ...grpc.CallOption) (*DeleteObjectsByPrefixResponse, error)
@@ -58,15 +55,6 @@ func (c *transferServiceClient) Delete(ctx context.Context, in *DeleteRequest, o
 	return out, nil
 }
 
-func (c *transferServiceClient) CleanupFineTuning(ctx context.Context, in *CleanupFineTuningRequest, opts ...grpc.CallOption) (*CleanupFineTuningResponse, error) {
-	out := new(CleanupFineTuningResponse)
-	err := c.cc.Invoke(ctx, "/gooseai.TransferService/CleanupFineTuning", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *transferServiceClient) DeleteObjectsByPrefix(ctx context.Context, in *DeleteObjectsByPrefixRequest, opts ...grpc.CallOption) (*DeleteObjectsByPrefixResponse, error) {
 	out := new(DeleteObjectsByPrefixResponse)
 	err := c.cc.Invoke(ctx, "/gooseai.TransferService/DeleteObjectsByPrefix", in, out, opts...)
@@ -84,11 +72,8 @@ type TransferServiceServer interface {
 	// Initiates a transfer of assets between two Stability AI buckets.
 	Transfer(context.Context, *TransferRequest) (*TransferResponse, error)
 	// Internal use only.
-	// Deletes assets from Stability archive bucket.
+	// Deletes specific assets by key from Stability archive bucket.
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
-	// Internal use only.
-	// Runs cleanup of Fine-Tuning assets.
-	CleanupFineTuning(context.Context, *CleanupFineTuningRequest) (*CleanupFineTuningResponse, error)
 	// Internal use only.
 	// Deletes objects from a bucket by prefix.
 	DeleteObjectsByPrefix(context.Context, *DeleteObjectsByPrefixRequest) (*DeleteObjectsByPrefixResponse, error)
@@ -104,9 +89,6 @@ func (UnimplementedTransferServiceServer) Transfer(context.Context, *TransferReq
 }
 func (UnimplementedTransferServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
-}
-func (UnimplementedTransferServiceServer) CleanupFineTuning(context.Context, *CleanupFineTuningRequest) (*CleanupFineTuningResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CleanupFineTuning not implemented")
 }
 func (UnimplementedTransferServiceServer) DeleteObjectsByPrefix(context.Context, *DeleteObjectsByPrefixRequest) (*DeleteObjectsByPrefixResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteObjectsByPrefix not implemented")
@@ -160,24 +142,6 @@ func _TransferService_Delete_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransferService_CleanupFineTuning_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CleanupFineTuningRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TransferServiceServer).CleanupFineTuning(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/gooseai.TransferService/CleanupFineTuning",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransferServiceServer).CleanupFineTuning(ctx, req.(*CleanupFineTuningRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _TransferService_DeleteObjectsByPrefix_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteObjectsByPrefixRequest)
 	if err := dec(in); err != nil {
@@ -210,10 +174,6 @@ var TransferService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _TransferService_Delete_Handler,
-		},
-		{
-			MethodName: "CleanupFineTuning",
-			Handler:    _TransferService_CleanupFineTuning_Handler,
 		},
 		{
 			MethodName: "DeleteObjectsByPrefix",
