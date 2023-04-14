@@ -1,7 +1,6 @@
 syntax = "proto3";
 package gooseai;
 import "dashboard.proto";
-import "google/protobuf/field_mask.proto";
 import "project.proto";
 
 option go_package = "github.com/stability-ai/api-interfaces/gooseai/finetuning";
@@ -125,13 +124,11 @@ message ResubmitFineTuningJobRequest {
 message GetFineTuningJobsByUserIdRequest {
   // the id of the user
   string id = 1;
-  google.protobuf.FieldMask field_mask = 2;
 }
 
 message GetFineTuningJobsByOrgIdRequest {
   // the organization's id
   string id = 1;
-  google.protobuf.FieldMask field_mask = 2;
 }
 
 message GetFineTuningJobsByUserIdResponse {

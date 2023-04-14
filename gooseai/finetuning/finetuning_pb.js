@@ -23,8 +23,6 @@ var global = (function() {
 
 var dashboard_pb = require('./dashboard_pb.js');
 goog.object.extend(proto, dashboard_pb);
-var google_protobuf_field_mask_pb = require('google-protobuf/google/protobuf/field_mask_pb.js');
-goog.object.extend(proto, google_protobuf_field_mask_pb);
 var project_pb = require('./project_pb.js');
 goog.object.extend(proto, project_pb);
 goog.exportSymbol('proto.gooseai.CreateFineTuningJobRequest', null, global);
@@ -2809,8 +2807,7 @@ proto.gooseai.GetFineTuningJobsByUserIdRequest.prototype.toObject = function(opt
  */
 proto.gooseai.GetFineTuningJobsByUserIdRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2851,11 +2848,6 @@ proto.gooseai.GetFineTuningJobsByUserIdRequest.deserializeBinaryFromReader = fun
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
-    case 2:
-      var value = new google_protobuf_field_mask_pb.FieldMask;
-      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
-      msg.setFieldMask(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -2892,14 +2884,6 @@ proto.gooseai.GetFineTuningJobsByUserIdRequest.serializeBinaryToWriter = functio
       f
     );
   }
-  f = message.getFieldMask();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
-    );
-  }
 };
 
 
@@ -2918,43 +2902,6 @@ proto.gooseai.GetFineTuningJobsByUserIdRequest.prototype.getId = function() {
  */
 proto.gooseai.GetFineTuningJobsByUserIdRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional google.protobuf.FieldMask field_mask = 2;
- * @return {?proto.google.protobuf.FieldMask}
- */
-proto.gooseai.GetFineTuningJobsByUserIdRequest.prototype.getFieldMask = function() {
-  return /** @type{?proto.google.protobuf.FieldMask} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 2));
-};
-
-
-/**
- * @param {?proto.google.protobuf.FieldMask|undefined} value
- * @return {!proto.gooseai.GetFineTuningJobsByUserIdRequest} returns this
-*/
-proto.gooseai.GetFineTuningJobsByUserIdRequest.prototype.setFieldMask = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.gooseai.GetFineTuningJobsByUserIdRequest} returns this
- */
-proto.gooseai.GetFineTuningJobsByUserIdRequest.prototype.clearFieldMask = function() {
-  return this.setFieldMask(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.gooseai.GetFineTuningJobsByUserIdRequest.prototype.hasFieldMask = function() {
-  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -2990,8 +2937,7 @@ proto.gooseai.GetFineTuningJobsByOrgIdRequest.prototype.toObject = function(opt_
  */
 proto.gooseai.GetFineTuningJobsByOrgIdRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fieldMask: (f = msg.getFieldMask()) && google_protobuf_field_mask_pb.FieldMask.toObject(includeInstance, f)
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -3032,11 +2978,6 @@ proto.gooseai.GetFineTuningJobsByOrgIdRequest.deserializeBinaryFromReader = func
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
-    case 2:
-      var value = new google_protobuf_field_mask_pb.FieldMask;
-      reader.readMessage(value,google_protobuf_field_mask_pb.FieldMask.deserializeBinaryFromReader);
-      msg.setFieldMask(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -3073,14 +3014,6 @@ proto.gooseai.GetFineTuningJobsByOrgIdRequest.serializeBinaryToWriter = function
       f
     );
   }
-  f = message.getFieldMask();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      google_protobuf_field_mask_pb.FieldMask.serializeBinaryToWriter
-    );
-  }
 };
 
 
@@ -3099,43 +3032,6 @@ proto.gooseai.GetFineTuningJobsByOrgIdRequest.prototype.getId = function() {
  */
 proto.gooseai.GetFineTuningJobsByOrgIdRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional google.protobuf.FieldMask field_mask = 2;
- * @return {?proto.google.protobuf.FieldMask}
- */
-proto.gooseai.GetFineTuningJobsByOrgIdRequest.prototype.getFieldMask = function() {
-  return /** @type{?proto.google.protobuf.FieldMask} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_field_mask_pb.FieldMask, 2));
-};
-
-
-/**
- * @param {?proto.google.protobuf.FieldMask|undefined} value
- * @return {!proto.gooseai.GetFineTuningJobsByOrgIdRequest} returns this
-*/
-proto.gooseai.GetFineTuningJobsByOrgIdRequest.prototype.setFieldMask = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.gooseai.GetFineTuningJobsByOrgIdRequest} returns this
- */
-proto.gooseai.GetFineTuningJobsByOrgIdRequest.prototype.clearFieldMask = function() {
-  return this.setFieldMask(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.gooseai.GetFineTuningJobsByOrgIdRequest.prototype.hasFieldMask = function() {
-  return jspb.Message.getField(this, 2) != null;
 };
 
 

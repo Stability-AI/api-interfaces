@@ -3,7 +3,6 @@
 
 import * as jspb from "google-protobuf";
 import * as dashboard_pb from "./dashboard_pb";
-import * as google_protobuf_field_mask_pb from "google-protobuf/google/protobuf/field_mask_pb";
 import * as project_pb from "./project_pb";
 
 export class FineTuningJob extends jspb.Message {
@@ -354,11 +353,6 @@ export class GetFineTuningJobsByUserIdRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  hasFieldMask(): boolean;
-  clearFieldMask(): void;
-  getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
-  setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetFineTuningJobsByUserIdRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetFineTuningJobsByUserIdRequest): GetFineTuningJobsByUserIdRequest.AsObject;
@@ -372,18 +366,12 @@ export class GetFineTuningJobsByUserIdRequest extends jspb.Message {
 export namespace GetFineTuningJobsByUserIdRequest {
   export type AsObject = {
     id: string,
-    fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
   }
 }
 
 export class GetFineTuningJobsByOrgIdRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
-
-  hasFieldMask(): boolean;
-  clearFieldMask(): void;
-  getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
-  setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetFineTuningJobsByOrgIdRequest.AsObject;
@@ -398,7 +386,6 @@ export class GetFineTuningJobsByOrgIdRequest extends jspb.Message {
 export namespace GetFineTuningJobsByOrgIdRequest {
   export type AsObject = {
     id: string,
-    fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
   }
 }
 
