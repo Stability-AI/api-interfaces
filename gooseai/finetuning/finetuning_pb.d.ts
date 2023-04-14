@@ -36,6 +36,9 @@ export class FineTuningJob extends jspb.Message {
   getStatus(): FineTuningJobStatusMap[keyof FineTuningJobStatusMap];
   setStatus(value: FineTuningJobStatusMap[keyof FineTuningJobStatusMap]): void;
 
+  getEngineId(): string;
+  setEngineId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FineTuningJob.AsObject;
   static toObject(includeInstance: boolean, msg: FineTuningJob): FineTuningJob.AsObject;
@@ -56,6 +59,7 @@ export namespace FineTuningJob {
     projectId: string,
     duration: number,
     status: FineTuningJobStatusMap[keyof FineTuningJobStatusMap],
+    engineId: string,
   }
 }
 
@@ -186,6 +190,9 @@ export class CreateFineTuningJobRequest extends jspb.Message {
   getProjectId(): string;
   setProjectId(value: string): void;
 
+  getEngineId(): string;
+  setEngineId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateFineTuningJobRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateFineTuningJobRequest): CreateFineTuningJobRequest.AsObject;
@@ -202,6 +209,7 @@ export namespace CreateFineTuningJobRequest {
     mode: FineTuningModeMap[keyof FineTuningModeMap],
     objectName: string,
     projectId: string,
+    engineId: string,
   }
 }
 
@@ -225,6 +233,9 @@ export class UpdateFineTuningJobRequest extends jspb.Message {
   getProjectId(): string;
   setProjectId(value: string): void;
 
+  getEngineId(): string;
+  setEngineId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateFineTuningJobRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateFineTuningJobRequest): UpdateFineTuningJobRequest.AsObject;
@@ -242,6 +253,7 @@ export namespace UpdateFineTuningJobRequest {
     mode: FineTuningModeMap[keyof FineTuningModeMap],
     objectName: string,
     projectId: string,
+    engineId: string,
   }
 }
 

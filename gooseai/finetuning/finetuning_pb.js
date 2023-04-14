@@ -440,7 +440,8 @@ proto.gooseai.FineTuningJob.toObject = function(includeInstance, msg) {
     objectName: jspb.Message.getFieldWithDefault(msg, 5, ""),
     projectId: jspb.Message.getFieldWithDefault(msg, 6, ""),
     duration: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
-    status: jspb.Message.getFieldWithDefault(msg, 8, 0)
+    status: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    engineId: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -509,6 +510,10 @@ proto.gooseai.FineTuningJob.deserializeBinaryFromReader = function(msg, reader) 
     case 8:
       var value = /** @type {!proto.gooseai.FineTuningJobStatus} */ (reader.readEnum());
       msg.setStatus(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEngineId(value);
       break;
     default:
       reader.skipField();
@@ -593,6 +598,13 @@ proto.gooseai.FineTuningJob.serializeBinaryToWriter = function(message, writer) 
   if (f !== 0.0) {
     writer.writeEnum(
       8,
+      f
+    );
+  }
+  f = message.getEngineId();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
       f
     );
   }
@@ -795,6 +807,24 @@ proto.gooseai.FineTuningJob.prototype.getStatus = function() {
  */
 proto.gooseai.FineTuningJob.prototype.setStatus = function(value) {
   return jspb.Message.setProto3EnumField(this, 8, value);
+};
+
+
+/**
+ * optional string engine_id = 9;
+ * @return {string}
+ */
+proto.gooseai.FineTuningJob.prototype.getEngineId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.gooseai.FineTuningJob} returns this
+ */
+proto.gooseai.FineTuningJob.prototype.setEngineId = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
@@ -1588,7 +1618,8 @@ proto.gooseai.CreateFineTuningJobRequest.toObject = function(includeInstance, ms
     modelName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     mode: jspb.Message.getFieldWithDefault(msg, 2, 0),
     objectName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    projectId: jspb.Message.getFieldWithDefault(msg, 4, "")
+    projectId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    engineId: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -1640,6 +1671,10 @@ proto.gooseai.CreateFineTuningJobRequest.deserializeBinaryFromReader = function(
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setProjectId(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEngineId(value);
       break;
     default:
       reader.skipField();
@@ -1695,6 +1730,13 @@ proto.gooseai.CreateFineTuningJobRequest.serializeBinaryToWriter = function(mess
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getEngineId();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -1809,6 +1851,24 @@ proto.gooseai.CreateFineTuningJobRequest.prototype.setProjectId = function(value
 };
 
 
+/**
+ * optional string engine_id = 5;
+ * @return {string}
+ */
+proto.gooseai.CreateFineTuningJobRequest.prototype.getEngineId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.gooseai.CreateFineTuningJobRequest} returns this
+ */
+proto.gooseai.CreateFineTuningJobRequest.prototype.setEngineId = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
 
 
 
@@ -1845,7 +1905,8 @@ proto.gooseai.UpdateFineTuningJobRequest.toObject = function(includeInstance, ms
     modelName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     mode: jspb.Message.getFieldWithDefault(msg, 3, 0),
     objectName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    projectId: jspb.Message.getFieldWithDefault(msg, 5, "")
+    projectId: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    engineId: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -1901,6 +1962,10 @@ proto.gooseai.UpdateFineTuningJobRequest.deserializeBinaryFromReader = function(
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setProjectId(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEngineId(value);
       break;
     default:
       reader.skipField();
@@ -1963,6 +2028,13 @@ proto.gooseai.UpdateFineTuningJobRequest.serializeBinaryToWriter = function(mess
   if (f.length > 0) {
     writer.writeString(
       5,
+      f
+    );
+  }
+  f = message.getEngineId();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -2092,6 +2164,24 @@ proto.gooseai.UpdateFineTuningJobRequest.prototype.getProjectId = function() {
  */
 proto.gooseai.UpdateFineTuningJobRequest.prototype.setProjectId = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string engine_id = 6;
+ * @return {string}
+ */
+proto.gooseai.UpdateFineTuningJobRequest.prototype.getEngineId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.gooseai.UpdateFineTuningJobRequest} returns this
+ */
+proto.gooseai.UpdateFineTuningJobRequest.prototype.setEngineId = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 

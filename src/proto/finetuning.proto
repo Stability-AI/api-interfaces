@@ -34,6 +34,8 @@ message FineTuningJob {
   double duration = 7;
   // the current status of the job
   FineTuningJobStatus status = 8;
+  // the engineId of an fine-tuneable Stability model
+  string engine_id = 9;
 }
 
 message CreateFineTuningJobResponse {
@@ -65,6 +67,8 @@ message CreateFineTuningJobRequest{
   optional string object_name = 3;
   // the project_id, which groups the list of assets to be used for fine tuning
   string project_id  = 4;
+  // the engineId of an fine-tuneable Stability model
+  string engine_id = 5;
 }
 
 message UpdateFineTuningJobRequest{
@@ -78,6 +82,8 @@ message UpdateFineTuningJobRequest{
   optional string object_name = 4;
   // the list of assets to be used for fine tuning, grouped by project_id
   string project_id  = 5;
+  // the engineId of an fine-tuneable Stability model
+  string engine_id = 6;
 }
 
 message GetFineTuningJobByIdRequest {

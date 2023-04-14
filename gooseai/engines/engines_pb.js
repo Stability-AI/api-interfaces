@@ -127,7 +127,8 @@ proto.gooseai.EngineInfo.toObject = function(includeInstance, msg) {
     type: jspb.Message.getFieldWithDefault(msg, 4, 0),
     tokenizer: jspb.Message.getFieldWithDefault(msg, 5, 0),
     name: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 7, "")
+    description: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    canFinetune: jspb.Message.getBooleanFieldWithDefault(msg, 8, false)
   };
 
   if (includeInstance) {
@@ -191,6 +192,10 @@ proto.gooseai.EngineInfo.deserializeBinaryFromReader = function(msg, reader) {
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
+      break;
+    case 8:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setCanFinetune(value);
       break;
     default:
       reader.skipField();
@@ -267,6 +272,13 @@ proto.gooseai.EngineInfo.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       7,
+      f
+    );
+  }
+  f = message.getCanFinetune();
+  if (f) {
+    writer.writeBool(
+      8,
       f
     );
   }
@@ -396,6 +408,24 @@ proto.gooseai.EngineInfo.prototype.getDescription = function() {
  */
 proto.gooseai.EngineInfo.prototype.setDescription = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional bool can_finetune = 8;
+ * @return {boolean}
+ */
+proto.gooseai.EngineInfo.prototype.getCanFinetune = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.gooseai.EngineInfo} returns this
+ */
+proto.gooseai.EngineInfo.prototype.setCanFinetune = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 8, value);
 };
 
 
