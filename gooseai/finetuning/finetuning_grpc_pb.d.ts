@@ -13,8 +13,8 @@ interface IFineTuningServiceService extends grpc.ServiceDefinition<grpc.UntypedS
   deleteFineTuningJob: grpc.MethodDefinition<finetuning_pb.DeleteFineTuningJobRequest, finetuning_pb.DeleteFineTuningJobResponse>;
   getFineTuningJobStatus: grpc.MethodDefinition<finetuning_pb.GetFineTuningJobStatusRequest, finetuning_pb.GetFineTuningJobStatusResponse>;
   resubmitFineTuningJob: grpc.MethodDefinition<finetuning_pb.ResubmitFineTuningJobRequest, finetuning_pb.ResubmitFineTuningJobResponse>;
-  getJobsByUserId: grpc.MethodDefinition<finetuning_pb.GetJobsByUserIdRequest, finetuning_pb.GetJobsByUserIdResponse>;
-  getJobsByOrgId: grpc.MethodDefinition<finetuning_pb.GetJobsByOrgIdRequest, finetuning_pb.GetJobsByOrgIdResponse>;
+  getFineTuningJobsByUserId: grpc.MethodDefinition<finetuning_pb.GetFineTuningJobsByUserIdRequest, finetuning_pb.GetFineTuningJobsByUserIdResponse>;
+  getFineTuningJobsByOrgId: grpc.MethodDefinition<finetuning_pb.GetFineTuningJobsByOrgIdRequest, finetuning_pb.GetFineTuningJobsByOrgIdResponse>;
 }
 
 export const FineTuningServiceService: IFineTuningServiceService;
@@ -26,8 +26,8 @@ export interface IFineTuningServiceServer extends grpc.UntypedServiceImplementat
   deleteFineTuningJob: grpc.handleUnaryCall<finetuning_pb.DeleteFineTuningJobRequest, finetuning_pb.DeleteFineTuningJobResponse>;
   getFineTuningJobStatus: grpc.handleUnaryCall<finetuning_pb.GetFineTuningJobStatusRequest, finetuning_pb.GetFineTuningJobStatusResponse>;
   resubmitFineTuningJob: grpc.handleUnaryCall<finetuning_pb.ResubmitFineTuningJobRequest, finetuning_pb.ResubmitFineTuningJobResponse>;
-  getJobsByUserId: grpc.handleUnaryCall<finetuning_pb.GetJobsByUserIdRequest, finetuning_pb.GetJobsByUserIdResponse>;
-  getJobsByOrgId: grpc.handleUnaryCall<finetuning_pb.GetJobsByOrgIdRequest, finetuning_pb.GetJobsByOrgIdResponse>;
+  getFineTuningJobsByUserId: grpc.handleUnaryCall<finetuning_pb.GetFineTuningJobsByUserIdRequest, finetuning_pb.GetFineTuningJobsByUserIdResponse>;
+  getFineTuningJobsByOrgId: grpc.handleUnaryCall<finetuning_pb.GetFineTuningJobsByOrgIdRequest, finetuning_pb.GetFineTuningJobsByOrgIdResponse>;
 }
 
 export class FineTuningServiceClient extends grpc.Client {
@@ -50,10 +50,10 @@ export class FineTuningServiceClient extends grpc.Client {
   resubmitFineTuningJob(argument: finetuning_pb.ResubmitFineTuningJobRequest, callback: grpc.requestCallback<finetuning_pb.ResubmitFineTuningJobResponse>): grpc.ClientUnaryCall;
   resubmitFineTuningJob(argument: finetuning_pb.ResubmitFineTuningJobRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<finetuning_pb.ResubmitFineTuningJobResponse>): grpc.ClientUnaryCall;
   resubmitFineTuningJob(argument: finetuning_pb.ResubmitFineTuningJobRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<finetuning_pb.ResubmitFineTuningJobResponse>): grpc.ClientUnaryCall;
-  getJobsByUserId(argument: finetuning_pb.GetJobsByUserIdRequest, callback: grpc.requestCallback<finetuning_pb.GetJobsByUserIdResponse>): grpc.ClientUnaryCall;
-  getJobsByUserId(argument: finetuning_pb.GetJobsByUserIdRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<finetuning_pb.GetJobsByUserIdResponse>): grpc.ClientUnaryCall;
-  getJobsByUserId(argument: finetuning_pb.GetJobsByUserIdRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<finetuning_pb.GetJobsByUserIdResponse>): grpc.ClientUnaryCall;
-  getJobsByOrgId(argument: finetuning_pb.GetJobsByOrgIdRequest, callback: grpc.requestCallback<finetuning_pb.GetJobsByOrgIdResponse>): grpc.ClientUnaryCall;
-  getJobsByOrgId(argument: finetuning_pb.GetJobsByOrgIdRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<finetuning_pb.GetJobsByOrgIdResponse>): grpc.ClientUnaryCall;
-  getJobsByOrgId(argument: finetuning_pb.GetJobsByOrgIdRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<finetuning_pb.GetJobsByOrgIdResponse>): grpc.ClientUnaryCall;
+  getFineTuningJobsByUserId(argument: finetuning_pb.GetFineTuningJobsByUserIdRequest, callback: grpc.requestCallback<finetuning_pb.GetFineTuningJobsByUserIdResponse>): grpc.ClientUnaryCall;
+  getFineTuningJobsByUserId(argument: finetuning_pb.GetFineTuningJobsByUserIdRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<finetuning_pb.GetFineTuningJobsByUserIdResponse>): grpc.ClientUnaryCall;
+  getFineTuningJobsByUserId(argument: finetuning_pb.GetFineTuningJobsByUserIdRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<finetuning_pb.GetFineTuningJobsByUserIdResponse>): grpc.ClientUnaryCall;
+  getFineTuningJobsByOrgId(argument: finetuning_pb.GetFineTuningJobsByOrgIdRequest, callback: grpc.requestCallback<finetuning_pb.GetFineTuningJobsByOrgIdResponse>): grpc.ClientUnaryCall;
+  getFineTuningJobsByOrgId(argument: finetuning_pb.GetFineTuningJobsByOrgIdRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<finetuning_pb.GetFineTuningJobsByOrgIdResponse>): grpc.ClientUnaryCall;
+  getFineTuningJobsByOrgId(argument: finetuning_pb.GetFineTuningJobsByOrgIdRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<finetuning_pb.GetFineTuningJobsByOrgIdResponse>): grpc.ClientUnaryCall;
 }

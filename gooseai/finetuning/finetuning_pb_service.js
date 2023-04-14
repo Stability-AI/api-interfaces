@@ -64,22 +64,22 @@ FineTuningService.ResubmitFineTuningJob = {
   responseType: finetuning_pb.ResubmitFineTuningJobResponse
 };
 
-FineTuningService.GetJobsByUserId = {
-  methodName: "GetJobsByUserId",
+FineTuningService.GetFineTuningJobsByUserId = {
+  methodName: "GetFineTuningJobsByUserId",
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.GetJobsByUserIdRequest,
-  responseType: finetuning_pb.GetJobsByUserIdResponse
+  requestType: finetuning_pb.GetFineTuningJobsByUserIdRequest,
+  responseType: finetuning_pb.GetFineTuningJobsByUserIdResponse
 };
 
-FineTuningService.GetJobsByOrgId = {
-  methodName: "GetJobsByOrgId",
+FineTuningService.GetFineTuningJobsByOrgId = {
+  methodName: "GetFineTuningJobsByOrgId",
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.GetJobsByOrgIdRequest,
-  responseType: finetuning_pb.GetJobsByOrgIdResponse
+  requestType: finetuning_pb.GetFineTuningJobsByOrgIdRequest,
+  responseType: finetuning_pb.GetFineTuningJobsByOrgIdResponse
 };
 
 exports.FineTuningService = FineTuningService;
@@ -275,11 +275,11 @@ FineTuningServiceClient.prototype.resubmitFineTuningJob = function resubmitFineT
   };
 };
 
-FineTuningServiceClient.prototype.getJobsByUserId = function getJobsByUserId(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.getFineTuningJobsByUserId = function getFineTuningJobsByUserId(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.GetJobsByUserId, {
+  var client = grpc.unary(FineTuningService.GetFineTuningJobsByUserId, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -306,11 +306,11 @@ FineTuningServiceClient.prototype.getJobsByUserId = function getJobsByUserId(req
   };
 };
 
-FineTuningServiceClient.prototype.getJobsByOrgId = function getJobsByOrgId(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.getFineTuningJobsByOrgId = function getFineTuningJobsByOrgId(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.GetJobsByOrgId, {
+  var client = grpc.unary(FineTuningService.GetFineTuningJobsByOrgId, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

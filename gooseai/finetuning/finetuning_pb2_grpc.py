@@ -44,15 +44,15 @@ class FineTuningServiceStub(object):
                 request_serializer=finetuning__pb2.ResubmitFineTuningJobRequest.SerializeToString,
                 response_deserializer=finetuning__pb2.ResubmitFineTuningJobResponse.FromString,
                 )
-        self.GetJobsByUserId = channel.unary_unary(
-                '/gooseai.FineTuningService/GetJobsByUserId',
-                request_serializer=finetuning__pb2.GetJobsByUserIdRequest.SerializeToString,
-                response_deserializer=finetuning__pb2.GetJobsByUserIdResponse.FromString,
+        self.GetFineTuningJobsByUserId = channel.unary_unary(
+                '/gooseai.FineTuningService/GetFineTuningJobsByUserId',
+                request_serializer=finetuning__pb2.GetFineTuningJobsByUserIdRequest.SerializeToString,
+                response_deserializer=finetuning__pb2.GetFineTuningJobsByUserIdResponse.FromString,
                 )
-        self.GetJobsByOrgId = channel.unary_unary(
-                '/gooseai.FineTuningService/GetJobsByOrgId',
-                request_serializer=finetuning__pb2.GetJobsByOrgIdRequest.SerializeToString,
-                response_deserializer=finetuning__pb2.GetJobsByOrgIdResponse.FromString,
+        self.GetFineTuningJobsByOrgId = channel.unary_unary(
+                '/gooseai.FineTuningService/GetFineTuningJobsByOrgId',
+                request_serializer=finetuning__pb2.GetFineTuningJobsByOrgIdRequest.SerializeToString,
+                response_deserializer=finetuning__pb2.GetFineTuningJobsByOrgIdResponse.FromString,
                 )
 
 
@@ -101,14 +101,14 @@ class FineTuningServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetJobsByUserId(self, request, context):
+    def GetFineTuningJobsByUserId(self, request, context):
         """Get a list of FineTuningJobs by user id
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetJobsByOrgId(self, request, context):
+    def GetFineTuningJobsByOrgId(self, request, context):
         """Get a list of FineTuningJobs by org id
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -148,15 +148,15 @@ def add_FineTuningServiceServicer_to_server(servicer, server):
                     request_deserializer=finetuning__pb2.ResubmitFineTuningJobRequest.FromString,
                     response_serializer=finetuning__pb2.ResubmitFineTuningJobResponse.SerializeToString,
             ),
-            'GetJobsByUserId': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetJobsByUserId,
-                    request_deserializer=finetuning__pb2.GetJobsByUserIdRequest.FromString,
-                    response_serializer=finetuning__pb2.GetJobsByUserIdResponse.SerializeToString,
+            'GetFineTuningJobsByUserId': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetFineTuningJobsByUserId,
+                    request_deserializer=finetuning__pb2.GetFineTuningJobsByUserIdRequest.FromString,
+                    response_serializer=finetuning__pb2.GetFineTuningJobsByUserIdResponse.SerializeToString,
             ),
-            'GetJobsByOrgId': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetJobsByOrgId,
-                    request_deserializer=finetuning__pb2.GetJobsByOrgIdRequest.FromString,
-                    response_serializer=finetuning__pb2.GetJobsByOrgIdResponse.SerializeToString,
+            'GetFineTuningJobsByOrgId': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetFineTuningJobsByOrgId,
+                    request_deserializer=finetuning__pb2.GetFineTuningJobsByOrgIdRequest.FromString,
+                    response_serializer=finetuning__pb2.GetFineTuningJobsByOrgIdResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -271,7 +271,7 @@ class FineTuningService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetJobsByUserId(request,
+    def GetFineTuningJobsByUserId(request,
             target,
             options=(),
             channel_credentials=None,
@@ -281,14 +281,14 @@ class FineTuningService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetJobsByUserId',
-            finetuning__pb2.GetJobsByUserIdRequest.SerializeToString,
-            finetuning__pb2.GetJobsByUserIdResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetFineTuningJobsByUserId',
+            finetuning__pb2.GetFineTuningJobsByUserIdRequest.SerializeToString,
+            finetuning__pb2.GetFineTuningJobsByUserIdResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetJobsByOrgId(request,
+    def GetFineTuningJobsByOrgId(request,
             target,
             options=(),
             channel_credentials=None,
@@ -298,8 +298,8 @@ class FineTuningService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetJobsByOrgId',
-            finetuning__pb2.GetJobsByOrgIdRequest.SerializeToString,
-            finetuning__pb2.GetJobsByOrgIdResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetFineTuningJobsByOrgId',
+            finetuning__pb2.GetFineTuningJobsByOrgIdRequest.SerializeToString,
+            finetuning__pb2.GetFineTuningJobsByOrgIdResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

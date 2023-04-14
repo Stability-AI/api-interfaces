@@ -350,47 +350,47 @@ export namespace ResubmitFineTuningJobRequest {
   }
 }
 
-export class GetJobsByUserIdRequest extends jspb.Message {
+export class GetFineTuningJobsByUserIdRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetJobsByUserIdRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetJobsByUserIdRequest): GetJobsByUserIdRequest.AsObject;
+  toObject(includeInstance?: boolean): GetFineTuningJobsByUserIdRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetFineTuningJobsByUserIdRequest): GetFineTuningJobsByUserIdRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetJobsByUserIdRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetJobsByUserIdRequest;
-  static deserializeBinaryFromReader(message: GetJobsByUserIdRequest, reader: jspb.BinaryReader): GetJobsByUserIdRequest;
+  static serializeBinaryToWriter(message: GetFineTuningJobsByUserIdRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetFineTuningJobsByUserIdRequest;
+  static deserializeBinaryFromReader(message: GetFineTuningJobsByUserIdRequest, reader: jspb.BinaryReader): GetFineTuningJobsByUserIdRequest;
 }
 
-export namespace GetJobsByUserIdRequest {
+export namespace GetFineTuningJobsByUserIdRequest {
   export type AsObject = {
     id: string,
   }
 }
 
-export class GetJobsByOrgIdRequest extends jspb.Message {
+export class GetFineTuningJobsByOrgIdRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetJobsByOrgIdRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetJobsByOrgIdRequest): GetJobsByOrgIdRequest.AsObject;
+  toObject(includeInstance?: boolean): GetFineTuningJobsByOrgIdRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetFineTuningJobsByOrgIdRequest): GetFineTuningJobsByOrgIdRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetJobsByOrgIdRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetJobsByOrgIdRequest;
-  static deserializeBinaryFromReader(message: GetJobsByOrgIdRequest, reader: jspb.BinaryReader): GetJobsByOrgIdRequest;
+  static serializeBinaryToWriter(message: GetFineTuningJobsByOrgIdRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetFineTuningJobsByOrgIdRequest;
+  static deserializeBinaryFromReader(message: GetFineTuningJobsByOrgIdRequest, reader: jspb.BinaryReader): GetFineTuningJobsByOrgIdRequest;
 }
 
-export namespace GetJobsByOrgIdRequest {
+export namespace GetFineTuningJobsByOrgIdRequest {
   export type AsObject = {
     id: string,
   }
 }
 
-export class GetJobsByUserIdResponse extends jspb.Message {
+export class GetFineTuningJobsByUserIdResponse extends jspb.Message {
   clearJobsList(): void;
   getJobsList(): Array<FineTuningJob>;
   setJobsList(value: Array<FineTuningJob>): void;
@@ -402,23 +402,23 @@ export class GetJobsByUserIdResponse extends jspb.Message {
   setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetJobsByUserIdResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetJobsByUserIdResponse): GetJobsByUserIdResponse.AsObject;
+  toObject(includeInstance?: boolean): GetFineTuningJobsByUserIdResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetFineTuningJobsByUserIdResponse): GetFineTuningJobsByUserIdResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetJobsByUserIdResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetJobsByUserIdResponse;
-  static deserializeBinaryFromReader(message: GetJobsByUserIdResponse, reader: jspb.BinaryReader): GetJobsByUserIdResponse;
+  static serializeBinaryToWriter(message: GetFineTuningJobsByUserIdResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetFineTuningJobsByUserIdResponse;
+  static deserializeBinaryFromReader(message: GetFineTuningJobsByUserIdResponse, reader: jspb.BinaryReader): GetFineTuningJobsByUserIdResponse;
 }
 
-export namespace GetJobsByUserIdResponse {
+export namespace GetFineTuningJobsByUserIdResponse {
   export type AsObject = {
     jobsList: Array<FineTuningJob.AsObject>,
     fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
   }
 }
 
-export class GetJobsByOrgIdResponse extends jspb.Message {
+export class GetFineTuningJobsByOrgIdResponse extends jspb.Message {
   clearJobsList(): void;
   getJobsList(): Array<FineTuningJob>;
   setJobsList(value: Array<FineTuningJob>): void;
@@ -430,16 +430,16 @@ export class GetJobsByOrgIdResponse extends jspb.Message {
   setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetJobsByOrgIdResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetJobsByOrgIdResponse): GetJobsByOrgIdResponse.AsObject;
+  toObject(includeInstance?: boolean): GetFineTuningJobsByOrgIdResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetFineTuningJobsByOrgIdResponse): GetFineTuningJobsByOrgIdResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetJobsByOrgIdResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetJobsByOrgIdResponse;
-  static deserializeBinaryFromReader(message: GetJobsByOrgIdResponse, reader: jspb.BinaryReader): GetJobsByOrgIdResponse;
+  static serializeBinaryToWriter(message: GetFineTuningJobsByOrgIdResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetFineTuningJobsByOrgIdResponse;
+  static deserializeBinaryFromReader(message: GetFineTuningJobsByOrgIdResponse, reader: jspb.BinaryReader): GetFineTuningJobsByOrgIdResponse;
 }
 
-export namespace GetJobsByOrgIdResponse {
+export namespace GetFineTuningJobsByOrgIdResponse {
   export type AsObject = {
     jobsList: Array<FineTuningJob.AsObject>,
     fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
