@@ -25,8 +25,8 @@ export class EngineInfo extends jspb.Message {
   getDescription(): string;
   setDescription(value: string): void;
 
-  getCanFinetune(): boolean;
-  setCanFinetune(value: boolean): void;
+  getCanFineTune(): boolean;
+  setCanFineTune(value: boolean): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): EngineInfo.AsObject;
@@ -47,7 +47,7 @@ export namespace EngineInfo {
     tokenizer: EngineTokenizerMap[keyof EngineTokenizerMap],
     name: string,
     description: string,
-    canFinetune: boolean,
+    canFineTune: boolean,
   }
 }
 
