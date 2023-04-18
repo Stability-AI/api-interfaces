@@ -1,16 +1,28 @@
-name: Build Docker Image
+name: Docker
 
 on:
   push: {}
 
 jobs:
-  build-with-docker:
-    name: Build with Docker
+  generate-language-bindings:
+    name: Generate Language Bindings
     runs-on: ubuntu-20.04
     steps:
+      # By default, when you use actions/checkout on a PR, it will checkout the 
+      # head commit in a detached head state. If you want to make some changes, 
+      # you have to checkout the branch the PR is coming from in the head repo.
+      #
+      # https://github.com/EndBug/add-and-commit#working-with-prs
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          submodules: recursive
+        if: github.event_name == 'pull_request'
       - uses: actions/checkout@v3
         with:
           submodules: recursive
+        if: github.event_name != 'pull_request'
       - uses: docker/setup-buildx-action@v2
       - uses: docker/build-push-action@v3
         with:
@@ -19,8 +31,18 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max 
           outputs: |
-            type=local,dest=${{ runner.temp }}/docker-build      
+            type=local,dest=${{ runner.temp }}/docker-build
       - uses: actions/upload-artifact@v3
         with:
          name: gooseai
          path: ${{ runner.temp }}/docker-build/gooseai
+      - name: Prepare artifacts for commit
+        run: |
+          cp -r ${{ runner.temp }}/docker-build/gooseai ./
+      - name: Commit modified artifacts (if any)
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'gooseai/'
+          message: 'chore: update generated files'
+          committer_name: GitHub Actions
+          committer_email: actions@github.com

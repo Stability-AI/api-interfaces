@@ -49,6 +49,24 @@ type ProjectServiceDelete = {
   readonly responseType: typeof project_pb.Project;
 };
 
+type ProjectServiceTagAssets = {
+  readonly methodName: string;
+  readonly service: typeof ProjectService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof project_pb.TagAssetsRequest;
+  readonly responseType: typeof project_pb.TagAssetsResponse;
+};
+
+type ProjectServiceUntagAssets = {
+  readonly methodName: string;
+  readonly service: typeof ProjectService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof project_pb.UntagAssetsRequest;
+  readonly responseType: typeof project_pb.UntagAssetsResponse;
+};
+
 type ProjectServiceQueryAssets = {
   readonly methodName: string;
   readonly service: typeof ProjectService;
@@ -74,6 +92,8 @@ export class ProjectService {
   static readonly List: ProjectServiceList;
   static readonly Get: ProjectServiceGet;
   static readonly Delete: ProjectServiceDelete;
+  static readonly TagAssets: ProjectServiceTagAssets;
+  static readonly UntagAssets: ProjectServiceUntagAssets;
   static readonly QueryAssets: ProjectServiceQueryAssets;
   static readonly DeleteAssets: ProjectServiceDeleteAssets;
 }
@@ -146,6 +166,24 @@ export class ProjectServiceClient {
   delete(
     requestMessage: project_pb.DeleteProjectRequest,
     callback: (error: ServiceError|null, responseMessage: project_pb.Project|null) => void
+  ): UnaryResponse;
+  tagAssets(
+    requestMessage: project_pb.TagAssetsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: project_pb.TagAssetsResponse|null) => void
+  ): UnaryResponse;
+  tagAssets(
+    requestMessage: project_pb.TagAssetsRequest,
+    callback: (error: ServiceError|null, responseMessage: project_pb.TagAssetsResponse|null) => void
+  ): UnaryResponse;
+  untagAssets(
+    requestMessage: project_pb.UntagAssetsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: project_pb.UntagAssetsResponse|null) => void
+  ): UnaryResponse;
+  untagAssets(
+    requestMessage: project_pb.UntagAssetsRequest,
+    callback: (error: ServiceError|null, responseMessage: project_pb.UntagAssetsResponse|null) => void
   ): UnaryResponse;
   queryAssets(
     requestMessage: project_pb.QueryAssetsRequest,

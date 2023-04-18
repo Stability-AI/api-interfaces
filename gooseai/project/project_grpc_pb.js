@@ -104,6 +104,50 @@ function deserialize_gooseai_QueryAssetsResponse(buffer_arg) {
   return project_pb.QueryAssetsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_gooseai_TagAssetsRequest(arg) {
+  if (!(arg instanceof project_pb.TagAssetsRequest)) {
+    throw new Error('Expected argument of type gooseai.TagAssetsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_TagAssetsRequest(buffer_arg) {
+  return project_pb.TagAssetsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_TagAssetsResponse(arg) {
+  if (!(arg instanceof project_pb.TagAssetsResponse)) {
+    throw new Error('Expected argument of type gooseai.TagAssetsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_TagAssetsResponse(buffer_arg) {
+  return project_pb.TagAssetsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_UntagAssetsRequest(arg) {
+  if (!(arg instanceof project_pb.UntagAssetsRequest)) {
+    throw new Error('Expected argument of type gooseai.UntagAssetsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_UntagAssetsRequest(buffer_arg) {
+  return project_pb.UntagAssetsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_UntagAssetsResponse(arg) {
+  if (!(arg instanceof project_pb.UntagAssetsResponse)) {
+    throw new Error('Expected argument of type gooseai.UntagAssetsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_UntagAssetsResponse(buffer_arg) {
+  return project_pb.UntagAssetsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_gooseai_UpdateProjectRequest(arg) {
   if (!(arg instanceof project_pb.UpdateProjectRequest)) {
     throw new Error('Expected argument of type gooseai.UpdateProjectRequest');
@@ -179,6 +223,29 @@ delete: {
     requestDeserialize: deserialize_gooseai_DeleteProjectRequest,
     responseSerialize: serialize_gooseai_Project,
     responseDeserialize: deserialize_gooseai_Project,
+  },
+  // Add or remove tags from an asset
+tagAssets: {
+    path: '/gooseai.ProjectService/TagAssets',
+    requestStream: false,
+    responseStream: false,
+    requestType: project_pb.TagAssetsRequest,
+    responseType: project_pb.TagAssetsResponse,
+    requestSerialize: serialize_gooseai_TagAssetsRequest,
+    requestDeserialize: deserialize_gooseai_TagAssetsRequest,
+    responseSerialize: serialize_gooseai_TagAssetsResponse,
+    responseDeserialize: deserialize_gooseai_TagAssetsResponse,
+  },
+  untagAssets: {
+    path: '/gooseai.ProjectService/UntagAssets',
+    requestStream: false,
+    responseStream: false,
+    requestType: project_pb.UntagAssetsRequest,
+    responseType: project_pb.UntagAssetsResponse,
+    requestSerialize: serialize_gooseai_UntagAssetsRequest,
+    requestDeserialize: deserialize_gooseai_UntagAssetsRequest,
+    responseSerialize: serialize_gooseai_UntagAssetsResponse,
+    responseDeserialize: deserialize_gooseai_UntagAssetsResponse,
   },
   // Query the assets of a project, with additional filtering
 queryAssets: {

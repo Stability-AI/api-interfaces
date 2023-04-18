@@ -28,6 +28,9 @@ type ProjectServiceClient interface {
 	Get(ctx context.Context, in *GetProjectRequest, opts ...grpc.CallOption) (*Project, error)
 	// Delete a project
 	Delete(ctx context.Context, in *DeleteProjectRequest, opts ...grpc.CallOption) (*Project, error)
+	// Add or remove tags from an asset
+	TagAssets(ctx context.Context, in *TagAssetsRequest, opts ...grpc.CallOption) (*TagAssetsResponse, error)
+	UntagAssets(ctx context.Context, in *UntagAssetsRequest, opts ...grpc.CallOption) (*UntagAssetsResponse, error)
 	// Query the assets of a project, with additional filtering
 	QueryAssets(ctx context.Context, in *QueryAssetsRequest, opts ...grpc.CallOption) (*QueryAssetsResponse, error)
 	// Delete one or more assets of a project
@@ -110,6 +113,24 @@ func (c *projectServiceClient) Delete(ctx context.Context, in *DeleteProjectRequ
 	return out, nil
 }
 
+func (c *projectServiceClient) TagAssets(ctx context.Context, in *TagAssetsRequest, opts ...grpc.CallOption) (*TagAssetsResponse, error) {
+	out := new(TagAssetsResponse)
+	err := c.cc.Invoke(ctx, "/gooseai.ProjectService/TagAssets", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *projectServiceClient) UntagAssets(ctx context.Context, in *UntagAssetsRequest, opts ...grpc.CallOption) (*UntagAssetsResponse, error) {
+	out := new(UntagAssetsResponse)
+	err := c.cc.Invoke(ctx, "/gooseai.ProjectService/UntagAssets", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *projectServiceClient) QueryAssets(ctx context.Context, in *QueryAssetsRequest, opts ...grpc.CallOption) (*QueryAssetsResponse, error) {
 	out := new(QueryAssetsResponse)
 	err := c.cc.Invoke(ctx, "/gooseai.ProjectService/QueryAssets", in, out, opts...)
@@ -142,6 +163,9 @@ type ProjectServiceServer interface {
 	Get(context.Context, *GetProjectRequest) (*Project, error)
 	// Delete a project
 	Delete(context.Context, *DeleteProjectRequest) (*Project, error)
+	// Add or remove tags from an asset
+	TagAssets(context.Context, *TagAssetsRequest) (*TagAssetsResponse, error)
+	UntagAssets(context.Context, *UntagAssetsRequest) (*UntagAssetsResponse, error)
 	// Query the assets of a project, with additional filtering
 	QueryAssets(context.Context, *QueryAssetsRequest) (*QueryAssetsResponse, error)
 	// Delete one or more assets of a project
@@ -167,6 +191,12 @@ func (UnimplementedProjectServiceServer) Get(context.Context, *GetProjectRequest
 }
 func (UnimplementedProjectServiceServer) Delete(context.Context, *DeleteProjectRequest) (*Project, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedProjectServiceServer) TagAssets(context.Context, *TagAssetsRequest) (*TagAssetsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TagAssets not implemented")
+}
+func (UnimplementedProjectServiceServer) UntagAssets(context.Context, *UntagAssetsRequest) (*UntagAssetsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UntagAssets not implemented")
 }
 func (UnimplementedProjectServiceServer) QueryAssets(context.Context, *QueryAssetsRequest) (*QueryAssetsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method QueryAssets not implemented")
@@ -280,6 +310,42 @@ func _ProjectService_Delete_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProjectService_TagAssets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TagAssetsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).TagAssets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.ProjectService/TagAssets",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).TagAssets(ctx, req.(*TagAssetsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProjectService_UntagAssets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UntagAssetsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).UntagAssets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.ProjectService/UntagAssets",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).UntagAssets(ctx, req.(*UntagAssetsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ProjectService_QueryAssets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryAssetsRequest)
 	if err := dec(in); err != nil {
@@ -338,6 +404,14 @@ var ProjectService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _ProjectService_Delete_Handler,
+		},
+		{
+			MethodName: "TagAssets",
+			Handler:    _ProjectService_TagAssets_Handler,
+		},
+		{
+			MethodName: "UntagAssets",
+			Handler:    _ProjectService_UntagAssets_Handler,
 		},
 		{
 			MethodName: "QueryAssets",
