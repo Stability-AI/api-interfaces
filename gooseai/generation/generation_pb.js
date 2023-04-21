@@ -8262,8 +8262,7 @@ proto.gooseai.TransformCameraPose.toObject = function(includeInstance, msg) {
     worldToViewMatrix: (f = msg.getWorldToViewMatrix()) && proto.gooseai.TransformMatrix.toObject(includeInstance, f),
     cameraParameters: (f = msg.getCameraParameters()) && proto.gooseai.CameraParameters.toObject(includeInstance, f),
     doPrefill: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    imageRenderMode: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    maskRenderMode: jspb.Message.getFieldWithDefault(msg, 7, 0)
+    renderMode: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -8314,13 +8313,9 @@ proto.gooseai.TransformCameraPose.deserializeBinaryFromReader = function(msg, re
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setDoPrefill(value);
       break;
-    case 6:
+    case 8:
       var value = /** @type {!proto.gooseai.RenderMode} */ (reader.readEnum());
-      msg.setImageRenderMode(value);
-      break;
-    case 7:
-      var value = /** @type {!proto.gooseai.RenderMode} */ (reader.readEnum());
-      msg.setMaskRenderMode(value);
+      msg.setRenderMode(value);
       break;
     default:
       reader.skipField();
@@ -8374,17 +8369,10 @@ proto.gooseai.TransformCameraPose.serializeBinaryToWriter = function(message, wr
       f
     );
   }
-  f = message.getImageRenderMode();
+  f = message.getRenderMode();
   if (f !== 0.0) {
     writer.writeEnum(
-      6,
-      f
-    );
-  }
-  f = message.getMaskRenderMode();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      7,
+      8,
       f
     );
   }
@@ -8484,11 +8472,11 @@ proto.gooseai.TransformCameraPose.prototype.setDoPrefill = function(value) {
 
 
 /**
- * optional RenderMode image_render_mode = 6;
+ * optional RenderMode render_mode = 8;
  * @return {!proto.gooseai.RenderMode}
  */
-proto.gooseai.TransformCameraPose.prototype.getImageRenderMode = function() {
-  return /** @type {!proto.gooseai.RenderMode} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+proto.gooseai.TransformCameraPose.prototype.getRenderMode = function() {
+  return /** @type {!proto.gooseai.RenderMode} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
 };
 
 
@@ -8496,26 +8484,8 @@ proto.gooseai.TransformCameraPose.prototype.getImageRenderMode = function() {
  * @param {!proto.gooseai.RenderMode} value
  * @return {!proto.gooseai.TransformCameraPose} returns this
  */
-proto.gooseai.TransformCameraPose.prototype.setImageRenderMode = function(value) {
-  return jspb.Message.setProto3EnumField(this, 6, value);
-};
-
-
-/**
- * optional RenderMode mask_render_mode = 7;
- * @return {!proto.gooseai.RenderMode}
- */
-proto.gooseai.TransformCameraPose.prototype.getMaskRenderMode = function() {
-  return /** @type {!proto.gooseai.RenderMode} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
-};
-
-
-/**
- * @param {!proto.gooseai.RenderMode} value
- * @return {!proto.gooseai.TransformCameraPose} returns this
- */
-proto.gooseai.TransformCameraPose.prototype.setMaskRenderMode = function(value) {
-  return jspb.Message.setProto3EnumField(this, 7, value);
+proto.gooseai.TransformCameraPose.prototype.setRenderMode = function(value) {
+  return jspb.Message.setProto3EnumField(this, 8, value);
 };
 
 
