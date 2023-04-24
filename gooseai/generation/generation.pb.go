@@ -2958,9 +2958,8 @@ type TransformCameraPose struct {
 
 	WorldToViewMatrix *TransformMatrix  `protobuf:"bytes,1,opt,name=world_to_view_matrix,json=worldToViewMatrix,proto3" json:"world_to_view_matrix,omitempty"` // 4x4 transform matrix for the next frame
 	CameraParameters  *CameraParameters `protobuf:"bytes,2,opt,name=camera_parameters,json=cameraParameters,proto3" json:"camera_parameters,omitempty"`
-	DoPrefill         bool              `protobuf:"varint,5,opt,name=do_prefill,json=doPrefill,proto3" json:"do_prefill,omitempty"` // Prefill masked areas with values matching the colors around the area
-	ImageRenderMode   RenderMode        `protobuf:"varint,6,opt,name=image_render_mode,json=imageRenderMode,proto3,enum=gooseai.RenderMode" json:"image_render_mode,omitempty"`
-	MaskRenderMode    RenderMode        `protobuf:"varint,7,opt,name=mask_render_mode,json=maskRenderMode,proto3,enum=gooseai.RenderMode" json:"mask_render_mode,omitempty"`
+	DoPrefill         bool              `protobuf:"varint,5,opt,name=do_prefill,json=doPrefill,proto3" json:"do_prefill,omitempty"`                            // Prefill masked areas with values matching the colors around the area
+	RenderMode        RenderMode        `protobuf:"varint,8,opt,name=render_mode,json=renderMode,proto3,enum=gooseai.RenderMode" json:"render_mode,omitempty"` // Both image and mask will be rendered using this method.
 }
 
 func (x *TransformCameraPose) Reset() {
@@ -3016,16 +3015,9 @@ func (x *TransformCameraPose) GetDoPrefill() bool {
 	return false
 }
 
-func (x *TransformCameraPose) GetImageRenderMode() RenderMode {
+func (x *TransformCameraPose) GetRenderMode() RenderMode {
 	if x != nil {
-		return x.ImageRenderMode
-	}
-	return RenderMode_RENDER_MESH
-}
-
-func (x *TransformCameraPose) GetMaskRenderMode() RenderMode {
-	if x != nil {
-		return x.MaskRenderMode
+		return x.RenderMode
 	}
 	return RenderMode_RENDER_MESH
 }
@@ -4133,7 +4125,7 @@ var file_generation_proto_rawDesc = []byte{
 	0x6e, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x02, 0x52, 0x08, 0x66, 0x61, 0x72, 0x50, 0x6c, 0x61,
 	0x6e, 0x65, 0x12, 0x15, 0x0a, 0x03, 0x66, 0x6f, 0x76, 0x18, 0x04, 0x20, 0x01, 0x28, 0x02, 0x48,
 	0x00, 0x52, 0x03, 0x66, 0x6f, 0x76, 0x88, 0x01, 0x01, 0x42, 0x06, 0x0a, 0x04, 0x5f, 0x66, 0x6f,
-	0x76, 0x22, 0xd3, 0x02, 0x0a, 0x13, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x66, 0x6f, 0x72, 0x6d, 0x43,
+	0x76, 0x22, 0x95, 0x02, 0x0a, 0x13, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x66, 0x6f, 0x72, 0x6d, 0x43,
 	0x61, 0x6d, 0x65, 0x72, 0x61, 0x50, 0x6f, 0x73, 0x65, 0x12, 0x49, 0x0a, 0x14, 0x77, 0x6f, 0x72,
 	0x6c, 0x64, 0x5f, 0x74, 0x6f, 0x5f, 0x76, 0x69, 0x65, 0x77, 0x5f, 0x6d, 0x61, 0x74, 0x72, 0x69,
 	0x78, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x67, 0x6f, 0x6f, 0x73, 0x65, 0x61,
@@ -4424,6 +4416,7 @@ var file_generation_proto_rawDesc = []byte{
 	0x79, 0x2d, 0x61, 0x69, 0x2f, 0x61, 0x70, 0x69, 0x2d, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x66, 0x61,
 	0x63, 0x65, 0x73, 0x2f, 0x67, 0x6f, 0x6f, 0x73, 0x65, 0x61, 0x69, 0x2f, 0x67, 0x65, 0x6e, 0x65,
 	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+
 }
 
 var (
@@ -4540,40 +4533,39 @@ var file_generation_proto_depIdxs = []int32{
 	13, // 39: gooseai.CameraParameters.camera_type:type_name -> gooseai.CameraType
 	40, // 40: gooseai.TransformCameraPose.world_to_view_matrix:type_name -> gooseai.TransformMatrix
 	42, // 41: gooseai.TransformCameraPose.camera_parameters:type_name -> gooseai.CameraParameters
-	14, // 42: gooseai.TransformCameraPose.image_render_mode:type_name -> gooseai.RenderMode
-	14, // 43: gooseai.TransformCameraPose.mask_render_mode:type_name -> gooseai.RenderMode
-	38, // 44: gooseai.TransformParameters.color_adjust:type_name -> gooseai.TransformColorAdjust
-	39, // 45: gooseai.TransformParameters.depth_calc:type_name -> gooseai.TransformDepthCalc
-	41, // 46: gooseai.TransformParameters.resample:type_name -> gooseai.TransformResample
-	43, // 47: gooseai.TransformParameters.camera_pose:type_name -> gooseai.TransformCameraPose
-	15, // 48: gooseai.AssetParameters.action:type_name -> gooseai.AssetAction
-	16, // 49: gooseai.AssetParameters.use:type_name -> gooseai.AssetUse
-	46, // 50: gooseai.Answer.meta:type_name -> gooseai.AnswerMeta
-	20, // 51: gooseai.Answer.artifacts:type_name -> gooseai.Artifact
-	47, // 52: gooseai.AnswerBatch.answers:type_name -> gooseai.Answer
-	1,  // 53: gooseai.Request.requested_type:type_name -> gooseai.ArtifactType
-	22, // 54: gooseai.Request.prompt:type_name -> gooseai.Prompt
-	33, // 55: gooseai.Request.image:type_name -> gooseai.ImageParameters
-	36, // 56: gooseai.Request.classifier:type_name -> gooseai.ClassifierParameters
-	45, // 57: gooseai.Request.asset:type_name -> gooseai.AssetParameters
-	37, // 58: gooseai.Request.interpolate:type_name -> gooseai.InterpolateParameters
-	44, // 59: gooseai.Request.transform:type_name -> gooseai.TransformParameters
-	24, // 60: gooseai.Request.conditioner:type_name -> gooseai.ConditionerParameters
-	54, // 61: gooseai.Request.extras:type_name -> google.protobuf.Struct
-	0,  // 62: gooseai.OnStatus.reason:type_name -> gooseai.FinishReason
-	17, // 63: gooseai.OnStatus.action:type_name -> gooseai.StageAction
-	49, // 64: gooseai.Stage.request:type_name -> gooseai.Request
-	50, // 65: gooseai.Stage.on_status:type_name -> gooseai.OnStatus
-	51, // 66: gooseai.ChainRequest.stage:type_name -> gooseai.Stage
-	49, // 67: gooseai.GenerationService.Generate:input_type -> gooseai.Request
-	52, // 68: gooseai.GenerationService.ChainGenerate:input_type -> gooseai.ChainRequest
-	47, // 69: gooseai.GenerationService.Generate:output_type -> gooseai.Answer
-	47, // 70: gooseai.GenerationService.ChainGenerate:output_type -> gooseai.Answer
-	69, // [69:71] is the sub-list for method output_type
-	67, // [67:69] is the sub-list for method input_type
-	67, // [67:67] is the sub-list for extension type_name
-	67, // [67:67] is the sub-list for extension extendee
-	0,  // [0:67] is the sub-list for field type_name
+	14, // 42: gooseai.TransformCameraPose.render_mode:type_name -> gooseai.RenderMode
+	38, // 43: gooseai.TransformParameters.color_adjust:type_name -> gooseai.TransformColorAdjust
+	39, // 44: gooseai.TransformParameters.depth_calc:type_name -> gooseai.TransformDepthCalc
+	41, // 45: gooseai.TransformParameters.resample:type_name -> gooseai.TransformResample
+	43, // 46: gooseai.TransformParameters.camera_pose:type_name -> gooseai.TransformCameraPose
+	15, // 47: gooseai.AssetParameters.action:type_name -> gooseai.AssetAction
+	16, // 48: gooseai.AssetParameters.use:type_name -> gooseai.AssetUse
+	46, // 49: gooseai.Answer.meta:type_name -> gooseai.AnswerMeta
+	20, // 50: gooseai.Answer.artifacts:type_name -> gooseai.Artifact
+	47, // 51: gooseai.AnswerBatch.answers:type_name -> gooseai.Answer
+	1,  // 52: gooseai.Request.requested_type:type_name -> gooseai.ArtifactType
+	22, // 53: gooseai.Request.prompt:type_name -> gooseai.Prompt
+	33, // 54: gooseai.Request.image:type_name -> gooseai.ImageParameters
+	36, // 55: gooseai.Request.classifier:type_name -> gooseai.ClassifierParameters
+	45, // 56: gooseai.Request.asset:type_name -> gooseai.AssetParameters
+	37, // 57: gooseai.Request.interpolate:type_name -> gooseai.InterpolateParameters
+	44, // 58: gooseai.Request.transform:type_name -> gooseai.TransformParameters
+	24, // 59: gooseai.Request.conditioner:type_name -> gooseai.ConditionerParameters
+	54, // 60: gooseai.Request.extras:type_name -> google.protobuf.Struct
+	0,  // 61: gooseai.OnStatus.reason:type_name -> gooseai.FinishReason
+	17, // 62: gooseai.OnStatus.action:type_name -> gooseai.StageAction
+	49, // 63: gooseai.Stage.request:type_name -> gooseai.Request
+	50, // 64: gooseai.Stage.on_status:type_name -> gooseai.OnStatus
+	51, // 65: gooseai.ChainRequest.stage:type_name -> gooseai.Stage
+	49, // 66: gooseai.GenerationService.Generate:input_type -> gooseai.Request
+	52, // 67: gooseai.GenerationService.ChainGenerate:input_type -> gooseai.ChainRequest
+	47, // 68: gooseai.GenerationService.Generate:output_type -> gooseai.Answer
+	47, // 69: gooseai.GenerationService.ChainGenerate:output_type -> gooseai.Answer
+	68, // [68:70] is the sub-list for method output_type
+	66, // [66:68] is the sub-list for method input_type
+	66, // [66:66] is the sub-list for extension type_name
+	66, // [66:66] is the sub-list for extension extendee
+	0,  // [0:66] is the sub-list for field type_name
 }
 
 func init() { file_generation_proto_init() }

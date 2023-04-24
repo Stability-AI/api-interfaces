@@ -1032,11 +1032,8 @@ export class TransformCameraPose extends jspb.Message {
   getDoPrefill(): boolean;
   setDoPrefill(value: boolean): void;
 
-  getImageRenderMode(): RenderModeMap[keyof RenderModeMap];
-  setImageRenderMode(value: RenderModeMap[keyof RenderModeMap]): void;
-
-  getMaskRenderMode(): RenderModeMap[keyof RenderModeMap];
-  setMaskRenderMode(value: RenderModeMap[keyof RenderModeMap]): void;
+  getRenderMode(): RenderModeMap[keyof RenderModeMap];
+  setRenderMode(value: RenderModeMap[keyof RenderModeMap]): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TransformCameraPose.AsObject;
@@ -1053,8 +1050,7 @@ export namespace TransformCameraPose {
     worldToViewMatrix?: TransformMatrix.AsObject,
     cameraParameters?: CameraParameters.AsObject,
     doPrefill: boolean,
-    imageRenderMode: RenderModeMap[keyof RenderModeMap],
-    maskRenderMode: RenderModeMap[keyof RenderModeMap],
+    renderMode: RenderModeMap[keyof RenderModeMap],
   }
 }
 

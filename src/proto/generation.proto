@@ -364,10 +364,9 @@ message CameraParameters {
 message TransformCameraPose {
   TransformMatrix world_to_view_matrix = 1;  // 4x4 transform matrix for the next frame
   CameraParameters camera_parameters = 2;
-  reserved 3, 4;
+  reserved 3, 4, 6, 7;
   bool do_prefill = 5;   // Prefill masked areas with values matching the colors around the area
-  RenderMode image_render_mode = 6;
-  RenderMode mask_render_mode = 7;
+  RenderMode render_mode = 8;  // Both image and mask will be rendered using this method.
 }
 
 message TransformParameters {
