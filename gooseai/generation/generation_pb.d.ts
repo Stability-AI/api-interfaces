@@ -1241,6 +1241,26 @@ export namespace AnswerBatch {
   }
 }
 
+export class FineTuningParameters extends jspb.Message {
+  getModelId(): string;
+  setModelId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FineTuningParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: FineTuningParameters): FineTuningParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FineTuningParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FineTuningParameters;
+  static deserializeBinaryFromReader(message: FineTuningParameters, reader: jspb.BinaryReader): FineTuningParameters;
+}
+
+export namespace FineTuningParameters {
+  export type AsObject = {
+    modelId: string,
+  }
+}
+
 export class Request extends jspb.Message {
   getEngineId(): string;
   setEngineId(value: string): void;
@@ -1286,6 +1306,11 @@ export class Request extends jspb.Message {
   getConditioner(): ConditionerParameters | undefined;
   setConditioner(value?: ConditionerParameters): void;
 
+  hasFineTuningParameters(): boolean;
+  clearFineTuningParameters(): void;
+  getFineTuningParameters(): FineTuningParameters | undefined;
+  setFineTuningParameters(value?: FineTuningParameters): void;
+
   hasExtras(): boolean;
   clearExtras(): void;
   getExtras(): google_protobuf_struct_pb.Struct | undefined;
@@ -1314,6 +1339,7 @@ export namespace Request {
     interpolate?: InterpolateParameters.AsObject,
     transform?: TransformParameters.AsObject,
     conditioner?: ConditionerParameters.AsObject,
+    fineTuningParameters?: FineTuningParameters.AsObject,
     extras?: google_protobuf_struct_pb.Struct.AsObject,
   }
 

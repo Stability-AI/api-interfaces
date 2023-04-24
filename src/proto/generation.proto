@@ -432,6 +432,12 @@ message AnswerBatch {
   repeated Answer answers = 2;
 }
 
+message FineTuningParameters {
+  // The id of the model to fine_tune
+  // See FineTuningJob.id in finetuning.proto
+  string model_id = 1;  
+}
+
 // A Request is a set of Artifacts, which can be of any type with model or
 // transform parameters. It is sent to the server, which will respond with an
 // Answer.
@@ -449,6 +455,7 @@ message Request {
   }
   optional ConditionerParameters conditioner = 6;
   reserved 9,10; //9, 10 are reserved
+  optional FineTuningParameters fine_tuning_parameters = 13;
   optional google.protobuf.Struct extras = 2047; // for development use
 }
 
