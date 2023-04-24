@@ -281,6 +281,7 @@ enum InterpolateMode {
   INTERPOLATE_RIFE = 1;
   INTERPOLATE_VAE_LINEAR = 2;
   INTERPOLATE_VAE_SLERP = 3;
+  INTERPOLATE_FILM = 4;
 }
 
 // Interpolation between two images applied at specified blend ratios
@@ -343,25 +344,14 @@ message TransformResample {
   optional bool export_mask = 5;               // return inpaint mask
 }
 
-message PointCloudRenderParameters {
-  float radius = 1;            // The radius (in NDC units) of each disk to be rasterized 
-  uint32 points_per_pixel = 2;  // Number of points to keep track of per pixel
-}
-
-message MeshRenderParameters {
-  float max_mesh_edge = 1;  // Mesh edges longer than this value are discarded
-}
-
-message RenderParameters {
-  oneof render_parameters {
-    PointCloudRenderParameters pointcloud_parameters = 1;
-    MeshRenderParameters mesh_parameters = 2;
-  }
-}
-
 enum CameraType {
   CAMERA_PERSPECTIVE = 0;   // Perspective camera
   CAMERA_ORTHOGRAPHIC = 1;  // Orthographic camera. Well suited for isometric animations
+}
+
+enum RenderMode {
+  RENDER_MESH = 0;
+  RENDER_POINTCLOUD = 1;
 }
 
 message CameraParameters {
@@ -374,9 +364,10 @@ message CameraParameters {
 message TransformCameraPose {
   TransformMatrix world_to_view_matrix = 1;  // 4x4 transform matrix for the next frame
   CameraParameters camera_parameters = 2;
-  RenderParameters image_render_parameters = 3;
-  RenderParameters mask_render_parameters = 4;
+  reserved 3, 4;
   bool do_prefill = 5;   // Prefill masked areas with values matching the colors around the area
+  RenderMode image_render_mode = 6;
+  RenderMode mask_render_mode = 7;
 }
 
 message TransformParameters {
