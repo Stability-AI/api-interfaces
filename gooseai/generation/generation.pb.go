@@ -3412,13 +3412,19 @@ func (x *AnswerBatch) GetAnswers() []*Answer {
 	return nil
 }
 
+// A FineTuningParameters is a set of parameters for using a fine-tuned model
+// to generate images.
 type FineTuningParameters struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The id of the model to fine_tune
-	// See FineTuningJob.id in finetuning.proto
+	// The id of the fine-tuned model to generate images from.
+	// See FineTuningModel.id in finetuning.proto.
+	// Model Id is created upon invoking CreateFineTuningModel.
+	// When GetFineTuningModelStatus returns a FineTuningModelStatus of
+	// FINE_TUNING_MODEL_STATUS_COMPLETED, the model can be used
+	// for generating images.
 	ModelId string `protobuf:"bytes,1,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
 }
 
