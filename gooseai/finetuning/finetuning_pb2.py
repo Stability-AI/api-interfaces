@@ -17,202 +17,202 @@ import dashboard_pb2 as dashboard__pb2
 import project_pb2 as project__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x66inetuning.proto\x12\x07gooseai\x1a\x0f\x64\x61shboard.proto\x1a\rproject.proto\"\x92\x02\n\rFineTuningJob\x12\n\n\x02id\x18\x01 \x01(\t\x12\x1b\n\x04user\x18\x02 \x01(\x0b\x32\r.gooseai.User\x12\x12\n\nmodel_name\x18\x03 \x01(\t\x12*\n\x04mode\x18\x04 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x00\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x05 \x01(\tH\x01\x88\x01\x01\x12\x12\n\nproject_id\x18\x06 \x01(\t\x12\x10\n\x08\x64uration\x18\x07 \x01(\x01\x12,\n\x06status\x18\x08 \x01(\x0e\x32\x1c.gooseai.FineTuningJobStatus\x12\x11\n\tengine_id\x18\t \x01(\tB\x07\n\x05_modeB\x0e\n\x0c_object_name\"B\n\x1b\x43reateFineTuningJobResponse\x12#\n\x03job\x18\x01 \x01(\x0b\x32\x16.gooseai.FineTuningJob\"C\n\x1cGetFineTuningJobByIdResponse\x12#\n\x03job\x18\x01 \x01(\x0b\x32\x16.gooseai.FineTuningJob\"B\n\x1bUpdateFineTuningJobResponse\x12#\n\x03job\x18\x01 \x01(\x0b\x32\x16.gooseai.FineTuningJob\"B\n\x1b\x44\x65leteFineTuningJobResponse\x12#\n\x03job\x18\x01 \x01(\x0b\x32\x16.gooseai.FineTuningJob\"D\n\x1dResubmitFineTuningJobResponse\x12#\n\x03job\x18\x01 \x01(\x0b\x32\x16.gooseai.FineTuningJob\"\xb6\x01\n\x1a\x43reateFineTuningJobRequest\x12\x12\n\nmodel_name\x18\x01 \x01(\t\x12*\n\x04mode\x18\x02 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x00\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x03 \x01(\tH\x01\x88\x01\x01\x12\x12\n\nproject_id\x18\x04 \x01(\t\x12\x11\n\tengine_id\x18\x05 \x01(\tB\x07\n\x05_modeB\x0e\n\x0c_object_name\"\xc2\x01\n\x1aUpdateFineTuningJobRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x12\n\nmodel_name\x18\x02 \x01(\t\x12*\n\x04mode\x18\x03 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x00\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x04 \x01(\tH\x01\x88\x01\x01\x12\x12\n\nproject_id\x18\x05 \x01(\t\x12\x11\n\tengine_id\x18\x06 \x01(\tB\x07\n\x05_modeB\x0e\n\x0c_object_name\")\n\x1bGetFineTuningJobByIdRequest\x12\n\n\x02id\x18\x01 \x01(\t\"(\n\x1a\x44\x65leteFineTuningJobRequest\x12\n\n\x02id\x18\x01 \x01(\t\"+\n\x1dGetFineTuningJobStatusRequest\x12\n\n\x02id\x18\x01 \x01(\t\"Z\n\x1eGetFineTuningJobStatusResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12,\n\x06status\x18\x02 \x01(\x0e\x32\x1c.gooseai.FineTuningJobStatus\"*\n\x1cResubmitFineTuningJobRequest\x12\n\n\x02id\x18\x01 \x01(\t\".\n GetFineTuningJobsByUserIdRequest\x12\n\n\x02id\x18\x01 \x01(\t\"-\n\x1fGetFineTuningJobsByOrgIdRequest\x12\n\n\x02id\x18\x01 \x01(\t\"I\n!GetFineTuningJobsByUserIdResponse\x12$\n\x04jobs\x18\x01 \x03(\x0b\x32\x16.gooseai.FineTuningJob\"H\n GetFineTuningJobsByOrgIdResponse\x12$\n\x04jobs\x18\x01 \x03(\x0b\x32\x16.gooseai.FineTuningJob*\x8b\x01\n\x0e\x46ineTuningMode\x12%\n!FINE_TUNING_MODE_NONE_UNSPECIFIED\x10\x00\x12\x19\n\x15\x46INE_TUNING_MODE_FACE\x10\x01\x12\x1a\n\x16\x46INE_TUNING_MODE_STYLE\x10\x02\x12\x1b\n\x17\x46INE_TUNING_MODE_OBJECT\x10\x03*\xdc\x01\n\x13\x46ineTuningJobStatus\x12\x32\n.FINE_TUNING_JOB_STATUS_NOT_STARTED_UNSPECIFIED\x10\x00\x12\"\n\x1e\x46INE_TUNING_JOB_STATUS_RUNNING\x10\x01\x12$\n FINE_TUNING_JOB_STATUS_COMPLETED\x10\x02\x12!\n\x1d\x46INE_TUNING_JOB_STATUS_FAILED\x10\x03\x12$\n FINE_TUNING_JOB_STATUS_SUBMITTED\x10\x04\x32\xd6\x06\n\x11\x46ineTuningService\x12`\n\x13\x43reateFineTuningJob\x12#.gooseai.CreateFineTuningJobRequest\x1a$.gooseai.CreateFineTuningJobResponse\x12\x63\n\x14GetFineTuningJobById\x12$.gooseai.GetFineTuningJobByIdRequest\x1a%.gooseai.GetFineTuningJobByIdResponse\x12`\n\x13UpdateFineTuningJob\x12#.gooseai.UpdateFineTuningJobRequest\x1a$.gooseai.UpdateFineTuningJobResponse\x12`\n\x13\x44\x65leteFineTuningJob\x12#.gooseai.DeleteFineTuningJobRequest\x1a$.gooseai.DeleteFineTuningJobResponse\x12i\n\x16GetFineTuningJobStatus\x12&.gooseai.GetFineTuningJobStatusRequest\x1a\'.gooseai.GetFineTuningJobStatusResponse\x12\x66\n\x15ResubmitFineTuningJob\x12%.gooseai.ResubmitFineTuningJobRequest\x1a&.gooseai.ResubmitFineTuningJobResponse\x12r\n\x19GetFineTuningJobsByUserId\x12).gooseai.GetFineTuningJobsByUserIdRequest\x1a*.gooseai.GetFineTuningJobsByUserIdResponse\x12o\n\x18GetFineTuningJobsByOrgId\x12(.gooseai.GetFineTuningJobsByOrgIdRequest\x1a).gooseai.GetFineTuningJobsByOrgIdResponseB;Z9github.com/stability-ai/api-interfaces/gooseai/finetuningb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x66inetuning.proto\x12\x07gooseai\x1a\x0f\x64\x61shboard.proto\x1a\rproject.proto\"\x90\x02\n\x0f\x46ineTuningModel\x12\n\n\x02id\x18\x01 \x01(\t\x12\x1b\n\x04user\x18\x02 \x01(\x0b\x32\r.gooseai.User\x12\x0c\n\x04name\x18\x03 \x01(\t\x12*\n\x04mode\x18\x04 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x00\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x05 \x01(\tH\x01\x88\x01\x01\x12\x12\n\nproject_id\x18\x06 \x01(\t\x12\x10\n\x08\x64uration\x18\x07 \x01(\x01\x12.\n\x06status\x18\x08 \x01(\x0e\x32\x1e.gooseai.FineTuningModelStatus\x12\x11\n\tengine_id\x18\t \x01(\tB\x07\n\x05_modeB\x0e\n\x0c_object_name\"H\n\x1d\x43reateFineTuningModelResponse\x12\'\n\x05model\x18\x01 \x01(\x0b\x32\x18.gooseai.FineTuningModel\"I\n\x1eGetFineTuningModelByIdResponse\x12\'\n\x05model\x18\x01 \x01(\x0b\x32\x18.gooseai.FineTuningModel\"H\n\x1dUpdateFineTuningModelResponse\x12\'\n\x05model\x18\x01 \x01(\x0b\x32\x18.gooseai.FineTuningModel\"H\n\x1d\x44\x65leteFineTuningModelResponse\x12\'\n\x05model\x18\x01 \x01(\x0b\x32\x18.gooseai.FineTuningModel\"J\n\x1fResubmitFineTuningModelResponse\x12\'\n\x05model\x18\x01 \x01(\x0b\x32\x18.gooseai.FineTuningModel\"\xb2\x01\n\x1c\x43reateFineTuningModelRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12*\n\x04mode\x18\x02 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x00\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x03 \x01(\tH\x01\x88\x01\x01\x12\x12\n\nproject_id\x18\x04 \x01(\t\x12\x11\n\tengine_id\x18\x05 \x01(\tB\x07\n\x05_modeB\x0e\n\x0c_object_name\"\xbe\x01\n\x1cUpdateFineTuningModelRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12*\n\x04mode\x18\x03 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x00\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x04 \x01(\tH\x01\x88\x01\x01\x12\x12\n\nproject_id\x18\x05 \x01(\t\x12\x11\n\tengine_id\x18\x06 \x01(\tB\x07\n\x05_modeB\x0e\n\x0c_object_name\"+\n\x1dGetFineTuningModelByIdRequest\x12\n\n\x02id\x18\x01 \x01(\t\"*\n\x1c\x44\x65leteFineTuningModelRequest\x12\n\n\x02id\x18\x01 \x01(\t\"-\n\x1fGetFineTuningModelStatusRequest\x12\n\n\x02id\x18\x01 \x01(\t\"^\n GetFineTuningModelStatusResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12.\n\x06status\x18\x02 \x01(\x0e\x32\x1e.gooseai.FineTuningModelStatus\",\n\x1eResubmitFineTuningModelRequest\x12\n\n\x02id\x18\x01 \x01(\t\"0\n\"GetFineTuningModelsByUserIdRequest\x12\n\n\x02id\x18\x01 \x01(\t\"/\n!GetFineTuningModelsByOrgIdRequest\x12\n\n\x02id\x18\x01 \x01(\t\"O\n#GetFineTuningModelsByUserIdResponse\x12(\n\x06models\x18\x01 \x03(\x0b\x32\x18.gooseai.FineTuningModel\"N\n\"GetFineTuningModelsByOrgIdResponse\x12(\n\x06models\x18\x01 \x03(\x0b\x32\x18.gooseai.FineTuningModel*\x8b\x01\n\x0e\x46ineTuningMode\x12%\n!FINE_TUNING_MODE_NONE_UNSPECIFIED\x10\x00\x12\x19\n\x15\x46INE_TUNING_MODE_FACE\x10\x01\x12\x1a\n\x16\x46INE_TUNING_MODE_STYLE\x10\x02\x12\x1b\n\x17\x46INE_TUNING_MODE_OBJECT\x10\x03*\xe8\x01\n\x15\x46ineTuningModelStatus\x12\x34\n0FINE_TUNING_MODEL_STATUS_NOT_STARTED_UNSPECIFIED\x10\x00\x12$\n FINE_TUNING_MODEL_STATUS_RUNNING\x10\x01\x12&\n\"FINE_TUNING_MODEL_STATUS_COMPLETED\x10\x02\x12#\n\x1f\x46INE_TUNING_MODEL_STATUS_FAILED\x10\x03\x12&\n\"FINE_TUNING_MODEL_STATUS_SUBMITTED\x10\x04\x32\x86\x07\n\x11\x46ineTuningService\x12\x66\n\x15\x43reateFineTuningModel\x12%.gooseai.CreateFineTuningModelRequest\x1a&.gooseai.CreateFineTuningModelResponse\x12i\n\x16GetFineTuningModelById\x12&.gooseai.GetFineTuningModelByIdRequest\x1a\'.gooseai.GetFineTuningModelByIdResponse\x12\x66\n\x15UpdateFineTuningModel\x12%.gooseai.UpdateFineTuningModelRequest\x1a&.gooseai.UpdateFineTuningModelResponse\x12\x66\n\x15\x44\x65leteFineTuningModel\x12%.gooseai.DeleteFineTuningModelRequest\x1a&.gooseai.DeleteFineTuningModelResponse\x12o\n\x18GetFineTuningModelStatus\x12(.gooseai.GetFineTuningModelStatusRequest\x1a).gooseai.GetFineTuningModelStatusResponse\x12l\n\x17ResubmitFineTuningModel\x12\'.gooseai.ResubmitFineTuningModelRequest\x1a(.gooseai.ResubmitFineTuningModelResponse\x12x\n\x1bGetFineTuningModelsByUserId\x12+.gooseai.GetFineTuningModelsByUserIdRequest\x1a,.gooseai.GetFineTuningModelsByUserIdResponse\x12u\n\x1aGetFineTuningModelsByOrgId\x12*.gooseai.GetFineTuningModelsByOrgIdRequest\x1a+.gooseai.GetFineTuningModelsByOrgIdResponseB;Z9github.com/stability-ai/api-interfaces/gooseai/finetuningb\x06proto3')
 
 _FINETUNINGMODE = DESCRIPTOR.enum_types_by_name['FineTuningMode']
 FineTuningMode = enum_type_wrapper.EnumTypeWrapper(_FINETUNINGMODE)
-_FINETUNINGJOBSTATUS = DESCRIPTOR.enum_types_by_name['FineTuningJobStatus']
-FineTuningJobStatus = enum_type_wrapper.EnumTypeWrapper(_FINETUNINGJOBSTATUS)
+_FINETUNINGMODELSTATUS = DESCRIPTOR.enum_types_by_name['FineTuningModelStatus']
+FineTuningModelStatus = enum_type_wrapper.EnumTypeWrapper(_FINETUNINGMODELSTATUS)
 FINE_TUNING_MODE_NONE_UNSPECIFIED = 0
 FINE_TUNING_MODE_FACE = 1
 FINE_TUNING_MODE_STYLE = 2
 FINE_TUNING_MODE_OBJECT = 3
-FINE_TUNING_JOB_STATUS_NOT_STARTED_UNSPECIFIED = 0
-FINE_TUNING_JOB_STATUS_RUNNING = 1
-FINE_TUNING_JOB_STATUS_COMPLETED = 2
-FINE_TUNING_JOB_STATUS_FAILED = 3
-FINE_TUNING_JOB_STATUS_SUBMITTED = 4
+FINE_TUNING_MODEL_STATUS_NOT_STARTED_UNSPECIFIED = 0
+FINE_TUNING_MODEL_STATUS_RUNNING = 1
+FINE_TUNING_MODEL_STATUS_COMPLETED = 2
+FINE_TUNING_MODEL_STATUS_FAILED = 3
+FINE_TUNING_MODEL_STATUS_SUBMITTED = 4
 
 
-_FINETUNINGJOB = DESCRIPTOR.message_types_by_name['FineTuningJob']
-_CREATEFINETUNINGJOBRESPONSE = DESCRIPTOR.message_types_by_name['CreateFineTuningJobResponse']
-_GETFINETUNINGJOBBYIDRESPONSE = DESCRIPTOR.message_types_by_name['GetFineTuningJobByIdResponse']
-_UPDATEFINETUNINGJOBRESPONSE = DESCRIPTOR.message_types_by_name['UpdateFineTuningJobResponse']
-_DELETEFINETUNINGJOBRESPONSE = DESCRIPTOR.message_types_by_name['DeleteFineTuningJobResponse']
-_RESUBMITFINETUNINGJOBRESPONSE = DESCRIPTOR.message_types_by_name['ResubmitFineTuningJobResponse']
-_CREATEFINETUNINGJOBREQUEST = DESCRIPTOR.message_types_by_name['CreateFineTuningJobRequest']
-_UPDATEFINETUNINGJOBREQUEST = DESCRIPTOR.message_types_by_name['UpdateFineTuningJobRequest']
-_GETFINETUNINGJOBBYIDREQUEST = DESCRIPTOR.message_types_by_name['GetFineTuningJobByIdRequest']
-_DELETEFINETUNINGJOBREQUEST = DESCRIPTOR.message_types_by_name['DeleteFineTuningJobRequest']
-_GETFINETUNINGJOBSTATUSREQUEST = DESCRIPTOR.message_types_by_name['GetFineTuningJobStatusRequest']
-_GETFINETUNINGJOBSTATUSRESPONSE = DESCRIPTOR.message_types_by_name['GetFineTuningJobStatusResponse']
-_RESUBMITFINETUNINGJOBREQUEST = DESCRIPTOR.message_types_by_name['ResubmitFineTuningJobRequest']
-_GETFINETUNINGJOBSBYUSERIDREQUEST = DESCRIPTOR.message_types_by_name['GetFineTuningJobsByUserIdRequest']
-_GETFINETUNINGJOBSBYORGIDREQUEST = DESCRIPTOR.message_types_by_name['GetFineTuningJobsByOrgIdRequest']
-_GETFINETUNINGJOBSBYUSERIDRESPONSE = DESCRIPTOR.message_types_by_name['GetFineTuningJobsByUserIdResponse']
-_GETFINETUNINGJOBSBYORGIDRESPONSE = DESCRIPTOR.message_types_by_name['GetFineTuningJobsByOrgIdResponse']
-FineTuningJob = _reflection.GeneratedProtocolMessageType('FineTuningJob', (_message.Message,), {
-  'DESCRIPTOR' : _FINETUNINGJOB,
+_FINETUNINGMODEL = DESCRIPTOR.message_types_by_name['FineTuningModel']
+_CREATEFINETUNINGMODELRESPONSE = DESCRIPTOR.message_types_by_name['CreateFineTuningModelResponse']
+_GETFINETUNINGMODELBYIDRESPONSE = DESCRIPTOR.message_types_by_name['GetFineTuningModelByIdResponse']
+_UPDATEFINETUNINGMODELRESPONSE = DESCRIPTOR.message_types_by_name['UpdateFineTuningModelResponse']
+_DELETEFINETUNINGMODELRESPONSE = DESCRIPTOR.message_types_by_name['DeleteFineTuningModelResponse']
+_RESUBMITFINETUNINGMODELRESPONSE = DESCRIPTOR.message_types_by_name['ResubmitFineTuningModelResponse']
+_CREATEFINETUNINGMODELREQUEST = DESCRIPTOR.message_types_by_name['CreateFineTuningModelRequest']
+_UPDATEFINETUNINGMODELREQUEST = DESCRIPTOR.message_types_by_name['UpdateFineTuningModelRequest']
+_GETFINETUNINGMODELBYIDREQUEST = DESCRIPTOR.message_types_by_name['GetFineTuningModelByIdRequest']
+_DELETEFINETUNINGMODELREQUEST = DESCRIPTOR.message_types_by_name['DeleteFineTuningModelRequest']
+_GETFINETUNINGMODELSTATUSREQUEST = DESCRIPTOR.message_types_by_name['GetFineTuningModelStatusRequest']
+_GETFINETUNINGMODELSTATUSRESPONSE = DESCRIPTOR.message_types_by_name['GetFineTuningModelStatusResponse']
+_RESUBMITFINETUNINGMODELREQUEST = DESCRIPTOR.message_types_by_name['ResubmitFineTuningModelRequest']
+_GETFINETUNINGMODELSBYUSERIDREQUEST = DESCRIPTOR.message_types_by_name['GetFineTuningModelsByUserIdRequest']
+_GETFINETUNINGMODELSBYORGIDREQUEST = DESCRIPTOR.message_types_by_name['GetFineTuningModelsByOrgIdRequest']
+_GETFINETUNINGMODELSBYUSERIDRESPONSE = DESCRIPTOR.message_types_by_name['GetFineTuningModelsByUserIdResponse']
+_GETFINETUNINGMODELSBYORGIDRESPONSE = DESCRIPTOR.message_types_by_name['GetFineTuningModelsByOrgIdResponse']
+FineTuningModel = _reflection.GeneratedProtocolMessageType('FineTuningModel', (_message.Message,), {
+  'DESCRIPTOR' : _FINETUNINGMODEL,
   '__module__' : 'finetuning_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.FineTuningJob)
+  # @@protoc_insertion_point(class_scope:gooseai.FineTuningModel)
   })
-_sym_db.RegisterMessage(FineTuningJob)
+_sym_db.RegisterMessage(FineTuningModel)
 
-CreateFineTuningJobResponse = _reflection.GeneratedProtocolMessageType('CreateFineTuningJobResponse', (_message.Message,), {
-  'DESCRIPTOR' : _CREATEFINETUNINGJOBRESPONSE,
+CreateFineTuningModelResponse = _reflection.GeneratedProtocolMessageType('CreateFineTuningModelResponse', (_message.Message,), {
+  'DESCRIPTOR' : _CREATEFINETUNINGMODELRESPONSE,
   '__module__' : 'finetuning_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.CreateFineTuningJobResponse)
+  # @@protoc_insertion_point(class_scope:gooseai.CreateFineTuningModelResponse)
   })
-_sym_db.RegisterMessage(CreateFineTuningJobResponse)
+_sym_db.RegisterMessage(CreateFineTuningModelResponse)
 
-GetFineTuningJobByIdResponse = _reflection.GeneratedProtocolMessageType('GetFineTuningJobByIdResponse', (_message.Message,), {
-  'DESCRIPTOR' : _GETFINETUNINGJOBBYIDRESPONSE,
+GetFineTuningModelByIdResponse = _reflection.GeneratedProtocolMessageType('GetFineTuningModelByIdResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETFINETUNINGMODELBYIDRESPONSE,
   '__module__' : 'finetuning_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.GetFineTuningJobByIdResponse)
+  # @@protoc_insertion_point(class_scope:gooseai.GetFineTuningModelByIdResponse)
   })
-_sym_db.RegisterMessage(GetFineTuningJobByIdResponse)
+_sym_db.RegisterMessage(GetFineTuningModelByIdResponse)
 
-UpdateFineTuningJobResponse = _reflection.GeneratedProtocolMessageType('UpdateFineTuningJobResponse', (_message.Message,), {
-  'DESCRIPTOR' : _UPDATEFINETUNINGJOBRESPONSE,
+UpdateFineTuningModelResponse = _reflection.GeneratedProtocolMessageType('UpdateFineTuningModelResponse', (_message.Message,), {
+  'DESCRIPTOR' : _UPDATEFINETUNINGMODELRESPONSE,
   '__module__' : 'finetuning_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.UpdateFineTuningJobResponse)
+  # @@protoc_insertion_point(class_scope:gooseai.UpdateFineTuningModelResponse)
   })
-_sym_db.RegisterMessage(UpdateFineTuningJobResponse)
+_sym_db.RegisterMessage(UpdateFineTuningModelResponse)
 
-DeleteFineTuningJobResponse = _reflection.GeneratedProtocolMessageType('DeleteFineTuningJobResponse', (_message.Message,), {
-  'DESCRIPTOR' : _DELETEFINETUNINGJOBRESPONSE,
+DeleteFineTuningModelResponse = _reflection.GeneratedProtocolMessageType('DeleteFineTuningModelResponse', (_message.Message,), {
+  'DESCRIPTOR' : _DELETEFINETUNINGMODELRESPONSE,
   '__module__' : 'finetuning_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.DeleteFineTuningJobResponse)
+  # @@protoc_insertion_point(class_scope:gooseai.DeleteFineTuningModelResponse)
   })
-_sym_db.RegisterMessage(DeleteFineTuningJobResponse)
+_sym_db.RegisterMessage(DeleteFineTuningModelResponse)
 
-ResubmitFineTuningJobResponse = _reflection.GeneratedProtocolMessageType('ResubmitFineTuningJobResponse', (_message.Message,), {
-  'DESCRIPTOR' : _RESUBMITFINETUNINGJOBRESPONSE,
+ResubmitFineTuningModelResponse = _reflection.GeneratedProtocolMessageType('ResubmitFineTuningModelResponse', (_message.Message,), {
+  'DESCRIPTOR' : _RESUBMITFINETUNINGMODELRESPONSE,
   '__module__' : 'finetuning_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.ResubmitFineTuningJobResponse)
+  # @@protoc_insertion_point(class_scope:gooseai.ResubmitFineTuningModelResponse)
   })
-_sym_db.RegisterMessage(ResubmitFineTuningJobResponse)
+_sym_db.RegisterMessage(ResubmitFineTuningModelResponse)
 
-CreateFineTuningJobRequest = _reflection.GeneratedProtocolMessageType('CreateFineTuningJobRequest', (_message.Message,), {
-  'DESCRIPTOR' : _CREATEFINETUNINGJOBREQUEST,
+CreateFineTuningModelRequest = _reflection.GeneratedProtocolMessageType('CreateFineTuningModelRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CREATEFINETUNINGMODELREQUEST,
   '__module__' : 'finetuning_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.CreateFineTuningJobRequest)
+  # @@protoc_insertion_point(class_scope:gooseai.CreateFineTuningModelRequest)
   })
-_sym_db.RegisterMessage(CreateFineTuningJobRequest)
+_sym_db.RegisterMessage(CreateFineTuningModelRequest)
 
-UpdateFineTuningJobRequest = _reflection.GeneratedProtocolMessageType('UpdateFineTuningJobRequest', (_message.Message,), {
-  'DESCRIPTOR' : _UPDATEFINETUNINGJOBREQUEST,
+UpdateFineTuningModelRequest = _reflection.GeneratedProtocolMessageType('UpdateFineTuningModelRequest', (_message.Message,), {
+  'DESCRIPTOR' : _UPDATEFINETUNINGMODELREQUEST,
   '__module__' : 'finetuning_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.UpdateFineTuningJobRequest)
+  # @@protoc_insertion_point(class_scope:gooseai.UpdateFineTuningModelRequest)
   })
-_sym_db.RegisterMessage(UpdateFineTuningJobRequest)
+_sym_db.RegisterMessage(UpdateFineTuningModelRequest)
 
-GetFineTuningJobByIdRequest = _reflection.GeneratedProtocolMessageType('GetFineTuningJobByIdRequest', (_message.Message,), {
-  'DESCRIPTOR' : _GETFINETUNINGJOBBYIDREQUEST,
+GetFineTuningModelByIdRequest = _reflection.GeneratedProtocolMessageType('GetFineTuningModelByIdRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETFINETUNINGMODELBYIDREQUEST,
   '__module__' : 'finetuning_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.GetFineTuningJobByIdRequest)
+  # @@protoc_insertion_point(class_scope:gooseai.GetFineTuningModelByIdRequest)
   })
-_sym_db.RegisterMessage(GetFineTuningJobByIdRequest)
+_sym_db.RegisterMessage(GetFineTuningModelByIdRequest)
 
-DeleteFineTuningJobRequest = _reflection.GeneratedProtocolMessageType('DeleteFineTuningJobRequest', (_message.Message,), {
-  'DESCRIPTOR' : _DELETEFINETUNINGJOBREQUEST,
+DeleteFineTuningModelRequest = _reflection.GeneratedProtocolMessageType('DeleteFineTuningModelRequest', (_message.Message,), {
+  'DESCRIPTOR' : _DELETEFINETUNINGMODELREQUEST,
   '__module__' : 'finetuning_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.DeleteFineTuningJobRequest)
+  # @@protoc_insertion_point(class_scope:gooseai.DeleteFineTuningModelRequest)
   })
-_sym_db.RegisterMessage(DeleteFineTuningJobRequest)
+_sym_db.RegisterMessage(DeleteFineTuningModelRequest)
 
-GetFineTuningJobStatusRequest = _reflection.GeneratedProtocolMessageType('GetFineTuningJobStatusRequest', (_message.Message,), {
-  'DESCRIPTOR' : _GETFINETUNINGJOBSTATUSREQUEST,
+GetFineTuningModelStatusRequest = _reflection.GeneratedProtocolMessageType('GetFineTuningModelStatusRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETFINETUNINGMODELSTATUSREQUEST,
   '__module__' : 'finetuning_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.GetFineTuningJobStatusRequest)
+  # @@protoc_insertion_point(class_scope:gooseai.GetFineTuningModelStatusRequest)
   })
-_sym_db.RegisterMessage(GetFineTuningJobStatusRequest)
+_sym_db.RegisterMessage(GetFineTuningModelStatusRequest)
 
-GetFineTuningJobStatusResponse = _reflection.GeneratedProtocolMessageType('GetFineTuningJobStatusResponse', (_message.Message,), {
-  'DESCRIPTOR' : _GETFINETUNINGJOBSTATUSRESPONSE,
+GetFineTuningModelStatusResponse = _reflection.GeneratedProtocolMessageType('GetFineTuningModelStatusResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETFINETUNINGMODELSTATUSRESPONSE,
   '__module__' : 'finetuning_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.GetFineTuningJobStatusResponse)
+  # @@protoc_insertion_point(class_scope:gooseai.GetFineTuningModelStatusResponse)
   })
-_sym_db.RegisterMessage(GetFineTuningJobStatusResponse)
+_sym_db.RegisterMessage(GetFineTuningModelStatusResponse)
 
-ResubmitFineTuningJobRequest = _reflection.GeneratedProtocolMessageType('ResubmitFineTuningJobRequest', (_message.Message,), {
-  'DESCRIPTOR' : _RESUBMITFINETUNINGJOBREQUEST,
+ResubmitFineTuningModelRequest = _reflection.GeneratedProtocolMessageType('ResubmitFineTuningModelRequest', (_message.Message,), {
+  'DESCRIPTOR' : _RESUBMITFINETUNINGMODELREQUEST,
   '__module__' : 'finetuning_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.ResubmitFineTuningJobRequest)
+  # @@protoc_insertion_point(class_scope:gooseai.ResubmitFineTuningModelRequest)
   })
-_sym_db.RegisterMessage(ResubmitFineTuningJobRequest)
+_sym_db.RegisterMessage(ResubmitFineTuningModelRequest)
 
-GetFineTuningJobsByUserIdRequest = _reflection.GeneratedProtocolMessageType('GetFineTuningJobsByUserIdRequest', (_message.Message,), {
-  'DESCRIPTOR' : _GETFINETUNINGJOBSBYUSERIDREQUEST,
+GetFineTuningModelsByUserIdRequest = _reflection.GeneratedProtocolMessageType('GetFineTuningModelsByUserIdRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETFINETUNINGMODELSBYUSERIDREQUEST,
   '__module__' : 'finetuning_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.GetFineTuningJobsByUserIdRequest)
+  # @@protoc_insertion_point(class_scope:gooseai.GetFineTuningModelsByUserIdRequest)
   })
-_sym_db.RegisterMessage(GetFineTuningJobsByUserIdRequest)
+_sym_db.RegisterMessage(GetFineTuningModelsByUserIdRequest)
 
-GetFineTuningJobsByOrgIdRequest = _reflection.GeneratedProtocolMessageType('GetFineTuningJobsByOrgIdRequest', (_message.Message,), {
-  'DESCRIPTOR' : _GETFINETUNINGJOBSBYORGIDREQUEST,
+GetFineTuningModelsByOrgIdRequest = _reflection.GeneratedProtocolMessageType('GetFineTuningModelsByOrgIdRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETFINETUNINGMODELSBYORGIDREQUEST,
   '__module__' : 'finetuning_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.GetFineTuningJobsByOrgIdRequest)
+  # @@protoc_insertion_point(class_scope:gooseai.GetFineTuningModelsByOrgIdRequest)
   })
-_sym_db.RegisterMessage(GetFineTuningJobsByOrgIdRequest)
+_sym_db.RegisterMessage(GetFineTuningModelsByOrgIdRequest)
 
-GetFineTuningJobsByUserIdResponse = _reflection.GeneratedProtocolMessageType('GetFineTuningJobsByUserIdResponse', (_message.Message,), {
-  'DESCRIPTOR' : _GETFINETUNINGJOBSBYUSERIDRESPONSE,
+GetFineTuningModelsByUserIdResponse = _reflection.GeneratedProtocolMessageType('GetFineTuningModelsByUserIdResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETFINETUNINGMODELSBYUSERIDRESPONSE,
   '__module__' : 'finetuning_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.GetFineTuningJobsByUserIdResponse)
+  # @@protoc_insertion_point(class_scope:gooseai.GetFineTuningModelsByUserIdResponse)
   })
-_sym_db.RegisterMessage(GetFineTuningJobsByUserIdResponse)
+_sym_db.RegisterMessage(GetFineTuningModelsByUserIdResponse)
 
-GetFineTuningJobsByOrgIdResponse = _reflection.GeneratedProtocolMessageType('GetFineTuningJobsByOrgIdResponse', (_message.Message,), {
-  'DESCRIPTOR' : _GETFINETUNINGJOBSBYORGIDRESPONSE,
+GetFineTuningModelsByOrgIdResponse = _reflection.GeneratedProtocolMessageType('GetFineTuningModelsByOrgIdResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETFINETUNINGMODELSBYORGIDRESPONSE,
   '__module__' : 'finetuning_pb2'
-  # @@protoc_insertion_point(class_scope:gooseai.GetFineTuningJobsByOrgIdResponse)
+  # @@protoc_insertion_point(class_scope:gooseai.GetFineTuningModelsByOrgIdResponse)
   })
-_sym_db.RegisterMessage(GetFineTuningJobsByOrgIdResponse)
+_sym_db.RegisterMessage(GetFineTuningModelsByOrgIdResponse)
 
 _FINETUNINGSERVICE = DESCRIPTOR.services_by_name['FineTuningService']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z9github.com/stability-ai/api-interfaces/gooseai/finetuning'
-  _FINETUNINGMODE._serialized_start=1574
-  _FINETUNINGMODE._serialized_end=1713
-  _FINETUNINGJOBSTATUS._serialized_start=1716
-  _FINETUNINGJOBSTATUS._serialized_end=1936
-  _FINETUNINGJOB._serialized_start=62
-  _FINETUNINGJOB._serialized_end=336
-  _CREATEFINETUNINGJOBRESPONSE._serialized_start=338
-  _CREATEFINETUNINGJOBRESPONSE._serialized_end=404
-  _GETFINETUNINGJOBBYIDRESPONSE._serialized_start=406
-  _GETFINETUNINGJOBBYIDRESPONSE._serialized_end=473
-  _UPDATEFINETUNINGJOBRESPONSE._serialized_start=475
-  _UPDATEFINETUNINGJOBRESPONSE._serialized_end=541
-  _DELETEFINETUNINGJOBRESPONSE._serialized_start=543
-  _DELETEFINETUNINGJOBRESPONSE._serialized_end=609
-  _RESUBMITFINETUNINGJOBRESPONSE._serialized_start=611
-  _RESUBMITFINETUNINGJOBRESPONSE._serialized_end=679
-  _CREATEFINETUNINGJOBREQUEST._serialized_start=682
-  _CREATEFINETUNINGJOBREQUEST._serialized_end=864
-  _UPDATEFINETUNINGJOBREQUEST._serialized_start=867
-  _UPDATEFINETUNINGJOBREQUEST._serialized_end=1061
-  _GETFINETUNINGJOBBYIDREQUEST._serialized_start=1063
-  _GETFINETUNINGJOBBYIDREQUEST._serialized_end=1104
-  _DELETEFINETUNINGJOBREQUEST._serialized_start=1106
-  _DELETEFINETUNINGJOBREQUEST._serialized_end=1146
-  _GETFINETUNINGJOBSTATUSREQUEST._serialized_start=1148
-  _GETFINETUNINGJOBSTATUSREQUEST._serialized_end=1191
-  _GETFINETUNINGJOBSTATUSRESPONSE._serialized_start=1193
-  _GETFINETUNINGJOBSTATUSRESPONSE._serialized_end=1283
-  _RESUBMITFINETUNINGJOBREQUEST._serialized_start=1285
-  _RESUBMITFINETUNINGJOBREQUEST._serialized_end=1327
-  _GETFINETUNINGJOBSBYUSERIDREQUEST._serialized_start=1329
-  _GETFINETUNINGJOBSBYUSERIDREQUEST._serialized_end=1375
-  _GETFINETUNINGJOBSBYORGIDREQUEST._serialized_start=1377
-  _GETFINETUNINGJOBSBYORGIDREQUEST._serialized_end=1422
-  _GETFINETUNINGJOBSBYUSERIDRESPONSE._serialized_start=1424
-  _GETFINETUNINGJOBSBYUSERIDRESPONSE._serialized_end=1497
-  _GETFINETUNINGJOBSBYORGIDRESPONSE._serialized_start=1499
-  _GETFINETUNINGJOBSBYORGIDRESPONSE._serialized_end=1571
-  _FINETUNINGSERVICE._serialized_start=1939
-  _FINETUNINGSERVICE._serialized_end=2793
+  _FINETUNINGMODE._serialized_start=1622
+  _FINETUNINGMODE._serialized_end=1761
+  _FINETUNINGMODELSTATUS._serialized_start=1764
+  _FINETUNINGMODELSTATUS._serialized_end=1996
+  _FINETUNINGMODEL._serialized_start=62
+  _FINETUNINGMODEL._serialized_end=334
+  _CREATEFINETUNINGMODELRESPONSE._serialized_start=336
+  _CREATEFINETUNINGMODELRESPONSE._serialized_end=408
+  _GETFINETUNINGMODELBYIDRESPONSE._serialized_start=410
+  _GETFINETUNINGMODELBYIDRESPONSE._serialized_end=483
+  _UPDATEFINETUNINGMODELRESPONSE._serialized_start=485
+  _UPDATEFINETUNINGMODELRESPONSE._serialized_end=557
+  _DELETEFINETUNINGMODELRESPONSE._serialized_start=559
+  _DELETEFINETUNINGMODELRESPONSE._serialized_end=631
+  _RESUBMITFINETUNINGMODELRESPONSE._serialized_start=633
+  _RESUBMITFINETUNINGMODELRESPONSE._serialized_end=707
+  _CREATEFINETUNINGMODELREQUEST._serialized_start=710
+  _CREATEFINETUNINGMODELREQUEST._serialized_end=888
+  _UPDATEFINETUNINGMODELREQUEST._serialized_start=891
+  _UPDATEFINETUNINGMODELREQUEST._serialized_end=1081
+  _GETFINETUNINGMODELBYIDREQUEST._serialized_start=1083
+  _GETFINETUNINGMODELBYIDREQUEST._serialized_end=1126
+  _DELETEFINETUNINGMODELREQUEST._serialized_start=1128
+  _DELETEFINETUNINGMODELREQUEST._serialized_end=1170
+  _GETFINETUNINGMODELSTATUSREQUEST._serialized_start=1172
+  _GETFINETUNINGMODELSTATUSREQUEST._serialized_end=1217
+  _GETFINETUNINGMODELSTATUSRESPONSE._serialized_start=1219
+  _GETFINETUNINGMODELSTATUSRESPONSE._serialized_end=1313
+  _RESUBMITFINETUNINGMODELREQUEST._serialized_start=1315
+  _RESUBMITFINETUNINGMODELREQUEST._serialized_end=1359
+  _GETFINETUNINGMODELSBYUSERIDREQUEST._serialized_start=1361
+  _GETFINETUNINGMODELSBYUSERIDREQUEST._serialized_end=1409
+  _GETFINETUNINGMODELSBYORGIDREQUEST._serialized_start=1411
+  _GETFINETUNINGMODELSBYORGIDREQUEST._serialized_end=1458
+  _GETFINETUNINGMODELSBYUSERIDRESPONSE._serialized_start=1460
+  _GETFINETUNINGMODELSBYUSERIDRESPONSE._serialized_end=1539
+  _GETFINETUNINGMODELSBYORGIDRESPONSE._serialized_start=1541
+  _GETFINETUNINGMODELSBYORGIDRESPONSE._serialized_end=1619
+  _FINETUNINGSERVICE._serialized_start=1999
+  _FINETUNINGSERVICE._serialized_end=2901
 # @@protoc_insertion_point(module_scope)

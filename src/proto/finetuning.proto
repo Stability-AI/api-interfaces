@@ -5,7 +5,7 @@ import "project.proto";
 
 option go_package = "github.com/stability-ai/api-interfaces/gooseai/finetuning";
 
-// The Mode of Fine Tuning Job
+// The Mode of Fine Tuning Model
 enum FineTuningMode {
   // No mode specified
   FINE_TUNING_MODE_NONE_UNSPECIFIED = 0;
@@ -17,51 +17,51 @@ enum FineTuningMode {
   FINE_TUNING_MODE_OBJECT = 3;
 }
 
-message FineTuningJob {
+message FineTuningModel {
   // uuid unique identifier
   string id = 1;
-  // user who created the job
+  // user who created the model
   User user = 2; 
   // a readable model name
-  string model_name = 3;
-  // the mode of the job
+  string name = 3;
+  // the mode of the model
   optional FineTuningMode mode = 4; 
   // freeform text description of object
   optional string object_name = 5;  
   // the list of assets to be used for fine tuning
   string project_id = 6; 
-  // how long the job took to run
+  // how long the model took to run
   double duration = 7;
-  // the current status of the job
-  FineTuningJobStatus status = 8;
+  // the current status of the model
+  FineTuningModelStatus status = 8;
   // the engineId of an fine-tuneable Stability model
   string engine_id = 9;
 }
 
-message CreateFineTuningJobResponse {
-  FineTuningJob job = 1;
+message CreateFineTuningModelResponse {
+  FineTuningModel model = 1;
 }
 
-message GetFineTuningJobByIdResponse {
-  FineTuningJob job = 1;
+message GetFineTuningModelByIdResponse {
+  FineTuningModel model = 1;
 }
 
-message UpdateFineTuningJobResponse {
-  FineTuningJob job = 1;
+message UpdateFineTuningModelResponse {
+  FineTuningModel model = 1;
 }
 
-message DeleteFineTuningJobResponse {
-  FineTuningJob job = 1;
+message DeleteFineTuningModelResponse {
+  FineTuningModel model = 1;
 }
 
-message ResubmitFineTuningJobResponse {
-  FineTuningJob job = 1;
+message ResubmitFineTuningModelResponse {
+  FineTuningModel model = 1;
 }
 
-message CreateFineTuningJobRequest{
+message CreateFineTuningModelRequest{
   // a readable model name
-  string model_name = 1;
-  // the mode of the job
+  string name = 1;
+  // the mode of the model
   optional FineTuningMode mode = 2;
   // freeform text description of object, should only be set when mode is OBJECT
   optional string object_name = 3;
@@ -71,12 +71,12 @@ message CreateFineTuningJobRequest{
   string engine_id = 5;
 }
 
-message UpdateFineTuningJobRequest{
-  // the id of the job
+message UpdateFineTuningModelRequest{
+  // the id of the model
   string id = 1;
   // a readable model name
-  string model_name = 2;
-  // the mode of the job
+  string name = 2;
+  // the mode of the model
   optional FineTuningMode mode = 3;
   // freeform text description of object, should only be set when mode is OBJECT
   optional string object_name = 4;
@@ -86,82 +86,82 @@ message UpdateFineTuningJobRequest{
   string engine_id = 6;
 }
 
-message GetFineTuningJobByIdRequest {
-  // the id of the job
+message GetFineTuningModelByIdRequest {
+  // the id of the model
   string id = 1;
 }
 
-message DeleteFineTuningJobRequest {
-  // the id of the job
+message DeleteFineTuningModelRequest {
+  // the id of the model
   string id = 1;
 }
 
-message GetFineTuningJobStatusRequest{
-  // the id of the job
+message GetFineTuningModelStatusRequest{
+  // the id of the model
   string id = 1;
 }
 
-// The Status of Fine Tuning Job as reported by the job processing system
-enum FineTuningJobStatus {
-  // Job not yet started
-  FINE_TUNING_JOB_STATUS_NOT_STARTED_UNSPECIFIED = 0;
-  // Job is currently running
-  FINE_TUNING_JOB_STATUS_RUNNING = 1;
-  // Job has completed successfully
-  FINE_TUNING_JOB_STATUS_COMPLETED = 2;  
-  // Job has failed
-  FINE_TUNING_JOB_STATUS_FAILED = 3;
-  // Job has been submitted
-  FINE_TUNING_JOB_STATUS_SUBMITTED = 4;
+// The Status of Fine Tuning Model as reported by the model processing system
+enum FineTuningModelStatus {
+  // Model not yet started
+  FINE_TUNING_MODEL_STATUS_NOT_STARTED_UNSPECIFIED = 0;
+  // Model is currently running
+  FINE_TUNING_MODEL_STATUS_RUNNING = 1;
+  // Model has completed successfully
+  FINE_TUNING_MODEL_STATUS_COMPLETED = 2;  
+  // Model has failed
+  FINE_TUNING_MODEL_STATUS_FAILED = 3;
+  // Model has been submitted
+  FINE_TUNING_MODEL_STATUS_SUBMITTED = 4;
 }
 
-message GetFineTuningJobStatusResponse {
-  // the id of the job that was checked
+message GetFineTuningModelStatusResponse {
+  // the id of the model that was checked
   string id = 1;
-  // the current status of the job
-  FineTuningJobStatus status = 2;
+  // the current status of the model
+  FineTuningModelStatus status = 2;
 }
 
-message ResubmitFineTuningJobRequest {
-  // the middleware id of the fine tuning job
+message ResubmitFineTuningModelRequest {
+  // the middleware id of the fine tuning model
   string id = 1;
 }
 
-message GetFineTuningJobsByUserIdRequest {
+message GetFineTuningModelsByUserIdRequest {
   // the id of the user
   string id = 1;
 }
 
-message GetFineTuningJobsByOrgIdRequest {
+message GetFineTuningModelsByOrgIdRequest {
   // the organization's id
   string id = 1;
 }
 
-message GetFineTuningJobsByUserIdResponse {
-  // the list of jobs
-  repeated FineTuningJob jobs = 1;
+message GetFineTuningModelsByUserIdResponse {
+  // the list of models
+  repeated FineTuningModel models = 1;
 }
 
-message GetFineTuningJobsByOrgIdResponse {
-  // the list of jobs
-  repeated FineTuningJob jobs = 1;
+message GetFineTuningModelsByOrgIdResponse {
+  // the list of models
+  repeated FineTuningModel models = 1;
 }
 
 service FineTuningService {
   // Create a new project if it does not exist, and runs it
-  rpc CreateFineTuningJob (CreateFineTuningJobRequest) returns (CreateFineTuningJobResponse);
-  // Get a FineTuningJob by id
-  rpc GetFineTuningJobById (GetFineTuningJobByIdRequest) returns (GetFineTuningJobByIdResponse);
-  // Update a FineTuningJob by id
-  rpc UpdateFineTuningJob (UpdateFineTuningJobRequest) returns (UpdateFineTuningJobResponse);
-  // Delete a FineTuningJob by id
-  rpc DeleteFineTuningJob (DeleteFineTuningJobRequest) returns (DeleteFineTuningJobResponse);
-  // Check the progress of a FineTuningJob by id
-  rpc GetFineTuningJobStatus (GetFineTuningJobStatusRequest) returns (GetFineTuningJobStatusResponse);  
-  // Re-run training API call, does not create a new job in the DB
-  rpc ResubmitFineTuningJob (ResubmitFineTuningJobRequest) returns (ResubmitFineTuningJobResponse);
-  // Get a list of FineTuningJobs by user id
-  rpc GetFineTuningJobsByUserId(GetFineTuningJobsByUserIdRequest) returns (GetFineTuningJobsByUserIdResponse);
-  // Get a list of FineTuningJobs by org id
-  rpc GetFineTuningJobsByOrgId(GetFineTuningJobsByOrgIdRequest) returns (GetFineTuningJobsByOrgIdResponse);
+  rpc CreateFineTuningModel (CreateFineTuningModelRequest) returns (CreateFineTuningModelResponse);
+  // Get a FineTuningModel by id
+  rpc GetFineTuningModelById (GetFineTuningModelByIdRequest) returns (GetFineTuningModelByIdResponse);
+  // Update a FineTuningModel by id
+  rpc UpdateFineTuningModel (UpdateFineTuningModelRequest) returns (UpdateFineTuningModelResponse);
+  // Delete a FineTuningModel by id
+  rpc DeleteFineTuningModel (DeleteFineTuningModelRequest) returns (DeleteFineTuningModelResponse);
+  // Check the progress of a FineTuningModel by id
+  rpc GetFineTuningModelStatus (GetFineTuningModelStatusRequest) returns (GetFineTuningModelStatusResponse);  
+  // Re-run training API call, does not create a new model in the DB
+  rpc ResubmitFineTuningModel (ResubmitFineTuningModelRequest) returns (ResubmitFineTuningModelResponse);
+  // Get a list of FineTuningModels by user id
+  rpc GetFineTuningModelsByUserId(GetFineTuningModelsByUserIdRequest) returns (GetFineTuningModelsByUserIdResponse);
+  // Get a list of FineTuningModels by org id
+  rpc GetFineTuningModelsByOrgId(GetFineTuningModelsByOrgIdRequest) returns (GetFineTuningModelsByOrgIdResponse);
 }

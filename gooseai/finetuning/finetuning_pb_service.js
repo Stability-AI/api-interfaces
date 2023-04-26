@@ -10,76 +10,76 @@ var FineTuningService = (function () {
   return FineTuningService;
 }());
 
-FineTuningService.CreateFineTuningJob = {
-  methodName: "CreateFineTuningJob",
+FineTuningService.CreateFineTuningModel = {
+  methodName: "CreateFineTuningModel",
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.CreateFineTuningJobRequest,
-  responseType: finetuning_pb.CreateFineTuningJobResponse
+  requestType: finetuning_pb.CreateFineTuningModelRequest,
+  responseType: finetuning_pb.CreateFineTuningModelResponse
 };
 
-FineTuningService.GetFineTuningJobById = {
-  methodName: "GetFineTuningJobById",
+FineTuningService.GetFineTuningModelById = {
+  methodName: "GetFineTuningModelById",
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.GetFineTuningJobByIdRequest,
-  responseType: finetuning_pb.GetFineTuningJobByIdResponse
+  requestType: finetuning_pb.GetFineTuningModelByIdRequest,
+  responseType: finetuning_pb.GetFineTuningModelByIdResponse
 };
 
-FineTuningService.UpdateFineTuningJob = {
-  methodName: "UpdateFineTuningJob",
+FineTuningService.UpdateFineTuningModel = {
+  methodName: "UpdateFineTuningModel",
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.UpdateFineTuningJobRequest,
-  responseType: finetuning_pb.UpdateFineTuningJobResponse
+  requestType: finetuning_pb.UpdateFineTuningModelRequest,
+  responseType: finetuning_pb.UpdateFineTuningModelResponse
 };
 
-FineTuningService.DeleteFineTuningJob = {
-  methodName: "DeleteFineTuningJob",
+FineTuningService.DeleteFineTuningModel = {
+  methodName: "DeleteFineTuningModel",
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.DeleteFineTuningJobRequest,
-  responseType: finetuning_pb.DeleteFineTuningJobResponse
+  requestType: finetuning_pb.DeleteFineTuningModelRequest,
+  responseType: finetuning_pb.DeleteFineTuningModelResponse
 };
 
-FineTuningService.GetFineTuningJobStatus = {
-  methodName: "GetFineTuningJobStatus",
+FineTuningService.GetFineTuningModelStatus = {
+  methodName: "GetFineTuningModelStatus",
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.GetFineTuningJobStatusRequest,
-  responseType: finetuning_pb.GetFineTuningJobStatusResponse
+  requestType: finetuning_pb.GetFineTuningModelStatusRequest,
+  responseType: finetuning_pb.GetFineTuningModelStatusResponse
 };
 
-FineTuningService.ResubmitFineTuningJob = {
-  methodName: "ResubmitFineTuningJob",
+FineTuningService.ResubmitFineTuningModel = {
+  methodName: "ResubmitFineTuningModel",
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.ResubmitFineTuningJobRequest,
-  responseType: finetuning_pb.ResubmitFineTuningJobResponse
+  requestType: finetuning_pb.ResubmitFineTuningModelRequest,
+  responseType: finetuning_pb.ResubmitFineTuningModelResponse
 };
 
-FineTuningService.GetFineTuningJobsByUserId = {
-  methodName: "GetFineTuningJobsByUserId",
+FineTuningService.GetFineTuningModelsByUserId = {
+  methodName: "GetFineTuningModelsByUserId",
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.GetFineTuningJobsByUserIdRequest,
-  responseType: finetuning_pb.GetFineTuningJobsByUserIdResponse
+  requestType: finetuning_pb.GetFineTuningModelsByUserIdRequest,
+  responseType: finetuning_pb.GetFineTuningModelsByUserIdResponse
 };
 
-FineTuningService.GetFineTuningJobsByOrgId = {
-  methodName: "GetFineTuningJobsByOrgId",
+FineTuningService.GetFineTuningModelsByOrgId = {
+  methodName: "GetFineTuningModelsByOrgId",
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.GetFineTuningJobsByOrgIdRequest,
-  responseType: finetuning_pb.GetFineTuningJobsByOrgIdResponse
+  requestType: finetuning_pb.GetFineTuningModelsByOrgIdRequest,
+  responseType: finetuning_pb.GetFineTuningModelsByOrgIdResponse
 };
 
 exports.FineTuningService = FineTuningService;
@@ -89,11 +89,11 @@ function FineTuningServiceClient(serviceHost, options) {
   this.options = options || {};
 }
 
-FineTuningServiceClient.prototype.createFineTuningJob = function createFineTuningJob(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.createFineTuningModel = function createFineTuningModel(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.CreateFineTuningJob, {
+  var client = grpc.unary(FineTuningService.CreateFineTuningModel, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -120,11 +120,11 @@ FineTuningServiceClient.prototype.createFineTuningJob = function createFineTunin
   };
 };
 
-FineTuningServiceClient.prototype.getFineTuningJobById = function getFineTuningJobById(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.getFineTuningModelById = function getFineTuningModelById(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.GetFineTuningJobById, {
+  var client = grpc.unary(FineTuningService.GetFineTuningModelById, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -151,11 +151,11 @@ FineTuningServiceClient.prototype.getFineTuningJobById = function getFineTuningJ
   };
 };
 
-FineTuningServiceClient.prototype.updateFineTuningJob = function updateFineTuningJob(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.updateFineTuningModel = function updateFineTuningModel(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.UpdateFineTuningJob, {
+  var client = grpc.unary(FineTuningService.UpdateFineTuningModel, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -182,11 +182,11 @@ FineTuningServiceClient.prototype.updateFineTuningJob = function updateFineTunin
   };
 };
 
-FineTuningServiceClient.prototype.deleteFineTuningJob = function deleteFineTuningJob(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.deleteFineTuningModel = function deleteFineTuningModel(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.DeleteFineTuningJob, {
+  var client = grpc.unary(FineTuningService.DeleteFineTuningModel, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -213,11 +213,11 @@ FineTuningServiceClient.prototype.deleteFineTuningJob = function deleteFineTunin
   };
 };
 
-FineTuningServiceClient.prototype.getFineTuningJobStatus = function getFineTuningJobStatus(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.getFineTuningModelStatus = function getFineTuningModelStatus(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.GetFineTuningJobStatus, {
+  var client = grpc.unary(FineTuningService.GetFineTuningModelStatus, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -244,11 +244,11 @@ FineTuningServiceClient.prototype.getFineTuningJobStatus = function getFineTunin
   };
 };
 
-FineTuningServiceClient.prototype.resubmitFineTuningJob = function resubmitFineTuningJob(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.resubmitFineTuningModel = function resubmitFineTuningModel(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.ResubmitFineTuningJob, {
+  var client = grpc.unary(FineTuningService.ResubmitFineTuningModel, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -275,11 +275,11 @@ FineTuningServiceClient.prototype.resubmitFineTuningJob = function resubmitFineT
   };
 };
 
-FineTuningServiceClient.prototype.getFineTuningJobsByUserId = function getFineTuningJobsByUserId(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.getFineTuningModelsByUserId = function getFineTuningModelsByUserId(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.GetFineTuningJobsByUserId, {
+  var client = grpc.unary(FineTuningService.GetFineTuningModelsByUserId, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -306,11 +306,11 @@ FineTuningServiceClient.prototype.getFineTuningJobsByUserId = function getFineTu
   };
 };
 
-FineTuningServiceClient.prototype.getFineTuningJobsByOrgId = function getFineTuningJobsByOrgId(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.getFineTuningModelsByOrgId = function getFineTuningModelsByOrgId(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.GetFineTuningJobsByOrgId, {
+  var client = grpc.unary(FineTuningService.GetFineTuningModelsByOrgId, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
