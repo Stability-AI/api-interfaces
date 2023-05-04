@@ -442,6 +442,8 @@ message FineTuningParameters {
   // FINE_TUNING_MODEL_STATUS_COMPLETED, the model can be used 
   // for generating images.
   string model_id = 1;  
+  // Internal use only.  Location in object storage of the fine-tuned model.
+  string model_uri = 2;
 }
 
 // A Request is a set of Artifacts, which can be of any type with model or

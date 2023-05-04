@@ -9878,7 +9878,8 @@ proto.gooseai.FineTuningParameters.prototype.toObject = function(opt_includeInst
  */
 proto.gooseai.FineTuningParameters.toObject = function(includeInstance, msg) {
   var f, obj = {
-    modelId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    modelId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    modelUri: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -9919,6 +9920,10 @@ proto.gooseai.FineTuningParameters.deserializeBinaryFromReader = function(msg, r
       var value = /** @type {string} */ (reader.readString());
       msg.setModelId(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setModelUri(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -9955,6 +9960,13 @@ proto.gooseai.FineTuningParameters.serializeBinaryToWriter = function(message, w
       f
     );
   }
+  f = message.getModelUri();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -9973,6 +9985,24 @@ proto.gooseai.FineTuningParameters.prototype.getModelId = function() {
  */
 proto.gooseai.FineTuningParameters.prototype.setModelId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string model_uri = 2;
+ * @return {string}
+ */
+proto.gooseai.FineTuningParameters.prototype.getModelUri = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.gooseai.FineTuningParameters} returns this
+ */
+proto.gooseai.FineTuningParameters.prototype.setModelUri = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

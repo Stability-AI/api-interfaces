@@ -1245,6 +1245,9 @@ export class FineTuningParameters extends jspb.Message {
   getModelId(): string;
   setModelId(value: string): void;
 
+  getModelUri(): string;
+  setModelUri(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FineTuningParameters.AsObject;
   static toObject(includeInstance: boolean, msg: FineTuningParameters): FineTuningParameters.AsObject;
@@ -1258,6 +1261,7 @@ export class FineTuningParameters extends jspb.Message {
 export namespace FineTuningParameters {
   export type AsObject = {
     modelId: string,
+    modelUri: string,
   }
 }
 
