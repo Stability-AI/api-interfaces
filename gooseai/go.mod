@@ -3,7 +3,7 @@ module github.com/stability-ai/api-interfaces/gooseai
 go 1.18
 
 require (
-	github.com/coreweave/tensorizer/tensors v0.0.0-20230324010935-029982083a12
+	github.com/coreweave/tensorizer/tensors v0.0.0-20230504154344-9335202f0406
 	google.golang.org/grpc v1.54.0
 	google.golang.org/protobuf v1.30.0
 )
