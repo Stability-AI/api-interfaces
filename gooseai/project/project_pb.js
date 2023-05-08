@@ -397,7 +397,8 @@ proto.gooseai.ProjectAsset.toObject = function(includeInstance, msg) {
     createdAt: jspb.Message.getFieldWithDefault(msg, 6, 0),
     updatedAt: jspb.Message.getFieldWithDefault(msg, 7, 0),
     request: (f = msg.getRequest()) && generation_pb.Request.toObject(includeInstance, f),
-    tagsMap: (f = msg.getTagsMap()) ? f.toObject(includeInstance, undefined) : []
+    tagsMap: (f = msg.getTagsMap()) ? f.toObject(includeInstance, undefined) : [],
+    finishReason: jspb.Message.getFieldWithDefault(msg, 10, 0)
   };
 
   if (includeInstance) {
@@ -472,6 +473,10 @@ proto.gooseai.ProjectAsset.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
          });
+      break;
+    case 10:
+      var value = /** @type {!proto.gooseai.FinishReason} */ (reader.readEnum());
+      msg.setFinishReason(value);
       break;
     default:
       reader.skipField();
@@ -562,6 +567,13 @@ proto.gooseai.ProjectAsset.serializeBinaryToWriter = function(message, writer) {
   f = message.getTagsMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(9, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = message.getFinishReason();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      10,
+      f
+    );
   }
 };
 
@@ -749,6 +761,24 @@ proto.gooseai.ProjectAsset.prototype.getTagsMap = function(opt_noLazyCreate) {
 proto.gooseai.ProjectAsset.prototype.clearTagsMap = function() {
   this.getTagsMap().clear();
   return this;};
+
+
+/**
+ * optional FinishReason finish_reason = 10;
+ * @return {!proto.gooseai.FinishReason}
+ */
+proto.gooseai.ProjectAsset.prototype.getFinishReason = function() {
+  return /** @type {!proto.gooseai.FinishReason} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+};
+
+
+/**
+ * @param {!proto.gooseai.FinishReason} value
+ * @return {!proto.gooseai.ProjectAsset} returns this
+ */
+proto.gooseai.ProjectAsset.prototype.setFinishReason = function(value) {
+  return jspb.Message.setProto3EnumField(this, 10, value);
+};
 
 
 

@@ -33,6 +33,9 @@ export class ProjectAsset extends jspb.Message {
 
   getTagsMap(): jspb.Map<string, string>;
   clearTagsMap(): void;
+  getFinishReason(): generation_pb.FinishReasonMap[keyof generation_pb.FinishReasonMap];
+  setFinishReason(value: generation_pb.FinishReasonMap[keyof generation_pb.FinishReasonMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ProjectAsset.AsObject;
   static toObject(includeInstance: boolean, msg: ProjectAsset): ProjectAsset.AsObject;
@@ -54,6 +57,7 @@ export namespace ProjectAsset {
     updatedAt: number,
     request?: generation_pb.Request.AsObject,
     tagsMap: Array<[string, string]>,
+    finishReason: generation_pb.FinishReasonMap[keyof generation_pb.FinishReasonMap],
   }
 }
 
