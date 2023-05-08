@@ -38,6 +38,7 @@ message ProjectAsset {
   uint64 updated_at = 7;        // Time of last asset update (UTC seconds epoch)
   Request request = 8;          // The request object that is associated with the artifact
   map<string, string> tags = 9; // The tags associated with the asset
+  FinishReason finish_reason = 10; // The reason the asset was finished, empty if not finished
 }
 
 message Project {
