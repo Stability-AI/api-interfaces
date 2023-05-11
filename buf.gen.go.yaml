@@ -10,18 +10,14 @@ managed:
       - buf.build/googleapis/googleapis    
 plugins:
   - plugin: buf.build/bufbuild/connect-go:v1.7.0
-    out: gen/proto/go
+    out: '.'
     opt:
       - paths=source_relative
   - plugin: buf.build/grpc/go:v1.3.0
-    out: gen/proto/go
+    out: '.'
     opt:
       - paths=source_relative
   - plugin: buf.build/protocolbuffers/go
-    out: gen/proto/go
+    out: '.'
     opt:
       - paths=source_relative  
-  - plugin: buf.build/bufbuild/connect-swift:v0.5.0
-    out: gen/proto/swift  
-  - plugin: buf.build/apple/swift
-    out: gen/proto/swift

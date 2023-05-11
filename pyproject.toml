@@ -36,7 +36,6 @@ path = "src/stability_api/__about__.py"
 
 [tool.hatch.build.targets.wheel.force-include]
 "src/stability_api" = "stability_api"
-"gen/proto/py/stability_api" = "stability_api"
 
 [tool.hatch.envs.default]
 dependencies = [

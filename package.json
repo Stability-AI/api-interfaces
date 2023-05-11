@@ -2,21 +2,20 @@
   "name": "api-interfaces",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "/src/stability_api/index.js",
   "scripts": {
-    "generate-go": "buf generate --template buf.gen.go.yaml",
-    "generate-js": "buf generate --template buf.gen.js.yaml",
-    "generate-kt": "buf generate --template buf.gen.kt.yaml",
-    "generate-py": "buf generate --template buf.gen.py.yaml",
-    "generate-swift": "buf generate --template buf.gen.swift.yaml",
-    "generate": "npm run generate-go && npm run generate-js && npm run generate-kt && npm run generate-py && npm run generate-swift" 
+    "generate-go": "buf generate --template buf.gen.go.yaml --output=./src",
+    "generate-js": "buf generate --template buf.gen.js.yaml --output=./src",
+    "generate-kt": "buf generate --template buf.gen.kt.yaml --output=./src",
+    "generate-py": "buf generate --template buf.gen.py.yaml --output=./src",
+    "generate-swift": "buf generate --template buf.gen.swift.yaml -output=./src",
+    "generate": "npm run generate-go && npm run generate-js && npm run generate-kt && npm run generate-py && npm run generate-swift",
+    "postinstall": "buf generate --template buf.gen.js.yaml --output=./src"
   },
   "keywords": [],
   "author": "",
   "license": "",
   "dependencies": {    
-  },
-  "devDependencies": {
     "@bufbuild/buf": "^1.18.0-1"
   }
 }

@@ -3,6 +3,6 @@ managed:
   enabled: true
 plugins:
   - plugin: buf.build/bufbuild/connect-es:v0.8.6
-    out: gen/proto/js      
+    out: '.'  
   - plugin: buf.build/bufbuild/es:v1.2.0
-    out: gen/proto/js  
+    out: '.'  

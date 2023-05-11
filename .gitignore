@@ -18,4 +18,4 @@ node_modules
 .idea
 
 pybuild/
-dist
+dist/
