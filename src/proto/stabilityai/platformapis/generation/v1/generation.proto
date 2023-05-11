@@ -2,7 +2,7 @@ syntax = 'proto3';
 package stabilityai.platformapis.generation.v1;
 option go_package = "github.com/stability-ai/api-interfaces/gen/proto/go/stabilityai/platformapis/generation/v1;generationv1";
 import "google/protobuf/struct.proto";
-import "coreweave/tensors/tensors.proto";
+import "stabilityai/tensors/tensors.proto";
 
 enum FinishReason {
   NULL = 0;

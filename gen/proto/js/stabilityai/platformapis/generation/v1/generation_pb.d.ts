@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage, Struct } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
-import type { Tensor } from "../../../../coreweave/tensors/tensors_pb.js";
+import type { Tensor } from "../../../tensors/tensors_pb.js";
 
 /**
  * @generated from enum stabilityai.platformapis.generation.v1.FinishReason

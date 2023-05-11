@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { proto3, Struct } from "@bufbuild/protobuf";
-import { Tensor } from "../../../../coreweave/tensors/tensors_pb.js";
+import { Tensor } from "../../../tensors/tensors_pb.js";
 
 /**
  * @generated from enum stabilityai.platformapis.generation.v1.FinishReason
