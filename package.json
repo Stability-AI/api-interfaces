@@ -15,7 +15,7 @@
   "keywords": [],
   "author": "",
   "license": "",
-  "dependencies": {    
+  "devDependencies": {
     "@bufbuild/buf": "^1.18.0-1"
   }
 }
