@@ -6,7 +6,7 @@ ARG PROTOC_GEN_GO_VERSION=v1.28.1
 ARG PROTOC_GEN_GO_GRPC_VERSION=v1.1.0
 
 # Install python and build tools from apt
-RUN apt-get update && apt-get install -y cmake git build-essential python3-venv wget && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y cmake git build-essential python3-venv python3-pip python-is-python3 wget && rm -rf /var/lib/apt/lists/*
 
 # Install golang from binary package
 RUN rm -rf /go && wget ${GOLANG_PACKAGE} -qO- | tar -C / -xz
