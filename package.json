@@ -3,12 +3,20 @@
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "generate-go": "buf generate --template buf.gen.go.yaml",
+    "generate-js": "buf generate --template buf.gen.js.yaml",
+    "generate-kt": "buf generate --template buf.gen.kt.yaml",
+    "generate-py": "buf generate --template buf.gen.py.yaml",
+    "generate-swift": "buf generate --template buf.gen.swift.yaml",
+    "generate": "npm run generate-go && npm run generate-js && npm run generate-kt && npm run generate-py && npm run generate-swift" 
+  },
   "keywords": [],
   "author": "",
   "license": "",
-  "dependencies": {
-    "grpc-tools": "^1.11.2",
-    "ts-protoc-gen": "^0.15.0"
+  "dependencies": {    
+  },
+  "devDependencies": {
+    "@bufbuild/buf": "^1.18.0-1"
   }
 }
