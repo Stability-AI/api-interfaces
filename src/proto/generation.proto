@@ -231,6 +231,7 @@ message ImageParameters {
   optional MaskedAreaInit masked_area_init = 8; // defaults to MASKED_AREA_INIT_ZERO
   optional WeightMethod weight_method = 9; //defaults to TEXT_ENCODER
   optional bool quantize = 10; //defaults to true
+  optional FineTuningParameters fine_tuning_parameters = 11;
 }
 
 enum Action {
@@ -463,7 +464,6 @@ message Request {
   }
   optional ConditionerParameters conditioner = 6;
   reserved 9,10; //9, 10 are reserved
-  optional FineTuningParameters fine_tuning_parameters = 13;
   optional google.protobuf.Struct extras = 2047; // for development use
 }
 

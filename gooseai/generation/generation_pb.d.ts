@@ -657,6 +657,11 @@ export class ImageParameters extends jspb.Message {
   getQuantize(): boolean;
   setQuantize(value: boolean): void;
 
+  hasFineTuningParameters(): boolean;
+  clearFineTuningParameters(): void;
+  getFineTuningParameters(): FineTuningParameters | undefined;
+  setFineTuningParameters(value?: FineTuningParameters): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ImageParameters.AsObject;
   static toObject(includeInstance: boolean, msg: ImageParameters): ImageParameters.AsObject;
@@ -679,6 +684,7 @@ export namespace ImageParameters {
     maskedAreaInit: MaskedAreaInitMap[keyof MaskedAreaInitMap],
     weightMethod: WeightMethodMap[keyof WeightMethodMap],
     quantize: boolean,
+    fineTuningParameters?: FineTuningParameters.AsObject,
   }
 }
 
@@ -1310,11 +1316,6 @@ export class Request extends jspb.Message {
   getConditioner(): ConditionerParameters | undefined;
   setConditioner(value?: ConditionerParameters): void;
 
-  hasFineTuningParameters(): boolean;
-  clearFineTuningParameters(): void;
-  getFineTuningParameters(): FineTuningParameters | undefined;
-  setFineTuningParameters(value?: FineTuningParameters): void;
-
   hasExtras(): boolean;
   clearExtras(): void;
   getExtras(): google_protobuf_struct_pb.Struct | undefined;
@@ -1343,7 +1344,6 @@ export namespace Request {
     interpolate?: InterpolateParameters.AsObject,
     transform?: TransformParameters.AsObject,
     conditioner?: ConditionerParameters.AsObject,
-    fineTuningParameters?: FineTuningParameters.AsObject,
     extras?: google_protobuf_struct_pb.Struct.AsObject,
   }
 

@@ -5218,7 +5218,8 @@ proto.gooseai.ImageParameters.toObject = function(includeInstance, msg) {
     proto.gooseai.StepParameter.toObject, includeInstance),
     maskedAreaInit: jspb.Message.getFieldWithDefault(msg, 8, 0),
     weightMethod: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    quantize: jspb.Message.getBooleanFieldWithDefault(msg, 10, false)
+    quantize: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
+    fineTuningParameters: (f = msg.getFineTuningParameters()) && proto.gooseai.FineTuningParameters.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5298,6 +5299,11 @@ proto.gooseai.ImageParameters.deserializeBinaryFromReader = function(msg, reader
     case 10:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setQuantize(value);
+      break;
+    case 11:
+      var value = new proto.gooseai.FineTuningParameters;
+      reader.readMessage(value,proto.gooseai.FineTuningParameters.deserializeBinaryFromReader);
+      msg.setFineTuningParameters(value);
       break;
     default:
       reader.skipField();
@@ -5398,6 +5404,14 @@ proto.gooseai.ImageParameters.serializeBinaryToWriter = function(message, writer
     writer.writeBool(
       10,
       f
+    );
+  }
+  f = message.getFineTuningParameters();
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      proto.gooseai.FineTuningParameters.serializeBinaryToWriter
     );
   }
 };
@@ -5764,6 +5778,43 @@ proto.gooseai.ImageParameters.prototype.clearQuantize = function() {
  */
 proto.gooseai.ImageParameters.prototype.hasQuantize = function() {
   return jspb.Message.getField(this, 10) != null;
+};
+
+
+/**
+ * optional FineTuningParameters fine_tuning_parameters = 11;
+ * @return {?proto.gooseai.FineTuningParameters}
+ */
+proto.gooseai.ImageParameters.prototype.getFineTuningParameters = function() {
+  return /** @type{?proto.gooseai.FineTuningParameters} */ (
+    jspb.Message.getWrapperField(this, proto.gooseai.FineTuningParameters, 11));
+};
+
+
+/**
+ * @param {?proto.gooseai.FineTuningParameters|undefined} value
+ * @return {!proto.gooseai.ImageParameters} returns this
+*/
+proto.gooseai.ImageParameters.prototype.setFineTuningParameters = function(value) {
+  return jspb.Message.setWrapperField(this, 11, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.gooseai.ImageParameters} returns this
+ */
+proto.gooseai.ImageParameters.prototype.clearFineTuningParameters = function() {
+  return this.setFineTuningParameters(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.ImageParameters.prototype.hasFineTuningParameters = function() {
+  return jspb.Message.getField(this, 11) != null;
 };
 
 
@@ -10085,7 +10136,6 @@ proto.gooseai.Request.toObject = function(includeInstance, msg) {
     interpolate: (f = msg.getInterpolate()) && proto.gooseai.InterpolateParameters.toObject(includeInstance, f),
     transform: (f = msg.getTransform()) && proto.gooseai.TransformParameters.toObject(includeInstance, f),
     conditioner: (f = msg.getConditioner()) && proto.gooseai.ConditionerParameters.toObject(includeInstance, f),
-    fineTuningParameters: (f = msg.getFineTuningParameters()) && proto.gooseai.FineTuningParameters.toObject(includeInstance, f),
     extras: (f = msg.getExtras()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -10169,11 +10219,6 @@ proto.gooseai.Request.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.gooseai.ConditionerParameters;
       reader.readMessage(value,proto.gooseai.ConditionerParameters.deserializeBinaryFromReader);
       msg.setConditioner(value);
-      break;
-    case 13:
-      var value = new proto.gooseai.FineTuningParameters;
-      reader.readMessage(value,proto.gooseai.FineTuningParameters.deserializeBinaryFromReader);
-      msg.setFineTuningParameters(value);
       break;
     case 2047:
       var value = new google_protobuf_struct_pb.Struct;
@@ -10284,14 +10329,6 @@ proto.gooseai.Request.serializeBinaryToWriter = function(message, writer) {
       6,
       f,
       proto.gooseai.ConditionerParameters.serializeBinaryToWriter
-    );
-  }
-  f = message.getFineTuningParameters();
-  if (f != null) {
-    writer.writeMessage(
-      13,
-      f,
-      proto.gooseai.FineTuningParameters.serializeBinaryToWriter
     );
   }
   f = message.getExtras();
@@ -10616,43 +10653,6 @@ proto.gooseai.Request.prototype.clearConditioner = function() {
  */
 proto.gooseai.Request.prototype.hasConditioner = function() {
   return jspb.Message.getField(this, 6) != null;
-};
-
-
-/**
- * optional FineTuningParameters fine_tuning_parameters = 13;
- * @return {?proto.gooseai.FineTuningParameters}
- */
-proto.gooseai.Request.prototype.getFineTuningParameters = function() {
-  return /** @type{?proto.gooseai.FineTuningParameters} */ (
-    jspb.Message.getWrapperField(this, proto.gooseai.FineTuningParameters, 13));
-};
-
-
-/**
- * @param {?proto.gooseai.FineTuningParameters|undefined} value
- * @return {!proto.gooseai.Request} returns this
-*/
-proto.gooseai.Request.prototype.setFineTuningParameters = function(value) {
-  return jspb.Message.setWrapperField(this, 13, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.gooseai.Request} returns this
- */
-proto.gooseai.Request.prototype.clearFineTuningParameters = function() {
-  return this.setFineTuningParameters(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.gooseai.Request.prototype.hasFineTuningParameters = function() {
-  return jspb.Message.getField(this, 13) != null;
 };
 
 
