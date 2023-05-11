@@ -1,8 +1,13 @@
 {
-  "name": "api-interfaces",
+  "name": "stability_api",
   "version": "0.1.0",
   "description": "",
   "main": "/src/stability_api/index.js",
+  "type": "module",
+  "exports": {
+    "./platform/*": "./src/stability_api/platform",
+    "./tensors/*": "./src/stability_api/tensors"
+  },
   "scripts": {
     "generate-go": "buf generate --template buf.gen.go.yaml --output=./src",
     "generate-js": "buf generate --template buf.gen.js.yaml --output=./src",
