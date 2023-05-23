@@ -473,8 +473,8 @@ proto.gooseai.FineTuningModel.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getMode();
-  if (f !== 0.0) {
+  f = /** @type {!proto.gooseai.FineTuningMode} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
     writer.writeEnum(
       4,
       f
@@ -586,7 +586,25 @@ proto.gooseai.FineTuningModel.prototype.getMode = function() {
  * @return {!proto.gooseai.FineTuningModel} returns this
  */
 proto.gooseai.FineTuningModel.prototype.setMode = function(value) {
-  return jspb.Message.setProto3EnumField(this, 4, value);
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.FineTuningModel} returns this
+ */
+proto.gooseai.FineTuningModel.prototype.clearMode = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.FineTuningModel.prototype.hasMode = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 

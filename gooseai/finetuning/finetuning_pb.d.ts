@@ -13,6 +13,8 @@ export class FineTuningModel extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasMode(): boolean;
+  clearMode(): void;
   getMode(): FineTuningModeMap[keyof FineTuningModeMap];
   setMode(value: FineTuningModeMap[keyof FineTuningModeMap]): void;
 
