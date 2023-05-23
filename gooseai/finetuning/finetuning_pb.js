@@ -1568,8 +1568,8 @@ proto.gooseai.UpdateModelRequest.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getName();
-  if (f.length > 0) {
+  f = /** @type {string} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
     writer.writeString(
       2,
       f
@@ -1589,15 +1589,15 @@ proto.gooseai.UpdateModelRequest.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getProjectId();
-  if (f.length > 0) {
+  f = /** @type {string} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
     writer.writeString(
       5,
       f
     );
   }
-  f = message.getEngineId();
-  if (f.length > 0) {
+  f = /** @type {string} */ (jspb.Message.getField(message, 6));
+  if (f != null) {
     writer.writeString(
       6,
       f
@@ -1638,7 +1638,25 @@ proto.gooseai.UpdateModelRequest.prototype.getName = function() {
  * @return {!proto.gooseai.UpdateModelRequest} returns this
  */
 proto.gooseai.UpdateModelRequest.prototype.setName = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.UpdateModelRequest} returns this
+ */
+proto.gooseai.UpdateModelRequest.prototype.clearName = function() {
+  return jspb.Message.setField(this, 2, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.UpdateModelRequest.prototype.hasName = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -1728,7 +1746,25 @@ proto.gooseai.UpdateModelRequest.prototype.getProjectId = function() {
  * @return {!proto.gooseai.UpdateModelRequest} returns this
  */
 proto.gooseai.UpdateModelRequest.prototype.setProjectId = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.UpdateModelRequest} returns this
+ */
+proto.gooseai.UpdateModelRequest.prototype.clearProjectId = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.UpdateModelRequest.prototype.hasProjectId = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -1746,7 +1782,25 @@ proto.gooseai.UpdateModelRequest.prototype.getEngineId = function() {
  * @return {!proto.gooseai.UpdateModelRequest} returns this
  */
 proto.gooseai.UpdateModelRequest.prototype.setEngineId = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
+  return jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.UpdateModelRequest} returns this
+ */
+proto.gooseai.UpdateModelRequest.prototype.clearEngineId = function() {
+  return jspb.Message.setField(this, 6, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.UpdateModelRequest.prototype.hasEngineId = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 

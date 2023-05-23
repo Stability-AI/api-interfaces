@@ -167,6 +167,8 @@ export class UpdateModelRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
+  hasName(): boolean;
+  clearName(): void;
   getName(): string;
   setName(value: string): void;
 
@@ -180,9 +182,13 @@ export class UpdateModelRequest extends jspb.Message {
   getObjectName(): string;
   setObjectName(value: string): void;
 
+  hasProjectId(): boolean;
+  clearProjectId(): void;
   getProjectId(): string;
   setProjectId(value: string): void;
 
+  hasEngineId(): boolean;
+  clearEngineId(): void;
   getEngineId(): string;
   setEngineId(value: string): void;
 

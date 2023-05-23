@@ -52,11 +52,11 @@ message GetModelResponse {
 
 message UpdateModelRequest{
   string id = 1;                    // the id of the model
-  string name = 2;                  // a readable model name
+  optional string name = 2;         // a readable model name
   optional FineTuningMode mode = 3; // the mode of the model
   optional string object_name = 4;  // freeform text description of object, should only be set when mode is OBJECT
-  string project_id  = 5;           // the project_id with assets to be used for fine tuning
-  string engine_id = 6;             // the engineId of an fine-tuneable Stability model
+  optional string project_id  = 5;  // the project_id with assets to be used for fine tuning
+  optional string engine_id = 6;    // the engineId of an fine-tuneable Stability model
 }
 
 message UpdateModelResponse {
