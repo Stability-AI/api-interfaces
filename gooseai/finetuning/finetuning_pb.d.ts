@@ -2,23 +2,17 @@
 // file: finetuning.proto
 
 import * as jspb from "google-protobuf";
-import * as dashboard_pb from "./dashboard_pb";
-import * as project_pb from "./project_pb";
 
 export class FineTuningModel extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  hasUser(): boolean;
-  clearUser(): void;
-  getUser(): dashboard_pb.User | undefined;
-  setUser(value?: dashboard_pb.User): void;
+  getUserId(): string;
+  setUserId(value: string): void;
 
   getName(): string;
   setName(value: string): void;
 
-  hasMode(): boolean;
-  clearMode(): void;
   getMode(): FineTuningModeMap[keyof FineTuningModeMap];
   setMode(value: FineTuningModeMap[keyof FineTuningModeMap]): void;
 
@@ -33,8 +27,8 @@ export class FineTuningModel extends jspb.Message {
   getDuration(): number;
   setDuration(value: number): void;
 
-  getStatus(): FineTuningModelStatusMap[keyof FineTuningModelStatusMap];
-  setStatus(value: FineTuningModelStatusMap[keyof FineTuningModelStatusMap]): void;
+  getStatus(): FineTuningStatusMap[keyof FineTuningStatusMap];
+  setStatus(value: FineTuningStatusMap[keyof FineTuningStatusMap]): void;
 
   getEngineId(): string;
   setEngineId(value: string): void;
@@ -52,128 +46,18 @@ export class FineTuningModel extends jspb.Message {
 export namespace FineTuningModel {
   export type AsObject = {
     id: string,
-    user?: dashboard_pb.User.AsObject,
+    userId: string,
     name: string,
     mode: FineTuningModeMap[keyof FineTuningModeMap],
     objectName: string,
     projectId: string,
     duration: number,
-    status: FineTuningModelStatusMap[keyof FineTuningModelStatusMap],
+    status: FineTuningStatusMap[keyof FineTuningStatusMap],
     engineId: string,
   }
 }
 
-export class CreateFineTuningModelResponse extends jspb.Message {
-  hasModel(): boolean;
-  clearModel(): void;
-  getModel(): FineTuningModel | undefined;
-  setModel(value?: FineTuningModel): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CreateFineTuningModelResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: CreateFineTuningModelResponse): CreateFineTuningModelResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: CreateFineTuningModelResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CreateFineTuningModelResponse;
-  static deserializeBinaryFromReader(message: CreateFineTuningModelResponse, reader: jspb.BinaryReader): CreateFineTuningModelResponse;
-}
-
-export namespace CreateFineTuningModelResponse {
-  export type AsObject = {
-    model?: FineTuningModel.AsObject,
-  }
-}
-
-export class GetFineTuningModelByIdResponse extends jspb.Message {
-  hasModel(): boolean;
-  clearModel(): void;
-  getModel(): FineTuningModel | undefined;
-  setModel(value?: FineTuningModel): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetFineTuningModelByIdResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetFineTuningModelByIdResponse): GetFineTuningModelByIdResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetFineTuningModelByIdResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetFineTuningModelByIdResponse;
-  static deserializeBinaryFromReader(message: GetFineTuningModelByIdResponse, reader: jspb.BinaryReader): GetFineTuningModelByIdResponse;
-}
-
-export namespace GetFineTuningModelByIdResponse {
-  export type AsObject = {
-    model?: FineTuningModel.AsObject,
-  }
-}
-
-export class UpdateFineTuningModelResponse extends jspb.Message {
-  hasModel(): boolean;
-  clearModel(): void;
-  getModel(): FineTuningModel | undefined;
-  setModel(value?: FineTuningModel): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateFineTuningModelResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateFineTuningModelResponse): UpdateFineTuningModelResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UpdateFineTuningModelResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateFineTuningModelResponse;
-  static deserializeBinaryFromReader(message: UpdateFineTuningModelResponse, reader: jspb.BinaryReader): UpdateFineTuningModelResponse;
-}
-
-export namespace UpdateFineTuningModelResponse {
-  export type AsObject = {
-    model?: FineTuningModel.AsObject,
-  }
-}
-
-export class DeleteFineTuningModelResponse extends jspb.Message {
-  hasModel(): boolean;
-  clearModel(): void;
-  getModel(): FineTuningModel | undefined;
-  setModel(value?: FineTuningModel): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DeleteFineTuningModelResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: DeleteFineTuningModelResponse): DeleteFineTuningModelResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DeleteFineTuningModelResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DeleteFineTuningModelResponse;
-  static deserializeBinaryFromReader(message: DeleteFineTuningModelResponse, reader: jspb.BinaryReader): DeleteFineTuningModelResponse;
-}
-
-export namespace DeleteFineTuningModelResponse {
-  export type AsObject = {
-    model?: FineTuningModel.AsObject,
-  }
-}
-
-export class ResubmitFineTuningModelResponse extends jspb.Message {
-  hasModel(): boolean;
-  clearModel(): void;
-  getModel(): FineTuningModel | undefined;
-  setModel(value?: FineTuningModel): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ResubmitFineTuningModelResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: ResubmitFineTuningModelResponse): ResubmitFineTuningModelResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ResubmitFineTuningModelResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ResubmitFineTuningModelResponse;
-  static deserializeBinaryFromReader(message: ResubmitFineTuningModelResponse, reader: jspb.BinaryReader): ResubmitFineTuningModelResponse;
-}
-
-export namespace ResubmitFineTuningModelResponse {
-  export type AsObject = {
-    model?: FineTuningModel.AsObject,
-  }
-}
-
-export class CreateFineTuningModelRequest extends jspb.Message {
+export class CreateModelRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
@@ -194,16 +78,16 @@ export class CreateFineTuningModelRequest extends jspb.Message {
   setEngineId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CreateFineTuningModelRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: CreateFineTuningModelRequest): CreateFineTuningModelRequest.AsObject;
+  toObject(includeInstance?: boolean): CreateModelRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateModelRequest): CreateModelRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: CreateFineTuningModelRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CreateFineTuningModelRequest;
-  static deserializeBinaryFromReader(message: CreateFineTuningModelRequest, reader: jspb.BinaryReader): CreateFineTuningModelRequest;
+  static serializeBinaryToWriter(message: CreateModelRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateModelRequest;
+  static deserializeBinaryFromReader(message: CreateModelRequest, reader: jspb.BinaryReader): CreateModelRequest;
 }
 
-export namespace CreateFineTuningModelRequest {
+export namespace CreateModelRequest {
   export type AsObject = {
     name: string,
     mode: FineTuningModeMap[keyof FineTuningModeMap],
@@ -213,7 +97,71 @@ export namespace CreateFineTuningModelRequest {
   }
 }
 
-export class UpdateFineTuningModelRequest extends jspb.Message {
+export class CreateModelResponse extends jspb.Message {
+  hasModel(): boolean;
+  clearModel(): void;
+  getModel(): FineTuningModel | undefined;
+  setModel(value?: FineTuningModel): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateModelResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateModelResponse): CreateModelResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateModelResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateModelResponse;
+  static deserializeBinaryFromReader(message: CreateModelResponse, reader: jspb.BinaryReader): CreateModelResponse;
+}
+
+export namespace CreateModelResponse {
+  export type AsObject = {
+    model?: FineTuningModel.AsObject,
+  }
+}
+
+export class GetModelRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetModelRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetModelRequest): GetModelRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetModelRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetModelRequest;
+  static deserializeBinaryFromReader(message: GetModelRequest, reader: jspb.BinaryReader): GetModelRequest;
+}
+
+export namespace GetModelRequest {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class GetModelResponse extends jspb.Message {
+  hasModel(): boolean;
+  clearModel(): void;
+  getModel(): FineTuningModel | undefined;
+  setModel(value?: FineTuningModel): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetModelResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetModelResponse): GetModelResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetModelResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetModelResponse;
+  static deserializeBinaryFromReader(message: GetModelResponse, reader: jspb.BinaryReader): GetModelResponse;
+}
+
+export namespace GetModelResponse {
+  export type AsObject = {
+    model?: FineTuningModel.AsObject,
+  }
+}
+
+export class UpdateModelRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
@@ -237,16 +185,16 @@ export class UpdateFineTuningModelRequest extends jspb.Message {
   setEngineId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateFineTuningModelRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateFineTuningModelRequest): UpdateFineTuningModelRequest.AsObject;
+  toObject(includeInstance?: boolean): UpdateModelRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateModelRequest): UpdateModelRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UpdateFineTuningModelRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateFineTuningModelRequest;
-  static deserializeBinaryFromReader(message: UpdateFineTuningModelRequest, reader: jspb.BinaryReader): UpdateFineTuningModelRequest;
+  static serializeBinaryToWriter(message: UpdateModelRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateModelRequest;
+  static deserializeBinaryFromReader(message: UpdateModelRequest, reader: jspb.BinaryReader): UpdateModelRequest;
 }
 
-export namespace UpdateFineTuningModelRequest {
+export namespace UpdateModelRequest {
   export type AsObject = {
     id: string,
     name: string,
@@ -257,196 +205,171 @@ export namespace UpdateFineTuningModelRequest {
   }
 }
 
-export class GetFineTuningModelByIdRequest extends jspb.Message {
+export class UpdateModelResponse extends jspb.Message {
+  hasModel(): boolean;
+  clearModel(): void;
+  getModel(): FineTuningModel | undefined;
+  setModel(value?: FineTuningModel): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateModelResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateModelResponse): UpdateModelResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateModelResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateModelResponse;
+  static deserializeBinaryFromReader(message: UpdateModelResponse, reader: jspb.BinaryReader): UpdateModelResponse;
+}
+
+export namespace UpdateModelResponse {
+  export type AsObject = {
+    model?: FineTuningModel.AsObject,
+  }
+}
+
+export class DeleteModelRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetFineTuningModelByIdRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetFineTuningModelByIdRequest): GetFineTuningModelByIdRequest.AsObject;
+  toObject(includeInstance?: boolean): DeleteModelRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteModelRequest): DeleteModelRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetFineTuningModelByIdRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetFineTuningModelByIdRequest;
-  static deserializeBinaryFromReader(message: GetFineTuningModelByIdRequest, reader: jspb.BinaryReader): GetFineTuningModelByIdRequest;
+  static serializeBinaryToWriter(message: DeleteModelRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteModelRequest;
+  static deserializeBinaryFromReader(message: DeleteModelRequest, reader: jspb.BinaryReader): DeleteModelRequest;
 }
 
-export namespace GetFineTuningModelByIdRequest {
+export namespace DeleteModelRequest {
   export type AsObject = {
     id: string,
   }
 }
 
-export class DeleteFineTuningModelRequest extends jspb.Message {
+export class DeleteModelResponse extends jspb.Message {
+  hasModel(): boolean;
+  clearModel(): void;
+  getModel(): FineTuningModel | undefined;
+  setModel(value?: FineTuningModel): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteModelResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteModelResponse): DeleteModelResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteModelResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteModelResponse;
+  static deserializeBinaryFromReader(message: DeleteModelResponse, reader: jspb.BinaryReader): DeleteModelResponse;
+}
+
+export namespace DeleteModelResponse {
+  export type AsObject = {
+    model?: FineTuningModel.AsObject,
+  }
+}
+
+export class ResubmitModelRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DeleteFineTuningModelRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: DeleteFineTuningModelRequest): DeleteFineTuningModelRequest.AsObject;
+  toObject(includeInstance?: boolean): ResubmitModelRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ResubmitModelRequest): ResubmitModelRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DeleteFineTuningModelRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DeleteFineTuningModelRequest;
-  static deserializeBinaryFromReader(message: DeleteFineTuningModelRequest, reader: jspb.BinaryReader): DeleteFineTuningModelRequest;
+  static serializeBinaryToWriter(message: ResubmitModelRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ResubmitModelRequest;
+  static deserializeBinaryFromReader(message: ResubmitModelRequest, reader: jspb.BinaryReader): ResubmitModelRequest;
 }
 
-export namespace DeleteFineTuningModelRequest {
+export namespace ResubmitModelRequest {
   export type AsObject = {
     id: string,
   }
 }
 
-export class GetFineTuningModelStatusRequest extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
+export class ResubmitModelResponse extends jspb.Message {
+  hasModel(): boolean;
+  clearModel(): void;
+  getModel(): FineTuningModel | undefined;
+  setModel(value?: FineTuningModel): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetFineTuningModelStatusRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetFineTuningModelStatusRequest): GetFineTuningModelStatusRequest.AsObject;
+  toObject(includeInstance?: boolean): ResubmitModelResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ResubmitModelResponse): ResubmitModelResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetFineTuningModelStatusRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetFineTuningModelStatusRequest;
-  static deserializeBinaryFromReader(message: GetFineTuningModelStatusRequest, reader: jspb.BinaryReader): GetFineTuningModelStatusRequest;
+  static serializeBinaryToWriter(message: ResubmitModelResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ResubmitModelResponse;
+  static deserializeBinaryFromReader(message: ResubmitModelResponse, reader: jspb.BinaryReader): ResubmitModelResponse;
 }
 
-export namespace GetFineTuningModelStatusRequest {
+export namespace ResubmitModelResponse {
   export type AsObject = {
-    id: string,
+    model?: FineTuningModel.AsObject,
   }
 }
 
-export class GetFineTuningModelStatusResponse extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
+export class ListModelsRequest extends jspb.Message {
+  hasOrgId(): boolean;
+  clearOrgId(): void;
+  getOrgId(): string;
+  setOrgId(value: string): void;
 
-  getStatus(): FineTuningModelStatusMap[keyof FineTuningModelStatusMap];
-  setStatus(value: FineTuningModelStatusMap[keyof FineTuningModelStatusMap]): void;
+  hasUserId(): boolean;
+  clearUserId(): void;
+  getUserId(): string;
+  setUserId(value: string): void;
 
+  getIdCase(): ListModelsRequest.IdCase;
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetFineTuningModelStatusResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetFineTuningModelStatusResponse): GetFineTuningModelStatusResponse.AsObject;
+  toObject(includeInstance?: boolean): ListModelsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListModelsRequest): ListModelsRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetFineTuningModelStatusResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetFineTuningModelStatusResponse;
-  static deserializeBinaryFromReader(message: GetFineTuningModelStatusResponse, reader: jspb.BinaryReader): GetFineTuningModelStatusResponse;
+  static serializeBinaryToWriter(message: ListModelsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListModelsRequest;
+  static deserializeBinaryFromReader(message: ListModelsRequest, reader: jspb.BinaryReader): ListModelsRequest;
 }
 
-export namespace GetFineTuningModelStatusResponse {
+export namespace ListModelsRequest {
   export type AsObject = {
-    id: string,
-    status: FineTuningModelStatusMap[keyof FineTuningModelStatusMap],
+    orgId: string,
+    userId: string,
+  }
+
+  export enum IdCase {
+    ID_NOT_SET = 0,
+    ORG_ID = 1,
+    USER_ID = 2,
   }
 }
 
-export class ResubmitFineTuningModelRequest extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ResubmitFineTuningModelRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: ResubmitFineTuningModelRequest): ResubmitFineTuningModelRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ResubmitFineTuningModelRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ResubmitFineTuningModelRequest;
-  static deserializeBinaryFromReader(message: ResubmitFineTuningModelRequest, reader: jspb.BinaryReader): ResubmitFineTuningModelRequest;
-}
-
-export namespace ResubmitFineTuningModelRequest {
-  export type AsObject = {
-    id: string,
-  }
-}
-
-export class GetFineTuningModelsByUserIdRequest extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetFineTuningModelsByUserIdRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetFineTuningModelsByUserIdRequest): GetFineTuningModelsByUserIdRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetFineTuningModelsByUserIdRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetFineTuningModelsByUserIdRequest;
-  static deserializeBinaryFromReader(message: GetFineTuningModelsByUserIdRequest, reader: jspb.BinaryReader): GetFineTuningModelsByUserIdRequest;
-}
-
-export namespace GetFineTuningModelsByUserIdRequest {
-  export type AsObject = {
-    id: string,
-  }
-}
-
-export class GetFineTuningModelsByOrgIdRequest extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetFineTuningModelsByOrgIdRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetFineTuningModelsByOrgIdRequest): GetFineTuningModelsByOrgIdRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetFineTuningModelsByOrgIdRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetFineTuningModelsByOrgIdRequest;
-  static deserializeBinaryFromReader(message: GetFineTuningModelsByOrgIdRequest, reader: jspb.BinaryReader): GetFineTuningModelsByOrgIdRequest;
-}
-
-export namespace GetFineTuningModelsByOrgIdRequest {
-  export type AsObject = {
-    id: string,
-  }
-}
-
-export class GetFineTuningModelsByUserIdResponse extends jspb.Message {
+export class ListModelsResponse extends jspb.Message {
   clearModelsList(): void;
   getModelsList(): Array<FineTuningModel>;
   setModelsList(value: Array<FineTuningModel>): void;
   addModels(value?: FineTuningModel, index?: number): FineTuningModel;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetFineTuningModelsByUserIdResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetFineTuningModelsByUserIdResponse): GetFineTuningModelsByUserIdResponse.AsObject;
+  toObject(includeInstance?: boolean): ListModelsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListModelsResponse): ListModelsResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetFineTuningModelsByUserIdResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetFineTuningModelsByUserIdResponse;
-  static deserializeBinaryFromReader(message: GetFineTuningModelsByUserIdResponse, reader: jspb.BinaryReader): GetFineTuningModelsByUserIdResponse;
+  static serializeBinaryToWriter(message: ListModelsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListModelsResponse;
+  static deserializeBinaryFromReader(message: ListModelsResponse, reader: jspb.BinaryReader): ListModelsResponse;
 }
 
-export namespace GetFineTuningModelsByUserIdResponse {
-  export type AsObject = {
-    modelsList: Array<FineTuningModel.AsObject>,
-  }
-}
-
-export class GetFineTuningModelsByOrgIdResponse extends jspb.Message {
-  clearModelsList(): void;
-  getModelsList(): Array<FineTuningModel>;
-  setModelsList(value: Array<FineTuningModel>): void;
-  addModels(value?: FineTuningModel, index?: number): FineTuningModel;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetFineTuningModelsByOrgIdResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetFineTuningModelsByOrgIdResponse): GetFineTuningModelsByOrgIdResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetFineTuningModelsByOrgIdResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetFineTuningModelsByOrgIdResponse;
-  static deserializeBinaryFromReader(message: GetFineTuningModelsByOrgIdResponse, reader: jspb.BinaryReader): GetFineTuningModelsByOrgIdResponse;
-}
-
-export namespace GetFineTuningModelsByOrgIdResponse {
+export namespace ListModelsResponse {
   export type AsObject = {
     modelsList: Array<FineTuningModel.AsObject>,
   }
 }
 
 export interface FineTuningModeMap {
-  FINE_TUNING_MODE_NONE_UNSPECIFIED: 0;
+  FINE_TUNING_MODE_UNSPECIFIED: 0;
   FINE_TUNING_MODE_FACE: 1;
   FINE_TUNING_MODE_STYLE: 2;
   FINE_TUNING_MODE_OBJECT: 3;
@@ -454,13 +377,13 @@ export interface FineTuningModeMap {
 
 export const FineTuningMode: FineTuningModeMap;
 
-export interface FineTuningModelStatusMap {
-  FINE_TUNING_MODEL_STATUS_NOT_STARTED_UNSPECIFIED: 0;
-  FINE_TUNING_MODEL_STATUS_RUNNING: 1;
-  FINE_TUNING_MODEL_STATUS_COMPLETED: 2;
-  FINE_TUNING_MODEL_STATUS_FAILED: 3;
-  FINE_TUNING_MODEL_STATUS_SUBMITTED: 4;
+export interface FineTuningStatusMap {
+  FINE_TUNING_STATUS_NOT_STARTED: 0;
+  FINE_TUNING_STATUS_RUNNING: 1;
+  FINE_TUNING_STATUS_COMPLETED: 2;
+  FINE_TUNING_STATUS_FAILED: 3;
+  FINE_TUNING_STATUS_SUBMITTED: 4;
 }
 
-export const FineTuningModelStatus: FineTuningModelStatusMap;
+export const FineTuningStatus: FineTuningStatusMap;
 

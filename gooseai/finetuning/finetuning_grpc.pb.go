@@ -18,22 +18,18 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FineTuningServiceClient interface {
-	// Create a new project if it does not exist, and runs it
-	CreateFineTuningModel(ctx context.Context, in *CreateFineTuningModelRequest, opts ...grpc.CallOption) (*CreateFineTuningModelResponse, error)
-	// Get a FineTuningModel by id
-	GetFineTuningModelById(ctx context.Context, in *GetFineTuningModelByIdRequest, opts ...grpc.CallOption) (*GetFineTuningModelByIdResponse, error)
+	// Create a new model and begin the fine tuning process
+	CreateModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*CreateModelResponse, error)
+	// Get a FineTuningModel
+	GetModel(ctx context.Context, in *GetModelRequest, opts ...grpc.CallOption) (*GetModelResponse, error)
 	// Update a FineTuningModel by id
-	UpdateFineTuningModel(ctx context.Context, in *UpdateFineTuningModelRequest, opts ...grpc.CallOption) (*UpdateFineTuningModelResponse, error)
-	// Delete a FineTuningModel by id
-	DeleteFineTuningModel(ctx context.Context, in *DeleteFineTuningModelRequest, opts ...grpc.CallOption) (*DeleteFineTuningModelResponse, error)
-	// Check the progress of a FineTuningModel by id
-	GetFineTuningModelStatus(ctx context.Context, in *GetFineTuningModelStatusRequest, opts ...grpc.CallOption) (*GetFineTuningModelStatusResponse, error)
-	// Re-run training API call, does not create a new model in the DB
-	ResubmitFineTuningModel(ctx context.Context, in *ResubmitFineTuningModelRequest, opts ...grpc.CallOption) (*ResubmitFineTuningModelResponse, error)
-	// Get a list of FineTuningModels by user id
-	GetFineTuningModelsByUserId(ctx context.Context, in *GetFineTuningModelsByUserIdRequest, opts ...grpc.CallOption) (*GetFineTuningModelsByUserIdResponse, error)
-	// Get a list of FineTuningModels by org id
-	GetFineTuningModelsByOrgId(ctx context.Context, in *GetFineTuningModelsByOrgIdRequest, opts ...grpc.CallOption) (*GetFineTuningModelsByOrgIdResponse, error)
+	UpdateModel(ctx context.Context, in *UpdateModelRequest, opts ...grpc.CallOption) (*UpdateModelResponse, error)
+	// Delete a fine tuned model
+	DeleteModel(ctx context.Context, in *DeleteModelRequest, opts ...grpc.CallOption) (*DeleteModelResponse, error)
+	// Re-run training, does not create a new model
+	ResubmitModel(ctx context.Context, in *ResubmitModelRequest, opts ...grpc.CallOption) (*ResubmitModelResponse, error)
+	// List all the fine tuned models for an organization or user
+	ListModels(ctx context.Context, in *ListModelsRequest, opts ...grpc.CallOption) (*ListModelsResponse, error)
 }
 
 type fineTuningServiceClient struct {
@@ -44,72 +40,54 @@ func NewFineTuningServiceClient(cc grpc.ClientConnInterface) FineTuningServiceCl
 	return &fineTuningServiceClient{cc}
 }
 
-func (c *fineTuningServiceClient) CreateFineTuningModel(ctx context.Context, in *CreateFineTuningModelRequest, opts ...grpc.CallOption) (*CreateFineTuningModelResponse, error) {
-	out := new(CreateFineTuningModelResponse)
-	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/CreateFineTuningModel", in, out, opts...)
+func (c *fineTuningServiceClient) CreateModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*CreateModelResponse, error) {
+	out := new(CreateModelResponse)
+	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/CreateModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fineTuningServiceClient) GetFineTuningModelById(ctx context.Context, in *GetFineTuningModelByIdRequest, opts ...grpc.CallOption) (*GetFineTuningModelByIdResponse, error) {
-	out := new(GetFineTuningModelByIdResponse)
-	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/GetFineTuningModelById", in, out, opts...)
+func (c *fineTuningServiceClient) GetModel(ctx context.Context, in *GetModelRequest, opts ...grpc.CallOption) (*GetModelResponse, error) {
+	out := new(GetModelResponse)
+	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/GetModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fineTuningServiceClient) UpdateFineTuningModel(ctx context.Context, in *UpdateFineTuningModelRequest, opts ...grpc.CallOption) (*UpdateFineTuningModelResponse, error) {
-	out := new(UpdateFineTuningModelResponse)
-	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/UpdateFineTuningModel", in, out, opts...)
+func (c *fineTuningServiceClient) UpdateModel(ctx context.Context, in *UpdateModelRequest, opts ...grpc.CallOption) (*UpdateModelResponse, error) {
+	out := new(UpdateModelResponse)
+	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/UpdateModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fineTuningServiceClient) DeleteFineTuningModel(ctx context.Context, in *DeleteFineTuningModelRequest, opts ...grpc.CallOption) (*DeleteFineTuningModelResponse, error) {
-	out := new(DeleteFineTuningModelResponse)
-	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/DeleteFineTuningModel", in, out, opts...)
+func (c *fineTuningServiceClient) DeleteModel(ctx context.Context, in *DeleteModelRequest, opts ...grpc.CallOption) (*DeleteModelResponse, error) {
+	out := new(DeleteModelResponse)
+	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/DeleteModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fineTuningServiceClient) GetFineTuningModelStatus(ctx context.Context, in *GetFineTuningModelStatusRequest, opts ...grpc.CallOption) (*GetFineTuningModelStatusResponse, error) {
-	out := new(GetFineTuningModelStatusResponse)
-	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/GetFineTuningModelStatus", in, out, opts...)
+func (c *fineTuningServiceClient) ResubmitModel(ctx context.Context, in *ResubmitModelRequest, opts ...grpc.CallOption) (*ResubmitModelResponse, error) {
+	out := new(ResubmitModelResponse)
+	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/ResubmitModel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fineTuningServiceClient) ResubmitFineTuningModel(ctx context.Context, in *ResubmitFineTuningModelRequest, opts ...grpc.CallOption) (*ResubmitFineTuningModelResponse, error) {
-	out := new(ResubmitFineTuningModelResponse)
-	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/ResubmitFineTuningModel", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *fineTuningServiceClient) GetFineTuningModelsByUserId(ctx context.Context, in *GetFineTuningModelsByUserIdRequest, opts ...grpc.CallOption) (*GetFineTuningModelsByUserIdResponse, error) {
-	out := new(GetFineTuningModelsByUserIdResponse)
-	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/GetFineTuningModelsByUserId", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *fineTuningServiceClient) GetFineTuningModelsByOrgId(ctx context.Context, in *GetFineTuningModelsByOrgIdRequest, opts ...grpc.CallOption) (*GetFineTuningModelsByOrgIdResponse, error) {
-	out := new(GetFineTuningModelsByOrgIdResponse)
-	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/GetFineTuningModelsByOrgId", in, out, opts...)
+func (c *fineTuningServiceClient) ListModels(ctx context.Context, in *ListModelsRequest, opts ...grpc.CallOption) (*ListModelsResponse, error) {
+	out := new(ListModelsResponse)
+	err := c.cc.Invoke(ctx, "/gooseai.FineTuningService/ListModels", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -120,22 +98,18 @@ func (c *fineTuningServiceClient) GetFineTuningModelsByOrgId(ctx context.Context
 // All implementations must embed UnimplementedFineTuningServiceServer
 // for forward compatibility
 type FineTuningServiceServer interface {
-	// Create a new project if it does not exist, and runs it
-	CreateFineTuningModel(context.Context, *CreateFineTuningModelRequest) (*CreateFineTuningModelResponse, error)
-	// Get a FineTuningModel by id
-	GetFineTuningModelById(context.Context, *GetFineTuningModelByIdRequest) (*GetFineTuningModelByIdResponse, error)
+	// Create a new model and begin the fine tuning process
+	CreateModel(context.Context, *CreateModelRequest) (*CreateModelResponse, error)
+	// Get a FineTuningModel
+	GetModel(context.Context, *GetModelRequest) (*GetModelResponse, error)
 	// Update a FineTuningModel by id
-	UpdateFineTuningModel(context.Context, *UpdateFineTuningModelRequest) (*UpdateFineTuningModelResponse, error)
-	// Delete a FineTuningModel by id
-	DeleteFineTuningModel(context.Context, *DeleteFineTuningModelRequest) (*DeleteFineTuningModelResponse, error)
-	// Check the progress of a FineTuningModel by id
-	GetFineTuningModelStatus(context.Context, *GetFineTuningModelStatusRequest) (*GetFineTuningModelStatusResponse, error)
-	// Re-run training API call, does not create a new model in the DB
-	ResubmitFineTuningModel(context.Context, *ResubmitFineTuningModelRequest) (*ResubmitFineTuningModelResponse, error)
-	// Get a list of FineTuningModels by user id
-	GetFineTuningModelsByUserId(context.Context, *GetFineTuningModelsByUserIdRequest) (*GetFineTuningModelsByUserIdResponse, error)
-	// Get a list of FineTuningModels by org id
-	GetFineTuningModelsByOrgId(context.Context, *GetFineTuningModelsByOrgIdRequest) (*GetFineTuningModelsByOrgIdResponse, error)
+	UpdateModel(context.Context, *UpdateModelRequest) (*UpdateModelResponse, error)
+	// Delete a fine tuned model
+	DeleteModel(context.Context, *DeleteModelRequest) (*DeleteModelResponse, error)
+	// Re-run training, does not create a new model
+	ResubmitModel(context.Context, *ResubmitModelRequest) (*ResubmitModelResponse, error)
+	// List all the fine tuned models for an organization or user
+	ListModels(context.Context, *ListModelsRequest) (*ListModelsResponse, error)
 	mustEmbedUnimplementedFineTuningServiceServer()
 }
 
@@ -143,29 +117,23 @@ type FineTuningServiceServer interface {
 type UnimplementedFineTuningServiceServer struct {
 }
 
-func (UnimplementedFineTuningServiceServer) CreateFineTuningModel(context.Context, *CreateFineTuningModelRequest) (*CreateFineTuningModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateFineTuningModel not implemented")
+func (UnimplementedFineTuningServiceServer) CreateModel(context.Context, *CreateModelRequest) (*CreateModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateModel not implemented")
 }
-func (UnimplementedFineTuningServiceServer) GetFineTuningModelById(context.Context, *GetFineTuningModelByIdRequest) (*GetFineTuningModelByIdResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFineTuningModelById not implemented")
+func (UnimplementedFineTuningServiceServer) GetModel(context.Context, *GetModelRequest) (*GetModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetModel not implemented")
 }
-func (UnimplementedFineTuningServiceServer) UpdateFineTuningModel(context.Context, *UpdateFineTuningModelRequest) (*UpdateFineTuningModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateFineTuningModel not implemented")
+func (UnimplementedFineTuningServiceServer) UpdateModel(context.Context, *UpdateModelRequest) (*UpdateModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateModel not implemented")
 }
-func (UnimplementedFineTuningServiceServer) DeleteFineTuningModel(context.Context, *DeleteFineTuningModelRequest) (*DeleteFineTuningModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteFineTuningModel not implemented")
+func (UnimplementedFineTuningServiceServer) DeleteModel(context.Context, *DeleteModelRequest) (*DeleteModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteModel not implemented")
 }
-func (UnimplementedFineTuningServiceServer) GetFineTuningModelStatus(context.Context, *GetFineTuningModelStatusRequest) (*GetFineTuningModelStatusResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFineTuningModelStatus not implemented")
+func (UnimplementedFineTuningServiceServer) ResubmitModel(context.Context, *ResubmitModelRequest) (*ResubmitModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResubmitModel not implemented")
 }
-func (UnimplementedFineTuningServiceServer) ResubmitFineTuningModel(context.Context, *ResubmitFineTuningModelRequest) (*ResubmitFineTuningModelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ResubmitFineTuningModel not implemented")
-}
-func (UnimplementedFineTuningServiceServer) GetFineTuningModelsByUserId(context.Context, *GetFineTuningModelsByUserIdRequest) (*GetFineTuningModelsByUserIdResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFineTuningModelsByUserId not implemented")
-}
-func (UnimplementedFineTuningServiceServer) GetFineTuningModelsByOrgId(context.Context, *GetFineTuningModelsByOrgIdRequest) (*GetFineTuningModelsByOrgIdResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFineTuningModelsByOrgId not implemented")
+func (UnimplementedFineTuningServiceServer) ListModels(context.Context, *ListModelsRequest) (*ListModelsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListModels not implemented")
 }
 func (UnimplementedFineTuningServiceServer) mustEmbedUnimplementedFineTuningServiceServer() {}
 
@@ -180,146 +148,110 @@ func RegisterFineTuningServiceServer(s grpc.ServiceRegistrar, srv FineTuningServ
 	s.RegisterService(&FineTuningService_ServiceDesc, srv)
 }
 
-func _FineTuningService_CreateFineTuningModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateFineTuningModelRequest)
+func _FineTuningService_CreateModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FineTuningServiceServer).CreateFineTuningModel(ctx, in)
+		return srv.(FineTuningServiceServer).CreateModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gooseai.FineTuningService/CreateFineTuningModel",
+		FullMethod: "/gooseai.FineTuningService/CreateModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FineTuningServiceServer).CreateFineTuningModel(ctx, req.(*CreateFineTuningModelRequest))
+		return srv.(FineTuningServiceServer).CreateModel(ctx, req.(*CreateModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FineTuningService_GetFineTuningModelById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetFineTuningModelByIdRequest)
+func _FineTuningService_GetModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FineTuningServiceServer).GetFineTuningModelById(ctx, in)
+		return srv.(FineTuningServiceServer).GetModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gooseai.FineTuningService/GetFineTuningModelById",
+		FullMethod: "/gooseai.FineTuningService/GetModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FineTuningServiceServer).GetFineTuningModelById(ctx, req.(*GetFineTuningModelByIdRequest))
+		return srv.(FineTuningServiceServer).GetModel(ctx, req.(*GetModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FineTuningService_UpdateFineTuningModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateFineTuningModelRequest)
+func _FineTuningService_UpdateModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FineTuningServiceServer).UpdateFineTuningModel(ctx, in)
+		return srv.(FineTuningServiceServer).UpdateModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gooseai.FineTuningService/UpdateFineTuningModel",
+		FullMethod: "/gooseai.FineTuningService/UpdateModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FineTuningServiceServer).UpdateFineTuningModel(ctx, req.(*UpdateFineTuningModelRequest))
+		return srv.(FineTuningServiceServer).UpdateModel(ctx, req.(*UpdateModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FineTuningService_DeleteFineTuningModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteFineTuningModelRequest)
+func _FineTuningService_DeleteModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FineTuningServiceServer).DeleteFineTuningModel(ctx, in)
+		return srv.(FineTuningServiceServer).DeleteModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gooseai.FineTuningService/DeleteFineTuningModel",
+		FullMethod: "/gooseai.FineTuningService/DeleteModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FineTuningServiceServer).DeleteFineTuningModel(ctx, req.(*DeleteFineTuningModelRequest))
+		return srv.(FineTuningServiceServer).DeleteModel(ctx, req.(*DeleteModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FineTuningService_GetFineTuningModelStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetFineTuningModelStatusRequest)
+func _FineTuningService_ResubmitModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResubmitModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FineTuningServiceServer).GetFineTuningModelStatus(ctx, in)
+		return srv.(FineTuningServiceServer).ResubmitModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gooseai.FineTuningService/GetFineTuningModelStatus",
+		FullMethod: "/gooseai.FineTuningService/ResubmitModel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FineTuningServiceServer).GetFineTuningModelStatus(ctx, req.(*GetFineTuningModelStatusRequest))
+		return srv.(FineTuningServiceServer).ResubmitModel(ctx, req.(*ResubmitModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FineTuningService_ResubmitFineTuningModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ResubmitFineTuningModelRequest)
+func _FineTuningService_ListModels_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListModelsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FineTuningServiceServer).ResubmitFineTuningModel(ctx, in)
+		return srv.(FineTuningServiceServer).ListModels(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gooseai.FineTuningService/ResubmitFineTuningModel",
+		FullMethod: "/gooseai.FineTuningService/ListModels",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FineTuningServiceServer).ResubmitFineTuningModel(ctx, req.(*ResubmitFineTuningModelRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _FineTuningService_GetFineTuningModelsByUserId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetFineTuningModelsByUserIdRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(FineTuningServiceServer).GetFineTuningModelsByUserId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/gooseai.FineTuningService/GetFineTuningModelsByUserId",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FineTuningServiceServer).GetFineTuningModelsByUserId(ctx, req.(*GetFineTuningModelsByUserIdRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _FineTuningService_GetFineTuningModelsByOrgId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetFineTuningModelsByOrgIdRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(FineTuningServiceServer).GetFineTuningModelsByOrgId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/gooseai.FineTuningService/GetFineTuningModelsByOrgId",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FineTuningServiceServer).GetFineTuningModelsByOrgId(ctx, req.(*GetFineTuningModelsByOrgIdRequest))
+		return srv.(FineTuningServiceServer).ListModels(ctx, req.(*ListModelsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -332,36 +264,28 @@ var FineTuningService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*FineTuningServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateFineTuningModel",
-			Handler:    _FineTuningService_CreateFineTuningModel_Handler,
+			MethodName: "CreateModel",
+			Handler:    _FineTuningService_CreateModel_Handler,
 		},
 		{
-			MethodName: "GetFineTuningModelById",
-			Handler:    _FineTuningService_GetFineTuningModelById_Handler,
+			MethodName: "GetModel",
+			Handler:    _FineTuningService_GetModel_Handler,
 		},
 		{
-			MethodName: "UpdateFineTuningModel",
-			Handler:    _FineTuningService_UpdateFineTuningModel_Handler,
+			MethodName: "UpdateModel",
+			Handler:    _FineTuningService_UpdateModel_Handler,
 		},
 		{
-			MethodName: "DeleteFineTuningModel",
-			Handler:    _FineTuningService_DeleteFineTuningModel_Handler,
+			MethodName: "DeleteModel",
+			Handler:    _FineTuningService_DeleteModel_Handler,
 		},
 		{
-			MethodName: "GetFineTuningModelStatus",
-			Handler:    _FineTuningService_GetFineTuningModelStatus_Handler,
+			MethodName: "ResubmitModel",
+			Handler:    _FineTuningService_ResubmitModel_Handler,
 		},
 		{
-			MethodName: "ResubmitFineTuningModel",
-			Handler:    _FineTuningService_ResubmitFineTuningModel_Handler,
-		},
-		{
-			MethodName: "GetFineTuningModelsByUserId",
-			Handler:    _FineTuningService_GetFineTuningModelsByUserId_Handler,
-		},
-		{
-			MethodName: "GetFineTuningModelsByOrgId",
-			Handler:    _FineTuningService_GetFineTuningModelsByOrgId_Handler,
+			MethodName: "ListModels",
+			Handler:    _FineTuningService_ListModels_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
