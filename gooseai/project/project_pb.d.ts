@@ -92,6 +92,11 @@ export class Project extends jspb.Message {
   setAssetsList(value: Array<ProjectAsset>): void;
   addAssets(value?: ProjectAsset, index?: number): ProjectAsset;
 
+  hasProjectType(): boolean;
+  clearProjectType(): void;
+  getProjectType(): ProjectTypeMap[keyof ProjectTypeMap];
+  setProjectType(value: ProjectTypeMap[keyof ProjectTypeMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Project.AsObject;
   static toObject(includeInstance: boolean, msg: Project): Project.AsObject;
@@ -114,6 +119,7 @@ export namespace Project {
     createdAt: number,
     updatedAt: number,
     assetsList: Array<ProjectAsset.AsObject>,
+    projectType: ProjectTypeMap[keyof ProjectTypeMap],
   }
 }
 
@@ -137,6 +143,11 @@ export class CreateProjectRequest extends jspb.Message {
   getFile(): ProjectAsset | undefined;
   setFile(value?: ProjectAsset): void;
 
+  hasProjectType(): boolean;
+  clearProjectType(): void;
+  getProjectType(): ProjectTypeMap[keyof ProjectTypeMap];
+  setProjectType(value: ProjectTypeMap[keyof ProjectTypeMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateProjectRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateProjectRequest): CreateProjectRequest.AsObject;
@@ -154,6 +165,7 @@ export namespace CreateProjectRequest {
     access: ProjectAccessMap[keyof ProjectAccessMap],
     status: ProjectStatusMap[keyof ProjectStatusMap],
     file?: ProjectAsset.AsObject,
+    projectType: ProjectTypeMap[keyof ProjectTypeMap],
   }
 }
 
@@ -186,6 +198,11 @@ export class UpdateProjectRequest extends jspb.Message {
   getFile(): ProjectAsset | undefined;
   setFile(value?: ProjectAsset): void;
 
+  hasProjectType(): boolean;
+  clearProjectType(): void;
+  getProjectType(): ProjectTypeMap[keyof ProjectTypeMap];
+  setProjectType(value: ProjectTypeMap[keyof ProjectTypeMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateProjectRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateProjectRequest): UpdateProjectRequest.AsObject;
@@ -204,6 +221,7 @@ export namespace UpdateProjectRequest {
     access: ProjectAccessMap[keyof ProjectAccessMap],
     status: ProjectStatusMap[keyof ProjectStatusMap],
     file?: ProjectAsset.AsObject,
+    projectType: ProjectTypeMap[keyof ProjectTypeMap],
   }
 }
 
@@ -599,4 +617,11 @@ export interface ProjectSortDirMap {
 }
 
 export const ProjectSortDir: ProjectSortDirMap;
+
+export interface ProjectTypeMap {
+  PROJECT_TYPE_UNSPECIFIED: 0;
+  PROJECT_TYPE_TRAINING: 1;
+}
+
+export const ProjectType: ProjectTypeMap;
 

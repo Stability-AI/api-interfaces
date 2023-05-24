@@ -28,6 +28,12 @@ enum ProjectSortDir {
   PROJECT_SORT_DIR_DESC = 2;        // Sort in descending order
 }
 
+// The Type of Project being created
+enum ProjectType {
+  PROJECT_TYPE_UNSPECIFIED = 0; // Zero-value, unspecified
+  PROJECT_TYPE_TRAINING = 1; // Training project, used for Fine-Tuning models
+}
+
 message ProjectAsset {
   string id = 1;                // ID of the asset, UUIDv4
   string uri = 2;               // The URI to the asset
@@ -51,6 +57,7 @@ message Project {
   uint64 created_at = 8;             // Time of project creation (UTC seconds epoch)
   uint64 updated_at = 9;             // Time of last project update (UTC seconds epoch)
   repeated ProjectAsset assets = 10; // The listing of all assets associated with the project
+  optional ProjectType project_type = 11; // The type of project
 }
 
 message CreateProjectRequest {
@@ -59,6 +66,7 @@ message CreateProjectRequest {
   ProjectAccess access = 3;       // The access of the project (such as public vs private)
   ProjectStatus status = 4;       // The status of the project (such as active vs inactive)
   optional ProjectAsset file = 5; // Project file for the project (if existing, else will create)
+  optional ProjectType project_type = 6; // The type of project
 }
 
 message UpdateProjectRequest {
@@ -68,6 +76,7 @@ message UpdateProjectRequest {
   optional ProjectAccess access = 4; // The access of the project (such as public vs private)
   optional ProjectStatus status = 5; // The status of the project (such as active vs inactive)
   optional ProjectAsset file = 6;    // Project file for the project
+  optional ProjectType project_type = 7; // The type of project
 }
 
 message ListProjectRequest {
