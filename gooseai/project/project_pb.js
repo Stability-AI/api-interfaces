@@ -35,6 +35,7 @@ goog.exportSymbol('proto.gooseai.ProjectAsset', null, global);
 goog.exportSymbol('proto.gooseai.ProjectAssetUse', null, global);
 goog.exportSymbol('proto.gooseai.ProjectSortDir', null, global);
 goog.exportSymbol('proto.gooseai.ProjectStatus', null, global);
+goog.exportSymbol('proto.gooseai.ProjectType', null, global);
 goog.exportSymbol('proto.gooseai.QueryAssetsRequest', null, global);
 goog.exportSymbol('proto.gooseai.QueryAssetsResponse', null, global);
 goog.exportSymbol('proto.gooseai.TagAssetsRequest', null, global);
@@ -800,7 +801,8 @@ proto.gooseai.Project.toObject = function(includeInstance, msg) {
     createdAt: jspb.Message.getFieldWithDefault(msg, 8, 0),
     updatedAt: jspb.Message.getFieldWithDefault(msg, 9, 0),
     assetsList: jspb.Message.toObjectList(msg.getAssetsList(),
-    proto.gooseai.ProjectAsset.toObject, includeInstance)
+    proto.gooseai.ProjectAsset.toObject, includeInstance),
+    projectType: jspb.Message.getFieldWithDefault(msg, 11, 0)
   };
 
   if (includeInstance) {
@@ -878,6 +880,10 @@ proto.gooseai.Project.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.gooseai.ProjectAsset;
       reader.readMessage(value,proto.gooseai.ProjectAsset.deserializeBinaryFromReader);
       msg.addAssets(value);
+      break;
+    case 11:
+      var value = /** @type {!proto.gooseai.ProjectType} */ (reader.readEnum());
+      msg.setProjectType(value);
       break;
     default:
       reader.skipField();
@@ -978,6 +984,13 @@ proto.gooseai.Project.serializeBinaryToWriter = function(message, writer) {
       10,
       f,
       proto.gooseai.ProjectAsset.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {!proto.gooseai.ProjectType} */ (jspb.Message.getField(message, 11));
+  if (f != null) {
+    writer.writeEnum(
+      11,
+      f
     );
   }
 };
@@ -1199,6 +1212,42 @@ proto.gooseai.Project.prototype.addAssets = function(opt_value, opt_index) {
  */
 proto.gooseai.Project.prototype.clearAssetsList = function() {
   return this.setAssetsList([]);
+};
+
+
+/**
+ * optional ProjectType project_type = 11;
+ * @return {!proto.gooseai.ProjectType}
+ */
+proto.gooseai.Project.prototype.getProjectType = function() {
+  return /** @type {!proto.gooseai.ProjectType} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+};
+
+
+/**
+ * @param {!proto.gooseai.ProjectType} value
+ * @return {!proto.gooseai.Project} returns this
+ */
+proto.gooseai.Project.prototype.setProjectType = function(value) {
+  return jspb.Message.setField(this, 11, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.Project} returns this
+ */
+proto.gooseai.Project.prototype.clearProjectType = function() {
+  return jspb.Message.setField(this, 11, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.Project.prototype.hasProjectType = function() {
+  return jspb.Message.getField(this, 11) != null;
 };
 
 
@@ -4534,6 +4583,14 @@ proto.gooseai.ProjectSortDir = {
   PROJECT_SORT_DIR_UNSPECIFIED: 0,
   PROJECT_SORT_DIR_ASC: 1,
   PROJECT_SORT_DIR_DESC: 2
+};
+
+/**
+ * @enum {number}
+ */
+proto.gooseai.ProjectType = {
+  PROJECT_TYPE_UNSPECIFIED: 0,
+  PROJECT_TYPE_TRAINING: 1
 };
 
 goog.object.extend(exports, proto.gooseai);
