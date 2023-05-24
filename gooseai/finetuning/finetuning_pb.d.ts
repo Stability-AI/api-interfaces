@@ -182,11 +182,6 @@ export class UpdateModelRequest extends jspb.Message {
   getObjectName(): string;
   setObjectName(value: string): void;
 
-  hasProjectId(): boolean;
-  clearProjectId(): void;
-  getProjectId(): string;
-  setProjectId(value: string): void;
-
   hasEngineId(): boolean;
   clearEngineId(): void;
   getEngineId(): string;
@@ -208,7 +203,6 @@ export namespace UpdateModelRequest {
     name: string,
     mode: FineTuningModeMap[keyof FineTuningModeMap],
     objectName: string,
-    projectId: string,
     engineId: string,
   }
 }

@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x66inetuning.proto\x12\x07gooseai\"\xff\x01\n\x0f\x46ineTuningModel\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12*\n\x04mode\x18\x04 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x00\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x05 \x01(\tH\x01\x88\x01\x01\x12\x12\n\nproject_id\x18\x06 \x01(\t\x12\x10\n\x08\x64uration\x18\x07 \x01(\x01\x12)\n\x06status\x18\x08 \x01(\x0e\x32\x19.gooseai.FineTuningStatus\x12\x11\n\tengine_id\x18\t \x01(\tB\x07\n\x05_modeB\x0e\n\x0c_object_name\"\xa8\x01\n\x12\x43reateModelRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12*\n\x04mode\x18\x02 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x00\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x03 \x01(\tH\x01\x88\x01\x01\x12\x12\n\nproject_id\x18\x04 \x01(\t\x12\x11\n\tengine_id\x18\x05 \x01(\tB\x07\n\x05_modeB\x0e\n\x0c_object_name\">\n\x13\x43reateModelResponse\x12\'\n\x05model\x18\x01 \x01(\x0b\x32\x18.gooseai.FineTuningModel\"\x1d\n\x0fGetModelRequest\x12\n\n\x02id\x18\x01 \x01(\t\";\n\x10GetModelResponse\x12\'\n\x05model\x18\x01 \x01(\x0b\x32\x18.gooseai.FineTuningModel\"\xe9\x01\n\x12UpdateModelRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x11\n\x04name\x18\x02 \x01(\tH\x00\x88\x01\x01\x12*\n\x04mode\x18\x03 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x01\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x04 \x01(\tH\x02\x88\x01\x01\x12\x17\n\nproject_id\x18\x05 \x01(\tH\x03\x88\x01\x01\x12\x16\n\tengine_id\x18\x06 \x01(\tH\x04\x88\x01\x01\x42\x07\n\x05_nameB\x07\n\x05_modeB\x0e\n\x0c_object_nameB\r\n\x0b_project_idB\x0c\n\n_engine_id\">\n\x13UpdateModelResponse\x12\'\n\x05model\x18\x01 \x01(\x0b\x32\x18.gooseai.FineTuningModel\" \n\x12\x44\x65leteModelRequest\x12\n\n\x02id\x18\x01 \x01(\t\">\n\x13\x44\x65leteModelResponse\x12\'\n\x05model\x18\x01 \x01(\x0b\x32\x18.gooseai.FineTuningModel\"\"\n\x14ResubmitModelRequest\x12\n\n\x02id\x18\x01 \x01(\t\"@\n\x15ResubmitModelResponse\x12\'\n\x05model\x18\x01 \x01(\x0b\x32\x18.gooseai.FineTuningModel\">\n\x11ListModelsRequest\x12\x10\n\x06org_id\x18\x01 \x01(\tH\x00\x12\x11\n\x07user_id\x18\x02 \x01(\tH\x00\x42\x04\n\x02id\">\n\x12ListModelsResponse\x12(\n\x06models\x18\x01 \x03(\x0b\x32\x18.gooseai.FineTuningModel*\x86\x01\n\x0e\x46ineTuningMode\x12 \n\x1c\x46INE_TUNING_MODE_UNSPECIFIED\x10\x00\x12\x19\n\x15\x46INE_TUNING_MODE_FACE\x10\x01\x12\x1a\n\x16\x46INE_TUNING_MODE_STYLE\x10\x02\x12\x1b\n\x17\x46INE_TUNING_MODE_OBJECT\x10\x03*\xb9\x01\n\x10\x46ineTuningStatus\x12\"\n\x1e\x46INE_TUNING_STATUS_NOT_STARTED\x10\x00\x12\x1e\n\x1a\x46INE_TUNING_STATUS_RUNNING\x10\x01\x12 \n\x1c\x46INE_TUNING_STATUS_COMPLETED\x10\x02\x12\x1d\n\x19\x46INE_TUNING_STATUS_FAILED\x10\x03\x12 \n\x1c\x46INE_TUNING_STATUS_SUBMITTED\x10\x04\x32\xc9\x03\n\x11\x46ineTuningService\x12H\n\x0b\x43reateModel\x12\x1b.gooseai.CreateModelRequest\x1a\x1c.gooseai.CreateModelResponse\x12?\n\x08GetModel\x12\x18.gooseai.GetModelRequest\x1a\x19.gooseai.GetModelResponse\x12H\n\x0bUpdateModel\x12\x1b.gooseai.UpdateModelRequest\x1a\x1c.gooseai.UpdateModelResponse\x12H\n\x0b\x44\x65leteModel\x12\x1b.gooseai.DeleteModelRequest\x1a\x1c.gooseai.DeleteModelResponse\x12N\n\rResubmitModel\x12\x1d.gooseai.ResubmitModelRequest\x1a\x1e.gooseai.ResubmitModelResponse\x12\x45\n\nListModels\x12\x1a.gooseai.ListModelsRequest\x1a\x1b.gooseai.ListModelsResponseB;Z9github.com/stability-ai/api-interfaces/gooseai/finetuningb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x66inetuning.proto\x12\x07gooseai\"\xff\x01\n\x0f\x46ineTuningModel\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12*\n\x04mode\x18\x04 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x00\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x05 \x01(\tH\x01\x88\x01\x01\x12\x12\n\nproject_id\x18\x06 \x01(\t\x12\x10\n\x08\x64uration\x18\x07 \x01(\x01\x12)\n\x06status\x18\x08 \x01(\x0e\x32\x19.gooseai.FineTuningStatus\x12\x11\n\tengine_id\x18\t \x01(\tB\x07\n\x05_modeB\x0e\n\x0c_object_name\"\xa8\x01\n\x12\x43reateModelRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12*\n\x04mode\x18\x02 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x00\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x03 \x01(\tH\x01\x88\x01\x01\x12\x12\n\nproject_id\x18\x04 \x01(\t\x12\x11\n\tengine_id\x18\x05 \x01(\tB\x07\n\x05_modeB\x0e\n\x0c_object_name\">\n\x13\x43reateModelResponse\x12\'\n\x05model\x18\x01 \x01(\x0b\x32\x18.gooseai.FineTuningModel\"\x1d\n\x0fGetModelRequest\x12\n\n\x02id\x18\x01 \x01(\t\";\n\x10GetModelResponse\x12\'\n\x05model\x18\x01 \x01(\x0b\x32\x18.gooseai.FineTuningModel\"\xc1\x01\n\x12UpdateModelRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x11\n\x04name\x18\x02 \x01(\tH\x00\x88\x01\x01\x12*\n\x04mode\x18\x03 \x01(\x0e\x32\x17.gooseai.FineTuningModeH\x01\x88\x01\x01\x12\x18\n\x0bobject_name\x18\x04 \x01(\tH\x02\x88\x01\x01\x12\x16\n\tengine_id\x18\x05 \x01(\tH\x03\x88\x01\x01\x42\x07\n\x05_nameB\x07\n\x05_modeB\x0e\n\x0c_object_nameB\x0c\n\n_engine_id\">\n\x13UpdateModelResponse\x12\'\n\x05model\x18\x01 \x01(\x0b\x32\x18.gooseai.FineTuningModel\" \n\x12\x44\x65leteModelRequest\x12\n\n\x02id\x18\x01 \x01(\t\">\n\x13\x44\x65leteModelResponse\x12\'\n\x05model\x18\x01 \x01(\x0b\x32\x18.gooseai.FineTuningModel\"\"\n\x14ResubmitModelRequest\x12\n\n\x02id\x18\x01 \x01(\t\"@\n\x15ResubmitModelResponse\x12\'\n\x05model\x18\x01 \x01(\x0b\x32\x18.gooseai.FineTuningModel\">\n\x11ListModelsRequest\x12\x10\n\x06org_id\x18\x01 \x01(\tH\x00\x12\x11\n\x07user_id\x18\x02 \x01(\tH\x00\x42\x04\n\x02id\">\n\x12ListModelsResponse\x12(\n\x06models\x18\x01 \x03(\x0b\x32\x18.gooseai.FineTuningModel*\x86\x01\n\x0e\x46ineTuningMode\x12 \n\x1c\x46INE_TUNING_MODE_UNSPECIFIED\x10\x00\x12\x19\n\x15\x46INE_TUNING_MODE_FACE\x10\x01\x12\x1a\n\x16\x46INE_TUNING_MODE_STYLE\x10\x02\x12\x1b\n\x17\x46INE_TUNING_MODE_OBJECT\x10\x03*\xb9\x01\n\x10\x46ineTuningStatus\x12\"\n\x1e\x46INE_TUNING_STATUS_NOT_STARTED\x10\x00\x12\x1e\n\x1a\x46INE_TUNING_STATUS_RUNNING\x10\x01\x12 \n\x1c\x46INE_TUNING_STATUS_COMPLETED\x10\x02\x12\x1d\n\x19\x46INE_TUNING_STATUS_FAILED\x10\x03\x12 \n\x1c\x46INE_TUNING_STATUS_SUBMITTED\x10\x04\x32\xc9\x03\n\x11\x46ineTuningService\x12H\n\x0b\x43reateModel\x12\x1b.gooseai.CreateModelRequest\x1a\x1c.gooseai.CreateModelResponse\x12?\n\x08GetModel\x12\x18.gooseai.GetModelRequest\x1a\x19.gooseai.GetModelResponse\x12H\n\x0bUpdateModel\x12\x1b.gooseai.UpdateModelRequest\x1a\x1c.gooseai.UpdateModelResponse\x12H\n\x0b\x44\x65leteModel\x12\x1b.gooseai.DeleteModelRequest\x1a\x1c.gooseai.DeleteModelResponse\x12N\n\rResubmitModel\x12\x1d.gooseai.ResubmitModelRequest\x1a\x1e.gooseai.ResubmitModelResponse\x12\x45\n\nListModels\x12\x1a.gooseai.ListModelsRequest\x1a\x1b.gooseai.ListModelsResponseB;Z9github.com/stability-ai/api-interfaces/gooseai/finetuningb\x06proto3')
 
 _FINETUNINGMODE = DESCRIPTOR.enum_types_by_name['FineTuningMode']
 FineTuningMode = enum_type_wrapper.EnumTypeWrapper(_FINETUNINGMODE)
@@ -141,10 +141,10 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z9github.com/stability-ai/api-interfaces/gooseai/finetuning'
-  _FINETUNINGMODE._serialized_start=1243
-  _FINETUNINGMODE._serialized_end=1377
-  _FINETUNINGSTATUS._serialized_start=1380
-  _FINETUNINGSTATUS._serialized_end=1565
+  _FINETUNINGMODE._serialized_start=1203
+  _FINETUNINGMODE._serialized_end=1337
+  _FINETUNINGSTATUS._serialized_start=1340
+  _FINETUNINGSTATUS._serialized_end=1525
   _FINETUNINGMODEL._serialized_start=30
   _FINETUNINGMODEL._serialized_end=285
   _CREATEMODELREQUEST._serialized_start=288
@@ -156,21 +156,21 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _GETMODELRESPONSE._serialized_start=553
   _GETMODELRESPONSE._serialized_end=612
   _UPDATEMODELREQUEST._serialized_start=615
-  _UPDATEMODELREQUEST._serialized_end=848
-  _UPDATEMODELRESPONSE._serialized_start=850
-  _UPDATEMODELRESPONSE._serialized_end=912
-  _DELETEMODELREQUEST._serialized_start=914
-  _DELETEMODELREQUEST._serialized_end=946
-  _DELETEMODELRESPONSE._serialized_start=948
-  _DELETEMODELRESPONSE._serialized_end=1010
-  _RESUBMITMODELREQUEST._serialized_start=1012
-  _RESUBMITMODELREQUEST._serialized_end=1046
-  _RESUBMITMODELRESPONSE._serialized_start=1048
-  _RESUBMITMODELRESPONSE._serialized_end=1112
-  _LISTMODELSREQUEST._serialized_start=1114
-  _LISTMODELSREQUEST._serialized_end=1176
-  _LISTMODELSRESPONSE._serialized_start=1178
-  _LISTMODELSRESPONSE._serialized_end=1240
-  _FINETUNINGSERVICE._serialized_start=1568
-  _FINETUNINGSERVICE._serialized_end=2025
+  _UPDATEMODELREQUEST._serialized_end=808
+  _UPDATEMODELRESPONSE._serialized_start=810
+  _UPDATEMODELRESPONSE._serialized_end=872
+  _DELETEMODELREQUEST._serialized_start=874
+  _DELETEMODELREQUEST._serialized_end=906
+  _DELETEMODELRESPONSE._serialized_start=908
+  _DELETEMODELRESPONSE._serialized_end=970
+  _RESUBMITMODELREQUEST._serialized_start=972
+  _RESUBMITMODELREQUEST._serialized_end=1006
+  _RESUBMITMODELRESPONSE._serialized_start=1008
+  _RESUBMITMODELRESPONSE._serialized_end=1072
+  _LISTMODELSREQUEST._serialized_start=1074
+  _LISTMODELSREQUEST._serialized_end=1136
+  _LISTMODELSRESPONSE._serialized_start=1138
+  _LISTMODELSRESPONSE._serialized_end=1200
+  _FINETUNINGSERVICE._serialized_start=1528
+  _FINETUNINGSERVICE._serialized_end=1985
 # @@protoc_insertion_point(module_scope)
