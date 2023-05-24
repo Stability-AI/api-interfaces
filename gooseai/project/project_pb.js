@@ -1287,7 +1287,8 @@ proto.gooseai.CreateProjectRequest.toObject = function(includeInstance, msg) {
     ownerId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     access: jspb.Message.getFieldWithDefault(msg, 3, 0),
     status: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    file: (f = msg.getFile()) && proto.gooseai.ProjectAsset.toObject(includeInstance, f)
+    file: (f = msg.getFile()) && proto.gooseai.ProjectAsset.toObject(includeInstance, f),
+    projectType: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
 
   if (includeInstance) {
@@ -1344,6 +1345,10 @@ proto.gooseai.CreateProjectRequest.deserializeBinaryFromReader = function(msg, r
       var value = new proto.gooseai.ProjectAsset;
       reader.readMessage(value,proto.gooseai.ProjectAsset.deserializeBinaryFromReader);
       msg.setFile(value);
+      break;
+    case 6:
+      var value = /** @type {!proto.gooseai.ProjectType} */ (reader.readEnum());
+      msg.setProjectType(value);
       break;
     default:
       reader.skipField();
@@ -1408,6 +1413,13 @@ proto.gooseai.CreateProjectRequest.serializeBinaryToWriter = function(message, w
       5,
       f,
       proto.gooseai.ProjectAsset.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {!proto.gooseai.ProjectType} */ (jspb.Message.getField(message, 6));
+  if (f != null) {
+    writer.writeEnum(
+      6,
+      f
     );
   }
 };
@@ -1540,6 +1552,42 @@ proto.gooseai.CreateProjectRequest.prototype.hasFile = function() {
 };
 
 
+/**
+ * optional ProjectType project_type = 6;
+ * @return {!proto.gooseai.ProjectType}
+ */
+proto.gooseai.CreateProjectRequest.prototype.getProjectType = function() {
+  return /** @type {!proto.gooseai.ProjectType} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {!proto.gooseai.ProjectType} value
+ * @return {!proto.gooseai.CreateProjectRequest} returns this
+ */
+proto.gooseai.CreateProjectRequest.prototype.setProjectType = function(value) {
+  return jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.CreateProjectRequest} returns this
+ */
+proto.gooseai.CreateProjectRequest.prototype.clearProjectType = function() {
+  return jspb.Message.setField(this, 6, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.CreateProjectRequest.prototype.hasProjectType = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
 
 
 
@@ -1577,7 +1625,8 @@ proto.gooseai.UpdateProjectRequest.toObject = function(includeInstance, msg) {
     title: jspb.Message.getFieldWithDefault(msg, 3, ""),
     access: jspb.Message.getFieldWithDefault(msg, 4, 0),
     status: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    file: (f = msg.getFile()) && proto.gooseai.ProjectAsset.toObject(includeInstance, f)
+    file: (f = msg.getFile()) && proto.gooseai.ProjectAsset.toObject(includeInstance, f),
+    projectType: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -1638,6 +1687,10 @@ proto.gooseai.UpdateProjectRequest.deserializeBinaryFromReader = function(msg, r
       var value = new proto.gooseai.ProjectAsset;
       reader.readMessage(value,proto.gooseai.ProjectAsset.deserializeBinaryFromReader);
       msg.setFile(value);
+      break;
+    case 7:
+      var value = /** @type {!proto.gooseai.ProjectType} */ (reader.readEnum());
+      msg.setProjectType(value);
       break;
     default:
       reader.skipField();
@@ -1709,6 +1762,13 @@ proto.gooseai.UpdateProjectRequest.serializeBinaryToWriter = function(message, w
       6,
       f,
       proto.gooseai.ProjectAsset.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {!proto.gooseai.ProjectType} */ (jspb.Message.getField(message, 7));
+  if (f != null) {
+    writer.writeEnum(
+      7,
+      f
     );
   }
 };
@@ -1910,6 +1970,42 @@ proto.gooseai.UpdateProjectRequest.prototype.clearFile = function() {
  */
 proto.gooseai.UpdateProjectRequest.prototype.hasFile = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional ProjectType project_type = 7;
+ * @return {!proto.gooseai.ProjectType}
+ */
+proto.gooseai.UpdateProjectRequest.prototype.getProjectType = function() {
+  return /** @type {!proto.gooseai.ProjectType} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {!proto.gooseai.ProjectType} value
+ * @return {!proto.gooseai.UpdateProjectRequest} returns this
+ */
+proto.gooseai.UpdateProjectRequest.prototype.setProjectType = function(value) {
+  return jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.UpdateProjectRequest} returns this
+ */
+proto.gooseai.UpdateProjectRequest.prototype.clearProjectType = function() {
+  return jspb.Message.setField(this, 7, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.UpdateProjectRequest.prototype.hasProjectType = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
