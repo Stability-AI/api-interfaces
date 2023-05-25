@@ -10,76 +10,58 @@ var FineTuningService = (function () {
   return FineTuningService;
 }());
 
-FineTuningService.CreateFineTuningModel = {
-  methodName: "CreateFineTuningModel",
+FineTuningService.CreateModel = {
+  methodName: "CreateModel",
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.CreateFineTuningModelRequest,
-  responseType: finetuning_pb.CreateFineTuningModelResponse
+  requestType: finetuning_pb.CreateModelRequest,
+  responseType: finetuning_pb.CreateModelResponse
 };
 
-FineTuningService.GetFineTuningModelById = {
-  methodName: "GetFineTuningModelById",
+FineTuningService.GetModel = {
+  methodName: "GetModel",
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.GetFineTuningModelByIdRequest,
-  responseType: finetuning_pb.GetFineTuningModelByIdResponse
+  requestType: finetuning_pb.GetModelRequest,
+  responseType: finetuning_pb.GetModelResponse
 };
 
-FineTuningService.UpdateFineTuningModel = {
-  methodName: "UpdateFineTuningModel",
+FineTuningService.UpdateModel = {
+  methodName: "UpdateModel",
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.UpdateFineTuningModelRequest,
-  responseType: finetuning_pb.UpdateFineTuningModelResponse
+  requestType: finetuning_pb.UpdateModelRequest,
+  responseType: finetuning_pb.UpdateModelResponse
 };
 
-FineTuningService.DeleteFineTuningModel = {
-  methodName: "DeleteFineTuningModel",
+FineTuningService.DeleteModel = {
+  methodName: "DeleteModel",
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.DeleteFineTuningModelRequest,
-  responseType: finetuning_pb.DeleteFineTuningModelResponse
+  requestType: finetuning_pb.DeleteModelRequest,
+  responseType: finetuning_pb.DeleteModelResponse
 };
 
-FineTuningService.GetFineTuningModelStatus = {
-  methodName: "GetFineTuningModelStatus",
+FineTuningService.ResubmitModel = {
+  methodName: "ResubmitModel",
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.GetFineTuningModelStatusRequest,
-  responseType: finetuning_pb.GetFineTuningModelStatusResponse
+  requestType: finetuning_pb.ResubmitModelRequest,
+  responseType: finetuning_pb.ResubmitModelResponse
 };
 
-FineTuningService.ResubmitFineTuningModel = {
-  methodName: "ResubmitFineTuningModel",
+FineTuningService.ListModels = {
+  methodName: "ListModels",
   service: FineTuningService,
   requestStream: false,
   responseStream: false,
-  requestType: finetuning_pb.ResubmitFineTuningModelRequest,
-  responseType: finetuning_pb.ResubmitFineTuningModelResponse
-};
-
-FineTuningService.GetFineTuningModelsByUserId = {
-  methodName: "GetFineTuningModelsByUserId",
-  service: FineTuningService,
-  requestStream: false,
-  responseStream: false,
-  requestType: finetuning_pb.GetFineTuningModelsByUserIdRequest,
-  responseType: finetuning_pb.GetFineTuningModelsByUserIdResponse
-};
-
-FineTuningService.GetFineTuningModelsByOrgId = {
-  methodName: "GetFineTuningModelsByOrgId",
-  service: FineTuningService,
-  requestStream: false,
-  responseStream: false,
-  requestType: finetuning_pb.GetFineTuningModelsByOrgIdRequest,
-  responseType: finetuning_pb.GetFineTuningModelsByOrgIdResponse
+  requestType: finetuning_pb.ListModelsRequest,
+  responseType: finetuning_pb.ListModelsResponse
 };
 
 exports.FineTuningService = FineTuningService;
@@ -89,11 +71,11 @@ function FineTuningServiceClient(serviceHost, options) {
   this.options = options || {};
 }
 
-FineTuningServiceClient.prototype.createFineTuningModel = function createFineTuningModel(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.createModel = function createModel(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.CreateFineTuningModel, {
+  var client = grpc.unary(FineTuningService.CreateModel, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -120,11 +102,11 @@ FineTuningServiceClient.prototype.createFineTuningModel = function createFineTun
   };
 };
 
-FineTuningServiceClient.prototype.getFineTuningModelById = function getFineTuningModelById(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.getModel = function getModel(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.GetFineTuningModelById, {
+  var client = grpc.unary(FineTuningService.GetModel, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -151,11 +133,11 @@ FineTuningServiceClient.prototype.getFineTuningModelById = function getFineTunin
   };
 };
 
-FineTuningServiceClient.prototype.updateFineTuningModel = function updateFineTuningModel(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.updateModel = function updateModel(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.UpdateFineTuningModel, {
+  var client = grpc.unary(FineTuningService.UpdateModel, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -182,11 +164,11 @@ FineTuningServiceClient.prototype.updateFineTuningModel = function updateFineTun
   };
 };
 
-FineTuningServiceClient.prototype.deleteFineTuningModel = function deleteFineTuningModel(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.deleteModel = function deleteModel(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.DeleteFineTuningModel, {
+  var client = grpc.unary(FineTuningService.DeleteModel, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -213,11 +195,11 @@ FineTuningServiceClient.prototype.deleteFineTuningModel = function deleteFineTun
   };
 };
 
-FineTuningServiceClient.prototype.getFineTuningModelStatus = function getFineTuningModelStatus(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.resubmitModel = function resubmitModel(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.GetFineTuningModelStatus, {
+  var client = grpc.unary(FineTuningService.ResubmitModel, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -244,73 +226,11 @@ FineTuningServiceClient.prototype.getFineTuningModelStatus = function getFineTun
   };
 };
 
-FineTuningServiceClient.prototype.resubmitFineTuningModel = function resubmitFineTuningModel(requestMessage, metadata, callback) {
+FineTuningServiceClient.prototype.listModels = function listModels(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(FineTuningService.ResubmitFineTuningModel, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-FineTuningServiceClient.prototype.getFineTuningModelsByUserId = function getFineTuningModelsByUserId(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(FineTuningService.GetFineTuningModelsByUserId, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-FineTuningServiceClient.prototype.getFineTuningModelsByOrgId = function getFineTuningModelsByOrgId(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(FineTuningService.GetFineTuningModelsByOrgId, {
+  var client = grpc.unary(FineTuningService.ListModels, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

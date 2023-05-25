@@ -4,88 +4,68 @@
 import * as finetuning_pb from "./finetuning_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
-type FineTuningServiceCreateFineTuningModel = {
+type FineTuningServiceCreateModel = {
   readonly methodName: string;
   readonly service: typeof FineTuningService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof finetuning_pb.CreateFineTuningModelRequest;
-  readonly responseType: typeof finetuning_pb.CreateFineTuningModelResponse;
+  readonly requestType: typeof finetuning_pb.CreateModelRequest;
+  readonly responseType: typeof finetuning_pb.CreateModelResponse;
 };
 
-type FineTuningServiceGetFineTuningModelById = {
+type FineTuningServiceGetModel = {
   readonly methodName: string;
   readonly service: typeof FineTuningService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof finetuning_pb.GetFineTuningModelByIdRequest;
-  readonly responseType: typeof finetuning_pb.GetFineTuningModelByIdResponse;
+  readonly requestType: typeof finetuning_pb.GetModelRequest;
+  readonly responseType: typeof finetuning_pb.GetModelResponse;
 };
 
-type FineTuningServiceUpdateFineTuningModel = {
+type FineTuningServiceUpdateModel = {
   readonly methodName: string;
   readonly service: typeof FineTuningService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof finetuning_pb.UpdateFineTuningModelRequest;
-  readonly responseType: typeof finetuning_pb.UpdateFineTuningModelResponse;
+  readonly requestType: typeof finetuning_pb.UpdateModelRequest;
+  readonly responseType: typeof finetuning_pb.UpdateModelResponse;
 };
 
-type FineTuningServiceDeleteFineTuningModel = {
+type FineTuningServiceDeleteModel = {
   readonly methodName: string;
   readonly service: typeof FineTuningService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof finetuning_pb.DeleteFineTuningModelRequest;
-  readonly responseType: typeof finetuning_pb.DeleteFineTuningModelResponse;
+  readonly requestType: typeof finetuning_pb.DeleteModelRequest;
+  readonly responseType: typeof finetuning_pb.DeleteModelResponse;
 };
 
-type FineTuningServiceGetFineTuningModelStatus = {
+type FineTuningServiceResubmitModel = {
   readonly methodName: string;
   readonly service: typeof FineTuningService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof finetuning_pb.GetFineTuningModelStatusRequest;
-  readonly responseType: typeof finetuning_pb.GetFineTuningModelStatusResponse;
+  readonly requestType: typeof finetuning_pb.ResubmitModelRequest;
+  readonly responseType: typeof finetuning_pb.ResubmitModelResponse;
 };
 
-type FineTuningServiceResubmitFineTuningModel = {
+type FineTuningServiceListModels = {
   readonly methodName: string;
   readonly service: typeof FineTuningService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof finetuning_pb.ResubmitFineTuningModelRequest;
-  readonly responseType: typeof finetuning_pb.ResubmitFineTuningModelResponse;
-};
-
-type FineTuningServiceGetFineTuningModelsByUserId = {
-  readonly methodName: string;
-  readonly service: typeof FineTuningService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof finetuning_pb.GetFineTuningModelsByUserIdRequest;
-  readonly responseType: typeof finetuning_pb.GetFineTuningModelsByUserIdResponse;
-};
-
-type FineTuningServiceGetFineTuningModelsByOrgId = {
-  readonly methodName: string;
-  readonly service: typeof FineTuningService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof finetuning_pb.GetFineTuningModelsByOrgIdRequest;
-  readonly responseType: typeof finetuning_pb.GetFineTuningModelsByOrgIdResponse;
+  readonly requestType: typeof finetuning_pb.ListModelsRequest;
+  readonly responseType: typeof finetuning_pb.ListModelsResponse;
 };
 
 export class FineTuningService {
   static readonly serviceName: string;
-  static readonly CreateFineTuningModel: FineTuningServiceCreateFineTuningModel;
-  static readonly GetFineTuningModelById: FineTuningServiceGetFineTuningModelById;
-  static readonly UpdateFineTuningModel: FineTuningServiceUpdateFineTuningModel;
-  static readonly DeleteFineTuningModel: FineTuningServiceDeleteFineTuningModel;
-  static readonly GetFineTuningModelStatus: FineTuningServiceGetFineTuningModelStatus;
-  static readonly ResubmitFineTuningModel: FineTuningServiceResubmitFineTuningModel;
-  static readonly GetFineTuningModelsByUserId: FineTuningServiceGetFineTuningModelsByUserId;
-  static readonly GetFineTuningModelsByOrgId: FineTuningServiceGetFineTuningModelsByOrgId;
+  static readonly CreateModel: FineTuningServiceCreateModel;
+  static readonly GetModel: FineTuningServiceGetModel;
+  static readonly UpdateModel: FineTuningServiceUpdateModel;
+  static readonly DeleteModel: FineTuningServiceDeleteModel;
+  static readonly ResubmitModel: FineTuningServiceResubmitModel;
+  static readonly ListModels: FineTuningServiceListModels;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -120,77 +100,59 @@ export class FineTuningServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  createFineTuningModel(
-    requestMessage: finetuning_pb.CreateFineTuningModelRequest,
+  createModel(
+    requestMessage: finetuning_pb.CreateModelRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.CreateFineTuningModelResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.CreateModelResponse|null) => void
   ): UnaryResponse;
-  createFineTuningModel(
-    requestMessage: finetuning_pb.CreateFineTuningModelRequest,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.CreateFineTuningModelResponse|null) => void
+  createModel(
+    requestMessage: finetuning_pb.CreateModelRequest,
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.CreateModelResponse|null) => void
   ): UnaryResponse;
-  getFineTuningModelById(
-    requestMessage: finetuning_pb.GetFineTuningModelByIdRequest,
+  getModel(
+    requestMessage: finetuning_pb.GetModelRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetFineTuningModelByIdResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetModelResponse|null) => void
   ): UnaryResponse;
-  getFineTuningModelById(
-    requestMessage: finetuning_pb.GetFineTuningModelByIdRequest,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetFineTuningModelByIdResponse|null) => void
+  getModel(
+    requestMessage: finetuning_pb.GetModelRequest,
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetModelResponse|null) => void
   ): UnaryResponse;
-  updateFineTuningModel(
-    requestMessage: finetuning_pb.UpdateFineTuningModelRequest,
+  updateModel(
+    requestMessage: finetuning_pb.UpdateModelRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.UpdateFineTuningModelResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.UpdateModelResponse|null) => void
   ): UnaryResponse;
-  updateFineTuningModel(
-    requestMessage: finetuning_pb.UpdateFineTuningModelRequest,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.UpdateFineTuningModelResponse|null) => void
+  updateModel(
+    requestMessage: finetuning_pb.UpdateModelRequest,
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.UpdateModelResponse|null) => void
   ): UnaryResponse;
-  deleteFineTuningModel(
-    requestMessage: finetuning_pb.DeleteFineTuningModelRequest,
+  deleteModel(
+    requestMessage: finetuning_pb.DeleteModelRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.DeleteFineTuningModelResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.DeleteModelResponse|null) => void
   ): UnaryResponse;
-  deleteFineTuningModel(
-    requestMessage: finetuning_pb.DeleteFineTuningModelRequest,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.DeleteFineTuningModelResponse|null) => void
+  deleteModel(
+    requestMessage: finetuning_pb.DeleteModelRequest,
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.DeleteModelResponse|null) => void
   ): UnaryResponse;
-  getFineTuningModelStatus(
-    requestMessage: finetuning_pb.GetFineTuningModelStatusRequest,
+  resubmitModel(
+    requestMessage: finetuning_pb.ResubmitModelRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetFineTuningModelStatusResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.ResubmitModelResponse|null) => void
   ): UnaryResponse;
-  getFineTuningModelStatus(
-    requestMessage: finetuning_pb.GetFineTuningModelStatusRequest,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetFineTuningModelStatusResponse|null) => void
+  resubmitModel(
+    requestMessage: finetuning_pb.ResubmitModelRequest,
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.ResubmitModelResponse|null) => void
   ): UnaryResponse;
-  resubmitFineTuningModel(
-    requestMessage: finetuning_pb.ResubmitFineTuningModelRequest,
+  listModels(
+    requestMessage: finetuning_pb.ListModelsRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.ResubmitFineTuningModelResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.ListModelsResponse|null) => void
   ): UnaryResponse;
-  resubmitFineTuningModel(
-    requestMessage: finetuning_pb.ResubmitFineTuningModelRequest,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.ResubmitFineTuningModelResponse|null) => void
-  ): UnaryResponse;
-  getFineTuningModelsByUserId(
-    requestMessage: finetuning_pb.GetFineTuningModelsByUserIdRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetFineTuningModelsByUserIdResponse|null) => void
-  ): UnaryResponse;
-  getFineTuningModelsByUserId(
-    requestMessage: finetuning_pb.GetFineTuningModelsByUserIdRequest,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetFineTuningModelsByUserIdResponse|null) => void
-  ): UnaryResponse;
-  getFineTuningModelsByOrgId(
-    requestMessage: finetuning_pb.GetFineTuningModelsByOrgIdRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetFineTuningModelsByOrgIdResponse|null) => void
-  ): UnaryResponse;
-  getFineTuningModelsByOrgId(
-    requestMessage: finetuning_pb.GetFineTuningModelsByOrgIdRequest,
-    callback: (error: ServiceError|null, responseMessage: finetuning_pb.GetFineTuningModelsByOrgIdResponse|null) => void
+  listModels(
+    requestMessage: finetuning_pb.ListModelsRequest,
+    callback: (error: ServiceError|null, responseMessage: finetuning_pb.ListModelsResponse|null) => void
   ): UnaryResponse;
 }
 

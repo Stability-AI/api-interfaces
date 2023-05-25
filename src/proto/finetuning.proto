@@ -1,167 +1,105 @@
 syntax = "proto3";
 package gooseai;
-import "dashboard.proto";
-import "project.proto";
 
 option go_package = "github.com/stability-ai/api-interfaces/gooseai/finetuning";
 
-// The Mode of Fine Tuning Model
 enum FineTuningMode {
-  // No mode specified
-  FINE_TUNING_MODE_NONE_UNSPECIFIED = 0;
-  // Fine tuning a face model
-  FINE_TUNING_MODE_FACE = 1;
-  // Fine tuning a style model
-  FINE_TUNING_MODE_STYLE = 2;
-  // Fine tuning an object model
-  FINE_TUNING_MODE_OBJECT = 3;
+  FINE_TUNING_MODE_UNSPECIFIED = 0; // No mode specified
+  FINE_TUNING_MODE_FACE = 1;        // Fine tuning a face model
+  FINE_TUNING_MODE_STYLE = 2;       // Fine tuning a style model
+  FINE_TUNING_MODE_OBJECT = 3;      // Fine tuning an object model
+}
+
+enum FineTuningStatus {
+  FINE_TUNING_STATUS_NOT_STARTED = 0; // Model not yet started
+  FINE_TUNING_STATUS_RUNNING = 1;     // Model is currently running
+  FINE_TUNING_STATUS_COMPLETED = 2;   // Model has completed successfully
+  FINE_TUNING_STATUS_FAILED = 3;      // Model has failed
+  FINE_TUNING_STATUS_SUBMITTED = 4;   // Model has been submitted
 }
 
 message FineTuningModel {
-  // uuid unique identifier
-  string id = 1;
-  // user who created the model
-  User user = 2; 
-  // a readable model name
-  string name = 3;
-  // the mode of the model
-  optional FineTuningMode mode = 4; 
-  // freeform text description of object
-  optional string object_name = 5;  
-  // the list of assets to be used for fine tuning
-  string project_id = 6; 
-  // how long the model took to run
-  double duration = 7;
-  // the current status of the model
-  FineTuningModelStatus status = 8;
-  // the engineId of an fine-tuneable Stability model
-  string engine_id = 9;
+  string id = 1;                    // ID of the model, UUIDv4
+  string user_id = 2;               // ID of user who created the model
+  string name = 3;                  // a readable model name
+  optional FineTuningMode mode = 4; // the mode of the model
+  optional string object_name = 5;  // freeform text description of object, should only be set when mode is OBJECT
+  string project_id = 6;            // project ID with assets to be used for fine tuning
+  double duration = 7;              // how long the model took to fine tune
+  FineTuningStatus status = 8;      // the current status of the model
+  string engine_id = 9;             // the engineId of a fine-tuneable Stability model
 }
 
-message CreateFineTuningModelResponse {
+message CreateModelRequest {
+  string name = 1;                  // a readable model name
+  optional FineTuningMode mode = 2; // the mode of the model
+  optional string object_name = 3;  // freeform text description of object, should only be set when mode is OBJECT
+  string project_id  = 4;           // the project_id with assets to be used for fine tuning
+  string engine_id = 5;             // the engineId of an fine-tuneable Stability model
+}
+
+message CreateModelResponse {
   FineTuningModel model = 1;
 }
 
-message GetFineTuningModelByIdResponse {
+message GetModelRequest {
+  string id = 1; // ID of the model
+}
+
+message GetModelResponse {
   FineTuningModel model = 1;
 }
 
-message UpdateFineTuningModelResponse {
+message UpdateModelRequest{
+  string id = 1;                    // the id of the model
+  optional string name = 2;         // a readable model name
+  optional FineTuningMode mode = 3; // the mode of the model
+  optional string object_name = 4;  // freeform text description of object, should only be set when mode is OBJECT
+  optional string engine_id = 5;    // the engineId of an fine-tuneable Stability model
+}
+
+message UpdateModelResponse {
   FineTuningModel model = 1;
 }
 
-message DeleteFineTuningModelResponse {
+message DeleteModelRequest {
+  string id = 1; // ID of the model to delete
+}
+
+message DeleteModelResponse {
   FineTuningModel model = 1;
 }
 
-message ResubmitFineTuningModelResponse {
+message ResubmitModelRequest {
+  string id = 1; // ID of the model to resubmit
+}
+
+message ResubmitModelResponse {
   FineTuningModel model = 1;
 }
 
-message CreateFineTuningModelRequest{
-  // a readable model name
-  string name = 1;
-  // the mode of the model
-  optional FineTuningMode mode = 2;
-  // freeform text description of object, should only be set when mode is OBJECT
-  optional string object_name = 3;
-  // the project_id, which groups the list of assets to be used for fine tuning
-  string project_id  = 4;
-  // the engineId of an fine-tuneable Stability model
-  string engine_id = 5;
+message ListModelsRequest {
+  oneof id {
+    string org_id = 1;    // the organization's ID
+    string user_id = 2;   // or the user's ID
+  }
 }
 
-message UpdateFineTuningModelRequest{
-  // the id of the model
-  string id = 1;
-  // a readable model name
-  string name = 2;
-  // the mode of the model
-  optional FineTuningMode mode = 3;
-  // freeform text description of object, should only be set when mode is OBJECT
-  optional string object_name = 4;
-  // the list of assets to be used for fine tuning, grouped by project_id
-  string project_id  = 5;
-  // the engineId of an fine-tuneable Stability model
-  string engine_id = 6;
-}
-
-message GetFineTuningModelByIdRequest {
-  // the id of the model
-  string id = 1;
-}
-
-message DeleteFineTuningModelRequest {
-  // the id of the model
-  string id = 1;
-}
-
-message GetFineTuningModelStatusRequest{
-  // the id of the model
-  string id = 1;
-}
-
-// The Status of Fine Tuning Model as reported by the model processing system
-enum FineTuningModelStatus {
-  // Model not yet started
-  FINE_TUNING_MODEL_STATUS_NOT_STARTED_UNSPECIFIED = 0;
-  // Model is currently running
-  FINE_TUNING_MODEL_STATUS_RUNNING = 1;
-  // Model has completed successfully
-  FINE_TUNING_MODEL_STATUS_COMPLETED = 2;  
-  // Model has failed
-  FINE_TUNING_MODEL_STATUS_FAILED = 3;
-  // Model has been submitted
-  FINE_TUNING_MODEL_STATUS_SUBMITTED = 4;
-}
-
-message GetFineTuningModelStatusResponse {
-  // the id of the model that was checked
-  string id = 1;
-  // the current status of the model
-  FineTuningModelStatus status = 2;
-}
-
-message ResubmitFineTuningModelRequest {
-  // the middleware id of the fine tuning model
-  string id = 1;
-}
-
-message GetFineTuningModelsByUserIdRequest {
-  // the id of the user
-  string id = 1;
-}
-
-message GetFineTuningModelsByOrgIdRequest {
-  // the organization's id
-  string id = 1;
-}
-
-message GetFineTuningModelsByUserIdResponse {
-  // the list of models
-  repeated FineTuningModel models = 1;
-}
-
-message GetFineTuningModelsByOrgIdResponse {
-  // the list of models
-  repeated FineTuningModel models = 1;
+message ListModelsResponse {  
+  repeated FineTuningModel models = 1; // the list of models
 }
 
 service FineTuningService {
-  // Create a new project if it does not exist, and runs it
-  rpc CreateFineTuningModel (CreateFineTuningModelRequest) returns (CreateFineTuningModelResponse);
-  // Get a FineTuningModel by id
-  rpc GetFineTuningModelById (GetFineTuningModelByIdRequest) returns (GetFineTuningModelByIdResponse);
+  // Create a new model and begin the fine tuning process
+  rpc CreateModel (CreateModelRequest) returns (CreateModelResponse);
+  // Get a FineTuningModel
+  rpc GetModel (GetModelRequest) returns (GetModelResponse);
   // Update a FineTuningModel by id
-  rpc UpdateFineTuningModel (UpdateFineTuningModelRequest) returns (UpdateFineTuningModelResponse);
-  // Delete a FineTuningModel by id
-  rpc DeleteFineTuningModel (DeleteFineTuningModelRequest) returns (DeleteFineTuningModelResponse);
-  // Check the progress of a FineTuningModel by id
-  rpc GetFineTuningModelStatus (GetFineTuningModelStatusRequest) returns (GetFineTuningModelStatusResponse);  
-  // Re-run training API call, does not create a new model in the DB
-  rpc ResubmitFineTuningModel (ResubmitFineTuningModelRequest) returns (ResubmitFineTuningModelResponse);
-  // Get a list of FineTuningModels by user id
-  rpc GetFineTuningModelsByUserId(GetFineTuningModelsByUserIdRequest) returns (GetFineTuningModelsByUserIdResponse);
-  // Get a list of FineTuningModels by org id
-  rpc GetFineTuningModelsByOrgId(GetFineTuningModelsByOrgIdRequest) returns (GetFineTuningModelsByOrgIdResponse);
+  rpc UpdateModel (UpdateModelRequest) returns (UpdateModelResponse);
+  // Delete a fine tuned model
+  rpc DeleteModel (DeleteModelRequest) returns (DeleteModelResponse);
+  // Re-run training, does not create a new model
+  rpc ResubmitModel (ResubmitModelRequest) returns (ResubmitModelResponse);
+  // List all the fine tuned models for an organization or user
+  rpc ListModels (ListModelsRequest) returns (ListModelsResponse);
 }

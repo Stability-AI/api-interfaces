@@ -14,102 +14,78 @@ class FineTuningServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.CreateFineTuningModel = channel.unary_unary(
-                '/gooseai.FineTuningService/CreateFineTuningModel',
-                request_serializer=finetuning__pb2.CreateFineTuningModelRequest.SerializeToString,
-                response_deserializer=finetuning__pb2.CreateFineTuningModelResponse.FromString,
+        self.CreateModel = channel.unary_unary(
+                '/gooseai.FineTuningService/CreateModel',
+                request_serializer=finetuning__pb2.CreateModelRequest.SerializeToString,
+                response_deserializer=finetuning__pb2.CreateModelResponse.FromString,
                 )
-        self.GetFineTuningModelById = channel.unary_unary(
-                '/gooseai.FineTuningService/GetFineTuningModelById',
-                request_serializer=finetuning__pb2.GetFineTuningModelByIdRequest.SerializeToString,
-                response_deserializer=finetuning__pb2.GetFineTuningModelByIdResponse.FromString,
+        self.GetModel = channel.unary_unary(
+                '/gooseai.FineTuningService/GetModel',
+                request_serializer=finetuning__pb2.GetModelRequest.SerializeToString,
+                response_deserializer=finetuning__pb2.GetModelResponse.FromString,
                 )
-        self.UpdateFineTuningModel = channel.unary_unary(
-                '/gooseai.FineTuningService/UpdateFineTuningModel',
-                request_serializer=finetuning__pb2.UpdateFineTuningModelRequest.SerializeToString,
-                response_deserializer=finetuning__pb2.UpdateFineTuningModelResponse.FromString,
+        self.UpdateModel = channel.unary_unary(
+                '/gooseai.FineTuningService/UpdateModel',
+                request_serializer=finetuning__pb2.UpdateModelRequest.SerializeToString,
+                response_deserializer=finetuning__pb2.UpdateModelResponse.FromString,
                 )
-        self.DeleteFineTuningModel = channel.unary_unary(
-                '/gooseai.FineTuningService/DeleteFineTuningModel',
-                request_serializer=finetuning__pb2.DeleteFineTuningModelRequest.SerializeToString,
-                response_deserializer=finetuning__pb2.DeleteFineTuningModelResponse.FromString,
+        self.DeleteModel = channel.unary_unary(
+                '/gooseai.FineTuningService/DeleteModel',
+                request_serializer=finetuning__pb2.DeleteModelRequest.SerializeToString,
+                response_deserializer=finetuning__pb2.DeleteModelResponse.FromString,
                 )
-        self.GetFineTuningModelStatus = channel.unary_unary(
-                '/gooseai.FineTuningService/GetFineTuningModelStatus',
-                request_serializer=finetuning__pb2.GetFineTuningModelStatusRequest.SerializeToString,
-                response_deserializer=finetuning__pb2.GetFineTuningModelStatusResponse.FromString,
+        self.ResubmitModel = channel.unary_unary(
+                '/gooseai.FineTuningService/ResubmitModel',
+                request_serializer=finetuning__pb2.ResubmitModelRequest.SerializeToString,
+                response_deserializer=finetuning__pb2.ResubmitModelResponse.FromString,
                 )
-        self.ResubmitFineTuningModel = channel.unary_unary(
-                '/gooseai.FineTuningService/ResubmitFineTuningModel',
-                request_serializer=finetuning__pb2.ResubmitFineTuningModelRequest.SerializeToString,
-                response_deserializer=finetuning__pb2.ResubmitFineTuningModelResponse.FromString,
-                )
-        self.GetFineTuningModelsByUserId = channel.unary_unary(
-                '/gooseai.FineTuningService/GetFineTuningModelsByUserId',
-                request_serializer=finetuning__pb2.GetFineTuningModelsByUserIdRequest.SerializeToString,
-                response_deserializer=finetuning__pb2.GetFineTuningModelsByUserIdResponse.FromString,
-                )
-        self.GetFineTuningModelsByOrgId = channel.unary_unary(
-                '/gooseai.FineTuningService/GetFineTuningModelsByOrgId',
-                request_serializer=finetuning__pb2.GetFineTuningModelsByOrgIdRequest.SerializeToString,
-                response_deserializer=finetuning__pb2.GetFineTuningModelsByOrgIdResponse.FromString,
+        self.ListModels = channel.unary_unary(
+                '/gooseai.FineTuningService/ListModels',
+                request_serializer=finetuning__pb2.ListModelsRequest.SerializeToString,
+                response_deserializer=finetuning__pb2.ListModelsResponse.FromString,
                 )
 
 
 class FineTuningServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def CreateFineTuningModel(self, request, context):
-        """Create a new project if it does not exist, and runs it
+    def CreateModel(self, request, context):
+        """Create a new model and begin the fine tuning process
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetFineTuningModelById(self, request, context):
-        """Get a FineTuningModel by id
+    def GetModel(self, request, context):
+        """Get a FineTuningModel
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def UpdateFineTuningModel(self, request, context):
+    def UpdateModel(self, request, context):
         """Update a FineTuningModel by id
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def DeleteFineTuningModel(self, request, context):
-        """Delete a FineTuningModel by id
+    def DeleteModel(self, request, context):
+        """Delete a fine tuned model
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetFineTuningModelStatus(self, request, context):
-        """Check the progress of a FineTuningModel by id
+    def ResubmitModel(self, request, context):
+        """Re-run training, does not create a new model
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ResubmitFineTuningModel(self, request, context):
-        """Re-run training API call, does not create a new model in the DB
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def GetFineTuningModelsByUserId(self, request, context):
-        """Get a list of FineTuningModels by user id
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def GetFineTuningModelsByOrgId(self, request, context):
-        """Get a list of FineTuningModels by org id
+    def ListModels(self, request, context):
+        """List all the fine tuned models for an organization or user
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -118,45 +94,35 @@ class FineTuningServiceServicer(object):
 
 def add_FineTuningServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'CreateFineTuningModel': grpc.unary_unary_rpc_method_handler(
-                    servicer.CreateFineTuningModel,
-                    request_deserializer=finetuning__pb2.CreateFineTuningModelRequest.FromString,
-                    response_serializer=finetuning__pb2.CreateFineTuningModelResponse.SerializeToString,
+            'CreateModel': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateModel,
+                    request_deserializer=finetuning__pb2.CreateModelRequest.FromString,
+                    response_serializer=finetuning__pb2.CreateModelResponse.SerializeToString,
             ),
-            'GetFineTuningModelById': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetFineTuningModelById,
-                    request_deserializer=finetuning__pb2.GetFineTuningModelByIdRequest.FromString,
-                    response_serializer=finetuning__pb2.GetFineTuningModelByIdResponse.SerializeToString,
+            'GetModel': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetModel,
+                    request_deserializer=finetuning__pb2.GetModelRequest.FromString,
+                    response_serializer=finetuning__pb2.GetModelResponse.SerializeToString,
             ),
-            'UpdateFineTuningModel': grpc.unary_unary_rpc_method_handler(
-                    servicer.UpdateFineTuningModel,
-                    request_deserializer=finetuning__pb2.UpdateFineTuningModelRequest.FromString,
-                    response_serializer=finetuning__pb2.UpdateFineTuningModelResponse.SerializeToString,
+            'UpdateModel': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateModel,
+                    request_deserializer=finetuning__pb2.UpdateModelRequest.FromString,
+                    response_serializer=finetuning__pb2.UpdateModelResponse.SerializeToString,
             ),
-            'DeleteFineTuningModel': grpc.unary_unary_rpc_method_handler(
-                    servicer.DeleteFineTuningModel,
-                    request_deserializer=finetuning__pb2.DeleteFineTuningModelRequest.FromString,
-                    response_serializer=finetuning__pb2.DeleteFineTuningModelResponse.SerializeToString,
+            'DeleteModel': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteModel,
+                    request_deserializer=finetuning__pb2.DeleteModelRequest.FromString,
+                    response_serializer=finetuning__pb2.DeleteModelResponse.SerializeToString,
             ),
-            'GetFineTuningModelStatus': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetFineTuningModelStatus,
-                    request_deserializer=finetuning__pb2.GetFineTuningModelStatusRequest.FromString,
-                    response_serializer=finetuning__pb2.GetFineTuningModelStatusResponse.SerializeToString,
+            'ResubmitModel': grpc.unary_unary_rpc_method_handler(
+                    servicer.ResubmitModel,
+                    request_deserializer=finetuning__pb2.ResubmitModelRequest.FromString,
+                    response_serializer=finetuning__pb2.ResubmitModelResponse.SerializeToString,
             ),
-            'ResubmitFineTuningModel': grpc.unary_unary_rpc_method_handler(
-                    servicer.ResubmitFineTuningModel,
-                    request_deserializer=finetuning__pb2.ResubmitFineTuningModelRequest.FromString,
-                    response_serializer=finetuning__pb2.ResubmitFineTuningModelResponse.SerializeToString,
-            ),
-            'GetFineTuningModelsByUserId': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetFineTuningModelsByUserId,
-                    request_deserializer=finetuning__pb2.GetFineTuningModelsByUserIdRequest.FromString,
-                    response_serializer=finetuning__pb2.GetFineTuningModelsByUserIdResponse.SerializeToString,
-            ),
-            'GetFineTuningModelsByOrgId': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetFineTuningModelsByOrgId,
-                    request_deserializer=finetuning__pb2.GetFineTuningModelsByOrgIdRequest.FromString,
-                    response_serializer=finetuning__pb2.GetFineTuningModelsByOrgIdResponse.SerializeToString,
+            'ListModels': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListModels,
+                    request_deserializer=finetuning__pb2.ListModelsRequest.FromString,
+                    response_serializer=finetuning__pb2.ListModelsResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -169,7 +135,7 @@ class FineTuningService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def CreateFineTuningModel(request,
+    def CreateModel(request,
             target,
             options=(),
             channel_credentials=None,
@@ -179,14 +145,14 @@ class FineTuningService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/CreateFineTuningModel',
-            finetuning__pb2.CreateFineTuningModelRequest.SerializeToString,
-            finetuning__pb2.CreateFineTuningModelResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/CreateModel',
+            finetuning__pb2.CreateModelRequest.SerializeToString,
+            finetuning__pb2.CreateModelResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetFineTuningModelById(request,
+    def GetModel(request,
             target,
             options=(),
             channel_credentials=None,
@@ -196,14 +162,14 @@ class FineTuningService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetFineTuningModelById',
-            finetuning__pb2.GetFineTuningModelByIdRequest.SerializeToString,
-            finetuning__pb2.GetFineTuningModelByIdResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetModel',
+            finetuning__pb2.GetModelRequest.SerializeToString,
+            finetuning__pb2.GetModelResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def UpdateFineTuningModel(request,
+    def UpdateModel(request,
             target,
             options=(),
             channel_credentials=None,
@@ -213,14 +179,14 @@ class FineTuningService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/UpdateFineTuningModel',
-            finetuning__pb2.UpdateFineTuningModelRequest.SerializeToString,
-            finetuning__pb2.UpdateFineTuningModelResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/UpdateModel',
+            finetuning__pb2.UpdateModelRequest.SerializeToString,
+            finetuning__pb2.UpdateModelResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def DeleteFineTuningModel(request,
+    def DeleteModel(request,
             target,
             options=(),
             channel_credentials=None,
@@ -230,14 +196,14 @@ class FineTuningService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/DeleteFineTuningModel',
-            finetuning__pb2.DeleteFineTuningModelRequest.SerializeToString,
-            finetuning__pb2.DeleteFineTuningModelResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/DeleteModel',
+            finetuning__pb2.DeleteModelRequest.SerializeToString,
+            finetuning__pb2.DeleteModelResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetFineTuningModelStatus(request,
+    def ResubmitModel(request,
             target,
             options=(),
             channel_credentials=None,
@@ -247,14 +213,14 @@ class FineTuningService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetFineTuningModelStatus',
-            finetuning__pb2.GetFineTuningModelStatusRequest.SerializeToString,
-            finetuning__pb2.GetFineTuningModelStatusResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/ResubmitModel',
+            finetuning__pb2.ResubmitModelRequest.SerializeToString,
+            finetuning__pb2.ResubmitModelResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ResubmitFineTuningModel(request,
+    def ListModels(request,
             target,
             options=(),
             channel_credentials=None,
@@ -264,42 +230,8 @@ class FineTuningService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/ResubmitFineTuningModel',
-            finetuning__pb2.ResubmitFineTuningModelRequest.SerializeToString,
-            finetuning__pb2.ResubmitFineTuningModelResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def GetFineTuningModelsByUserId(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetFineTuningModelsByUserId',
-            finetuning__pb2.GetFineTuningModelsByUserIdRequest.SerializeToString,
-            finetuning__pb2.GetFineTuningModelsByUserIdResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def GetFineTuningModelsByOrgId(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/GetFineTuningModelsByOrgId',
-            finetuning__pb2.GetFineTuningModelsByOrgIdRequest.SerializeToString,
-            finetuning__pb2.GetFineTuningModelsByOrgIdResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/gooseai.FineTuningService/ListModels',
+            finetuning__pb2.ListModelsRequest.SerializeToString,
+            finetuning__pb2.ListModelsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
