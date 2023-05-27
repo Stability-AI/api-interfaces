@@ -8,7 +8,7 @@ import (
 	context "context"
 	errors "errors"
 	connect_go "github.com/bufbuild/connect-go"
-	v1 "github.com/stability-ai/api-interfaces/gen/proto/go/stability_api/platform/generation/v1"
+	v1 "github.com/stability-ai/api-interfaces/src/stability_api/platform/generation/v1"
 	http "net/http"
 	strings "strings"
 )

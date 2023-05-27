@@ -4,7 +4,7 @@ managed:
   go_package_prefix:
     # <module_name>   : name in go.mod 
     # <relative_path> : where generated code should be output 
-    default: github.com/stability-ai/api-interfaces/gen/proto/go/
+    default: github.com/stability-ai/api-interfaces/src
     # Remove `except` field if googleapis is not used
     except:
       - buf.build/googleapis/googleapis    
