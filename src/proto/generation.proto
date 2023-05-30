@@ -219,6 +219,29 @@ message TransformType {
   }
 }
 
+enum T2IAdapter {
+  ADAPTER_NONE = 0;
+  SKETCH = 1;   // these are all compatible with SDXL. 
+  DEPTH = 2;
+  CANNY = 3;
+}
+
+// If adapter_type is not None, then the user can choose what type of init_image to pass in: either an arbitrary image
+// which will then be converted to a depth map, sketch, or canny edge for the sketch, depth and canny adapters respectively,
+// or they can pass in their own depth map, sketch or canny edge. This field controls whether the init_image should
+// be interpreted as an arbitrary image to be preprocessed ready for the t2i adapter, or whether it has already been 
+// preprocessed elsewhere
+enum T2IAdapterInit {
+  IMAGE = 0;   // these are all compatible with SDXL. 
+  ADAPTER_IMAGE = 1;
+}
+
+message T2IParameters {
+  optional T2IAdapter adapter_type = 1;   // adapter mode
+  optional float adapter_weight = 2;
+  optional T2IAdapterInit adapter_init_type = 3;
+}
+
 message ImageParameters {
   optional uint64 height = 1;
   optional uint64 width = 2;
@@ -445,6 +468,7 @@ message Request {
     AssetParameters asset = 8;
     InterpolateParameters interpolate = 11;
     TransformParameters transform = 12;
+    T2IParameters t2i_adapter = 13;
   }
   optional ConditionerParameters conditioner = 6;
   reserved 9,10; //9, 10 are reserved
