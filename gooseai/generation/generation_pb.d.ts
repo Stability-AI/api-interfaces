@@ -606,6 +606,32 @@ export namespace TransformType {
   }
 }
 
+export class FineTuningParameters extends jspb.Message {
+  getModelId(): string;
+  setModelId(value: string): void;
+
+  hasWeight(): boolean;
+  clearWeight(): void;
+  getWeight(): number;
+  setWeight(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FineTuningParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: FineTuningParameters): FineTuningParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FineTuningParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FineTuningParameters;
+  static deserializeBinaryFromReader(message: FineTuningParameters, reader: jspb.BinaryReader): FineTuningParameters;
+}
+
+export namespace FineTuningParameters {
+  export type AsObject = {
+    modelId: string,
+    weight: number,
+  }
+}
+
 export class ImageParameters extends jspb.Message {
   hasHeight(): boolean;
   clearHeight(): void;
@@ -657,10 +683,10 @@ export class ImageParameters extends jspb.Message {
   getQuantize(): boolean;
   setQuantize(value: boolean): void;
 
-  hasFineTuningParameters(): boolean;
-  clearFineTuningParameters(): void;
-  getFineTuningParameters(): FineTuningParameters | undefined;
-  setFineTuningParameters(value?: FineTuningParameters): void;
+  clearFineTuningParametersList(): void;
+  getFineTuningParametersList(): Array<FineTuningParameters>;
+  setFineTuningParametersList(value: Array<FineTuningParameters>): void;
+  addFineTuningParameters(value?: FineTuningParameters, index?: number): FineTuningParameters;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ImageParameters.AsObject;
@@ -684,7 +710,7 @@ export namespace ImageParameters {
     maskedAreaInit: MaskedAreaInitMap[keyof MaskedAreaInitMap],
     weightMethod: WeightMethodMap[keyof WeightMethodMap],
     quantize: boolean,
-    fineTuningParameters?: FineTuningParameters.AsObject,
+    fineTuningParametersList: Array<FineTuningParameters.AsObject>,
   }
 }
 
@@ -1244,30 +1270,6 @@ export namespace AnswerBatch {
   export type AsObject = {
     batchId: string,
     answersList: Array<Answer.AsObject>,
-  }
-}
-
-export class FineTuningParameters extends jspb.Message {
-  getModelId(): string;
-  setModelId(value: string): void;
-
-  getModelUri(): string;
-  setModelUri(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FineTuningParameters.AsObject;
-  static toObject(includeInstance: boolean, msg: FineTuningParameters): FineTuningParameters.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FineTuningParameters, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FineTuningParameters;
-  static deserializeBinaryFromReader(message: FineTuningParameters, reader: jspb.BinaryReader): FineTuningParameters;
-}
-
-export namespace FineTuningParameters {
-  export type AsObject = {
-    modelId: string,
-    modelUri: string,
   }
 }
 
