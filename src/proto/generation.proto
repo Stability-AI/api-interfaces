@@ -219,6 +219,12 @@ message TransformType {
   }
 }
 
+message CAIParameters {
+  string model_name = 1;
+  string model_version = 2;
+  // next available tag: 3
+}
+
 message ImageParameters {
   optional uint64 height = 1;
   optional uint64 width = 2;
@@ -230,6 +236,8 @@ message ImageParameters {
   optional MaskedAreaInit masked_area_init = 8; // defaults to MASKED_AREA_INIT_ZERO
   optional WeightMethod weight_method = 9; //defaults to TEXT_ENCODER
   optional bool quantize = 10; //defaults to true
+  optional CAIParameters cai_parameters = 11; // Set field to have image signed by C2PA
+  // next available tag: 12
 }
 
 enum Action {
