@@ -606,6 +606,30 @@ export namespace TransformType {
   }
 }
 
+export class CAIParameters extends jspb.Message {
+  getModelName(): string;
+  setModelName(value: string): void;
+
+  getModelVersion(): string;
+  setModelVersion(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CAIParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: CAIParameters): CAIParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CAIParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CAIParameters;
+  static deserializeBinaryFromReader(message: CAIParameters, reader: jspb.BinaryReader): CAIParameters;
+}
+
+export namespace CAIParameters {
+  export type AsObject = {
+    modelName: string,
+    modelVersion: string,
+  }
+}
+
 export class ImageParameters extends jspb.Message {
   hasHeight(): boolean;
   clearHeight(): void;
@@ -657,6 +681,11 @@ export class ImageParameters extends jspb.Message {
   getQuantize(): boolean;
   setQuantize(value: boolean): void;
 
+  hasCaiParameters(): boolean;
+  clearCaiParameters(): void;
+  getCaiParameters(): CAIParameters | undefined;
+  setCaiParameters(value?: CAIParameters): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ImageParameters.AsObject;
   static toObject(includeInstance: boolean, msg: ImageParameters): ImageParameters.AsObject;
@@ -679,6 +708,7 @@ export namespace ImageParameters {
     maskedAreaInit: MaskedAreaInitMap[keyof MaskedAreaInitMap],
     weightMethod: WeightMethodMap[keyof WeightMethodMap],
     quantize: boolean,
+    caiParameters?: CAIParameters.AsObject,
   }
 }
 
