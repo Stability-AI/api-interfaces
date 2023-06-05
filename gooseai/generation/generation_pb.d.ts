@@ -607,12 +607,12 @@ export namespace TransformType {
 }
 
 export class CAIParameters extends jspb.Message {
-  getModelName(): string;
-  setModelName(value: string): void;
+  hasModelMetadata(): boolean;
+  clearModelMetadata(): void;
+  getModelMetadata(): CAIParameters.ModelMetadataMap[keyof CAIParameters.ModelMetadataMap];
+  setModelMetadata(value: CAIParameters.ModelMetadataMap[keyof CAIParameters.ModelMetadataMap]): void;
 
-  getModelVersion(): string;
-  setModelVersion(value: string): void;
-
+  getParametersCase(): CAIParameters.ParametersCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CAIParameters.AsObject;
   static toObject(includeInstance: boolean, msg: CAIParameters): CAIParameters.AsObject;
@@ -625,8 +625,18 @@ export class CAIParameters extends jspb.Message {
 
 export namespace CAIParameters {
   export type AsObject = {
-    modelName: string,
-    modelVersion: string,
+    modelMetadata: CAIParameters.ModelMetadataMap[keyof CAIParameters.ModelMetadataMap],
+  }
+
+  export interface ModelMetadataMap {
+    SIGN_WITH_MODEL_AND_VERSION: 0;
+  }
+
+  export const ModelMetadata: ModelMetadataMap;
+
+  export enum ParametersCase {
+    PARAMETERS_NOT_SET = 0,
+    MODEL_METADATA = 1,
   }
 }
 

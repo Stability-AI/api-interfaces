@@ -37,6 +37,8 @@ goog.exportSymbol('proto.gooseai.AssetParameters', null, global);
 goog.exportSymbol('proto.gooseai.AssetUse', null, global);
 goog.exportSymbol('proto.gooseai.BorderMode', null, global);
 goog.exportSymbol('proto.gooseai.CAIParameters', null, global);
+goog.exportSymbol('proto.gooseai.CAIParameters.ModelMetadata', null, global);
+goog.exportSymbol('proto.gooseai.CAIParameters.ParametersCase', null, global);
 goog.exportSymbol('proto.gooseai.CameraParameters', null, global);
 goog.exportSymbol('proto.gooseai.CameraType', null, global);
 goog.exportSymbol('proto.gooseai.ChainRequest', null, global);
@@ -410,7 +412,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.gooseai.CAIParameters = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.gooseai.CAIParameters.oneofGroups_);
 };
 goog.inherits(proto.gooseai.CAIParameters, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -5170,6 +5172,31 @@ proto.gooseai.TransformType.prototype.hasUpscaler = function() {
 
 
 
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.gooseai.CAIParameters.oneofGroups_ = [[1]];
+
+/**
+ * @enum {number}
+ */
+proto.gooseai.CAIParameters.ParametersCase = {
+  PARAMETERS_NOT_SET: 0,
+  MODEL_METADATA: 1
+};
+
+/**
+ * @return {proto.gooseai.CAIParameters.ParametersCase}
+ */
+proto.gooseai.CAIParameters.prototype.getParametersCase = function() {
+  return /** @type {proto.gooseai.CAIParameters.ParametersCase} */(jspb.Message.computeOneofCase(this, proto.gooseai.CAIParameters.oneofGroups_[0]));
+};
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -5201,8 +5228,7 @@ proto.gooseai.CAIParameters.prototype.toObject = function(opt_includeInstance) {
  */
 proto.gooseai.CAIParameters.toObject = function(includeInstance, msg) {
   var f, obj = {
-    modelName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    modelVersion: jspb.Message.getFieldWithDefault(msg, 2, "")
+    modelMetadata: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -5240,12 +5266,8 @@ proto.gooseai.CAIParameters.deserializeBinaryFromReader = function(msg, reader) 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setModelName(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setModelVersion(value);
+      var value = /** @type {!proto.gooseai.CAIParameters.ModelMetadata} */ (reader.readEnum());
+      msg.setModelMetadata(value);
       break;
     default:
       reader.skipField();
@@ -5276,56 +5298,56 @@ proto.gooseai.CAIParameters.prototype.serializeBinary = function() {
  */
 proto.gooseai.CAIParameters.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getModelName();
-  if (f.length > 0) {
-    writer.writeString(
+  f = /** @type {!proto.gooseai.CAIParameters.ModelMetadata} */ (jspb.Message.getField(message, 1));
+  if (f != null) {
+    writer.writeEnum(
       1,
       f
     );
   }
-  f = message.getModelVersion();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
-  }
 };
 
 
 /**
- * optional string model_name = 1;
- * @return {string}
+ * @enum {number}
  */
-proto.gooseai.CAIParameters.prototype.getModelName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.gooseai.CAIParameters.ModelMetadata = {
+  SIGN_WITH_MODEL_AND_VERSION: 0
+};
+
+/**
+ * optional ModelMetadata model_metadata = 1;
+ * @return {!proto.gooseai.CAIParameters.ModelMetadata}
+ */
+proto.gooseai.CAIParameters.prototype.getModelMetadata = function() {
+  return /** @type {!proto.gooseai.CAIParameters.ModelMetadata} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {!proto.gooseai.CAIParameters.ModelMetadata} value
  * @return {!proto.gooseai.CAIParameters} returns this
  */
-proto.gooseai.CAIParameters.prototype.setModelName = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.gooseai.CAIParameters.prototype.setModelMetadata = function(value) {
+  return jspb.Message.setOneofField(this, 1, proto.gooseai.CAIParameters.oneofGroups_[0], value);
 };
 
 
 /**
- * optional string model_version = 2;
- * @return {string}
- */
-proto.gooseai.CAIParameters.prototype.getModelVersion = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * @param {string} value
+ * Clears the field making it undefined.
  * @return {!proto.gooseai.CAIParameters} returns this
  */
-proto.gooseai.CAIParameters.prototype.setModelVersion = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+proto.gooseai.CAIParameters.prototype.clearModelMetadata = function() {
+  return jspb.Message.setOneofField(this, 1, proto.gooseai.CAIParameters.oneofGroups_[0], undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.CAIParameters.prototype.hasModelMetadata = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
