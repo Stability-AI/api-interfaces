@@ -220,9 +220,12 @@ message TransformType {
 }
 
 message CAIParameters {
-  string model_name = 1;
-  string model_version = 2;
-  // next available tag: 3
+  enum ModelMetadata {
+    SIGN_WITH_MODEL_AND_VERSION = 0;
+  }
+  oneof parameters {
+    ModelMetadata model_metadata = 1;
+  }
 }
 
 message ImageParameters {
