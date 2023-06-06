@@ -221,7 +221,8 @@ message TransformType {
 
 message CAIParameters {
   enum ModelMetadata {
-    SIGN_WITH_MODEL_AND_VERSION = 0;
+    METADATA_UNSPECIFIED = 0;
+    SIGN_WITH_ENGINE_ID = 1;
   }
   oneof parameters {
     ModelMetadata model_metadata = 1;
