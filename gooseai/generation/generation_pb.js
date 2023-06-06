@@ -5312,7 +5312,8 @@ proto.gooseai.CAIParameters.serializeBinaryToWriter = function(message, writer) 
  * @enum {number}
  */
 proto.gooseai.CAIParameters.ModelMetadata = {
-  SIGN_WITH_MODEL_AND_VERSION: 0
+  METADATA_UNSPECIFIED: 0,
+  SIGN_WITH_ENGINE_ID: 1
 };
 
 /**

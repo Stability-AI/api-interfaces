@@ -629,7 +629,8 @@ export namespace CAIParameters {
   }
 
   export interface ModelMetadataMap {
-    SIGN_WITH_MODEL_AND_VERSION: 0;
+    METADATA_UNSPECIFIED: 0;
+    SIGN_WITH_ENGINE_ID: 1;
   }
 
   export const ModelMetadata: ModelMetadataMap;
