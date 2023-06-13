@@ -1,5 +1,5 @@
-github.com/coreweave/tensorizer/tensors v0.0.0-20230606212559-6b8814af0d1b h1:j+gsWsmw/rA3QAL5OEKiXn+Vva78e2wfxi2oskXhMBg=
-github.com/coreweave/tensorizer/tensors v0.0.0-20230606212559-6b8814af0d1b/go.mod h1:SBsa3erqu4GCZbu2jeiMIE86eZ6Tx9fDmi/0BZpjHcU=
+github.com/coreweave/tensorizer/tensors v0.0.0-20230607211656-2e129b0d4161 h1:wbzmfUO3aCFnaFdiaAPr1+jj/fuzLqmpj0Yl5E5k19Q=
+github.com/coreweave/tensorizer/tensors v0.0.0-20230607211656-2e129b0d4161/go.mod h1:SBsa3erqu4GCZbu2jeiMIE86eZ6Tx9fDmi/0BZpjHcU=
 github.com/golang/protobuf v1.5.0/go.mod h1:FsONVRAS9T7sI+LIUmWTfcYkHO4aIWwzhcaSAoJOfIk=
 github.com/golang/protobuf v1.5.3 h1:KhyjKVUg7Usr/dYsdSqoFveMYd5ko72D+zANwlG1mmg=
 github.com/golang/protobuf v1.5.3/go.mod h1:XVQd3VNwM+JqD3oG2Ue2ip4fOMUkwXdXDdiuN0vRsmY=
