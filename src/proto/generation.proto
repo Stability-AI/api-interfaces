@@ -220,6 +220,16 @@ message TransformType {
   }
 }
 
+message CAIParameters {
+  enum ModelMetadata {
+    MODEL_METADATA_UNSPECIFIED = 0;
+    MODEL_METADATA_SIGN_WITH_ENGINE_ID = 1;
+  }
+  oneof parameters {
+    ModelMetadata model_metadata = 1;
+  }
+}
+
 // FineTuningParameters specify which fine-tuned models to use for generation.
 message FineTuningParameters {
   // The id of the fine-tuned model to generate content from.
@@ -243,7 +253,9 @@ message ImageParameters {
   optional MaskedAreaInit masked_area_init = 8; // defaults to MASKED_AREA_INIT_ZERO
   optional WeightMethod weight_method = 9; //defaults to TEXT_ENCODER
   optional bool quantize = 10; //defaults to true
-  repeated FineTuningParameters fine_tuning_parameters = 11;
+  optional CAIParameters cai_parameters = 11; // Set field to have image signed by C2PA
+  repeated FineTuningParameters fine_tuning_parameters = 12;
+  // next available tag: 13
 }
 
 enum Action {
