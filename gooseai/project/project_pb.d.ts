@@ -92,10 +92,10 @@ export class Project extends jspb.Message {
   setAssetsList(value: Array<ProjectAsset>): void;
   addAssets(value?: ProjectAsset, index?: number): ProjectAsset;
 
-  hasProjectType(): boolean;
-  clearProjectType(): void;
-  getProjectType(): ProjectTypeMap[keyof ProjectTypeMap];
-  setProjectType(value: ProjectTypeMap[keyof ProjectTypeMap]): void;
+  hasType(): boolean;
+  clearType(): void;
+  getType(): ProjectTypeMap[keyof ProjectTypeMap];
+  setType(value: ProjectTypeMap[keyof ProjectTypeMap]): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Project.AsObject;
@@ -119,7 +119,7 @@ export namespace Project {
     createdAt: number,
     updatedAt: number,
     assetsList: Array<ProjectAsset.AsObject>,
-    projectType: ProjectTypeMap[keyof ProjectTypeMap],
+    type: ProjectTypeMap[keyof ProjectTypeMap],
   }
 }
 
@@ -143,10 +143,10 @@ export class CreateProjectRequest extends jspb.Message {
   getFile(): ProjectAsset | undefined;
   setFile(value?: ProjectAsset): void;
 
-  hasProjectType(): boolean;
-  clearProjectType(): void;
-  getProjectType(): ProjectTypeMap[keyof ProjectTypeMap];
-  setProjectType(value: ProjectTypeMap[keyof ProjectTypeMap]): void;
+  hasType(): boolean;
+  clearType(): void;
+  getType(): ProjectTypeMap[keyof ProjectTypeMap];
+  setType(value: ProjectTypeMap[keyof ProjectTypeMap]): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateProjectRequest.AsObject;
@@ -165,7 +165,7 @@ export namespace CreateProjectRequest {
     access: ProjectAccessMap[keyof ProjectAccessMap],
     status: ProjectStatusMap[keyof ProjectStatusMap],
     file?: ProjectAsset.AsObject,
-    projectType: ProjectTypeMap[keyof ProjectTypeMap],
+    type: ProjectTypeMap[keyof ProjectTypeMap],
   }
 }
 
@@ -198,10 +198,10 @@ export class UpdateProjectRequest extends jspb.Message {
   getFile(): ProjectAsset | undefined;
   setFile(value?: ProjectAsset): void;
 
-  hasProjectType(): boolean;
-  clearProjectType(): void;
-  getProjectType(): ProjectTypeMap[keyof ProjectTypeMap];
-  setProjectType(value: ProjectTypeMap[keyof ProjectTypeMap]): void;
+  hasType(): boolean;
+  clearType(): void;
+  getType(): ProjectTypeMap[keyof ProjectTypeMap];
+  setType(value: ProjectTypeMap[keyof ProjectTypeMap]): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateProjectRequest.AsObject;
@@ -221,7 +221,7 @@ export namespace UpdateProjectRequest {
     access: ProjectAccessMap[keyof ProjectAccessMap],
     status: ProjectStatusMap[keyof ProjectStatusMap],
     file?: ProjectAsset.AsObject,
-    projectType: ProjectTypeMap[keyof ProjectTypeMap],
+    type: ProjectTypeMap[keyof ProjectTypeMap],
   }
 }
 
