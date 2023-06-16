@@ -25,7 +25,7 @@ message FineTuningModel {
   optional FineTuningMode mode = 4; // the mode of the model
   optional string object_name = 5;  // freeform text description of object, should only be set when mode is OBJECT
   string project_id = 6;            // project ID with assets to be used for fine tuning
-  double duration = 7;              // how long the model took to fine tune
+  double duration = 7;              // duration in seconds for how long the model took to train
   FineTuningStatus status = 8;      // the current status of the model
   string engine_id = 9;             // the engineId of a fine-tuneable Stability model
 }
