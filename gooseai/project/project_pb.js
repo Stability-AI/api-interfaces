@@ -986,8 +986,8 @@ proto.gooseai.Project.serializeBinaryToWriter = function(message, writer) {
       proto.gooseai.ProjectAsset.serializeBinaryToWriter
     );
   }
-  f = /** @type {!proto.gooseai.ProjectType} */ (jspb.Message.getField(message, 11));
-  if (f != null) {
+  f = message.getType();
+  if (f !== 0.0) {
     writer.writeEnum(
       11,
       f
@@ -1229,25 +1229,7 @@ proto.gooseai.Project.prototype.getType = function() {
  * @return {!proto.gooseai.Project} returns this
  */
 proto.gooseai.Project.prototype.setType = function(value) {
-  return jspb.Message.setField(this, 11, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.gooseai.Project} returns this
- */
-proto.gooseai.Project.prototype.clearType = function() {
-  return jspb.Message.setField(this, 11, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.gooseai.Project.prototype.hasType = function() {
-  return jspb.Message.getField(this, 11) != null;
+  return jspb.Message.setProto3EnumField(this, 11, value);
 };
 
 
@@ -1415,8 +1397,8 @@ proto.gooseai.CreateProjectRequest.serializeBinaryToWriter = function(message, w
       proto.gooseai.ProjectAsset.serializeBinaryToWriter
     );
   }
-  f = /** @type {!proto.gooseai.ProjectType} */ (jspb.Message.getField(message, 6));
-  if (f != null) {
+  f = message.getType();
+  if (f !== 0.0) {
     writer.writeEnum(
       6,
       f
@@ -1566,25 +1548,7 @@ proto.gooseai.CreateProjectRequest.prototype.getType = function() {
  * @return {!proto.gooseai.CreateProjectRequest} returns this
  */
 proto.gooseai.CreateProjectRequest.prototype.setType = function(value) {
-  return jspb.Message.setField(this, 6, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.gooseai.CreateProjectRequest} returns this
- */
-proto.gooseai.CreateProjectRequest.prototype.clearType = function() {
-  return jspb.Message.setField(this, 6, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.gooseai.CreateProjectRequest.prototype.hasType = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.setProto3EnumField(this, 6, value);
 };
 
 

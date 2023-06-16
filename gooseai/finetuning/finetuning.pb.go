@@ -138,7 +138,7 @@ type FineTuningModel struct {
 	Mode       *FineTuningMode  `protobuf:"varint,4,opt,name=mode,proto3,enum=gooseai.FineTuningMode,oneof" json:"mode,omitempty"`  // the mode of the model
 	ObjectName *string          `protobuf:"bytes,5,opt,name=object_name,json=objectName,proto3,oneof" json:"object_name,omitempty"` // freeform text description of object, should only be set when mode is OBJECT
 	ProjectId  string           `protobuf:"bytes,6,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`          // project ID with assets to be used for fine tuning
-	Duration   float64          `protobuf:"fixed64,7,opt,name=duration,proto3" json:"duration,omitempty"`                           // how long the model took to fine tune
+	Duration   float64          `protobuf:"fixed64,7,opt,name=duration,proto3" json:"duration,omitempty"`                           // duration in seconds for how long the model took to train
 	Status     FineTuningStatus `protobuf:"varint,8,opt,name=status,proto3,enum=gooseai.FineTuningStatus" json:"status,omitempty"`  // the current status of the model
 	EngineId   string           `protobuf:"bytes,9,opt,name=engine_id,json=engineId,proto3" json:"engine_id,omitempty"`             // the engineId of a fine-tuneable Stability model
 }
