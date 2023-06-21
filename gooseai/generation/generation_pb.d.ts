@@ -606,40 +606,6 @@ export namespace TransformType {
   }
 }
 
-export class T2IParameters extends jspb.Message {
-  hasAdapterType(): boolean;
-  clearAdapterType(): void;
-  getAdapterType(): T2IAdapterMap[keyof T2IAdapterMap];
-  setAdapterType(value: T2IAdapterMap[keyof T2IAdapterMap]): void;
-
-  hasAdapterWeight(): boolean;
-  clearAdapterWeight(): void;
-  getAdapterWeight(): number;
-  setAdapterWeight(value: number): void;
-
-  hasAdapterInitType(): boolean;
-  clearAdapterInitType(): void;
-  getAdapterInitType(): T2IAdapterInitMap[keyof T2IAdapterInitMap];
-  setAdapterInitType(value: T2IAdapterInitMap[keyof T2IAdapterInitMap]): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): T2IParameters.AsObject;
-  static toObject(includeInstance: boolean, msg: T2IParameters): T2IParameters.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: T2IParameters, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): T2IParameters;
-  static deserializeBinaryFromReader(message: T2IParameters, reader: jspb.BinaryReader): T2IParameters;
-}
-
-export namespace T2IParameters {
-  export type AsObject = {
-    adapterType: T2IAdapterMap[keyof T2IAdapterMap],
-    adapterWeight: number,
-    adapterInitType: T2IAdapterInitMap[keyof T2IAdapterInitMap],
-  }
-}
-
 export class ImageParameters extends jspb.Message {
   hasHeight(): boolean;
   clearHeight(): void;
@@ -691,6 +657,21 @@ export class ImageParameters extends jspb.Message {
   getQuantize(): boolean;
   setQuantize(value: boolean): void;
 
+  hasAdapterType(): boolean;
+  clearAdapterType(): void;
+  getAdapterType(): T2IAdapterMap[keyof T2IAdapterMap];
+  setAdapterType(value: T2IAdapterMap[keyof T2IAdapterMap]): void;
+
+  hasAdapterStrength(): boolean;
+  clearAdapterStrength(): void;
+  getAdapterStrength(): number;
+  setAdapterStrength(value: number): void;
+
+  hasAdapterInitType(): boolean;
+  clearAdapterInitType(): void;
+  getAdapterInitType(): T2IAdapterInitMap[keyof T2IAdapterInitMap];
+  setAdapterInitType(value: T2IAdapterInitMap[keyof T2IAdapterInitMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ImageParameters.AsObject;
   static toObject(includeInstance: boolean, msg: ImageParameters): ImageParameters.AsObject;
@@ -713,6 +694,9 @@ export namespace ImageParameters {
     maskedAreaInit: MaskedAreaInitMap[keyof MaskedAreaInitMap],
     weightMethod: WeightMethodMap[keyof WeightMethodMap],
     quantize: boolean,
+    adapterType: T2IAdapterMap[keyof T2IAdapterMap],
+    adapterStrength: number,
+    adapterInitType: T2IAdapterInitMap[keyof T2IAdapterInitMap],
   }
 }
 
@@ -1315,11 +1299,6 @@ export class Request extends jspb.Message {
   getTransform(): TransformParameters | undefined;
   setTransform(value?: TransformParameters): void;
 
-  hasT2iAdapter(): boolean;
-  clearT2iAdapter(): void;
-  getT2iAdapter(): T2IParameters | undefined;
-  setT2iAdapter(value?: T2IParameters): void;
-
   hasConditioner(): boolean;
   clearConditioner(): void;
   getConditioner(): ConditionerParameters | undefined;
@@ -1352,7 +1331,6 @@ export namespace Request {
     asset?: AssetParameters.AsObject,
     interpolate?: InterpolateParameters.AsObject,
     transform?: TransformParameters.AsObject,
-    t2iAdapter?: T2IParameters.AsObject,
     conditioner?: ConditionerParameters.AsObject,
     extras?: google_protobuf_struct_pb.Struct.AsObject,
   }
@@ -1364,7 +1342,6 @@ export namespace Request {
     ASSET = 8,
     INTERPOLATE = 11,
     TRANSFORM = 12,
-    T2I_ADAPTER = 13,
   }
 }
 
