@@ -236,12 +236,6 @@ enum T2IAdapterInit {
   ADAPTER_IMAGE = 1;
 }
 
-message T2IParameters {
-  optional T2IAdapter adapter_type = 1;   // adapter mode
-  optional float adapter_weight = 2;
-  optional T2IAdapterInit adapter_init_type = 3;
-}
-
 message ImageParameters {
   optional uint64 height = 1;
   optional uint64 width = 2;
@@ -253,6 +247,9 @@ message ImageParameters {
   optional MaskedAreaInit masked_area_init = 8; // defaults to MASKED_AREA_INIT_ZERO
   optional WeightMethod weight_method = 9; //defaults to TEXT_ENCODER
   optional bool quantize = 10; //defaults to true
+  optional T2IAdapter adapter_type = 11; //  adapter mode, defaults to None
+  optional float adapter_strength = 12;
+  optional T2IAdapterInit adapter_init_type = 13;
 }
 
 enum Action {
@@ -468,7 +465,6 @@ message Request {
     AssetParameters asset = 8;
     InterpolateParameters interpolate = 11;
     TransformParameters transform = 12;
-    T2IParameters t2i_adapter = 13;
   }
   optional ConditionerParameters conditioner = 6;
   reserved 9,10; //9, 10 are reserved
