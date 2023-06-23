@@ -92,8 +92,6 @@ export class Project extends jspb.Message {
   setAssetsList(value: Array<ProjectAsset>): void;
   addAssets(value?: ProjectAsset, index?: number): ProjectAsset;
 
-  hasType(): boolean;
-  clearType(): void;
   getType(): ProjectTypeMap[keyof ProjectTypeMap];
   setType(value: ProjectTypeMap[keyof ProjectTypeMap]): void;
 
@@ -143,8 +141,6 @@ export class CreateProjectRequest extends jspb.Message {
   getFile(): ProjectAsset | undefined;
   setFile(value?: ProjectAsset): void;
 
-  hasType(): boolean;
-  clearType(): void;
   getType(): ProjectTypeMap[keyof ProjectTypeMap];
   setType(value: ProjectTypeMap[keyof ProjectTypeMap]): void;
 
