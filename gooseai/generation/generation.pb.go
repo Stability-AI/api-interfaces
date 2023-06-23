@@ -4631,7 +4631,7 @@ var file_generation_proto_goTypes = []interface{}{
 	(*Stage)(nil),                      // 53: gooseai.Stage
 	(*ChainRequest)(nil),               // 54: gooseai.ChainRequest
 	(*tensors.Tensor)(nil),             // 55: tensors.Tensor
-	(*_struct.Struct)(nil),             // 56: google.protobuf.Struct
+	(*structpb.Struct)(nil),            // 56: google.protobuf.Struct
 }
 var file_generation_proto_depIdxs = []int32{
 	20, // 0: gooseai.Tokens.tokens:type_name -> gooseai.Token
