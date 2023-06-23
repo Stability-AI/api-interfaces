@@ -350,7 +350,8 @@ proto.gooseai.FineTuningModel.toObject = function(includeInstance, msg) {
     projectId: jspb.Message.getFieldWithDefault(msg, 6, ""),
     duration: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
     status: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    engineId: jspb.Message.getFieldWithDefault(msg, 9, "")
+    engineId: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    failureReason: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -422,6 +423,10 @@ proto.gooseai.FineTuningModel.deserializeBinaryFromReader = function(msg, reader
     case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setEngineId(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFailureReason(value);
       break;
     default:
       reader.skipField();
@@ -512,6 +517,13 @@ proto.gooseai.FineTuningModel.serializeBinaryToWriter = function(message, writer
   if (f.length > 0) {
     writer.writeString(
       9,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 10));
+  if (f != null) {
+    writer.writeString(
+      10,
       f
     );
   }
@@ -713,6 +725,42 @@ proto.gooseai.FineTuningModel.prototype.getEngineId = function() {
  */
 proto.gooseai.FineTuningModel.prototype.setEngineId = function(value) {
   return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional string failure_reason = 10;
+ * @return {string}
+ */
+proto.gooseai.FineTuningModel.prototype.getFailureReason = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.gooseai.FineTuningModel} returns this
+ */
+proto.gooseai.FineTuningModel.prototype.setFailureReason = function(value) {
+  return jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.FineTuningModel} returns this
+ */
+proto.gooseai.FineTuningModel.prototype.clearFailureReason = function() {
+  return jspb.Message.setField(this, 10, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.FineTuningModel.prototype.hasFailureReason = function() {
+  return jspb.Message.getField(this, 10) != null;
 };
 
 

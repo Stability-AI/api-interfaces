@@ -35,6 +35,11 @@ export class FineTuningModel extends jspb.Message {
   getEngineId(): string;
   setEngineId(value: string): void;
 
+  hasFailureReason(): boolean;
+  clearFailureReason(): void;
+  getFailureReason(): string;
+  setFailureReason(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FineTuningModel.AsObject;
   static toObject(includeInstance: boolean, msg: FineTuningModel): FineTuningModel.AsObject;
@@ -56,6 +61,7 @@ export namespace FineTuningModel {
     duration: number,
     status: FineTuningStatusMap[keyof FineTuningStatusMap],
     engineId: string,
+    failureReason: string,
   }
 }
 
