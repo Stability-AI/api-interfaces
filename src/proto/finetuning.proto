@@ -19,15 +19,16 @@ enum FineTuningStatus {
 }
 
 message FineTuningModel {
-  string id = 1;                    // ID of the model, UUIDv4
-  string user_id = 2;               // ID of user who created the model
-  string name = 3;                  // a readable model name
-  optional FineTuningMode mode = 4; // the mode of the model
-  optional string object_name = 5;  // freeform text description of object, should only be set when mode is OBJECT
-  string project_id = 6;            // project ID with assets to be used for fine tuning
-  double duration = 7;              // duration in seconds for how long the model took to train
-  FineTuningStatus status = 8;      // the current status of the model
-  string engine_id = 9;             // the engineId of a fine-tuneable Stability model
+  string id = 1;                        // ID of the model, UUIDv4
+  string user_id = 2;                   // ID of user who created the model
+  string name = 3;                      // a readable model name
+  optional FineTuningMode mode = 4;     // the mode of the model
+  optional string object_name = 5;      // freeform text description of object, should only be set when mode is OBJECT
+  string project_id = 6;                // project ID with assets to be used for fine tuning
+  double duration = 7;                  // duration in seconds for how long the model took to train
+  FineTuningStatus status = 8;          // the current status of the model
+  string engine_id = 9;                 // the engineId of a fine-tuneable Stability model
+  optional string failure_reason = 10;  // If a model's training failed, this will contain the reason
 }
 
 message CreateModelRequest {
