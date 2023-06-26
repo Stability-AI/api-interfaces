@@ -634,6 +634,41 @@ export namespace T2IAdapterParameter {
   }
 }
 
+export class CAIParameters extends jspb.Message {
+  hasModelMetadata(): boolean;
+  clearModelMetadata(): void;
+  getModelMetadata(): CAIParameters.ModelMetadataMap[keyof CAIParameters.ModelMetadataMap];
+  setModelMetadata(value: CAIParameters.ModelMetadataMap[keyof CAIParameters.ModelMetadataMap]): void;
+
+  getParametersCase(): CAIParameters.ParametersCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CAIParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: CAIParameters): CAIParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CAIParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CAIParameters;
+  static deserializeBinaryFromReader(message: CAIParameters, reader: jspb.BinaryReader): CAIParameters;
+}
+
+export namespace CAIParameters {
+  export type AsObject = {
+    modelMetadata: CAIParameters.ModelMetadataMap[keyof CAIParameters.ModelMetadataMap],
+  }
+
+  export interface ModelMetadataMap {
+    MODEL_METADATA_UNSPECIFIED: 0;
+    MODEL_METADATA_SIGN_WITH_ENGINE_ID: 1;
+  }
+
+  export const ModelMetadata: ModelMetadataMap;
+
+  export enum ParametersCase {
+    PARAMETERS_NOT_SET = 0,
+    MODEL_METADATA = 1,
+  }
+}
+
 export class ImageParameters extends jspb.Message {
   hasHeight(): boolean;
   clearHeight(): void;
@@ -685,6 +720,11 @@ export class ImageParameters extends jspb.Message {
   getQuantize(): boolean;
   setQuantize(value: boolean): void;
 
+  hasCaiParameters(): boolean;
+  clearCaiParameters(): void;
+  getCaiParameters(): CAIParameters | undefined;
+  setCaiParameters(value?: CAIParameters): void;
+
   hasAdapter(): boolean;
   clearAdapter(): void;
   getAdapter(): T2IAdapterParameter | undefined;
@@ -712,6 +752,7 @@ export namespace ImageParameters {
     maskedAreaInit: MaskedAreaInitMap[keyof MaskedAreaInitMap],
     weightMethod: WeightMethodMap[keyof WeightMethodMap],
     quantize: boolean,
+    caiParameters?: CAIParameters.AsObject,
     adapter?: T2IAdapterParameter.AsObject,
   }
 }
