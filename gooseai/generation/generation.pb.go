@@ -4785,7 +4785,6 @@ var file_generation_proto_goTypes = []interface{}{
 	(AssetAction)(0),                   // 17: gooseai.AssetAction
 	(AssetUse)(0),                      // 18: gooseai.AssetUse
 	(StageAction)(0),                   // 19: gooseai.StageAction
-<<<<<<< HEAD
 	(CAIParameters_ModelMetadata)(0),   // 20: gooseai.CAIParameters.ModelMetadata
 	(*Token)(nil),                      // 21: gooseai.Token
 	(*Tokens)(nil),                     // 22: gooseai.Tokens
@@ -4825,47 +4824,7 @@ var file_generation_proto_goTypes = []interface{}{
 	(*Stage)(nil),                      // 56: gooseai.Stage
 	(*ChainRequest)(nil),               // 57: gooseai.ChainRequest
 	(*tensors.Tensor)(nil),             // 58: tensors.Tensor
-	(*_struct.Struct)(nil),             // 59: google.protobuf.Struct
-=======
-	(*Token)(nil),                      // 20: gooseai.Token
-	(*Tokens)(nil),                     // 21: gooseai.Tokens
-	(*Artifact)(nil),                   // 22: gooseai.Artifact
-	(*PromptParameters)(nil),           // 23: gooseai.PromptParameters
-	(*Prompt)(nil),                     // 24: gooseai.Prompt
-	(*SamplerParameters)(nil),          // 25: gooseai.SamplerParameters
-	(*ConditionerParameters)(nil),      // 26: gooseai.ConditionerParameters
-	(*ScheduleParameters)(nil),         // 27: gooseai.ScheduleParameters
-	(*StepParameter)(nil),              // 28: gooseai.StepParameter
-	(*Model)(nil),                      // 29: gooseai.Model
-	(*CutoutParameters)(nil),           // 30: gooseai.CutoutParameters
-	(*GuidanceScheduleParameters)(nil), // 31: gooseai.GuidanceScheduleParameters
-	(*GuidanceInstanceParameters)(nil), // 32: gooseai.GuidanceInstanceParameters
-	(*GuidanceParameters)(nil),         // 33: gooseai.GuidanceParameters
-	(*TransformType)(nil),              // 34: gooseai.TransformType
-	(*T2IAdapterParameter)(nil),        // 35: gooseai.T2IAdapterParameter
-	(*ImageParameters)(nil),            // 36: gooseai.ImageParameters
-	(*ClassifierConcept)(nil),          // 37: gooseai.ClassifierConcept
-	(*ClassifierCategory)(nil),         // 38: gooseai.ClassifierCategory
-	(*ClassifierParameters)(nil),       // 39: gooseai.ClassifierParameters
-	(*InterpolateParameters)(nil),      // 40: gooseai.InterpolateParameters
-	(*TransformColorAdjust)(nil),       // 41: gooseai.TransformColorAdjust
-	(*TransformDepthCalc)(nil),         // 42: gooseai.TransformDepthCalc
-	(*TransformMatrix)(nil),            // 43: gooseai.TransformMatrix
-	(*TransformResample)(nil),          // 44: gooseai.TransformResample
-	(*CameraParameters)(nil),           // 45: gooseai.CameraParameters
-	(*TransformCameraPose)(nil),        // 46: gooseai.TransformCameraPose
-	(*TransformParameters)(nil),        // 47: gooseai.TransformParameters
-	(*AssetParameters)(nil),            // 48: gooseai.AssetParameters
-	(*AnswerMeta)(nil),                 // 49: gooseai.AnswerMeta
-	(*Answer)(nil),                     // 50: gooseai.Answer
-	(*AnswerBatch)(nil),                // 51: gooseai.AnswerBatch
-	(*Request)(nil),                    // 52: gooseai.Request
-	(*OnStatus)(nil),                   // 53: gooseai.OnStatus
-	(*Stage)(nil),                      // 54: gooseai.Stage
-	(*ChainRequest)(nil),               // 55: gooseai.ChainRequest
-	(*tensors.Tensor)(nil),             // 56: tensors.Tensor
-	(*structpb.Struct)(nil),            // 57: google.protobuf.Struct
->>>>>>> 2e71b25a7da6c6ddd73a9488b29d2099f21d54fe
+	(*structpb.Struct)(nil),            // 59: google.protobuf.Struct
 }
 var file_generation_proto_depIdxs = []int32{
 	21, // 0: gooseai.Tokens.tokens:type_name -> gooseai.Token
