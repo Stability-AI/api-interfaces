@@ -2,6 +2,7 @@ syntax = "proto3";
 package gooseai;
 
 option go_package = "github.com/stability-ai/api-interfaces/gooseai/finetuning";
+import "google/protobuf/struct.proto";
 
 enum FineTuningMode {
   FINE_TUNING_MODE_UNSPECIFIED = 0; // No mode specified
@@ -23,7 +24,7 @@ message FineTuningModel {
   string user_id = 2;                   // ID of user who created the model
   string name = 3;                      // a readable model name
   optional FineTuningMode mode = 4;     // the mode of the model
-  optional string object_name = 5;      // freeform text description of object, should only be set when mode is OBJECT
+  optional string object_prompt = 5;    // freeform text description of object, should only be set when mode is OBJECT
   string project_id = 6;                // project ID with assets to be used for fine tuning
   double duration = 7;                  // duration in seconds for how long the model took to train
   FineTuningStatus status = 8;          // the current status of the model
@@ -32,11 +33,12 @@ message FineTuningModel {
 }
 
 message CreateModelRequest {
-  string name = 1;                  // a readable model name
-  optional FineTuningMode mode = 2; // the mode of the model
-  optional string object_name = 3;  // freeform text description of object, should only be set when mode is OBJECT
-  string project_id  = 4;           // the project_id with assets to be used for fine tuning
-  string engine_id = 5;             // the engineId of an fine-tuneable Stability model
+  string name = 1;                    // a readable model name
+  optional FineTuningMode mode = 2;   // the mode of the model
+  optional string object_prompt = 3;  // freeform text description of object, should only be set when mode is OBJECT
+  string project_id  = 4;             // the project_id with assets to be used for fine tuning
+  string engine_id = 5;               // the engineId of an fine-tuneable Stability model
+  optional google.protobuf.Struct extras = 2047; // for development use
 }
 
 message CreateModelResponse {
@@ -52,11 +54,11 @@ message GetModelResponse {
 }
 
 message UpdateModelRequest{
-  string id = 1;                    // the id of the model
-  optional string name = 2;         // a readable model name
-  optional FineTuningMode mode = 3; // the mode of the model
-  optional string object_name = 4;  // freeform text description of object, should only be set when mode is OBJECT
-  optional string engine_id = 5;    // the engineId of an fine-tuneable Stability model
+  string id = 1;                      // the id of the model
+  optional string name = 2;           // a readable model name
+  optional FineTuningMode mode = 3;   // the mode of the model
+  optional string object_prompt = 4;  // freeform text description of object, should only be set when mode is OBJECT
+  optional string engine_id = 5;      // the engineId of an fine-tuneable Stability model
 }
 
 message UpdateModelResponse {
