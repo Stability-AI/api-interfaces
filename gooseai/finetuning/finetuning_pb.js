@@ -21,6 +21,8 @@ var global = (function() {
   return Function('return this')();
 }.call(null));
 
+var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
+goog.object.extend(proto, google_protobuf_struct_pb);
 goog.exportSymbol('proto.gooseai.CreateModelRequest', null, global);
 goog.exportSymbol('proto.gooseai.CreateModelResponse', null, global);
 goog.exportSymbol('proto.gooseai.DeleteModelRequest', null, global);
@@ -69,7 +71,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.gooseai.CreateModelRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, 500, null, null);
 };
 goog.inherits(proto.gooseai.CreateModelRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -346,7 +348,7 @@ proto.gooseai.FineTuningModel.toObject = function(includeInstance, msg) {
     userId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     name: jspb.Message.getFieldWithDefault(msg, 3, ""),
     mode: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    objectName: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    objectPrompt: jspb.Message.getFieldWithDefault(msg, 5, ""),
     projectId: jspb.Message.getFieldWithDefault(msg, 6, ""),
     duration: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
     status: jspb.Message.getFieldWithDefault(msg, 8, 0),
@@ -406,7 +408,7 @@ proto.gooseai.FineTuningModel.deserializeBinaryFromReader = function(msg, reader
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setObjectName(value);
+      msg.setObjectPrompt(value);
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
@@ -621,10 +623,10 @@ proto.gooseai.FineTuningModel.prototype.hasMode = function() {
 
 
 /**
- * optional string object_name = 5;
+ * optional string object_prompt = 5;
  * @return {string}
  */
-proto.gooseai.FineTuningModel.prototype.getObjectName = function() {
+proto.gooseai.FineTuningModel.prototype.getObjectPrompt = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -633,7 +635,7 @@ proto.gooseai.FineTuningModel.prototype.getObjectName = function() {
  * @param {string} value
  * @return {!proto.gooseai.FineTuningModel} returns this
  */
-proto.gooseai.FineTuningModel.prototype.setObjectName = function(value) {
+proto.gooseai.FineTuningModel.prototype.setObjectPrompt = function(value) {
   return jspb.Message.setField(this, 5, value);
 };
 
@@ -642,7 +644,7 @@ proto.gooseai.FineTuningModel.prototype.setObjectName = function(value) {
  * Clears the field making it undefined.
  * @return {!proto.gooseai.FineTuningModel} returns this
  */
-proto.gooseai.FineTuningModel.prototype.clearObjectName = function() {
+proto.gooseai.FineTuningModel.prototype.clearObjectPrompt = function() {
   return jspb.Message.setField(this, 5, undefined);
 };
 
@@ -651,7 +653,7 @@ proto.gooseai.FineTuningModel.prototype.clearObjectName = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.gooseai.FineTuningModel.prototype.hasObjectName = function() {
+proto.gooseai.FineTuningModel.prototype.hasObjectPrompt = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
@@ -798,9 +800,10 @@ proto.gooseai.CreateModelRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     mode: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    objectName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    objectPrompt: jspb.Message.getFieldWithDefault(msg, 3, ""),
     projectId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    engineId: jspb.Message.getFieldWithDefault(msg, 5, "")
+    engineId: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    extras: (f = msg.getExtras()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -847,7 +850,7 @@ proto.gooseai.CreateModelRequest.deserializeBinaryFromReader = function(msg, rea
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setObjectName(value);
+      msg.setObjectPrompt(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
@@ -856,6 +859,11 @@ proto.gooseai.CreateModelRequest.deserializeBinaryFromReader = function(msg, rea
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setEngineId(value);
+      break;
+    case 2047:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtras(value);
       break;
     default:
       reader.skipField();
@@ -921,6 +929,14 @@ proto.gooseai.CreateModelRequest.serializeBinaryToWriter = function(message, wri
       f
     );
   }
+  f = message.getExtras();
+  if (f != null) {
+    writer.writeMessage(
+      2047,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -979,10 +995,10 @@ proto.gooseai.CreateModelRequest.prototype.hasMode = function() {
 
 
 /**
- * optional string object_name = 3;
+ * optional string object_prompt = 3;
  * @return {string}
  */
-proto.gooseai.CreateModelRequest.prototype.getObjectName = function() {
+proto.gooseai.CreateModelRequest.prototype.getObjectPrompt = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -991,7 +1007,7 @@ proto.gooseai.CreateModelRequest.prototype.getObjectName = function() {
  * @param {string} value
  * @return {!proto.gooseai.CreateModelRequest} returns this
  */
-proto.gooseai.CreateModelRequest.prototype.setObjectName = function(value) {
+proto.gooseai.CreateModelRequest.prototype.setObjectPrompt = function(value) {
   return jspb.Message.setField(this, 3, value);
 };
 
@@ -1000,7 +1016,7 @@ proto.gooseai.CreateModelRequest.prototype.setObjectName = function(value) {
  * Clears the field making it undefined.
  * @return {!proto.gooseai.CreateModelRequest} returns this
  */
-proto.gooseai.CreateModelRequest.prototype.clearObjectName = function() {
+proto.gooseai.CreateModelRequest.prototype.clearObjectPrompt = function() {
   return jspb.Message.setField(this, 3, undefined);
 };
 
@@ -1009,7 +1025,7 @@ proto.gooseai.CreateModelRequest.prototype.clearObjectName = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.gooseai.CreateModelRequest.prototype.hasObjectName = function() {
+proto.gooseai.CreateModelRequest.prototype.hasObjectPrompt = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -1047,6 +1063,43 @@ proto.gooseai.CreateModelRequest.prototype.getEngineId = function() {
  */
 proto.gooseai.CreateModelRequest.prototype.setEngineId = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extras = 2047;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.gooseai.CreateModelRequest.prototype.getExtras = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2047));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.gooseai.CreateModelRequest} returns this
+*/
+proto.gooseai.CreateModelRequest.prototype.setExtras = function(value) {
+  return jspb.Message.setWrapperField(this, 2047, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.gooseai.CreateModelRequest} returns this
+ */
+proto.gooseai.CreateModelRequest.prototype.clearExtras = function() {
+  return this.setExtras(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.CreateModelRequest.prototype.hasExtras = function() {
+  return jspb.Message.getField(this, 2047) != null;
 };
 
 
@@ -1517,7 +1570,7 @@ proto.gooseai.UpdateModelRequest.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     mode: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    objectName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    objectPrompt: jspb.Message.getFieldWithDefault(msg, 4, ""),
     engineId: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
@@ -1569,7 +1622,7 @@ proto.gooseai.UpdateModelRequest.deserializeBinaryFromReader = function(msg, rea
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setObjectName(value);
+      msg.setObjectPrompt(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
@@ -1733,10 +1786,10 @@ proto.gooseai.UpdateModelRequest.prototype.hasMode = function() {
 
 
 /**
- * optional string object_name = 4;
+ * optional string object_prompt = 4;
  * @return {string}
  */
-proto.gooseai.UpdateModelRequest.prototype.getObjectName = function() {
+proto.gooseai.UpdateModelRequest.prototype.getObjectPrompt = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -1745,7 +1798,7 @@ proto.gooseai.UpdateModelRequest.prototype.getObjectName = function() {
  * @param {string} value
  * @return {!proto.gooseai.UpdateModelRequest} returns this
  */
-proto.gooseai.UpdateModelRequest.prototype.setObjectName = function(value) {
+proto.gooseai.UpdateModelRequest.prototype.setObjectPrompt = function(value) {
   return jspb.Message.setField(this, 4, value);
 };
 
@@ -1754,7 +1807,7 @@ proto.gooseai.UpdateModelRequest.prototype.setObjectName = function(value) {
  * Clears the field making it undefined.
  * @return {!proto.gooseai.UpdateModelRequest} returns this
  */
-proto.gooseai.UpdateModelRequest.prototype.clearObjectName = function() {
+proto.gooseai.UpdateModelRequest.prototype.clearObjectPrompt = function() {
   return jspb.Message.setField(this, 4, undefined);
 };
 
@@ -1763,7 +1816,7 @@ proto.gooseai.UpdateModelRequest.prototype.clearObjectName = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.gooseai.UpdateModelRequest.prototype.hasObjectName = function() {
+proto.gooseai.UpdateModelRequest.prototype.hasObjectPrompt = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
