@@ -2,6 +2,7 @@
 // file: finetuning.proto
 
 import * as jspb from "google-protobuf";
+import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 
 export class FineTuningModel extends jspb.Message {
   getId(): string;
@@ -18,10 +19,10 @@ export class FineTuningModel extends jspb.Message {
   getMode(): FineTuningModeMap[keyof FineTuningModeMap];
   setMode(value: FineTuningModeMap[keyof FineTuningModeMap]): void;
 
-  hasObjectName(): boolean;
-  clearObjectName(): void;
-  getObjectName(): string;
-  setObjectName(value: string): void;
+  hasObjectPrompt(): boolean;
+  clearObjectPrompt(): void;
+  getObjectPrompt(): string;
+  setObjectPrompt(value: string): void;
 
   getProjectId(): string;
   setProjectId(value: string): void;
@@ -56,7 +57,7 @@ export namespace FineTuningModel {
     userId: string,
     name: string,
     mode: FineTuningModeMap[keyof FineTuningModeMap],
-    objectName: string,
+    objectPrompt: string,
     projectId: string,
     duration: number,
     status: FineTuningStatusMap[keyof FineTuningStatusMap],
@@ -74,16 +75,21 @@ export class CreateModelRequest extends jspb.Message {
   getMode(): FineTuningModeMap[keyof FineTuningModeMap];
   setMode(value: FineTuningModeMap[keyof FineTuningModeMap]): void;
 
-  hasObjectName(): boolean;
-  clearObjectName(): void;
-  getObjectName(): string;
-  setObjectName(value: string): void;
+  hasObjectPrompt(): boolean;
+  clearObjectPrompt(): void;
+  getObjectPrompt(): string;
+  setObjectPrompt(value: string): void;
 
   getProjectId(): string;
   setProjectId(value: string): void;
 
   getEngineId(): string;
   setEngineId(value: string): void;
+
+  hasExtras(): boolean;
+  clearExtras(): void;
+  getExtras(): google_protobuf_struct_pb.Struct | undefined;
+  setExtras(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateModelRequest.AsObject;
@@ -99,9 +105,10 @@ export namespace CreateModelRequest {
   export type AsObject = {
     name: string,
     mode: FineTuningModeMap[keyof FineTuningModeMap],
-    objectName: string,
+    objectPrompt: string,
     projectId: string,
     engineId: string,
+    extras?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -183,10 +190,10 @@ export class UpdateModelRequest extends jspb.Message {
   getMode(): FineTuningModeMap[keyof FineTuningModeMap];
   setMode(value: FineTuningModeMap[keyof FineTuningModeMap]): void;
 
-  hasObjectName(): boolean;
-  clearObjectName(): void;
-  getObjectName(): string;
-  setObjectName(value: string): void;
+  hasObjectPrompt(): boolean;
+  clearObjectPrompt(): void;
+  getObjectPrompt(): string;
+  setObjectPrompt(value: string): void;
 
   hasEngineId(): boolean;
   clearEngineId(): void;
@@ -208,7 +215,7 @@ export namespace UpdateModelRequest {
     id: string,
     name: string,
     mode: FineTuningModeMap[keyof FineTuningModeMap],
-    objectName: string,
+    objectPrompt: string,
     engineId: string,
   }
 }

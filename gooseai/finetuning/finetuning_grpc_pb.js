@@ -3,6 +3,7 @@
 'use strict';
 var grpc = require('grpc');
 var finetuning_pb = require('./finetuning_pb.js');
+var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
 
 function serialize_gooseai_CreateModelRequest(arg) {
   if (!(arg instanceof finetuning_pb.CreateModelRequest)) {
