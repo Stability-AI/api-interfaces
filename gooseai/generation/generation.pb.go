@@ -2312,28 +2312,91 @@ type CAIParameters_ModelMetadata_ struct {
 
 func (*CAIParameters_ModelMetadata_) isCAIParameters_Parameters() {}
 
+// FineTuningParameters specify which fine-tuned models to use for generation.
+type FineTuningParameters struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The id of the fine-tuned model to generate content from.
+	// See FineTuningModel.id in finetuning.proto.
+	// Model Id is created upon invoking CreateFineTuningModel.
+	// When GetFineTuningModelStatus returns a FineTuningModelStatus of
+	// FINE_TUNING_MODEL_STATUS_COMPLETED, the model can be used
+	// for generating images.
+	ModelId string   `protobuf:"bytes,1,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
+	Weight  *float32 `protobuf:"fixed32,2,opt,name=weight,proto3,oneof" json:"weight,omitempty"` // defaults to 1.0
+}
+
+func (x *FineTuningParameters) Reset() {
+	*x = FineTuningParameters{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_generation_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FineTuningParameters) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FineTuningParameters) ProtoMessage() {}
+
+func (x *FineTuningParameters) ProtoReflect() protoreflect.Message {
+	mi := &file_generation_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FineTuningParameters.ProtoReflect.Descriptor instead.
+func (*FineTuningParameters) Descriptor() ([]byte, []int) {
+	return file_generation_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *FineTuningParameters) GetModelId() string {
+	if x != nil {
+		return x.ModelId
+	}
+	return ""
+}
+
+func (x *FineTuningParameters) GetWeight() float32 {
+	if x != nil && x.Weight != nil {
+		return *x.Weight
+	}
+	return 0
+}
+
 type ImageParameters struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Height         *uint64          `protobuf:"varint,1,opt,name=height,proto3,oneof" json:"height,omitempty"`
-	Width          *uint64          `protobuf:"varint,2,opt,name=width,proto3,oneof" json:"width,omitempty"`
-	Seed           []uint32         `protobuf:"varint,3,rep,packed,name=seed,proto3" json:"seed,omitempty"`
-	Samples        *uint64          `protobuf:"varint,4,opt,name=samples,proto3,oneof" json:"samples,omitempty"`
-	Steps          *uint64          `protobuf:"varint,5,opt,name=steps,proto3,oneof" json:"steps,omitempty"`
-	Transform      *TransformType   `protobuf:"bytes,6,opt,name=transform,proto3,oneof" json:"transform,omitempty"`
-	Parameters     []*StepParameter `protobuf:"bytes,7,rep,name=parameters,proto3" json:"parameters,omitempty"`
-	MaskedAreaInit *MaskedAreaInit  `protobuf:"varint,8,opt,name=masked_area_init,json=maskedAreaInit,proto3,enum=gooseai.MaskedAreaInit,oneof" json:"masked_area_init,omitempty"` // defaults to MASKED_AREA_INIT_ZERO
-	WeightMethod   *WeightMethod    `protobuf:"varint,9,opt,name=weight_method,json=weightMethod,proto3,enum=gooseai.WeightMethod,oneof" json:"weight_method,omitempty"`           //defaults to TEXT_ENCODER
-	Quantize       *bool            `protobuf:"varint,10,opt,name=quantize,proto3,oneof" json:"quantize,omitempty"`                                                                //defaults to true
-	CaiParameters  *CAIParameters   `protobuf:"bytes,11,opt,name=cai_parameters,json=caiParameters,proto3,oneof" json:"cai_parameters,omitempty"`                                  // Set field to have image signed by C2PA
+	Height               *uint64                 `protobuf:"varint,1,opt,name=height,proto3,oneof" json:"height,omitempty"`
+	Width                *uint64                 `protobuf:"varint,2,opt,name=width,proto3,oneof" json:"width,omitempty"`
+	Seed                 []uint32                `protobuf:"varint,3,rep,packed,name=seed,proto3" json:"seed,omitempty"`
+	Samples              *uint64                 `protobuf:"varint,4,opt,name=samples,proto3,oneof" json:"samples,omitempty"`
+	Steps                *uint64                 `protobuf:"varint,5,opt,name=steps,proto3,oneof" json:"steps,omitempty"`
+	Transform            *TransformType          `protobuf:"bytes,6,opt,name=transform,proto3,oneof" json:"transform,omitempty"`
+	Parameters           []*StepParameter        `protobuf:"bytes,7,rep,name=parameters,proto3" json:"parameters,omitempty"`
+	MaskedAreaInit       *MaskedAreaInit         `protobuf:"varint,8,opt,name=masked_area_init,json=maskedAreaInit,proto3,enum=gooseai.MaskedAreaInit,oneof" json:"masked_area_init,omitempty"` // defaults to MASKED_AREA_INIT_ZERO
+	WeightMethod         *WeightMethod           `protobuf:"varint,9,opt,name=weight_method,json=weightMethod,proto3,enum=gooseai.WeightMethod,oneof" json:"weight_method,omitempty"`           //defaults to TEXT_ENCODER
+	Quantize             *bool                   `protobuf:"varint,10,opt,name=quantize,proto3,oneof" json:"quantize,omitempty"`                                                                //defaults to true
+	CaiParameters        *CAIParameters          `protobuf:"bytes,11,opt,name=cai_parameters,json=caiParameters,proto3,oneof" json:"cai_parameters,omitempty"`                                  // Set field to have image signed by C2PA
+	FineTuningParameters []*FineTuningParameters `protobuf:"bytes,12,rep,name=fine_tuning_parameters,json=fineTuningParameters,proto3" json:"fine_tuning_parameters,omitempty"`                 // next available tag: 13
 }
 
 func (x *ImageParameters) Reset() {
 	*x = ImageParameters{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[16]
+		mi := &file_generation_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2346,7 +2409,7 @@ func (x *ImageParameters) String() string {
 func (*ImageParameters) ProtoMessage() {}
 
 func (x *ImageParameters) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[16]
+	mi := &file_generation_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2359,7 +2422,7 @@ func (x *ImageParameters) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ImageParameters.ProtoReflect.Descriptor instead.
 func (*ImageParameters) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{16}
+	return file_generation_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *ImageParameters) GetHeight() uint64 {
@@ -2439,6 +2502,13 @@ func (x *ImageParameters) GetCaiParameters() *CAIParameters {
 	return nil
 }
 
+func (x *ImageParameters) GetFineTuningParameters() []*FineTuningParameters {
+	if x != nil {
+		return x.FineTuningParameters
+	}
+	return nil
+}
+
 type ClassifierConcept struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2451,7 +2521,7 @@ type ClassifierConcept struct {
 func (x *ClassifierConcept) Reset() {
 	*x = ClassifierConcept{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[17]
+		mi := &file_generation_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2464,7 +2534,7 @@ func (x *ClassifierConcept) String() string {
 func (*ClassifierConcept) ProtoMessage() {}
 
 func (x *ClassifierConcept) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[17]
+	mi := &file_generation_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2477,7 +2547,7 @@ func (x *ClassifierConcept) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClassifierConcept.ProtoReflect.Descriptor instead.
 func (*ClassifierConcept) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{17}
+	return file_generation_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *ClassifierConcept) GetConcept() string {
@@ -2509,7 +2579,7 @@ type ClassifierCategory struct {
 func (x *ClassifierCategory) Reset() {
 	*x = ClassifierCategory{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[18]
+		mi := &file_generation_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2522,7 +2592,7 @@ func (x *ClassifierCategory) String() string {
 func (*ClassifierCategory) ProtoMessage() {}
 
 func (x *ClassifierCategory) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[18]
+	mi := &file_generation_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2535,7 +2605,7 @@ func (x *ClassifierCategory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClassifierCategory.ProtoReflect.Descriptor instead.
 func (*ClassifierCategory) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{18}
+	return file_generation_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ClassifierCategory) GetName() string {
@@ -2586,7 +2656,7 @@ type ClassifierParameters struct {
 func (x *ClassifierParameters) Reset() {
 	*x = ClassifierParameters{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[19]
+		mi := &file_generation_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2599,7 +2669,7 @@ func (x *ClassifierParameters) String() string {
 func (*ClassifierParameters) ProtoMessage() {}
 
 func (x *ClassifierParameters) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[19]
+	mi := &file_generation_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2612,7 +2682,7 @@ func (x *ClassifierParameters) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClassifierParameters.ProtoReflect.Descriptor instead.
 func (*ClassifierParameters) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{19}
+	return file_generation_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ClassifierParameters) GetCategories() []*ClassifierCategory {
@@ -2649,7 +2719,7 @@ type InterpolateParameters struct {
 func (x *InterpolateParameters) Reset() {
 	*x = InterpolateParameters{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[20]
+		mi := &file_generation_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2662,7 +2732,7 @@ func (x *InterpolateParameters) String() string {
 func (*InterpolateParameters) ProtoMessage() {}
 
 func (x *InterpolateParameters) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[20]
+	mi := &file_generation_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2675,7 +2745,7 @@ func (x *InterpolateParameters) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InterpolateParameters.ProtoReflect.Descriptor instead.
 func (*InterpolateParameters) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{20}
+	return file_generation_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *InterpolateParameters) GetRatios() []float32 {
@@ -2711,7 +2781,7 @@ type TransformColorAdjust struct {
 func (x *TransformColorAdjust) Reset() {
 	*x = TransformColorAdjust{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[21]
+		mi := &file_generation_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2724,7 +2794,7 @@ func (x *TransformColorAdjust) String() string {
 func (*TransformColorAdjust) ProtoMessage() {}
 
 func (x *TransformColorAdjust) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[21]
+	mi := &file_generation_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2737,7 +2807,7 @@ func (x *TransformColorAdjust) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransformColorAdjust.ProtoReflect.Descriptor instead.
 func (*TransformColorAdjust) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{21}
+	return file_generation_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *TransformColorAdjust) GetBrightness() float32 {
@@ -2816,7 +2886,7 @@ type TransformDepthCalc struct {
 func (x *TransformDepthCalc) Reset() {
 	*x = TransformDepthCalc{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[22]
+		mi := &file_generation_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2829,7 +2899,7 @@ func (x *TransformDepthCalc) String() string {
 func (*TransformDepthCalc) ProtoMessage() {}
 
 func (x *TransformDepthCalc) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[22]
+	mi := &file_generation_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2842,7 +2912,7 @@ func (x *TransformDepthCalc) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransformDepthCalc.ProtoReflect.Descriptor instead.
 func (*TransformDepthCalc) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{22}
+	return file_generation_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *TransformDepthCalc) GetBlendWeight() float32 {
@@ -2882,7 +2952,7 @@ type TransformMatrix struct {
 func (x *TransformMatrix) Reset() {
 	*x = TransformMatrix{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[23]
+		mi := &file_generation_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2895,7 +2965,7 @@ func (x *TransformMatrix) String() string {
 func (*TransformMatrix) ProtoMessage() {}
 
 func (x *TransformMatrix) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[23]
+	mi := &file_generation_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2908,7 +2978,7 @@ func (x *TransformMatrix) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransformMatrix.ProtoReflect.Descriptor instead.
 func (*TransformMatrix) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{23}
+	return file_generation_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *TransformMatrix) GetData() []float32 {
@@ -2933,7 +3003,7 @@ type TransformResample struct {
 func (x *TransformResample) Reset() {
 	*x = TransformResample{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[24]
+		mi := &file_generation_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2946,7 +3016,7 @@ func (x *TransformResample) String() string {
 func (*TransformResample) ProtoMessage() {}
 
 func (x *TransformResample) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[24]
+	mi := &file_generation_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2959,7 +3029,7 @@ func (x *TransformResample) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransformResample.ProtoReflect.Descriptor instead.
 func (*TransformResample) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{24}
+	return file_generation_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *TransformResample) GetBorderMode() BorderMode {
@@ -3011,7 +3081,7 @@ type CameraParameters struct {
 func (x *CameraParameters) Reset() {
 	*x = CameraParameters{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[25]
+		mi := &file_generation_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3024,7 +3094,7 @@ func (x *CameraParameters) String() string {
 func (*CameraParameters) ProtoMessage() {}
 
 func (x *CameraParameters) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[25]
+	mi := &file_generation_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3037,7 +3107,7 @@ func (x *CameraParameters) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CameraParameters.ProtoReflect.Descriptor instead.
 func (*CameraParameters) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{25}
+	return file_generation_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *CameraParameters) GetCameraType() CameraType {
@@ -3082,7 +3152,7 @@ type TransformCameraPose struct {
 func (x *TransformCameraPose) Reset() {
 	*x = TransformCameraPose{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[26]
+		mi := &file_generation_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3095,7 +3165,7 @@ func (x *TransformCameraPose) String() string {
 func (*TransformCameraPose) ProtoMessage() {}
 
 func (x *TransformCameraPose) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[26]
+	mi := &file_generation_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3108,7 +3178,7 @@ func (x *TransformCameraPose) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransformCameraPose.ProtoReflect.Descriptor instead.
 func (*TransformCameraPose) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{26}
+	return file_generation_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *TransformCameraPose) GetWorldToViewMatrix() *TransformMatrix {
@@ -3155,7 +3225,7 @@ type TransformParameters struct {
 func (x *TransformParameters) Reset() {
 	*x = TransformParameters{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[27]
+		mi := &file_generation_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3168,7 +3238,7 @@ func (x *TransformParameters) String() string {
 func (*TransformParameters) ProtoMessage() {}
 
 func (x *TransformParameters) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[27]
+	mi := &file_generation_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3181,7 +3251,7 @@ func (x *TransformParameters) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransformParameters.ProtoReflect.Descriptor instead.
 func (*TransformParameters) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{27}
+	return file_generation_proto_rawDescGZIP(), []int{28}
 }
 
 func (m *TransformParameters) GetTransform() isTransformParameters_Transform {
@@ -3260,7 +3330,7 @@ type AssetParameters struct {
 func (x *AssetParameters) Reset() {
 	*x = AssetParameters{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[28]
+		mi := &file_generation_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3273,7 +3343,7 @@ func (x *AssetParameters) String() string {
 func (*AssetParameters) ProtoMessage() {}
 
 func (x *AssetParameters) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[28]
+	mi := &file_generation_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3286,7 +3356,7 @@ func (x *AssetParameters) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetParameters.ProtoReflect.Descriptor instead.
 func (*AssetParameters) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{28}
+	return file_generation_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *AssetParameters) GetAction() AssetAction {
@@ -3326,7 +3396,7 @@ type AnswerMeta struct {
 func (x *AnswerMeta) Reset() {
 	*x = AnswerMeta{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[29]
+		mi := &file_generation_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3339,7 +3409,7 @@ func (x *AnswerMeta) String() string {
 func (*AnswerMeta) ProtoMessage() {}
 
 func (x *AnswerMeta) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[29]
+	mi := &file_generation_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3352,7 +3422,7 @@ func (x *AnswerMeta) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnswerMeta.ProtoReflect.Descriptor instead.
 func (*AnswerMeta) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{29}
+	return file_generation_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *AnswerMeta) GetGpuId() string {
@@ -3401,7 +3471,7 @@ type Answer struct {
 func (x *Answer) Reset() {
 	*x = Answer{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[30]
+		mi := &file_generation_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3414,7 +3484,7 @@ func (x *Answer) String() string {
 func (*Answer) ProtoMessage() {}
 
 func (x *Answer) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[30]
+	mi := &file_generation_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3427,7 +3497,7 @@ func (x *Answer) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Answer.ProtoReflect.Descriptor instead.
 func (*Answer) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{30}
+	return file_generation_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *Answer) GetAnswerId() string {
@@ -3486,7 +3556,7 @@ type AnswerBatch struct {
 func (x *AnswerBatch) Reset() {
 	*x = AnswerBatch{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[31]
+		mi := &file_generation_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3499,7 +3569,7 @@ func (x *AnswerBatch) String() string {
 func (*AnswerBatch) ProtoMessage() {}
 
 func (x *AnswerBatch) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[31]
+	mi := &file_generation_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3512,7 +3582,7 @@ func (x *AnswerBatch) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnswerBatch.ProtoReflect.Descriptor instead.
 func (*AnswerBatch) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{31}
+	return file_generation_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *AnswerBatch) GetBatchId() string {
@@ -3555,7 +3625,7 @@ type Request struct {
 func (x *Request) Reset() {
 	*x = Request{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[32]
+		mi := &file_generation_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3568,7 +3638,7 @@ func (x *Request) String() string {
 func (*Request) ProtoMessage() {}
 
 func (x *Request) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[32]
+	mi := &file_generation_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3581,7 +3651,7 @@ func (x *Request) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Request.ProtoReflect.Descriptor instead.
 func (*Request) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{32}
+	return file_generation_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *Request) GetEngineId() string {
@@ -3715,7 +3785,7 @@ type OnStatus struct {
 func (x *OnStatus) Reset() {
 	*x = OnStatus{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[33]
+		mi := &file_generation_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3728,7 +3798,7 @@ func (x *OnStatus) String() string {
 func (*OnStatus) ProtoMessage() {}
 
 func (x *OnStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[33]
+	mi := &file_generation_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3741,7 +3811,7 @@ func (x *OnStatus) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OnStatus.ProtoReflect.Descriptor instead.
 func (*OnStatus) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{33}
+	return file_generation_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *OnStatus) GetReason() []FinishReason {
@@ -3778,7 +3848,7 @@ type Stage struct {
 func (x *Stage) Reset() {
 	*x = Stage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[34]
+		mi := &file_generation_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3791,7 +3861,7 @@ func (x *Stage) String() string {
 func (*Stage) ProtoMessage() {}
 
 func (x *Stage) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[34]
+	mi := &file_generation_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3804,7 +3874,7 @@ func (x *Stage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Stage.ProtoReflect.Descriptor instead.
 func (*Stage) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{34}
+	return file_generation_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *Stage) GetId() string {
@@ -3840,7 +3910,7 @@ type ChainRequest struct {
 func (x *ChainRequest) Reset() {
 	*x = ChainRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_generation_proto_msgTypes[35]
+		mi := &file_generation_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3853,7 +3923,7 @@ func (x *ChainRequest) String() string {
 func (*ChainRequest) ProtoMessage() {}
 
 func (x *ChainRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_generation_proto_msgTypes[35]
+	mi := &file_generation_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3866,7 +3936,7 @@ func (x *ChainRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChainRequest.ProtoReflect.Descriptor instead.
 func (*ChainRequest) Descriptor() ([]byte, []int) {
-	return file_generation_proto_rawDescGZIP(), []int{35}
+	return file_generation_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *ChainRequest) GetRequestId() string {
@@ -4098,38 +4168,49 @@ var file_generation_proto_rawDesc = []byte{
 	0x26, 0x0a, 0x22, 0x4d, 0x4f, 0x44, 0x45, 0x4c, 0x5f, 0x4d, 0x45, 0x54, 0x41, 0x44, 0x41, 0x54,
 	0x41, 0x5f, 0x53, 0x49, 0x47, 0x4e, 0x5f, 0x57, 0x49, 0x54, 0x48, 0x5f, 0x45, 0x4e, 0x47, 0x49,
 	0x4e, 0x45, 0x5f, 0x49, 0x44, 0x10, 0x01, 0x42, 0x0c, 0x0a, 0x0a, 0x70, 0x61, 0x72, 0x61, 0x6d,
-	0x65, 0x74, 0x65, 0x72, 0x73, 0x22, 0xf8, 0x04, 0x0a, 0x0f, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x50,
-	0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x12, 0x1b, 0x0a, 0x06, 0x68, 0x65, 0x69,
-	0x67, 0x68, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x48, 0x00, 0x52, 0x06, 0x68, 0x65, 0x69,
-	0x67, 0x68, 0x74, 0x88, 0x01, 0x01, 0x12, 0x19, 0x0a, 0x05, 0x77, 0x69, 0x64, 0x74, 0x68, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x04, 0x48, 0x01, 0x52, 0x05, 0x77, 0x69, 0x64, 0x74, 0x68, 0x88, 0x01,
-	0x01, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x65, 0x65, 0x64, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0d, 0x52,
-	0x04, 0x73, 0x65, 0x65, 0x64, 0x12, 0x1d, 0x0a, 0x07, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x73,
-	0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x48, 0x02, 0x52, 0x07, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65,
-	0x73, 0x88, 0x01, 0x01, 0x12, 0x19, 0x0a, 0x05, 0x73, 0x74, 0x65, 0x70, 0x73, 0x18, 0x05, 0x20,
-	0x01, 0x28, 0x04, 0x48, 0x03, 0x52, 0x05, 0x73, 0x74, 0x65, 0x70, 0x73, 0x88, 0x01, 0x01, 0x12,
-	0x39, 0x0a, 0x09, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x66, 0x6f, 0x72, 0x6d, 0x18, 0x06, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x73, 0x65, 0x61, 0x69, 0x2e, 0x54, 0x72, 0x61,
-	0x6e, 0x73, 0x66, 0x6f, 0x72, 0x6d, 0x54, 0x79, 0x70, 0x65, 0x48, 0x04, 0x52, 0x09, 0x74, 0x72,
-	0x61, 0x6e, 0x73, 0x66, 0x6f, 0x72, 0x6d, 0x88, 0x01, 0x01, 0x12, 0x36, 0x0a, 0x0a, 0x70, 0x61,
-	0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x18, 0x07, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x16,
-	0x2e, 0x67, 0x6f, 0x6f, 0x73, 0x65, 0x61, 0x69, 0x2e, 0x53, 0x74, 0x65, 0x70, 0x50, 0x61, 0x72,
-	0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x52, 0x0a, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65,
-	0x72, 0x73, 0x12, 0x46, 0x0a, 0x10, 0x6d, 0x61, 0x73, 0x6b, 0x65, 0x64, 0x5f, 0x61, 0x72, 0x65,
-	0x61, 0x5f, 0x69, 0x6e, 0x69, 0x74, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x17, 0x2e, 0x67,
-	0x6f, 0x6f, 0x73, 0x65, 0x61, 0x69, 0x2e, 0x4d, 0x61, 0x73, 0x6b, 0x65, 0x64, 0x41, 0x72, 0x65,
-	0x61, 0x49, 0x6e, 0x69, 0x74, 0x48, 0x05, 0x52, 0x0e, 0x6d, 0x61, 0x73, 0x6b, 0x65, 0x64, 0x41,
-	0x72, 0x65, 0x61, 0x49, 0x6e, 0x69, 0x74, 0x88, 0x01, 0x01, 0x12, 0x3f, 0x0a, 0x0d, 0x77, 0x65,
-	0x69, 0x67, 0x68, 0x74, 0x5f, 0x6d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x18, 0x09, 0x20, 0x01, 0x28,
-	0x0e, 0x32, 0x15, 0x2e, 0x67, 0x6f, 0x6f, 0x73, 0x65, 0x61, 0x69, 0x2e, 0x57, 0x65, 0x69, 0x67,
-	0x68, 0x74, 0x4d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x48, 0x06, 0x52, 0x0c, 0x77, 0x65, 0x69, 0x67,
-	0x68, 0x74, 0x4d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x88, 0x01, 0x01, 0x12, 0x1f, 0x0a, 0x08, 0x71,
-	0x75, 0x61, 0x6e, 0x74, 0x69, 0x7a, 0x65, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x08, 0x48, 0x07, 0x52,
-	0x08, 0x71, 0x75, 0x61, 0x6e, 0x74, 0x69, 0x7a, 0x65, 0x88, 0x01, 0x01, 0x12, 0x42, 0x0a, 0x0e,
-	0x63, 0x61, 0x69, 0x5f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x18, 0x0b,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x73, 0x65, 0x61, 0x69, 0x2e, 0x43,
-	0x41, 0x49, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x48, 0x08, 0x52, 0x0d,
-	0x63, 0x61, 0x69, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x88, 0x01, 0x01,
+	0x65, 0x74, 0x65, 0x72, 0x73, 0x22, 0x59, 0x0a, 0x14, 0x46, 0x69, 0x6e, 0x65, 0x54, 0x75, 0x6e,
+	0x69, 0x6e, 0x67, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x12, 0x19, 0x0a,
+	0x08, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x07, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x49, 0x64, 0x12, 0x1b, 0x0a, 0x06, 0x77, 0x65, 0x69, 0x67,
+	0x68, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x02, 0x48, 0x00, 0x52, 0x06, 0x77, 0x65, 0x69, 0x67,
+	0x68, 0x74, 0x88, 0x01, 0x01, 0x42, 0x09, 0x0a, 0x07, 0x5f, 0x77, 0x65, 0x69, 0x67, 0x68, 0x74,
+	0x22, 0xcd, 0x05, 0x0a, 0x0f, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x65,
+	0x74, 0x65, 0x72, 0x73, 0x12, 0x1b, 0x0a, 0x06, 0x68, 0x65, 0x69, 0x67, 0x68, 0x74, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x04, 0x48, 0x00, 0x52, 0x06, 0x68, 0x65, 0x69, 0x67, 0x68, 0x74, 0x88, 0x01,
+	0x01, 0x12, 0x19, 0x0a, 0x05, 0x77, 0x69, 0x64, 0x74, 0x68, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04,
+	0x48, 0x01, 0x52, 0x05, 0x77, 0x69, 0x64, 0x74, 0x68, 0x88, 0x01, 0x01, 0x12, 0x12, 0x0a, 0x04,
+	0x73, 0x65, 0x65, 0x64, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0d, 0x52, 0x04, 0x73, 0x65, 0x65, 0x64,
+	0x12, 0x1d, 0x0a, 0x07, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28,
+	0x04, 0x48, 0x02, 0x52, 0x07, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x73, 0x88, 0x01, 0x01, 0x12,
+	0x19, 0x0a, 0x05, 0x73, 0x74, 0x65, 0x70, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x04, 0x48, 0x03,
+	0x52, 0x05, 0x73, 0x74, 0x65, 0x70, 0x73, 0x88, 0x01, 0x01, 0x12, 0x39, 0x0a, 0x09, 0x74, 0x72,
+	0x61, 0x6e, 0x73, 0x66, 0x6f, 0x72, 0x6d, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e,
+	0x67, 0x6f, 0x6f, 0x73, 0x65, 0x61, 0x69, 0x2e, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x66, 0x6f, 0x72,
+	0x6d, 0x54, 0x79, 0x70, 0x65, 0x48, 0x04, 0x52, 0x09, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x66, 0x6f,
+	0x72, 0x6d, 0x88, 0x01, 0x01, 0x12, 0x36, 0x0a, 0x0a, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74,
+	0x65, 0x72, 0x73, 0x18, 0x07, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x73,
+	0x65, 0x61, 0x69, 0x2e, 0x53, 0x74, 0x65, 0x70, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65,
+	0x72, 0x52, 0x0a, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x12, 0x46, 0x0a,
+	0x10, 0x6d, 0x61, 0x73, 0x6b, 0x65, 0x64, 0x5f, 0x61, 0x72, 0x65, 0x61, 0x5f, 0x69, 0x6e, 0x69,
+	0x74, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x73, 0x65, 0x61,
+	0x69, 0x2e, 0x4d, 0x61, 0x73, 0x6b, 0x65, 0x64, 0x41, 0x72, 0x65, 0x61, 0x49, 0x6e, 0x69, 0x74,
+	0x48, 0x05, 0x52, 0x0e, 0x6d, 0x61, 0x73, 0x6b, 0x65, 0x64, 0x41, 0x72, 0x65, 0x61, 0x49, 0x6e,
+	0x69, 0x74, 0x88, 0x01, 0x01, 0x12, 0x3f, 0x0a, 0x0d, 0x77, 0x65, 0x69, 0x67, 0x68, 0x74, 0x5f,
+	0x6d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x15, 0x2e, 0x67,
+	0x6f, 0x6f, 0x73, 0x65, 0x61, 0x69, 0x2e, 0x57, 0x65, 0x69, 0x67, 0x68, 0x74, 0x4d, 0x65, 0x74,
+	0x68, 0x6f, 0x64, 0x48, 0x06, 0x52, 0x0c, 0x77, 0x65, 0x69, 0x67, 0x68, 0x74, 0x4d, 0x65, 0x74,
+	0x68, 0x6f, 0x64, 0x88, 0x01, 0x01, 0x12, 0x1f, 0x0a, 0x08, 0x71, 0x75, 0x61, 0x6e, 0x74, 0x69,
+	0x7a, 0x65, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x08, 0x48, 0x07, 0x52, 0x08, 0x71, 0x75, 0x61, 0x6e,
+	0x74, 0x69, 0x7a, 0x65, 0x88, 0x01, 0x01, 0x12, 0x42, 0x0a, 0x0e, 0x63, 0x61, 0x69, 0x5f, 0x70,
+	0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x73, 0x65, 0x61, 0x69, 0x2e, 0x43, 0x41, 0x49, 0x50, 0x61, 0x72,
+	0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x48, 0x08, 0x52, 0x0d, 0x63, 0x61, 0x69, 0x50, 0x61,
+	0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x88, 0x01, 0x01, 0x12, 0x53, 0x0a, 0x16, 0x66,
+	0x69, 0x6e, 0x65, 0x5f, 0x74, 0x75, 0x6e, 0x69, 0x6e, 0x67, 0x5f, 0x70, 0x61, 0x72, 0x61, 0x6d,
+	0x65, 0x74, 0x65, 0x72, 0x73, 0x18, 0x0c, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x67, 0x6f,
+	0x6f, 0x73, 0x65, 0x61, 0x69, 0x2e, 0x46, 0x69, 0x6e, 0x65, 0x54, 0x75, 0x6e, 0x69, 0x6e, 0x67,
+	0x50, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x52, 0x14, 0x66, 0x69, 0x6e, 0x65,
+	0x54, 0x75, 0x6e, 0x69, 0x6e, 0x67, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73,
 	0x42, 0x09, 0x0a, 0x07, 0x5f, 0x68, 0x65, 0x69, 0x67, 0x68, 0x74, 0x42, 0x08, 0x0a, 0x06, 0x5f,
 	0x77, 0x69, 0x64, 0x74, 0x68, 0x42, 0x0a, 0x0a, 0x08, 0x5f, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65,
 	0x73, 0x42, 0x08, 0x0a, 0x06, 0x5f, 0x73, 0x74, 0x65, 0x70, 0x73, 0x42, 0x0c, 0x0a, 0x0a, 0x5f,
@@ -4561,7 +4642,7 @@ func file_generation_proto_rawDescGZIP() []byte {
 }
 
 var file_generation_proto_enumTypes = make([]protoimpl.EnumInfo, 19)
-var file_generation_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
+var file_generation_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
 var file_generation_proto_goTypes = []interface{}{
 	(FinishReason)(0),                  // 0: gooseai.FinishReason
 	(ArtifactType)(0),                  // 1: gooseai.ArtifactType
@@ -4598,35 +4679,36 @@ var file_generation_proto_goTypes = []interface{}{
 	(*GuidanceParameters)(nil),         // 32: gooseai.GuidanceParameters
 	(*TransformType)(nil),              // 33: gooseai.TransformType
 	(*CAIParameters)(nil),              // 34: gooseai.CAIParameters
-	(*ImageParameters)(nil),            // 35: gooseai.ImageParameters
-	(*ClassifierConcept)(nil),          // 36: gooseai.ClassifierConcept
-	(*ClassifierCategory)(nil),         // 37: gooseai.ClassifierCategory
-	(*ClassifierParameters)(nil),       // 38: gooseai.ClassifierParameters
-	(*InterpolateParameters)(nil),      // 39: gooseai.InterpolateParameters
-	(*TransformColorAdjust)(nil),       // 40: gooseai.TransformColorAdjust
-	(*TransformDepthCalc)(nil),         // 41: gooseai.TransformDepthCalc
-	(*TransformMatrix)(nil),            // 42: gooseai.TransformMatrix
-	(*TransformResample)(nil),          // 43: gooseai.TransformResample
-	(*CameraParameters)(nil),           // 44: gooseai.CameraParameters
-	(*TransformCameraPose)(nil),        // 45: gooseai.TransformCameraPose
-	(*TransformParameters)(nil),        // 46: gooseai.TransformParameters
-	(*AssetParameters)(nil),            // 47: gooseai.AssetParameters
-	(*AnswerMeta)(nil),                 // 48: gooseai.AnswerMeta
-	(*Answer)(nil),                     // 49: gooseai.Answer
-	(*AnswerBatch)(nil),                // 50: gooseai.AnswerBatch
-	(*Request)(nil),                    // 51: gooseai.Request
-	(*OnStatus)(nil),                   // 52: gooseai.OnStatus
-	(*Stage)(nil),                      // 53: gooseai.Stage
-	(*ChainRequest)(nil),               // 54: gooseai.ChainRequest
-	(*tensors.Tensor)(nil),             // 55: tensors.Tensor
-	(*structpb.Struct)(nil),            // 56: google.protobuf.Struct
+	(*FineTuningParameters)(nil),       // 35: gooseai.FineTuningParameters
+	(*ImageParameters)(nil),            // 36: gooseai.ImageParameters
+	(*ClassifierConcept)(nil),          // 37: gooseai.ClassifierConcept
+	(*ClassifierCategory)(nil),         // 38: gooseai.ClassifierCategory
+	(*ClassifierParameters)(nil),       // 39: gooseai.ClassifierParameters
+	(*InterpolateParameters)(nil),      // 40: gooseai.InterpolateParameters
+	(*TransformColorAdjust)(nil),       // 41: gooseai.TransformColorAdjust
+	(*TransformDepthCalc)(nil),         // 42: gooseai.TransformDepthCalc
+	(*TransformMatrix)(nil),            // 43: gooseai.TransformMatrix
+	(*TransformResample)(nil),          // 44: gooseai.TransformResample
+	(*CameraParameters)(nil),           // 45: gooseai.CameraParameters
+	(*TransformCameraPose)(nil),        // 46: gooseai.TransformCameraPose
+	(*TransformParameters)(nil),        // 47: gooseai.TransformParameters
+	(*AssetParameters)(nil),            // 48: gooseai.AssetParameters
+	(*AnswerMeta)(nil),                 // 49: gooseai.AnswerMeta
+	(*Answer)(nil),                     // 50: gooseai.Answer
+	(*AnswerBatch)(nil),                // 51: gooseai.AnswerBatch
+	(*Request)(nil),                    // 52: gooseai.Request
+	(*OnStatus)(nil),                   // 53: gooseai.OnStatus
+	(*Stage)(nil),                      // 54: gooseai.Stage
+	(*ChainRequest)(nil),               // 55: gooseai.ChainRequest
+	(*tensors.Tensor)(nil),             // 56: tensors.Tensor
+	(*structpb.Struct)(nil),            // 57: google.protobuf.Struct
 }
 var file_generation_proto_depIdxs = []int32{
 	19, // 0: gooseai.Tokens.tokens:type_name -> gooseai.Token
 	1,  // 1: gooseai.Artifact.type:type_name -> gooseai.ArtifactType
 	20, // 2: gooseai.Artifact.tokens:type_name -> gooseai.Tokens
-	38, // 3: gooseai.Artifact.classifier:type_name -> gooseai.ClassifierParameters
-	55, // 4: gooseai.Artifact.tensor:type_name -> tensors.Tensor
+	39, // 3: gooseai.Artifact.classifier:type_name -> gooseai.ClassifierParameters
+	56, // 4: gooseai.Artifact.tensor:type_name -> tensors.Tensor
 	0,  // 5: gooseai.Artifact.finish_reason:type_name -> gooseai.FinishReason
 	22, // 6: gooseai.Prompt.parameters:type_name -> gooseai.PromptParameters
 	20, // 7: gooseai.Prompt.tokens:type_name -> gooseai.Tokens
@@ -4651,54 +4733,55 @@ var file_generation_proto_depIdxs = []int32{
 	2,  // 26: gooseai.ImageParameters.masked_area_init:type_name -> gooseai.MaskedAreaInit
 	3,  // 27: gooseai.ImageParameters.weight_method:type_name -> gooseai.WeightMethod
 	34, // 28: gooseai.ImageParameters.cai_parameters:type_name -> gooseai.CAIParameters
-	36, // 29: gooseai.ClassifierCategory.concepts:type_name -> gooseai.ClassifierConcept
-	8,  // 30: gooseai.ClassifierCategory.action:type_name -> gooseai.Action
-	9,  // 31: gooseai.ClassifierCategory.classifier_mode:type_name -> gooseai.ClassifierMode
-	37, // 32: gooseai.ClassifierParameters.categories:type_name -> gooseai.ClassifierCategory
-	37, // 33: gooseai.ClassifierParameters.exceeds:type_name -> gooseai.ClassifierCategory
-	8,  // 34: gooseai.ClassifierParameters.realized_action:type_name -> gooseai.Action
-	10, // 35: gooseai.InterpolateParameters.mode:type_name -> gooseai.InterpolateMode
-	21, // 36: gooseai.TransformColorAdjust.match_image:type_name -> gooseai.Artifact
-	12, // 37: gooseai.TransformColorAdjust.match_mode:type_name -> gooseai.ColorMatchMode
-	11, // 38: gooseai.TransformResample.border_mode:type_name -> gooseai.BorderMode
-	42, // 39: gooseai.TransformResample.transform:type_name -> gooseai.TransformMatrix
-	42, // 40: gooseai.TransformResample.prev_transform:type_name -> gooseai.TransformMatrix
-	13, // 41: gooseai.CameraParameters.camera_type:type_name -> gooseai.CameraType
-	42, // 42: gooseai.TransformCameraPose.world_to_view_matrix:type_name -> gooseai.TransformMatrix
-	44, // 43: gooseai.TransformCameraPose.camera_parameters:type_name -> gooseai.CameraParameters
-	14, // 44: gooseai.TransformCameraPose.render_mode:type_name -> gooseai.RenderMode
-	40, // 45: gooseai.TransformParameters.color_adjust:type_name -> gooseai.TransformColorAdjust
-	41, // 46: gooseai.TransformParameters.depth_calc:type_name -> gooseai.TransformDepthCalc
-	43, // 47: gooseai.TransformParameters.resample:type_name -> gooseai.TransformResample
-	45, // 48: gooseai.TransformParameters.camera_pose:type_name -> gooseai.TransformCameraPose
-	15, // 49: gooseai.AssetParameters.action:type_name -> gooseai.AssetAction
-	16, // 50: gooseai.AssetParameters.use:type_name -> gooseai.AssetUse
-	48, // 51: gooseai.Answer.meta:type_name -> gooseai.AnswerMeta
-	21, // 52: gooseai.Answer.artifacts:type_name -> gooseai.Artifact
-	49, // 53: gooseai.AnswerBatch.answers:type_name -> gooseai.Answer
-	1,  // 54: gooseai.Request.requested_type:type_name -> gooseai.ArtifactType
-	23, // 55: gooseai.Request.prompt:type_name -> gooseai.Prompt
-	35, // 56: gooseai.Request.image:type_name -> gooseai.ImageParameters
-	38, // 57: gooseai.Request.classifier:type_name -> gooseai.ClassifierParameters
-	47, // 58: gooseai.Request.asset:type_name -> gooseai.AssetParameters
-	39, // 59: gooseai.Request.interpolate:type_name -> gooseai.InterpolateParameters
-	46, // 60: gooseai.Request.transform:type_name -> gooseai.TransformParameters
-	25, // 61: gooseai.Request.conditioner:type_name -> gooseai.ConditionerParameters
-	56, // 62: gooseai.Request.extras:type_name -> google.protobuf.Struct
-	0,  // 63: gooseai.OnStatus.reason:type_name -> gooseai.FinishReason
-	17, // 64: gooseai.OnStatus.action:type_name -> gooseai.StageAction
-	51, // 65: gooseai.Stage.request:type_name -> gooseai.Request
-	52, // 66: gooseai.Stage.on_status:type_name -> gooseai.OnStatus
-	53, // 67: gooseai.ChainRequest.stage:type_name -> gooseai.Stage
-	51, // 68: gooseai.GenerationService.Generate:input_type -> gooseai.Request
-	54, // 69: gooseai.GenerationService.ChainGenerate:input_type -> gooseai.ChainRequest
-	49, // 70: gooseai.GenerationService.Generate:output_type -> gooseai.Answer
-	49, // 71: gooseai.GenerationService.ChainGenerate:output_type -> gooseai.Answer
-	70, // [70:72] is the sub-list for method output_type
-	68, // [68:70] is the sub-list for method input_type
-	68, // [68:68] is the sub-list for extension type_name
-	68, // [68:68] is the sub-list for extension extendee
-	0,  // [0:68] is the sub-list for field type_name
+	35, // 29: gooseai.ImageParameters.fine_tuning_parameters:type_name -> gooseai.FineTuningParameters
+	37, // 30: gooseai.ClassifierCategory.concepts:type_name -> gooseai.ClassifierConcept
+	8,  // 31: gooseai.ClassifierCategory.action:type_name -> gooseai.Action
+	9,  // 32: gooseai.ClassifierCategory.classifier_mode:type_name -> gooseai.ClassifierMode
+	38, // 33: gooseai.ClassifierParameters.categories:type_name -> gooseai.ClassifierCategory
+	38, // 34: gooseai.ClassifierParameters.exceeds:type_name -> gooseai.ClassifierCategory
+	8,  // 35: gooseai.ClassifierParameters.realized_action:type_name -> gooseai.Action
+	10, // 36: gooseai.InterpolateParameters.mode:type_name -> gooseai.InterpolateMode
+	21, // 37: gooseai.TransformColorAdjust.match_image:type_name -> gooseai.Artifact
+	12, // 38: gooseai.TransformColorAdjust.match_mode:type_name -> gooseai.ColorMatchMode
+	11, // 39: gooseai.TransformResample.border_mode:type_name -> gooseai.BorderMode
+	43, // 40: gooseai.TransformResample.transform:type_name -> gooseai.TransformMatrix
+	43, // 41: gooseai.TransformResample.prev_transform:type_name -> gooseai.TransformMatrix
+	13, // 42: gooseai.CameraParameters.camera_type:type_name -> gooseai.CameraType
+	43, // 43: gooseai.TransformCameraPose.world_to_view_matrix:type_name -> gooseai.TransformMatrix
+	45, // 44: gooseai.TransformCameraPose.camera_parameters:type_name -> gooseai.CameraParameters
+	14, // 45: gooseai.TransformCameraPose.render_mode:type_name -> gooseai.RenderMode
+	41, // 46: gooseai.TransformParameters.color_adjust:type_name -> gooseai.TransformColorAdjust
+	42, // 47: gooseai.TransformParameters.depth_calc:type_name -> gooseai.TransformDepthCalc
+	44, // 48: gooseai.TransformParameters.resample:type_name -> gooseai.TransformResample
+	46, // 49: gooseai.TransformParameters.camera_pose:type_name -> gooseai.TransformCameraPose
+	15, // 50: gooseai.AssetParameters.action:type_name -> gooseai.AssetAction
+	16, // 51: gooseai.AssetParameters.use:type_name -> gooseai.AssetUse
+	49, // 52: gooseai.Answer.meta:type_name -> gooseai.AnswerMeta
+	21, // 53: gooseai.Answer.artifacts:type_name -> gooseai.Artifact
+	50, // 54: gooseai.AnswerBatch.answers:type_name -> gooseai.Answer
+	1,  // 55: gooseai.Request.requested_type:type_name -> gooseai.ArtifactType
+	23, // 56: gooseai.Request.prompt:type_name -> gooseai.Prompt
+	36, // 57: gooseai.Request.image:type_name -> gooseai.ImageParameters
+	39, // 58: gooseai.Request.classifier:type_name -> gooseai.ClassifierParameters
+	48, // 59: gooseai.Request.asset:type_name -> gooseai.AssetParameters
+	40, // 60: gooseai.Request.interpolate:type_name -> gooseai.InterpolateParameters
+	47, // 61: gooseai.Request.transform:type_name -> gooseai.TransformParameters
+	25, // 62: gooseai.Request.conditioner:type_name -> gooseai.ConditionerParameters
+	57, // 63: gooseai.Request.extras:type_name -> google.protobuf.Struct
+	0,  // 64: gooseai.OnStatus.reason:type_name -> gooseai.FinishReason
+	17, // 65: gooseai.OnStatus.action:type_name -> gooseai.StageAction
+	52, // 66: gooseai.Stage.request:type_name -> gooseai.Request
+	53, // 67: gooseai.Stage.on_status:type_name -> gooseai.OnStatus
+	54, // 68: gooseai.ChainRequest.stage:type_name -> gooseai.Stage
+	52, // 69: gooseai.GenerationService.Generate:input_type -> gooseai.Request
+	55, // 70: gooseai.GenerationService.ChainGenerate:input_type -> gooseai.ChainRequest
+	50, // 71: gooseai.GenerationService.Generate:output_type -> gooseai.Answer
+	50, // 72: gooseai.GenerationService.ChainGenerate:output_type -> gooseai.Answer
+	71, // [71:73] is the sub-list for method output_type
+	69, // [69:71] is the sub-list for method input_type
+	69, // [69:69] is the sub-list for extension type_name
+	69, // [69:69] is the sub-list for extension extendee
+	0,  // [0:69] is the sub-list for field type_name
 }
 
 func init() { file_generation_proto_init() }
@@ -4900,7 +4983,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ImageParameters); i {
+			switch v := v.(*FineTuningParameters); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4912,7 +4995,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ClassifierConcept); i {
+			switch v := v.(*ImageParameters); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4924,7 +5007,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ClassifierCategory); i {
+			switch v := v.(*ClassifierConcept); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4936,7 +5019,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ClassifierParameters); i {
+			switch v := v.(*ClassifierCategory); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4948,7 +5031,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*InterpolateParameters); i {
+			switch v := v.(*ClassifierParameters); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4960,7 +5043,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TransformColorAdjust); i {
+			switch v := v.(*InterpolateParameters); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4972,7 +5055,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TransformDepthCalc); i {
+			switch v := v.(*TransformColorAdjust); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4984,7 +5067,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TransformMatrix); i {
+			switch v := v.(*TransformDepthCalc); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4996,7 +5079,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TransformResample); i {
+			switch v := v.(*TransformMatrix); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5008,7 +5091,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CameraParameters); i {
+			switch v := v.(*TransformResample); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5020,7 +5103,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TransformCameraPose); i {
+			switch v := v.(*CameraParameters); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5032,7 +5115,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TransformParameters); i {
+			switch v := v.(*TransformCameraPose); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5044,7 +5127,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AssetParameters); i {
+			switch v := v.(*TransformParameters); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5056,7 +5139,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AnswerMeta); i {
+			switch v := v.(*AssetParameters); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5068,7 +5151,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Answer); i {
+			switch v := v.(*AnswerMeta); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5080,7 +5163,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AnswerBatch); i {
+			switch v := v.(*Answer); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5092,7 +5175,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request); i {
+			switch v := v.(*AnswerBatch); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5104,7 +5187,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OnStatus); i {
+			switch v := v.(*Request); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5116,7 +5199,7 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Stage); i {
+			switch v := v.(*OnStatus); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5128,6 +5211,18 @@ func file_generation_proto_init() {
 			}
 		}
 		file_generation_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Stage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_generation_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ChainRequest); i {
 			case 0:
 				return &v.state
@@ -5175,31 +5270,32 @@ func file_generation_proto_init() {
 	file_generation_proto_msgTypes[20].OneofWrappers = []interface{}{}
 	file_generation_proto_msgTypes[21].OneofWrappers = []interface{}{}
 	file_generation_proto_msgTypes[22].OneofWrappers = []interface{}{}
-	file_generation_proto_msgTypes[24].OneofWrappers = []interface{}{}
+	file_generation_proto_msgTypes[23].OneofWrappers = []interface{}{}
 	file_generation_proto_msgTypes[25].OneofWrappers = []interface{}{}
-	file_generation_proto_msgTypes[27].OneofWrappers = []interface{}{
+	file_generation_proto_msgTypes[26].OneofWrappers = []interface{}{}
+	file_generation_proto_msgTypes[28].OneofWrappers = []interface{}{
 		(*TransformParameters_ColorAdjust)(nil),
 		(*TransformParameters_DepthCalc)(nil),
 		(*TransformParameters_Resample)(nil),
 		(*TransformParameters_CameraPose)(nil),
 	}
-	file_generation_proto_msgTypes[29].OneofWrappers = []interface{}{}
 	file_generation_proto_msgTypes[30].OneofWrappers = []interface{}{}
-	file_generation_proto_msgTypes[32].OneofWrappers = []interface{}{
+	file_generation_proto_msgTypes[31].OneofWrappers = []interface{}{}
+	file_generation_proto_msgTypes[33].OneofWrappers = []interface{}{
 		(*Request_Image)(nil),
 		(*Request_Classifier)(nil),
 		(*Request_Asset)(nil),
 		(*Request_Interpolate)(nil),
 		(*Request_Transform)(nil),
 	}
-	file_generation_proto_msgTypes[33].OneofWrappers = []interface{}{}
+	file_generation_proto_msgTypes[34].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_generation_proto_rawDesc,
 			NumEnums:      19,
-			NumMessages:   36,
+			NumMessages:   37,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -12,6 +12,8 @@ and the [generator_server](https://github.com/Stability-AI/generator_server). Ad
 other client application communicating directly with `api-web` also use the interfaces generated 
 from this repository.
 
+See [here](https://www.notion.so/stabilityai/Protocol-Buffer-Development-Guidelines-94c6a5b9082d4aa6a2d6bf50b86fe0ac) for some development guides.
+
 ## Getting Started <a name = "getting_started"></a>
 
 These instructions will get you an environment setup to build the interface files from the proto source files.

@@ -1,0 +1,108 @@
+syntax = "proto3";
+package gooseai;
+
+option go_package = "github.com/stability-ai/api-interfaces/gooseai/finetuning";
+import "google/protobuf/struct.proto";
+
+enum FineTuningMode {
+  FINE_TUNING_MODE_UNSPECIFIED = 0; // No mode specified
+  FINE_TUNING_MODE_FACE = 1;        // Fine tuning a face model
+  FINE_TUNING_MODE_STYLE = 2;       // Fine tuning a style model
+  FINE_TUNING_MODE_OBJECT = 3;      // Fine tuning an object model
+}
+
+enum FineTuningStatus {
+  FINE_TUNING_STATUS_NOT_STARTED = 0; // Model not yet started
+  FINE_TUNING_STATUS_RUNNING = 1;     // Model is currently running
+  FINE_TUNING_STATUS_COMPLETED = 2;   // Model has completed successfully
+  FINE_TUNING_STATUS_FAILED = 3;      // Model has failed
+  FINE_TUNING_STATUS_SUBMITTED = 4;   // Model has been submitted
+}
+
+message FineTuningModel {
+  string id = 1;                        // ID of the model, UUIDv4
+  string user_id = 2;                   // ID of user who created the model
+  string name = 3;                      // a readable model name
+  optional FineTuningMode mode = 4;     // the mode of the model
+  optional string object_prompt = 5;    // freeform text description of object, should only be set when mode is OBJECT
+  string project_id = 6;                // project ID with assets to be used for fine tuning
+  double duration = 7;                  // duration in seconds for how long the model took to train
+  FineTuningStatus status = 8;          // the current status of the model
+  string engine_id = 9;                 // the engineId of a fine-tuneable Stability model
+  optional string failure_reason = 10;  // If a model's training failed, this will contain the reason
+}
+
+message CreateModelRequest {
+  string name = 1;                    // a readable model name
+  optional FineTuningMode mode = 2;   // the mode of the model
+  optional string object_prompt = 3;  // freeform text description of object, should only be set when mode is OBJECT
+  string project_id  = 4;             // the project_id with assets to be used for fine tuning
+  string engine_id = 5;               // the engineId of an fine-tuneable Stability model
+  optional google.protobuf.Struct extras = 2047; // for development use
+}
+
+message CreateModelResponse {
+  FineTuningModel model = 1;
+}
+
+message GetModelRequest {
+  string id = 1; // ID of the model
+}
+
+message GetModelResponse {
+  FineTuningModel model = 1;
+}
+
+message UpdateModelRequest{
+  string id = 1;                      // the id of the model
+  optional string name = 2;           // a readable model name
+  optional FineTuningMode mode = 3;   // the mode of the model
+  optional string object_prompt = 4;  // freeform text description of object, should only be set when mode is OBJECT
+  optional string engine_id = 5;      // the engineId of an fine-tuneable Stability model
+}
+
+message UpdateModelResponse {
+  FineTuningModel model = 1;
+}
+
+message DeleteModelRequest {
+  string id = 1; // ID of the model to delete
+}
+
+message DeleteModelResponse {
+  FineTuningModel model = 1;
+}
+
+message ResubmitModelRequest {
+  string id = 1; // ID of the model to resubmit
+}
+
+message ResubmitModelResponse {
+  FineTuningModel model = 1;
+}
+
+message ListModelsRequest {
+  oneof id {
+    string org_id = 1;    // the organization's ID
+    string user_id = 2;   // or the user's ID
+  }
+}
+
+message ListModelsResponse {  
+  repeated FineTuningModel models = 1; // the list of models
+}
+
+service FineTuningService {
+  // Create a new model and begin the fine tuning process
+  rpc CreateModel (CreateModelRequest) returns (CreateModelResponse);
+  // Get a FineTuningModel
+  rpc GetModel (GetModelRequest) returns (GetModelResponse);
+  // Update a FineTuningModel by id
+  rpc UpdateModel (UpdateModelRequest) returns (UpdateModelResponse);
+  // Delete a fine tuned model
+  rpc DeleteModel (DeleteModelRequest) returns (DeleteModelResponse);
+  // Re-run training, does not create a new model
+  rpc ResubmitModel (ResubmitModelRequest) returns (ResubmitModelResponse);
+  // List all the fine tuned models for an organization or user
+  rpc ListModels (ListModelsRequest) returns (ListModelsResponse);
+}
