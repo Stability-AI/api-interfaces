@@ -251,6 +251,18 @@ message CAIParameters {
   }
 }
 
+// FineTuningParameters specify which fine-tuned models to use for generation.
+message FineTuningParameters {
+  // The id of the fine-tuned model to generate content from.
+  // See FineTuningModel.id in finetuning.proto.
+  // Model Id is created upon invoking CreateFineTuningModel.
+  // When GetFineTuningModelStatus returns a FineTuningModelStatus of 
+  // FINE_TUNING_MODEL_STATUS_COMPLETED, the model can be used 
+  // for generating images.
+  string model_id = 1;  
+  optional float weight = 2; // defaults to 1.0
+}
+
 message ImageParameters {
   optional uint64 height = 1;
   optional uint64 width = 2;
@@ -264,7 +276,8 @@ message ImageParameters {
   optional bool quantize = 10; //defaults to true
   optional CAIParameters cai_parameters = 11; // Set field to have image signed by C2PA
   optional T2IAdapterParameter adapter = 12;
-  // next available tag: 13
+  repeated FineTuningParameters fine_tuning_parameters = 13;
+  // next available tag: 14
 }
 
 enum Action {

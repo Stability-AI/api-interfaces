@@ -669,6 +669,32 @@ export namespace CAIParameters {
   }
 }
 
+export class FineTuningParameters extends jspb.Message {
+  getModelId(): string;
+  setModelId(value: string): void;
+
+  hasWeight(): boolean;
+  clearWeight(): void;
+  getWeight(): number;
+  setWeight(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FineTuningParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: FineTuningParameters): FineTuningParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FineTuningParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FineTuningParameters;
+  static deserializeBinaryFromReader(message: FineTuningParameters, reader: jspb.BinaryReader): FineTuningParameters;
+}
+
+export namespace FineTuningParameters {
+  export type AsObject = {
+    modelId: string,
+    weight: number,
+  }
+}
+
 export class ImageParameters extends jspb.Message {
   hasHeight(): boolean;
   clearHeight(): void;
@@ -730,6 +756,11 @@ export class ImageParameters extends jspb.Message {
   getAdapter(): T2IAdapterParameter | undefined;
   setAdapter(value?: T2IAdapterParameter): void;
 
+  clearFineTuningParametersList(): void;
+  getFineTuningParametersList(): Array<FineTuningParameters>;
+  setFineTuningParametersList(value: Array<FineTuningParameters>): void;
+  addFineTuningParameters(value?: FineTuningParameters, index?: number): FineTuningParameters;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ImageParameters.AsObject;
   static toObject(includeInstance: boolean, msg: ImageParameters): ImageParameters.AsObject;
@@ -754,6 +785,7 @@ export namespace ImageParameters {
     quantize: boolean,
     caiParameters?: CAIParameters.AsObject,
     adapter?: T2IAdapterParameter.AsObject,
+    fineTuningParametersList: Array<FineTuningParameters.AsObject>,
   }
 }
 
