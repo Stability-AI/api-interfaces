@@ -634,26 +634,26 @@ export namespace T2IAdapterParameter {
   }
 }
 
-export class CAIParameters extends jspb.Message {
+export class C2PAParameters extends jspb.Message {
   hasModelMetadata(): boolean;
   clearModelMetadata(): void;
-  getModelMetadata(): CAIParameters.ModelMetadataMap[keyof CAIParameters.ModelMetadataMap];
-  setModelMetadata(value: CAIParameters.ModelMetadataMap[keyof CAIParameters.ModelMetadataMap]): void;
+  getModelMetadata(): C2PAParameters.ModelMetadataMap[keyof C2PAParameters.ModelMetadataMap];
+  setModelMetadata(value: C2PAParameters.ModelMetadataMap[keyof C2PAParameters.ModelMetadataMap]): void;
 
-  getParametersCase(): CAIParameters.ParametersCase;
+  getParametersCase(): C2PAParameters.ParametersCase;
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CAIParameters.AsObject;
-  static toObject(includeInstance: boolean, msg: CAIParameters): CAIParameters.AsObject;
+  toObject(includeInstance?: boolean): C2PAParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: C2PAParameters): C2PAParameters.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: CAIParameters, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CAIParameters;
-  static deserializeBinaryFromReader(message: CAIParameters, reader: jspb.BinaryReader): CAIParameters;
+  static serializeBinaryToWriter(message: C2PAParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): C2PAParameters;
+  static deserializeBinaryFromReader(message: C2PAParameters, reader: jspb.BinaryReader): C2PAParameters;
 }
 
-export namespace CAIParameters {
+export namespace C2PAParameters {
   export type AsObject = {
-    modelMetadata: CAIParameters.ModelMetadataMap[keyof CAIParameters.ModelMetadataMap],
+    modelMetadata: C2PAParameters.ModelMetadataMap[keyof C2PAParameters.ModelMetadataMap],
   }
 
   export interface ModelMetadataMap {
@@ -746,11 +746,6 @@ export class ImageParameters extends jspb.Message {
   getQuantize(): boolean;
   setQuantize(value: boolean): void;
 
-  hasCaiParameters(): boolean;
-  clearCaiParameters(): void;
-  getCaiParameters(): CAIParameters | undefined;
-  setCaiParameters(value?: CAIParameters): void;
-
   hasAdapter(): boolean;
   clearAdapter(): void;
   getAdapter(): T2IAdapterParameter | undefined;
@@ -760,6 +755,11 @@ export class ImageParameters extends jspb.Message {
   getFineTuningParametersList(): Array<FineTuningParameters>;
   setFineTuningParametersList(value: Array<FineTuningParameters>): void;
   addFineTuningParameters(value?: FineTuningParameters, index?: number): FineTuningParameters;
+
+  hasC2paParameters(): boolean;
+  clearC2paParameters(): void;
+  getC2paParameters(): C2PAParameters | undefined;
+  setC2paParameters(value?: C2PAParameters): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ImageParameters.AsObject;
@@ -783,9 +783,9 @@ export namespace ImageParameters {
     maskedAreaInit: MaskedAreaInitMap[keyof MaskedAreaInitMap],
     weightMethod: WeightMethodMap[keyof WeightMethodMap],
     quantize: boolean,
-    caiParameters?: CAIParameters.AsObject,
     adapter?: T2IAdapterParameter.AsObject,
     fineTuningParametersList: Array<FineTuningParameters.AsObject>,
+    c2paParameters?: C2PAParameters.AsObject,
   }
 }
 
