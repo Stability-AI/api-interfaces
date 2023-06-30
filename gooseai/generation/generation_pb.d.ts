@@ -606,6 +606,34 @@ export namespace TransformType {
   }
 }
 
+export class T2IAdapterParameter extends jspb.Message {
+  getAdapterType(): T2IAdapterMap[keyof T2IAdapterMap];
+  setAdapterType(value: T2IAdapterMap[keyof T2IAdapterMap]): void;
+
+  getAdapterStrength(): number;
+  setAdapterStrength(value: number): void;
+
+  getAdapterInitType(): T2IAdapterInitMap[keyof T2IAdapterInitMap];
+  setAdapterInitType(value: T2IAdapterInitMap[keyof T2IAdapterInitMap]): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): T2IAdapterParameter.AsObject;
+  static toObject(includeInstance: boolean, msg: T2IAdapterParameter): T2IAdapterParameter.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: T2IAdapterParameter, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): T2IAdapterParameter;
+  static deserializeBinaryFromReader(message: T2IAdapterParameter, reader: jspb.BinaryReader): T2IAdapterParameter;
+}
+
+export namespace T2IAdapterParameter {
+  export type AsObject = {
+    adapterType: T2IAdapterMap[keyof T2IAdapterMap],
+    adapterStrength: number,
+    adapterInitType: T2IAdapterInitMap[keyof T2IAdapterInitMap],
+  }
+}
+
 export class CAIParameters extends jspb.Message {
   hasModelMetadata(): boolean;
   clearModelMetadata(): void;
@@ -723,6 +751,11 @@ export class ImageParameters extends jspb.Message {
   getCaiParameters(): CAIParameters | undefined;
   setCaiParameters(value?: CAIParameters): void;
 
+  hasAdapter(): boolean;
+  clearAdapter(): void;
+  getAdapter(): T2IAdapterParameter | undefined;
+  setAdapter(value?: T2IAdapterParameter): void;
+
   clearFineTuningParametersList(): void;
   getFineTuningParametersList(): Array<FineTuningParameters>;
   setFineTuningParametersList(value: Array<FineTuningParameters>): void;
@@ -751,6 +784,7 @@ export namespace ImageParameters {
     weightMethod: WeightMethodMap[keyof WeightMethodMap],
     quantize: boolean,
     caiParameters?: CAIParameters.AsObject,
+    adapter?: T2IAdapterParameter.AsObject,
     fineTuningParametersList: Array<FineTuningParameters.AsObject>,
   }
 }
@@ -1577,6 +1611,22 @@ export interface ModelArchitectureMap {
 }
 
 export const ModelArchitecture: ModelArchitectureMap;
+
+export interface T2IAdapterMap {
+  T2IADAPTER_NONE: 0;
+  T2IADAPTER_SKETCH: 1;
+  T2IADAPTER_DEPTH: 2;
+  T2IADAPTER_CANNY: 3;
+}
+
+export const T2IAdapter: T2IAdapterMap;
+
+export interface T2IAdapterInitMap {
+  T2IADAPTERINIT_IMAGE: 0;
+  T2IADAPTERINIT_ADAPTER_IMAGE: 1;
+}
+
+export const T2IAdapterInit: T2IAdapterInitMap;
 
 export interface ActionMap {
   ACTION_PASSTHROUGH: 0;
