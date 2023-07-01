@@ -606,6 +606,95 @@ export namespace TransformType {
   }
 }
 
+export class T2IAdapterParameter extends jspb.Message {
+  getAdapterType(): T2IAdapterMap[keyof T2IAdapterMap];
+  setAdapterType(value: T2IAdapterMap[keyof T2IAdapterMap]): void;
+
+  getAdapterStrength(): number;
+  setAdapterStrength(value: number): void;
+
+  getAdapterInitType(): T2IAdapterInitMap[keyof T2IAdapterInitMap];
+  setAdapterInitType(value: T2IAdapterInitMap[keyof T2IAdapterInitMap]): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): T2IAdapterParameter.AsObject;
+  static toObject(includeInstance: boolean, msg: T2IAdapterParameter): T2IAdapterParameter.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: T2IAdapterParameter, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): T2IAdapterParameter;
+  static deserializeBinaryFromReader(message: T2IAdapterParameter, reader: jspb.BinaryReader): T2IAdapterParameter;
+}
+
+export namespace T2IAdapterParameter {
+  export type AsObject = {
+    adapterType: T2IAdapterMap[keyof T2IAdapterMap],
+    adapterStrength: number,
+    adapterInitType: T2IAdapterInitMap[keyof T2IAdapterInitMap],
+  }
+}
+
+export class CAIParameters extends jspb.Message {
+  hasModelMetadata(): boolean;
+  clearModelMetadata(): void;
+  getModelMetadata(): CAIParameters.ModelMetadataMap[keyof CAIParameters.ModelMetadataMap];
+  setModelMetadata(value: CAIParameters.ModelMetadataMap[keyof CAIParameters.ModelMetadataMap]): void;
+
+  getParametersCase(): CAIParameters.ParametersCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CAIParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: CAIParameters): CAIParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CAIParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CAIParameters;
+  static deserializeBinaryFromReader(message: CAIParameters, reader: jspb.BinaryReader): CAIParameters;
+}
+
+export namespace CAIParameters {
+  export type AsObject = {
+    modelMetadata: CAIParameters.ModelMetadataMap[keyof CAIParameters.ModelMetadataMap],
+  }
+
+  export interface ModelMetadataMap {
+    MODEL_METADATA_UNSPECIFIED: 0;
+    MODEL_METADATA_SIGN_WITH_ENGINE_ID: 1;
+  }
+
+  export const ModelMetadata: ModelMetadataMap;
+
+  export enum ParametersCase {
+    PARAMETERS_NOT_SET = 0,
+    MODEL_METADATA = 1,
+  }
+}
+
+export class FineTuningParameters extends jspb.Message {
+  getModelId(): string;
+  setModelId(value: string): void;
+
+  hasWeight(): boolean;
+  clearWeight(): void;
+  getWeight(): number;
+  setWeight(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FineTuningParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: FineTuningParameters): FineTuningParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FineTuningParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FineTuningParameters;
+  static deserializeBinaryFromReader(message: FineTuningParameters, reader: jspb.BinaryReader): FineTuningParameters;
+}
+
+export namespace FineTuningParameters {
+  export type AsObject = {
+    modelId: string,
+    weight: number,
+  }
+}
+
 export class ImageParameters extends jspb.Message {
   hasHeight(): boolean;
   clearHeight(): void;
@@ -657,6 +746,21 @@ export class ImageParameters extends jspb.Message {
   getQuantize(): boolean;
   setQuantize(value: boolean): void;
 
+  hasCaiParameters(): boolean;
+  clearCaiParameters(): void;
+  getCaiParameters(): CAIParameters | undefined;
+  setCaiParameters(value?: CAIParameters): void;
+
+  hasAdapter(): boolean;
+  clearAdapter(): void;
+  getAdapter(): T2IAdapterParameter | undefined;
+  setAdapter(value?: T2IAdapterParameter): void;
+
+  clearFineTuningParametersList(): void;
+  getFineTuningParametersList(): Array<FineTuningParameters>;
+  setFineTuningParametersList(value: Array<FineTuningParameters>): void;
+  addFineTuningParameters(value?: FineTuningParameters, index?: number): FineTuningParameters;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ImageParameters.AsObject;
   static toObject(includeInstance: boolean, msg: ImageParameters): ImageParameters.AsObject;
@@ -679,6 +783,9 @@ export namespace ImageParameters {
     maskedAreaInit: MaskedAreaInitMap[keyof MaskedAreaInitMap],
     weightMethod: WeightMethodMap[keyof WeightMethodMap],
     quantize: boolean,
+    caiParameters?: CAIParameters.AsObject,
+    adapter?: T2IAdapterParameter.AsObject,
+    fineTuningParametersList: Array<FineTuningParameters.AsObject>,
   }
 }
 
@@ -1504,6 +1611,22 @@ export interface ModelArchitectureMap {
 }
 
 export const ModelArchitecture: ModelArchitectureMap;
+
+export interface T2IAdapterMap {
+  T2IADAPTER_NONE: 0;
+  T2IADAPTER_SKETCH: 1;
+  T2IADAPTER_DEPTH: 2;
+  T2IADAPTER_CANNY: 3;
+}
+
+export const T2IAdapter: T2IAdapterMap;
+
+export interface T2IAdapterInitMap {
+  T2IADAPTERINIT_IMAGE: 0;
+  T2IADAPTERINIT_ADAPTER_IMAGE: 1;
+}
+
+export const T2IAdapterInit: T2IAdapterInitMap;
 
 export interface ActionMap {
   ACTION_PASSTHROUGH: 0;

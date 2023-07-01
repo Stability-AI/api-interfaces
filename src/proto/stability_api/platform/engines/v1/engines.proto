@@ -26,6 +26,7 @@ message EngineInfo {
   EngineTokenizer tokenizer = 5;
   string name = 6;
   string description = 7;
+  bool can_fine_tune = 8;
 }
 
 message ListEnginesRequest {

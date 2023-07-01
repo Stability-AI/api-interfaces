@@ -35,6 +35,7 @@ goog.exportSymbol('proto.gooseai.ProjectAsset', null, global);
 goog.exportSymbol('proto.gooseai.ProjectAssetUse', null, global);
 goog.exportSymbol('proto.gooseai.ProjectSortDir', null, global);
 goog.exportSymbol('proto.gooseai.ProjectStatus', null, global);
+goog.exportSymbol('proto.gooseai.ProjectType', null, global);
 goog.exportSymbol('proto.gooseai.QueryAssetsRequest', null, global);
 goog.exportSymbol('proto.gooseai.QueryAssetsResponse', null, global);
 goog.exportSymbol('proto.gooseai.TagAssetsRequest', null, global);
@@ -800,7 +801,8 @@ proto.gooseai.Project.toObject = function(includeInstance, msg) {
     createdAt: jspb.Message.getFieldWithDefault(msg, 8, 0),
     updatedAt: jspb.Message.getFieldWithDefault(msg, 9, 0),
     assetsList: jspb.Message.toObjectList(msg.getAssetsList(),
-    proto.gooseai.ProjectAsset.toObject, includeInstance)
+    proto.gooseai.ProjectAsset.toObject, includeInstance),
+    type: jspb.Message.getFieldWithDefault(msg, 11, 0)
   };
 
   if (includeInstance) {
@@ -878,6 +880,10 @@ proto.gooseai.Project.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.gooseai.ProjectAsset;
       reader.readMessage(value,proto.gooseai.ProjectAsset.deserializeBinaryFromReader);
       msg.addAssets(value);
+      break;
+    case 11:
+      var value = /** @type {!proto.gooseai.ProjectType} */ (reader.readEnum());
+      msg.setType(value);
       break;
     default:
       reader.skipField();
@@ -978,6 +984,13 @@ proto.gooseai.Project.serializeBinaryToWriter = function(message, writer) {
       10,
       f,
       proto.gooseai.ProjectAsset.serializeBinaryToWriter
+    );
+  }
+  f = message.getType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      11,
+      f
     );
   }
 };
@@ -1202,6 +1215,24 @@ proto.gooseai.Project.prototype.clearAssetsList = function() {
 };
 
 
+/**
+ * optional ProjectType type = 11;
+ * @return {!proto.gooseai.ProjectType}
+ */
+proto.gooseai.Project.prototype.getType = function() {
+  return /** @type {!proto.gooseai.ProjectType} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+};
+
+
+/**
+ * @param {!proto.gooseai.ProjectType} value
+ * @return {!proto.gooseai.Project} returns this
+ */
+proto.gooseai.Project.prototype.setType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 11, value);
+};
+
+
 
 
 
@@ -1238,7 +1269,8 @@ proto.gooseai.CreateProjectRequest.toObject = function(includeInstance, msg) {
     ownerId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     access: jspb.Message.getFieldWithDefault(msg, 3, 0),
     status: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    file: (f = msg.getFile()) && proto.gooseai.ProjectAsset.toObject(includeInstance, f)
+    file: (f = msg.getFile()) && proto.gooseai.ProjectAsset.toObject(includeInstance, f),
+    type: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
 
   if (includeInstance) {
@@ -1295,6 +1327,10 @@ proto.gooseai.CreateProjectRequest.deserializeBinaryFromReader = function(msg, r
       var value = new proto.gooseai.ProjectAsset;
       reader.readMessage(value,proto.gooseai.ProjectAsset.deserializeBinaryFromReader);
       msg.setFile(value);
+      break;
+    case 6:
+      var value = /** @type {!proto.gooseai.ProjectType} */ (reader.readEnum());
+      msg.setType(value);
       break;
     default:
       reader.skipField();
@@ -1359,6 +1395,13 @@ proto.gooseai.CreateProjectRequest.serializeBinaryToWriter = function(message, w
       5,
       f,
       proto.gooseai.ProjectAsset.serializeBinaryToWriter
+    );
+  }
+  f = message.getType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      6,
+      f
     );
   }
 };
@@ -1491,6 +1534,24 @@ proto.gooseai.CreateProjectRequest.prototype.hasFile = function() {
 };
 
 
+/**
+ * optional ProjectType type = 6;
+ * @return {!proto.gooseai.ProjectType}
+ */
+proto.gooseai.CreateProjectRequest.prototype.getType = function() {
+  return /** @type {!proto.gooseai.ProjectType} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {!proto.gooseai.ProjectType} value
+ * @return {!proto.gooseai.CreateProjectRequest} returns this
+ */
+proto.gooseai.CreateProjectRequest.prototype.setType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 6, value);
+};
+
+
 
 
 
@@ -1528,7 +1589,8 @@ proto.gooseai.UpdateProjectRequest.toObject = function(includeInstance, msg) {
     title: jspb.Message.getFieldWithDefault(msg, 3, ""),
     access: jspb.Message.getFieldWithDefault(msg, 4, 0),
     status: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    file: (f = msg.getFile()) && proto.gooseai.ProjectAsset.toObject(includeInstance, f)
+    file: (f = msg.getFile()) && proto.gooseai.ProjectAsset.toObject(includeInstance, f),
+    type: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -1589,6 +1651,10 @@ proto.gooseai.UpdateProjectRequest.deserializeBinaryFromReader = function(msg, r
       var value = new proto.gooseai.ProjectAsset;
       reader.readMessage(value,proto.gooseai.ProjectAsset.deserializeBinaryFromReader);
       msg.setFile(value);
+      break;
+    case 7:
+      var value = /** @type {!proto.gooseai.ProjectType} */ (reader.readEnum());
+      msg.setType(value);
       break;
     default:
       reader.skipField();
@@ -1660,6 +1726,13 @@ proto.gooseai.UpdateProjectRequest.serializeBinaryToWriter = function(message, w
       6,
       f,
       proto.gooseai.ProjectAsset.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {!proto.gooseai.ProjectType} */ (jspb.Message.getField(message, 7));
+  if (f != null) {
+    writer.writeEnum(
+      7,
+      f
     );
   }
 };
@@ -1861,6 +1934,42 @@ proto.gooseai.UpdateProjectRequest.prototype.clearFile = function() {
  */
 proto.gooseai.UpdateProjectRequest.prototype.hasFile = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional ProjectType type = 7;
+ * @return {!proto.gooseai.ProjectType}
+ */
+proto.gooseai.UpdateProjectRequest.prototype.getType = function() {
+  return /** @type {!proto.gooseai.ProjectType} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {!proto.gooseai.ProjectType} value
+ * @return {!proto.gooseai.UpdateProjectRequest} returns this
+ */
+proto.gooseai.UpdateProjectRequest.prototype.setType = function(value) {
+  return jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.UpdateProjectRequest} returns this
+ */
+proto.gooseai.UpdateProjectRequest.prototype.clearType = function() {
+  return jspb.Message.setField(this, 7, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.UpdateProjectRequest.prototype.hasType = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
@@ -4534,6 +4643,14 @@ proto.gooseai.ProjectSortDir = {
   PROJECT_SORT_DIR_UNSPECIFIED: 0,
   PROJECT_SORT_DIR_ASC: 1,
   PROJECT_SORT_DIR_DESC: 2
+};
+
+/**
+ * @enum {number}
+ */
+proto.gooseai.ProjectType = {
+  PROJECT_TYPE_UNSPECIFIED: 0,
+  PROJECT_TYPE_TRAINING: 1
 };
 
 goog.object.extend(exports, proto.gooseai);
