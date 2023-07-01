@@ -24,7 +24,9 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+dependencies = [
+  "protobuf>=3.17.3",
+]
 
 [project.urls]
 Documentation = "https://github.com/Stability-AI/api-interfaces#readme"
