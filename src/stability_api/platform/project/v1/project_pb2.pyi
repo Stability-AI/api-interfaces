@@ -31,6 +31,11 @@ class ProjectSortDir(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     PROJECT_SORT_DIR_UNSPECIFIED: _ClassVar[ProjectSortDir]
     PROJECT_SORT_DIR_ASC: _ClassVar[ProjectSortDir]
     PROJECT_SORT_DIR_DESC: _ClassVar[ProjectSortDir]
+
+class ProjectType(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = []
+    PROJECT_TYPE_UNSPECIFIED: _ClassVar[ProjectType]
+    PROJECT_TYPE_TRAINING: _ClassVar[ProjectType]
 PROJECT_ACCESS_PRIVATE: ProjectAccess
 PROJECT_ACCESS_PUBLIC: ProjectAccess
 PROJECT_STATUS_INACTIVE: ProjectStatus
@@ -44,6 +49,8 @@ PROJECT_ASSET_USE_PROJECT: ProjectAssetUse
 PROJECT_SORT_DIR_UNSPECIFIED: ProjectSortDir
 PROJECT_SORT_DIR_ASC: ProjectSortDir
 PROJECT_SORT_DIR_DESC: ProjectSortDir
+PROJECT_TYPE_UNSPECIFIED: ProjectType
+PROJECT_TYPE_TRAINING: ProjectType
 
 class ProjectAsset(_message.Message):
     __slots__ = ["id", "uri", "use", "name", "size", "created_at", "updated_at", "request", "tags"]
@@ -75,7 +82,7 @@ class ProjectAsset(_message.Message):
     def __init__(self, id: _Optional[str] = ..., uri: _Optional[str] = ..., use: _Optional[_Union[ProjectAssetUse, str]] = ..., name: _Optional[str] = ..., size: _Optional[int] = ..., created_at: _Optional[int] = ..., updated_at: _Optional[int] = ..., request: _Optional[_Union[_generation_pb2.Request, _Mapping]] = ..., tags: _Optional[_Mapping[str, str]] = ...) -> None: ...
 
 class Project(_message.Message):
-    __slots__ = ["id", "title", "owner_id", "access", "status", "size", "file", "created_at", "updated_at", "assets"]
+    __slots__ = ["id", "title", "owner_id", "access", "status", "size", "file", "created_at", "updated_at", "assets", "type"]
     ID_FIELD_NUMBER: _ClassVar[int]
     TITLE_FIELD_NUMBER: _ClassVar[int]
     OWNER_ID_FIELD_NUMBER: _ClassVar[int]
@@ -86,6 +93,7 @@ class Project(_message.Message):
     CREATED_AT_FIELD_NUMBER: _ClassVar[int]
     UPDATED_AT_FIELD_NUMBER: _ClassVar[int]
     ASSETS_FIELD_NUMBER: _ClassVar[int]
+    TYPE_FIELD_NUMBER: _ClassVar[int]
     id: str
     title: str
     owner_id: str
@@ -96,37 +104,42 @@ class Project(_message.Message):
     created_at: int
     updated_at: int
     assets: _containers.RepeatedCompositeFieldContainer[ProjectAsset]
-    def __init__(self, id: _Optional[str] = ..., title: _Optional[str] = ..., owner_id: _Optional[str] = ..., access: _Optional[_Union[ProjectAccess, str]] = ..., status: _Optional[_Union[ProjectStatus, str]] = ..., size: _Optional[int] = ..., file: _Optional[_Union[ProjectAsset, _Mapping]] = ..., created_at: _Optional[int] = ..., updated_at: _Optional[int] = ..., assets: _Optional[_Iterable[_Union[ProjectAsset, _Mapping]]] = ...) -> None: ...
+    type: ProjectType
+    def __init__(self, id: _Optional[str] = ..., title: _Optional[str] = ..., owner_id: _Optional[str] = ..., access: _Optional[_Union[ProjectAccess, str]] = ..., status: _Optional[_Union[ProjectStatus, str]] = ..., size: _Optional[int] = ..., file: _Optional[_Union[ProjectAsset, _Mapping]] = ..., created_at: _Optional[int] = ..., updated_at: _Optional[int] = ..., assets: _Optional[_Iterable[_Union[ProjectAsset, _Mapping]]] = ..., type: _Optional[_Union[ProjectType, str]] = ...) -> None: ...
 
 class CreateProjectRequest(_message.Message):
-    __slots__ = ["title", "owner_id", "access", "status", "file"]
+    __slots__ = ["title", "owner_id", "access", "status", "file", "type"]
     TITLE_FIELD_NUMBER: _ClassVar[int]
     OWNER_ID_FIELD_NUMBER: _ClassVar[int]
     ACCESS_FIELD_NUMBER: _ClassVar[int]
     STATUS_FIELD_NUMBER: _ClassVar[int]
     FILE_FIELD_NUMBER: _ClassVar[int]
+    TYPE_FIELD_NUMBER: _ClassVar[int]
     title: str
     owner_id: str
     access: ProjectAccess
     status: ProjectStatus
     file: ProjectAsset
-    def __init__(self, title: _Optional[str] = ..., owner_id: _Optional[str] = ..., access: _Optional[_Union[ProjectAccess, str]] = ..., status: _Optional[_Union[ProjectStatus, str]] = ..., file: _Optional[_Union[ProjectAsset, _Mapping]] = ...) -> None: ...
+    type: ProjectType
+    def __init__(self, title: _Optional[str] = ..., owner_id: _Optional[str] = ..., access: _Optional[_Union[ProjectAccess, str]] = ..., status: _Optional[_Union[ProjectStatus, str]] = ..., file: _Optional[_Union[ProjectAsset, _Mapping]] = ..., type: _Optional[_Union[ProjectType, str]] = ...) -> None: ...
 
 class UpdateProjectRequest(_message.Message):
-    __slots__ = ["id", "owner_id", "title", "access", "status", "file"]
+    __slots__ = ["id", "owner_id", "title", "access", "status", "file", "type"]
     ID_FIELD_NUMBER: _ClassVar[int]
     OWNER_ID_FIELD_NUMBER: _ClassVar[int]
     TITLE_FIELD_NUMBER: _ClassVar[int]
     ACCESS_FIELD_NUMBER: _ClassVar[int]
     STATUS_FIELD_NUMBER: _ClassVar[int]
     FILE_FIELD_NUMBER: _ClassVar[int]
+    TYPE_FIELD_NUMBER: _ClassVar[int]
     id: str
     owner_id: str
     title: str
     access: ProjectAccess
     status: ProjectStatus
     file: ProjectAsset
-    def __init__(self, id: _Optional[str] = ..., owner_id: _Optional[str] = ..., title: _Optional[str] = ..., access: _Optional[_Union[ProjectAccess, str]] = ..., status: _Optional[_Union[ProjectStatus, str]] = ..., file: _Optional[_Union[ProjectAsset, _Mapping]] = ...) -> None: ...
+    type: ProjectType
+    def __init__(self, id: _Optional[str] = ..., owner_id: _Optional[str] = ..., title: _Optional[str] = ..., access: _Optional[_Union[ProjectAccess, str]] = ..., status: _Optional[_Union[ProjectStatus, str]] = ..., file: _Optional[_Union[ProjectAsset, _Mapping]] = ..., type: _Optional[_Union[ProjectType, str]] = ...) -> None: ...
 
 class ListProjectRequest(_message.Message):
     __slots__ = ["owner_id"]

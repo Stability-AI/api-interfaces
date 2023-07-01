@@ -12,8 +12,8 @@
     "generate-js": "buf generate --template buf.gen.js.yaml --output=./src",
     "generate-kt": "buf generate --template buf.gen.kt.yaml --output=./src",
     "generate-py": "buf generate --template buf.gen.py.yaml --output=./src",
-    "generate-swift": "buf generate --template buf.gen.swift.yaml -output=./src",
-    "generate": "npm run generate-go && npm run generate-js && npm run generate-kt && npm run generate-py && npm run generate-swift"    
+    "generate-swift": "buf generate --template buf.gen.swift.yaml --output=./src",
+    "generate": "npm run generate-go && npm run generate-js && npm run generate-py"    
   },
   "keywords": [],
   "author": "",

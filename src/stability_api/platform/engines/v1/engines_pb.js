@@ -48,6 +48,7 @@ export const EngineInfo = proto3.makeMessageType(
     { no: 5, name: "tokenizer", kind: "enum", T: proto3.getEnumType(EngineTokenizer) },
     { no: 6, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: "can_fine_tune", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ],
 );
 

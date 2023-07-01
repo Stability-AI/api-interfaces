@@ -99,6 +99,11 @@ export declare class EngineInfo extends Message<EngineInfo> {
    */
   description: string;
 
+  /**
+   * @generated from field: bool can_fine_tune = 8;
+   */
+  canFineTune: boolean;
+
   constructor(data?: PartialMessage<EngineInfo>);
 
   static readonly runtime: typeof proto3;

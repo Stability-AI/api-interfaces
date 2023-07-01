@@ -132,6 +132,36 @@ export const ModelArchitecture = proto3.makeEnum(
 );
 
 /**
+ * @generated from enum stabilityai.platformapis.generation.v1.T2IAdapter
+ */
+export const T2IAdapter = proto3.makeEnum(
+  "stabilityai.platformapis.generation.v1.T2IAdapter",
+  [
+    {no: 0, name: "T2IADAPTER_NONE"},
+    {no: 1, name: "T2IADAPTER_SKETCH"},
+    {no: 2, name: "T2IADAPTER_DEPTH"},
+    {no: 3, name: "T2IADAPTER_CANNY"},
+  ],
+);
+
+/**
+ * If adapter_type is not None, then the user can choose what type of init_image to pass in: either an arbitrary image
+ * which will then be converted to a depth map, sketch, or canny edge for the sketch, depth and canny adapters respectively,
+ * or they can pass in their own depth map, sketch or canny edge. This field controls whether the init_image should
+ * be interpreted as an arbitrary image to be preprocessed ready for the t2i adapter, or whether it has already been 
+ * preprocessed elsewhere
+ *
+ * @generated from enum stabilityai.platformapis.generation.v1.T2IAdapterInit
+ */
+export const T2IAdapterInit = proto3.makeEnum(
+  "stabilityai.platformapis.generation.v1.T2IAdapterInit",
+  [
+    {no: 0, name: "T2IADAPTERINIT_IMAGE"},
+    {no: 1, name: "T2IADAPTERINIT_ADAPTER_IMAGE"},
+  ],
+);
+
+/**
  * @generated from enum stabilityai.platformapis.generation.v1.Action
  */
 export const Action = proto3.makeEnum(
@@ -496,6 +526,52 @@ export const TransformType = proto3.makeMessageType(
 );
 
 /**
+ * @generated from message stabilityai.platformapis.generation.v1.T2IAdapterParameter
+ */
+export const T2IAdapterParameter = proto3.makeMessageType(
+  "stabilityai.platformapis.generation.v1.T2IAdapterParameter",
+  () => [
+    { no: 1, name: "adapter_type", kind: "enum", T: proto3.getEnumType(T2IAdapter) },
+    { no: 2, name: "adapter_strength", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
+    { no: 3, name: "adapter_init_type", kind: "enum", T: proto3.getEnumType(T2IAdapterInit) },
+  ],
+);
+
+/**
+ * @generated from message stabilityai.platformapis.generation.v1.CAIParameters
+ */
+export const CAIParameters = proto3.makeMessageType(
+  "stabilityai.platformapis.generation.v1.CAIParameters",
+  () => [
+    { no: 1, name: "model_metadata", kind: "enum", T: proto3.getEnumType(CAIParameters_ModelMetadata), oneof: "parameters" },
+  ],
+);
+
+/**
+ * @generated from enum stabilityai.platformapis.generation.v1.CAIParameters.ModelMetadata
+ */
+export const CAIParameters_ModelMetadata = proto3.makeEnum(
+  "stabilityai.platformapis.generation.v1.CAIParameters.ModelMetadata",
+  [
+    {no: 0, name: "MODEL_METADATA_UNSPECIFIED", localName: "UNSPECIFIED"},
+    {no: 1, name: "MODEL_METADATA_SIGN_WITH_ENGINE_ID", localName: "SIGN_WITH_ENGINE_ID"},
+  ],
+);
+
+/**
+ * FineTuningParameters specify which fine-tuned models to use for generation.
+ *
+ * @generated from message stabilityai.platformapis.generation.v1.FineTuningParameters
+ */
+export const FineTuningParameters = proto3.makeMessageType(
+  "stabilityai.platformapis.generation.v1.FineTuningParameters",
+  () => [
+    { no: 1, name: "model_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "weight", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
+  ],
+);
+
+/**
  * @generated from message stabilityai.platformapis.generation.v1.ImageParameters
  */
 export const ImageParameters = proto3.makeMessageType(
@@ -511,6 +587,9 @@ export const ImageParameters = proto3.makeMessageType(
     { no: 8, name: "masked_area_init", kind: "enum", T: proto3.getEnumType(MaskedAreaInit), opt: true },
     { no: 9, name: "weight_method", kind: "enum", T: proto3.getEnumType(WeightMethod), opt: true },
     { no: 10, name: "quantize", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 11, name: "cai_parameters", kind: "message", T: CAIParameters, opt: true },
+    { no: 12, name: "adapter", kind: "message", T: T2IAdapterParameter, opt: true },
+    { no: 13, name: "fine_tuning_parameters", kind: "message", T: FineTuningParameters, repeated: true },
   ],
 );
 

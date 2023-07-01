@@ -56,6 +56,19 @@ export const ProjectSortDir = proto3.makeEnum(
 );
 
 /**
+ * The Type of Project being created
+ *
+ * @generated from enum stabilityai.platformapis.project.v1.ProjectType
+ */
+export const ProjectType = proto3.makeEnum(
+  "stabilityai.platformapis.project.v1.ProjectType",
+  [
+    {no: 0, name: "PROJECT_TYPE_UNSPECIFIED", localName: "UNSPECIFIED"},
+    {no: 1, name: "PROJECT_TYPE_TRAINING", localName: "TRAINING"},
+  ],
+);
+
+/**
  * @generated from message stabilityai.platformapis.project.v1.ProjectAsset
  */
 export const ProjectAsset = proto3.makeMessageType(
@@ -89,6 +102,7 @@ export const Project = proto3.makeMessageType(
     { no: 8, name: "created_at", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 9, name: "updated_at", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 10, name: "assets", kind: "message", T: ProjectAsset, repeated: true },
+    { no: 11, name: "type", kind: "enum", T: proto3.getEnumType(ProjectType) },
   ],
 );
 
@@ -103,6 +117,7 @@ export const CreateProjectRequest = proto3.makeMessageType(
     { no: 3, name: "access", kind: "enum", T: proto3.getEnumType(ProjectAccess) },
     { no: 4, name: "status", kind: "enum", T: proto3.getEnumType(ProjectStatus) },
     { no: 5, name: "file", kind: "message", T: ProjectAsset, opt: true },
+    { no: 6, name: "type", kind: "enum", T: proto3.getEnumType(ProjectType) },
   ],
 );
 
@@ -118,6 +133,7 @@ export const UpdateProjectRequest = proto3.makeMessageType(
     { no: 4, name: "access", kind: "enum", T: proto3.getEnumType(ProjectAccess), opt: true },
     { no: 5, name: "status", kind: "enum", T: proto3.getEnumType(ProjectStatus), opt: true },
     { no: 6, name: "file", kind: "message", T: ProjectAsset, opt: true },
+    { no: 7, name: "type", kind: "enum", T: proto3.getEnumType(ProjectType), opt: true },
   ],
 );
 

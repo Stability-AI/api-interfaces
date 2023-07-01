@@ -119,6 +119,27 @@ export declare enum ProjectSortDir {
 }
 
 /**
+ * The Type of Project being created
+ *
+ * @generated from enum stabilityai.platformapis.project.v1.ProjectType
+ */
+export declare enum ProjectType {
+  /**
+   * Zero-value, unspecified
+   *
+   * @generated from enum value: PROJECT_TYPE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * Training project, used for Fine-Tuning models
+   *
+   * @generated from enum value: PROJECT_TYPE_TRAINING = 1;
+   */
+  TRAINING = 1,
+}
+
+/**
  * @generated from message stabilityai.platformapis.project.v1.ProjectAsset
  */
 export declare class ProjectAsset extends Message<ProjectAsset> {
@@ -274,6 +295,13 @@ export declare class Project extends Message<Project> {
    */
   assets: ProjectAsset[];
 
+  /**
+   * The type of project
+   *
+   * @generated from field: stabilityai.platformapis.project.v1.ProjectType type = 11;
+   */
+  type: ProjectType;
+
   constructor(data?: PartialMessage<Project>);
 
   static readonly runtime: typeof proto3;
@@ -327,6 +355,13 @@ export declare class CreateProjectRequest extends Message<CreateProjectRequest> 
    * @generated from field: optional stabilityai.platformapis.project.v1.ProjectAsset file = 5;
    */
   file?: ProjectAsset;
+
+  /**
+   * The type of project
+   *
+   * @generated from field: stabilityai.platformapis.project.v1.ProjectType type = 6;
+   */
+  type: ProjectType;
 
   constructor(data?: PartialMessage<CreateProjectRequest>);
 
@@ -388,6 +423,13 @@ export declare class UpdateProjectRequest extends Message<UpdateProjectRequest> 
    * @generated from field: optional stabilityai.platformapis.project.v1.ProjectAsset file = 6;
    */
   file?: ProjectAsset;
+
+  /**
+   * The type of project
+   *
+   * @generated from field: optional stabilityai.platformapis.project.v1.ProjectType type = 7;
+   */
+  type?: ProjectType;
 
   constructor(data?: PartialMessage<UpdateProjectRequest>);
 

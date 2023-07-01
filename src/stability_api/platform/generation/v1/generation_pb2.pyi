@@ -78,6 +78,18 @@ class ModelArchitecture(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     MODEL_ARCHITECTURE_CLIP_RESNET: _ClassVar[ModelArchitecture]
     MODEL_ARCHITECTURE_LDM: _ClassVar[ModelArchitecture]
 
+class T2IAdapter(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = []
+    T2IADAPTER_NONE: _ClassVar[T2IAdapter]
+    T2IADAPTER_SKETCH: _ClassVar[T2IAdapter]
+    T2IADAPTER_DEPTH: _ClassVar[T2IAdapter]
+    T2IADAPTER_CANNY: _ClassVar[T2IAdapter]
+
+class T2IAdapterInit(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = []
+    T2IADAPTERINIT_IMAGE: _ClassVar[T2IAdapterInit]
+    T2IADAPTERINIT_ADAPTER_IMAGE: _ClassVar[T2IAdapterInit]
+
 class Action(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = []
     ACTION_PASSTHROUGH: _ClassVar[Action]
@@ -189,6 +201,12 @@ MODEL_ARCHITECTURE_NONE: ModelArchitecture
 MODEL_ARCHITECTURE_CLIP_VIT: ModelArchitecture
 MODEL_ARCHITECTURE_CLIP_RESNET: ModelArchitecture
 MODEL_ARCHITECTURE_LDM: ModelArchitecture
+T2IADAPTER_NONE: T2IAdapter
+T2IADAPTER_SKETCH: T2IAdapter
+T2IADAPTER_DEPTH: T2IAdapter
+T2IADAPTER_CANNY: T2IAdapter
+T2IADAPTERINIT_IMAGE: T2IAdapterInit
+T2IADAPTERINIT_ADAPTER_IMAGE: T2IAdapterInit
 ACTION_PASSTHROUGH: Action
 ACTION_REGENERATE_DUPLICATE: Action
 ACTION_REGENERATE: Action
@@ -410,8 +428,38 @@ class TransformType(_message.Message):
     upscaler: Upscaler
     def __init__(self, diffusion: _Optional[_Union[DiffusionSampler, str]] = ..., upscaler: _Optional[_Union[Upscaler, str]] = ...) -> None: ...
 
+class T2IAdapterParameter(_message.Message):
+    __slots__ = ["adapter_type", "adapter_strength", "adapter_init_type"]
+    ADAPTER_TYPE_FIELD_NUMBER: _ClassVar[int]
+    ADAPTER_STRENGTH_FIELD_NUMBER: _ClassVar[int]
+    ADAPTER_INIT_TYPE_FIELD_NUMBER: _ClassVar[int]
+    adapter_type: T2IAdapter
+    adapter_strength: float
+    adapter_init_type: T2IAdapterInit
+    def __init__(self, adapter_type: _Optional[_Union[T2IAdapter, str]] = ..., adapter_strength: _Optional[float] = ..., adapter_init_type: _Optional[_Union[T2IAdapterInit, str]] = ...) -> None: ...
+
+class CAIParameters(_message.Message):
+    __slots__ = ["model_metadata"]
+    class ModelMetadata(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+        __slots__ = []
+        MODEL_METADATA_UNSPECIFIED: _ClassVar[CAIParameters.ModelMetadata]
+        MODEL_METADATA_SIGN_WITH_ENGINE_ID: _ClassVar[CAIParameters.ModelMetadata]
+    MODEL_METADATA_UNSPECIFIED: CAIParameters.ModelMetadata
+    MODEL_METADATA_SIGN_WITH_ENGINE_ID: CAIParameters.ModelMetadata
+    MODEL_METADATA_FIELD_NUMBER: _ClassVar[int]
+    model_metadata: CAIParameters.ModelMetadata
+    def __init__(self, model_metadata: _Optional[_Union[CAIParameters.ModelMetadata, str]] = ...) -> None: ...
+
+class FineTuningParameters(_message.Message):
+    __slots__ = ["model_id", "weight"]
+    MODEL_ID_FIELD_NUMBER: _ClassVar[int]
+    WEIGHT_FIELD_NUMBER: _ClassVar[int]
+    model_id: str
+    weight: float
+    def __init__(self, model_id: _Optional[str] = ..., weight: _Optional[float] = ...) -> None: ...
+
 class ImageParameters(_message.Message):
-    __slots__ = ["height", "width", "seed", "samples", "steps", "transform", "parameters", "masked_area_init", "weight_method", "quantize"]
+    __slots__ = ["height", "width", "seed", "samples", "steps", "transform", "parameters", "masked_area_init", "weight_method", "quantize", "cai_parameters", "adapter", "fine_tuning_parameters"]
     HEIGHT_FIELD_NUMBER: _ClassVar[int]
     WIDTH_FIELD_NUMBER: _ClassVar[int]
     SEED_FIELD_NUMBER: _ClassVar[int]
@@ -422,6 +470,9 @@ class ImageParameters(_message.Message):
     MASKED_AREA_INIT_FIELD_NUMBER: _ClassVar[int]
     WEIGHT_METHOD_FIELD_NUMBER: _ClassVar[int]
     QUANTIZE_FIELD_NUMBER: _ClassVar[int]
+    CAI_PARAMETERS_FIELD_NUMBER: _ClassVar[int]
+    ADAPTER_FIELD_NUMBER: _ClassVar[int]
+    FINE_TUNING_PARAMETERS_FIELD_NUMBER: _ClassVar[int]
     height: int
     width: int
     seed: _containers.RepeatedScalarFieldContainer[int]
@@ -432,7 +483,10 @@ class ImageParameters(_message.Message):
     masked_area_init: MaskedAreaInit
     weight_method: WeightMethod
     quantize: bool
-    def __init__(self, height: _Optional[int] = ..., width: _Optional[int] = ..., seed: _Optional[_Iterable[int]] = ..., samples: _Optional[int] = ..., steps: _Optional[int] = ..., transform: _Optional[_Union[TransformType, _Mapping]] = ..., parameters: _Optional[_Iterable[_Union[StepParameter, _Mapping]]] = ..., masked_area_init: _Optional[_Union[MaskedAreaInit, str]] = ..., weight_method: _Optional[_Union[WeightMethod, str]] = ..., quantize: bool = ...) -> None: ...
+    cai_parameters: CAIParameters
+    adapter: T2IAdapterParameter
+    fine_tuning_parameters: _containers.RepeatedCompositeFieldContainer[FineTuningParameters]
+    def __init__(self, height: _Optional[int] = ..., width: _Optional[int] = ..., seed: _Optional[_Iterable[int]] = ..., samples: _Optional[int] = ..., steps: _Optional[int] = ..., transform: _Optional[_Union[TransformType, _Mapping]] = ..., parameters: _Optional[_Iterable[_Union[StepParameter, _Mapping]]] = ..., masked_area_init: _Optional[_Union[MaskedAreaInit, str]] = ..., weight_method: _Optional[_Union[WeightMethod, str]] = ..., quantize: bool = ..., cai_parameters: _Optional[_Union[CAIParameters, _Mapping]] = ..., adapter: _Optional[_Union[T2IAdapterParameter, _Mapping]] = ..., fine_tuning_parameters: _Optional[_Iterable[_Union[FineTuningParameters, _Mapping]]] = ...) -> None: ...
 
 class ClassifierConcept(_message.Message):
     __slots__ = ["concept", "threshold"]

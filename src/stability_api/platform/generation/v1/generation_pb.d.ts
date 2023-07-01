@@ -285,6 +285,56 @@ export declare enum ModelArchitecture {
 }
 
 /**
+ * @generated from enum stabilityai.platformapis.generation.v1.T2IAdapter
+ */
+export declare enum T2IAdapter {
+  /**
+   * @generated from enum value: T2IADAPTER_NONE = 0;
+   */
+  T2IADAPTER_NONE = 0,
+
+  /**
+   * these are all compatible with SDXL. 
+   *
+   * @generated from enum value: T2IADAPTER_SKETCH = 1;
+   */
+  T2IADAPTER_SKETCH = 1,
+
+  /**
+   * @generated from enum value: T2IADAPTER_DEPTH = 2;
+   */
+  T2IADAPTER_DEPTH = 2,
+
+  /**
+   * @generated from enum value: T2IADAPTER_CANNY = 3;
+   */
+  T2IADAPTER_CANNY = 3,
+}
+
+/**
+ * If adapter_type is not None, then the user can choose what type of init_image to pass in: either an arbitrary image
+ * which will then be converted to a depth map, sketch, or canny edge for the sketch, depth and canny adapters respectively,
+ * or they can pass in their own depth map, sketch or canny edge. This field controls whether the init_image should
+ * be interpreted as an arbitrary image to be preprocessed ready for the t2i adapter, or whether it has already been 
+ * preprocessed elsewhere
+ *
+ * @generated from enum stabilityai.platformapis.generation.v1.T2IAdapterInit
+ */
+export declare enum T2IAdapterInit {
+  /**
+   * these are all compatible with SDXL. 
+   *
+   * @generated from enum value: T2IADAPTERINIT_IMAGE = 0;
+   */
+  T2IADAPTERINIT_IMAGE = 0,
+
+  /**
+   * @generated from enum value: T2IADAPTERINIT_ADAPTER_IMAGE = 1;
+   */
+  T2IADAPTERINIT_ADAPTER_IMAGE = 1,
+}
+
+/**
  * @generated from enum stabilityai.platformapis.generation.v1.Action
  */
 export declare enum Action {
@@ -1266,6 +1316,125 @@ export declare class TransformType extends Message<TransformType> {
 }
 
 /**
+ * @generated from message stabilityai.platformapis.generation.v1.T2IAdapterParameter
+ */
+export declare class T2IAdapterParameter extends Message<T2IAdapterParameter> {
+  /**
+   * @generated from field: stabilityai.platformapis.generation.v1.T2IAdapter adapter_type = 1;
+   */
+  adapterType: T2IAdapter;
+
+  /**
+   * @generated from field: float adapter_strength = 2;
+   */
+  adapterStrength: number;
+
+  /**
+   * @generated from field: stabilityai.platformapis.generation.v1.T2IAdapterInit adapter_init_type = 3;
+   */
+  adapterInitType: T2IAdapterInit;
+
+  constructor(data?: PartialMessage<T2IAdapterParameter>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "stabilityai.platformapis.generation.v1.T2IAdapterParameter";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): T2IAdapterParameter;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): T2IAdapterParameter;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): T2IAdapterParameter;
+
+  static equals(a: T2IAdapterParameter | PlainMessage<T2IAdapterParameter> | undefined, b: T2IAdapterParameter | PlainMessage<T2IAdapterParameter> | undefined): boolean;
+}
+
+/**
+ * @generated from message stabilityai.platformapis.generation.v1.CAIParameters
+ */
+export declare class CAIParameters extends Message<CAIParameters> {
+  /**
+   * @generated from oneof stabilityai.platformapis.generation.v1.CAIParameters.parameters
+   */
+  parameters: {
+    /**
+     * @generated from field: stabilityai.platformapis.generation.v1.CAIParameters.ModelMetadata model_metadata = 1;
+     */
+    value: CAIParameters_ModelMetadata;
+    case: "modelMetadata";
+  } | { case: undefined; value?: undefined };
+
+  constructor(data?: PartialMessage<CAIParameters>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "stabilityai.platformapis.generation.v1.CAIParameters";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CAIParameters;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CAIParameters;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CAIParameters;
+
+  static equals(a: CAIParameters | PlainMessage<CAIParameters> | undefined, b: CAIParameters | PlainMessage<CAIParameters> | undefined): boolean;
+}
+
+/**
+ * @generated from enum stabilityai.platformapis.generation.v1.CAIParameters.ModelMetadata
+ */
+export declare enum CAIParameters_ModelMetadata {
+  /**
+   * @generated from enum value: MODEL_METADATA_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: MODEL_METADATA_SIGN_WITH_ENGINE_ID = 1;
+   */
+  SIGN_WITH_ENGINE_ID = 1,
+}
+
+/**
+ * FineTuningParameters specify which fine-tuned models to use for generation.
+ *
+ * @generated from message stabilityai.platformapis.generation.v1.FineTuningParameters
+ */
+export declare class FineTuningParameters extends Message<FineTuningParameters> {
+  /**
+   * The id of the fine-tuned model to generate content from.
+   * See FineTuningModel.id in finetuning.proto.
+   * Model Id is created upon invoking CreateFineTuningModel.
+   * When GetFineTuningModelStatus returns a FineTuningModelStatus of 
+   * FINE_TUNING_MODEL_STATUS_COMPLETED, the model can be used 
+   * for generating images.
+   *
+   * @generated from field: string model_id = 1;
+   */
+  modelId: string;
+
+  /**
+   * defaults to 1.0
+   *
+   * @generated from field: optional float weight = 2;
+   */
+  weight?: number;
+
+  constructor(data?: PartialMessage<FineTuningParameters>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "stabilityai.platformapis.generation.v1.FineTuningParameters";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FineTuningParameters;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FineTuningParameters;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FineTuningParameters;
+
+  static equals(a: FineTuningParameters | PlainMessage<FineTuningParameters> | undefined, b: FineTuningParameters | PlainMessage<FineTuningParameters> | undefined): boolean;
+}
+
+/**
  * @generated from message stabilityai.platformapis.generation.v1.ImageParameters
  */
 export declare class ImageParameters extends Message<ImageParameters> {
@@ -1324,6 +1493,25 @@ export declare class ImageParameters extends Message<ImageParameters> {
    * @generated from field: optional bool quantize = 10;
    */
   quantize?: boolean;
+
+  /**
+   * Set field to have image signed by C2PA
+   *
+   * @generated from field: optional stabilityai.platformapis.generation.v1.CAIParameters cai_parameters = 11;
+   */
+  caiParameters?: CAIParameters;
+
+  /**
+   * @generated from field: optional stabilityai.platformapis.generation.v1.T2IAdapterParameter adapter = 12;
+   */
+  adapter?: T2IAdapterParameter;
+
+  /**
+   * next available tag: 14
+   *
+   * @generated from field: repeated stabilityai.platformapis.generation.v1.FineTuningParameters fine_tuning_parameters = 13;
+   */
+  fineTuningParameters: FineTuningParameters[];
 
   constructor(data?: PartialMessage<ImageParameters>);
 
