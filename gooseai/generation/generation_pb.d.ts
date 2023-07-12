@@ -634,26 +634,26 @@ export namespace T2IAdapterParameter {
   }
 }
 
-export class C2PAParameters extends jspb.Message {
+export class ContentCredentialsParameters extends jspb.Message {
   hasModelMetadata(): boolean;
   clearModelMetadata(): void;
-  getModelMetadata(): C2PAParameters.ModelMetadataMap[keyof C2PAParameters.ModelMetadataMap];
-  setModelMetadata(value: C2PAParameters.ModelMetadataMap[keyof C2PAParameters.ModelMetadataMap]): void;
+  getModelMetadata(): ContentCredentialsParameters.ModelMetadataMap[keyof ContentCredentialsParameters.ModelMetadataMap];
+  setModelMetadata(value: ContentCredentialsParameters.ModelMetadataMap[keyof ContentCredentialsParameters.ModelMetadataMap]): void;
 
-  getParametersCase(): C2PAParameters.ParametersCase;
+  getParametersCase(): ContentCredentialsParameters.ParametersCase;
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): C2PAParameters.AsObject;
-  static toObject(includeInstance: boolean, msg: C2PAParameters): C2PAParameters.AsObject;
+  toObject(includeInstance?: boolean): ContentCredentialsParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: ContentCredentialsParameters): ContentCredentialsParameters.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: C2PAParameters, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): C2PAParameters;
-  static deserializeBinaryFromReader(message: C2PAParameters, reader: jspb.BinaryReader): C2PAParameters;
+  static serializeBinaryToWriter(message: ContentCredentialsParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ContentCredentialsParameters;
+  static deserializeBinaryFromReader(message: ContentCredentialsParameters, reader: jspb.BinaryReader): ContentCredentialsParameters;
 }
 
-export namespace C2PAParameters {
+export namespace ContentCredentialsParameters {
   export type AsObject = {
-    modelMetadata: C2PAParameters.ModelMetadataMap[keyof C2PAParameters.ModelMetadataMap],
+    modelMetadata: ContentCredentialsParameters.ModelMetadataMap[keyof ContentCredentialsParameters.ModelMetadataMap],
   }
 
   export interface ModelMetadataMap {
@@ -756,10 +756,10 @@ export class ImageParameters extends jspb.Message {
   setFineTuningParametersList(value: Array<FineTuningParameters>): void;
   addFineTuningParameters(value?: FineTuningParameters, index?: number): FineTuningParameters;
 
-  hasC2paParameters(): boolean;
-  clearC2paParameters(): void;
-  getC2paParameters(): C2PAParameters | undefined;
-  setC2paParameters(value?: C2PAParameters): void;
+  hasContentCredentialsParameters(): boolean;
+  clearContentCredentialsParameters(): void;
+  getContentCredentialsParameters(): ContentCredentialsParameters | undefined;
+  setContentCredentialsParameters(value?: ContentCredentialsParameters): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ImageParameters.AsObject;
@@ -785,7 +785,7 @@ export namespace ImageParameters {
     quantize: boolean,
     adapter?: T2IAdapterParameter.AsObject,
     fineTuningParametersList: Array<FineTuningParameters.AsObject>,
-    c2paParameters?: C2PAParameters.AsObject,
+    contentCredentialsParameters?: ContentCredentialsParameters.AsObject,
   }
 }
 
