@@ -241,7 +241,8 @@ message T2IAdapterParameter {
   float adapter_strength = 2;
   T2IAdapterInit adapter_init_type = 3;
 }
-message CAIParameters {
+
+message ContentCredentialsParameters {
   enum ModelMetadata {
     MODEL_METADATA_UNSPECIFIED = 0;
     MODEL_METADATA_SIGN_WITH_ENGINE_ID = 1;
@@ -274,10 +275,11 @@ message ImageParameters {
   optional MaskedAreaInit masked_area_init = 8; // defaults to MASKED_AREA_INIT_ZERO
   optional WeightMethod weight_method = 9; //defaults to TEXT_ENCODER
   optional bool quantize = 10; //defaults to true
-  optional CAIParameters cai_parameters = 11; // Set field to have image signed by C2PA
   optional T2IAdapterParameter adapter = 12;
-  repeated FineTuningParameters fine_tuning_parameters = 13;
-  // next available tag: 14
+  repeated FineTuningParameters fine_tuning_parameters = 13; 
+  optional ContentCredentialsParameters content_credentials_parameters = 14; // Set field to have image signed by C2PA
+  reserved 11;
+  // next available tag: 15
 }
 
 enum Action {
