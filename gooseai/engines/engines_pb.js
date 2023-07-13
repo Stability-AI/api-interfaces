@@ -128,7 +128,8 @@ proto.gooseai.EngineInfo.toObject = function(includeInstance, msg) {
     tokenizer: jspb.Message.getFieldWithDefault(msg, 5, 0),
     name: jspb.Message.getFieldWithDefault(msg, 6, ""),
     description: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    canFineTune: jspb.Message.getBooleanFieldWithDefault(msg, 8, false)
+    canFineTune: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+    isAdaptive: jspb.Message.getBooleanFieldWithDefault(msg, 9, false)
   };
 
   if (includeInstance) {
@@ -196,6 +197,10 @@ proto.gooseai.EngineInfo.deserializeBinaryFromReader = function(msg, reader) {
     case 8:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setCanFineTune(value);
+      break;
+    case 9:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsAdaptive(value);
       break;
     default:
       reader.skipField();
@@ -279,6 +284,13 @@ proto.gooseai.EngineInfo.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       8,
+      f
+    );
+  }
+  f = message.getIsAdaptive();
+  if (f) {
+    writer.writeBool(
+      9,
       f
     );
   }
@@ -426,6 +438,24 @@ proto.gooseai.EngineInfo.prototype.getCanFineTune = function() {
  */
 proto.gooseai.EngineInfo.prototype.setCanFineTune = function(value) {
   return jspb.Message.setProto3BooleanField(this, 8, value);
+};
+
+
+/**
+ * optional bool is_adaptive = 9;
+ * @return {boolean}
+ */
+proto.gooseai.EngineInfo.prototype.getIsAdaptive = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 9, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.gooseai.EngineInfo} returns this
+ */
+proto.gooseai.EngineInfo.prototype.setIsAdaptive = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 9, value);
 };
 
 

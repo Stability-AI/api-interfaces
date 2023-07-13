@@ -28,6 +28,9 @@ export class EngineInfo extends jspb.Message {
   getCanFineTune(): boolean;
   setCanFineTune(value: boolean): void;
 
+  getIsAdaptive(): boolean;
+  setIsAdaptive(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): EngineInfo.AsObject;
   static toObject(includeInstance: boolean, msg: EngineInfo): EngineInfo.AsObject;
@@ -48,6 +51,7 @@ export namespace EngineInfo {
     name: string,
     description: string,
     canFineTune: boolean,
+    isAdaptive: boolean,
   }
 }
 
