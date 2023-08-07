@@ -224,53 +224,75 @@ type ProjectServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewProjectServiceHandler(svc ProjectServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
-	mux := http.NewServeMux()
-	mux.Handle(ProjectServiceCreateProcedure, connect_go.NewUnaryHandler(
+	projectServiceCreateHandler := connect_go.NewUnaryHandler(
 		ProjectServiceCreateProcedure,
 		svc.Create,
 		opts...,
-	))
-	mux.Handle(ProjectServiceUpdateProcedure, connect_go.NewUnaryHandler(
+	)
+	projectServiceUpdateHandler := connect_go.NewUnaryHandler(
 		ProjectServiceUpdateProcedure,
 		svc.Update,
 		opts...,
-	))
-	mux.Handle(ProjectServiceListProcedure, connect_go.NewServerStreamHandler(
+	)
+	projectServiceListHandler := connect_go.NewServerStreamHandler(
 		ProjectServiceListProcedure,
 		svc.List,
 		opts...,
-	))
-	mux.Handle(ProjectServiceGetProcedure, connect_go.NewUnaryHandler(
+	)
+	projectServiceGetHandler := connect_go.NewUnaryHandler(
 		ProjectServiceGetProcedure,
 		svc.Get,
 		opts...,
-	))
-	mux.Handle(ProjectServiceDeleteProcedure, connect_go.NewUnaryHandler(
+	)
+	projectServiceDeleteHandler := connect_go.NewUnaryHandler(
 		ProjectServiceDeleteProcedure,
 		svc.Delete,
 		opts...,
-	))
-	mux.Handle(ProjectServiceTagAssetsProcedure, connect_go.NewUnaryHandler(
+	)
+	projectServiceTagAssetsHandler := connect_go.NewUnaryHandler(
 		ProjectServiceTagAssetsProcedure,
 		svc.TagAssets,
 		opts...,
-	))
-	mux.Handle(ProjectServiceUntagAssetsProcedure, connect_go.NewUnaryHandler(
+	)
+	projectServiceUntagAssetsHandler := connect_go.NewUnaryHandler(
 		ProjectServiceUntagAssetsProcedure,
 		svc.UntagAssets,
 		opts...,
-	))
-	mux.Handle(ProjectServiceQueryAssetsProcedure, connect_go.NewUnaryHandler(
+	)
+	projectServiceQueryAssetsHandler := connect_go.NewUnaryHandler(
 		ProjectServiceQueryAssetsProcedure,
 		svc.QueryAssets,
 		opts...,
-	))
-	mux.Handle(ProjectServiceDeleteAssetsProcedure, connect_go.NewUnaryHandler(
+	)
+	projectServiceDeleteAssetsHandler := connect_go.NewUnaryHandler(
 		ProjectServiceDeleteAssetsProcedure,
 		svc.DeleteAssets,
 		opts...,
-	))
-	return "/stabilityai.platformapis.project.v1.ProjectService/", mux
+	)
+	return "/stabilityai.platformapis.project.v1.ProjectService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case ProjectServiceCreateProcedure:
+			projectServiceCreateHandler.ServeHTTP(w, r)
+		case ProjectServiceUpdateProcedure:
+			projectServiceUpdateHandler.ServeHTTP(w, r)
+		case ProjectServiceListProcedure:
+			projectServiceListHandler.ServeHTTP(w, r)
+		case ProjectServiceGetProcedure:
+			projectServiceGetHandler.ServeHTTP(w, r)
+		case ProjectServiceDeleteProcedure:
+			projectServiceDeleteHandler.ServeHTTP(w, r)
+		case ProjectServiceTagAssetsProcedure:
+			projectServiceTagAssetsHandler.ServeHTTP(w, r)
+		case ProjectServiceUntagAssetsProcedure:
+			projectServiceUntagAssetsHandler.ServeHTTP(w, r)
+		case ProjectServiceQueryAssetsProcedure:
+			projectServiceQueryAssetsHandler.ServeHTTP(w, r)
+		case ProjectServiceDeleteAssetsProcedure:
+			projectServiceDeleteAssetsHandler.ServeHTTP(w, r)
+		default:
+			http.NotFound(w, r)
+		}
+	})
 }
 
 // UnimplementedProjectServiceHandler returns CodeUnimplemented from all methods.

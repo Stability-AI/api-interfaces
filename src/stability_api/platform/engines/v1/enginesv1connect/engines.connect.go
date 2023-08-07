@@ -85,13 +85,19 @@ type EnginesServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewEnginesServiceHandler(svc EnginesServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
-	mux := http.NewServeMux()
-	mux.Handle(EnginesServiceListEnginesProcedure, connect_go.NewUnaryHandler(
+	enginesServiceListEnginesHandler := connect_go.NewUnaryHandler(
 		EnginesServiceListEnginesProcedure,
 		svc.ListEngines,
 		opts...,
-	))
-	return "/stabilityai.platformapis.engines.v1.EnginesService/", mux
+	)
+	return "/stabilityai.platformapis.engines.v1.EnginesService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case EnginesServiceListEnginesProcedure:
+			enginesServiceListEnginesHandler.ServeHTTP(w, r)
+		default:
+			http.NotFound(w, r)
+		}
+	})
 }
 
 // UnimplementedEnginesServiceHandler returns CodeUnimplemented from all methods.

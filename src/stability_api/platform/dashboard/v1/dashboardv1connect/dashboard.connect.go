@@ -335,88 +335,124 @@ type DashboardServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewDashboardServiceHandler(svc DashboardServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
-	mux := http.NewServeMux()
-	mux.Handle(DashboardServiceGetMeProcedure, connect_go.NewUnaryHandler(
+	dashboardServiceGetMeHandler := connect_go.NewUnaryHandler(
 		DashboardServiceGetMeProcedure,
 		svc.GetMe,
 		opts...,
-	))
-	mux.Handle(DashboardServiceGetOrganizationProcedure, connect_go.NewUnaryHandler(
+	)
+	dashboardServiceGetOrganizationHandler := connect_go.NewUnaryHandler(
 		DashboardServiceGetOrganizationProcedure,
 		svc.GetOrganization,
 		opts...,
-	))
-	mux.Handle(DashboardServiceGetMetricsProcedure, connect_go.NewUnaryHandler(
+	)
+	dashboardServiceGetMetricsHandler := connect_go.NewUnaryHandler(
 		DashboardServiceGetMetricsProcedure,
 		svc.GetMetrics,
 		opts...,
-	))
-	mux.Handle(DashboardServiceCreateAPIKeyProcedure, connect_go.NewUnaryHandler(
+	)
+	dashboardServiceCreateAPIKeyHandler := connect_go.NewUnaryHandler(
 		DashboardServiceCreateAPIKeyProcedure,
 		svc.CreateAPIKey,
 		opts...,
-	))
-	mux.Handle(DashboardServiceDeleteAPIKeyProcedure, connect_go.NewUnaryHandler(
+	)
+	dashboardServiceDeleteAPIKeyHandler := connect_go.NewUnaryHandler(
 		DashboardServiceDeleteAPIKeyProcedure,
 		svc.DeleteAPIKey,
 		opts...,
-	))
-	mux.Handle(DashboardServiceUpdateDefaultOrganizationProcedure, connect_go.NewUnaryHandler(
+	)
+	dashboardServiceUpdateDefaultOrganizationHandler := connect_go.NewUnaryHandler(
 		DashboardServiceUpdateDefaultOrganizationProcedure,
 		svc.UpdateDefaultOrganization,
 		opts...,
-	))
-	mux.Handle(DashboardServiceGetClientSettingsProcedure, connect_go.NewUnaryHandler(
+	)
+	dashboardServiceGetClientSettingsHandler := connect_go.NewUnaryHandler(
 		DashboardServiceGetClientSettingsProcedure,
 		svc.GetClientSettings,
 		opts...,
-	))
-	mux.Handle(DashboardServiceSetClientSettingsProcedure, connect_go.NewUnaryHandler(
+	)
+	dashboardServiceSetClientSettingsHandler := connect_go.NewUnaryHandler(
 		DashboardServiceSetClientSettingsProcedure,
 		svc.SetClientSettings,
 		opts...,
-	))
-	mux.Handle(DashboardServiceUpdateUserInfoProcedure, connect_go.NewUnaryHandler(
+	)
+	dashboardServiceUpdateUserInfoHandler := connect_go.NewUnaryHandler(
 		DashboardServiceUpdateUserInfoProcedure,
 		svc.UpdateUserInfo,
 		opts...,
-	))
-	mux.Handle(DashboardServiceCreatePasswordChangeTicketProcedure, connect_go.NewUnaryHandler(
+	)
+	dashboardServiceCreatePasswordChangeTicketHandler := connect_go.NewUnaryHandler(
 		DashboardServiceCreatePasswordChangeTicketProcedure,
 		svc.CreatePasswordChangeTicket,
 		opts...,
-	))
-	mux.Handle(DashboardServiceDeleteAccountProcedure, connect_go.NewUnaryHandler(
+	)
+	dashboardServiceDeleteAccountHandler := connect_go.NewUnaryHandler(
 		DashboardServiceDeleteAccountProcedure,
 		svc.DeleteAccount,
 		opts...,
-	))
-	mux.Handle(DashboardServiceCreateChargeProcedure, connect_go.NewUnaryHandler(
+	)
+	dashboardServiceCreateChargeHandler := connect_go.NewUnaryHandler(
 		DashboardServiceCreateChargeProcedure,
 		svc.CreateCharge,
 		opts...,
-	))
-	mux.Handle(DashboardServiceGetChargesProcedure, connect_go.NewUnaryHandler(
+	)
+	dashboardServiceGetChargesHandler := connect_go.NewUnaryHandler(
 		DashboardServiceGetChargesProcedure,
 		svc.GetCharges,
 		opts...,
-	))
-	mux.Handle(DashboardServiceCreateAutoChargeIntentProcedure, connect_go.NewUnaryHandler(
+	)
+	dashboardServiceCreateAutoChargeIntentHandler := connect_go.NewUnaryHandler(
 		DashboardServiceCreateAutoChargeIntentProcedure,
 		svc.CreateAutoChargeIntent,
 		opts...,
-	))
-	mux.Handle(DashboardServiceUpdateAutoChargeIntentProcedure, connect_go.NewUnaryHandler(
+	)
+	dashboardServiceUpdateAutoChargeIntentHandler := connect_go.NewUnaryHandler(
 		DashboardServiceUpdateAutoChargeIntentProcedure,
 		svc.UpdateAutoChargeIntent,
 		opts...,
-	))
-	mux.Handle(DashboardServiceGetAutoChargeIntentProcedure, connect_go.NewUnaryHandler(
+	)
+	dashboardServiceGetAutoChargeIntentHandler := connect_go.NewUnaryHandler(
 		DashboardServiceGetAutoChargeIntentProcedure,
 		svc.GetAutoChargeIntent,
 		opts...,
-	))
-	return "/stabilityai.api.dashboard.v1.DashboardService/", mux
+	)
+	return "/stabilityai.api.dashboard.v1.DashboardService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case DashboardServiceGetMeProcedure:
+			dashboardServiceGetMeHandler.ServeHTTP(w, r)
+		case DashboardServiceGetOrganizationProcedure:
+			dashboardServiceGetOrganizationHandler.ServeHTTP(w, r)
+		case DashboardServiceGetMetricsProcedure:
+			dashboardServiceGetMetricsHandler.ServeHTTP(w, r)
+		case DashboardServiceCreateAPIKeyProcedure:
+			dashboardServiceCreateAPIKeyHandler.ServeHTTP(w, r)
+		case DashboardServiceDeleteAPIKeyProcedure:
+			dashboardServiceDeleteAPIKeyHandler.ServeHTTP(w, r)
+		case DashboardServiceUpdateDefaultOrganizationProcedure:
+			dashboardServiceUpdateDefaultOrganizationHandler.ServeHTTP(w, r)
+		case DashboardServiceGetClientSettingsProcedure:
+			dashboardServiceGetClientSettingsHandler.ServeHTTP(w, r)
+		case DashboardServiceSetClientSettingsProcedure:
+			dashboardServiceSetClientSettingsHandler.ServeHTTP(w, r)
+		case DashboardServiceUpdateUserInfoProcedure:
+			dashboardServiceUpdateUserInfoHandler.ServeHTTP(w, r)
+		case DashboardServiceCreatePasswordChangeTicketProcedure:
+			dashboardServiceCreatePasswordChangeTicketHandler.ServeHTTP(w, r)
+		case DashboardServiceDeleteAccountProcedure:
+			dashboardServiceDeleteAccountHandler.ServeHTTP(w, r)
+		case DashboardServiceCreateChargeProcedure:
+			dashboardServiceCreateChargeHandler.ServeHTTP(w, r)
+		case DashboardServiceGetChargesProcedure:
+			dashboardServiceGetChargesHandler.ServeHTTP(w, r)
+		case DashboardServiceCreateAutoChargeIntentProcedure:
+			dashboardServiceCreateAutoChargeIntentHandler.ServeHTTP(w, r)
+		case DashboardServiceUpdateAutoChargeIntentProcedure:
+			dashboardServiceUpdateAutoChargeIntentHandler.ServeHTTP(w, r)
+		case DashboardServiceGetAutoChargeIntentProcedure:
+			dashboardServiceGetAutoChargeIntentHandler.ServeHTTP(w, r)
+		default:
+			http.NotFound(w, r)
+		}
+	})
 }
 
 // UnimplementedDashboardServiceHandler returns CodeUnimplemented from all methods.

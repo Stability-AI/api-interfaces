@@ -101,18 +101,26 @@ type GenerationServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewGenerationServiceHandler(svc GenerationServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
-	mux := http.NewServeMux()
-	mux.Handle(GenerationServiceGenerateProcedure, connect_go.NewServerStreamHandler(
+	generationServiceGenerateHandler := connect_go.NewServerStreamHandler(
 		GenerationServiceGenerateProcedure,
 		svc.Generate,
 		opts...,
-	))
-	mux.Handle(GenerationServiceChainGenerateProcedure, connect_go.NewServerStreamHandler(
+	)
+	generationServiceChainGenerateHandler := connect_go.NewServerStreamHandler(
 		GenerationServiceChainGenerateProcedure,
 		svc.ChainGenerate,
 		opts...,
-	))
-	return "/stabilityai.platformapis.generation.v1.GenerationService/", mux
+	)
+	return "/stabilityai.platformapis.generation.v1.GenerationService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case GenerationServiceGenerateProcedure:
+			generationServiceGenerateHandler.ServeHTTP(w, r)
+		case GenerationServiceChainGenerateProcedure:
+			generationServiceChainGenerateHandler.ServeHTTP(w, r)
+		default:
+			http.NotFound(w, r)
+		}
+	})
 }
 
 // UnimplementedGenerationServiceHandler returns CodeUnimplemented from all methods.

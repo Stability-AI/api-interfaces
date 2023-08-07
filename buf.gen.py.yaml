@@ -2,9 +2,9 @@ version: v1
 managed:
   enabled: true
 plugins:
-  - plugin: buf.build/grpc/python:v1.54.1
+  - plugin: buf.build/grpc/python:v1.56.2
     out: '.'  
   - plugin: buf.build/protocolbuffers/python
     out: '.'
-  - plugin: buf.build/protocolbuffers/pyi:v23.0
+  - plugin: buf.build/protocolbuffers/pyi:v23.4
     out: '.'

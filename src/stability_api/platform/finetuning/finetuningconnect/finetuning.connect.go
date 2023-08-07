@@ -174,38 +174,54 @@ type FineTuningServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewFineTuningServiceHandler(svc FineTuningServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
-	mux := http.NewServeMux()
-	mux.Handle(FineTuningServiceCreateModelProcedure, connect_go.NewUnaryHandler(
+	fineTuningServiceCreateModelHandler := connect_go.NewUnaryHandler(
 		FineTuningServiceCreateModelProcedure,
 		svc.CreateModel,
 		opts...,
-	))
-	mux.Handle(FineTuningServiceGetModelProcedure, connect_go.NewUnaryHandler(
+	)
+	fineTuningServiceGetModelHandler := connect_go.NewUnaryHandler(
 		FineTuningServiceGetModelProcedure,
 		svc.GetModel,
 		opts...,
-	))
-	mux.Handle(FineTuningServiceUpdateModelProcedure, connect_go.NewUnaryHandler(
+	)
+	fineTuningServiceUpdateModelHandler := connect_go.NewUnaryHandler(
 		FineTuningServiceUpdateModelProcedure,
 		svc.UpdateModel,
 		opts...,
-	))
-	mux.Handle(FineTuningServiceDeleteModelProcedure, connect_go.NewUnaryHandler(
+	)
+	fineTuningServiceDeleteModelHandler := connect_go.NewUnaryHandler(
 		FineTuningServiceDeleteModelProcedure,
 		svc.DeleteModel,
 		opts...,
-	))
-	mux.Handle(FineTuningServiceResubmitModelProcedure, connect_go.NewUnaryHandler(
+	)
+	fineTuningServiceResubmitModelHandler := connect_go.NewUnaryHandler(
 		FineTuningServiceResubmitModelProcedure,
 		svc.ResubmitModel,
 		opts...,
-	))
-	mux.Handle(FineTuningServiceListModelsProcedure, connect_go.NewUnaryHandler(
+	)
+	fineTuningServiceListModelsHandler := connect_go.NewUnaryHandler(
 		FineTuningServiceListModelsProcedure,
 		svc.ListModels,
 		opts...,
-	))
-	return "/gooseai.FineTuningService/", mux
+	)
+	return "/gooseai.FineTuningService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case FineTuningServiceCreateModelProcedure:
+			fineTuningServiceCreateModelHandler.ServeHTTP(w, r)
+		case FineTuningServiceGetModelProcedure:
+			fineTuningServiceGetModelHandler.ServeHTTP(w, r)
+		case FineTuningServiceUpdateModelProcedure:
+			fineTuningServiceUpdateModelHandler.ServeHTTP(w, r)
+		case FineTuningServiceDeleteModelProcedure:
+			fineTuningServiceDeleteModelHandler.ServeHTTP(w, r)
+		case FineTuningServiceResubmitModelProcedure:
+			fineTuningServiceResubmitModelHandler.ServeHTTP(w, r)
+		case FineTuningServiceListModelsProcedure:
+			fineTuningServiceListModelsHandler.ServeHTTP(w, r)
+		default:
+			http.NotFound(w, r)
+		}
+	})
 }
 
 // UnimplementedFineTuningServiceHandler returns CodeUnimplemented from all methods.
