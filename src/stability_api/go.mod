@@ -3,7 +3,7 @@ module github.com/stability-ai/api-interfaces/src/stability_api
 go 1.18
 
 require (
-	github.com/bufbuild/connect-go v1.7.0
+	connectrpc.com/connect v1.11.0
 	google.golang.org/grpc v1.54.0
 	google.golang.org/protobuf v1.30.0
 )

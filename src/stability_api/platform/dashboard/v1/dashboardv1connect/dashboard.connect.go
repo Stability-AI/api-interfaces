@@ -5,9 +5,9 @@
 package dashboardv1connect
 
 import (
+	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
-	connect_go "github.com/bufbuild/connect-go"
 	v1 "github.com/stability-ai/api-interfaces/src/stability_api/platform/dashboard/v1"
 	http "net/http"
 	strings "strings"
@@ -18,7 +18,7 @@ import (
 // generated with a version of connect newer than the one compiled into your binary. You can fix the
 // problem by either regenerating this code with an older version of connect or updating the connect
 // version compiled into your binary.
-const _ = connect_go.IsAtLeastVersion0_1_0
+const _ = connect.IsAtLeastVersion0_1_0
 
 const (
 	// DashboardServiceName is the fully-qualified name of the DashboardService service.
@@ -85,25 +85,25 @@ const (
 // DashboardServiceClient is a client for the stabilityai.api.dashboard.v1.DashboardService service.
 type DashboardServiceClient interface {
 	// Get info
-	GetMe(context.Context, *connect_go.Request[v1.EmptyRequest]) (*connect_go.Response[v1.User], error)
-	GetOrganization(context.Context, *connect_go.Request[v1.GetOrganizationRequest]) (*connect_go.Response[v1.Organization], error)
-	GetMetrics(context.Context, *connect_go.Request[v1.GetMetricsRequest]) (*connect_go.Response[v1.Metrics], error)
+	GetMe(context.Context, *connect.Request[v1.EmptyRequest]) (*connect.Response[v1.User], error)
+	GetOrganization(context.Context, *connect.Request[v1.GetOrganizationRequest]) (*connect.Response[v1.Organization], error)
+	GetMetrics(context.Context, *connect.Request[v1.GetMetricsRequest]) (*connect.Response[v1.Metrics], error)
 	// API key management
-	CreateAPIKey(context.Context, *connect_go.Request[v1.APIKeyRequest]) (*connect_go.Response[v1.APIKey], error)
-	DeleteAPIKey(context.Context, *connect_go.Request[v1.APIKeyFindRequest]) (*connect_go.Response[v1.APIKey], error)
+	CreateAPIKey(context.Context, *connect.Request[v1.APIKeyRequest]) (*connect.Response[v1.APIKey], error)
+	DeleteAPIKey(context.Context, *connect.Request[v1.APIKeyFindRequest]) (*connect.Response[v1.APIKey], error)
 	// User settings
-	UpdateDefaultOrganization(context.Context, *connect_go.Request[v1.UpdateDefaultOrganizationRequest]) (*connect_go.Response[v1.User], error)
-	GetClientSettings(context.Context, *connect_go.Request[v1.EmptyRequest]) (*connect_go.Response[v1.ClientSettings], error)
-	SetClientSettings(context.Context, *connect_go.Request[v1.ClientSettings]) (*connect_go.Response[v1.ClientSettings], error)
-	UpdateUserInfo(context.Context, *connect_go.Request[v1.UpdateUserInfoRequest]) (*connect_go.Response[v1.User], error)
-	CreatePasswordChangeTicket(context.Context, *connect_go.Request[v1.EmptyRequest]) (*connect_go.Response[v1.UserPasswordChangeTicket], error)
-	DeleteAccount(context.Context, *connect_go.Request[v1.EmptyRequest]) (*connect_go.Response[v1.User], error)
+	UpdateDefaultOrganization(context.Context, *connect.Request[v1.UpdateDefaultOrganizationRequest]) (*connect.Response[v1.User], error)
+	GetClientSettings(context.Context, *connect.Request[v1.EmptyRequest]) (*connect.Response[v1.ClientSettings], error)
+	SetClientSettings(context.Context, *connect.Request[v1.ClientSettings]) (*connect.Response[v1.ClientSettings], error)
+	UpdateUserInfo(context.Context, *connect.Request[v1.UpdateUserInfoRequest]) (*connect.Response[v1.User], error)
+	CreatePasswordChangeTicket(context.Context, *connect.Request[v1.EmptyRequest]) (*connect.Response[v1.UserPasswordChangeTicket], error)
+	DeleteAccount(context.Context, *connect.Request[v1.EmptyRequest]) (*connect.Response[v1.User], error)
 	// Payment functions
-	CreateCharge(context.Context, *connect_go.Request[v1.CreateChargeRequest]) (*connect_go.Response[v1.Charge], error)
-	GetCharges(context.Context, *connect_go.Request[v1.GetChargesRequest]) (*connect_go.Response[v1.Charges], error)
-	CreateAutoChargeIntent(context.Context, *connect_go.Request[v1.CreateAutoChargeIntentRequest]) (*connect_go.Response[v1.AutoChargeIntent], error)
-	UpdateAutoChargeIntent(context.Context, *connect_go.Request[v1.CreateAutoChargeIntentRequest]) (*connect_go.Response[v1.AutoChargeIntent], error)
-	GetAutoChargeIntent(context.Context, *connect_go.Request[v1.GetAutoChargeRequest]) (*connect_go.Response[v1.AutoChargeIntent], error)
+	CreateCharge(context.Context, *connect.Request[v1.CreateChargeRequest]) (*connect.Response[v1.Charge], error)
+	GetCharges(context.Context, *connect.Request[v1.GetChargesRequest]) (*connect.Response[v1.Charges], error)
+	CreateAutoChargeIntent(context.Context, *connect.Request[v1.CreateAutoChargeIntentRequest]) (*connect.Response[v1.AutoChargeIntent], error)
+	UpdateAutoChargeIntent(context.Context, *connect.Request[v1.CreateAutoChargeIntentRequest]) (*connect.Response[v1.AutoChargeIntent], error)
+	GetAutoChargeIntent(context.Context, *connect.Request[v1.GetAutoChargeRequest]) (*connect.Response[v1.AutoChargeIntent], error)
 }
 
 // NewDashboardServiceClient constructs a client for the
@@ -114,85 +114,85 @@ type DashboardServiceClient interface {
 //
 // The URL supplied here should be the base URL for the Connect or gRPC server (for example,
 // http://api.acme.com or https://acme.com/grpc).
-func NewDashboardServiceClient(httpClient connect_go.HTTPClient, baseURL string, opts ...connect_go.ClientOption) DashboardServiceClient {
+func NewDashboardServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) DashboardServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
 	return &dashboardServiceClient{
-		getMe: connect_go.NewClient[v1.EmptyRequest, v1.User](
+		getMe: connect.NewClient[v1.EmptyRequest, v1.User](
 			httpClient,
 			baseURL+DashboardServiceGetMeProcedure,
 			opts...,
 		),
-		getOrganization: connect_go.NewClient[v1.GetOrganizationRequest, v1.Organization](
+		getOrganization: connect.NewClient[v1.GetOrganizationRequest, v1.Organization](
 			httpClient,
 			baseURL+DashboardServiceGetOrganizationProcedure,
 			opts...,
 		),
-		getMetrics: connect_go.NewClient[v1.GetMetricsRequest, v1.Metrics](
+		getMetrics: connect.NewClient[v1.GetMetricsRequest, v1.Metrics](
 			httpClient,
 			baseURL+DashboardServiceGetMetricsProcedure,
 			opts...,
 		),
-		createAPIKey: connect_go.NewClient[v1.APIKeyRequest, v1.APIKey](
+		createAPIKey: connect.NewClient[v1.APIKeyRequest, v1.APIKey](
 			httpClient,
 			baseURL+DashboardServiceCreateAPIKeyProcedure,
 			opts...,
 		),
-		deleteAPIKey: connect_go.NewClient[v1.APIKeyFindRequest, v1.APIKey](
+		deleteAPIKey: connect.NewClient[v1.APIKeyFindRequest, v1.APIKey](
 			httpClient,
 			baseURL+DashboardServiceDeleteAPIKeyProcedure,
 			opts...,
 		),
-		updateDefaultOrganization: connect_go.NewClient[v1.UpdateDefaultOrganizationRequest, v1.User](
+		updateDefaultOrganization: connect.NewClient[v1.UpdateDefaultOrganizationRequest, v1.User](
 			httpClient,
 			baseURL+DashboardServiceUpdateDefaultOrganizationProcedure,
 			opts...,
 		),
-		getClientSettings: connect_go.NewClient[v1.EmptyRequest, v1.ClientSettings](
+		getClientSettings: connect.NewClient[v1.EmptyRequest, v1.ClientSettings](
 			httpClient,
 			baseURL+DashboardServiceGetClientSettingsProcedure,
 			opts...,
 		),
-		setClientSettings: connect_go.NewClient[v1.ClientSettings, v1.ClientSettings](
+		setClientSettings: connect.NewClient[v1.ClientSettings, v1.ClientSettings](
 			httpClient,
 			baseURL+DashboardServiceSetClientSettingsProcedure,
 			opts...,
 		),
-		updateUserInfo: connect_go.NewClient[v1.UpdateUserInfoRequest, v1.User](
+		updateUserInfo: connect.NewClient[v1.UpdateUserInfoRequest, v1.User](
 			httpClient,
 			baseURL+DashboardServiceUpdateUserInfoProcedure,
 			opts...,
 		),
-		createPasswordChangeTicket: connect_go.NewClient[v1.EmptyRequest, v1.UserPasswordChangeTicket](
+		createPasswordChangeTicket: connect.NewClient[v1.EmptyRequest, v1.UserPasswordChangeTicket](
 			httpClient,
 			baseURL+DashboardServiceCreatePasswordChangeTicketProcedure,
 			opts...,
 		),
-		deleteAccount: connect_go.NewClient[v1.EmptyRequest, v1.User](
+		deleteAccount: connect.NewClient[v1.EmptyRequest, v1.User](
 			httpClient,
 			baseURL+DashboardServiceDeleteAccountProcedure,
 			opts...,
 		),
-		createCharge: connect_go.NewClient[v1.CreateChargeRequest, v1.Charge](
+		createCharge: connect.NewClient[v1.CreateChargeRequest, v1.Charge](
 			httpClient,
 			baseURL+DashboardServiceCreateChargeProcedure,
 			opts...,
 		),
-		getCharges: connect_go.NewClient[v1.GetChargesRequest, v1.Charges](
+		getCharges: connect.NewClient[v1.GetChargesRequest, v1.Charges](
 			httpClient,
 			baseURL+DashboardServiceGetChargesProcedure,
 			opts...,
 		),
-		createAutoChargeIntent: connect_go.NewClient[v1.CreateAutoChargeIntentRequest, v1.AutoChargeIntent](
+		createAutoChargeIntent: connect.NewClient[v1.CreateAutoChargeIntentRequest, v1.AutoChargeIntent](
 			httpClient,
 			baseURL+DashboardServiceCreateAutoChargeIntentProcedure,
 			opts...,
 		),
-		updateAutoChargeIntent: connect_go.NewClient[v1.CreateAutoChargeIntentRequest, v1.AutoChargeIntent](
+		updateAutoChargeIntent: connect.NewClient[v1.CreateAutoChargeIntentRequest, v1.AutoChargeIntent](
 			httpClient,
 			baseURL+DashboardServiceUpdateAutoChargeIntentProcedure,
 			opts...,
 		),
-		getAutoChargeIntent: connect_go.NewClient[v1.GetAutoChargeRequest, v1.AutoChargeIntent](
+		getAutoChargeIntent: connect.NewClient[v1.GetAutoChargeRequest, v1.AutoChargeIntent](
 			httpClient,
 			baseURL+DashboardServiceGetAutoChargeIntentProcedure,
 			opts...,
@@ -202,105 +202,105 @@ func NewDashboardServiceClient(httpClient connect_go.HTTPClient, baseURL string,
 
 // dashboardServiceClient implements DashboardServiceClient.
 type dashboardServiceClient struct {
-	getMe                      *connect_go.Client[v1.EmptyRequest, v1.User]
-	getOrganization            *connect_go.Client[v1.GetOrganizationRequest, v1.Organization]
-	getMetrics                 *connect_go.Client[v1.GetMetricsRequest, v1.Metrics]
-	createAPIKey               *connect_go.Client[v1.APIKeyRequest, v1.APIKey]
-	deleteAPIKey               *connect_go.Client[v1.APIKeyFindRequest, v1.APIKey]
-	updateDefaultOrganization  *connect_go.Client[v1.UpdateDefaultOrganizationRequest, v1.User]
-	getClientSettings          *connect_go.Client[v1.EmptyRequest, v1.ClientSettings]
-	setClientSettings          *connect_go.Client[v1.ClientSettings, v1.ClientSettings]
-	updateUserInfo             *connect_go.Client[v1.UpdateUserInfoRequest, v1.User]
-	createPasswordChangeTicket *connect_go.Client[v1.EmptyRequest, v1.UserPasswordChangeTicket]
-	deleteAccount              *connect_go.Client[v1.EmptyRequest, v1.User]
-	createCharge               *connect_go.Client[v1.CreateChargeRequest, v1.Charge]
-	getCharges                 *connect_go.Client[v1.GetChargesRequest, v1.Charges]
-	createAutoChargeIntent     *connect_go.Client[v1.CreateAutoChargeIntentRequest, v1.AutoChargeIntent]
-	updateAutoChargeIntent     *connect_go.Client[v1.CreateAutoChargeIntentRequest, v1.AutoChargeIntent]
-	getAutoChargeIntent        *connect_go.Client[v1.GetAutoChargeRequest, v1.AutoChargeIntent]
+	getMe                      *connect.Client[v1.EmptyRequest, v1.User]
+	getOrganization            *connect.Client[v1.GetOrganizationRequest, v1.Organization]
+	getMetrics                 *connect.Client[v1.GetMetricsRequest, v1.Metrics]
+	createAPIKey               *connect.Client[v1.APIKeyRequest, v1.APIKey]
+	deleteAPIKey               *connect.Client[v1.APIKeyFindRequest, v1.APIKey]
+	updateDefaultOrganization  *connect.Client[v1.UpdateDefaultOrganizationRequest, v1.User]
+	getClientSettings          *connect.Client[v1.EmptyRequest, v1.ClientSettings]
+	setClientSettings          *connect.Client[v1.ClientSettings, v1.ClientSettings]
+	updateUserInfo             *connect.Client[v1.UpdateUserInfoRequest, v1.User]
+	createPasswordChangeTicket *connect.Client[v1.EmptyRequest, v1.UserPasswordChangeTicket]
+	deleteAccount              *connect.Client[v1.EmptyRequest, v1.User]
+	createCharge               *connect.Client[v1.CreateChargeRequest, v1.Charge]
+	getCharges                 *connect.Client[v1.GetChargesRequest, v1.Charges]
+	createAutoChargeIntent     *connect.Client[v1.CreateAutoChargeIntentRequest, v1.AutoChargeIntent]
+	updateAutoChargeIntent     *connect.Client[v1.CreateAutoChargeIntentRequest, v1.AutoChargeIntent]
+	getAutoChargeIntent        *connect.Client[v1.GetAutoChargeRequest, v1.AutoChargeIntent]
 }
 
 // GetMe calls stabilityai.api.dashboard.v1.DashboardService.GetMe.
-func (c *dashboardServiceClient) GetMe(ctx context.Context, req *connect_go.Request[v1.EmptyRequest]) (*connect_go.Response[v1.User], error) {
+func (c *dashboardServiceClient) GetMe(ctx context.Context, req *connect.Request[v1.EmptyRequest]) (*connect.Response[v1.User], error) {
 	return c.getMe.CallUnary(ctx, req)
 }
 
 // GetOrganization calls stabilityai.api.dashboard.v1.DashboardService.GetOrganization.
-func (c *dashboardServiceClient) GetOrganization(ctx context.Context, req *connect_go.Request[v1.GetOrganizationRequest]) (*connect_go.Response[v1.Organization], error) {
+func (c *dashboardServiceClient) GetOrganization(ctx context.Context, req *connect.Request[v1.GetOrganizationRequest]) (*connect.Response[v1.Organization], error) {
 	return c.getOrganization.CallUnary(ctx, req)
 }
 
 // GetMetrics calls stabilityai.api.dashboard.v1.DashboardService.GetMetrics.
-func (c *dashboardServiceClient) GetMetrics(ctx context.Context, req *connect_go.Request[v1.GetMetricsRequest]) (*connect_go.Response[v1.Metrics], error) {
+func (c *dashboardServiceClient) GetMetrics(ctx context.Context, req *connect.Request[v1.GetMetricsRequest]) (*connect.Response[v1.Metrics], error) {
 	return c.getMetrics.CallUnary(ctx, req)
 }
 
 // CreateAPIKey calls stabilityai.api.dashboard.v1.DashboardService.CreateAPIKey.
-func (c *dashboardServiceClient) CreateAPIKey(ctx context.Context, req *connect_go.Request[v1.APIKeyRequest]) (*connect_go.Response[v1.APIKey], error) {
+func (c *dashboardServiceClient) CreateAPIKey(ctx context.Context, req *connect.Request[v1.APIKeyRequest]) (*connect.Response[v1.APIKey], error) {
 	return c.createAPIKey.CallUnary(ctx, req)
 }
 
 // DeleteAPIKey calls stabilityai.api.dashboard.v1.DashboardService.DeleteAPIKey.
-func (c *dashboardServiceClient) DeleteAPIKey(ctx context.Context, req *connect_go.Request[v1.APIKeyFindRequest]) (*connect_go.Response[v1.APIKey], error) {
+func (c *dashboardServiceClient) DeleteAPIKey(ctx context.Context, req *connect.Request[v1.APIKeyFindRequest]) (*connect.Response[v1.APIKey], error) {
 	return c.deleteAPIKey.CallUnary(ctx, req)
 }
 
 // UpdateDefaultOrganization calls
 // stabilityai.api.dashboard.v1.DashboardService.UpdateDefaultOrganization.
-func (c *dashboardServiceClient) UpdateDefaultOrganization(ctx context.Context, req *connect_go.Request[v1.UpdateDefaultOrganizationRequest]) (*connect_go.Response[v1.User], error) {
+func (c *dashboardServiceClient) UpdateDefaultOrganization(ctx context.Context, req *connect.Request[v1.UpdateDefaultOrganizationRequest]) (*connect.Response[v1.User], error) {
 	return c.updateDefaultOrganization.CallUnary(ctx, req)
 }
 
 // GetClientSettings calls stabilityai.api.dashboard.v1.DashboardService.GetClientSettings.
-func (c *dashboardServiceClient) GetClientSettings(ctx context.Context, req *connect_go.Request[v1.EmptyRequest]) (*connect_go.Response[v1.ClientSettings], error) {
+func (c *dashboardServiceClient) GetClientSettings(ctx context.Context, req *connect.Request[v1.EmptyRequest]) (*connect.Response[v1.ClientSettings], error) {
 	return c.getClientSettings.CallUnary(ctx, req)
 }
 
 // SetClientSettings calls stabilityai.api.dashboard.v1.DashboardService.SetClientSettings.
-func (c *dashboardServiceClient) SetClientSettings(ctx context.Context, req *connect_go.Request[v1.ClientSettings]) (*connect_go.Response[v1.ClientSettings], error) {
+func (c *dashboardServiceClient) SetClientSettings(ctx context.Context, req *connect.Request[v1.ClientSettings]) (*connect.Response[v1.ClientSettings], error) {
 	return c.setClientSettings.CallUnary(ctx, req)
 }
 
 // UpdateUserInfo calls stabilityai.api.dashboard.v1.DashboardService.UpdateUserInfo.
-func (c *dashboardServiceClient) UpdateUserInfo(ctx context.Context, req *connect_go.Request[v1.UpdateUserInfoRequest]) (*connect_go.Response[v1.User], error) {
+func (c *dashboardServiceClient) UpdateUserInfo(ctx context.Context, req *connect.Request[v1.UpdateUserInfoRequest]) (*connect.Response[v1.User], error) {
 	return c.updateUserInfo.CallUnary(ctx, req)
 }
 
 // CreatePasswordChangeTicket calls
 // stabilityai.api.dashboard.v1.DashboardService.CreatePasswordChangeTicket.
-func (c *dashboardServiceClient) CreatePasswordChangeTicket(ctx context.Context, req *connect_go.Request[v1.EmptyRequest]) (*connect_go.Response[v1.UserPasswordChangeTicket], error) {
+func (c *dashboardServiceClient) CreatePasswordChangeTicket(ctx context.Context, req *connect.Request[v1.EmptyRequest]) (*connect.Response[v1.UserPasswordChangeTicket], error) {
 	return c.createPasswordChangeTicket.CallUnary(ctx, req)
 }
 
 // DeleteAccount calls stabilityai.api.dashboard.v1.DashboardService.DeleteAccount.
-func (c *dashboardServiceClient) DeleteAccount(ctx context.Context, req *connect_go.Request[v1.EmptyRequest]) (*connect_go.Response[v1.User], error) {
+func (c *dashboardServiceClient) DeleteAccount(ctx context.Context, req *connect.Request[v1.EmptyRequest]) (*connect.Response[v1.User], error) {
 	return c.deleteAccount.CallUnary(ctx, req)
 }
 
 // CreateCharge calls stabilityai.api.dashboard.v1.DashboardService.CreateCharge.
-func (c *dashboardServiceClient) CreateCharge(ctx context.Context, req *connect_go.Request[v1.CreateChargeRequest]) (*connect_go.Response[v1.Charge], error) {
+func (c *dashboardServiceClient) CreateCharge(ctx context.Context, req *connect.Request[v1.CreateChargeRequest]) (*connect.Response[v1.Charge], error) {
 	return c.createCharge.CallUnary(ctx, req)
 }
 
 // GetCharges calls stabilityai.api.dashboard.v1.DashboardService.GetCharges.
-func (c *dashboardServiceClient) GetCharges(ctx context.Context, req *connect_go.Request[v1.GetChargesRequest]) (*connect_go.Response[v1.Charges], error) {
+func (c *dashboardServiceClient) GetCharges(ctx context.Context, req *connect.Request[v1.GetChargesRequest]) (*connect.Response[v1.Charges], error) {
 	return c.getCharges.CallUnary(ctx, req)
 }
 
 // CreateAutoChargeIntent calls
 // stabilityai.api.dashboard.v1.DashboardService.CreateAutoChargeIntent.
-func (c *dashboardServiceClient) CreateAutoChargeIntent(ctx context.Context, req *connect_go.Request[v1.CreateAutoChargeIntentRequest]) (*connect_go.Response[v1.AutoChargeIntent], error) {
+func (c *dashboardServiceClient) CreateAutoChargeIntent(ctx context.Context, req *connect.Request[v1.CreateAutoChargeIntentRequest]) (*connect.Response[v1.AutoChargeIntent], error) {
 	return c.createAutoChargeIntent.CallUnary(ctx, req)
 }
 
 // UpdateAutoChargeIntent calls
 // stabilityai.api.dashboard.v1.DashboardService.UpdateAutoChargeIntent.
-func (c *dashboardServiceClient) UpdateAutoChargeIntent(ctx context.Context, req *connect_go.Request[v1.CreateAutoChargeIntentRequest]) (*connect_go.Response[v1.AutoChargeIntent], error) {
+func (c *dashboardServiceClient) UpdateAutoChargeIntent(ctx context.Context, req *connect.Request[v1.CreateAutoChargeIntentRequest]) (*connect.Response[v1.AutoChargeIntent], error) {
 	return c.updateAutoChargeIntent.CallUnary(ctx, req)
 }
 
 // GetAutoChargeIntent calls stabilityai.api.dashboard.v1.DashboardService.GetAutoChargeIntent.
-func (c *dashboardServiceClient) GetAutoChargeIntent(ctx context.Context, req *connect_go.Request[v1.GetAutoChargeRequest]) (*connect_go.Response[v1.AutoChargeIntent], error) {
+func (c *dashboardServiceClient) GetAutoChargeIntent(ctx context.Context, req *connect.Request[v1.GetAutoChargeRequest]) (*connect.Response[v1.AutoChargeIntent], error) {
 	return c.getAutoChargeIntent.CallUnary(ctx, req)
 }
 
@@ -308,25 +308,25 @@ func (c *dashboardServiceClient) GetAutoChargeIntent(ctx context.Context, req *c
 // service.
 type DashboardServiceHandler interface {
 	// Get info
-	GetMe(context.Context, *connect_go.Request[v1.EmptyRequest]) (*connect_go.Response[v1.User], error)
-	GetOrganization(context.Context, *connect_go.Request[v1.GetOrganizationRequest]) (*connect_go.Response[v1.Organization], error)
-	GetMetrics(context.Context, *connect_go.Request[v1.GetMetricsRequest]) (*connect_go.Response[v1.Metrics], error)
+	GetMe(context.Context, *connect.Request[v1.EmptyRequest]) (*connect.Response[v1.User], error)
+	GetOrganization(context.Context, *connect.Request[v1.GetOrganizationRequest]) (*connect.Response[v1.Organization], error)
+	GetMetrics(context.Context, *connect.Request[v1.GetMetricsRequest]) (*connect.Response[v1.Metrics], error)
 	// API key management
-	CreateAPIKey(context.Context, *connect_go.Request[v1.APIKeyRequest]) (*connect_go.Response[v1.APIKey], error)
-	DeleteAPIKey(context.Context, *connect_go.Request[v1.APIKeyFindRequest]) (*connect_go.Response[v1.APIKey], error)
+	CreateAPIKey(context.Context, *connect.Request[v1.APIKeyRequest]) (*connect.Response[v1.APIKey], error)
+	DeleteAPIKey(context.Context, *connect.Request[v1.APIKeyFindRequest]) (*connect.Response[v1.APIKey], error)
 	// User settings
-	UpdateDefaultOrganization(context.Context, *connect_go.Request[v1.UpdateDefaultOrganizationRequest]) (*connect_go.Response[v1.User], error)
-	GetClientSettings(context.Context, *connect_go.Request[v1.EmptyRequest]) (*connect_go.Response[v1.ClientSettings], error)
-	SetClientSettings(context.Context, *connect_go.Request[v1.ClientSettings]) (*connect_go.Response[v1.ClientSettings], error)
-	UpdateUserInfo(context.Context, *connect_go.Request[v1.UpdateUserInfoRequest]) (*connect_go.Response[v1.User], error)
-	CreatePasswordChangeTicket(context.Context, *connect_go.Request[v1.EmptyRequest]) (*connect_go.Response[v1.UserPasswordChangeTicket], error)
-	DeleteAccount(context.Context, *connect_go.Request[v1.EmptyRequest]) (*connect_go.Response[v1.User], error)
+	UpdateDefaultOrganization(context.Context, *connect.Request[v1.UpdateDefaultOrganizationRequest]) (*connect.Response[v1.User], error)
+	GetClientSettings(context.Context, *connect.Request[v1.EmptyRequest]) (*connect.Response[v1.ClientSettings], error)
+	SetClientSettings(context.Context, *connect.Request[v1.ClientSettings]) (*connect.Response[v1.ClientSettings], error)
+	UpdateUserInfo(context.Context, *connect.Request[v1.UpdateUserInfoRequest]) (*connect.Response[v1.User], error)
+	CreatePasswordChangeTicket(context.Context, *connect.Request[v1.EmptyRequest]) (*connect.Response[v1.UserPasswordChangeTicket], error)
+	DeleteAccount(context.Context, *connect.Request[v1.EmptyRequest]) (*connect.Response[v1.User], error)
 	// Payment functions
-	CreateCharge(context.Context, *connect_go.Request[v1.CreateChargeRequest]) (*connect_go.Response[v1.Charge], error)
-	GetCharges(context.Context, *connect_go.Request[v1.GetChargesRequest]) (*connect_go.Response[v1.Charges], error)
-	CreateAutoChargeIntent(context.Context, *connect_go.Request[v1.CreateAutoChargeIntentRequest]) (*connect_go.Response[v1.AutoChargeIntent], error)
-	UpdateAutoChargeIntent(context.Context, *connect_go.Request[v1.CreateAutoChargeIntentRequest]) (*connect_go.Response[v1.AutoChargeIntent], error)
-	GetAutoChargeIntent(context.Context, *connect_go.Request[v1.GetAutoChargeRequest]) (*connect_go.Response[v1.AutoChargeIntent], error)
+	CreateCharge(context.Context, *connect.Request[v1.CreateChargeRequest]) (*connect.Response[v1.Charge], error)
+	GetCharges(context.Context, *connect.Request[v1.GetChargesRequest]) (*connect.Response[v1.Charges], error)
+	CreateAutoChargeIntent(context.Context, *connect.Request[v1.CreateAutoChargeIntentRequest]) (*connect.Response[v1.AutoChargeIntent], error)
+	UpdateAutoChargeIntent(context.Context, *connect.Request[v1.CreateAutoChargeIntentRequest]) (*connect.Response[v1.AutoChargeIntent], error)
+	GetAutoChargeIntent(context.Context, *connect.Request[v1.GetAutoChargeRequest]) (*connect.Response[v1.AutoChargeIntent], error)
 }
 
 // NewDashboardServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -334,83 +334,83 @@ type DashboardServiceHandler interface {
 //
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
-func NewDashboardServiceHandler(svc DashboardServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
-	dashboardServiceGetMeHandler := connect_go.NewUnaryHandler(
+func NewDashboardServiceHandler(svc DashboardServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	dashboardServiceGetMeHandler := connect.NewUnaryHandler(
 		DashboardServiceGetMeProcedure,
 		svc.GetMe,
 		opts...,
 	)
-	dashboardServiceGetOrganizationHandler := connect_go.NewUnaryHandler(
+	dashboardServiceGetOrganizationHandler := connect.NewUnaryHandler(
 		DashboardServiceGetOrganizationProcedure,
 		svc.GetOrganization,
 		opts...,
 	)
-	dashboardServiceGetMetricsHandler := connect_go.NewUnaryHandler(
+	dashboardServiceGetMetricsHandler := connect.NewUnaryHandler(
 		DashboardServiceGetMetricsProcedure,
 		svc.GetMetrics,
 		opts...,
 	)
-	dashboardServiceCreateAPIKeyHandler := connect_go.NewUnaryHandler(
+	dashboardServiceCreateAPIKeyHandler := connect.NewUnaryHandler(
 		DashboardServiceCreateAPIKeyProcedure,
 		svc.CreateAPIKey,
 		opts...,
 	)
-	dashboardServiceDeleteAPIKeyHandler := connect_go.NewUnaryHandler(
+	dashboardServiceDeleteAPIKeyHandler := connect.NewUnaryHandler(
 		DashboardServiceDeleteAPIKeyProcedure,
 		svc.DeleteAPIKey,
 		opts...,
 	)
-	dashboardServiceUpdateDefaultOrganizationHandler := connect_go.NewUnaryHandler(
+	dashboardServiceUpdateDefaultOrganizationHandler := connect.NewUnaryHandler(
 		DashboardServiceUpdateDefaultOrganizationProcedure,
 		svc.UpdateDefaultOrganization,
 		opts...,
 	)
-	dashboardServiceGetClientSettingsHandler := connect_go.NewUnaryHandler(
+	dashboardServiceGetClientSettingsHandler := connect.NewUnaryHandler(
 		DashboardServiceGetClientSettingsProcedure,
 		svc.GetClientSettings,
 		opts...,
 	)
-	dashboardServiceSetClientSettingsHandler := connect_go.NewUnaryHandler(
+	dashboardServiceSetClientSettingsHandler := connect.NewUnaryHandler(
 		DashboardServiceSetClientSettingsProcedure,
 		svc.SetClientSettings,
 		opts...,
 	)
-	dashboardServiceUpdateUserInfoHandler := connect_go.NewUnaryHandler(
+	dashboardServiceUpdateUserInfoHandler := connect.NewUnaryHandler(
 		DashboardServiceUpdateUserInfoProcedure,
 		svc.UpdateUserInfo,
 		opts...,
 	)
-	dashboardServiceCreatePasswordChangeTicketHandler := connect_go.NewUnaryHandler(
+	dashboardServiceCreatePasswordChangeTicketHandler := connect.NewUnaryHandler(
 		DashboardServiceCreatePasswordChangeTicketProcedure,
 		svc.CreatePasswordChangeTicket,
 		opts...,
 	)
-	dashboardServiceDeleteAccountHandler := connect_go.NewUnaryHandler(
+	dashboardServiceDeleteAccountHandler := connect.NewUnaryHandler(
 		DashboardServiceDeleteAccountProcedure,
 		svc.DeleteAccount,
 		opts...,
 	)
-	dashboardServiceCreateChargeHandler := connect_go.NewUnaryHandler(
+	dashboardServiceCreateChargeHandler := connect.NewUnaryHandler(
 		DashboardServiceCreateChargeProcedure,
 		svc.CreateCharge,
 		opts...,
 	)
-	dashboardServiceGetChargesHandler := connect_go.NewUnaryHandler(
+	dashboardServiceGetChargesHandler := connect.NewUnaryHandler(
 		DashboardServiceGetChargesProcedure,
 		svc.GetCharges,
 		opts...,
 	)
-	dashboardServiceCreateAutoChargeIntentHandler := connect_go.NewUnaryHandler(
+	dashboardServiceCreateAutoChargeIntentHandler := connect.NewUnaryHandler(
 		DashboardServiceCreateAutoChargeIntentProcedure,
 		svc.CreateAutoChargeIntent,
 		opts...,
 	)
-	dashboardServiceUpdateAutoChargeIntentHandler := connect_go.NewUnaryHandler(
+	dashboardServiceUpdateAutoChargeIntentHandler := connect.NewUnaryHandler(
 		DashboardServiceUpdateAutoChargeIntentProcedure,
 		svc.UpdateAutoChargeIntent,
 		opts...,
 	)
-	dashboardServiceGetAutoChargeIntentHandler := connect_go.NewUnaryHandler(
+	dashboardServiceGetAutoChargeIntentHandler := connect.NewUnaryHandler(
 		DashboardServiceGetAutoChargeIntentProcedure,
 		svc.GetAutoChargeIntent,
 		opts...,
@@ -458,66 +458,66 @@ func NewDashboardServiceHandler(svc DashboardServiceHandler, opts ...connect_go.
 // UnimplementedDashboardServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedDashboardServiceHandler struct{}
 
-func (UnimplementedDashboardServiceHandler) GetMe(context.Context, *connect_go.Request[v1.EmptyRequest]) (*connect_go.Response[v1.User], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.GetMe is not implemented"))
+func (UnimplementedDashboardServiceHandler) GetMe(context.Context, *connect.Request[v1.EmptyRequest]) (*connect.Response[v1.User], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.GetMe is not implemented"))
 }
 
-func (UnimplementedDashboardServiceHandler) GetOrganization(context.Context, *connect_go.Request[v1.GetOrganizationRequest]) (*connect_go.Response[v1.Organization], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.GetOrganization is not implemented"))
+func (UnimplementedDashboardServiceHandler) GetOrganization(context.Context, *connect.Request[v1.GetOrganizationRequest]) (*connect.Response[v1.Organization], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.GetOrganization is not implemented"))
 }
 
-func (UnimplementedDashboardServiceHandler) GetMetrics(context.Context, *connect_go.Request[v1.GetMetricsRequest]) (*connect_go.Response[v1.Metrics], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.GetMetrics is not implemented"))
+func (UnimplementedDashboardServiceHandler) GetMetrics(context.Context, *connect.Request[v1.GetMetricsRequest]) (*connect.Response[v1.Metrics], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.GetMetrics is not implemented"))
 }
 
-func (UnimplementedDashboardServiceHandler) CreateAPIKey(context.Context, *connect_go.Request[v1.APIKeyRequest]) (*connect_go.Response[v1.APIKey], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.CreateAPIKey is not implemented"))
+func (UnimplementedDashboardServiceHandler) CreateAPIKey(context.Context, *connect.Request[v1.APIKeyRequest]) (*connect.Response[v1.APIKey], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.CreateAPIKey is not implemented"))
 }
 
-func (UnimplementedDashboardServiceHandler) DeleteAPIKey(context.Context, *connect_go.Request[v1.APIKeyFindRequest]) (*connect_go.Response[v1.APIKey], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.DeleteAPIKey is not implemented"))
+func (UnimplementedDashboardServiceHandler) DeleteAPIKey(context.Context, *connect.Request[v1.APIKeyFindRequest]) (*connect.Response[v1.APIKey], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.DeleteAPIKey is not implemented"))
 }
 
-func (UnimplementedDashboardServiceHandler) UpdateDefaultOrganization(context.Context, *connect_go.Request[v1.UpdateDefaultOrganizationRequest]) (*connect_go.Response[v1.User], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.UpdateDefaultOrganization is not implemented"))
+func (UnimplementedDashboardServiceHandler) UpdateDefaultOrganization(context.Context, *connect.Request[v1.UpdateDefaultOrganizationRequest]) (*connect.Response[v1.User], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.UpdateDefaultOrganization is not implemented"))
 }
 
-func (UnimplementedDashboardServiceHandler) GetClientSettings(context.Context, *connect_go.Request[v1.EmptyRequest]) (*connect_go.Response[v1.ClientSettings], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.GetClientSettings is not implemented"))
+func (UnimplementedDashboardServiceHandler) GetClientSettings(context.Context, *connect.Request[v1.EmptyRequest]) (*connect.Response[v1.ClientSettings], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.GetClientSettings is not implemented"))
 }
 
-func (UnimplementedDashboardServiceHandler) SetClientSettings(context.Context, *connect_go.Request[v1.ClientSettings]) (*connect_go.Response[v1.ClientSettings], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.SetClientSettings is not implemented"))
+func (UnimplementedDashboardServiceHandler) SetClientSettings(context.Context, *connect.Request[v1.ClientSettings]) (*connect.Response[v1.ClientSettings], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.SetClientSettings is not implemented"))
 }
 
-func (UnimplementedDashboardServiceHandler) UpdateUserInfo(context.Context, *connect_go.Request[v1.UpdateUserInfoRequest]) (*connect_go.Response[v1.User], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.UpdateUserInfo is not implemented"))
+func (UnimplementedDashboardServiceHandler) UpdateUserInfo(context.Context, *connect.Request[v1.UpdateUserInfoRequest]) (*connect.Response[v1.User], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.UpdateUserInfo is not implemented"))
 }
 
-func (UnimplementedDashboardServiceHandler) CreatePasswordChangeTicket(context.Context, *connect_go.Request[v1.EmptyRequest]) (*connect_go.Response[v1.UserPasswordChangeTicket], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.CreatePasswordChangeTicket is not implemented"))
+func (UnimplementedDashboardServiceHandler) CreatePasswordChangeTicket(context.Context, *connect.Request[v1.EmptyRequest]) (*connect.Response[v1.UserPasswordChangeTicket], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.CreatePasswordChangeTicket is not implemented"))
 }
 
-func (UnimplementedDashboardServiceHandler) DeleteAccount(context.Context, *connect_go.Request[v1.EmptyRequest]) (*connect_go.Response[v1.User], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.DeleteAccount is not implemented"))
+func (UnimplementedDashboardServiceHandler) DeleteAccount(context.Context, *connect.Request[v1.EmptyRequest]) (*connect.Response[v1.User], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.DeleteAccount is not implemented"))
 }
 
-func (UnimplementedDashboardServiceHandler) CreateCharge(context.Context, *connect_go.Request[v1.CreateChargeRequest]) (*connect_go.Response[v1.Charge], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.CreateCharge is not implemented"))
+func (UnimplementedDashboardServiceHandler) CreateCharge(context.Context, *connect.Request[v1.CreateChargeRequest]) (*connect.Response[v1.Charge], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.CreateCharge is not implemented"))
 }
 
-func (UnimplementedDashboardServiceHandler) GetCharges(context.Context, *connect_go.Request[v1.GetChargesRequest]) (*connect_go.Response[v1.Charges], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.GetCharges is not implemented"))
+func (UnimplementedDashboardServiceHandler) GetCharges(context.Context, *connect.Request[v1.GetChargesRequest]) (*connect.Response[v1.Charges], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.GetCharges is not implemented"))
 }
 
-func (UnimplementedDashboardServiceHandler) CreateAutoChargeIntent(context.Context, *connect_go.Request[v1.CreateAutoChargeIntentRequest]) (*connect_go.Response[v1.AutoChargeIntent], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.CreateAutoChargeIntent is not implemented"))
+func (UnimplementedDashboardServiceHandler) CreateAutoChargeIntent(context.Context, *connect.Request[v1.CreateAutoChargeIntentRequest]) (*connect.Response[v1.AutoChargeIntent], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.CreateAutoChargeIntent is not implemented"))
 }
 
-func (UnimplementedDashboardServiceHandler) UpdateAutoChargeIntent(context.Context, *connect_go.Request[v1.CreateAutoChargeIntentRequest]) (*connect_go.Response[v1.AutoChargeIntent], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.UpdateAutoChargeIntent is not implemented"))
+func (UnimplementedDashboardServiceHandler) UpdateAutoChargeIntent(context.Context, *connect.Request[v1.CreateAutoChargeIntentRequest]) (*connect.Response[v1.AutoChargeIntent], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.UpdateAutoChargeIntent is not implemented"))
 }
 
-func (UnimplementedDashboardServiceHandler) GetAutoChargeIntent(context.Context, *connect_go.Request[v1.GetAutoChargeRequest]) (*connect_go.Response[v1.AutoChargeIntent], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.GetAutoChargeIntent is not implemented"))
+func (UnimplementedDashboardServiceHandler) GetAutoChargeIntent(context.Context, *connect.Request[v1.GetAutoChargeRequest]) (*connect.Response[v1.AutoChargeIntent], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.api.dashboard.v1.DashboardService.GetAutoChargeIntent is not implemented"))
 }

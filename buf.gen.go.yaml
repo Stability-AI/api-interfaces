@@ -9,7 +9,7 @@ managed:
     except:
       - buf.build/googleapis/googleapis    
 plugins:
-  - plugin: buf.build/bufbuild/connect-go:v1.10.0
+  - plugin: buf.build/connectrpc/go:v1.11.0
     out: '.'
     opt:
       - paths=source_relative

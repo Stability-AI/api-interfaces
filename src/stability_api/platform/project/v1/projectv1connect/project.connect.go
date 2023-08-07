@@ -5,9 +5,9 @@
 package projectv1connect
 
 import (
+	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
-	connect_go "github.com/bufbuild/connect-go"
 	v1 "github.com/stability-ai/api-interfaces/src/stability_api/platform/project/v1"
 	http "net/http"
 	strings "strings"
@@ -18,7 +18,7 @@ import (
 // generated with a version of connect newer than the one compiled into your binary. You can fix the
 // problem by either regenerating this code with an older version of connect or updating the connect
 // version compiled into your binary.
-const _ = connect_go.IsAtLeastVersion0_1_0
+const _ = connect.IsAtLeastVersion0_1_0
 
 const (
 	// ProjectServiceName is the fully-qualified name of the ProjectService service.
@@ -61,22 +61,22 @@ const (
 // service.
 type ProjectServiceClient interface {
 	// Create a new project if it does not exist
-	Create(context.Context, *connect_go.Request[v1.CreateProjectRequest]) (*connect_go.Response[v1.Project], error)
+	Create(context.Context, *connect.Request[v1.CreateProjectRequest]) (*connect.Response[v1.Project], error)
 	// Update an existing project
-	Update(context.Context, *connect_go.Request[v1.UpdateProjectRequest]) (*connect_go.Response[v1.Project], error)
+	Update(context.Context, *connect.Request[v1.UpdateProjectRequest]) (*connect.Response[v1.Project], error)
 	// List all the projects for an organization
-	List(context.Context, *connect_go.Request[v1.ListProjectRequest]) (*connect_go.ServerStreamForClient[v1.Project], error)
+	List(context.Context, *connect.Request[v1.ListProjectRequest]) (*connect.ServerStreamForClient[v1.Project], error)
 	// Get a project
-	Get(context.Context, *connect_go.Request[v1.GetProjectRequest]) (*connect_go.Response[v1.Project], error)
+	Get(context.Context, *connect.Request[v1.GetProjectRequest]) (*connect.Response[v1.Project], error)
 	// Delete a project
-	Delete(context.Context, *connect_go.Request[v1.DeleteProjectRequest]) (*connect_go.Response[v1.Project], error)
+	Delete(context.Context, *connect.Request[v1.DeleteProjectRequest]) (*connect.Response[v1.Project], error)
 	// Add or remove tags from an asset
-	TagAssets(context.Context, *connect_go.Request[v1.TagAssetsRequest]) (*connect_go.Response[v1.TagAssetsResponse], error)
-	UntagAssets(context.Context, *connect_go.Request[v1.UntagAssetsRequest]) (*connect_go.Response[v1.UntagAssetsResponse], error)
+	TagAssets(context.Context, *connect.Request[v1.TagAssetsRequest]) (*connect.Response[v1.TagAssetsResponse], error)
+	UntagAssets(context.Context, *connect.Request[v1.UntagAssetsRequest]) (*connect.Response[v1.UntagAssetsResponse], error)
 	// Query the assets of a project, with additional filtering
-	QueryAssets(context.Context, *connect_go.Request[v1.QueryAssetsRequest]) (*connect_go.Response[v1.QueryAssetsResponse], error)
+	QueryAssets(context.Context, *connect.Request[v1.QueryAssetsRequest]) (*connect.Response[v1.QueryAssetsResponse], error)
 	// Delete one or more assets of a project
-	DeleteAssets(context.Context, *connect_go.Request[v1.DeleteAssetsRequest]) (*connect_go.Response[v1.DeleteAssetsResponse], error)
+	DeleteAssets(context.Context, *connect.Request[v1.DeleteAssetsRequest]) (*connect.Response[v1.DeleteAssetsResponse], error)
 }
 
 // NewProjectServiceClient constructs a client for the
@@ -87,50 +87,50 @@ type ProjectServiceClient interface {
 //
 // The URL supplied here should be the base URL for the Connect or gRPC server (for example,
 // http://api.acme.com or https://acme.com/grpc).
-func NewProjectServiceClient(httpClient connect_go.HTTPClient, baseURL string, opts ...connect_go.ClientOption) ProjectServiceClient {
+func NewProjectServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) ProjectServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
 	return &projectServiceClient{
-		create: connect_go.NewClient[v1.CreateProjectRequest, v1.Project](
+		create: connect.NewClient[v1.CreateProjectRequest, v1.Project](
 			httpClient,
 			baseURL+ProjectServiceCreateProcedure,
 			opts...,
 		),
-		update: connect_go.NewClient[v1.UpdateProjectRequest, v1.Project](
+		update: connect.NewClient[v1.UpdateProjectRequest, v1.Project](
 			httpClient,
 			baseURL+ProjectServiceUpdateProcedure,
 			opts...,
 		),
-		list: connect_go.NewClient[v1.ListProjectRequest, v1.Project](
+		list: connect.NewClient[v1.ListProjectRequest, v1.Project](
 			httpClient,
 			baseURL+ProjectServiceListProcedure,
 			opts...,
 		),
-		get: connect_go.NewClient[v1.GetProjectRequest, v1.Project](
+		get: connect.NewClient[v1.GetProjectRequest, v1.Project](
 			httpClient,
 			baseURL+ProjectServiceGetProcedure,
 			opts...,
 		),
-		delete: connect_go.NewClient[v1.DeleteProjectRequest, v1.Project](
+		delete: connect.NewClient[v1.DeleteProjectRequest, v1.Project](
 			httpClient,
 			baseURL+ProjectServiceDeleteProcedure,
 			opts...,
 		),
-		tagAssets: connect_go.NewClient[v1.TagAssetsRequest, v1.TagAssetsResponse](
+		tagAssets: connect.NewClient[v1.TagAssetsRequest, v1.TagAssetsResponse](
 			httpClient,
 			baseURL+ProjectServiceTagAssetsProcedure,
 			opts...,
 		),
-		untagAssets: connect_go.NewClient[v1.UntagAssetsRequest, v1.UntagAssetsResponse](
+		untagAssets: connect.NewClient[v1.UntagAssetsRequest, v1.UntagAssetsResponse](
 			httpClient,
 			baseURL+ProjectServiceUntagAssetsProcedure,
 			opts...,
 		),
-		queryAssets: connect_go.NewClient[v1.QueryAssetsRequest, v1.QueryAssetsResponse](
+		queryAssets: connect.NewClient[v1.QueryAssetsRequest, v1.QueryAssetsResponse](
 			httpClient,
 			baseURL+ProjectServiceQueryAssetsProcedure,
 			opts...,
 		),
-		deleteAssets: connect_go.NewClient[v1.DeleteAssetsRequest, v1.DeleteAssetsResponse](
+		deleteAssets: connect.NewClient[v1.DeleteAssetsRequest, v1.DeleteAssetsResponse](
 			httpClient,
 			baseURL+ProjectServiceDeleteAssetsProcedure,
 			opts...,
@@ -140,59 +140,59 @@ func NewProjectServiceClient(httpClient connect_go.HTTPClient, baseURL string, o
 
 // projectServiceClient implements ProjectServiceClient.
 type projectServiceClient struct {
-	create       *connect_go.Client[v1.CreateProjectRequest, v1.Project]
-	update       *connect_go.Client[v1.UpdateProjectRequest, v1.Project]
-	list         *connect_go.Client[v1.ListProjectRequest, v1.Project]
-	get          *connect_go.Client[v1.GetProjectRequest, v1.Project]
-	delete       *connect_go.Client[v1.DeleteProjectRequest, v1.Project]
-	tagAssets    *connect_go.Client[v1.TagAssetsRequest, v1.TagAssetsResponse]
-	untagAssets  *connect_go.Client[v1.UntagAssetsRequest, v1.UntagAssetsResponse]
-	queryAssets  *connect_go.Client[v1.QueryAssetsRequest, v1.QueryAssetsResponse]
-	deleteAssets *connect_go.Client[v1.DeleteAssetsRequest, v1.DeleteAssetsResponse]
+	create       *connect.Client[v1.CreateProjectRequest, v1.Project]
+	update       *connect.Client[v1.UpdateProjectRequest, v1.Project]
+	list         *connect.Client[v1.ListProjectRequest, v1.Project]
+	get          *connect.Client[v1.GetProjectRequest, v1.Project]
+	delete       *connect.Client[v1.DeleteProjectRequest, v1.Project]
+	tagAssets    *connect.Client[v1.TagAssetsRequest, v1.TagAssetsResponse]
+	untagAssets  *connect.Client[v1.UntagAssetsRequest, v1.UntagAssetsResponse]
+	queryAssets  *connect.Client[v1.QueryAssetsRequest, v1.QueryAssetsResponse]
+	deleteAssets *connect.Client[v1.DeleteAssetsRequest, v1.DeleteAssetsResponse]
 }
 
 // Create calls stabilityai.platformapis.project.v1.ProjectService.Create.
-func (c *projectServiceClient) Create(ctx context.Context, req *connect_go.Request[v1.CreateProjectRequest]) (*connect_go.Response[v1.Project], error) {
+func (c *projectServiceClient) Create(ctx context.Context, req *connect.Request[v1.CreateProjectRequest]) (*connect.Response[v1.Project], error) {
 	return c.create.CallUnary(ctx, req)
 }
 
 // Update calls stabilityai.platformapis.project.v1.ProjectService.Update.
-func (c *projectServiceClient) Update(ctx context.Context, req *connect_go.Request[v1.UpdateProjectRequest]) (*connect_go.Response[v1.Project], error) {
+func (c *projectServiceClient) Update(ctx context.Context, req *connect.Request[v1.UpdateProjectRequest]) (*connect.Response[v1.Project], error) {
 	return c.update.CallUnary(ctx, req)
 }
 
 // List calls stabilityai.platformapis.project.v1.ProjectService.List.
-func (c *projectServiceClient) List(ctx context.Context, req *connect_go.Request[v1.ListProjectRequest]) (*connect_go.ServerStreamForClient[v1.Project], error) {
+func (c *projectServiceClient) List(ctx context.Context, req *connect.Request[v1.ListProjectRequest]) (*connect.ServerStreamForClient[v1.Project], error) {
 	return c.list.CallServerStream(ctx, req)
 }
 
 // Get calls stabilityai.platformapis.project.v1.ProjectService.Get.
-func (c *projectServiceClient) Get(ctx context.Context, req *connect_go.Request[v1.GetProjectRequest]) (*connect_go.Response[v1.Project], error) {
+func (c *projectServiceClient) Get(ctx context.Context, req *connect.Request[v1.GetProjectRequest]) (*connect.Response[v1.Project], error) {
 	return c.get.CallUnary(ctx, req)
 }
 
 // Delete calls stabilityai.platformapis.project.v1.ProjectService.Delete.
-func (c *projectServiceClient) Delete(ctx context.Context, req *connect_go.Request[v1.DeleteProjectRequest]) (*connect_go.Response[v1.Project], error) {
+func (c *projectServiceClient) Delete(ctx context.Context, req *connect.Request[v1.DeleteProjectRequest]) (*connect.Response[v1.Project], error) {
 	return c.delete.CallUnary(ctx, req)
 }
 
 // TagAssets calls stabilityai.platformapis.project.v1.ProjectService.TagAssets.
-func (c *projectServiceClient) TagAssets(ctx context.Context, req *connect_go.Request[v1.TagAssetsRequest]) (*connect_go.Response[v1.TagAssetsResponse], error) {
+func (c *projectServiceClient) TagAssets(ctx context.Context, req *connect.Request[v1.TagAssetsRequest]) (*connect.Response[v1.TagAssetsResponse], error) {
 	return c.tagAssets.CallUnary(ctx, req)
 }
 
 // UntagAssets calls stabilityai.platformapis.project.v1.ProjectService.UntagAssets.
-func (c *projectServiceClient) UntagAssets(ctx context.Context, req *connect_go.Request[v1.UntagAssetsRequest]) (*connect_go.Response[v1.UntagAssetsResponse], error) {
+func (c *projectServiceClient) UntagAssets(ctx context.Context, req *connect.Request[v1.UntagAssetsRequest]) (*connect.Response[v1.UntagAssetsResponse], error) {
 	return c.untagAssets.CallUnary(ctx, req)
 }
 
 // QueryAssets calls stabilityai.platformapis.project.v1.ProjectService.QueryAssets.
-func (c *projectServiceClient) QueryAssets(ctx context.Context, req *connect_go.Request[v1.QueryAssetsRequest]) (*connect_go.Response[v1.QueryAssetsResponse], error) {
+func (c *projectServiceClient) QueryAssets(ctx context.Context, req *connect.Request[v1.QueryAssetsRequest]) (*connect.Response[v1.QueryAssetsResponse], error) {
 	return c.queryAssets.CallUnary(ctx, req)
 }
 
 // DeleteAssets calls stabilityai.platformapis.project.v1.ProjectService.DeleteAssets.
-func (c *projectServiceClient) DeleteAssets(ctx context.Context, req *connect_go.Request[v1.DeleteAssetsRequest]) (*connect_go.Response[v1.DeleteAssetsResponse], error) {
+func (c *projectServiceClient) DeleteAssets(ctx context.Context, req *connect.Request[v1.DeleteAssetsRequest]) (*connect.Response[v1.DeleteAssetsResponse], error) {
 	return c.deleteAssets.CallUnary(ctx, req)
 }
 
@@ -200,22 +200,22 @@ func (c *projectServiceClient) DeleteAssets(ctx context.Context, req *connect_go
 // stabilityai.platformapis.project.v1.ProjectService service.
 type ProjectServiceHandler interface {
 	// Create a new project if it does not exist
-	Create(context.Context, *connect_go.Request[v1.CreateProjectRequest]) (*connect_go.Response[v1.Project], error)
+	Create(context.Context, *connect.Request[v1.CreateProjectRequest]) (*connect.Response[v1.Project], error)
 	// Update an existing project
-	Update(context.Context, *connect_go.Request[v1.UpdateProjectRequest]) (*connect_go.Response[v1.Project], error)
+	Update(context.Context, *connect.Request[v1.UpdateProjectRequest]) (*connect.Response[v1.Project], error)
 	// List all the projects for an organization
-	List(context.Context, *connect_go.Request[v1.ListProjectRequest], *connect_go.ServerStream[v1.Project]) error
+	List(context.Context, *connect.Request[v1.ListProjectRequest], *connect.ServerStream[v1.Project]) error
 	// Get a project
-	Get(context.Context, *connect_go.Request[v1.GetProjectRequest]) (*connect_go.Response[v1.Project], error)
+	Get(context.Context, *connect.Request[v1.GetProjectRequest]) (*connect.Response[v1.Project], error)
 	// Delete a project
-	Delete(context.Context, *connect_go.Request[v1.DeleteProjectRequest]) (*connect_go.Response[v1.Project], error)
+	Delete(context.Context, *connect.Request[v1.DeleteProjectRequest]) (*connect.Response[v1.Project], error)
 	// Add or remove tags from an asset
-	TagAssets(context.Context, *connect_go.Request[v1.TagAssetsRequest]) (*connect_go.Response[v1.TagAssetsResponse], error)
-	UntagAssets(context.Context, *connect_go.Request[v1.UntagAssetsRequest]) (*connect_go.Response[v1.UntagAssetsResponse], error)
+	TagAssets(context.Context, *connect.Request[v1.TagAssetsRequest]) (*connect.Response[v1.TagAssetsResponse], error)
+	UntagAssets(context.Context, *connect.Request[v1.UntagAssetsRequest]) (*connect.Response[v1.UntagAssetsResponse], error)
 	// Query the assets of a project, with additional filtering
-	QueryAssets(context.Context, *connect_go.Request[v1.QueryAssetsRequest]) (*connect_go.Response[v1.QueryAssetsResponse], error)
+	QueryAssets(context.Context, *connect.Request[v1.QueryAssetsRequest]) (*connect.Response[v1.QueryAssetsResponse], error)
 	// Delete one or more assets of a project
-	DeleteAssets(context.Context, *connect_go.Request[v1.DeleteAssetsRequest]) (*connect_go.Response[v1.DeleteAssetsResponse], error)
+	DeleteAssets(context.Context, *connect.Request[v1.DeleteAssetsRequest]) (*connect.Response[v1.DeleteAssetsResponse], error)
 }
 
 // NewProjectServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -223,48 +223,48 @@ type ProjectServiceHandler interface {
 //
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
-func NewProjectServiceHandler(svc ProjectServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
-	projectServiceCreateHandler := connect_go.NewUnaryHandler(
+func NewProjectServiceHandler(svc ProjectServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	projectServiceCreateHandler := connect.NewUnaryHandler(
 		ProjectServiceCreateProcedure,
 		svc.Create,
 		opts...,
 	)
-	projectServiceUpdateHandler := connect_go.NewUnaryHandler(
+	projectServiceUpdateHandler := connect.NewUnaryHandler(
 		ProjectServiceUpdateProcedure,
 		svc.Update,
 		opts...,
 	)
-	projectServiceListHandler := connect_go.NewServerStreamHandler(
+	projectServiceListHandler := connect.NewServerStreamHandler(
 		ProjectServiceListProcedure,
 		svc.List,
 		opts...,
 	)
-	projectServiceGetHandler := connect_go.NewUnaryHandler(
+	projectServiceGetHandler := connect.NewUnaryHandler(
 		ProjectServiceGetProcedure,
 		svc.Get,
 		opts...,
 	)
-	projectServiceDeleteHandler := connect_go.NewUnaryHandler(
+	projectServiceDeleteHandler := connect.NewUnaryHandler(
 		ProjectServiceDeleteProcedure,
 		svc.Delete,
 		opts...,
 	)
-	projectServiceTagAssetsHandler := connect_go.NewUnaryHandler(
+	projectServiceTagAssetsHandler := connect.NewUnaryHandler(
 		ProjectServiceTagAssetsProcedure,
 		svc.TagAssets,
 		opts...,
 	)
-	projectServiceUntagAssetsHandler := connect_go.NewUnaryHandler(
+	projectServiceUntagAssetsHandler := connect.NewUnaryHandler(
 		ProjectServiceUntagAssetsProcedure,
 		svc.UntagAssets,
 		opts...,
 	)
-	projectServiceQueryAssetsHandler := connect_go.NewUnaryHandler(
+	projectServiceQueryAssetsHandler := connect.NewUnaryHandler(
 		ProjectServiceQueryAssetsProcedure,
 		svc.QueryAssets,
 		opts...,
 	)
-	projectServiceDeleteAssetsHandler := connect_go.NewUnaryHandler(
+	projectServiceDeleteAssetsHandler := connect.NewUnaryHandler(
 		ProjectServiceDeleteAssetsProcedure,
 		svc.DeleteAssets,
 		opts...,
@@ -298,38 +298,38 @@ func NewProjectServiceHandler(svc ProjectServiceHandler, opts ...connect_go.Hand
 // UnimplementedProjectServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedProjectServiceHandler struct{}
 
-func (UnimplementedProjectServiceHandler) Create(context.Context, *connect_go.Request[v1.CreateProjectRequest]) (*connect_go.Response[v1.Project], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.Create is not implemented"))
+func (UnimplementedProjectServiceHandler) Create(context.Context, *connect.Request[v1.CreateProjectRequest]) (*connect.Response[v1.Project], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.Create is not implemented"))
 }
 
-func (UnimplementedProjectServiceHandler) Update(context.Context, *connect_go.Request[v1.UpdateProjectRequest]) (*connect_go.Response[v1.Project], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.Update is not implemented"))
+func (UnimplementedProjectServiceHandler) Update(context.Context, *connect.Request[v1.UpdateProjectRequest]) (*connect.Response[v1.Project], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.Update is not implemented"))
 }
 
-func (UnimplementedProjectServiceHandler) List(context.Context, *connect_go.Request[v1.ListProjectRequest], *connect_go.ServerStream[v1.Project]) error {
-	return connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.List is not implemented"))
+func (UnimplementedProjectServiceHandler) List(context.Context, *connect.Request[v1.ListProjectRequest], *connect.ServerStream[v1.Project]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.List is not implemented"))
 }
 
-func (UnimplementedProjectServiceHandler) Get(context.Context, *connect_go.Request[v1.GetProjectRequest]) (*connect_go.Response[v1.Project], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.Get is not implemented"))
+func (UnimplementedProjectServiceHandler) Get(context.Context, *connect.Request[v1.GetProjectRequest]) (*connect.Response[v1.Project], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.Get is not implemented"))
 }
 
-func (UnimplementedProjectServiceHandler) Delete(context.Context, *connect_go.Request[v1.DeleteProjectRequest]) (*connect_go.Response[v1.Project], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.Delete is not implemented"))
+func (UnimplementedProjectServiceHandler) Delete(context.Context, *connect.Request[v1.DeleteProjectRequest]) (*connect.Response[v1.Project], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.Delete is not implemented"))
 }
 
-func (UnimplementedProjectServiceHandler) TagAssets(context.Context, *connect_go.Request[v1.TagAssetsRequest]) (*connect_go.Response[v1.TagAssetsResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.TagAssets is not implemented"))
+func (UnimplementedProjectServiceHandler) TagAssets(context.Context, *connect.Request[v1.TagAssetsRequest]) (*connect.Response[v1.TagAssetsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.TagAssets is not implemented"))
 }
 
-func (UnimplementedProjectServiceHandler) UntagAssets(context.Context, *connect_go.Request[v1.UntagAssetsRequest]) (*connect_go.Response[v1.UntagAssetsResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.UntagAssets is not implemented"))
+func (UnimplementedProjectServiceHandler) UntagAssets(context.Context, *connect.Request[v1.UntagAssetsRequest]) (*connect.Response[v1.UntagAssetsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.UntagAssets is not implemented"))
 }
 
-func (UnimplementedProjectServiceHandler) QueryAssets(context.Context, *connect_go.Request[v1.QueryAssetsRequest]) (*connect_go.Response[v1.QueryAssetsResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.QueryAssets is not implemented"))
+func (UnimplementedProjectServiceHandler) QueryAssets(context.Context, *connect.Request[v1.QueryAssetsRequest]) (*connect.Response[v1.QueryAssetsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.QueryAssets is not implemented"))
 }
 
-func (UnimplementedProjectServiceHandler) DeleteAssets(context.Context, *connect_go.Request[v1.DeleteAssetsRequest]) (*connect_go.Response[v1.DeleteAssetsResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.DeleteAssets is not implemented"))
+func (UnimplementedProjectServiceHandler) DeleteAssets(context.Context, *connect.Request[v1.DeleteAssetsRequest]) (*connect.Response[v1.DeleteAssetsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.platformapis.project.v1.ProjectService.DeleteAssets is not implemented"))
 }

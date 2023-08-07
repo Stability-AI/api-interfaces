@@ -5,9 +5,9 @@
 package generationv1connect
 
 import (
+	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
-	connect_go "github.com/bufbuild/connect-go"
 	v1 "github.com/stability-ai/api-interfaces/src/stability_api/platform/generation/v1"
 	http "net/http"
 	strings "strings"
@@ -18,7 +18,7 @@ import (
 // generated with a version of connect newer than the one compiled into your binary. You can fix the
 // problem by either regenerating this code with an older version of connect or updating the connect
 // version compiled into your binary.
-const _ = connect_go.IsAtLeastVersion0_1_0
+const _ = connect.IsAtLeastVersion0_1_0
 
 const (
 	// GenerationServiceName is the fully-qualified name of the GenerationService service.
@@ -44,8 +44,8 @@ const (
 // GenerationServiceClient is a client for the
 // stabilityai.platformapis.generation.v1.GenerationService service.
 type GenerationServiceClient interface {
-	Generate(context.Context, *connect_go.Request[v1.Request]) (*connect_go.ServerStreamForClient[v1.Answer], error)
-	ChainGenerate(context.Context, *connect_go.Request[v1.ChainRequest]) (*connect_go.ServerStreamForClient[v1.Answer], error)
+	Generate(context.Context, *connect.Request[v1.Request]) (*connect.ServerStreamForClient[v1.Answer], error)
+	ChainGenerate(context.Context, *connect.Request[v1.ChainRequest]) (*connect.ServerStreamForClient[v1.Answer], error)
 }
 
 // NewGenerationServiceClient constructs a client for the
@@ -56,15 +56,15 @@ type GenerationServiceClient interface {
 //
 // The URL supplied here should be the base URL for the Connect or gRPC server (for example,
 // http://api.acme.com or https://acme.com/grpc).
-func NewGenerationServiceClient(httpClient connect_go.HTTPClient, baseURL string, opts ...connect_go.ClientOption) GenerationServiceClient {
+func NewGenerationServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) GenerationServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
 	return &generationServiceClient{
-		generate: connect_go.NewClient[v1.Request, v1.Answer](
+		generate: connect.NewClient[v1.Request, v1.Answer](
 			httpClient,
 			baseURL+GenerationServiceGenerateProcedure,
 			opts...,
 		),
-		chainGenerate: connect_go.NewClient[v1.ChainRequest, v1.Answer](
+		chainGenerate: connect.NewClient[v1.ChainRequest, v1.Answer](
 			httpClient,
 			baseURL+GenerationServiceChainGenerateProcedure,
 			opts...,
@@ -74,25 +74,25 @@ func NewGenerationServiceClient(httpClient connect_go.HTTPClient, baseURL string
 
 // generationServiceClient implements GenerationServiceClient.
 type generationServiceClient struct {
-	generate      *connect_go.Client[v1.Request, v1.Answer]
-	chainGenerate *connect_go.Client[v1.ChainRequest, v1.Answer]
+	generate      *connect.Client[v1.Request, v1.Answer]
+	chainGenerate *connect.Client[v1.ChainRequest, v1.Answer]
 }
 
 // Generate calls stabilityai.platformapis.generation.v1.GenerationService.Generate.
-func (c *generationServiceClient) Generate(ctx context.Context, req *connect_go.Request[v1.Request]) (*connect_go.ServerStreamForClient[v1.Answer], error) {
+func (c *generationServiceClient) Generate(ctx context.Context, req *connect.Request[v1.Request]) (*connect.ServerStreamForClient[v1.Answer], error) {
 	return c.generate.CallServerStream(ctx, req)
 }
 
 // ChainGenerate calls stabilityai.platformapis.generation.v1.GenerationService.ChainGenerate.
-func (c *generationServiceClient) ChainGenerate(ctx context.Context, req *connect_go.Request[v1.ChainRequest]) (*connect_go.ServerStreamForClient[v1.Answer], error) {
+func (c *generationServiceClient) ChainGenerate(ctx context.Context, req *connect.Request[v1.ChainRequest]) (*connect.ServerStreamForClient[v1.Answer], error) {
 	return c.chainGenerate.CallServerStream(ctx, req)
 }
 
 // GenerationServiceHandler is an implementation of the
 // stabilityai.platformapis.generation.v1.GenerationService service.
 type GenerationServiceHandler interface {
-	Generate(context.Context, *connect_go.Request[v1.Request], *connect_go.ServerStream[v1.Answer]) error
-	ChainGenerate(context.Context, *connect_go.Request[v1.ChainRequest], *connect_go.ServerStream[v1.Answer]) error
+	Generate(context.Context, *connect.Request[v1.Request], *connect.ServerStream[v1.Answer]) error
+	ChainGenerate(context.Context, *connect.Request[v1.ChainRequest], *connect.ServerStream[v1.Answer]) error
 }
 
 // NewGenerationServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -100,13 +100,13 @@ type GenerationServiceHandler interface {
 //
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
-func NewGenerationServiceHandler(svc GenerationServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
-	generationServiceGenerateHandler := connect_go.NewServerStreamHandler(
+func NewGenerationServiceHandler(svc GenerationServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	generationServiceGenerateHandler := connect.NewServerStreamHandler(
 		GenerationServiceGenerateProcedure,
 		svc.Generate,
 		opts...,
 	)
-	generationServiceChainGenerateHandler := connect_go.NewServerStreamHandler(
+	generationServiceChainGenerateHandler := connect.NewServerStreamHandler(
 		GenerationServiceChainGenerateProcedure,
 		svc.ChainGenerate,
 		opts...,
@@ -126,10 +126,10 @@ func NewGenerationServiceHandler(svc GenerationServiceHandler, opts ...connect_g
 // UnimplementedGenerationServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedGenerationServiceHandler struct{}
 
-func (UnimplementedGenerationServiceHandler) Generate(context.Context, *connect_go.Request[v1.Request], *connect_go.ServerStream[v1.Answer]) error {
-	return connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.platformapis.generation.v1.GenerationService.Generate is not implemented"))
+func (UnimplementedGenerationServiceHandler) Generate(context.Context, *connect.Request[v1.Request], *connect.ServerStream[v1.Answer]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.platformapis.generation.v1.GenerationService.Generate is not implemented"))
 }
 
-func (UnimplementedGenerationServiceHandler) ChainGenerate(context.Context, *connect_go.Request[v1.ChainRequest], *connect_go.ServerStream[v1.Answer]) error {
-	return connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.platformapis.generation.v1.GenerationService.ChainGenerate is not implemented"))
+func (UnimplementedGenerationServiceHandler) ChainGenerate(context.Context, *connect.Request[v1.ChainRequest], *connect.ServerStream[v1.Answer]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.platformapis.generation.v1.GenerationService.ChainGenerate is not implemented"))
 }

@@ -5,9 +5,9 @@
 package enginesv1connect
 
 import (
+	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
-	connect_go "github.com/bufbuild/connect-go"
 	v1 "github.com/stability-ai/api-interfaces/src/stability_api/platform/engines/v1"
 	http "net/http"
 	strings "strings"
@@ -18,7 +18,7 @@ import (
 // generated with a version of connect newer than the one compiled into your binary. You can fix the
 // problem by either regenerating this code with an older version of connect or updating the connect
 // version compiled into your binary.
-const _ = connect_go.IsAtLeastVersion0_1_0
+const _ = connect.IsAtLeastVersion0_1_0
 
 const (
 	// EnginesServiceName is the fully-qualified name of the EnginesService service.
@@ -41,7 +41,7 @@ const (
 // EnginesServiceClient is a client for the stabilityai.platformapis.engines.v1.EnginesService
 // service.
 type EnginesServiceClient interface {
-	ListEngines(context.Context, *connect_go.Request[v1.ListEnginesRequest]) (*connect_go.Response[v1.Engines], error)
+	ListEngines(context.Context, *connect.Request[v1.ListEnginesRequest]) (*connect.Response[v1.Engines], error)
 }
 
 // NewEnginesServiceClient constructs a client for the
@@ -52,10 +52,10 @@ type EnginesServiceClient interface {
 //
 // The URL supplied here should be the base URL for the Connect or gRPC server (for example,
 // http://api.acme.com or https://acme.com/grpc).
-func NewEnginesServiceClient(httpClient connect_go.HTTPClient, baseURL string, opts ...connect_go.ClientOption) EnginesServiceClient {
+func NewEnginesServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) EnginesServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
 	return &enginesServiceClient{
-		listEngines: connect_go.NewClient[v1.ListEnginesRequest, v1.Engines](
+		listEngines: connect.NewClient[v1.ListEnginesRequest, v1.Engines](
 			httpClient,
 			baseURL+EnginesServiceListEnginesProcedure,
 			opts...,
@@ -65,18 +65,18 @@ func NewEnginesServiceClient(httpClient connect_go.HTTPClient, baseURL string, o
 
 // enginesServiceClient implements EnginesServiceClient.
 type enginesServiceClient struct {
-	listEngines *connect_go.Client[v1.ListEnginesRequest, v1.Engines]
+	listEngines *connect.Client[v1.ListEnginesRequest, v1.Engines]
 }
 
 // ListEngines calls stabilityai.platformapis.engines.v1.EnginesService.ListEngines.
-func (c *enginesServiceClient) ListEngines(ctx context.Context, req *connect_go.Request[v1.ListEnginesRequest]) (*connect_go.Response[v1.Engines], error) {
+func (c *enginesServiceClient) ListEngines(ctx context.Context, req *connect.Request[v1.ListEnginesRequest]) (*connect.Response[v1.Engines], error) {
 	return c.listEngines.CallUnary(ctx, req)
 }
 
 // EnginesServiceHandler is an implementation of the
 // stabilityai.platformapis.engines.v1.EnginesService service.
 type EnginesServiceHandler interface {
-	ListEngines(context.Context, *connect_go.Request[v1.ListEnginesRequest]) (*connect_go.Response[v1.Engines], error)
+	ListEngines(context.Context, *connect.Request[v1.ListEnginesRequest]) (*connect.Response[v1.Engines], error)
 }
 
 // NewEnginesServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -84,8 +84,8 @@ type EnginesServiceHandler interface {
 //
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
-func NewEnginesServiceHandler(svc EnginesServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
-	enginesServiceListEnginesHandler := connect_go.NewUnaryHandler(
+func NewEnginesServiceHandler(svc EnginesServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	enginesServiceListEnginesHandler := connect.NewUnaryHandler(
 		EnginesServiceListEnginesProcedure,
 		svc.ListEngines,
 		opts...,
@@ -103,6 +103,6 @@ func NewEnginesServiceHandler(svc EnginesServiceHandler, opts ...connect_go.Hand
 // UnimplementedEnginesServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedEnginesServiceHandler struct{}
 
-func (UnimplementedEnginesServiceHandler) ListEngines(context.Context, *connect_go.Request[v1.ListEnginesRequest]) (*connect_go.Response[v1.Engines], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("stabilityai.platformapis.engines.v1.EnginesService.ListEngines is not implemented"))
+func (UnimplementedEnginesServiceHandler) ListEngines(context.Context, *connect.Request[v1.ListEnginesRequest]) (*connect.Response[v1.Engines], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("stabilityai.platformapis.engines.v1.EnginesService.ListEngines is not implemented"))
 }

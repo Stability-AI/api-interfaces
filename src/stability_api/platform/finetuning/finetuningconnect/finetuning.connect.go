@@ -5,9 +5,9 @@
 package finetuningconnect
 
 import (
+	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
-	connect_go "github.com/bufbuild/connect-go"
 	finetuning "github.com/stability-ai/api-interfaces/src/stability_api/platform/finetuning"
 	http "net/http"
 	strings "strings"
@@ -18,7 +18,7 @@ import (
 // generated with a version of connect newer than the one compiled into your binary. You can fix the
 // problem by either regenerating this code with an older version of connect or updating the connect
 // version compiled into your binary.
-const _ = connect_go.IsAtLeastVersion0_1_0
+const _ = connect.IsAtLeastVersion0_1_0
 
 const (
 	// FineTuningServiceName is the fully-qualified name of the FineTuningService service.
@@ -56,17 +56,17 @@ const (
 // FineTuningServiceClient is a client for the gooseai.FineTuningService service.
 type FineTuningServiceClient interface {
 	// Create a new model and begin the fine tuning process
-	CreateModel(context.Context, *connect_go.Request[finetuning.CreateModelRequest]) (*connect_go.Response[finetuning.CreateModelResponse], error)
+	CreateModel(context.Context, *connect.Request[finetuning.CreateModelRequest]) (*connect.Response[finetuning.CreateModelResponse], error)
 	// Get a FineTuningModel
-	GetModel(context.Context, *connect_go.Request[finetuning.GetModelRequest]) (*connect_go.Response[finetuning.GetModelResponse], error)
+	GetModel(context.Context, *connect.Request[finetuning.GetModelRequest]) (*connect.Response[finetuning.GetModelResponse], error)
 	// Update a FineTuningModel by id
-	UpdateModel(context.Context, *connect_go.Request[finetuning.UpdateModelRequest]) (*connect_go.Response[finetuning.UpdateModelResponse], error)
+	UpdateModel(context.Context, *connect.Request[finetuning.UpdateModelRequest]) (*connect.Response[finetuning.UpdateModelResponse], error)
 	// Delete a fine tuned model
-	DeleteModel(context.Context, *connect_go.Request[finetuning.DeleteModelRequest]) (*connect_go.Response[finetuning.DeleteModelResponse], error)
+	DeleteModel(context.Context, *connect.Request[finetuning.DeleteModelRequest]) (*connect.Response[finetuning.DeleteModelResponse], error)
 	// Re-run training, does not create a new model
-	ResubmitModel(context.Context, *connect_go.Request[finetuning.ResubmitModelRequest]) (*connect_go.Response[finetuning.ResubmitModelResponse], error)
+	ResubmitModel(context.Context, *connect.Request[finetuning.ResubmitModelRequest]) (*connect.Response[finetuning.ResubmitModelResponse], error)
 	// List all the fine tuned models for an organization or user
-	ListModels(context.Context, *connect_go.Request[finetuning.ListModelsRequest]) (*connect_go.Response[finetuning.ListModelsResponse], error)
+	ListModels(context.Context, *connect.Request[finetuning.ListModelsRequest]) (*connect.Response[finetuning.ListModelsResponse], error)
 }
 
 // NewFineTuningServiceClient constructs a client for the gooseai.FineTuningService service. By
@@ -76,35 +76,35 @@ type FineTuningServiceClient interface {
 //
 // The URL supplied here should be the base URL for the Connect or gRPC server (for example,
 // http://api.acme.com or https://acme.com/grpc).
-func NewFineTuningServiceClient(httpClient connect_go.HTTPClient, baseURL string, opts ...connect_go.ClientOption) FineTuningServiceClient {
+func NewFineTuningServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) FineTuningServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
 	return &fineTuningServiceClient{
-		createModel: connect_go.NewClient[finetuning.CreateModelRequest, finetuning.CreateModelResponse](
+		createModel: connect.NewClient[finetuning.CreateModelRequest, finetuning.CreateModelResponse](
 			httpClient,
 			baseURL+FineTuningServiceCreateModelProcedure,
 			opts...,
 		),
-		getModel: connect_go.NewClient[finetuning.GetModelRequest, finetuning.GetModelResponse](
+		getModel: connect.NewClient[finetuning.GetModelRequest, finetuning.GetModelResponse](
 			httpClient,
 			baseURL+FineTuningServiceGetModelProcedure,
 			opts...,
 		),
-		updateModel: connect_go.NewClient[finetuning.UpdateModelRequest, finetuning.UpdateModelResponse](
+		updateModel: connect.NewClient[finetuning.UpdateModelRequest, finetuning.UpdateModelResponse](
 			httpClient,
 			baseURL+FineTuningServiceUpdateModelProcedure,
 			opts...,
 		),
-		deleteModel: connect_go.NewClient[finetuning.DeleteModelRequest, finetuning.DeleteModelResponse](
+		deleteModel: connect.NewClient[finetuning.DeleteModelRequest, finetuning.DeleteModelResponse](
 			httpClient,
 			baseURL+FineTuningServiceDeleteModelProcedure,
 			opts...,
 		),
-		resubmitModel: connect_go.NewClient[finetuning.ResubmitModelRequest, finetuning.ResubmitModelResponse](
+		resubmitModel: connect.NewClient[finetuning.ResubmitModelRequest, finetuning.ResubmitModelResponse](
 			httpClient,
 			baseURL+FineTuningServiceResubmitModelProcedure,
 			opts...,
 		),
-		listModels: connect_go.NewClient[finetuning.ListModelsRequest, finetuning.ListModelsResponse](
+		listModels: connect.NewClient[finetuning.ListModelsRequest, finetuning.ListModelsResponse](
 			httpClient,
 			baseURL+FineTuningServiceListModelsProcedure,
 			opts...,
@@ -114,58 +114,58 @@ func NewFineTuningServiceClient(httpClient connect_go.HTTPClient, baseURL string
 
 // fineTuningServiceClient implements FineTuningServiceClient.
 type fineTuningServiceClient struct {
-	createModel   *connect_go.Client[finetuning.CreateModelRequest, finetuning.CreateModelResponse]
-	getModel      *connect_go.Client[finetuning.GetModelRequest, finetuning.GetModelResponse]
-	updateModel   *connect_go.Client[finetuning.UpdateModelRequest, finetuning.UpdateModelResponse]
-	deleteModel   *connect_go.Client[finetuning.DeleteModelRequest, finetuning.DeleteModelResponse]
-	resubmitModel *connect_go.Client[finetuning.ResubmitModelRequest, finetuning.ResubmitModelResponse]
-	listModels    *connect_go.Client[finetuning.ListModelsRequest, finetuning.ListModelsResponse]
+	createModel   *connect.Client[finetuning.CreateModelRequest, finetuning.CreateModelResponse]
+	getModel      *connect.Client[finetuning.GetModelRequest, finetuning.GetModelResponse]
+	updateModel   *connect.Client[finetuning.UpdateModelRequest, finetuning.UpdateModelResponse]
+	deleteModel   *connect.Client[finetuning.DeleteModelRequest, finetuning.DeleteModelResponse]
+	resubmitModel *connect.Client[finetuning.ResubmitModelRequest, finetuning.ResubmitModelResponse]
+	listModels    *connect.Client[finetuning.ListModelsRequest, finetuning.ListModelsResponse]
 }
 
 // CreateModel calls gooseai.FineTuningService.CreateModel.
-func (c *fineTuningServiceClient) CreateModel(ctx context.Context, req *connect_go.Request[finetuning.CreateModelRequest]) (*connect_go.Response[finetuning.CreateModelResponse], error) {
+func (c *fineTuningServiceClient) CreateModel(ctx context.Context, req *connect.Request[finetuning.CreateModelRequest]) (*connect.Response[finetuning.CreateModelResponse], error) {
 	return c.createModel.CallUnary(ctx, req)
 }
 
 // GetModel calls gooseai.FineTuningService.GetModel.
-func (c *fineTuningServiceClient) GetModel(ctx context.Context, req *connect_go.Request[finetuning.GetModelRequest]) (*connect_go.Response[finetuning.GetModelResponse], error) {
+func (c *fineTuningServiceClient) GetModel(ctx context.Context, req *connect.Request[finetuning.GetModelRequest]) (*connect.Response[finetuning.GetModelResponse], error) {
 	return c.getModel.CallUnary(ctx, req)
 }
 
 // UpdateModel calls gooseai.FineTuningService.UpdateModel.
-func (c *fineTuningServiceClient) UpdateModel(ctx context.Context, req *connect_go.Request[finetuning.UpdateModelRequest]) (*connect_go.Response[finetuning.UpdateModelResponse], error) {
+func (c *fineTuningServiceClient) UpdateModel(ctx context.Context, req *connect.Request[finetuning.UpdateModelRequest]) (*connect.Response[finetuning.UpdateModelResponse], error) {
 	return c.updateModel.CallUnary(ctx, req)
 }
 
 // DeleteModel calls gooseai.FineTuningService.DeleteModel.
-func (c *fineTuningServiceClient) DeleteModel(ctx context.Context, req *connect_go.Request[finetuning.DeleteModelRequest]) (*connect_go.Response[finetuning.DeleteModelResponse], error) {
+func (c *fineTuningServiceClient) DeleteModel(ctx context.Context, req *connect.Request[finetuning.DeleteModelRequest]) (*connect.Response[finetuning.DeleteModelResponse], error) {
 	return c.deleteModel.CallUnary(ctx, req)
 }
 
 // ResubmitModel calls gooseai.FineTuningService.ResubmitModel.
-func (c *fineTuningServiceClient) ResubmitModel(ctx context.Context, req *connect_go.Request[finetuning.ResubmitModelRequest]) (*connect_go.Response[finetuning.ResubmitModelResponse], error) {
+func (c *fineTuningServiceClient) ResubmitModel(ctx context.Context, req *connect.Request[finetuning.ResubmitModelRequest]) (*connect.Response[finetuning.ResubmitModelResponse], error) {
 	return c.resubmitModel.CallUnary(ctx, req)
 }
 
 // ListModels calls gooseai.FineTuningService.ListModels.
-func (c *fineTuningServiceClient) ListModels(ctx context.Context, req *connect_go.Request[finetuning.ListModelsRequest]) (*connect_go.Response[finetuning.ListModelsResponse], error) {
+func (c *fineTuningServiceClient) ListModels(ctx context.Context, req *connect.Request[finetuning.ListModelsRequest]) (*connect.Response[finetuning.ListModelsResponse], error) {
 	return c.listModels.CallUnary(ctx, req)
 }
 
 // FineTuningServiceHandler is an implementation of the gooseai.FineTuningService service.
 type FineTuningServiceHandler interface {
 	// Create a new model and begin the fine tuning process
-	CreateModel(context.Context, *connect_go.Request[finetuning.CreateModelRequest]) (*connect_go.Response[finetuning.CreateModelResponse], error)
+	CreateModel(context.Context, *connect.Request[finetuning.CreateModelRequest]) (*connect.Response[finetuning.CreateModelResponse], error)
 	// Get a FineTuningModel
-	GetModel(context.Context, *connect_go.Request[finetuning.GetModelRequest]) (*connect_go.Response[finetuning.GetModelResponse], error)
+	GetModel(context.Context, *connect.Request[finetuning.GetModelRequest]) (*connect.Response[finetuning.GetModelResponse], error)
 	// Update a FineTuningModel by id
-	UpdateModel(context.Context, *connect_go.Request[finetuning.UpdateModelRequest]) (*connect_go.Response[finetuning.UpdateModelResponse], error)
+	UpdateModel(context.Context, *connect.Request[finetuning.UpdateModelRequest]) (*connect.Response[finetuning.UpdateModelResponse], error)
 	// Delete a fine tuned model
-	DeleteModel(context.Context, *connect_go.Request[finetuning.DeleteModelRequest]) (*connect_go.Response[finetuning.DeleteModelResponse], error)
+	DeleteModel(context.Context, *connect.Request[finetuning.DeleteModelRequest]) (*connect.Response[finetuning.DeleteModelResponse], error)
 	// Re-run training, does not create a new model
-	ResubmitModel(context.Context, *connect_go.Request[finetuning.ResubmitModelRequest]) (*connect_go.Response[finetuning.ResubmitModelResponse], error)
+	ResubmitModel(context.Context, *connect.Request[finetuning.ResubmitModelRequest]) (*connect.Response[finetuning.ResubmitModelResponse], error)
 	// List all the fine tuned models for an organization or user
-	ListModels(context.Context, *connect_go.Request[finetuning.ListModelsRequest]) (*connect_go.Response[finetuning.ListModelsResponse], error)
+	ListModels(context.Context, *connect.Request[finetuning.ListModelsRequest]) (*connect.Response[finetuning.ListModelsResponse], error)
 }
 
 // NewFineTuningServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -173,33 +173,33 @@ type FineTuningServiceHandler interface {
 //
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
-func NewFineTuningServiceHandler(svc FineTuningServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
-	fineTuningServiceCreateModelHandler := connect_go.NewUnaryHandler(
+func NewFineTuningServiceHandler(svc FineTuningServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	fineTuningServiceCreateModelHandler := connect.NewUnaryHandler(
 		FineTuningServiceCreateModelProcedure,
 		svc.CreateModel,
 		opts...,
 	)
-	fineTuningServiceGetModelHandler := connect_go.NewUnaryHandler(
+	fineTuningServiceGetModelHandler := connect.NewUnaryHandler(
 		FineTuningServiceGetModelProcedure,
 		svc.GetModel,
 		opts...,
 	)
-	fineTuningServiceUpdateModelHandler := connect_go.NewUnaryHandler(
+	fineTuningServiceUpdateModelHandler := connect.NewUnaryHandler(
 		FineTuningServiceUpdateModelProcedure,
 		svc.UpdateModel,
 		opts...,
 	)
-	fineTuningServiceDeleteModelHandler := connect_go.NewUnaryHandler(
+	fineTuningServiceDeleteModelHandler := connect.NewUnaryHandler(
 		FineTuningServiceDeleteModelProcedure,
 		svc.DeleteModel,
 		opts...,
 	)
-	fineTuningServiceResubmitModelHandler := connect_go.NewUnaryHandler(
+	fineTuningServiceResubmitModelHandler := connect.NewUnaryHandler(
 		FineTuningServiceResubmitModelProcedure,
 		svc.ResubmitModel,
 		opts...,
 	)
-	fineTuningServiceListModelsHandler := connect_go.NewUnaryHandler(
+	fineTuningServiceListModelsHandler := connect.NewUnaryHandler(
 		FineTuningServiceListModelsProcedure,
 		svc.ListModels,
 		opts...,
@@ -227,26 +227,26 @@ func NewFineTuningServiceHandler(svc FineTuningServiceHandler, opts ...connect_g
 // UnimplementedFineTuningServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedFineTuningServiceHandler struct{}
 
-func (UnimplementedFineTuningServiceHandler) CreateModel(context.Context, *connect_go.Request[finetuning.CreateModelRequest]) (*connect_go.Response[finetuning.CreateModelResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("gooseai.FineTuningService.CreateModel is not implemented"))
+func (UnimplementedFineTuningServiceHandler) CreateModel(context.Context, *connect.Request[finetuning.CreateModelRequest]) (*connect.Response[finetuning.CreateModelResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gooseai.FineTuningService.CreateModel is not implemented"))
 }
 
-func (UnimplementedFineTuningServiceHandler) GetModel(context.Context, *connect_go.Request[finetuning.GetModelRequest]) (*connect_go.Response[finetuning.GetModelResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("gooseai.FineTuningService.GetModel is not implemented"))
+func (UnimplementedFineTuningServiceHandler) GetModel(context.Context, *connect.Request[finetuning.GetModelRequest]) (*connect.Response[finetuning.GetModelResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gooseai.FineTuningService.GetModel is not implemented"))
 }
 
-func (UnimplementedFineTuningServiceHandler) UpdateModel(context.Context, *connect_go.Request[finetuning.UpdateModelRequest]) (*connect_go.Response[finetuning.UpdateModelResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("gooseai.FineTuningService.UpdateModel is not implemented"))
+func (UnimplementedFineTuningServiceHandler) UpdateModel(context.Context, *connect.Request[finetuning.UpdateModelRequest]) (*connect.Response[finetuning.UpdateModelResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gooseai.FineTuningService.UpdateModel is not implemented"))
 }
 
-func (UnimplementedFineTuningServiceHandler) DeleteModel(context.Context, *connect_go.Request[finetuning.DeleteModelRequest]) (*connect_go.Response[finetuning.DeleteModelResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("gooseai.FineTuningService.DeleteModel is not implemented"))
+func (UnimplementedFineTuningServiceHandler) DeleteModel(context.Context, *connect.Request[finetuning.DeleteModelRequest]) (*connect.Response[finetuning.DeleteModelResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gooseai.FineTuningService.DeleteModel is not implemented"))
 }
 
-func (UnimplementedFineTuningServiceHandler) ResubmitModel(context.Context, *connect_go.Request[finetuning.ResubmitModelRequest]) (*connect_go.Response[finetuning.ResubmitModelResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("gooseai.FineTuningService.ResubmitModel is not implemented"))
+func (UnimplementedFineTuningServiceHandler) ResubmitModel(context.Context, *connect.Request[finetuning.ResubmitModelRequest]) (*connect.Response[finetuning.ResubmitModelResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gooseai.FineTuningService.ResubmitModel is not implemented"))
 }
 
-func (UnimplementedFineTuningServiceHandler) ListModels(context.Context, *connect_go.Request[finetuning.ListModelsRequest]) (*connect_go.Response[finetuning.ListModelsResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("gooseai.FineTuningService.ListModels is not implemented"))
+func (UnimplementedFineTuningServiceHandler) ListModels(context.Context, *connect.Request[finetuning.ListModelsRequest]) (*connect.Response[finetuning.ListModelsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gooseai.FineTuningService.ListModels is not implemented"))
 }
