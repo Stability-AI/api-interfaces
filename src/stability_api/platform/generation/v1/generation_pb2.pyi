@@ -438,17 +438,17 @@ class T2IAdapterParameter(_message.Message):
     adapter_init_type: T2IAdapterInit
     def __init__(self, adapter_type: _Optional[_Union[T2IAdapter, str]] = ..., adapter_strength: _Optional[float] = ..., adapter_init_type: _Optional[_Union[T2IAdapterInit, str]] = ...) -> None: ...
 
-class CAIParameters(_message.Message):
+class ContentCredentialsParameters(_message.Message):
     __slots__ = ["model_metadata"]
     class ModelMetadata(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
         __slots__ = []
-        MODEL_METADATA_UNSPECIFIED: _ClassVar[CAIParameters.ModelMetadata]
-        MODEL_METADATA_SIGN_WITH_ENGINE_ID: _ClassVar[CAIParameters.ModelMetadata]
-    MODEL_METADATA_UNSPECIFIED: CAIParameters.ModelMetadata
-    MODEL_METADATA_SIGN_WITH_ENGINE_ID: CAIParameters.ModelMetadata
+        MODEL_METADATA_UNSPECIFIED: _ClassVar[ContentCredentialsParameters.ModelMetadata]
+        MODEL_METADATA_SIGN_WITH_ENGINE_ID: _ClassVar[ContentCredentialsParameters.ModelMetadata]
+    MODEL_METADATA_UNSPECIFIED: ContentCredentialsParameters.ModelMetadata
+    MODEL_METADATA_SIGN_WITH_ENGINE_ID: ContentCredentialsParameters.ModelMetadata
     MODEL_METADATA_FIELD_NUMBER: _ClassVar[int]
-    model_metadata: CAIParameters.ModelMetadata
-    def __init__(self, model_metadata: _Optional[_Union[CAIParameters.ModelMetadata, str]] = ...) -> None: ...
+    model_metadata: ContentCredentialsParameters.ModelMetadata
+    def __init__(self, model_metadata: _Optional[_Union[ContentCredentialsParameters.ModelMetadata, str]] = ...) -> None: ...
 
 class FineTuningParameters(_message.Message):
     __slots__ = ["model_id", "weight"]
@@ -459,7 +459,7 @@ class FineTuningParameters(_message.Message):
     def __init__(self, model_id: _Optional[str] = ..., weight: _Optional[float] = ...) -> None: ...
 
 class ImageParameters(_message.Message):
-    __slots__ = ["height", "width", "seed", "samples", "steps", "transform", "parameters", "masked_area_init", "weight_method", "quantize", "cai_parameters", "adapter", "fine_tuning_parameters"]
+    __slots__ = ["height", "width", "seed", "samples", "steps", "transform", "parameters", "masked_area_init", "weight_method", "quantize", "adapter", "fine_tuning_parameters", "content_credentials_parameters"]
     HEIGHT_FIELD_NUMBER: _ClassVar[int]
     WIDTH_FIELD_NUMBER: _ClassVar[int]
     SEED_FIELD_NUMBER: _ClassVar[int]
@@ -470,9 +470,9 @@ class ImageParameters(_message.Message):
     MASKED_AREA_INIT_FIELD_NUMBER: _ClassVar[int]
     WEIGHT_METHOD_FIELD_NUMBER: _ClassVar[int]
     QUANTIZE_FIELD_NUMBER: _ClassVar[int]
-    CAI_PARAMETERS_FIELD_NUMBER: _ClassVar[int]
     ADAPTER_FIELD_NUMBER: _ClassVar[int]
     FINE_TUNING_PARAMETERS_FIELD_NUMBER: _ClassVar[int]
+    CONTENT_CREDENTIALS_PARAMETERS_FIELD_NUMBER: _ClassVar[int]
     height: int
     width: int
     seed: _containers.RepeatedScalarFieldContainer[int]
@@ -483,10 +483,10 @@ class ImageParameters(_message.Message):
     masked_area_init: MaskedAreaInit
     weight_method: WeightMethod
     quantize: bool
-    cai_parameters: CAIParameters
     adapter: T2IAdapterParameter
     fine_tuning_parameters: _containers.RepeatedCompositeFieldContainer[FineTuningParameters]
-    def __init__(self, height: _Optional[int] = ..., width: _Optional[int] = ..., seed: _Optional[_Iterable[int]] = ..., samples: _Optional[int] = ..., steps: _Optional[int] = ..., transform: _Optional[_Union[TransformType, _Mapping]] = ..., parameters: _Optional[_Iterable[_Union[StepParameter, _Mapping]]] = ..., masked_area_init: _Optional[_Union[MaskedAreaInit, str]] = ..., weight_method: _Optional[_Union[WeightMethod, str]] = ..., quantize: bool = ..., cai_parameters: _Optional[_Union[CAIParameters, _Mapping]] = ..., adapter: _Optional[_Union[T2IAdapterParameter, _Mapping]] = ..., fine_tuning_parameters: _Optional[_Iterable[_Union[FineTuningParameters, _Mapping]]] = ...) -> None: ...
+    content_credentials_parameters: ContentCredentialsParameters
+    def __init__(self, height: _Optional[int] = ..., width: _Optional[int] = ..., seed: _Optional[_Iterable[int]] = ..., samples: _Optional[int] = ..., steps: _Optional[int] = ..., transform: _Optional[_Union[TransformType, _Mapping]] = ..., parameters: _Optional[_Iterable[_Union[StepParameter, _Mapping]]] = ..., masked_area_init: _Optional[_Union[MaskedAreaInit, str]] = ..., weight_method: _Optional[_Union[WeightMethod, str]] = ..., quantize: bool = ..., adapter: _Optional[_Union[T2IAdapterParameter, _Mapping]] = ..., fine_tuning_parameters: _Optional[_Iterable[_Union[FineTuningParameters, _Mapping]]] = ..., content_credentials_parameters: _Optional[_Union[ContentCredentialsParameters, _Mapping]] = ...) -> None: ...
 
 class ClassifierConcept(_message.Message):
     __slots__ = ["concept", "threshold"]

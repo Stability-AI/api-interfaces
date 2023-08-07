@@ -104,6 +104,13 @@ export declare class EngineInfo extends Message<EngineInfo> {
    */
   canFineTune: boolean;
 
+  /**
+   * Whether this Engine supports T2I Adapters
+   *
+   * @generated from field: bool is_adaptive = 9;
+   */
+  isAdaptive: boolean;
+
   constructor(data?: PartialMessage<EngineInfo>);
 
   static readonly runtime: typeof proto3;

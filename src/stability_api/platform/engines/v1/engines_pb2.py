@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n/stability_api/platform/engines/v1/engines.proto\x12#stabilityai.platformapis.engines.v1\"\xbb\x02\n\nEngineInfo\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n\x05owner\x18\x02 \x01(\tR\x05owner\x12\x14\n\x05ready\x18\x03 \x01(\x08R\x05ready\x12\x43\n\x04type\x18\x04 \x01(\x0e\x32/.stabilityai.platformapis.engines.v1.EngineTypeR\x04type\x12R\n\ttokenizer\x18\x05 \x01(\x0e\x32\x34.stabilityai.platformapis.engines.v1.EngineTokenizerR\ttokenizer\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x07 \x01(\tR\x0b\x64\x65scription\x12\"\n\rcan_fine_tune\x18\x08 \x01(\x08R\x0b\x63\x61nFineTune\"\x14\n\x12ListEnginesRequest\"R\n\x07\x45ngines\x12G\n\x06\x65ngine\x18\x01 \x03(\x0b\x32/.stabilityai.platformapis.engines.v1.EngineInfoR\x06\x65ngine*Z\n\nEngineType\x12\x08\n\x04TEXT\x10\x00\x12\x0b\n\x07PICTURE\x10\x01\x12\t\n\x05\x41UDIO\x10\x02\x12\t\n\x05VIDEO\x10\x03\x12\x12\n\x0e\x43LASSIFICATION\x10\x04\x12\x0b\n\x07STORAGE\x10\x05*%\n\x0f\x45ngineTokenizer\x12\x08\n\x04GPT2\x10\x00\x12\x08\n\x04PILE\x10\x01\x32\x88\x01\n\x0e\x45nginesService\x12v\n\x0bListEngines\x12\x37.stabilityai.platformapis.engines.v1.ListEnginesRequest\x1a,.stabilityai.platformapis.engines.v1.Engines\"\x00\x42\xc7\x02\n\'com.stabilityai.platformapis.engines.v1B\x0c\x45nginesProtoP\x01Z_github.com/stability-ai/api-interfaces/gen/proto/go/stability_api/platform/engines/v1;enginesv1\xa2\x02\x03SPE\xaa\x02#Stabilityai.Platformapis.Engines.V1\xca\x02#Stabilityai\\Platformapis\\Engines\\V1\xe2\x02/Stabilityai\\Platformapis\\Engines\\V1\\GPBMetadata\xea\x02&Stabilityai::Platformapis::Engines::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n/stability_api/platform/engines/v1/engines.proto\x12#stabilityai.platformapis.engines.v1\"\xdc\x02\n\nEngineInfo\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n\x05owner\x18\x02 \x01(\tR\x05owner\x12\x14\n\x05ready\x18\x03 \x01(\x08R\x05ready\x12\x43\n\x04type\x18\x04 \x01(\x0e\x32/.stabilityai.platformapis.engines.v1.EngineTypeR\x04type\x12R\n\ttokenizer\x18\x05 \x01(\x0e\x32\x34.stabilityai.platformapis.engines.v1.EngineTokenizerR\ttokenizer\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x07 \x01(\tR\x0b\x64\x65scription\x12\"\n\rcan_fine_tune\x18\x08 \x01(\x08R\x0b\x63\x61nFineTune\x12\x1f\n\x0bis_adaptive\x18\t \x01(\x08R\nisAdaptive\"\x14\n\x12ListEnginesRequest\"R\n\x07\x45ngines\x12G\n\x06\x65ngine\x18\x01 \x03(\x0b\x32/.stabilityai.platformapis.engines.v1.EngineInfoR\x06\x65ngine*Z\n\nEngineType\x12\x08\n\x04TEXT\x10\x00\x12\x0b\n\x07PICTURE\x10\x01\x12\t\n\x05\x41UDIO\x10\x02\x12\t\n\x05VIDEO\x10\x03\x12\x12\n\x0e\x43LASSIFICATION\x10\x04\x12\x0b\n\x07STORAGE\x10\x05*%\n\x0f\x45ngineTokenizer\x12\x08\n\x04GPT2\x10\x00\x12\x08\n\x04PILE\x10\x01\x32\x88\x01\n\x0e\x45nginesService\x12v\n\x0bListEngines\x12\x37.stabilityai.platformapis.engines.v1.ListEnginesRequest\x1a,.stabilityai.platformapis.engines.v1.Engines\"\x00\x42\xc7\x02\n\'com.stabilityai.platformapis.engines.v1B\x0c\x45nginesProtoP\x01Z_github.com/stability-ai/api-interfaces/gen/proto/go/stability_api/platform/engines/v1;enginesv1\xa2\x02\x03SPE\xaa\x02#Stabilityai.Platformapis.Engines.V1\xca\x02#Stabilityai\\Platformapis\\Engines\\V1\xe2\x02/Stabilityai\\Platformapis\\Engines\\V1\\GPBMetadata\xea\x02&Stabilityai::Platformapis::Engines::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -22,16 +22,16 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\'com.stabilityai.platformapis.engines.v1B\014EnginesProtoP\001Z_github.com/stability-ai/api-interfaces/gen/proto/go/stability_api/platform/engines/v1;enginesv1\242\002\003SPE\252\002#Stabilityai.Platformapis.Engines.V1\312\002#Stabilityai\\Platformapis\\Engines\\V1\342\002/Stabilityai\\Platformapis\\Engines\\V1\\GPBMetadata\352\002&Stabilityai::Platformapis::Engines::V1'
-  _globals['_ENGINETYPE']._serialized_start=512
-  _globals['_ENGINETYPE']._serialized_end=602
-  _globals['_ENGINETOKENIZER']._serialized_start=604
-  _globals['_ENGINETOKENIZER']._serialized_end=641
+  _globals['_ENGINETYPE']._serialized_start=545
+  _globals['_ENGINETYPE']._serialized_end=635
+  _globals['_ENGINETOKENIZER']._serialized_start=637
+  _globals['_ENGINETOKENIZER']._serialized_end=674
   _globals['_ENGINEINFO']._serialized_start=89
-  _globals['_ENGINEINFO']._serialized_end=404
-  _globals['_LISTENGINESREQUEST']._serialized_start=406
-  _globals['_LISTENGINESREQUEST']._serialized_end=426
-  _globals['_ENGINES']._serialized_start=428
-  _globals['_ENGINES']._serialized_end=510
-  _globals['_ENGINESSERVICE']._serialized_start=644
-  _globals['_ENGINESSERVICE']._serialized_end=780
+  _globals['_ENGINEINFO']._serialized_end=437
+  _globals['_LISTENGINESREQUEST']._serialized_start=439
+  _globals['_LISTENGINESREQUEST']._serialized_end=459
+  _globals['_ENGINES']._serialized_start=461
+  _globals['_ENGINES']._serialized_end=543
+  _globals['_ENGINESSERVICE']._serialized_start=677
+  _globals['_ENGINESSERVICE']._serialized_end=813
 # @@protoc_insertion_point(module_scope)

@@ -538,20 +538,20 @@ export const T2IAdapterParameter = proto3.makeMessageType(
 );
 
 /**
- * @generated from message stabilityai.platformapis.generation.v1.CAIParameters
+ * @generated from message stabilityai.platformapis.generation.v1.ContentCredentialsParameters
  */
-export const CAIParameters = proto3.makeMessageType(
-  "stabilityai.platformapis.generation.v1.CAIParameters",
+export const ContentCredentialsParameters = proto3.makeMessageType(
+  "stabilityai.platformapis.generation.v1.ContentCredentialsParameters",
   () => [
-    { no: 1, name: "model_metadata", kind: "enum", T: proto3.getEnumType(CAIParameters_ModelMetadata), oneof: "parameters" },
+    { no: 1, name: "model_metadata", kind: "enum", T: proto3.getEnumType(ContentCredentialsParameters_ModelMetadata), oneof: "parameters" },
   ],
 );
 
 /**
- * @generated from enum stabilityai.platformapis.generation.v1.CAIParameters.ModelMetadata
+ * @generated from enum stabilityai.platformapis.generation.v1.ContentCredentialsParameters.ModelMetadata
  */
-export const CAIParameters_ModelMetadata = proto3.makeEnum(
-  "stabilityai.platformapis.generation.v1.CAIParameters.ModelMetadata",
+export const ContentCredentialsParameters_ModelMetadata = proto3.makeEnum(
+  "stabilityai.platformapis.generation.v1.ContentCredentialsParameters.ModelMetadata",
   [
     {no: 0, name: "MODEL_METADATA_UNSPECIFIED", localName: "UNSPECIFIED"},
     {no: 1, name: "MODEL_METADATA_SIGN_WITH_ENGINE_ID", localName: "SIGN_WITH_ENGINE_ID"},
@@ -587,9 +587,9 @@ export const ImageParameters = proto3.makeMessageType(
     { no: 8, name: "masked_area_init", kind: "enum", T: proto3.getEnumType(MaskedAreaInit), opt: true },
     { no: 9, name: "weight_method", kind: "enum", T: proto3.getEnumType(WeightMethod), opt: true },
     { no: 10, name: "quantize", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
-    { no: 11, name: "cai_parameters", kind: "message", T: CAIParameters, opt: true },
     { no: 12, name: "adapter", kind: "message", T: T2IAdapterParameter, opt: true },
     { no: 13, name: "fine_tuning_parameters", kind: "message", T: FineTuningParameters, repeated: true },
+    { no: 14, name: "content_credentials_parameters", kind: "message", T: ContentCredentialsParameters, opt: true },
   ],
 );
 

@@ -1350,39 +1350,39 @@ export declare class T2IAdapterParameter extends Message<T2IAdapterParameter> {
 }
 
 /**
- * @generated from message stabilityai.platformapis.generation.v1.CAIParameters
+ * @generated from message stabilityai.platformapis.generation.v1.ContentCredentialsParameters
  */
-export declare class CAIParameters extends Message<CAIParameters> {
+export declare class ContentCredentialsParameters extends Message<ContentCredentialsParameters> {
   /**
-   * @generated from oneof stabilityai.platformapis.generation.v1.CAIParameters.parameters
+   * @generated from oneof stabilityai.platformapis.generation.v1.ContentCredentialsParameters.parameters
    */
   parameters: {
     /**
-     * @generated from field: stabilityai.platformapis.generation.v1.CAIParameters.ModelMetadata model_metadata = 1;
+     * @generated from field: stabilityai.platformapis.generation.v1.ContentCredentialsParameters.ModelMetadata model_metadata = 1;
      */
-    value: CAIParameters_ModelMetadata;
+    value: ContentCredentialsParameters_ModelMetadata;
     case: "modelMetadata";
   } | { case: undefined; value?: undefined };
 
-  constructor(data?: PartialMessage<CAIParameters>);
+  constructor(data?: PartialMessage<ContentCredentialsParameters>);
 
   static readonly runtime: typeof proto3;
-  static readonly typeName = "stabilityai.platformapis.generation.v1.CAIParameters";
+  static readonly typeName = "stabilityai.platformapis.generation.v1.ContentCredentialsParameters";
   static readonly fields: FieldList;
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CAIParameters;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ContentCredentialsParameters;
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CAIParameters;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ContentCredentialsParameters;
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CAIParameters;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ContentCredentialsParameters;
 
-  static equals(a: CAIParameters | PlainMessage<CAIParameters> | undefined, b: CAIParameters | PlainMessage<CAIParameters> | undefined): boolean;
+  static equals(a: ContentCredentialsParameters | PlainMessage<ContentCredentialsParameters> | undefined, b: ContentCredentialsParameters | PlainMessage<ContentCredentialsParameters> | undefined): boolean;
 }
 
 /**
- * @generated from enum stabilityai.platformapis.generation.v1.CAIParameters.ModelMetadata
+ * @generated from enum stabilityai.platformapis.generation.v1.ContentCredentialsParameters.ModelMetadata
  */
-export declare enum CAIParameters_ModelMetadata {
+export declare enum ContentCredentialsParameters_ModelMetadata {
   /**
    * @generated from enum value: MODEL_METADATA_UNSPECIFIED = 0;
    */
@@ -1495,23 +1495,21 @@ export declare class ImageParameters extends Message<ImageParameters> {
   quantize?: boolean;
 
   /**
-   * Set field to have image signed by C2PA
-   *
-   * @generated from field: optional stabilityai.platformapis.generation.v1.CAIParameters cai_parameters = 11;
-   */
-  caiParameters?: CAIParameters;
-
-  /**
    * @generated from field: optional stabilityai.platformapis.generation.v1.T2IAdapterParameter adapter = 12;
    */
   adapter?: T2IAdapterParameter;
 
   /**
-   * next available tag: 14
-   *
    * @generated from field: repeated stabilityai.platformapis.generation.v1.FineTuningParameters fine_tuning_parameters = 13;
    */
   fineTuningParameters: FineTuningParameters[];
+
+  /**
+   * Set field to have image signed by C2PA
+   *
+   * @generated from field: optional stabilityai.platformapis.generation.v1.ContentCredentialsParameters content_credentials_parameters = 14;
+   */
+  contentCredentialsParameters?: ContentCredentialsParameters;
 
   constructor(data?: PartialMessage<ImageParameters>);
 

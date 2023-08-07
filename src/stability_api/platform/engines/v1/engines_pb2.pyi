@@ -29,7 +29,7 @@ GPT2: EngineTokenizer
 PILE: EngineTokenizer
 
 class EngineInfo(_message.Message):
-    __slots__ = ["id", "owner", "ready", "type", "tokenizer", "name", "description", "can_fine_tune"]
+    __slots__ = ["id", "owner", "ready", "type", "tokenizer", "name", "description", "can_fine_tune", "is_adaptive"]
     ID_FIELD_NUMBER: _ClassVar[int]
     OWNER_FIELD_NUMBER: _ClassVar[int]
     READY_FIELD_NUMBER: _ClassVar[int]
@@ -38,6 +38,7 @@ class EngineInfo(_message.Message):
     NAME_FIELD_NUMBER: _ClassVar[int]
     DESCRIPTION_FIELD_NUMBER: _ClassVar[int]
     CAN_FINE_TUNE_FIELD_NUMBER: _ClassVar[int]
+    IS_ADAPTIVE_FIELD_NUMBER: _ClassVar[int]
     id: str
     owner: str
     ready: bool
@@ -46,7 +47,8 @@ class EngineInfo(_message.Message):
     name: str
     description: str
     can_fine_tune: bool
-    def __init__(self, id: _Optional[str] = ..., owner: _Optional[str] = ..., ready: bool = ..., type: _Optional[_Union[EngineType, str]] = ..., tokenizer: _Optional[_Union[EngineTokenizer, str]] = ..., name: _Optional[str] = ..., description: _Optional[str] = ..., can_fine_tune: bool = ...) -> None: ...
+    is_adaptive: bool
+    def __init__(self, id: _Optional[str] = ..., owner: _Optional[str] = ..., ready: bool = ..., type: _Optional[_Union[EngineType, str]] = ..., tokenizer: _Optional[_Union[EngineTokenizer, str]] = ..., name: _Optional[str] = ..., description: _Optional[str] = ..., can_fine_tune: bool = ..., is_adaptive: bool = ...) -> None: ...
 
 class ListEnginesRequest(_message.Message):
     __slots__ = []
