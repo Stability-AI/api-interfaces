@@ -1,6 +1,6 @@
 syntax = 'proto3';
-package gooseai;
-option go_package = "github.com/stability-ai/api-interfaces/gooseai/dashboard";
+package stabilityai.api.dashboard.v1;
+option go_package = "github.com/stability-ai/api-interfaces/gen/proto/go/stability_api/platform/dashboard/v1;dashboardv1";
 
 enum OrganizationRole {
   MEMBER = 0;

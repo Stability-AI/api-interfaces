@@ -1,3 +1,6 @@
+# This script updates legacy gooseai contracts. 
+# It currently does not work due to a dependency on `tensorizer`.
+
 # Update the API interfaces generated code files
 docker build -t api_interfaces .
 

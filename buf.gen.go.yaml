@@ -1,0 +1,23 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    # <module_name>   : name in go.mod 
+    # <relative_path> : where generated code should be output 
+    default: github.com/stability-ai/api-interfaces/src
+    # Remove `except` field if googleapis is not used
+    except:
+      - buf.build/googleapis/googleapis    
+plugins:
+  - plugin: buf.build/connectrpc/go:v1.11.0
+    out: '.'
+    opt:
+      - paths=source_relative
+  - plugin: buf.build/grpc/go:v1.3.0
+    out: '.'
+    opt:
+      - paths=source_relative
+  - plugin: buf.build/protocolbuffers/go
+    out: '.'
+    opt:
+      - paths=source_relative  

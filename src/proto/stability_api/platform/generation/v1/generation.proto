@@ -1,8 +1,8 @@
 syntax = 'proto3';
-package gooseai;
-option go_package = "github.com/stability-ai/api-interfaces/gooseai/generation";
+package stabilityai.platformapis.generation.v1;
+option go_package = "github.com/stability-ai/api-interfaces/gen/proto/go/stability_api/platform/generation/v1;generationv1";
 import "google/protobuf/struct.proto";
-import "tensors.proto";
+import "stability_api/tensors/tensors.proto";
 
 enum FinishReason {
   NULL = 0;

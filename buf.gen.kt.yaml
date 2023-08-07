@@ -1,0 +1,8 @@
+version: v1
+managed:
+  enabled: true
+plugins:
+  - plugin: buf.build/bufbuild/connect-kotlin:v0.1.7
+    out: '.'
+  - plugin: buf.build/protocolbuffers/kotlin
+    out: '.'

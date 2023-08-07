@@ -1,6 +1,6 @@
 syntax = 'proto3';
-package gooseai;
-option go_package = "github.com/stability-ai/api-interfaces/gooseai/engines";
+package stabilityai.platformapis.engines.v1;
+option go_package = "github.com/stability-ai/api-interfaces/gen/proto/go/stability_api/platform/engines/v1;enginesv1";
 
 // Possible engine type
 enum EngineType {

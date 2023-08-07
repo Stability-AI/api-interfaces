@@ -1,7 +1,7 @@
 syntax = 'proto3';
-package gooseai;
-option go_package = "github.com/stability-ai/api-interfaces/gooseai/project";
-import "generation.proto";
+package stabilityai.platformapis.project.v1;
+option go_package = "github.com/stability-ai/api-interfaces/gen/proto/go/stability_api/platform/project/v1;projectv1";
+import "stability_api/platform/generation/v1/generation.proto";
 
 enum ProjectAccess {
   PROJECT_ACCESS_PRIVATE = 0; // Private access, only owner organization can access
@@ -42,7 +42,7 @@ message ProjectAsset {
   uint64 size = 5;              // The asset size in bytes
   uint64 created_at = 6;        // Time of asset creation (UTC seconds epoch)
   uint64 updated_at = 7;        // Time of last asset update (UTC seconds epoch)
-  Request request = 8;          // The request object that is associated with the artifact
+  stabilityai.platformapis.generation.v1.Request request = 8;          // The request object that is associated with the artifact
   map<string, string> tags = 9; // The tags associated with the asset
 }
 
