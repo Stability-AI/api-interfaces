@@ -27,6 +27,7 @@ message EngineInfo {
   string name = 6;
   string description = 7;
   bool can_fine_tune = 8;
+  bool is_adaptive = 9;  // Whether this Engine supports T2I Adapters
 }
 
 message ListEnginesRequest {
