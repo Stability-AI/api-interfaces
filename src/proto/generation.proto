@@ -242,16 +242,6 @@ message T2IAdapterParameter {
   T2IAdapterInit adapter_init_type = 3;
 }
 
-message ContentCredentialsParameters {
-  enum ModelMetadata {
-    MODEL_METADATA_UNSPECIFIED = 0;
-    MODEL_METADATA_SIGN_WITH_ENGINE_ID = 1;
-  }
-  oneof parameters {
-    ModelMetadata model_metadata = 1;
-  }
-}
-
 // FineTuningParameters specify which fine-tuned models to use for generation.
 message FineTuningParameters {
   // The id of the fine-tuned model to generate content from.
@@ -277,8 +267,7 @@ message ImageParameters {
   optional bool quantize = 10; //defaults to true
   optional T2IAdapterParameter adapter = 12;
   repeated FineTuningParameters fine_tuning_parameters = 13; 
-  optional ContentCredentialsParameters content_credentials_parameters = 14; // Set field to have image signed by C2PA
-  reserved 11;
+  reserved 11, 14;
   // next available tag: 15
 }
 
