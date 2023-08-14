@@ -634,41 +634,6 @@ export namespace T2IAdapterParameter {
   }
 }
 
-export class ContentCredentialsParameters extends jspb.Message {
-  hasModelMetadata(): boolean;
-  clearModelMetadata(): void;
-  getModelMetadata(): ContentCredentialsParameters.ModelMetadataMap[keyof ContentCredentialsParameters.ModelMetadataMap];
-  setModelMetadata(value: ContentCredentialsParameters.ModelMetadataMap[keyof ContentCredentialsParameters.ModelMetadataMap]): void;
-
-  getParametersCase(): ContentCredentialsParameters.ParametersCase;
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ContentCredentialsParameters.AsObject;
-  static toObject(includeInstance: boolean, msg: ContentCredentialsParameters): ContentCredentialsParameters.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ContentCredentialsParameters, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ContentCredentialsParameters;
-  static deserializeBinaryFromReader(message: ContentCredentialsParameters, reader: jspb.BinaryReader): ContentCredentialsParameters;
-}
-
-export namespace ContentCredentialsParameters {
-  export type AsObject = {
-    modelMetadata: ContentCredentialsParameters.ModelMetadataMap[keyof ContentCredentialsParameters.ModelMetadataMap],
-  }
-
-  export interface ModelMetadataMap {
-    MODEL_METADATA_UNSPECIFIED: 0;
-    MODEL_METADATA_SIGN_WITH_ENGINE_ID: 1;
-  }
-
-  export const ModelMetadata: ModelMetadataMap;
-
-  export enum ParametersCase {
-    PARAMETERS_NOT_SET = 0,
-    MODEL_METADATA = 1,
-  }
-}
-
 export class FineTuningParameters extends jspb.Message {
   getModelId(): string;
   setModelId(value: string): void;
@@ -756,11 +721,6 @@ export class ImageParameters extends jspb.Message {
   setFineTuningParametersList(value: Array<FineTuningParameters>): void;
   addFineTuningParameters(value?: FineTuningParameters, index?: number): FineTuningParameters;
 
-  hasContentCredentialsParameters(): boolean;
-  clearContentCredentialsParameters(): void;
-  getContentCredentialsParameters(): ContentCredentialsParameters | undefined;
-  setContentCredentialsParameters(value?: ContentCredentialsParameters): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ImageParameters.AsObject;
   static toObject(includeInstance: boolean, msg: ImageParameters): ImageParameters.AsObject;
@@ -785,7 +745,6 @@ export namespace ImageParameters {
     quantize: boolean,
     adapter?: T2IAdapterParameter.AsObject,
     fineTuningParametersList: Array<FineTuningParameters.AsObject>,
-    contentCredentialsParameters?: ContentCredentialsParameters.AsObject,
   }
 }
 
