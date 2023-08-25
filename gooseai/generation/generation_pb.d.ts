@@ -1450,6 +1450,11 @@ export class OnStatus extends jspb.Message {
   setActionList(value: Array<StageActionMap[keyof StageActionMap]>): void;
   addAction(value: StageActionMap[keyof StageActionMap], index?: number): StageActionMap[keyof StageActionMap];
 
+  hasArtifactType(): boolean;
+  clearArtifactType(): void;
+  getArtifactType(): ArtifactTypeFilter | undefined;
+  setArtifactType(value?: ArtifactTypeFilter): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OnStatus.AsObject;
   static toObject(includeInstance: boolean, msg: OnStatus): OnStatus.AsObject;
@@ -1465,6 +1470,35 @@ export namespace OnStatus {
     reasonList: Array<FinishReasonMap[keyof FinishReasonMap]>,
     target: string,
     actionList: Array<StageActionMap[keyof StageActionMap]>,
+    artifactType?: ArtifactTypeFilter.AsObject,
+  }
+}
+
+export class ArtifactTypeFilter extends jspb.Message {
+  clearIncludeList(): void;
+  getIncludeList(): Array<ArtifactTypeMap[keyof ArtifactTypeMap]>;
+  setIncludeList(value: Array<ArtifactTypeMap[keyof ArtifactTypeMap]>): void;
+  addInclude(value: ArtifactTypeMap[keyof ArtifactTypeMap], index?: number): ArtifactTypeMap[keyof ArtifactTypeMap];
+
+  clearExcludeList(): void;
+  getExcludeList(): Array<ArtifactTypeMap[keyof ArtifactTypeMap]>;
+  setExcludeList(value: Array<ArtifactTypeMap[keyof ArtifactTypeMap]>): void;
+  addExclude(value: ArtifactTypeMap[keyof ArtifactTypeMap], index?: number): ArtifactTypeMap[keyof ArtifactTypeMap];
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ArtifactTypeFilter.AsObject;
+  static toObject(includeInstance: boolean, msg: ArtifactTypeFilter): ArtifactTypeFilter.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ArtifactTypeFilter, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ArtifactTypeFilter;
+  static deserializeBinaryFromReader(message: ArtifactTypeFilter, reader: jspb.BinaryReader): ArtifactTypeFilter;
+}
+
+export namespace ArtifactTypeFilter {
+  export type AsObject = {
+    includeList: Array<ArtifactTypeMap[keyof ArtifactTypeMap]>,
+    excludeList: Array<ArtifactTypeMap[keyof ArtifactTypeMap]>,
   }
 }
 
