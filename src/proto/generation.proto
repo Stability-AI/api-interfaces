@@ -517,10 +517,12 @@ message OnStatus {
   repeated FinishReason reason = 1;
   optional string target = 2;
   repeated StageAction action = 3;
-  oneof artifact_type {
-    repeated ArtifactType include = 4;
-    repeated ArtifactType exclude = 5;
-  }
+  optional ArtifactTypeFilter artifactType = 4;
+}
+
+message ArtifactTypeFilter {
+  repeated ArtifactType include = 1;
+  repeated ArtifactType exclude = 2;
 }
 
 message Stage {
