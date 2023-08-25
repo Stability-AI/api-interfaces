@@ -517,7 +517,7 @@ message OnStatus {
   repeated FinishReason reason = 1;
   optional string target = 2;
   repeated StageAction action = 3;
-  optional ArtifactTypeFilter artifactType = 4;
+  optional ArtifactTypeFilter artifact_type = 4;
 }
 
 message ArtifactTypeFilter {
