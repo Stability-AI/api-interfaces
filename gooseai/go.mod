@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/coreweave/tensorizer/tensors v0.0.0-20230818191050-87430eaf5f66
-	google.golang.org/grpc v1.57.0
+	google.golang.org/grpc v1.57.1
 	google.golang.org/protobuf v1.31.0
 )
 
