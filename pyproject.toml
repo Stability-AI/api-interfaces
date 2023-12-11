@@ -36,6 +36,9 @@ Source = "https://github.com/Stability-AI/api-interfaces"
 [tool.hatch.version]
 path = "src/stability_api/__about__.py"
 
+[tool.hatch.build.targets.wheel]
+include = ["src/stability_api"]
+
 [tool.hatch.build.targets.wheel.force-include]
 "src/stability_api" = "stability_api"
 
