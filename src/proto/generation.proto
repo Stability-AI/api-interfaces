@@ -24,6 +24,7 @@ enum ArtifactType {
   ARTIFACT_LATENT = 8;
   ARTIFACT_TENSOR = 9;
   ARTIFACT_DEPTH = 10;
+  ARTIFACT_3D_MODEL = 11;
 }
 
 // Generally, a GPT BPE 16-bit token, paired with an optional string representation.

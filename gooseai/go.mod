@@ -3,15 +3,14 @@ module github.com/stability-ai/api-interfaces/gooseai
 go 1.18
 
 require (
-	github.com/coreweave/tensorizer/tensors v0.0.0-20230818191050-87430eaf5f66
-	google.golang.org/grpc v1.57.0
-	google.golang.org/protobuf v1.31.0
+	github.com/coreweave/tensorizer/tensors v0.0.0-20240430202916-1552f64b2815
+	google.golang.org/grpc v1.65.0
+	google.golang.org/protobuf v1.34.2
 )
 
 require (
-	github.com/golang/protobuf v1.5.3 // indirect
-	golang.org/x/net v0.9.0 // indirect
-	golang.org/x/sys v0.7.0 // indirect
-	golang.org/x/text v0.9.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20230525234030-28d5490b6b19 // indirect
+	golang.org/x/net v0.25.0 // indirect
+	golang.org/x/sys v0.20.0 // indirect
+	golang.org/x/text v0.15.0 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20240528184218-531527333157 // indirect
 )
