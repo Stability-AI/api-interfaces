@@ -1583,6 +1583,7 @@ export interface ArtifactTypeMap {
   ARTIFACT_TENSOR: 9;
   ARTIFACT_DEPTH: 10;
   ARTIFACT_3D_MODEL: 11;
+  ARTIFACT_AUDIO: 12;
 }
 
 export const ArtifactType: ArtifactTypeMap;
