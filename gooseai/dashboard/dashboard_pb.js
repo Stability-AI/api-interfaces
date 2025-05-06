@@ -2138,7 +2138,9 @@ proto.gooseai.User.toObject = function(includeInstance, msg) {
     apiKeysList: jspb.Message.toObjectList(msg.getApiKeysList(),
     proto.gooseai.APIKey.toObject, includeInstance),
     createdAt: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    emailVerified: jspb.Message.getBooleanFieldWithDefault(msg, 9, false)
+    emailVerified: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
+    acceptedLatestTosVersion: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
+    acceptedLatestPrivacyPolicyVersion: jspb.Message.getBooleanFieldWithDefault(msg, 11, false)
   };
 
   if (includeInstance) {
@@ -2208,6 +2210,14 @@ proto.gooseai.User.deserializeBinaryFromReader = function(msg, reader) {
     case 9:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setEmailVerified(value);
+      break;
+    case 10:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setAcceptedLatestTosVersion(value);
+      break;
+    case 11:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setAcceptedLatestPrivacyPolicyVersion(value);
       break;
     default:
       reader.skipField();
@@ -2293,6 +2303,20 @@ proto.gooseai.User.serializeBinaryToWriter = function(message, writer) {
   if (f != null) {
     writer.writeBool(
       9,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 10));
+  if (f != null) {
+    writer.writeBool(
+      10,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 11));
+  if (f != null) {
+    writer.writeBool(
+      11,
       f
     );
   }
@@ -2516,6 +2540,78 @@ proto.gooseai.User.prototype.clearEmailVerified = function() {
  */
 proto.gooseai.User.prototype.hasEmailVerified = function() {
   return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional bool accepted_latest_tos_version = 10;
+ * @return {boolean}
+ */
+proto.gooseai.User.prototype.getAcceptedLatestTosVersion = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.gooseai.User} returns this
+ */
+proto.gooseai.User.prototype.setAcceptedLatestTosVersion = function(value) {
+  return jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.User} returns this
+ */
+proto.gooseai.User.prototype.clearAcceptedLatestTosVersion = function() {
+  return jspb.Message.setField(this, 10, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.User.prototype.hasAcceptedLatestTosVersion = function() {
+  return jspb.Message.getField(this, 10) != null;
+};
+
+
+/**
+ * optional bool accepted_latest_privacy_policy_version = 11;
+ * @return {boolean}
+ */
+proto.gooseai.User.prototype.getAcceptedLatestPrivacyPolicyVersion = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 11, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.gooseai.User} returns this
+ */
+proto.gooseai.User.prototype.setAcceptedLatestPrivacyPolicyVersion = function(value) {
+  return jspb.Message.setField(this, 11, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.gooseai.User} returns this
+ */
+proto.gooseai.User.prototype.clearAcceptedLatestPrivacyPolicyVersion = function() {
+  return jspb.Message.setField(this, 11, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.gooseai.User.prototype.hasAcceptedLatestPrivacyPolicyVersion = function() {
+  return jspb.Message.getField(this, 11) != null;
 };
 
 

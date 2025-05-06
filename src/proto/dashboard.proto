@@ -58,6 +58,8 @@ message User {
   repeated APIKey api_keys = 7;
   uint64 created_at = 8;
   optional bool email_verified = 9;
+  optional bool accepted_latest_tos_version = 10;
+  optional bool accepted_latest_privacy_policy_version = 11;
 }
 
 message CostData {
