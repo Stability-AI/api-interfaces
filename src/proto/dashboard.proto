@@ -113,6 +113,15 @@ message APIKeyFindRequest {
   string id = 1;
 }
 
+message AcceptLegalTermsRequest {
+  optional bool marketing_opt_in = 1;
+}
+
+message AcceptLegalTermsResponse {
+  // Whether this was successful or not
+  bool success = 1;
+}
+
 message UpdateDefaultOrganizationRequest {
   string organization_id = 1;
 }
@@ -182,6 +191,9 @@ service DashboardService {
   // API key management
   rpc CreateAPIKey (APIKeyRequest) returns (APIKey);
   rpc DeleteAPIKey (APIKeyFindRequest) returns (APIKey);
+
+  // Legal and Marketing functions
+  rpc AcceptLegalTerms (AcceptLegalTermsRequest) returns (AcceptLegalTermsResponse);
 
   // User settings
   rpc UpdateDefaultOrganization (UpdateDefaultOrganizationRequest) returns (User);

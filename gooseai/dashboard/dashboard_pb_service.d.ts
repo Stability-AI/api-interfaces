@@ -49,6 +49,15 @@ type DashboardServiceDeleteAPIKey = {
   readonly responseType: typeof dashboard_pb.APIKey;
 };
 
+type DashboardServiceAcceptLegalTerms = {
+  readonly methodName: string;
+  readonly service: typeof DashboardService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof dashboard_pb.AcceptLegalTermsRequest;
+  readonly responseType: typeof dashboard_pb.AcceptLegalTermsResponse;
+};
+
 type DashboardServiceUpdateDefaultOrganization = {
   readonly methodName: string;
   readonly service: typeof DashboardService;
@@ -155,6 +164,7 @@ export class DashboardService {
   static readonly GetMetrics: DashboardServiceGetMetrics;
   static readonly CreateAPIKey: DashboardServiceCreateAPIKey;
   static readonly DeleteAPIKey: DashboardServiceDeleteAPIKey;
+  static readonly AcceptLegalTerms: DashboardServiceAcceptLegalTerms;
   static readonly UpdateDefaultOrganization: DashboardServiceUpdateDefaultOrganization;
   static readonly GetClientSettings: DashboardServiceGetClientSettings;
   static readonly SetClientSettings: DashboardServiceSetClientSettings;
@@ -244,6 +254,15 @@ export class DashboardServiceClient {
   deleteAPIKey(
     requestMessage: dashboard_pb.APIKeyFindRequest,
     callback: (error: ServiceError|null, responseMessage: dashboard_pb.APIKey|null) => void
+  ): UnaryResponse;
+  acceptLegalTerms(
+    requestMessage: dashboard_pb.AcceptLegalTermsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: dashboard_pb.AcceptLegalTermsResponse|null) => void
+  ): UnaryResponse;
+  acceptLegalTerms(
+    requestMessage: dashboard_pb.AcceptLegalTermsRequest,
+    callback: (error: ServiceError|null, responseMessage: dashboard_pb.AcceptLegalTermsResponse|null) => void
   ): UnaryResponse;
   updateDefaultOrganization(
     requestMessage: dashboard_pb.UpdateDefaultOrganizationRequest,

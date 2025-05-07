@@ -537,6 +537,48 @@ export namespace APIKeyFindRequest {
   }
 }
 
+export class AcceptLegalTermsRequest extends jspb.Message {
+  hasMarketingOptIn(): boolean;
+  clearMarketingOptIn(): void;
+  getMarketingOptIn(): boolean;
+  setMarketingOptIn(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AcceptLegalTermsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AcceptLegalTermsRequest): AcceptLegalTermsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AcceptLegalTermsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AcceptLegalTermsRequest;
+  static deserializeBinaryFromReader(message: AcceptLegalTermsRequest, reader: jspb.BinaryReader): AcceptLegalTermsRequest;
+}
+
+export namespace AcceptLegalTermsRequest {
+  export type AsObject = {
+    marketingOptIn: boolean,
+  }
+}
+
+export class AcceptLegalTermsResponse extends jspb.Message {
+  getSuccess(): boolean;
+  setSuccess(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AcceptLegalTermsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AcceptLegalTermsResponse): AcceptLegalTermsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AcceptLegalTermsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AcceptLegalTermsResponse;
+  static deserializeBinaryFromReader(message: AcceptLegalTermsResponse, reader: jspb.BinaryReader): AcceptLegalTermsResponse;
+}
+
+export namespace AcceptLegalTermsResponse {
+  export type AsObject = {
+    success: boolean,
+  }
+}
+
 export class UpdateDefaultOrganizationRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
