@@ -248,6 +248,16 @@ export class User extends jspb.Message {
   getAcceptedLatestPrivacyPolicyVersion(): boolean;
   setAcceptedLatestPrivacyPolicyVersion(value: boolean): void;
 
+  hasAcceptedAnyTosVersion(): boolean;
+  clearAcceptedAnyTosVersion(): void;
+  getAcceptedAnyTosVersion(): boolean;
+  setAcceptedAnyTosVersion(value: boolean): void;
+
+  hasAcceptedAnyPrivacyPolicyVersion(): boolean;
+  clearAcceptedAnyPrivacyPolicyVersion(): void;
+  getAcceptedAnyPrivacyPolicyVersion(): boolean;
+  setAcceptedAnyPrivacyPolicyVersion(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): User.AsObject;
   static toObject(includeInstance: boolean, msg: User): User.AsObject;
@@ -270,6 +280,8 @@ export namespace User {
     emailVerified: boolean,
     acceptedLatestTosVersion: boolean,
     acceptedLatestPrivacyPolicyVersion: boolean,
+    acceptedAnyTosVersion: boolean,
+    acceptedAnyPrivacyPolicyVersion: boolean,
   }
 }
 

@@ -60,6 +60,8 @@ message User {
   optional bool email_verified = 9;
   optional bool accepted_latest_tos_version = 10;
   optional bool accepted_latest_privacy_policy_version = 11;
+  optional bool accepted_any_tos_version = 12;
+  optional bool accepted_any_privacy_policy_version = 13;
 }
 
 message CostData {
