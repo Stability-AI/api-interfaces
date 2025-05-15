@@ -6,10 +6,10 @@ on:
 jobs:
   generate-language-bindings:
     name: Generate Language Bindings
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
-      # By default, when you use actions/checkout on a PR, it will checkout the 
-      # head commit in a detached head state. If you want to make some changes, 
+      # By default, when you use actions/checkout on a PR, it will checkout the
+      # head commit in a detached head state. If you want to make some changes,
       # you have to checkout the branch the PR is coming from in the head repo.
       #
       # https://github.com/EndBug/add-and-commit#working-with-prs
@@ -29,7 +29,7 @@ jobs:
           push: false
           context: .
           cache-from: type=gha
-          cache-to: type=gha,mode=max 
+          cache-to: type=gha,mode=max
           outputs: |
             type=local,dest=${{ runner.temp }}/docker-build
       - uses: actions/upload-artifact@v3
