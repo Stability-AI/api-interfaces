@@ -32,7 +32,7 @@ jobs:
           cache-to: type=gha,mode=max
           outputs: |
             type=local,dest=${{ runner.temp }}/docker-build
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
          name: gooseai
          path: ${{ runner.temp }}/docker-build/gooseai
