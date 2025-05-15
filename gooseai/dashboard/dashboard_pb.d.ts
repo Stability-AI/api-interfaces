@@ -238,6 +238,26 @@ export class User extends jspb.Message {
   getEmailVerified(): boolean;
   setEmailVerified(value: boolean): void;
 
+  hasAcceptedLatestTosVersion(): boolean;
+  clearAcceptedLatestTosVersion(): void;
+  getAcceptedLatestTosVersion(): boolean;
+  setAcceptedLatestTosVersion(value: boolean): void;
+
+  hasAcceptedLatestPrivacyPolicyVersion(): boolean;
+  clearAcceptedLatestPrivacyPolicyVersion(): void;
+  getAcceptedLatestPrivacyPolicyVersion(): boolean;
+  setAcceptedLatestPrivacyPolicyVersion(value: boolean): void;
+
+  hasAcceptedAnyTosVersion(): boolean;
+  clearAcceptedAnyTosVersion(): void;
+  getAcceptedAnyTosVersion(): boolean;
+  setAcceptedAnyTosVersion(value: boolean): void;
+
+  hasAcceptedAnyPrivacyPolicyVersion(): boolean;
+  clearAcceptedAnyPrivacyPolicyVersion(): void;
+  getAcceptedAnyPrivacyPolicyVersion(): boolean;
+  setAcceptedAnyPrivacyPolicyVersion(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): User.AsObject;
   static toObject(includeInstance: boolean, msg: User): User.AsObject;
@@ -258,6 +278,10 @@ export namespace User {
     apiKeysList: Array<APIKey.AsObject>,
     createdAt: number,
     emailVerified: boolean,
+    acceptedLatestTosVersion: boolean,
+    acceptedLatestPrivacyPolicyVersion: boolean,
+    acceptedAnyTosVersion: boolean,
+    acceptedAnyPrivacyPolicyVersion: boolean,
   }
 }
 
@@ -522,6 +546,48 @@ export class APIKeyFindRequest extends jspb.Message {
 export namespace APIKeyFindRequest {
   export type AsObject = {
     id: string,
+  }
+}
+
+export class AcceptLegalTermsRequest extends jspb.Message {
+  hasMarketingOptIn(): boolean;
+  clearMarketingOptIn(): void;
+  getMarketingOptIn(): boolean;
+  setMarketingOptIn(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AcceptLegalTermsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AcceptLegalTermsRequest): AcceptLegalTermsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AcceptLegalTermsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AcceptLegalTermsRequest;
+  static deserializeBinaryFromReader(message: AcceptLegalTermsRequest, reader: jspb.BinaryReader): AcceptLegalTermsRequest;
+}
+
+export namespace AcceptLegalTermsRequest {
+  export type AsObject = {
+    marketingOptIn: boolean,
+  }
+}
+
+export class AcceptLegalTermsResponse extends jspb.Message {
+  getSuccess(): boolean;
+  setSuccess(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AcceptLegalTermsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AcceptLegalTermsResponse): AcceptLegalTermsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AcceptLegalTermsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AcceptLegalTermsResponse;
+  static deserializeBinaryFromReader(message: AcceptLegalTermsResponse, reader: jspb.BinaryReader): AcceptLegalTermsResponse;
+}
+
+export namespace AcceptLegalTermsResponse {
+  export type AsObject = {
+    success: boolean,
   }
 }
 

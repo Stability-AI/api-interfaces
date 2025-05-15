@@ -37,6 +37,28 @@ function deserialize_gooseai_APIKeyRequest(buffer_arg) {
   return dashboard_pb.APIKeyRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_gooseai_AcceptLegalTermsRequest(arg) {
+  if (!(arg instanceof dashboard_pb.AcceptLegalTermsRequest)) {
+    throw new Error('Expected argument of type gooseai.AcceptLegalTermsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_AcceptLegalTermsRequest(buffer_arg) {
+  return dashboard_pb.AcceptLegalTermsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_gooseai_AcceptLegalTermsResponse(arg) {
+  if (!(arg instanceof dashboard_pb.AcceptLegalTermsResponse)) {
+    throw new Error('Expected argument of type gooseai.AcceptLegalTermsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_AcceptLegalTermsResponse(buffer_arg) {
+  return dashboard_pb.AcceptLegalTermsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_gooseai_AutoChargeIntent(arg) {
   if (!(arg instanceof dashboard_pb.AutoChargeIntent)) {
     throw new Error('Expected argument of type gooseai.AutoChargeIntent');
@@ -282,6 +304,18 @@ createAPIKey: {
     requestDeserialize: deserialize_gooseai_APIKeyFindRequest,
     responseSerialize: serialize_gooseai_APIKey,
     responseDeserialize: deserialize_gooseai_APIKey,
+  },
+  // Legal and Marketing functions
+acceptLegalTerms: {
+    path: '/gooseai.DashboardService/AcceptLegalTerms',
+    requestStream: false,
+    responseStream: false,
+    requestType: dashboard_pb.AcceptLegalTermsRequest,
+    responseType: dashboard_pb.AcceptLegalTermsResponse,
+    requestSerialize: serialize_gooseai_AcceptLegalTermsRequest,
+    requestDeserialize: deserialize_gooseai_AcceptLegalTermsRequest,
+    responseSerialize: serialize_gooseai_AcceptLegalTermsResponse,
+    responseDeserialize: deserialize_gooseai_AcceptLegalTermsResponse,
   },
   // User settings
 updateDefaultOrganization: {

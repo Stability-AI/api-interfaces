@@ -58,6 +58,10 @@ message User {
   repeated APIKey api_keys = 7;
   uint64 created_at = 8;
   optional bool email_verified = 9;
+  optional bool accepted_latest_tos_version = 10;
+  optional bool accepted_latest_privacy_policy_version = 11;
+  optional bool accepted_any_tos_version = 12;
+  optional bool accepted_any_privacy_policy_version = 13;
 }
 
 message CostData {
@@ -109,6 +113,15 @@ message APIKeyRequest {
 
 message APIKeyFindRequest {
   string id = 1;
+}
+
+message AcceptLegalTermsRequest {
+  optional bool marketing_opt_in = 1;
+}
+
+message AcceptLegalTermsResponse {
+  // Whether this was successful or not
+  bool success = 1;
 }
 
 message UpdateDefaultOrganizationRequest {
@@ -180,6 +193,9 @@ service DashboardService {
   // API key management
   rpc CreateAPIKey (APIKeyRequest) returns (APIKey);
   rpc DeleteAPIKey (APIKeyFindRequest) returns (APIKey);
+
+  // Legal and Marketing functions
+  rpc AcceptLegalTerms (AcceptLegalTermsRequest) returns (AcceptLegalTermsResponse);
 
   // User settings
   rpc UpdateDefaultOrganization (UpdateDefaultOrganizationRequest) returns (User);
