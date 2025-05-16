@@ -224,6 +224,17 @@ function deserialize_gooseai_UpdateUserInfoRequest(buffer_arg) {
   return dashboard_pb.UpdateUserInfoRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_gooseai_UpdateUserPreferencesRequest(arg) {
+  if (!(arg instanceof dashboard_pb.UpdateUserPreferencesRequest)) {
+    throw new Error('Expected argument of type gooseai.UpdateUserPreferencesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_gooseai_UpdateUserPreferencesRequest(buffer_arg) {
+  return dashboard_pb.UpdateUserPreferencesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_gooseai_User(arg) {
   if (!(arg instanceof dashboard_pb.User)) {
     throw new Error('Expected argument of type gooseai.User');
@@ -359,6 +370,17 @@ updateDefaultOrganization: {
     responseType: dashboard_pb.User,
     requestSerialize: serialize_gooseai_UpdateUserInfoRequest,
     requestDeserialize: deserialize_gooseai_UpdateUserInfoRequest,
+    responseSerialize: serialize_gooseai_User,
+    responseDeserialize: deserialize_gooseai_User,
+  },
+  updateUserPreferences: {
+    path: '/gooseai.DashboardService/UpdateUserPreferences',
+    requestStream: false,
+    responseStream: false,
+    requestType: dashboard_pb.UpdateUserPreferencesRequest,
+    responseType: dashboard_pb.User,
+    requestSerialize: serialize_gooseai_UpdateUserPreferencesRequest,
+    requestDeserialize: deserialize_gooseai_UpdateUserPreferencesRequest,
     responseSerialize: serialize_gooseai_User,
     responseDeserialize: deserialize_gooseai_User,
   },

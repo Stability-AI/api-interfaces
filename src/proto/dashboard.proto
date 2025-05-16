@@ -62,6 +62,7 @@ message User {
   optional bool accepted_latest_privacy_policy_version = 11;
   optional bool accepted_any_tos_version = 12;
   optional bool accepted_any_privacy_policy_version = 13;
+  optional bool training_opt_in = 14;
 }
 
 message CostData {
@@ -180,6 +181,10 @@ message UpdateUserInfoRequest {
   optional string email = 1;
 }
 
+message UpdateUserPreferencesRequest {
+  optional bool training_opt_in = 1;
+}
+
 message UserPasswordChangeTicket {
   string ticket = 1;
 }
@@ -202,6 +207,7 @@ service DashboardService {
   rpc GetClientSettings (EmptyRequest) returns (ClientSettings);
   rpc SetClientSettings (ClientSettings) returns (ClientSettings);
   rpc UpdateUserInfo (UpdateUserInfoRequest) returns (User);
+  rpc UpdateUserPreferences (UpdateUserPreferencesRequest) returns (User);
   rpc CreatePasswordChangeTicket (EmptyRequest) returns (UserPasswordChangeTicket);
   rpc DeleteAccount (EmptyRequest) returns (User);
 

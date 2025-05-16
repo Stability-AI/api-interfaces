@@ -32,6 +32,7 @@ type DashboardServiceClient interface {
 	GetClientSettings(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ClientSettings, error)
 	SetClientSettings(ctx context.Context, in *ClientSettings, opts ...grpc.CallOption) (*ClientSettings, error)
 	UpdateUserInfo(ctx context.Context, in *UpdateUserInfoRequest, opts ...grpc.CallOption) (*User, error)
+	UpdateUserPreferences(ctx context.Context, in *UpdateUserPreferencesRequest, opts ...grpc.CallOption) (*User, error)
 	CreatePasswordChangeTicket(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*UserPasswordChangeTicket, error)
 	DeleteAccount(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*User, error)
 	// Payment functions
@@ -140,6 +141,15 @@ func (c *dashboardServiceClient) UpdateUserInfo(ctx context.Context, in *UpdateU
 	return out, nil
 }
 
+func (c *dashboardServiceClient) UpdateUserPreferences(ctx context.Context, in *UpdateUserPreferencesRequest, opts ...grpc.CallOption) (*User, error) {
+	out := new(User)
+	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/UpdateUserPreferences", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dashboardServiceClient) CreatePasswordChangeTicket(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*UserPasswordChangeTicket, error) {
 	out := new(UserPasswordChangeTicket)
 	err := c.cc.Invoke(ctx, "/gooseai.DashboardService/CreatePasswordChangeTicket", in, out, opts...)
@@ -221,6 +231,7 @@ type DashboardServiceServer interface {
 	GetClientSettings(context.Context, *EmptyRequest) (*ClientSettings, error)
 	SetClientSettings(context.Context, *ClientSettings) (*ClientSettings, error)
 	UpdateUserInfo(context.Context, *UpdateUserInfoRequest) (*User, error)
+	UpdateUserPreferences(context.Context, *UpdateUserPreferencesRequest) (*User, error)
 	CreatePasswordChangeTicket(context.Context, *EmptyRequest) (*UserPasswordChangeTicket, error)
 	DeleteAccount(context.Context, *EmptyRequest) (*User, error)
 	// Payment functions
@@ -265,6 +276,9 @@ func (UnimplementedDashboardServiceServer) SetClientSettings(context.Context, *C
 }
 func (UnimplementedDashboardServiceServer) UpdateUserInfo(context.Context, *UpdateUserInfoRequest) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserInfo not implemented")
+}
+func (UnimplementedDashboardServiceServer) UpdateUserPreferences(context.Context, *UpdateUserPreferencesRequest) (*User, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserPreferences not implemented")
 }
 func (UnimplementedDashboardServiceServer) CreatePasswordChangeTicket(context.Context, *EmptyRequest) (*UserPasswordChangeTicket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePasswordChangeTicket not implemented")
@@ -480,6 +494,24 @@ func _DashboardService_UpdateUserInfo_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DashboardService_UpdateUserPreferences_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateUserPreferencesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DashboardServiceServer).UpdateUserPreferences(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gooseai.DashboardService/UpdateUserPreferences",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DashboardServiceServer).UpdateUserPreferences(ctx, req.(*UpdateUserPreferencesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DashboardService_CreatePasswordChangeTicket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EmptyRequest)
 	if err := dec(in); err != nil {
@@ -652,6 +684,10 @@ var DashboardService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateUserInfo",
 			Handler:    _DashboardService_UpdateUserInfo_Handler,
+		},
+		{
+			MethodName: "UpdateUserPreferences",
+			Handler:    _DashboardService_UpdateUserPreferences_Handler,
 		},
 		{
 			MethodName: "CreatePasswordChangeTicket",
