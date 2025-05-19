@@ -258,6 +258,11 @@ export class User extends jspb.Message {
   getAcceptedAnyPrivacyPolicyVersion(): boolean;
   setAcceptedAnyPrivacyPolicyVersion(value: boolean): void;
 
+  hasTrainingOptIn(): boolean;
+  clearTrainingOptIn(): void;
+  getTrainingOptIn(): boolean;
+  setTrainingOptIn(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): User.AsObject;
   static toObject(includeInstance: boolean, msg: User): User.AsObject;
@@ -282,6 +287,7 @@ export namespace User {
     acceptedLatestPrivacyPolicyVersion: boolean,
     acceptedAnyTosVersion: boolean,
     acceptedAnyPrivacyPolicyVersion: boolean,
+    trainingOptIn: boolean,
   }
 }
 
@@ -858,6 +864,28 @@ export class UpdateUserInfoRequest extends jspb.Message {
 export namespace UpdateUserInfoRequest {
   export type AsObject = {
     email: string,
+  }
+}
+
+export class UpdateUserPreferencesRequest extends jspb.Message {
+  hasTrainingOptIn(): boolean;
+  clearTrainingOptIn(): void;
+  getTrainingOptIn(): boolean;
+  setTrainingOptIn(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateUserPreferencesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateUserPreferencesRequest): UpdateUserPreferencesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateUserPreferencesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateUserPreferencesRequest;
+  static deserializeBinaryFromReader(message: UpdateUserPreferencesRequest, reader: jspb.BinaryReader): UpdateUserPreferencesRequest;
+}
+
+export namespace UpdateUserPreferencesRequest {
+  export type AsObject = {
+    trainingOptIn: boolean,
   }
 }
 

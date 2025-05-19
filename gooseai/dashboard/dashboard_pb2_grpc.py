@@ -64,6 +64,11 @@ class DashboardServiceStub(object):
                 request_serializer=dashboard__pb2.UpdateUserInfoRequest.SerializeToString,
                 response_deserializer=dashboard__pb2.User.FromString,
                 )
+        self.UpdateUserPreferences = channel.unary_unary(
+                '/gooseai.DashboardService/UpdateUserPreferences',
+                request_serializer=dashboard__pb2.UpdateUserPreferencesRequest.SerializeToString,
+                response_deserializer=dashboard__pb2.User.FromString,
+                )
         self.CreatePasswordChangeTicket = channel.unary_unary(
                 '/gooseai.DashboardService/CreatePasswordChangeTicket',
                 request_serializer=dashboard__pb2.EmptyRequest.SerializeToString,
@@ -168,6 +173,12 @@ class DashboardServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def UpdateUserPreferences(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def CreatePasswordChangeTicket(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -262,6 +273,11 @@ def add_DashboardServiceServicer_to_server(servicer, server):
             'UpdateUserInfo': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateUserInfo,
                     request_deserializer=dashboard__pb2.UpdateUserInfoRequest.FromString,
+                    response_serializer=dashboard__pb2.User.SerializeToString,
+            ),
+            'UpdateUserPreferences': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateUserPreferences,
+                    request_deserializer=dashboard__pb2.UpdateUserPreferencesRequest.FromString,
                     response_serializer=dashboard__pb2.User.SerializeToString,
             ),
             'CreatePasswordChangeTicket': grpc.unary_unary_rpc_method_handler(
@@ -475,6 +491,23 @@ class DashboardService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/UpdateUserInfo',
             dashboard__pb2.UpdateUserInfoRequest.SerializeToString,
+            dashboard__pb2.User.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UpdateUserPreferences(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gooseai.DashboardService/UpdateUserPreferences',
+            dashboard__pb2.UpdateUserPreferencesRequest.SerializeToString,
             dashboard__pb2.User.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
